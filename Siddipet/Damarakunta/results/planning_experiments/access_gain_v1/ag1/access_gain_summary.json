@@ -1,0 +1,846 @@
+{
+  "script": "summarise_access_gain v1 (proposed)",
+  "script_sha256": "0493748eaaa5651919bea56bf0bfaacc07f964a45fc506dd053fe55da65e0aac",
+  "generated_utc": "2026-10-24T05:51:40+00:00",
+  "monetary_cost_estimated": false,
+  "cost_unit": "weighted routing cost units (not money)",
+  "road_width_used": false,
+  "parameters": {
+    "runs": [
+      "run5",
+      "run6_slope_soft"
+    ],
+    "thresholds_m": [
+      25.0,
+      50.0,
+      100.0
+    ],
+    "gap_m": 50.0,
+    "polygon_dist_tol_m": 0.011,
+    "facility_dist_tol_m": 0.06,
+    "tag": "ag1"
+  },
+  "software": {
+    "python": "3.10.0",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "geopandas": "1.1.4",
+    "shapely": "2.1.2",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "pyogrio": "0.13.0",
+    "fiona": "1.10.1",
+    "pyproj": "3.7.1"
+  },
+  "inputs": {
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\network_v2.gpkg": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\network_v2.gpkg",
+        "exists": true,
+        "size": 299008,
+        "mtime_ns": 1792777685513078500,
+        "sha256": "22209e1e9ed4dbc0de4dc82ed66356b0174c3a98e2b22a4744478afa6c190f44"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\network_v2.gpkg",
+        "exists": true,
+        "size": 299008,
+        "mtime_ns": 1792777685513078500,
+        "sha256": "22209e1e9ed4dbc0de4dc82ed66356b0174c3a98e2b22a4744478afa6c190f44"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\target_table.csv": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\target_table.csv",
+        "exists": true,
+        "size": 3144,
+        "mtime_ns": 1792777685533260400,
+        "sha256": "9275f96989091324b2b03a761440dccf42a88393374d5f499237b86425416348"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\target_table.csv",
+        "exists": true,
+        "size": 3144,
+        "mtime_ns": 1792777685533260400,
+        "sha256": "9275f96989091324b2b03a761440dccf42a88393374d5f499237b86425416348"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\plan_comparison.csv": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\plan_comparison.csv",
+        "exists": true,
+        "size": 345,
+        "mtime_ns": 1792777685535259800,
+        "sha256": "4ff98eb4867c33432258fe91da1c1e6ea50c328c6172d1f1331132d017d3bac7"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\plan_comparison.csv",
+        "exists": true,
+        "size": 345,
+        "mtime_ns": 1792777685535259800,
+        "sha256": "4ff98eb4867c33432258fe91da1c1e6ea50c328c6172d1f1331132d017d3bac7"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\summary.json": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\summary.json",
+        "exists": true,
+        "size": 7197,
+        "mtime_ns": 1792777685550261900,
+        "sha256": "5400828b0396a88f139652c9cbb855d75744a8bc836fc21091df00342c9d4ac4"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run5\\summary.json",
+        "exists": true,
+        "size": 7197,
+        "mtime_ns": 1792777685550261900,
+        "sha256": "5400828b0396a88f139652c9cbb855d75744a8bc836fc21091df00342c9d4ac4"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\network_v2.gpkg": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\network_v2.gpkg",
+        "exists": true,
+        "size": 253952,
+        "mtime_ns": 1792777783074943200,
+        "sha256": "cf830dd50e589cc8234359a43f451dc54d0a06e6d84bbf48c59f38be93551eb9"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\network_v2.gpkg",
+        "exists": true,
+        "size": 253952,
+        "mtime_ns": 1792777783074943200,
+        "sha256": "cf830dd50e589cc8234359a43f451dc54d0a06e6d84bbf48c59f38be93551eb9"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\target_table.csv": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\target_table.csv",
+        "exists": true,
+        "size": 3143,
+        "mtime_ns": 1792777783089643300,
+        "sha256": "043bee11aacf51a8f4f573b9a3b732ba7b63d42228705481a9932863b2fbe71a"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\target_table.csv",
+        "exists": true,
+        "size": 3143,
+        "mtime_ns": 1792777783089643300,
+        "sha256": "043bee11aacf51a8f4f573b9a3b732ba7b63d42228705481a9932863b2fbe71a"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\plan_comparison.csv": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\plan_comparison.csv",
+        "exists": true,
+        "size": 347,
+        "mtime_ns": 1792777783092646200,
+        "sha256": "193053ce6f610ba4c0637674966adeb3f2dfaf5bb711ae016c6fb3e77d1214a2"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\plan_comparison.csv",
+        "exists": true,
+        "size": 347,
+        "mtime_ns": 1792777783092646200,
+        "sha256": "193053ce6f610ba4c0637674966adeb3f2dfaf5bb711ae016c6fb3e77d1214a2"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\summary.json": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\summary.json",
+        "exists": true,
+        "size": 6746,
+        "mtime_ns": 1792777783109109800,
+        "sha256": "d668a46d13b9a0d78d6096cb452720470fd9b0454862561b6d30019ed8f728b3"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\summary.json",
+        "exists": true,
+        "size": 6746,
+        "mtime_ns": 1792777783109109800,
+        "sha256": "d668a46d13b9a0d78d6096cb452720470fd9b0454862561b6d30019ed8f728b3"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+        "exists": true,
+        "size": 765952,
+        "mtime_ns": 1792753911629450600,
+        "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+        "exists": true,
+        "size": 765952,
+        "mtime_ns": 1792753911629450600,
+        "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+        "exists": true,
+        "size": 163840,
+        "mtime_ns": 1791180669060648500,
+        "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+        "exists": true,
+        "size": 163840,
+        "mtime_ns": 1791180669060648500,
+        "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+        "exists": true,
+        "size": 814171,
+        "mtime_ns": 1791805797332534100,
+        "sha256": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+        "exists": true,
+        "size": 814171,
+        "mtime_ns": 1791805797332534100,
+        "sha256": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e"
+      }
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif": {
+      "before": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+        "exists": true,
+        "size": 26258,
+        "mtime_ns": 1791805592677124300,
+        "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a"
+      },
+      "after": {
+        "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+        "exists": true,
+        "size": 26258,
+        "mtime_ns": 1791805592677124300,
+        "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a"
+      }
+    },
+    "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif": {
+      "before": {
+        "path": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+        "exists": true,
+        "size": 859864,
+        "mtime_ns": 1791805592739127100,
+        "sha256": "6f6b3c6d268375643ea5124a5e25b5c7ee6779191d112cae78a357d25591d368"
+      },
+      "after": {
+        "path": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+        "exists": true,
+        "size": 859864,
+        "mtime_ns": 1791805592739127100,
+        "sha256": "6f6b3c6d268375643ea5124a5e25b5c7ee6779191d112cae78a357d25591d368"
+      }
+    },
+    "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif": {
+      "before": {
+        "path": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+        "exists": true,
+        "size": 8617,
+        "mtime_ns": 1791805797343067300,
+        "sha256": "7330837ba9b5558818d0b19812f24616948d67d786a01aaffb80499b12f10929"
+      },
+      "after": {
+        "path": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+        "exists": true,
+        "size": 8617,
+        "mtime_ns": 1791805797343067300,
+        "sha256": "7330837ba9b5558818d0b19812f24616948d67d786a01aaffb80499b12f10929"
+      }
+    }
+  },
+  "provenance_rasters": {
+    "run5:cost": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "run5:worldcover": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "run5:slope": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "run5:prohibited": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "run6_slope_soft:cost": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "run6_slope_soft:worldcover": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "run6_slope_soft:slope": null,
+    "run6_slope_soft:prohibited": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif"
+  },
+  "sets": {
+    "all_candidate_polygons": {
+      "role": "population",
+      "definition": "every row of candidate_access",
+      "n_polygons": 163
+    },
+    "quality_PLAUSIBLE": {
+      "role": "population",
+      "definition": "candidate_access quality_class == PLAUSIBLE",
+      "n_polygons": 71
+    },
+    "quality_REVIEW": {
+      "role": "population",
+      "definition": "candidate_access quality_class == REVIEW",
+      "n_polygons": 30
+    },
+    "quality_UNRESOLVED_MERGE": {
+      "role": "population",
+      "definition": "candidate_access quality_class == UNRESOLVED_MERGE",
+      "n_polygons": 62
+    },
+    "polygon_gap_flag_true": {
+      "role": "polygon_level_gap",
+      "definition": "candidate gap_flag True (own distance > 50 m)",
+      "n_polygons": 60
+    },
+    "gap_cluster_polygons": {
+      "role": "cluster_level_gap",
+      "definition": "polygons whose cluster has clusters.gap_flag True (these are the planner's cluster targets)",
+      "n_polygons": 16
+    },
+    "settlement_cluster_polygons": {
+      "role": "population",
+      "definition": "polygons in clusters with kind == SETTLEMENT_CLUSTER",
+      "n_polygons": 120
+    },
+    "settlement_interior_screening": {
+      "role": "screening",
+      "definition": "SETTLEMENT_CLUSTER polygons > 50 m from a reference road; SCREENING result, not proof that roads are required",
+      "n_polygons": 43
+    },
+    "nongap_isolated_cluster_polygons": {
+      "role": "population",
+      "definition": "ISOLATED_OR_SMALL_GROUP clusters that are not gap clusters",
+      "n_polygons": 27
+    },
+    "non_target_polygons": {
+      "role": "spillover",
+      "definition": "all polygons not in a gap cluster (spillover population)",
+      "n_polygons": 147
+    }
+  },
+  "facilities": 4,
+  "runs_summary": {
+    "run5": {
+      "targets": 15,
+      "served": 13,
+      "unserved": 2
+    },
+    "run6_slope_soft": {
+      "targets": 15,
+      "served": 14,
+      "unserved": 1
+    }
+  },
+  "checks": [
+    {
+      "check_id": "CRS_candidate_access",
+      "description": "candidate_access CRS is EPSG:32644",
+      "status": "PASS",
+      "observed": "32644",
+      "expected": "32644",
+      "detail": ""
+    },
+    {
+      "check_id": "CRS_clusters",
+      "description": "clusters CRS is EPSG:32644",
+      "status": "PASS",
+      "observed": "32644",
+      "expected": "32644",
+      "detail": ""
+    },
+    {
+      "check_id": "CRS_facility_access",
+      "description": "facility_access CRS is EPSG:32644",
+      "status": "PASS",
+      "observed": "32644",
+      "expected": "32644",
+      "detail": ""
+    },
+    {
+      "check_id": "CRS_roads",
+      "description": "roads CRS is EPSG:32644",
+      "status": "PASS",
+      "observed": "32644",
+      "expected": "32644",
+      "detail": ""
+    },
+    {
+      "check_id": "CAND_unique_ids",
+      "description": "candidate cand_id unique",
+      "status": "PASS",
+      "observed": "163",
+      "expected": "163",
+      "detail": ""
+    },
+    {
+      "check_id": "CLUS_unique_ids",
+      "description": "cluster_id unique in clusters",
+      "status": "PASS",
+      "observed": "33",
+      "expected": "33",
+      "detail": ""
+    },
+    {
+      "check_id": "JOIN_cluster",
+      "description": "every candidate cluster_id exists in clusters",
+      "status": "PASS",
+      "observed": "[]",
+      "expected": "none missing",
+      "detail": ""
+    },
+    {
+      "check_id": "DIST_polygon_base",
+      "description": "recomputed polygon->road distance equals stored dist_to_ref_road_m",
+      "status": "PASS",
+      "observed": "max abs diff 0.0050 m",
+      "expected": "<= 0.011 m",
+      "detail": ""
+    },
+    {
+      "check_id": "GAP_polygon_def",
+      "description": "candidate gap_flag == (distance > gap_m=50)",
+      "status": "PASS",
+      "observed": "0 mismatches",
+      "expected": "0",
+      "detail": "FAIL here means gap_m differs from the access run's value"
+    },
+    {
+      "check_id": "CLUS_n_candidates",
+      "description": "clusters.n_candidates equals members counted in candidate_access",
+      "status": "PASS",
+      "observed": "0 mismatches",
+      "expected": "0",
+      "detail": ""
+    },
+    {
+      "check_id": "GAP_cluster_def",
+      "description": "cluster gap_flag == (min member distance > gap_m)",
+      "status": "PASS",
+      "observed": "0 mismatches",
+      "expected": "0",
+      "detail": ""
+    },
+    {
+      "check_id": "DIST_facility_base",
+      "description": "recomputed facility->road distance equals stored value",
+      "status": "PASS",
+      "observed": "max abs diff 0.0500 m",
+      "expected": "<= 0.06 m (stored value is rounded)",
+      "detail": ""
+    },
+    {
+      "check_id": "HASH_run5_access",
+      "description": "run5: recorded access hash equals current file",
+      "status": "PASS",
+      "observed": "08e3bc4c6cc0",
+      "expected": "08e3bc4c6cc0",
+      "detail": ""
+    },
+    {
+      "check_id": "HASH_run5_roads",
+      "description": "run5: recorded roads hash equals current file",
+      "status": "PASS",
+      "observed": "3574defb203f",
+      "expected": "3574defb203f",
+      "detail": ""
+    },
+    {
+      "check_id": "HASH_run5_cost",
+      "description": "run5: recorded cost hash equals current file",
+      "status": "PASS",
+      "observed": "911ebeb1860a",
+      "expected": "911ebeb1860a",
+      "detail": ""
+    },
+    {
+      "check_id": "PROV_run5_slope",
+      "description": "run5: slope raster hashed now (the run did not record this hash)",
+      "status": "INFO",
+      "observed": "6f6b3c6d2683",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "PROV_run5_prohibited",
+      "description": "run5: prohibited raster hashed now (the run did not record this hash)",
+      "status": "INFO",
+      "observed": "7330837ba9b5",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "PROV_run5_worldcover",
+      "description": "run5: worldcover raster hashed now (the run did not record this hash)",
+      "status": "INFO",
+      "observed": "587eb4d652e3",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run5_targets",
+      "description": "run5: target_table rows == plan_comparison targets_total",
+      "status": "PASS",
+      "observed": "15",
+      "expected": "15",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run5_targets_layer",
+      "description": "run5: targets layer rows == target_table rows",
+      "status": "PASS",
+      "observed": "15",
+      "expected": "15",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run5_served_na",
+      "description": "run5: SERVED rows == plan_comparison.targets_routed == network-aware route rows",
+      "status": "PASS",
+      "observed": "served=13 routed=13 layer=13",
+      "expected": "all equal",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run5_routed_ic",
+      "description": "run5: independent route rows == plan_comparison independent targets_routed",
+      "status": "PASS",
+      "observed": "13",
+      "expected": "13",
+      "detail": ""
+    },
+    {
+      "check_id": "BEN_run5",
+      "description": "run5: sum of weights of SERVED targets == plan_comparison.weighted_benefit",
+      "status": "PASS",
+      "observed": "23.25",
+      "expected": "23.25",
+      "detail": ""
+    },
+    {
+      "check_id": "CONN_run5",
+      "description": "run5: planner 'connected' flag on network-aware rows (geometric within tolerance)",
+      "status": "INFO",
+      "observed": "13 of 13 True",
+      "expected": "informational",
+      "detail": ""
+    },
+    {
+      "check_id": "REACH_run5_na",
+      "description": "run5: network_aware routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",
+      "status": "PASS",
+      "observed": "13 of 13",
+      "expected": "all",
+      "detail": "orientation verified from targets layer"
+    },
+    {
+      "check_id": "LEN_run5_na",
+      "description": "run5: sum of layer length_m == plan_comparison total_len_m (network_aware)",
+      "status": "PASS",
+      "observed": "1506.2",
+      "expected": "1506.1",
+      "detail": "tolerance 0.75 m for 0.1 m rounding"
+    },
+    {
+      "check_id": "LEN_run5_table",
+      "description": "run5: sum of SERVED route_len_m (target_table) == layer length sum",
+      "status": "PASS",
+      "observed": "1506.2",
+      "expected": "1506.2",
+      "detail": ""
+    },
+    {
+      "check_id": "COST_run5_table",
+      "description": "run5: sum of SERVED route_cost (target_table) == layer cost sum",
+      "status": "PASS",
+      "observed": "9438.7",
+      "expected": "9438.66",
+      "detail": ""
+    },
+    {
+      "check_id": "COST_run5_na",
+      "description": "run5: layer total cost >= planner unique cost (network_aware)",
+      "status": "PASS",
+      "observed": "9438.7",
+      "expected": "9438.7",
+      "detail": ""
+    },
+    {
+      "check_id": "CONN_run5_ic",
+      "description": "run5: independent layer has no connectivity field; rows used as exported",
+      "status": "INFO",
+      "observed": "13",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "REACH_run5_ic",
+      "description": "run5: independent_least_cost routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",
+      "status": "PASS",
+      "observed": "13 of 13",
+      "expected": "all",
+      "detail": "orientation verified from targets layer"
+    },
+    {
+      "check_id": "LEN_run5_ic",
+      "description": "run5: sum of layer length_m == plan_comparison total_len_m (independent_least_cost)",
+      "status": "PASS",
+      "observed": "1516.6",
+      "expected": "1516.6",
+      "detail": "tolerance 0.75 m for 0.1 m rounding"
+    },
+    {
+      "check_id": "COST_run5_ic",
+      "description": "run5: layer total cost >= planner unique cost (independent_least_cost)",
+      "status": "PASS",
+      "observed": "9456.5",
+      "expected": "9456.5",
+      "detail": ""
+    },
+    {
+      "check_id": "HASH_run6_slope_soft_access",
+      "description": "run6_slope_soft: recorded access hash equals current file",
+      "status": "PASS",
+      "observed": "08e3bc4c6cc0",
+      "expected": "08e3bc4c6cc0",
+      "detail": ""
+    },
+    {
+      "check_id": "HASH_run6_slope_soft_roads",
+      "description": "run6_slope_soft: recorded roads hash equals current file",
+      "status": "PASS",
+      "observed": "3574defb203f",
+      "expected": "3574defb203f",
+      "detail": ""
+    },
+    {
+      "check_id": "HASH_run6_slope_soft_cost",
+      "description": "run6_slope_soft: recorded cost hash equals current file",
+      "status": "PASS",
+      "observed": "911ebeb1860a",
+      "expected": "911ebeb1860a",
+      "detail": ""
+    },
+    {
+      "check_id": "PROV_run6_slope_soft_slope",
+      "description": "run6_slope_soft: slope raster named in summary.json",
+      "status": "UNAVAILABLE",
+      "observed": "None",
+      "expected": "not applied in this run",
+      "detail": ""
+    },
+    {
+      "check_id": "PROV_run6_slope_soft_prohibited",
+      "description": "run6_slope_soft: prohibited raster hashed now (the run did not record this hash)",
+      "status": "INFO",
+      "observed": "7330837ba9b5",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "PROV_run6_slope_soft_worldcover",
+      "description": "run6_slope_soft: worldcover raster hashed now (the run did not record this hash)",
+      "status": "INFO",
+      "observed": "587eb4d652e3",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run6_slope_soft_targets",
+      "description": "run6_slope_soft: target_table rows == plan_comparison targets_total",
+      "status": "PASS",
+      "observed": "15",
+      "expected": "15",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run6_slope_soft_targets_layer",
+      "description": "run6_slope_soft: targets layer rows == target_table rows",
+      "status": "PASS",
+      "observed": "15",
+      "expected": "15",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run6_slope_soft_served_na",
+      "description": "run6_slope_soft: SERVED rows == plan_comparison.targets_routed == network-aware route rows",
+      "status": "PASS",
+      "observed": "served=14 routed=14 layer=14",
+      "expected": "all equal",
+      "detail": ""
+    },
+    {
+      "check_id": "CNT_run6_slope_soft_routed_ic",
+      "description": "run6_slope_soft: independent route rows == plan_comparison independent targets_routed",
+      "status": "PASS",
+      "observed": "14",
+      "expected": "14",
+      "detail": ""
+    },
+    {
+      "check_id": "BEN_run6_slope_soft",
+      "description": "run6_slope_soft: sum of weights of SERVED targets == plan_comparison.weighted_benefit",
+      "status": "PASS",
+      "observed": "24.25",
+      "expected": "24.25",
+      "detail": ""
+    },
+    {
+      "check_id": "CONN_run6_slope_soft",
+      "description": "run6_slope_soft: planner 'connected' flag on network-aware rows (geometric within tolerance)",
+      "status": "INFO",
+      "observed": "14 of 14 True",
+      "expected": "informational",
+      "detail": ""
+    },
+    {
+      "check_id": "REACH_run6_slope_soft_na",
+      "description": "run6_slope_soft: network_aware routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",
+      "status": "PASS",
+      "observed": "14 of 14",
+      "expected": "all",
+      "detail": "orientation verified from targets layer"
+    },
+    {
+      "check_id": "LEN_run6_slope_soft_na",
+      "description": "run6_slope_soft: sum of layer length_m == plan_comparison total_len_m (network_aware)",
+      "status": "PASS",
+      "observed": "1659.0",
+      "expected": "1658.9",
+      "detail": "tolerance 0.80 m for 0.1 m rounding"
+    },
+    {
+      "check_id": "LEN_run6_slope_soft_table",
+      "description": "run6_slope_soft: sum of SERVED route_len_m (target_table) == layer length sum",
+      "status": "PASS",
+      "observed": "1659.0",
+      "expected": "1659.0",
+      "detail": ""
+    },
+    {
+      "check_id": "COST_run6_slope_soft_table",
+      "description": "run6_slope_soft: sum of SERVED route_cost (target_table) == layer cost sum",
+      "status": "PASS",
+      "observed": "10453.8",
+      "expected": "10453.74",
+      "detail": ""
+    },
+    {
+      "check_id": "COST_run6_slope_soft_na",
+      "description": "run6_slope_soft: layer total cost >= planner unique cost (network_aware)",
+      "status": "PASS",
+      "observed": "10453.7",
+      "expected": "10453.7",
+      "detail": ""
+    },
+    {
+      "check_id": "CONN_run6_slope_soft_ic",
+      "description": "run6_slope_soft: independent layer has no connectivity field; rows used as exported",
+      "status": "INFO",
+      "observed": "14",
+      "expected": "n/a",
+      "detail": ""
+    },
+    {
+      "check_id": "REACH_run6_slope_soft_ic",
+      "description": "run6_slope_soft: independent_least_cost routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",
+      "status": "PASS",
+      "observed": "14 of 14",
+      "expected": "all",
+      "detail": "orientation verified from targets layer"
+    },
+    {
+      "check_id": "LEN_run6_slope_soft_ic",
+      "description": "run6_slope_soft: sum of layer length_m == plan_comparison total_len_m (independent_least_cost)",
+      "status": "PASS",
+      "observed": "1744.5",
+      "expected": "1744.4",
+      "detail": "tolerance 0.80 m for 0.1 m rounding"
+    },
+    {
+      "check_id": "COST_run6_slope_soft_ic",
+      "description": "run6_slope_soft: layer total cost >= planner unique cost (independent_least_cost)",
+      "status": "PASS",
+      "observed": "10955.4",
+      "expected": "10880.2",
+      "detail": ""
+    },
+    {
+      "check_id": "DEF_polygon_gap_flag_true",
+      "description": "baseline coverage of polygon_gap_flag_true at T == gap_m is 0 by definition",
+      "status": "PASS",
+      "observed": "[0]",
+      "expected": "0",
+      "detail": ""
+    },
+    {
+      "check_id": "DEF_gap_cluster_polygons",
+      "description": "baseline coverage of gap_cluster_polygons at T == gap_m is 0 by definition",
+      "status": "PASS",
+      "observed": "[0]",
+      "expected": "0",
+      "detail": ""
+    },
+    {
+      "check_id": "MONO_threshold",
+      "description": "coverage never decreases as the threshold grows",
+      "status": "PASS",
+      "observed": "0 violating groups",
+      "expected": "0",
+      "detail": ""
+    },
+    {
+      "check_id": "MONO_routes",
+      "description": "adding routes never reduces coverage",
+      "status": "PASS",
+      "observed": "0 violating groups",
+      "expected": "0",
+      "detail": ""
+    },
+    {
+      "check_id": "SAME_inputs",
+      "description": "all runs read the same access and roads files",
+      "status": "PASS",
+      "observed": "access_assessment.gpkg; tgrac_road_network.gpkg",
+      "expected": "same",
+      "detail": ""
+    },
+    {
+      "check_id": "INPUT_unchanged",
+      "description": "SHA-256/size of every input identical before and after the run",
+      "status": "PASS",
+      "observed": "0 changed",
+      "expected": "0",
+      "detail": "[]"
+    },
+    {
+      "check_id": "RUNDIR_unchanged",
+      "description": "file listing (name, size, mtime) of every run folder identical before and after",
+      "status": "PASS",
+      "observed": "[]",
+      "expected": "none",
+      "detail": ""
+    }
+  ],
+  "any_check_failed": false,
+  "inputs_changed": [],
+  "run_dirs_changed": [],
+  "limitations": [
+    "Proximity only: distance from a polygon/point to the reference roads or to roads plus proposed routes. It is not routed, walking or network accessibility.",
+    "A polygon-level gap flag is defined as distance > gap_m, so at threshold == gap_m the baseline coverage of every gap-flagged set is 0 by definition.",
+    "Routes start at their target point, so a targeted polygon or facility is close to its own route by construction; that is not independent validation. The informative quantity is spillover onto non-target polygons.",
+    "Candidate polygons are unverified model predictions. UNRESOLVED_MERGE polygons are settlement extents, so counts are polygons, not verified buildings.",
+    "The reference road layer is unverified and may omit internal lanes. The settlement-interior screening result is NOT proof that roads are required.",
+    "Routes are UNVERIFIED planning alternatives on a 10 m raster. 'connected' (planner) is geometric connection within a tolerance; it is not a physical, legal or engineered connection.",
+    "attach_to labels are not used as evidence. The independent route layer is known to carry a mislabelled attach_to in the reviewed copy of the planner.",
+    "Weighted routing cost units are unitless planner scores (cost surface x multipliers x length), not rupees. No road width or construction rate is used. monetary_cost_estimated is false.",
+    "Unserved targets are reported with the planner's failure_reason only; a target inside a hard-constrained or nodata cell is a raster-coverage/constraint result, not evidence of a real access gap.",
+    "Constraint rasters are hashed at report time; this proves their current content, not that the run used identical content.",
+    "Few runs/seeds elsewhere in the project: nothing here is a significance test."
+  ],
+  "assumptions": [
+    "Layer and column names are those written by assess_building_access_v2.py and plan_network_v2.py; any missing field aborts the run before writing.",
+    "Route LineString orientation (first vertex = target point) is verified per run against the targets layer; otherwise both endpoints are used and flagged.",
+    "The planner's recorded attach tolerance is used for geometric reach; 15 m only if it is not recorded (flagged)."
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "script": "audit_road_connectivity v1 (proposed)",
+  "created_utc": "2026-10-24T16:37:27+00:00",
+  "libraries": {
+    "python": "3.10.0",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "geopandas": "1.1.4",
+    "shapely": "2.1.2",
+    "networkx": "3.4.2",
+    "rasterio": "1.4.4",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "pyogrio": "0.13.0",
+    "fiona": "1.10.1",
+    "pyproj": "3.7.1"
+  },
+  "inputs_before": {
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg",
+      "exists": true,
+      "size": 299008,
+      "mtime_ns": 1792778196906371700,
+      "sha256": "c9daa2c8658b578c4b4b0b69ba55d8ae569c75bb56117c694112aa2d6badc6fb"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\summary.json": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\summary.json",
+      "exists": true,
+      "size": 7212,
+      "mtime_ns": 1792778196992910500,
+      "sha256": "1620a8521aa9a8af076cebb3af1637af90c5157300e66772a075234742c96a47"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg",
+      "exists": true,
+      "size": 299008,
+      "mtime_ns": 1792850018537121200,
+      "sha256": "775b21f6f56426602180c36c6bb129a057c537c1279bb5446bd95281b8dae49d"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\summary.json": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\summary.json",
+      "exists": true,
+      "size": 6946,
+      "mtime_ns": 1792850018561106800,
+      "sha256": "101577c40786921e89ef7a24a3e73da8a19036fe79e9b1caa6e86e70d1f278d9"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+      "exists": true,
+      "size": 765952,
+      "mtime_ns": 1792753911629450600,
+      "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+      "exists": true,
+      "size": 163840,
+      "mtime_ns": 1791180669060648500,
+      "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+      "exists": true,
+      "size": 26258,
+      "mtime_ns": 1791805592677124300,
+      "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a"
+    }
+  },
+  "inputs_after": {
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg",
+      "exists": true,
+      "size": 299008,
+      "mtime_ns": 1792778196906371700,
+      "sha256": "c9daa2c8658b578c4b4b0b69ba55d8ae569c75bb56117c694112aa2d6badc6fb"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\summary.json": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\summary.json",
+      "exists": true,
+      "size": 7212,
+      "mtime_ns": 1792778196992910500,
+      "sha256": "1620a8521aa9a8af076cebb3af1637af90c5157300e66772a075234742c96a47"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg",
+      "exists": true,
+      "size": 299008,
+      "mtime_ns": 1792850018537121200,
+      "sha256": "775b21f6f56426602180c36c6bb129a057c537c1279bb5446bd95281b8dae49d"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\summary.json": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\summary.json",
+      "exists": true,
+      "size": 6946,
+      "mtime_ns": 1792850018561106800,
+      "sha256": "101577c40786921e89ef7a24a3e73da8a19036fe79e9b1caa6e86e70d1f278d9"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+      "exists": true,
+      "size": 765952,
+      "mtime_ns": 1792753911629450600,
+      "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+      "exists": true,
+      "size": 163840,
+      "mtime_ns": 1791180669060648500,
+      "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+    },
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+      "exists": true,
+      "size": 26258,
+      "mtime_ns": 1791805592677124300,
+      "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a"
+    }
+  },
+  "sidecars_before": {
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg": [],
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\summary.json": [],
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg": [],
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\summary.json": [],
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg": [],
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg": [],
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif": []
+  },
+  "run_folder_listing_before": {
+    "run7_regress": [
+      [
+        "data_check.json",
+        1569,
+        1792778196996471700
+      ],
+      [
+        "network_v2.gpkg",
+        299008,
+        1792778196906371700
+      ],
+      [
+        "plan_comparison.csv",
+        345,
+        1792778196959903000
+      ],
+      [
+        "summary.json",
+        7212,
+        1792778196992910500
+      ],
+      [
+        "target_table.csv",
+        3144,
+        1792778196956904100
+      ]
+    ],
+    "fv_repro1": [
+      [
+        "data_check.json",
+        1540,
+        1792850018561106800
+      ],
+      [
+        "network_plan_map.png",
+        1323035,
+        1792850020578644200
+      ],
+      [
+        "network_v2.gpkg",
+        299008,
+        1792850018537121200
+      ],
+      [
+        "plan_comparison.csv",
+        345,
+        1792850018553114900
+      ],
+      [
+        "summary.json",
+        6946,
+        1792850018561106800
+      ],
+      [
+        "target_table.csv",
+        3144,
+        1792850018551123800
+      ]
+    ]
+  },
+  "run_folder_listing_after": {
+    "run7_regress": [
+      [
+        "data_check.json",
+        1569,
+        1792778196996471700
+      ],
+      [
+        "network_v2.gpkg",
+        299008,
+        1792778196906371700
+      ],
+      [
+        "plan_comparison.csv",
+        345,
+        1792778196959903000
+      ],
+      [
+        "summary.json",
+        7212,
+        1792778196992910500
+      ],
+      [
+        "target_table.csv",
+        3144,
+        1792778196956904100
+      ]
+    ],
+    "fv_repro1": [
+      [
+        "data_check.json",
+        1540,
+        1792850018561106800
+      ],
+      [
+        "network_plan_map.png",
+        1323035,
+        1792850020578644200
+      ],
+      [
+        "network_v2.gpkg",
+        299008,
+        1792850018537121200
+      ],
+      [
+        "plan_comparison.csv",
+        345,
+        1792850018553114900
+      ],
+      [
+        "summary.json",
+        6946,
+        1792850018561106800
+      ],
+      [
+        "target_table.csv",
+        3144,
+        1792850018551123800
+      ]
+    ]
+  },
+  "content_changes": [],
+  "mtime_only_notes": [],
+  "inputs_unchanged": true
+}

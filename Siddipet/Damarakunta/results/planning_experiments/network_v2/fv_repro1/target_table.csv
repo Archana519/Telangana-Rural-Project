@@ -1,0 +1,16 @@
+target,kind,name,weight,buildings,unresolved_in_cluster,coord_status,euclid_to_road_m,status,failure_reason,mode,attach_to,route_len_m,route_cost,marginal_cost,endpoint_dist_m,connected_to_roads,indep_len_m,straight_len_m,straight_feasible,detour_ratio,connectivity_gain
+F:36181600902,FACILITY,Mpps Damarakunta,3.0,0,0,SOURCE_LAYER_NOT_INDEPENDENTLY_VERIFIED,11.1,SERVED,,stageA_alt1,ROAD,16.9,40.0,40.0,2.44,True,16.9,11.1,True,1.53,1 priority facility
+F:36181600903,FACILITY,Zphs Damarakunta,3.0,0,0,SOURCE_LAYER_NOT_INDEPENDENTLY_VERIFIED,43.1,SERVED,,attach_network,F:36181600902,52.3,153.4,153.4,0.0,True,62.7,43.1,True,1.21,1 priority facility
+F:HEALTH_8734223673,FACILITY,"Sub Centre, Damarakunta",4.0,0,0,UNVERIFIED_FLAGGED,62.2,SERVED,,attach_network,ROAD,73.3,357.7,357.7,3.41,True,73.3,62.2,True,1.18,1 priority facility
+F:1702300,FACILITY,Damarakunt-I,3.0,0,0,UNVERIFIED_FLAGGED,121.1,SERVED,,attach_network,ROAD,168.9,700.0,700.0,4.71,True,168.9,121.1,True,1.39,1 priority facility
+C3,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,133.2,SERVED,,attach_network,ROAD,149.2,938.2,938.2,4.72,True,149.2,133.2,True,1.12,1 model-derived building polygons
+C7,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,107.0,SERVED,,attach_network,ROAD,118.3,473.9,474.0,1.47,True,118.3,107.0,True,1.11,1 model-derived building polygons
+C11,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,1,MODEL_DERIVED,200.0,SERVED,,attach_network,ROAD,212.8,1531.3,1531.3,5.13,True,212.8,200.0,True,1.06,1 model-derived building polygons
+C12,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,147.8,FAILED,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,,,,,,,False,,147.8,False,,1 model-derived building polygons
+C13,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,161.3,FAILED,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,,,,,,,False,,161.3,False,,1 model-derived building polygons
+C14,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,100.0,SERVED,,attach_network,ROAD,109.4,933.0,933.1,2.39,True,109.4,100.0,True,1.09,1 model-derived building polygons
+C21,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,183.4,SERVED,,attach_network,ROAD,190.2,1145.2,1145.0,4.35,True,190.2,183.4,True,1.04,1 model-derived building polygons
+C22,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,125.7,SERVED,,attach_network,ROAD,130.9,1076.6,1076.5,5.83,True,130.9,125.7,True,1.04,1 model-derived building polygons
+C23,CLUSTER,"gap cluster (model-derived, unverified)",2.25,6,4,MODEL_DERIVED,96.9,SERVED,,attach_network,ROAD,136.4,679.4,679.4,4.58,True,136.4,96.9,True,1.41,6 model-derived building polygons
+C29,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,67.0,SERVED,,attach_network,ROAD,70.9,585.4,585.5,1.73,True,70.9,67.0,True,1.06,1 model-derived building polygons
+C33,CLUSTER,"gap cluster (model-derived, unverified)",1.0,1,0,MODEL_DERIVED,65.9,SERVED,,attach_network,ROAD,76.7,824.6,824.7,2.79,True,76.7,65.9,True,1.16,1 model-derived building polygons

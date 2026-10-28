@@ -1,0 +1,5 @@
+facility_id,facility_name,facility_type,route_length_m,start_distance_to_road_m,end_distance_to_road_m,start_within_5m_of_road,end_within_5m_of_road,route_length_within_5m_road_buffer_m,approx_overlap_percent,route_inside_boundary_percent,geometry_valid
+36181600902,Mpps Damarakunta,School,10.0,12.21,2.44,False,True,2.62,26.2,100.0,True
+36181600903,Zphs Damarakunta,School,40.0,39.37,0.3,False,True,4.82,12.0,100.0,True
+HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,62.43,61.71,3.41,False,True,1.79,2.9,100.0,True
+1702300,Damarakunt-I,Anganwadi,160.71,121.34,4.71,False,True,0.33,0.2,100.0,True

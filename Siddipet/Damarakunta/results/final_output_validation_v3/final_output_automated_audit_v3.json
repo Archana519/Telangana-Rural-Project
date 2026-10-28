@@ -1,0 +1,54 @@
+{
+  "package_status": "REVIEW_DRAFT_NOT_GROUND_TRUTH_VERIFIED",
+  "project": "Damarakunta, Markook, Siddipet, Telangana",
+  "crs": "EPSG:32644",
+  "source_buildings_inside_village": 165,
+  "footprint_geometry_invalid_count": 0,
+  "representative_points_outside_boundary_count": 0,
+  "full_footprints_not_completely_covered_by_boundary_count": 1,
+  "footprints_not_fully_covered_by_boundary_ids": [
+    "29"
+  ],
+  "quality_classes": {
+    "PLAUSIBLE": 71,
+    "UNRESOLVED_MERGE": 62,
+    "REVIEW": 32
+  },
+  "targets_with_route_geometry": 163,
+  "target_ids_without_network_route_geometry": [],
+  "inside_village_candidates_filtered_out_of_routing_by_area": 2,
+  "route_schedule_rows": 163,
+  "route_length_sum_m": 5231.610000000001,
+  "unique_network_grid_edge_length_m": 5231.5426817189145,
+  "raster_model_cost_score_sum_not_INR": 28700.295400000003,
+  "financial_construction_cost_INR": null,
+  "facility_source_records_total_before_geometry_filter": 4,
+  "facility_source_records_with_missing_or_empty_geometry": 0,
+  "facility_source_records_with_usable_geometry": 4,
+  "facility_names_as_in_source_layer": [
+    "Mpps Damarakunta",
+    "Zphs Damarakunta",
+    "Sub Centre, Damarakunta",
+    "Damarakunt-I"
+  ],
+  "anganwadi_records_found_by_source_name_or_type": [],
+  "anganwadi_location_status": "NO_ANGANWADI_NAME_IN_CURRENT_PRIORITY_FACILITY_LAYER; LOCATION_NOT_INVENTED",
+  "semantic_building_accuracy": "NOT_VERIFIED; visual/authoritative review required",
+  "source_raster_note": "Each map crop is read independently from the high-resolution mosaic; no zooming a globally downsampled backdrop.",
+  "facility_warning": "Only features with usable coordinates in the configured facility source layer are mapped; missing facilities are not guessed.",
+  "map_design": "Cyan=existing TGRAC reference roads; pink/red=proposed network-aware route; footprint outlines encode detection quality.",
+  "constraints": "Current network experiment uses slope threshold 25 degrees plus the planner's configured water/prohibited constraints.",
+  "limitations": [
+    "PLAUSIBLE/REVIEW/UNRESOLVED_MERGE are model quality classes, not proof of house identity.",
+    "A line ending near a reference road is a model planning alternative, not a field-confirmed usable road.",
+    "Raster cost score is not INR. Construction cost requires design width/specification, quantity takeoff and local unit rates.",
+    "Official facility source layer locations must be checked against authoritative records/on-ground evidence."
+  ],
+  "review_files": [
+    "final_satellite_overview_v3.png",
+    "individual_house_route_atlas_v3.pdf",
+    "building_footprint_verification_checklist.csv",
+    "public_facility_verification_checklist.csv",
+    "proposed_route_length_and_cost_schedule.csv"
+  ]
+}

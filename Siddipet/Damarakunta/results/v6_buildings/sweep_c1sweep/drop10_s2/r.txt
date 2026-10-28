@@ -1,0 +1,29 @@
+Damarakunta route reconstruction V4
+===================================
+CRS: EPSG:32644
+Maximum facility raster snap distance: 35.0 m
+Mapped-road endpoint screening tolerance: 15.0 m
+Slope screening cap: 25.0 degrees
+
+Outputs:
+- D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v6_buildings\sweep_c1sweep\drop10_s2\r.gpkg
+- D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v6_buildings\sweep_c1sweep\drop10_s2\r.csv
+- D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v6_buildings\sweep_c1sweep\drop10_s2\c.csv
+
+V4 changes:
+- Combined route geometry includes facility point, raster path, and a connector
+  to the nearest point on the mapped road geometry.
+- Facility connector, raster path, and road connector lengths are reported separately.
+- Actual geometry intersection with mapped roads is classified.
+- Existing V3 files are not overwritten.
+
+Important limitations:
+- Connectors are straight-line geometric proposals, not verified access paths.
+- The code does not prove building clearance, land ownership, drainage feasibility,
+  road width, construction feasibility, or legal right-of-way.
+- A geometry intersection does not prove navigable network topology.
+- WorldCover is 10 m land-cover data and cannot reliably identify individual roofs.
+- A zero built-up cell count does not prove every building is avoided.
+- The slope threshold is a computational screening setting, not an engineering standard.
+- The health-centre record has conflicting source coordinates and must be verified.
+- These outputs are planning candidates only and require imagery/engineering review.

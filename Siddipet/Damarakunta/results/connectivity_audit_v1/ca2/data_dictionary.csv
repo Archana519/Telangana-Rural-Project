@@ -1,0 +1,348 @@
+file,column,definition,units,basis
+road_graph_tolerance_sweep.csv,policy,Junction policy: assume_junction (headline) or explicit_only (crossings without a shared vertex do not connect).,label,n/a
+road_graph_tolerance_sweep.csv,tolerance_m,Snapping / attachment tolerance in force on this row.,metres,n/a
+road_graph_tolerance_sweep.csv,n_segments,Number of road segments.,count,n/a
+road_graph_tolerance_sweep.csv,total_length_m,Sum of road segment lengths (geometric).,metres,n/a
+road_graph_tolerance_sweep.csv,n_components,Number of connected road components.,count,road segments
+road_graph_tolerance_sweep.csv,main_length_m,Main component (largest by total geometric length) properties.,metres / %,total road length
+road_graph_tolerance_sweep.csv,main_share_of_total_pct,Main component (largest by total geometric length) properties.,metres / %,total road length
+road_graph_tolerance_sweep.csv,second_length_m,Second-largest component property.,metres,n/a
+road_graph_tolerance_sweep.csv,main_tie,Largest and second-largest components tie on length.,boolean,n/a
+road_graph_tolerance_sweep.csv,n_dangling_ends,Dangling endpoints not resolved by a valid inferred bridge at this tolerance.,count,segment endpoints
+road_graph_tolerance_sweep.csv,n_valid_bridges,Candidate tolerance bridges that pass the distance and direction tests.,count,n/a
+road_graph_tolerance_sweep.csv,n_inferred_bridge_edges,Inferred bridge edges in the graph.,count,n/a
+road_graph_tolerance_sweep.csv,n_merges,Components merged relative to tolerance 0 at this tolerance.,count,n/a
+road_graph_tolerance_sweep.csv,n_observed_shared_endpoint,Observed intersections by class.,count,n/a
+road_graph_tolerance_sweep.csv,n_observed_t_junction,Observed intersections by class.,count,n/a
+road_graph_tolerance_sweep.csv,n_observed_shared_vertex_crossing,Observed intersections by class.,count,n/a
+road_graph_tolerance_sweep.csv,n_observed_collinear_overlap,Observed intersections by class.,count,n/a
+road_graph_tolerance_sweep.csv,n_assumed_junction_crossings,Intersections of class CROSSING_NO_SHARED_VERTEX (assumed junctions).,count,segment pairs
+road_components.csv,component_id,Rank by length at tolerance 0 (1 = main).,id,n/a
+road_components.csv,is_main,Component is the main component.,boolean,n/a
+road_components.csv,n_segments,Number of road segments.,count,n/a
+road_components.csv,length_m,Geometric length.,metres,n/a
+road_components.csv,share_of_total_pct,Component length as percent of total road length.,percent,total road length
+road_components.csv,dist_to_main_m,Minimum distance from this component to the main component.,metres,n/a
+road_components.csv,n_dangling_ends,Dangling endpoints not resolved by a valid inferred bridge at this tolerance.,count,segment endpoints
+road_components.csv,min_x,Component bounding box minimum X (EPSG:32644).,metres,n/a
+road_components.csv,min_y,Component bounding box minimum Y.,metres,n/a
+road_components.csv,max_x,Component bounding box maximum X.,metres,n/a
+road_components.csv,max_y,Component bounding box maximum Y.,metres,n/a
+road_components.csv,src_rows,Row in the source road layer.,id,n/a
+road_components.csv,merged_into_main_at_0m,Whole component belongs to the main component at that tolerance via exact + inferred connections.,boolean,tolerance in name
+road_components.csv,merged_into_main_at_1m,Whole component belongs to the main component at that tolerance via exact + inferred connections.,boolean,tolerance in name
+road_components.csv,merged_into_main_at_2m,Whole component belongs to the main component at that tolerance via exact + inferred connections.,boolean,tolerance in name
+road_components.csv,merged_into_main_at_5m,Whole component belongs to the main component at that tolerance via exact + inferred connections.,boolean,tolerance in name
+road_components.csv,merged_into_main_at_10m,Whole component belongs to the main component at that tolerance via exact + inferred connections.,boolean,tolerance in name
+road_components.csv,merged_into_main_at_15m,Whole component belongs to the main component at that tolerance via exact + inferred connections.,boolean,tolerance in name
+road_near_gaps.csv,end_id,Segment endpoint id '<seg_id>:S|E'.,id,n/a
+road_near_gaps.csv,from_seg,Segment owning the dangling end.,id,n/a
+road_near_gaps.csv,to_seg,Segment receiving the bridge.,id,n/a
+road_near_gaps.csv,from_comp,Component rank of the dangling end's segment at tolerance 0.,id,n/a
+road_near_gaps.csv,to_comp,Component rank of the target segment at tolerance 0.,id,n/a
+road_near_gaps.csv,same_component_t0,Both segments are already in the same component at tolerance 0.,boolean,n/a
+road_near_gaps.csv,dist_m,Distance from the dangling endpoint to the nearest point of the other segment.,metres,n/a
+road_near_gaps.csv,angle_deg,Angle between the outward tangent of the dangling end and the bridge direction.,degrees,n/a
+road_near_gaps.csv,direction_ok,Angle test passed (<= bridge-max-angle).,boolean,n/a
+road_near_gaps.csv,valid_bridge_at_max_tol,"Distance <= largest tolerance and direction test passed (an INFERRED connection, never original).",boolean,largest tolerance
+road_near_gaps.csv,q_end_id,Endpoint id of the other segment when Q coincides with one of its dangling ends.,id,n/a
+road_near_gaps.csv,px,Dangling end X.,metres,n/a
+road_near_gaps.csv,py,Dangling end Y.,metres,n/a
+road_near_gaps.csv,qx,Nearest point on other segment X.,metres,n/a
+road_near_gaps.csv,qy,Nearest point Y.,metres,n/a
+road_near_gaps.csv,within_1m,Dangling-end bridge distance <= the tolerance in the column name (candidate INFERRED bridge; also requires direction_ok to count).,boolean,tolerance in name
+road_near_gaps.csv,within_2m,Dangling-end bridge distance <= the tolerance in the column name (candidate INFERRED bridge; also requires direction_ok to count).,boolean,tolerance in name
+road_near_gaps.csv,within_5m,Dangling-end bridge distance <= the tolerance in the column name (candidate INFERRED bridge; also requires direction_ok to count).,boolean,tolerance in name
+road_near_gaps.csv,within_10m,Dangling-end bridge distance <= the tolerance in the column name (candidate INFERRED bridge; also requires direction_ok to count).,boolean,tolerance in name
+road_near_gaps.csv,within_15m,Dangling-end bridge distance <= the tolerance in the column name (candidate INFERRED bridge; also requires direction_ok to count).,boolean,tolerance in name
+road_junctions.csv,seg_a,Road segment id / source row / part.,id,n/a
+road_junctions.csv,seg_b,Road segment id / source row / part.,id,n/a
+road_junctions.csv,kind,Junction class or feature kind.,label,n/a
+road_junctions.csv,evidence_class,"OBSERVED_* (geometry shares a vertex/endpoint), ASSUMED_JUNCTION_* (crossing without a shared vertex), INFERRED_TOLERANCE_BRIDGE.",label,n/a
+road_junctions.csv,x,X coordinate (EPSG:32644).,metres,n/a
+road_junctions.csv,y,Y coordinate (EPSG:32644).,metres,n/a
+road_junctions.csv,overlap_len_m,Length of collinear overlap.,metres,n/a
+road_junctions.csv,connects_assume_junction,Whether this intersection connects the two segments under the named policy.,boolean,n/a
+road_junctions.csv,connects_explicit_only,Whether this intersection connects the two segments under the named policy.,boolean,n/a
+candidate_connectivity.csv,cand_id,Candidate polygon identifier from candidate_access.,id,n/a
+candidate_connectivity.csv,area_m2,"Polygon area stored by the extraction step (extract_buildings_v8), rounded to 0.01. Pass-through, not recomputed.",m2,per polygon
+candidate_connectivity.csv,inside_village,Stored flag: the polygon's representative point lies inside the village boundary used at extraction. Pass-through.,boolean,per polygon
+candidate_connectivity.csv,nearest_m,"Stored distance to the nearest OTHER detected polygon at extraction (not to a road), rounded to 0.1 m. Pass-through.",metres,per polygon
+candidate_connectivity.csv,neck_ratio,Value recorded by the distance-transform splitting step for the polygon; blank when none was recorded. Pass-through.,ratio (dimensionless),per polygon
+candidate_connectivity.csv,quality_class,Extraction quality class stored with the polygon (PLAUSIBLE / REVIEW / UNRESOLVED_MERGE).,label,n/a
+candidate_connectivity.csv,flags,Stored extraction flags.,text,n/a
+candidate_connectivity.csv,est_roofs,MODEL-DERIVED PROXY roof count (area / reference roof area). Not a verified house count.,count (proxy),n/a
+candidate_connectivity.csv,cluster_id,"Cluster attribute stored in the access assessment (kind, gap flag, size).",label,n/a
+candidate_connectivity.csv,cluster_kind,"Cluster attribute stored in the access assessment (kind, gap flag, size).",label,n/a
+candidate_connectivity.csv,cluster_n_candidates,"Cluster attribute stored in the access assessment (kind, gap flag, size).",label,n/a
+candidate_connectivity.csv,cluster_gap_flag,"Cluster attribute stored in the access assessment (kind, gap flag, size).",label,n/a
+candidate_connectivity.csv,gap_flag,Stored flag: distance to road > gap threshold (50 m).,boolean,n/a
+candidate_connectivity.csv,stored_dist_to_ref_road_m,"dist_to_ref_road_m stored by the access assessment (claim; recomputed independently, see checks).",metres,n/a
+candidate_connectivity.csv,geometry_status,OK / INVALID_REPAIRED / EMPTY_GEOMETRY / INVALID_UNREPAIRABLE / NOT_POLYGON ...,label,n/a
+candidate_connectivity.csv,unevaluable_reason,Empty when the feature was evaluated; otherwise why it could not be.,label,n/a
+candidate_connectivity.csv,d_poly_any_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+candidate_connectivity.csv,d_poly_main_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+candidate_connectivity.csv,d_poly_minor_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+candidate_connectivity.csv,d_poly_maininf_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+candidate_connectivity.csv,d_boundary_any_m,Distance from the polygon boundary ring only to any road (differs from the filled-polygon distance when a road lies inside).,metres,per polygon
+candidate_connectivity.csv,d_point_any_m,Distance from the representative point (a point guaranteed inside the polygon) to the stated road set. Computed independently of the polygon distance; no ordering is assumed.,metres,per polygon
+candidate_connectivity.csv,d_point_main_m,Distance from the representative point (a point guaranteed inside the polygon) to the stated road set. Computed independently of the polygon distance; no ordering is assumed.,metres,per polygon
+candidate_connectivity.csv,d_point_maininf_m,Distance from the representative point (a point guaranteed inside the polygon) to the stated road set. Computed independently of the polygon distance; no ordering is assumed.,metres,per polygon
+candidate_connectivity.csv,nearest_component_class,"Component class (main / minor / none) of the nearest road segment at tolerance 0, headline policy.",label,n/a
+candidate_connectivity.csv,nearest_component_tie,True when equally-near segments belong to both main and minor components.,boolean,n/a
+candidate_connectivity.csv,nearest_seg_id,Road segment id / source row / part.,id,n/a
+candidate_connectivity.csv,rep_point_x,Representative point coordinate (EPSG:32644).,metres,n/a
+candidate_connectivity.csv,rep_point_y,Representative point coordinate (EPSG:32644).,metres,n/a
+candidate_connectivity.csv,wc_status,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+candidate_connectivity.csv,intersects_wc_nodata,Footprint touches at least one WorldCover NoData cell.,boolean,n/a
+candidate_connectivity.csv,wc_cells_total,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+candidate_connectivity.csv,wc_cells_nodata,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+candidate_connectivity.csv,contact_any_le_tol,"Polygon distance to the stated road set <= polygon-contact tolerance (default 1 m). A contact tolerance, not proof of access.",boolean,tolerance = contact_tol_m
+candidate_connectivity.csv,contact_main_le_tol,"Polygon distance to the stated road set <= polygon-contact tolerance (default 1 m). A contact tolerance, not proof of access.",boolean,tolerance = contact_tol_m
+candidate_connectivity.csv,contact_minor_le_tol,"Polygon distance to the stated road set <= polygon-contact tolerance (default 1 m). A contact tolerance, not proof of access.",boolean,tolerance = contact_tol_m
+candidate_connectivity.csv,proximity_class_poly,Class of the polygon distance to any road against the thresholds.,label,thresholds 25/50/100 m
+candidate_connectivity.csv,poly_any_le25,Polygon distance to ANY road <= threshold (rounded to 0.01 m). Proximity only.,boolean,denominator = evaluable polygons
+candidate_connectivity.csv,poly_main_le25,"Polygon distance to the MAIN component (tolerance 0, headline policy) <= threshold. Proximity only.",boolean,evaluable polygons
+candidate_connectivity.csv,poly_maininf_le25,Polygon distance to the main component after inferred tolerance bridges at the largest tolerance <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,point_any_le25,Representative-point distance to ANY road <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,point_main_le25,Representative-point distance to the MAIN component <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,poly_any_le50,Polygon distance to ANY road <= threshold (rounded to 0.01 m). Proximity only.,boolean,denominator = evaluable polygons
+candidate_connectivity.csv,poly_main_le50,"Polygon distance to the MAIN component (tolerance 0, headline policy) <= threshold. Proximity only.",boolean,evaluable polygons
+candidate_connectivity.csv,poly_maininf_le50,Polygon distance to the main component after inferred tolerance bridges at the largest tolerance <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,point_any_le50,Representative-point distance to ANY road <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,point_main_le50,Representative-point distance to the MAIN component <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,poly_any_le100,Polygon distance to ANY road <= threshold (rounded to 0.01 m). Proximity only.,boolean,denominator = evaluable polygons
+candidate_connectivity.csv,poly_main_le100,"Polygon distance to the MAIN component (tolerance 0, headline policy) <= threshold. Proximity only.",boolean,evaluable polygons
+candidate_connectivity.csv,poly_maininf_le100,Polygon distance to the main component after inferred tolerance bridges at the largest tolerance <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,point_any_le100,Representative-point distance to ANY road <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,point_main_le100,Representative-point distance to the MAIN component <= threshold.,boolean,evaluable polygons
+candidate_connectivity.csv,connectivity_status,CONTACT_MAIN_COMPONENT / CONTACT_MINOR_COMPONENT / NOT_ESTABLISHED_PROXIMITY_ONLY. Graph connectivity of the polygon is only 'established' as geometric contact within the contact tolerance.,label,contact tolerance
+candidate_connectivity.csv,run5__network_aware__d_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__d_roads_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__d_roads_routes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__d_roads_connroutes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__d_roads_connroutes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_routes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_routes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_connroutes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_connroutes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_routes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_routes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_connroutes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_connroutes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_routes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_routes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_connroutes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__roads_connroutes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__start_in_polygon,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__start_in_polygon_route_keys,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__gain_class_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__d_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__d_roads_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__d_roads_routes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__d_roads_connroutes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__d_roads_connroutes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_routes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_routes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_connroutes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_connroutes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_routes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_routes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_connroutes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_connroutes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_routes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_routes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_connroutes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__roads_connroutes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__start_in_polygon,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__start_in_polygon_route_keys,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__gain_class_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__d_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__d_roads_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__d_roads_routes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__d_roads_connroutes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__d_roads_connroutes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_routes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_routes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_connroutes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_connroutes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_routes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_routes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_connroutes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_connroutes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_routes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_routes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_connroutes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__roads_connroutes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__start_in_polygon,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__start_in_polygon_route_keys,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__gain_class_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__d_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__d_roads_routes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__d_roads_routes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__d_roads_connroutes_poly_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__d_roads_connroutes_pt_m,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_routes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_routes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_connroutes_poly_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_connroutes_pt_le25,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_routes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_routes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_connroutes_poly_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_connroutes_pt_le50,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_routes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_routes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_connroutes_poly_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__roads_connroutes_pt_le100,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__start_in_polygon,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__start_in_polygon_route_keys,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__gain_class_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__gain_spillover_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__network_aware__gain_by_construction_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__gain_spillover_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run5__independent__gain_by_construction_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__gain_spillover_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__network_aware__gain_by_construction_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__gain_spillover_headline,Planner run folder name.,label,n/a
+candidate_connectivity.csv,run6_slope_soft__independent__gain_by_construction_headline,Planner run folder name.,label,n/a
+route_connectivity.csv,run,Planner run folder name.,label,n/a
+route_connectivity.csv,scenario,Route scenario: network_aware or independent.,label,n/a
+route_connectivity.csv,route_key,Route identifier (target id; '#n' suffix if the target repeats in the layer).,id,n/a
+route_connectivity.csv,target,Planner target id (F:<facility> or C<cluster>).,id,n/a
+route_connectivity.csv,target_kind,Planner target id (F:<facility> or C<cluster>).,id,n/a
+route_connectivity.csv,tolerance_m,Snapping / attachment tolerance in force on this row.,metres,n/a
+route_connectivity.csv,geometry_status,OK / INVALID_REPAIRED / EMPTY_GEOMETRY / INVALID_UNREPAIRABLE / NOT_POLYGON ...,label,n/a
+route_connectivity.csv,orientation,How the start (target) end of the route was identified from the targets layer.,label,n/a
+route_connectivity.csv,unevaluable_reason,Empty when the feature was evaluated; otherwise why it could not be.,label,n/a
+route_connectivity.csv,route_length_m,Route geometry property as named.,metres / flag,n/a
+route_connectivity.csv,stored_length_m,"length_m stored by the planner (claim; compared, not used).",metres,n/a
+route_connectivity.csv,terminal_x,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,terminal_y,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,start_x,Route target-start position or distance (close to its own target BY CONSTRUCTION).,metres,n/a
+route_connectivity.csv,start_y,Route target-start position or distance (close to its own target BY CONSTRUCTION).,metres,n/a
+route_connectivity.csv,start_to_road_m,Route target-start position or distance (close to its own target BY CONSTRUCTION).,metres,n/a
+route_connectivity.csv,terminal_to_road_m,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,terminal_to_main_m,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,terminal_to_main_inferred_m,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,terminal_nearest_road_class,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,terminal_nearest_class_tie,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,terminal_to_nearest_other_route_m,"Route network-end (non-target end) position or distance, as named.",metres,n/a
+route_connectivity.csv,nearest_other_route,Route (same run/scenario) whose geometry is nearest to this route's terminal.,id,n/a
+route_connectivity.csv,route_geometry_min_dist_to_road_m,Route geometry property as named.,metres / flag,n/a
+route_connectivity.csv,route_intersects_road,Route geometry property as named.,metres / flag,n/a
+route_connectivity.csv,n_attachment_options,"Number of attachment options within the tolerance (ROAD counts once, plus each route).",count,n/a
+route_connectivity.csv,ambiguous_options,More than one attachment option or more than one road component within the tolerance.,boolean,tolerance_m
+route_connectivity.csv,next_hop,"Deterministic first hop: ROAD, a route key, or blank.",label,tolerance_m
+route_connectivity.csv,terminal_gap_m,Distance of the first hop.,metres,tolerance_m
+route_connectivity.csv,chain,Deterministic attachment chain from this route.,text,tolerance_m
+route_connectivity.csv,chain_hops,"Chain property as named (hops, largest gap, outcome, ambiguity).",see name,tolerance_m
+route_connectivity.csv,chain_max_gap_m,"Chain property as named (hops, largest gap, outcome, ambiguity).",see name,tolerance_m
+route_connectivity.csv,chain_ambiguous,"Chain property as named (hops, largest gap, outcome, ambiguity).",see name,tolerance_m
+route_connectivity.csv,chain_outcome,"Chain property as named (hops, largest gap, outcome, ambiguity).",see name,tolerance_m
+route_connectivity.csv,reaches_main_deterministic,Deterministic chain ends at a road of the MAIN component (tolerance 0 components).,boolean,tolerance_m
+route_connectivity.csv,reaches_main_any_resolution,Some resolution of the ambiguous options reaches the main component (bottleneck <= tolerance).,boolean,tolerance_m
+route_connectivity.csv,reaches_any_road_deterministic,Deterministic chain ends at any road (the planner's own 'connected' notion).,boolean,tolerance_m
+route_connectivity.csv,min_tolerance_to_main_m,Smallest tolerance at which some chain reaches the main component (minimax over all options).,metres,n/a
+route_connectivity.csv,bottleneck_chain,Chain realising the minimax tolerance.,text,n/a
+route_connectivity.csv,min_tolerance_to_main_inferred_m,Smallest tolerance at which some chain reaches the main component (minimax over all options).,metres,n/a
+route_connectivity.csv,near_road_but_not_attached,Route geometry within the smallest proximity threshold of a road but its chain does not reach a road at this tolerance.,boolean,tolerance_m
+route_connectivity.csv,wc_nodata_or_outside_share,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+route_connectivity.csv,wc_status,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+route_connectivity.csv,claimed_attach_to,"Value stored by the planner (a CLAIM, not evidence).",as stored,n/a
+route_connectivity.csv,claimed_connected,"Value stored by the planner (a CLAIM, not evidence).",as stored,n/a
+route_connectivity.csv,planner_route_status,route_status stored by the planner.,label,n/a
+route_connectivity.csv,claim_attach_to_vs_independent,Stored claim vs independent geometry at the planner's attach tolerance (AGREE / DISAGREE / NO_CLAIM).,label,attach_tol_m
+route_connectivity.csv,claim_connected_vs_independent,Stored claim vs independent geometry at the planner's attach tolerance (AGREE / DISAGREE / NO_CLAIM).,label,attach_tol_m
+facility_connectivity.csv,facility_id,Facility attribute from facility_access.,as stored,n/a
+facility_connectivity.csv,facility_name,Facility attribute from facility_access.,as stored,n/a
+facility_connectivity.csv,facility_type,Facility attribute from facility_access.,as stored,n/a
+facility_connectivity.csv,priority_group,Facility priority group where stored.,as stored,n/a
+facility_connectivity.csv,source,Source file name of the facility record as stored in facility_access. Pass-through.,text,per facility
+facility_connectivity.csv,stored_dist_to_ref_road_m,"dist_to_ref_road_m stored by the access assessment (claim; recomputed independently, see checks).",metres,n/a
+facility_connectivity.csv,geometry_status,OK / INVALID_REPAIRED / EMPTY_GEOMETRY / INVALID_UNREPAIRABLE / NOT_POLYGON ...,label,n/a
+facility_connectivity.csv,unevaluable_reason,Empty when the feature was evaluated; otherwise why it could not be.,label,n/a
+facility_connectivity.csv,d_poly_any_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+facility_connectivity.csv,d_poly_main_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+facility_connectivity.csv,d_poly_minor_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+facility_connectivity.csv,d_poly_maininf_m,Distance from the filled polygon (or point) to the stated road set; 0 if they intersect or a road lies inside.,metres,per polygon
+facility_connectivity.csv,d_boundary_any_m,Distance from the polygon boundary ring only to any road (differs from the filled-polygon distance when a road lies inside).,metres,per polygon
+facility_connectivity.csv,d_point_any_m,Distance from the representative point (a point guaranteed inside the polygon) to the stated road set. Computed independently of the polygon distance; no ordering is assumed.,metres,per polygon
+facility_connectivity.csv,d_point_main_m,Distance from the representative point (a point guaranteed inside the polygon) to the stated road set. Computed independently of the polygon distance; no ordering is assumed.,metres,per polygon
+facility_connectivity.csv,d_point_maininf_m,Distance from the representative point (a point guaranteed inside the polygon) to the stated road set. Computed independently of the polygon distance; no ordering is assumed.,metres,per polygon
+facility_connectivity.csv,nearest_component_class,"Component class (main / minor / none) of the nearest road segment at tolerance 0, headline policy.",label,n/a
+facility_connectivity.csv,nearest_component_tie,True when equally-near segments belong to both main and minor components.,boolean,n/a
+facility_connectivity.csv,nearest_seg_id,Road segment id / source row / part.,id,n/a
+facility_connectivity.csv,wc_status,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+facility_connectivity.csv,intersects_wc_nodata,Footprint touches at least one WorldCover NoData cell.,boolean,n/a
+facility_connectivity.csv,wc_cells_total,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+facility_connectivity.csv,wc_cells_nodata,WorldCover coverage: status / count of raster cells touched by the footprint that are NoData. Coverage flag only; no distance depends on it.,label / count,raster cells
+facility_connectivity.csv,contact_any_le_tol,"Polygon distance to the stated road set <= polygon-contact tolerance (default 1 m). A contact tolerance, not proof of access.",boolean,tolerance = contact_tol_m
+facility_connectivity.csv,contact_main_le_tol,"Polygon distance to the stated road set <= polygon-contact tolerance (default 1 m). A contact tolerance, not proof of access.",boolean,tolerance = contact_tol_m
+facility_connectivity.csv,contact_minor_le_tol,"Polygon distance to the stated road set <= polygon-contact tolerance (default 1 m). A contact tolerance, not proof of access.",boolean,tolerance = contact_tol_m
+facility_connectivity.csv,proximity_class_poly,Class of the polygon distance to any road against the thresholds.,label,thresholds 25/50/100 m
+facility_connectivity.csv,poly_any_le25,Polygon distance to ANY road <= threshold (rounded to 0.01 m). Proximity only.,boolean,denominator = evaluable polygons
+facility_connectivity.csv,poly_main_le25,"Polygon distance to the MAIN component (tolerance 0, headline policy) <= threshold. Proximity only.",boolean,evaluable polygons
+facility_connectivity.csv,poly_maininf_le25,Polygon distance to the main component after inferred tolerance bridges at the largest tolerance <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,point_any_le25,Representative-point distance to ANY road <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,point_main_le25,Representative-point distance to the MAIN component <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,poly_any_le50,Polygon distance to ANY road <= threshold (rounded to 0.01 m). Proximity only.,boolean,denominator = evaluable polygons
+facility_connectivity.csv,poly_main_le50,"Polygon distance to the MAIN component (tolerance 0, headline policy) <= threshold. Proximity only.",boolean,evaluable polygons
+facility_connectivity.csv,poly_maininf_le50,Polygon distance to the main component after inferred tolerance bridges at the largest tolerance <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,point_any_le50,Representative-point distance to ANY road <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,point_main_le50,Representative-point distance to the MAIN component <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,poly_any_le100,Polygon distance to ANY road <= threshold (rounded to 0.01 m). Proximity only.,boolean,denominator = evaluable polygons
+facility_connectivity.csv,poly_main_le100,"Polygon distance to the MAIN component (tolerance 0, headline policy) <= threshold. Proximity only.",boolean,evaluable polygons
+facility_connectivity.csv,poly_maininf_le100,Polygon distance to the main component after inferred tolerance bridges at the largest tolerance <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,point_any_le100,Representative-point distance to ANY road <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,point_main_le100,Representative-point distance to the MAIN component <= threshold.,boolean,evaluable polygons
+facility_connectivity.csv,connectivity_status,CONTACT_MAIN_COMPONENT / CONTACT_MINOR_COMPONENT / NOT_ESTABLISHED_PROXIMITY_ONLY. Graph connectivity of the polygon is only 'established' as geometric contact within the contact tolerance.,label,contact tolerance
+facility_connectivity.csv,run5__network_aware__route_present,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__network_aware__chain_outcome_at_attach_tol,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__network_aware__reaches_main_deterministic,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__network_aware__reaches_main_any_resolution,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__network_aware__min_tolerance_to_main_m,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__network_aware__chain,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__network_aware__route_start_at_facility_by_construction,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__route_present,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__chain_outcome_at_attach_tol,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__reaches_main_deterministic,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__reaches_main_any_resolution,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__min_tolerance_to_main_m,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__chain,Planner run folder name.,label,n/a
+facility_connectivity.csv,run5__independent__route_start_at_facility_by_construction,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__route_present,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__chain_outcome_at_attach_tol,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__reaches_main_deterministic,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__reaches_main_any_resolution,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__min_tolerance_to_main_m,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__chain,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__network_aware__route_start_at_facility_by_construction,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__route_present,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__chain_outcome_at_attach_tol,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__reaches_main_deterministic,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__reaches_main_any_resolution,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__min_tolerance_to_main_m,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__chain,Planner run folder name.,label,n/a
+facility_connectivity.csv,run6_slope_soft__independent__route_start_at_facility_by_construction,Planner run folder name.,label,n/a
+facility_connectivity.csv,coord_status_by_run,Target coordinate status written by the planner.,label,n/a
+summary_by_group.csv,summary_id,Section of the summary.,label,n/a
+summary_by_group.csv,group_type,Grouping variable.,label,n/a
+summary_by_group.csv,group_value,Group value.,label,n/a
+summary_by_group.csv,run,Planner run folder name.,label,n/a
+summary_by_group.csv,scenario,Route scenario: network_aware or independent.,label,n/a
+summary_by_group.csv,metric,Metric name.,label,n/a
+summary_by_group.csv,threshold_or_tolerance_m,Threshold / tolerance of the metric.,metres,n/a
+summary_by_group.csv,unit,Unit of the numerator and denominator.,label,n/a
+summary_by_group.csv,numerator,Count satisfying the metric.,count,see denominator
+summary_by_group.csv,denominator,Count of evaluable members of the group.,count,n/a
+summary_by_group.csv,percent,100 * numerator / denominator.,percent,n/a
+summary_by_group.csv,roofs_numerator,Sum of est_roofs (MODEL-DERIVED PROXY) over the numerator / denominator members. Not verified houses.,roofs (proxy),n/a
+summary_by_group.csv,roofs_denominator,Sum of est_roofs (MODEL-DERIVED PROXY) over the numerator / denominator members. Not verified houses.,roofs (proxy),n/a
+summary_by_group.csv,roofs_percent,Sum of est_roofs (MODEL-DERIVED PROXY) over the numerator / denominator members. Not verified houses.,roofs (proxy),n/a
+summary_by_group.csv,definition,Plain-language metric definition.,text,n/a
+checks.csv,check_id,Check identifier.,id,n/a
+checks.csv,description,What is checked.,text,n/a
+checks.csv,status,PASS / FAIL / INFO / FLAG / UNAVAILABLE / MATCHES_PRIOR / DIFFERS_FROM_PRIOR.,label,n/a
+checks.csv,observed,Observed value.,as stated,n/a
+checks.csv,expected,Expected / previously reported value (comparison only).,as stated,n/a
+checks.csv,detail,Explanation.,text,n/a

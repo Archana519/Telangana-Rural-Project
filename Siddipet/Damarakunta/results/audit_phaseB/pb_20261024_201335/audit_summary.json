@@ -1,0 +1,328 @@
+{
+  "created": "2026-10-24T14:43:35.369421+00:00",
+  "args": {
+    "root": ".",
+    "village": "Siddipet/Damarakunta",
+    "runs_root": null,
+    "ref_run": "run7_regress",
+    "soft_run": "run6_slope_soft",
+    "out_root": null,
+    "tag": null,
+    "only": "b1,b2,b3,b4",
+    "slope_limit": 10.0,
+    "water": 80,
+    "sample_m": 5.0,
+    "min_area": 10.0,
+    "quality_keep": "PLAUSIBLE,REVIEW,UNRESOLVED_MERGE",
+    "buildings_layer": "buildings",
+    "c12": "C12",
+    "c13": "C13"
+  },
+  "inputs": {
+    "cost": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+      "exists": true,
+      "sha256": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e"
+    },
+    "proh": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+      "exists": true,
+      "sha256": "7330837ba9b5558818d0b19812f24616948d67d786a01aaffb80499b12f10929"
+    },
+    "wc": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+      "exists": true,
+      "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a"
+    },
+    "slope": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+      "exists": true,
+      "sha256": "6f6b3c6d268375643ea5124a5e25b5c7ee6779191d112cae78a357d25591d368"
+    },
+    "boundary": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+      "exists": true,
+      "sha256": "10d58278f82515c2ed8c386598b954ecb86d1627194c79d08bbfff00dadd0197"
+    },
+    "roads": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+      "exists": true,
+      "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+    },
+    "v8": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.gpkg",
+      "exists": true,
+      "sha256": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47"
+    },
+    "access": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+      "exists": true,
+      "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+    },
+    "ref_gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg",
+      "exists": true,
+      "sha256": "c9daa2c8658b578c4b4b0b69ba55d8ae569c75bb56117c694112aa2d6badc6fb"
+    },
+    "soft_gpkg": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run6_slope_soft\\network_v2.gpkg",
+      "exists": true,
+      "sha256": "cf830dd50e589cc8234359a43f451dc54d0a06e6d84bbf48c59f38be93551eb9"
+    }
+  },
+  "audits": {
+    "b1": {
+      "status": "DONE",
+      "slope_limit_deg": 10.0,
+      "grid_shape": [
+        432,
+        679
+      ],
+      "cells_slope_over_limit": 2373,
+      "cells_over_limit_with_valid_cost": 2317,
+      "valid_cost_cells": 183370,
+      "note_dem": "Slope is derived from a 30 m DEM (Sobel on 30 m cells, bilinear to 10 m) in align_damarakunta_terrain.py; the DEM vertical error was not quantified here, so an exceedance of a few tenths of a degree is not resolvable.",
+      "target_cell": {
+        "x": 259389.6855999997,
+        "y": 1960017.7879999995,
+        "row": 90,
+        "col": 57,
+        "slope_deg": 10.348694801330566,
+        "cost": 10.0,
+        "worldcover": 40.0,
+        "window_5x5_slope_deg": [
+          [
+            null,
+            null,
+            14.24,
+            14.24,
+            11.29
+          ],
+          [
+            null,
+            null,
+            12.01,
+            11.59,
+            9.04
+          ],
+          [
+            null,
+            12.15,
+            10.35,
+            8.95,
+            6.79
+          ],
+          [
+            14.55,
+            11.8,
+            9.05,
+            6.3,
+            4.54
+          ],
+          [
+            11.6,
+            9.22,
+            6.84,
+            4.45,
+            3.37
+          ]
+        ],
+        "window_cells_over_limit": 10,
+        "window_cells": 20
+      },
+      "c12_routes": [
+        {
+          "run": "soft_or_no_slope_run",
+          "layer": "routes_network_aware",
+          "target": "C12",
+          "length_m": 227.9,
+          "samples": 47,
+          "samples_slope_nodata": 0,
+          "slope_max": 10.348694801330566,
+          "slope_p95": 9.960027408599847,
+          "share_samples_over_limit": 0.06382978723404255,
+          "approx_len_over_limit_m": 14.5,
+          "worldcover_classes": "{\"40\": 39, \"30\": 8}"
+        }
+      ],
+      "per_run_summary": {
+        "reference": {
+          "routes": 13,
+          "routes_with_any_sample_over_limit": 0,
+          "max_slope_over_all_routes": 6.489648342132568,
+          "approx_len_over_limit_m": 0.0
+        },
+        "soft_or_no_slope_run": {
+          "routes": 14,
+          "routes_with_any_sample_over_limit": 1,
+          "max_slope_over_all_routes": 10.348694801330566,
+          "approx_len_over_limit_m": 14.5
+        }
+      }
+    },
+    "b2": {
+      "status": "DONE",
+      "grid_cells": 293328,
+      "blocked_cells": 109958,
+      "rule": "create_damarakunta_cost_surface.py sets blocked=1 everywhere except cells whose WorldCover class is 10,20,30,40,50 or 60 AND whose slope is valid. So 'prohibited' means 'not usable land with a valid slope'; it is not a legal or protected-area layer.",
+      "blocked_by_cause": {
+        "outside village boundary (WorldCover and slope were set to nodata there)": 108682,
+        "inside boundary, WorldCover water (80)": 224,
+        "inside boundary, WorldCover nodata (0)": 178,
+        "inside boundary, WorldCover class other than 10-60 and 80": 0,
+        "inside boundary, land class but slope invalid": 874,
+        "blocked but NOT explained by the rules above (UNKNOWN)": 0
+      },
+      "unblocked_but_outside_boundary": 0,
+      "targets_not_passable": [
+        {
+          "target": "C12",
+          "x": 259389.69,
+          "y": 1960017.79,
+          "inside_grid": true,
+          "inside_boundary_polygon": true,
+          "dist_to_boundary_m": 15.4,
+          "cost": 10.0,
+          "prohibited": 0.0,
+          "worldcover": 40.0,
+          "slope_deg": 10.348694801330566,
+          "cell_passable_in_planner": false,
+          "planner_exclusion": "slope > 10 deg (10.35)",
+          "mask_cause": "not blocked",
+          "nearest_passable_cell_centre_m": 6.0
+        },
+        {
+          "target": "C13",
+          "x": 259398.69,
+          "y": 1960050.79,
+          "inside_grid": true,
+          "inside_boundary_polygon": true,
+          "dist_to_boundary_m": 0.6,
+          "cost": null,
+          "prohibited": 1.0,
+          "worldcover": null,
+          "slope_deg": null,
+          "cell_passable_in_planner": false,
+          "planner_exclusion": "cost invalid (nodata or <= 0); prohibited mask > 0",
+          "mask_cause": "outside village boundary (WorldCover and slope were set to nodata there)",
+          "nearest_passable_cell_centre_m": 17.3
+        }
+      ],
+      "failed_cluster_polygons": {
+        "C12": [
+          {
+            "cand_id": 32,
+            "area_m2": 33.8,
+            "share_area_inside_boundary": 1.0,
+            "cells_covered": 0,
+            "cells_passable": 0,
+            "representative_point_inside_boundary": true
+          }
+        ],
+        "C13": [
+          {
+            "cand_id": 29,
+            "area_m2": 86.8,
+            "share_area_inside_boundary": 0.553,
+            "cells_covered": 0,
+            "cells_passable": 0,
+            "representative_point_inside_boundary": true
+          }
+        ]
+      },
+      "verdict": "The planner failure is explained by the files: a failed target sits in a cell excluded by the mask. Whether that exclusion reflects a real obstacle is UNKNOWN from these files; 'outside boundary' cells carry no land-cover or slope data by construction."
+    },
+    "b3": {
+      "status": "DONE",
+      "v8_layer": "buildings",
+      "v8_total": 278,
+      "inside_village": 165,
+      "inside_and_quality_kept": 165,
+      "inside_quality_and_area_ge_min": 163,
+      "min_area_m2": 10.0,
+      "quality_keep": [
+        "PLAUSIBLE",
+        "REVIEW",
+        "UNRESOLVED_MERGE"
+      ],
+      "access_candidate_access_rows": 163,
+      "rule_reproduces_access_count": true,
+      "inside_village_not_in_access": 2,
+      "access_not_inside_village": 0,
+      "dropped_detail": [
+        {
+          "cand_id": 189,
+          "area_m2_used": 7.2,
+          "quality_class": "REVIEW",
+          "quality_kept": true,
+          "area_ge_min": false,
+          "status": "AUTO_DETECTED_UNVERIFIED",
+          "est_roofs": 1
+        },
+        {
+          "cand_id": 202,
+          "area_m2_used": 8.28,
+          "quality_class": "REVIEW",
+          "quality_kept": true,
+          "area_ge_min": false,
+          "status": "AUTO_DETECTED_UNVERIFIED",
+          "est_roofs": 1
+        }
+      ],
+      "verdict": "The access count 163 is reproduced by inside_village AND quality in ['PLAUSIBLE', 'REVIEW', 'UNRESOLVED_MERGE'] AND area >= 10.0 m2."
+    },
+    "b4": {
+      "status": "DONE",
+      "road_features": 43,
+      "road_cells": 8061,
+      "passable": 6430,
+      "dropped_impassable": 1631,
+      "planner_recorded_road_cells": {
+        "total": 8061,
+        "passable": 6430,
+        "dropped_impassable": 1631
+      },
+      "reproduces_planner_counts": true,
+      "dropped_by_first_matching_cause": {
+        "outside village boundary": 1532,
+        "prohibited mask (non-land class or invalid slope, inside boundary)": 32,
+        "slope above limit": 67
+      },
+      "dropped_components": {
+        "n": 22,
+        "largest": 689,
+        "n_ge_10_cells": 16
+      },
+      "passable_road_components_8conn": {
+        "n": 13,
+        "largest": 6078,
+        "sizes_desc": [
+          6078,
+          159,
+          62,
+          28,
+          24,
+          23,
+          13,
+          13,
+          10,
+          9
+        ]
+      },
+      "targets_where_nearest_road_cell_is_dropped": [
+        {
+          "target": "C12",
+          "dist_to_nearest_road_cell_m": 144.7,
+          "dist_to_nearest_PASSABLE_road_cell_m": 191.0,
+          "extra_m_because_of_dropped_cells": 46.3
+        },
+        {
+          "target": "C13",
+          "dist_to_nearest_road_cell_m": 157.8,
+          "dist_to_nearest_PASSABLE_road_cell_m": 223.2,
+          "extra_m_because_of_dropped_cells": 65.4
+        }
+      ]
+    }
+  }
+}

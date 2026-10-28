@@ -1,0 +1,11 @@
+Damarakunta individual-house network planning map audit
+network_aware_route_features=163
+independent_route_features=163
+target_status_features=163
+network_route_length_sum_m=5231.61
+independent_route_length_sum_m=10047.65
+network_unique_grid_edge_length_m=5231.5426817189145
+independent_unique_grid_edge_length_m=6755.360141024099
+unique_grid_edge_reduction_m=1523.82
+unique_grid_edge_reduction_percent=22.55716094322362
+Important: all mapped route lines are unverified planning alternatives, not approved roads.

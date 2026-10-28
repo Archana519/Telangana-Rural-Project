@@ -1,0 +1,5 @@
+facility_id,facility_name,facility_type,inside_boundary,nearest_graph_node_distance_m,nearest_node_component,nearest_component_size,nearest_node_in_largest_component,largest_component_nearest_node_distance_m,within_500m_of_largest_component,nearest_node_easting,nearest_node_northing
+36181600902,Mpps Damarakunta,School,True,14.53,1,1568,True,14.53,True,261427.37,1959211.98
+36181600903,Zphs Damarakunta,School,True,47.56,1,1568,True,47.56,True,261427.37,1959211.98
+HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,True,62.2,1,1568,True,62.2,True,261827.84,1959356.88
+1702300,Damarakunt-I,Anganwadi,True,122.04,1,1568,True,122.04,True,261057.53,1958726.24

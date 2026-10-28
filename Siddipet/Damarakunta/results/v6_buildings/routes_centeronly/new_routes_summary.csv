@@ -1,0 +1,10 @@
+facility_id,alt,length_m,cost,builtup_cells,fallback_start,crosses_cand_bldgs,intersects_road
+36181600902,1,27.4,3.5,0,False,0,True
+36181600903,1,60.1,23.0,0,False,2,False
+36181600903,2,133.7,166.7,0,False,1,True
+HEALTH_8734223673,1,77.9,39.7,0,False,0,True
+HEALTH_8734223673,2,145.2,126.7,0,False,0,True
+HEALTH_8734223673,3,109.1,148.6,0,False,1,True
+1702300,1,168.9,68.3,0,False,0,False
+1702300,2,140.4,116.3,0,False,0,True
+1702300,3,128.7,160.3,0,False,0,True

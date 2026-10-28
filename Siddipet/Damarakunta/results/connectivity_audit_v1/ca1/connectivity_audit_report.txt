@@ -1,0 +1,109 @@
+CONNECTIVITY AUDIT - audit_road_connectivity v1 (proposed)
+====================================================================================================
+Physical passability, legal access, land ownership, road condition and ground-truth road status are NOT established by this audit. Everything here is geometry of unverified layers: proximity is not connectivity, a tolerance-based connection is an inference, and a route terminal near a road or another route is not proof of a valid or traversable connection.
+
+INPUTS (SHA-256 recorded in input_integrity.json; unchanged after processing)
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\planning_experiments\network_v2\run5\network_v2.gpkg
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\planning_experiments\network_v2\run5\summary.json
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\planning_experiments\network_v2\run6_slope_soft\network_v2.gpkg
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\planning_experiments\network_v2\run6_slope_soft\summary.json
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances\access\access_assessment.gpkg
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\reference\tgrac_road_network.gpkg
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_worldcover_10m.tif
+
+1. ROAD GRAPH (headline policy: assume_junction; main component = largest by total length)
+         policy  tolerance_m  n_components  main_length_m  main_share_of_total_pct  n_dangling_ends  n_valid_bridges  n_assumed_junction_crossings
+assume_junction          0.0             7       86101.51                    92.09               30                0                             0
+assume_junction          1.0             7       86101.51                    92.09               29                1                             0
+assume_junction          2.0             7       86101.51                    92.09               29                1                             0
+assume_junction          5.0             7       86101.51                    92.09               29                1                             0
+assume_junction         10.0             7       86101.51                    92.09               29                1                             0
+assume_junction         15.0             7       86101.51                    92.09               29                1                             0
+  explicit_only          0.0             7       86101.51                    92.09               30                0                             0
+  explicit_only          1.0             7       86101.51                    92.09               29                1                             0
+  explicit_only          2.0             7       86101.51                    92.09               29                1                             0
+  explicit_only          5.0             7       86101.51                    92.09               29                1                             0
+  explicit_only         10.0             7       86101.51                    92.09               29                1                             0
+  explicit_only         15.0             7       86101.51                    92.09               29                1                             0
+
+2. CANDIDATE POLYGONS (proximity is NOT graph connectivity)
+  within 50 m, polygon distance, any road: 103/163  (est_roofs proxy 673/954)
+  within 50 m, polygon distance, main component: 103/163  (est_roofs proxy 673/954)
+  within 50 m, representative point, any road: 92/163  (est_roofs proxy 548/954)
+  within 50 m, representative point, main component: 92/163  (est_roofs proxy 548/954)
+  polygon contact (<= 1 m) with the main component: 10/163
+  by quality class (polygon distance, any road, headline threshold):
+    PLAUSIBLE: 41/71 polygons; est_roofs proxy 92/160
+    REVIEW: 20/30 polygons; est_roofs proxy 22/36
+    UNRESOLVED_MERGE: 42/62 polygons; est_roofs proxy 559/758
+
+3. PROPOSED ROUTES (geometric attachment at the planner's attach tolerance; stored attach_to/connected are claims)
+  run5 / network_aware: routes=13  reach main (deterministic)=13  cycle=0  dead end=0  ambiguous=2
+  run5 / independent: routes=13  reach main (deterministic)=13  cycle=0  dead end=0  ambiguous=2
+  run6_slope_soft / network_aware: routes=14  reach main (deterministic)=14  cycle=0  dead end=0  ambiguous=2
+  run6_slope_soft / independent: routes=14  reach main (deterministic)=14  cycle=0  dead end=0  ambiguous=4
+
+4. FACILITIES
+      facility_id           facility_name  d_poly_any_m nearest_component_class            connectivity_status
+      36181600902        Mpps Damarakunta         11.05                    main NOT_ESTABLISHED_PROXIMITY_ONLY
+      36181600903        Zphs Damarakunta         43.14                    main NOT_ESTABLISHED_PROXIMITY_ONLY
+HEALTH_8734223673 Sub Centre, Damarakunta         62.20                    main NOT_ESTABLISHED_PROXIMITY_ONLY
+          1702300            Damarakunt-I        121.11                    main NOT_ESTABLISHED_PROXIMITY_ONLY
+
+5. CHECKS (FAIL / FLAG / DIFFERS_FROM_PRIOR first)
+  [FLAG] DICT_complete: every output column has a definition | observed=5 expected=0 candidate_connectivity.csv:area_m2; candidate_connectivity.csv:inside_village; candidate_connectivity.csv:nearest_m; candidate_connectivity.csv:neck_ratio; facility_connectivity.csv:source
+  [PASS] CAND_unevaluable: polygons that could not be evaluated | observed=0 expected=0 
+  [PASS] CAND_unique_ids: candidate cand_id unique | observed=163 expected=163 
+  [PASS] CFG_attach_tol: attach_tol_m read from the run summaries (identical in all runs) | observed=15.0 expected=[15.0, 15.0] 
+  [PASS] CLAIM_attach_run5_independent: run5/independent: stored attach_to disagrees with independent geometry at 15 m | observed=0 expected=0 labels: NO_CLAIM=12,AGREE=1
+  [PASS] CLAIM_attach_run5_network_aware: run5/network_aware: stored attach_to disagrees with independent geometry at 15 m | observed=0 expected=0 labels: AGREE=12,AGREE_WITHIN_AMBIGUOUS_OPTIONS=1
+  [PASS] CLAIM_attach_run6_slope_soft_independent: run6_slope_soft/independent: stored attach_to disagrees with independent geometry at 15 m | observed=0 expected=0 labels: NO_CLAIM=13,AGREE=1
+  [PASS] CLAIM_attach_run6_slope_soft_network_aware: run6_slope_soft/network_aware: stored attach_to disagrees with independent geometry at 15 m | observed=0 expected=0 labels: AGREE=13,AGREE_WITHIN_AMBIGUOUS_OPTIONS=1
+  [PASS] CLAIM_connected_run5_independent: run5/independent: stored connected disagrees with independent geometry at 15 m | observed=0 expected=0 labels: NO_CLAIM=13
+  [PASS] CLAIM_connected_run5_network_aware: run5/network_aware: stored connected disagrees with independent geometry at 15 m | observed=0 expected=0 labels: AGREE=13
+  [PASS] CLAIM_connected_run6_slope_soft_independent: run6_slope_soft/independent: stored connected disagrees with independent geometry at 15 m | observed=0 expected=0 labels: NO_CLAIM=14
+  [PASS] CLAIM_connected_run6_slope_soft_network_aware: run6_slope_soft/network_aware: stored connected disagrees with independent geometry at 15 m | observed=0 expected=0 labels: AGREE=14
+  [PASS] CLUS_unique_ids: cluster_id unique in clusters | observed=33 expected=33 
+  [PASS] CRS_all: all inputs are EPSG:32644 | observed=32644 expected=32644 
+  [INFO] DIST_boundary_vs_polygon: OBSERVATION: polygons with a road inside the footprint (boundary-ring distance > filled-polygon distance) | observed=0 expected= 
+  [PASS] DIST_facility_stored: recomputed facility->road distance equals stored value | observed=max abs diff 0.0500 m expected=<= 0.06 m (stored value rounded) 
+  [INFO] DIST_point_vs_polygon: OBSERVATION: polygons whose representative-point distance is smaller than the filled-polygon distance (no ordering is assumed or enforced) | observed=0 expected= a non-zero count would indicate an invalid or repaired geometry; reported, not asserted
+  [PASS] DIST_polygon_stored: recomputed polygon->road distance equals stored dist_to_ref_road_m | observed=max abs diff 0.0050 m expected=<= 0.011 m FLAG means the road file or distance definition differs from the one used by the access assessment
+  [PASS] GAP_polygon_def: candidate gap_flag == (stored distance > 50 m) | observed=0 mismatches expected=0 
+  [PASS] INPUT_unchanged_before_write: SHA-256, size and sidecar/run-folder listings unchanged after processing | observed=unchanged expected=unchanged 
+  [PASS] JOIN_cluster: every candidate cluster_id exists in clusters | observed=[] expected=none missing 
+  [PASS] ORIENT_run5_independent: run5/independent: route orientation identified from the targets layer | observed=VERIFIED expected=VERIFIED 
+  [PASS] ORIENT_run5_network_aware: run5/network_aware: route orientation identified from the targets layer | observed=VERIFIED expected=VERIFIED 
+  [PASS] ORIENT_run6_slope_soft_independent: run6_slope_soft/independent: route orientation identified from the targets layer | observed=VERIFIED expected=VERIFIED 
+  [PASS] ORIENT_run6_slope_soft_network_aware: run6_slope_soft/network_aware: route orientation identified from the targets layer | observed=VERIFIED expected=VERIFIED 
+  [MATCHES_PRIOR] PRIOR_baseline_within50: baseline polygons within 50 m of any road (polygon distance) [previously reported figure; comparison only] | observed=103 expected=103 denominator 163
+  [MATCHES_PRIOR] PRIOR_candidates_total: candidate polygons in candidate_access [previously reported figure; comparison only] | observed=163 expected=163 
+  [MATCHES_PRIOR] PRIOR_components_t0: road components at tolerance 0 (assume_junction) [previously reported figure; comparison only] | observed=7 expected=7 explicit_only gives 7
+  [MATCHES_PRIOR] PRIOR_facilities_total: facility points in facility_access [previously reported figure; comparison only] | observed=4 expected=4 
+  [MATCHES_PRIOR] PRIOR_gap_cluster_point_run5: gap-cluster polygons with representative point within 50 m of roads+run5 routes [previously reported figure; comparison only] | observed=11 expected=11 definition: representative-point distance (experiments-script style); by-construction start polygons are included
+  [MATCHES_PRIOR] PRIOR_gap_cluster_poly_run5: gap-cluster polygons within 50 m (polygon distance) of roads+run5 routes [previously reported figure; comparison only] | observed=12 expected=12 definition: polygon distance (ag1 style); by-construction start polygons are included
+  [MATCHES_PRIOR] PRIOR_gap_cluster_polygons: polygons in planner-targeted gap clusters [previously reported figure; comparison only] | observed=16 expected=16 
+  [MATCHES_PRIOR] PRIOR_run5_within50: run5: polygons within 50 m of roads+network-aware routes [previously reported figure; comparison only] | observed=118 expected=118 network_aware=118; independent=118; denominator 163; roads+main-connected routes (network_aware)=118
+  [MATCHES_PRIOR] PRIOR_run6_slope_soft_within50: run6_slope_soft: polygons within 50 m of roads+network-aware routes [previously reported figure; comparison only] | observed=120 expected=120 network_aware=120; independent=120; denominator 163; roads+main-connected routes (network_aware)=120
+  [MATCHES_PRIOR] PRIOR_terminals_on_main: route terminals whose nearest road is in the main component (all runs x scenarios, tolerance 0) [previously reported figure; comparison only] | observed=54 expected=54 routes evaluated in total: 54; terminals within 15 m of the main component: 53
+  [INFO] ROAD_components_t0: road components at tolerance 0 (headline policy assume_junction) | observed=7 expected= explicit_only: 7
+  [PASS] ROAD_geometry_issues: road layer features with empty / non-line / zero-length geometry (skipped) | observed=0 expected=0 
+  [PASS] ROAD_main_tie: largest and second-largest components do not tie on length | observed=False expected=False 
+  [INFO] ROAD_total_length: total geometric road length (m) | observed=93496.76 expected= 
+  [PASS] ROUTES_run5_independent: run5/routes_independent: routes evaluated / total rows | observed=13/13 expected=13/13 
+  [PASS] ROUTES_run5_network_aware: run5/routes_network_aware: routes evaluated / total rows | observed=13/13 expected=13/13 
+  [PASS] ROUTES_run6_slope_soft_independent: run6_slope_soft/routes_independent: routes evaluated / total rows | observed=14/14 expected=14/14 
+  [PASS] ROUTES_run6_slope_soft_network_aware: run6_slope_soft/routes_network_aware: routes evaluated / total rows | observed=14/14 expected=14/14 
+
+6. LIMITATIONS
+  - Physical passability, legal access, land ownership, road condition and ground-truth road status are NOT established by this audit. Everything here is geometry of unverified layers: proximity is not connectivity, a tolerance-based connection is an inference, and a route terminal near a road or another route is not proof of a valid or traversable connection.
+  - The main component is the largest road component by total geometric length. It is a proxy, not proof that it represents the official wider road network.
+  - Crossings without a shared vertex are counted as ASSUMED junctions under the headline policy; the data cannot distinguish overpasses, bridges or tunnels. The explicit_only policy is reported as a sensitivity.
+  - Tolerance bridges are inferred from dangling endpoints and a direction test; they are not original road connections and the tolerance values are not field-validated.
+  - The reference road layer may omit village lanes; a polygon far from a mapped road may still have unmapped access, and a polygon near a mapped road may not.
+  - est_roofs is a model-derived proxy (area / reference roof area), not a verified house count. UNRESOLVED_MERGE polygons are settlement extents; they are reported separately and are not removed.
+  - Routes start at their target point, so the targeted polygon/facility is close to its own route by construction. That is not independent evidence of improved access; use the spillover columns.
+  - Stored attach_to and connected fields are claims written by the planner. They are compared with independent geometry and never used as evidence.
+  - WorldCover NoData is a raster-coverage flag. It never changes a distance; a feature inside the NoData footprint has less evidence behind its land-cover context, nothing more.
+  - Routing cost units are not money and no cost is computed here. Slope units/source and WorldCover version are not established by this audit.
+  - Few runs and 163 polygons: counts are descriptive; nothing here is a significance test or an accuracy claim.

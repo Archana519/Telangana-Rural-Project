@@ -1,0 +1,62 @@
+check_id,description,status,observed,expected,detail
+CRS_candidate_access,candidate_access CRS is EPSG:32644,PASS,32644,32644,
+CRS_clusters,clusters CRS is EPSG:32644,PASS,32644,32644,
+CRS_facility_access,facility_access CRS is EPSG:32644,PASS,32644,32644,
+CRS_roads,roads CRS is EPSG:32644,PASS,32644,32644,
+CAND_unique_ids,candidate cand_id unique,PASS,163,163,
+CLUS_unique_ids,cluster_id unique in clusters,PASS,33,33,
+JOIN_cluster,every candidate cluster_id exists in clusters,PASS,[],none missing,
+DIST_polygon_base,recomputed polygon->road distance equals stored dist_to_ref_road_m,PASS,max abs diff 0.0050 m,<= 0.011 m,
+GAP_polygon_def,candidate gap_flag == (distance > gap_m=50),PASS,0 mismatches,0,FAIL here means gap_m differs from the access run's value
+CLUS_n_candidates,clusters.n_candidates equals members counted in candidate_access,PASS,0 mismatches,0,
+GAP_cluster_def,cluster gap_flag == (min member distance > gap_m),PASS,0 mismatches,0,
+DIST_facility_base,recomputed facility->road distance equals stored value,PASS,max abs diff 0.0500 m,<= 0.06 m (stored value is rounded),
+HASH_run7_regress_access,run7_regress: recorded access hash equals current file,PASS,08e3bc4c6cc0,08e3bc4c6cc0,
+HASH_run7_regress_roads,run7_regress: recorded roads hash equals current file,PASS,3574defb203f,3574defb203f,
+HASH_run7_regress_cost,run7_regress: recorded cost hash equals current file,PASS,911ebeb1860a,911ebeb1860a,
+PROV_run7_regress_slope,run7_regress: slope raster hashed now (the run did not record this hash),INFO,6f6b3c6d2683,n/a,
+PROV_run7_regress_prohibited,run7_regress: prohibited raster hashed now (the run did not record this hash),INFO,7330837ba9b5,n/a,
+PROV_run7_regress_worldcover,run7_regress: worldcover raster hashed now (the run did not record this hash),INFO,587eb4d652e3,n/a,
+CNT_run7_regress_targets,run7_regress: target_table rows == plan_comparison targets_total,PASS,15,15,
+CNT_run7_regress_targets_layer,run7_regress: targets layer rows == target_table rows,PASS,15,15,
+CNT_run7_regress_served_na,run7_regress: SERVED rows == plan_comparison.targets_routed == network-aware route rows,PASS,served=13 routed=13 layer=13,all equal,
+CNT_run7_regress_routed_ic,run7_regress: independent route rows == plan_comparison independent targets_routed,PASS,13,13,
+BEN_run7_regress,run7_regress: sum of weights of SERVED targets == plan_comparison.weighted_benefit,PASS,23.25,23.25,
+CONN_run7_regress,run7_regress: planner 'connected' flag on network-aware rows (geometric within tolerance),INFO,13 of 13 True,informational,
+REACH_run7_regress_na,"run7_regress: network_aware routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",PASS,13 of 13,all,orientation verified from targets layer
+LEN_run7_regress_na,run7_regress: sum of layer length_m == plan_comparison total_len_m (network_aware),PASS,1506.2,1506.1,tolerance 0.75 m for 0.1 m rounding
+LEN_run7_regress_table,run7_regress: sum of SERVED route_len_m (target_table) == layer length sum,PASS,1506.2,1506.2,
+COST_run7_regress_table,run7_regress: sum of SERVED route_cost (target_table) == layer cost sum,PASS,9438.7,9438.66,
+COST_run7_regress_na,run7_regress: layer total cost >= planner unique cost (network_aware),PASS,9438.7,9438.7,
+CONN_run7_regress_ic,run7_regress: independent layer has no connectivity field; rows used as exported,INFO,13,n/a,
+REACH_run7_regress_ic,"run7_regress: independent_least_cost routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",PASS,13 of 13,all,orientation verified from targets layer
+LEN_run7_regress_ic,run7_regress: sum of layer length_m == plan_comparison total_len_m (independent_least_cost),PASS,1516.6,1516.6,tolerance 0.75 m for 0.1 m rounding
+COST_run7_regress_ic,run7_regress: layer total cost >= planner unique cost (independent_least_cost),PASS,9456.5,9456.5,
+HASH_fv_repro1_access,fv_repro1: recorded access hash equals current file,PASS,08e3bc4c6cc0,08e3bc4c6cc0,
+HASH_fv_repro1_roads,fv_repro1: recorded roads hash equals current file,PASS,3574defb203f,3574defb203f,
+HASH_fv_repro1_cost,fv_repro1: recorded cost hash equals current file,PASS,911ebeb1860a,911ebeb1860a,
+PROV_fv_repro1_slope,fv_repro1: slope raster hashed now (the run did not record this hash),INFO,6f6b3c6d2683,n/a,
+PROV_fv_repro1_prohibited,fv_repro1: prohibited raster hashed now (the run did not record this hash),INFO,7330837ba9b5,n/a,
+PROV_fv_repro1_worldcover,fv_repro1: worldcover raster hashed now (the run did not record this hash),INFO,587eb4d652e3,n/a,
+CNT_fv_repro1_targets,fv_repro1: target_table rows == plan_comparison targets_total,PASS,15,15,
+CNT_fv_repro1_targets_layer,fv_repro1: targets layer rows == target_table rows,PASS,15,15,
+CNT_fv_repro1_served_na,fv_repro1: SERVED rows == plan_comparison.targets_routed == network-aware route rows,PASS,served=13 routed=13 layer=13,all equal,
+CNT_fv_repro1_routed_ic,fv_repro1: independent route rows == plan_comparison independent targets_routed,PASS,13,13,
+BEN_fv_repro1,fv_repro1: sum of weights of SERVED targets == plan_comparison.weighted_benefit,PASS,23.25,23.25,
+CONN_fv_repro1,fv_repro1: planner 'connected' flag on network-aware rows (geometric within tolerance),INFO,13 of 13 True,informational,
+REACH_fv_repro1_na,"fv_repro1: network_aware routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",PASS,13 of 13,all,orientation verified from targets layer
+LEN_fv_repro1_na,fv_repro1: sum of layer length_m == plan_comparison total_len_m (network_aware),PASS,1506.2,1506.1,tolerance 0.75 m for 0.1 m rounding
+LEN_fv_repro1_table,fv_repro1: sum of SERVED route_len_m (target_table) == layer length sum,PASS,1506.2,1506.2,
+COST_fv_repro1_table,fv_repro1: sum of SERVED route_cost (target_table) == layer cost sum,PASS,9438.7,9438.66,
+COST_fv_repro1_na,fv_repro1: layer total cost >= planner unique cost (network_aware),PASS,9438.7,9438.7,
+CONN_fv_repro1_ic,fv_repro1: independent layer has no connectivity field; rows used as exported,INFO,13,n/a,
+REACH_fv_repro1_ic,"fv_repro1: independent_least_cost routes whose network end lies within 15 m of roads or of a route that does (geometry only, attach_to not used)",PASS,13 of 13,all,orientation verified from targets layer
+LEN_fv_repro1_ic,fv_repro1: sum of layer length_m == plan_comparison total_len_m (independent_least_cost),PASS,1516.6,1516.6,tolerance 0.75 m for 0.1 m rounding
+COST_fv_repro1_ic,fv_repro1: layer total cost >= planner unique cost (independent_least_cost),PASS,9456.5,9456.5,
+DEF_polygon_gap_flag_true,baseline coverage of polygon_gap_flag_true at T == gap_m is 0 by definition,PASS,[0],0,
+DEF_gap_cluster_polygons,baseline coverage of gap_cluster_polygons at T == gap_m is 0 by definition,PASS,[0],0,
+MONO_threshold,coverage never decreases as the threshold grows,PASS,0 violating groups,0,
+MONO_routes,adding routes never reduces coverage,PASS,0 violating groups,0,
+SAME_inputs,all runs read the same access and roads files,PASS,access_assessment.gpkg; tgrac_road_network.gpkg,same,
+INPUT_unchanged,SHA-256/size of every input identical before and after the run,PASS,0 changed,0,[]
+RUNDIR_unchanged,"file listing (name, size, mtime) of every run folder identical before and after",PASS,[],none,

@@ -1,0 +1,201 @@
+{
+  "version": "plan_network_v2",
+  "village_crs": "EPSG:32644",
+  "run": {
+    "tag": "run6_slope_soft",
+    "seconds": 2.2
+  },
+  "params": {
+    "access_gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+    "roads": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+    "cost": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "worldcover": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "blocked": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "slope": null,
+    "slope_limit_deg": null,
+    "v4_script": "",
+    "water_class": null,
+    "builtup_class": null,
+    "buildings": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.gpkg",
+    "buildings_layer": "buildings",
+    "raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "out_root": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2",
+    "tag": "run6_slope_soft",
+    "k": 3,
+    "corridor_m": 20.0,
+    "corridor_mults": [
+      3.0,
+      8.0
+    ],
+    "max_overlap": 0.8,
+    "max_search_m": 1500.0,
+    "snap_m": 30.0,
+    "attach_tol_m": 15.0,
+    "builtup_mult": 1.0,
+    "building_mult": 4.0,
+    "building_quality": "PLAUSIBLE,REVIEW,UNRESOLVED_MERGE",
+    "passes": 2,
+    "budget": null,
+    "weights_json": null,
+    "cluster_weight_per_building": 0.25,
+    "unverified_keywords": "anganwadi,aganwadi,sub-centre,sub centre,subcentre",
+    "include_nongap_clusters": false,
+    "corner_cut": "forbid",
+    "no_map": false
+  },
+  "constraints_resolved": {
+    "prohibited_raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "slope_raster": null,
+    "slope_limit_deg": null,
+    "slope_limit_source": "V4 script constant SLOPE_LIMIT_DEG (pass --slope-limit-deg to be explicit)",
+    "corner_cut": "forbid",
+    "water_class": 80,
+    "v4_script_loaded": false
+  },
+  "hard_constraints": [
+    "cost nodata/<=0",
+    "WorldCover class 80 (water)",
+    "prohibited raster >0 (if provided)",
+    "slope > limit (if provided)"
+  ],
+  "soft_constraints": {
+    "builtup_multiplier": 1.0,
+    "building_multiplier": 4.0,
+    "cost_surface": "already contains land-cover penalties"
+  },
+  "data_check": {
+    "cost_raster": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+      "shape": [
+        432,
+        679
+      ],
+      "res": 10.0,
+      "invalid_share": 0.3748636338842524,
+      "percentiles_5_50_95": [
+        3.5668474316596983,
+        6.5398266315460205,
+        8.283023643493648
+      ]
+    },
+    "worldcover": {
+      "10": {
+        "cells": 6777,
+        "mean_cost": 9.071087403358213
+      },
+      "20": {
+        "cells": 6430,
+        "mean_cost": 6.438347742349469
+      },
+      "30": {
+        "cells": 66313,
+        "mean_cost": 4.22751236678976
+      },
+      "40": {
+        "cells": 99402,
+        "mean_cost": 6.9877775539197495
+      },
+      "50": {
+        "cells": 1286,
+        "mean_cost": 2.957429198603237
+      },
+      "60": {
+        "cells": 4036,
+        "mean_cost": 5.038437948155935
+      },
+      "80": {
+        "cells": 224,
+        "mean_cost": null
+      }
+    },
+    "prohibited": {
+      "path": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+      "forbidden_share": 0.3748636338842524,
+      "limit_deg": null,
+      "forbidden_cells_with_valid_cost": 0
+    },
+    "building_cells_penalised": 970,
+    "road_cells": {
+      "total": 8061,
+      "passable": 6497,
+      "dropped_impassable": 1564
+    },
+    "targets": {
+      "facilities": 4,
+      "clusters": 11
+    }
+  },
+  "notes": [
+    "slope layer not applied"
+  ],
+  "c2_check": {
+    "targets_attached_to_other_selected_routes": [
+      "F:36181600903",
+      "C11"
+    ],
+    "targets_with_route_different_from_independent": [
+      "F:36181600903",
+      "C11"
+    ],
+    "unique_len_network_aware_m": 1658.9,
+    "unique_len_independent_m": 1734.4,
+    "unique_len_reduction_m": 75.5,
+    "unique_len_reduction_pct": 4.35,
+    "reroutes_changed": 0,
+    "total_len_network_aware_m": 1658.9,
+    "total_len_independent_m": 1744.4,
+    "total_len_reduction_m": 85.5,
+    "overlap_definition": "shared_len_m = total route length - unique grid-edge length WITHIN one plan. A network-aware route ends where it meets another route, so it never re-lays shared edges: overlap is ~0 by construction and its benefit shows as a shorter total/unique length, not as 'shared length'. Independent routes lay shared edges repeatedly, so overlap > 0.",
+    "interpretation": "Network attachment changed the selection and reduced unique network length on THIS target set."
+  },
+  "plan_comparison": [
+    {
+      "plan": "network_aware",
+      "targets_routed": 14,
+      "targets_total": 15,
+      "total_len_m": 1658.9,
+      "unique_len_m": 1658.9,
+      "shared_len_m": -0.0,
+      "unique_cost": 10453.7,
+      "weighted_benefit": 24.25,
+      "facilities_served": 4,
+      "cluster_buildings_served": 15,
+      "infeasible_routes": 0
+    },
+    {
+      "plan": "independent_least_cost",
+      "targets_routed": 14,
+      "targets_total": 15,
+      "total_len_m": 1744.4,
+      "unique_len_m": 1734.4,
+      "shared_len_m": 10.0,
+      "unique_cost": 10880.2,
+      "weighted_benefit": 24.25,
+      "facilities_served": 4,
+      "cluster_buildings_served": 15,
+      "infeasible_routes": 0
+    },
+    {
+      "plan": "straight_line",
+      "targets_routed": 15,
+      "targets_total": 15,
+      "total_len_m": 1625.7,
+      "unique_len_m": 1625.7,
+      "shared_len_m": 0.0,
+      "unique_cost": null,
+      "weighted_benefit": 25.25,
+      "facilities_served": 4,
+      "cluster_buildings_served": 16,
+      "infeasible_routes": 2
+    }
+  ],
+  "failed_targets": {
+    "C13": "TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID"
+  },
+  "inputs": {
+    "access": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f",
+    "roads": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61",
+    "cost": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e"
+  },
+  "caveat": "All outputs are unverified planning alternatives from model-derived building polygons and a 10 m raster; not verified roads, not construction-ready."
+}

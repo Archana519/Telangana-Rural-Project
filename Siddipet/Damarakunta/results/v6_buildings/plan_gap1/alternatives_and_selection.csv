@@ -1,0 +1,43 @@
+target,kind,name,bldgs,d_to_road_m,alt,length_m,cost,hits_road,crossed,start,sel_indep,sel_credit
+F:36181600902,FACILITY,Mpps Damarakunta,0,11.1,1,27.4,3.5,True,0,OK,True,True
+F:36181600903,FACILITY,Zphs Damarakunta,0,43.1,1,60.1,23.0,False,2,OK,True,True
+F:36181600903,FACILITY,Zphs Damarakunta,0,43.1,2,133.7,166.7,True,1,OK,False,False
+F:HEALTH_8734223673,FACILITY,"Sub Centre, Damarakunta",0,62.2,1,77.9,39.7,True,0,OK,True,True
+F:HEALTH_8734223673,FACILITY,"Sub Centre, Damarakunta",0,62.2,2,145.2,126.7,True,0,OK,False,False
+F:HEALTH_8734223673,FACILITY,"Sub Centre, Damarakunta",0,62.2,3,109.1,148.6,True,1,OK,False,False
+F:1702300,FACILITY,Damarakunt-I,0,121.1,1,168.9,68.3,False,0,OK,False,False
+F:1702300,FACILITY,Damarakunt-I,0,121.1,2,140.4,116.3,True,0,OK,False,False
+F:1702300,FACILITY,Damarakunt-I,0,121.1,3,128.7,160.3,True,0,OK,True,True
+C23,CLUSTER,gap cluster,4,78.5,1,160.8,62.6,False,0,OK,True,True
+C23,CLUSTER,gap cluster,4,78.5,2,210.9,112.2,True,0,OK,False,False
+C23,CLUSTER,gap cluster,4,78.5,3,203.3,122.2,True,0,OK,False,False
+C7,CLUSTER,gap cluster,1,99.4,1,171.5,100.9,True,0,OK,True,True
+C7,CLUSTER,gap cluster,1,99.4,2,293.8,128.1,True,0,OK,False,False
+C7,CLUSTER,gap cluster,1,99.4,3,231.5,148.3,True,2,OK,False,False
+C3,CLUSTER,gap cluster,1,130.5,1,149.2,89.5,True,0,OK,True,True
+C3,CLUSTER,gap cluster,1,130.5,2,164.1,147.9,False,0,OK,False,False
+C3,CLUSTER,gap cluster,1,130.5,3,181.8,168.7,True,0,OK,False,False
+C11,CLUSTER,gap cluster,1,188.7,1,211.4,122.2,False,0,OK,True,True
+C11,CLUSTER,gap cluster,1,188.7,2,270.5,181.8,False,0,OK,False,False
+C11,CLUSTER,gap cluster,1,188.7,3,240.4,189.3,False,0,OK,False,False
+C12,CLUSTER,gap cluster,1,144.8,1,227.9,144.4,False,0,OK,False,False
+C12,CLUSTER,gap cluster,1,144.8,2,191.0,251.0,False,0,OK,True,True
+C12,CLUSTER,gap cluster,1,144.8,3,301.5,262.1,False,0,OK,False,False
+C14,CLUSTER,gap cluster,1,95.6,1,117.4,68.1,True,0,OK,False,False
+C14,CLUSTER,gap cluster,1,95.6,2,115.8,115.3,True,0,OK,True,True
+C14,CLUSTER,gap cluster,1,95.6,3,166.1,136.8,True,0,OK,False,False
+C13,CLUSTER,gap cluster,1,156.7,1,263.4,173.3,False,0,OK,False,False
+C13,CLUSTER,gap cluster,1,156.7,2,337.1,291.8,False,0,OK,False,False
+C13,CLUSTER,gap cluster,1,156.7,3,220.7,321.7,False,0,OK,True,True
+C20,CLUSTER,gap cluster,1,175.3,1,192.9,92.5,False,0,OK,True,True
+C20,CLUSTER,gap cluster,1,175.3,2,208.2,158.1,True,0,OK,False,False
+C20,CLUSTER,gap cluster,1,175.3,3,204.5,175.2,True,0,OK,False,False
+C21,CLUSTER,gap cluster,1,118.6,1,135.8,87.1,False,0,OK,True,True
+C21,CLUSTER,gap cluster,1,118.6,2,202.6,146.2,False,0,OK,False,False
+C21,CLUSTER,gap cluster,1,118.6,3,183.8,155.3,True,0,OK,False,False
+C28,CLUSTER,gap cluster,1,59.2,1,82.2,45.5,False,0,OK,True,True
+C28,CLUSTER,gap cluster,1,59.2,2,128.2,112.5,True,0,OK,False,False
+C28,CLUSTER,gap cluster,1,59.2,3,119.5,117.5,True,0,OK,False,False
+C33,CLUSTER,gap cluster,1,60.7,1,83.8,51.9,True,0,OK,True,True
+C33,CLUSTER,gap cluster,1,60.7,2,107.3,118.6,True,0,OK,False,False
+C33,CLUSTER,gap cluster,1,60.7,3,93.5,129.3,False,0,OK,False,False

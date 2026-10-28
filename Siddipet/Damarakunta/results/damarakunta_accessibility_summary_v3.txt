@@ -1,0 +1,16 @@
+DAMARAKUNTA ACCESSIBILITY EVALUATION V3
+=======================================
+Routes evaluated: 10
+Facilities evaluated: 4
+
+Interpretation:
+- Baseline distance is straight-line distance from facility point to mapped road geometry.
+- Route-to-road distance is the minimum distance between candidate route and mapped road geometry.
+- Endpoint proxy uses the selected facility-side endpoint gap, route length, and opposite road-side endpoint gap.
+- Endpoint proximity thresholds (15 m to facility and 5 m to road) are screening rules, not proof of connectivity.
+- Proxy reductions are provisional and are not proof of network connectivity.
+- This module does not calculate travel time, population coverage, rupee cost, or construction feasibility.
+- Facility coordinates and entrances still require independent verification.
+
+CSV: D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\damarakunta_accessibility_evaluation_v3.csv
+GeoPackage: D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\damarakunta_accessibility_evaluation_v3.gpkg

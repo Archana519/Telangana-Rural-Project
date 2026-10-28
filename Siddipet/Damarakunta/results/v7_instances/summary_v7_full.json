@@ -1,0 +1,73 @@
+{
+  "tag": "full",
+  "params": {
+    "tag": "full",
+    "pred_dir": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1",
+    "raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "boundary": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+    "windows_gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v6_buildings\\reference\\digitize_windows.gpkg",
+    "out_dir": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v7_instances",
+    "prob_thr": null,
+    "min_area_m2": 6.0,
+    "small_flag_m2": 15.0,
+    "large_flag_m2": 400.0,
+    "h_m": 1.0,
+    "smooth_px": 1.0,
+    "split_min_m2": 40.0,
+    "min_piece_m2": 12.0,
+    "simplify_m": 0.0,
+    "low_conf": 0.5
+  },
+  "components": 228,
+  "instances": 326,
+  "components_split": 41,
+  "instances_inside_village": 197,
+  "components_inside_village": 115,
+  "area_m2_percentiles_10_50_90_99": [
+    33.3,
+    175.5,
+    678.8,
+    2140.1
+  ],
+  "flag_counts": {
+    "LOW_CONF": 61,
+    "SPLIT_BY_WATERSHED": 139,
+    "LARGE_UNSPLIT": 19,
+    "SMALL": 7,
+    "COMPLEX_SHAPE": 1,
+    "EDGE_OF_MOSAIC": 4
+  },
+  "overlapping_pairs": 0,
+  "split_sensitivity_h_m": {
+    "0.4": {
+      "instances": 356,
+      "components_split": 53
+    },
+    "0.7": {
+      "instances": 343,
+      "components_split": 48
+    },
+    "1.0": {
+      "instances": 326,
+      "components_split": 41
+    },
+    "1.5": {
+      "instances": 304,
+      "components_split": 34
+    },
+    "2.0": {
+      "instances": 287,
+      "components_split": 28
+    },
+    "3.0": {
+      "instances": 264,
+      "components_split": 17
+    },
+    "none": {
+      "instances": 228,
+      "components_split": 0
+    }
+  },
+  "seconds": 20.1,
+  "note": "instances are UNVERIFIED model predictions; splitting is a heuristic; not a house count"
+}

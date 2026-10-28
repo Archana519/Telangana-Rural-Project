@@ -1,0 +1,51 @@
+input layer: D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances/buildings_v8_full.gpkg (278 polygons)
+quality classes in input: {'PLAUSIBLE': 135, 'UNRESOLVED_MERGE': 84, 'REVIEW': 59} | keeping: ['PLAUSIBLE', 'REVIEW', 'UNRESOLVED_MERGE']
+inside_village filter: 278 -> 165
+
+Parameter sensitivity (screening counts only):
+ min_area_m2 | gap_m | candidates | cand_gap | clusters | cluster_gap
+          10 |    25 |        163 |       83 |       33 |          16
+          10 |    50 |        163 |       60 |       33 |          11
+          10 |   100 |        163 |       27 |       33 |           6
+          25 |    25 |        155 |       79 |       29 |          15
+          25 |    50 |        155 |       57 |       29 |          10
+          25 |   100 |        155 |       25 |       29 |           5
+          50 |    25 |        142 |       70 |       29 |          15
+          50 |    50 |        142 |       49 |       29 |           9
+          50 |   100 |        142 |       21 |       29 |           4
+         100 |    25 |        124 |       60 |       21 |          10
+         100 |    50 |        124 |       44 |       21 |           8
+         100 |   100 |        124 |       18 |       21 |           4
+
+Settings: min_area=10.0 m2, cluster_radius=20.0 m, settlement_min_n=8, gap=50.0 m
+candidates: 163 | clusters: 33 (4 settlement-type)
+candidate dist to ref road (m) p10/p50/p90/max: [2.3, 27.7, 130.2, 204.4]
+candidates at dist 0 (touch/cross road geometry): 8
+candidates beyond 50.0 m: 60 | clusters beyond: 11
+
+Clusters (top 12 by candidate count):
+ cluster_id                    kind  n_candidates  footprint_area_m2  min_dist_to_ref_road_m  gap_flag
+          4      SETTLEMENT_CLUSTER            64            46784.2                    0.00     False
+         28      SETTLEMENT_CLUSTER            36            10781.6                    0.00     False
+          5      SETTLEMENT_CLUSTER            12             6142.3                    1.56     False
+         15      SETTLEMENT_CLUSTER             8             1195.2                   11.03     False
+         23 ISOLATED_OR_SMALL_GROUP             6             2505.6                   78.54      True
+         16 ISOLATED_OR_SMALL_GROUP             6             1020.2                    5.67     False
+         18 ISOLATED_OR_SMALL_GROUP             2              355.3                    6.38     False
+          8 ISOLATED_OR_SMALL_GROUP             2              928.8                   48.02     False
+          6 ISOLATED_OR_SMALL_GROUP             2             1094.4                    8.11     False
+         31 ISOLATED_OR_SMALL_GROUP             2               85.7                   12.04     False
+          1 ISOLATED_OR_SMALL_GROUP             1               22.0                   24.47     False
+         10 ISOLATED_OR_SMALL_GROUP             1              547.2                   39.07     False
+
+Facilities:
+      facility_id           facility_name facility_type  priority_group  dist_to_ref_road_m  nearest_cand_id  dist_to_nearest_cand_m  nearest_cluster_id  dist_to_nearest_cluster_m  near_candidate_building
+      36181600902        Mpps Damarakunta        School               1                11.1              104                     8.5                   5                        0.0                     True
+      36181600903        Zphs Damarakunta        School               1                43.1              104                     3.1                   5                        0.0                     True
+HEALTH_8734223673 Sub Centre, Damarakunta    Healthcare               1                62.2               80                     1.8                   4                        0.0                     True
+          1702300            Damarakunt-I     Anganwadi               1               121.1              157                   371.4                   4                      361.4                    False
+
+Wrote:
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances/access\access_assessment.gpkg
+  D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances/access\zoom_main_settlement.png
+  (+3 CSVs in the same folder)

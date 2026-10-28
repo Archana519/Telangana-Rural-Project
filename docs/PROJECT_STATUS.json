@@ -1,0 +1,742 @@
+{
+  "generated": "20260930_172153",
+  "system": {
+    "python": "3.10.0",
+    "python_exe": "D:\\Telangana_Rural_Project\\.venv\\Scripts\\python.exe",
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "cpu_logical_cores": 8,
+    "ram_total_gb": 8.3,
+    "ram_available_gb": 0.6,
+    "disks": {
+      "C:\\": {
+        "total_gb": 246.0,
+        "free_gb": 80.9
+      },
+      "D:\\": {
+        "total_gb": 247.3,
+        "free_gb": 217.3
+      }
+    },
+    "torch": "NOT INSTALLED",
+    "nvidia_smi": "unavailable (FileNotFoundError)",
+    "packages": {
+      "torch": null,
+      "torchvision": null,
+      "transformers": null,
+      "timm": null,
+      "numpy": "2.2.6",
+      "opencv-python": null,
+      "Pillow": null,
+      "scikit-image": null,
+      "scipy": null,
+      "rasterio": "1.4.4",
+      "geopandas": "1.1.4",
+      "shapely": "2.1.2",
+      "pyproj": "3.7.1",
+      "pyogrio": "0.13.0",
+      "fiona": null,
+      "networkx": null,
+      "osmnx": null,
+      "matplotlib": null,
+      "pandas": "2.3.3",
+      "requests": "2.34.2",
+      "flask": null,
+      "streamlit": null,
+      "albumentations": null,
+      "segmentation-models-pytorch": null,
+      "tensorboard": null,
+      "psutil": null
+    },
+    "all_packages_count": 25
+  },
+  "internet": {
+    "TGRAC": {
+      "status": 200,
+      "seconds": 1.0
+    },
+    "HuggingFace": {
+      "status": 200,
+      "seconds": 1.0
+    },
+    "ESA WorldCover": {
+      "status": 200,
+      "seconds": 1.8
+    },
+    "Geofabrik": {
+      "status": 200,
+      "seconds": 1.1
+    },
+    "USGS EarthExplorer": {
+      "status": 200,
+      "seconds": 1.9
+    },
+    "PMGSY GeoSadak": {
+      "status": "FAILED ConnectionError"
+    },
+    "Copernicus": {
+      "status": 200,
+      "seconds": 1.3
+    }
+  },
+  "loveda": {
+    "exists": true,
+    "image_counts_by_folder": {
+      "Test\\Test\\Rural\\images_png": 976,
+      "Test\\Test\\Urban\\images_png": 820,
+      "Train\\Train\\Rural\\images_png": 1366,
+      "Train\\Train\\Rural\\masks_png": 1366,
+      "Train\\Train\\Urban\\images_png": 1156,
+      "Train\\Train\\Urban\\masks_png": 1156,
+      "Val\\Val\\Rural\\images_png": 992,
+      "Val\\Val\\Rural\\masks_png": 992,
+      "Val\\Val\\Urban\\images_png": 677,
+      "Val\\Val\\Urban\\masks_png": 677
+    },
+    "sample": {
+      "error": "No module named 'PIL'"
+    }
+  },
+  "checkpoint": {
+    "exists": true,
+    "size_mb": 1126.4,
+    "load_error": "ModuleNotFoundError: No module named 'torch'"
+  },
+  "model_build": {
+    "skipped": true
+  },
+  "code_scan": [
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\project\\app.py",
+      "exists": true,
+      "lines": 123,
+      "compiles": true,
+      "functions": [
+        "load_model",
+        "predict"
+      ],
+      "classes": [],
+      "imports": [
+        "PIL",
+        "cv2",
+        "model",
+        "numpy",
+        "streamlit",
+        "torch",
+        "utils"
+      ],
+      "flags": {
+        "image_size": [
+          "L43: resized = cv2.resize("
+        ],
+        "largest_area_logic": [
+          "L59: pred = torch.argmax("
+        ]
+      }
+    },
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\project\\model.py",
+      "exists": true,
+      "lines": 228,
+      "compiles": true,
+      "functions": [
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "_to_map",
+        "forward"
+      ],
+      "classes": [
+        "ResidualConvBlock",
+        "ASPP",
+        "FPNFuse",
+        "StrongDINOv2Seg"
+      ],
+      "imports": [
+        "torch",
+        "transformers"
+      ],
+      "flags": {
+        "crs_usage": [
+          "L4: from transformers import AutoModel"
+        ],
+        "class_ids_or_names": [
+          "L6: NUM_CLASSES = 8"
+        ]
+      }
+    },
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\project\\start to end code_2.py",
+      "exists": true,
+      "lines": 491,
+      "compiles": true,
+      "functions": [
+        "collect_split",
+        "compute_iou_from_cm",
+        "compute_dice_from_cm",
+        "validate",
+        "print_metrics",
+        "__init__",
+        "__len__",
+        "__getitem__",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "_to_map",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "forward",
+        "__init__",
+        "_single",
+        "forward"
+      ],
+      "classes": [
+        "CFG",
+        "LoveDADataset",
+        "ResidualConvBlock",
+        "ASPP",
+        "FPNFuse",
+        "StrongDINOv2Seg",
+        "DiceLoss",
+        "BoundaryLoss",
+        "TotalLoss"
+      ],
+      "imports": [
+        "cv2",
+        "numpy",
+        "os",
+        "sklearn",
+        "torch",
+        "tqdm",
+        "transformers"
+      ],
+      "flags": {
+        "crs_usage": [
+          "L8: from transformers import AutoModel"
+        ],
+        "image_size": [
+          "L21: IMAGE_SIZE   = 560",
+          "L61: image = cv2.resize(image, (cfg.IMAGE_SIZE, cfg.IMAGE_SIZE))",
+          "L62: mask  = cv2.resize(mask,  (cfg.IMAGE_SIZE, cfg.IMAGE_SIZE),"
+        ],
+        "class_ids_or_names": [
+          "L27: NUM_CLASSES  = 8",
+          "L35: CLASS_NAMES  = [\"Background\",\"Building\",\"Road\",\"Water\","
+        ],
+        "random_split": [
+          "L99: batch_size=cfg.BATCH_SIZE, shuffle=True,"
+        ],
+        "largest_area_logic": [
+          "L372: preds  = torch.argmax(out, dim=1).cpu().numpy()"
+        ]
+      }
+    },
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\project\\utils.py",
+      "exists": true,
+      "lines": 55,
+      "compiles": true,
+      "functions": [
+        "colorize_mask",
+        "calculate_percentages"
+      ],
+      "classes": [],
+      "imports": [
+        "numpy"
+      ],
+      "flags": {
+        "image_size": [
+          "L3: IMAGE_SIZE = 560"
+        ],
+        "class_ids_or_names": [
+          "L16: CLASS_NAMES = {"
+        ]
+      }
+    },
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\next step of execution\\module1_extraction.py",
+      "exists": true,
+      "lines": 159,
+      "compiles": true,
+      "functions": [
+        "extract_buildings",
+        "extract_road_network",
+        "_skeletonize_mask",
+        "visualize_extraction",
+        "generate_synthetic_mask"
+      ],
+      "classes": [
+        "Building",
+        "RoadNetwork"
+      ],
+      "imports": [
+        "cv2",
+        "dataclasses",
+        "logging",
+        "numpy",
+        "typing"
+      ],
+      "flags": {
+        "class_ids_or_names": [
+          "L34: class Building:",
+          "L43: distance_to_road: float = float(\"inf\")",
+          "L86: logger.info(f\"Road: {road_mask.sum()//255} px, skeleton: {len(pixel_coords)} px, {len(contours)} segments\")"
+        ]
+      }
+    },
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\next step of execution\\module2_connectivity.py",
+      "exists": true,
+      "lines": 500,
+      "compiles": true,
+      "functions": [
+        "build_road_graph",
+        "analyze_connectivity",
+        "assign_priorities",
+        "generate_proposed_roads",
+        "compute_statistics",
+        "visualize_connectivity",
+        "_draw_legend",
+        "heuristic"
+      ],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "logging",
+        "math",
+        "matplotlib",
+        "module1_extraction",
+        "networkx",
+        "numpy",
+        "scipy",
+        "typing"
+      ],
+      "flags": {
+        "graph_routing": [
+          "L9: - Converts road skeleton to NetworkX graph",
+          "L12: - Generates A* / Dijkstra proposed road paths for unconnected buildings",
+          "L20: import networkx as nx",
+          "L55: Convert the road skeleton to a NetworkX graph.",
+          "L68: - graph: NetworkX undirected weighted graph",
+          "L128: road_graph: NetworkX road graph",
+          "L213: nearest connected road node using Dijkstra (A* approximation via networkx).",
+          "L221: 4. Run nx.shortest_path (Dijkstra by default) between them",
+          "L226: road_graph: NetworkX road graph",
+          "L286: path_nodes = nx.astar_path(",
+          "L297: except (nx.NetworkXNoPath, nx.NodeNotFound):"
+        ],
+        "size_based_facility_guess": [
+          "L14: - Assigns building priority (Hospital > School > Govt > Residential)",
+          "L37: \"Hospital\":           1,   # Highest",
+          "L38: \"School\":             2,",
+          "L39: \"Government Office\":  2,",
+          "L44: \"Hospital\":           (0, 0, 255),    # Red (BGR)",
+          "L45: \"School\":             (0, 128, 255),  # Orange",
+          "L46: \"Government Office\":  (0, 200, 200),  # Yellow",
+          "L189: # Largest building = Hospital, second largest = School, etc.",
+          "L192: sorted_by_area[0].priority = \"Hospital\"",
+          "L194: sorted_by_area[1].priority = \"School\"",
+          "L196: sorted_by_area[2].priority = \"Government Office\""
+        ],
+        "euclidean_distance": [
+          "L59: - 8-connected neighbors become edges with Euclidean weight",
+          "L280: # A*-style with Euclidean heuristic"
+        ],
+        "class_ids_or_names": [
+          "L147: b.distance_to_road = float(dist)",
+          "L189: # Largest building = Hospital, second largest = School, etc."
+        ],
+        "largest_area_logic": [
+          "L189: # Largest building = Hospital, second largest = School, etc.",
+          "L190: sorted_by_area = sorted(buildings, key=lambda b: b.area, reverse=True)",
+          "L191: if len(sorted_by_area) >= 1:",
+          "L192: sorted_by_area[0].priority = \"Hospital\"",
+          "L193: if len(sorted_by_area) >= 2:",
+          "L194: sorted_by_area[1].priority = \"School\"",
+          "L195: if len(sorted_by_area) >= 3:",
+          "L196: sorted_by_area[2].priority = \"Government Office\"",
+          "L197: for b in sorted_by_area[3:]:"
+        ]
+      }
+    },
+    {
+      "file": "D:\\new_MPS\\remoteSensingWebApp\\next step of execution\\module3_final_output.py",
+      "exists": true,
+      "lines": 691,
+      "compiles": true,
+      "functions": [
+        "render_infrastructure_map",
+        "render_connectivity_map",
+        "render_dashboard",
+        "export_csv",
+        "export_pdf_report",
+        "run_full_pipeline"
+      ],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "datetime",
+        "logging",
+        "matplotlib",
+        "module1_extraction",
+        "module2_connectivity",
+        "numpy",
+        "os",
+        "pandas",
+        "typing"
+      ],
+      "flags": {
+        "fixed_0.55_m_per_px": [
+          "L50: 3: (0.80, 0.70, 0.55),   # Barren - tan",
+          "L51: 4: (0.13, 0.55, 0.13),   # Forest - dark green",
+          "L148: mpatches.Patch(color=(0.13, 0.55, 0.13), label=\"Forest\"),",
+          "L151: mpatches.Patch(color=(0.80, 0.70, 0.55), label=\"Barren\"),"
+        ],
+        "size_based_facility_guess": [
+          "L64: \"Hospital\":          \"#e74c3c\",",
+          "L65: \"School\":            \"#e67e22\",",
+          "L66: \"Government Office\": \"#f1c40f\",",
+          "L152: mpatches.Patch(color=\"#e74c3c\",           label=\"Hospital\"),",
+          "L153: mpatches.Patch(color=\"#e67e22\",           label=\"School\"),",
+          "L668: # priority_map = {1: \"Hospital\", 3: \"School\", 5: \"Government Office\"}"
+        ],
+        "class_ids_or_names": [
+          "L411: f\"Avg Distance to Road: {stats['avg_distance_to_road']} px\"",
+          "L689: print(f\"  Avg Dist to Road   : {s['avg_distance_to_road']} px\")"
+        ],
+        "crs_usage": [
+          "L502: color=DASHBOARD_TEXT, transform=ax.transAxes)",
+          "L505: transform=ax.transAxes)",
+          "L509: transform=ax.transAxes)"
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\03_georeferencing\\georeference.py",
+      "exists": true,
+      "lines": 96,
+      "compiles": true,
+      "functions": [
+        "pixel_length_to_meters",
+        "metric_graph_from_pixel_graph",
+        "pixel_to_latlon",
+        "tile_bbox_latlon"
+      ],
+      "classes": [
+        "ManualTileGeoreference"
+      ],
+      "imports": [
+        "dataclasses",
+        "math"
+      ],
+      "flags": {
+        "crs_usage": [
+          "L6: affine geotransform. The dataset only documents that source imagery came"
+        ],
+        "gsd_or_pixel_scale": [
+          "L15: (GSD), not real coordinates. LoveDA's native GSD is ~0.3 m/px at",
+          "L17: effective GSD is ~0.55 m/px. This gives real-world *distances* in"
+        ],
+        "fixed_0.55_m_per_px": [
+          "L17: effective GSD is ~0.55 m/px. This gives real-world *distances* in",
+          "L31: EFFECTIVE_GSD_M_PER_PX = 0.55  # matches the mini-project paper, Section 4.2"
+        ],
+        "graph_routing": [
+          "L42: \"\"\"Track A. Re-weight an existing NetworkX road graph (built in pixel"
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\04_facility_tagging\\facility_tagging.py",
+      "exists": true,
+      "lines": 116,
+      "compiles": true,
+      "functions": [
+        "heuristic_priority_tag",
+        "tag_all_buildings_heuristic",
+        "osm_facility_tags_for_bbox",
+        "match_osm_facilities_to_buildings",
+        "haversine_m"
+      ],
+      "classes": [],
+      "imports": [
+        "math",
+        "requests"
+      ],
+      "flags": {
+        "size_based_facility_guess": [
+          "L9: Rationale: in rural LoveDA-style imagery, schools/health centers/",
+          "L10: government buildings tend to be larger, more isolated structures than",
+          "L28: Track A. Returns \"P1_candidate\" (treat as a public-service-like facility)",
+          "L44: return \"P1_candidate\"",
+          "L63: Track B only. Query the Overpass API for schools/hospitals/government",
+          "L71: node[\"amenity\"~\"school|hospital|clinic|townhall|government\"]({south},{west},{north},{east});",
+          "L72: way[\"amenity\"~\"school|hospital|clinic|townhall|government\"]({south},{west},{north},{east});"
+        ],
+        "hardcoded_windows_path": [
+          "L77: \"https://overpass-api.de/api/interpreter\","
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\05_accessibility_priority\\accessibility.py",
+      "exists": true,
+      "lines": 49,
+      "compiles": true,
+      "functions": [
+        "accessibility_gap_scores",
+        "priority_summary"
+      ],
+      "classes": [],
+      "imports": [
+        "scipy"
+      ],
+      "flags": {
+        "size_based_facility_guess": [
+          "L14: 'priority': \"P1_candidate\" / \"P2\" (added by facility_tagging.py)",
+          "L31: priority_weight = 2.0 if b[\"priority\"] == \"P1_candidate\" else 1.0",
+          "L41: summary = {\"P1_candidate\": {\"total\": 0, \"isolated\": 0},"
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\06_routing_optimization\\multi_route.py",
+      "exists": true,
+      "lines": 125,
+      "compiles": true,
+      "functions": [
+        "generate_candidate_routes",
+        "perturbed_astar_routes",
+        "score_route",
+        "normalize_metric",
+        "find_shared_segments",
+        "shared_road_benefit"
+      ],
+      "classes": [],
+      "imports": [
+        "itertools",
+        "networkx",
+        "numpy"
+      ],
+      "flags": {
+        "graph_routing": [
+          "L5: Builds on the same NetworkX graph and cost-weighted A* idea from your",
+          "L12: import networkx as nx",
+          "L17: \"\"\"Preferred method: NetworkX's true k-shortest-paths. If your graph is",
+          "L19: back to perturbed_astar_routes() below.\"\"\"",
+          "L23: except (nx.NetworkXNoPath, nx.NodeNotFound):",
+          "L27: def perturbed_astar_routes(G, source, target, k=3, base_weight=\"cost\", jitter=0.15, seed=0):",
+          "L40: path = nx.astar_path(H, source, target, weight=\"cost_jittered\")",
+          "L41: except (nx.NetworkXNoPath, nx.NodeNotFound):"
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\07_evaluation\\gis_experiments.py",
+      "exists": true,
+      "lines": 85,
+      "compiles": true,
+      "functions": [
+        "run_nearest_road_baseline",
+        "run_shortest_astar_baseline",
+        "run_proposed_method",
+        "save_experiment_result",
+        "load_all_results"
+      ],
+      "classes": [],
+      "imports": [
+        "json",
+        "networkx",
+        "os",
+        "scipy"
+      ],
+      "flags": {
+        "graph_routing": [
+          "L30: def run_shortest_astar_baseline(G, isolated_buildings, road_nodes, cost_weight=\"cost\"):",
+          "L34: import networkx as nx",
+          "L40: length = nx.astar_path_length(G, b[\"node\"], target, weight=cost_weight)",
+          "L43: except (nx.NetworkXNoPath, nx.NodeNotFound):",
+          "L48: return dict(method=\"shortest_astar\", total_length=total_length,"
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\find_tile.py",
+      "exists": true,
+      "lines": 115,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "model",
+        "numpy",
+        "os",
+        "sys",
+        "torch"
+      ],
+      "flags": {
+        "image_size": [
+          "L58: resized = cv2.resize("
+        ],
+        "largest_area_logic": [
+          "L75: pred = torch.argmax("
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\test_layer3_real.py",
+      "exists": true,
+      "lines": 280,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "georeference",
+        "module1_extraction",
+        "module2_connectivity",
+        "numpy",
+        "sys"
+      ],
+      "flags": {
+        "gsd_or_pixel_scale": [
+          "L78: print(\"Effective GSD:\", EFFECTIVE_GSD_M_PER_PX, \"m/pixel\")",
+          "L272: \"GSD:\","
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\test_layer4_real.py",
+      "exists": true,
+      "lines": 179,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "facility_tagging",
+        "module1_extraction",
+        "numpy",
+        "sys"
+      ],
+      "flags": {
+        "size_based_facility_guess": [
+          "L141: if b[\"priority\"] == \"P1_candidate\":",
+          "L169: \"P1_candidate means a geometry-based \"",
+          "L175: \"is a hospital, school, or government facility.\""
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\test_layer5_real.py",
+      "exists": true,
+      "lines": 247,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "accessibility",
+        "cv2",
+        "facility_tagging",
+        "module1_extraction",
+        "numpy",
+        "sys"
+      ],
+      "flags": {
+        "fixed_0.55_m_per_px": [
+          "L173: GSD = 0.55"
+        ],
+        "gsd_or_pixel_scale": [
+          "L173: GSD = 0.55",
+          "L184: distance_m = distance_px * GSD",
+          "L229: b[\"nearest_road_dist_px\"] * GSD"
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\test_module1.py",
+      "exists": true,
+      "lines": 60,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "module1_extraction",
+        "numpy",
+        "sys"
+      ],
+      "flags": {}
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\test_module2.py",
+      "exists": true,
+      "lines": 177,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "module1_extraction",
+        "module2_connectivity",
+        "numpy",
+        "sys"
+      ],
+      "flags": {
+        "class_ids_or_names": [
+          "L109: f\"distance={b.distance_to_road:.2f}px, \""
+        ]
+      }
+    },
+    {
+      "file": "C:\\Users\\DELL\\Downloads\\new_modules_layers3-6\\major_project_new_modules\\test_module3_real.py",
+      "exists": true,
+      "lines": 140,
+      "compiles": true,
+      "functions": [],
+      "classes": [],
+      "imports": [
+        "cv2",
+        "module3_final_output",
+        "numpy",
+        "os",
+        "sys"
+      ],
+      "flags": {}
+    }
+  ],
+  "component_status": {
+    "environment": "IMPLEMENTED",
+    "checkpoint_file": "INCORRECT",
+    "checkpoint_model_compatibility": "NEEDS VALIDATION",
+    "loveda_dataset": "IMPLEMENTED",
+    "segmentation_performance_on_siddipet": "MISSING (not evaluated)",
+    "georeferencing_03": "INCORRECT for Siddipet (fixed scale found)",
+    "facility_tagging_04": "INCORRECT for Siddipet (name/size heuristic found)",
+    "accessibility_05": "NEEDS VALIDATION",
+    "routing_06": "NEEDS VALIDATION",
+    "evaluation_07": "NEEDS VALIDATION",
+    "module1_extraction": "NEEDS VALIDATION",
+    "module2_connectivity": "NEEDS VALIDATION",
+    "module3_final_output": "NEEDS VALIDATION",
+    "siddipet_imagery": "MISSING",
+    "siddipet_boundary": "MISSING (run scripts/verify_siddipet_village.py)",
+    "siddipet_labels": "MISSING",
+    "cost_surface": "MISSING",
+    "baselines_equal_budget": "MISSING",
+    "ablation_sensitivity": "MISSING",
+    "multi_village": "MISSING"
+  },
+  "bundled_files": 25
+}

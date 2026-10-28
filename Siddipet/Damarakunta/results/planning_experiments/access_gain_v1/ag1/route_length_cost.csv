@@ -1,0 +1,5 @@
+run,scenario,routes_in_layer,routes_used,targets_total,targets_served_table,unserved,total_len_m_layer,total_len_m_planner,unique_len_m_planner,shared_len_m_planner,geometric_union_len_m,geometric_sum_len_m,total_cost_units_layer,unique_cost_units_planner,weighted_benefit_planner,cost_unit_label,monetary_cost_estimated
+run5,roads_plus_network_aware_routes,13,13,15,13,2,1506.200,1506.100,1506.100,-0.000,1506.123,1506.123,9438.659,9438.700,23.250,weighted routing cost units (NOT money),False
+run5,roads_plus_independent_least_cost_routes,13,13,15,13,2,1516.600,1516.600,1516.600,-0.000,1516.571,1516.571,9456.455,9456.500,23.250,weighted routing cost units (NOT money),False
+run6_slope_soft,roads_plus_network_aware_routes,14,14,15,14,1,1659.000,1658.900,1658.900,-0.000,1658.854,1658.854,10453.736,10453.700,24.250,weighted routing cost units (NOT money),False
+run6_slope_soft,roads_plus_independent_least_cost_routes,14,14,15,14,1,1744.500,1744.400,1734.400,10.000,1729.302,1744.430,10955.407,10880.200,24.250,weighted routing cost units (NOT money),False

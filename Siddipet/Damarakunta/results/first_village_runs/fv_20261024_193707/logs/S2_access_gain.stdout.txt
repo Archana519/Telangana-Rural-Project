@@ -1,0 +1,117 @@
+summarise_access_gain v1 (proposed) - proximity-based access report (auxiliary; not the planner)
+monetary_cost_estimated: false | cost units are weighted routing cost units, not money | routes are UNVERIFIED planning alternatives
+
+BUILDING SETS (observed counts; polygons, not verified buildings)
+                    building_set              role  n_polygons                                                                                                    definition
+          all_candidate_polygons        population         163                                                                                 every row of candidate_access
+               quality_PLAUSIBLE        population          71                                                                   candidate_access quality_class == PLAUSIBLE
+                  quality_REVIEW        population          30                                                                      candidate_access quality_class == REVIEW
+        quality_UNRESOLVED_MERGE        population          62                                                            candidate_access quality_class == UNRESOLVED_MERGE
+           polygon_gap_flag_true polygon_level_gap          60                                                                 candidate gap_flag True (own distance > 50 m)
+            gap_cluster_polygons cluster_level_gap          16                   polygons whose cluster has clusters.gap_flag True (these are the planner's cluster targets)
+     settlement_cluster_polygons        population         120                                                          polygons in clusters with kind == SETTLEMENT_CLUSTER
+   settlement_interior_screening         screening          43 SETTLEMENT_CLUSTER polygons > 50 m from a reference road; SCREENING result, not proof that roads are required
+nongap_isolated_cluster_polygons        population          27                                                    ISOLATED_OR_SMALL_GROUP clusters that are not gap clusters
+             non_target_polygons         spillover         147                                                      all polygons not in a gap cluster (spillover population)
+
+POLYGON-LEVEL GAP FLAG versus CLUSTER MEMBERSHIP (kept separate)
+ polygon_gap_flag  in_gap_cluster            cluster_kind    quality_class  n_polygons
+            False           False ISOLATED_OR_SMALL_GROUP        PLAUSIBLE          10
+            False           False ISOLATED_OR_SMALL_GROUP           REVIEW           9
+            False           False ISOLATED_OR_SMALL_GROUP UNRESOLVED_MERGE           7
+            False           False      SETTLEMENT_CLUSTER        PLAUSIBLE          31
+            False           False      SETTLEMENT_CLUSTER           REVIEW          11
+            False           False      SETTLEMENT_CLUSTER UNRESOLVED_MERGE          35
+             True           False ISOLATED_OR_SMALL_GROUP UNRESOLVED_MERGE           1
+             True           False      SETTLEMENT_CLUSTER        PLAUSIBLE          25
+             True           False      SETTLEMENT_CLUSTER           REVIEW           4
+             True           False      SETTLEMENT_CLUSTER UNRESOLVED_MERGE          14
+             True            True ISOLATED_OR_SMALL_GROUP        PLAUSIBLE           5
+             True            True ISOLATED_OR_SMALL_GROUP           REVIEW           6
+             True            True ISOLATED_OR_SMALL_GROUP UNRESOLVED_MERGE           5
+
+COVERAGE AT 50 m (baseline = reference roads only)
+         run                                 scenario                     building_set  n_polygons  baseline_n_within  proposed_n_within  baseline_pct  proposed_pct  abs_change_n  pp_change
+run7_regress          roads_plus_network_aware_routes           all_candidate_polygons         163                103                118         63.19         72.39            15       9.20
+run7_regress          roads_plus_network_aware_routes                quality_PLAUSIBLE          71                 41                 44         57.75         61.97             3       4.23
+run7_regress          roads_plus_network_aware_routes                   quality_REVIEW          30                 20                 26         66.67         86.67             6      20.00
+run7_regress          roads_plus_network_aware_routes         quality_UNRESOLVED_MERGE          62                 42                 48         67.74         77.42             6       9.68
+run7_regress          roads_plus_network_aware_routes            polygon_gap_flag_true          60                  0                 15          0.00         25.00            15      25.00
+run7_regress          roads_plus_network_aware_routes             gap_cluster_polygons          16                  0                 12          0.00         75.00            12      75.00
+run7_regress          roads_plus_network_aware_routes      settlement_cluster_polygons         120                 77                 80         64.17         66.67             3       2.50
+run7_regress          roads_plus_network_aware_routes    settlement_interior_screening          43                  0                  3          0.00          6.98             3       6.98
+run7_regress          roads_plus_network_aware_routes nongap_isolated_cluster_polygons          27                 26                 26         96.30         96.30             0       0.00
+run7_regress          roads_plus_network_aware_routes              non_target_polygons         147                103                106         70.07         72.11             3       2.04
+run7_regress roads_plus_independent_least_cost_routes           all_candidate_polygons         163                103                118         63.19         72.39            15       9.20
+run7_regress roads_plus_independent_least_cost_routes                quality_PLAUSIBLE          71                 41                 44         57.75         61.97             3       4.23
+run7_regress roads_plus_independent_least_cost_routes                   quality_REVIEW          30                 20                 26         66.67         86.67             6      20.00
+run7_regress roads_plus_independent_least_cost_routes         quality_UNRESOLVED_MERGE          62                 42                 48         67.74         77.42             6       9.68
+run7_regress roads_plus_independent_least_cost_routes            polygon_gap_flag_true          60                  0                 15          0.00         25.00            15      25.00
+run7_regress roads_plus_independent_least_cost_routes             gap_cluster_polygons          16                  0                 12          0.00         75.00            12      75.00
+run7_regress roads_plus_independent_least_cost_routes      settlement_cluster_polygons         120                 77                 80         64.17         66.67             3       2.50
+run7_regress roads_plus_independent_least_cost_routes    settlement_interior_screening          43                  0                  3          0.00          6.98             3       6.98
+run7_regress roads_plus_independent_least_cost_routes nongap_isolated_cluster_polygons          27                 26                 26         96.30         96.30             0       0.00
+run7_regress roads_plus_independent_least_cost_routes              non_target_polygons         147                103                106         70.07         72.11             3       2.04
+   fv_repro1          roads_plus_network_aware_routes           all_candidate_polygons         163                103                118         63.19         72.39            15       9.20
+   fv_repro1          roads_plus_network_aware_routes                quality_PLAUSIBLE          71                 41                 44         57.75         61.97             3       4.23
+   fv_repro1          roads_plus_network_aware_routes                   quality_REVIEW          30                 20                 26         66.67         86.67             6      20.00
+   fv_repro1          roads_plus_network_aware_routes         quality_UNRESOLVED_MERGE          62                 42                 48         67.74         77.42             6       9.68
+   fv_repro1          roads_plus_network_aware_routes            polygon_gap_flag_true          60                  0                 15          0.00         25.00            15      25.00
+   fv_repro1          roads_plus_network_aware_routes             gap_cluster_polygons          16                  0                 12          0.00         75.00            12      75.00
+   fv_repro1          roads_plus_network_aware_routes      settlement_cluster_polygons         120                 77                 80         64.17         66.67             3       2.50
+   fv_repro1          roads_plus_network_aware_routes    settlement_interior_screening          43                  0                  3          0.00          6.98             3       6.98
+   fv_repro1          roads_plus_network_aware_routes nongap_isolated_cluster_polygons          27                 26                 26         96.30         96.30             0       0.00
+   fv_repro1          roads_plus_network_aware_routes              non_target_polygons         147                103                106         70.07         72.11             3       2.04
+   fv_repro1 roads_plus_independent_least_cost_routes           all_candidate_polygons         163                103                118         63.19         72.39            15       9.20
+   fv_repro1 roads_plus_independent_least_cost_routes                quality_PLAUSIBLE          71                 41                 44         57.75         61.97             3       4.23
+   fv_repro1 roads_plus_independent_least_cost_routes                   quality_REVIEW          30                 20                 26         66.67         86.67             6      20.00
+   fv_repro1 roads_plus_independent_least_cost_routes         quality_UNRESOLVED_MERGE          62                 42                 48         67.74         77.42             6       9.68
+   fv_repro1 roads_plus_independent_least_cost_routes            polygon_gap_flag_true          60                  0                 15          0.00         25.00            15      25.00
+   fv_repro1 roads_plus_independent_least_cost_routes             gap_cluster_polygons          16                  0                 12          0.00         75.00            12      75.00
+   fv_repro1 roads_plus_independent_least_cost_routes      settlement_cluster_polygons         120                 77                 80         64.17         66.67             3       2.50
+   fv_repro1 roads_plus_independent_least_cost_routes    settlement_interior_screening          43                  0                  3          0.00          6.98             3       6.98
+   fv_repro1 roads_plus_independent_least_cost_routes nongap_isolated_cluster_polygons          27                 26                 26         96.30         96.30             0       0.00
+   fv_repro1 roads_plus_independent_least_cost_routes              non_target_polygons         147                103                106         70.07         72.11             3       2.04
+
+FACILITIES (separate from polygon statistics)
+         run       facility_id facility_type  dist_base_m  dist_na_m  dist_ic_m planner_status failure_reason
+run7_regress       36181600902        School        11.05        0.0        0.0         SERVED               
+run7_regress       36181600903        School        43.14        0.0        0.0         SERVED               
+run7_regress HEALTH_8734223673    Healthcare        62.20        0.0        0.0         SERVED               
+run7_regress           1702300     Anganwadi       121.11        0.0        0.0         SERVED               
+   fv_repro1       36181600902        School        11.05        0.0        0.0         SERVED               
+   fv_repro1       36181600903        School        43.14        0.0        0.0         SERVED               
+   fv_repro1 HEALTH_8734223673    Healthcare        62.20        0.0        0.0         SERVED               
+   fv_repro1           1702300     Anganwadi       121.11        0.0        0.0         SERVED               
+
+ROUTE LENGTH AND WEIGHTED ROUTING COST UNITS
+         run                                 scenario  routes_used  targets_total  unserved  total_len_m_layer  unique_len_m_planner  geometric_union_len_m  total_cost_units_layer  unique_cost_units_planner
+run7_regress          roads_plus_network_aware_routes           13             15         2             1506.2                1506.1                 1506.1                  9438.7                     9438.7
+run7_regress roads_plus_independent_least_cost_routes           13             15         2             1516.6                1516.6                 1516.6                  9456.5                     9456.5
+   fv_repro1          roads_plus_network_aware_routes           13             15         2             1506.2                1506.1                 1506.1                  9438.7                     9438.7
+   fv_repro1 roads_plus_independent_least_cost_routes           13             15         2             1516.6                1516.6                 1516.6                  9456.5                     9456.5
+
+UNSERVED TARGETS (planner failure_reason; not evidence of a real access gap)
+         run target    kind status                                 failure_reason  euclid_to_road_m
+run7_regress    C12 CLUSTER FAILED TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID             147.8
+run7_regress    C13 CLUSTER FAILED TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID             161.3
+   fv_repro1    C12 CLUSTER FAILED TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID             147.8
+   fv_repro1    C13 CLUSTER FAILED TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID             161.3
+
+CHECKS NOT PASSING
+none
+
+LIMITATIONS
+- Proximity only: distance from a polygon/point to the reference roads or to roads plus proposed routes. It is not routed, walking or network accessibility.
+- A polygon-level gap flag is defined as distance > gap_m, so at threshold == gap_m the baseline coverage of every gap-flagged set is 0 by definition.
+- Routes start at their target point, so a targeted polygon or facility is close to its own route by construction; that is not independent validation. The informative quantity is spillover onto non-target polygons.
+- Candidate polygons are unverified model predictions. UNRESOLVED_MERGE polygons are settlement extents, so counts are polygons, not verified buildings.
+- The reference road layer is unverified and may omit internal lanes. The settlement-interior screening result is NOT proof that roads are required.
+- Routes are UNVERIFIED planning alternatives on a 10 m raster. 'connected' (planner) is geometric connection within a tolerance; it is not a physical, legal or engineered connection.
+- attach_to labels are not used as evidence. The independent route layer is known to carry a mislabelled attach_to in the reviewed copy of the planner.
+- Weighted routing cost units are unitless planner scores (cost surface x multipliers x length), not rupees. No road width or construction rate is used. monetary_cost_estimated is false.
+- Unserved targets are reported with the planner's failure_reason only; a target inside a hard-constrained or nodata cell is a raster-coverage/constraint result, not evidence of a real access gap.
+- Constraint rasters are hashed at report time; this proves their current content, not that the run used identical content.
+- Few runs/seeds elsewhere in the project: nothing here is a significance test.
+
+Wrote report to D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\first_village_runs\fv_20261024_193707\access_gain\ag

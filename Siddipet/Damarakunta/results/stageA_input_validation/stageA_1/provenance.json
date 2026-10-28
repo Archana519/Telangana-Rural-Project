@@ -1,0 +1,12 @@
+{
+ "created": "2026-10-24T15:32:13.840148+00:00",
+ "config": "D:\\Telangana_Rural_Project\\configs\\damarakunta.json",
+ "python": "3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]",
+ "platform": "Windows-10-10.0.26300-SP0",
+ "rasterio": "1.4.4",
+ "geopandas": "1.1.4",
+ "crs_expected": "EPSG:32644",
+ "boundary_status": "UNVERIFIED (TGRAC polygon)",
+ "imagery_licence": "UNVERIFIED",
+ "scope": "measurements only; no accuracy claim"
+}

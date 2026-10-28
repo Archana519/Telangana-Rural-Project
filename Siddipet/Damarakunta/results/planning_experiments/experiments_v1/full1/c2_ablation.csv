@@ -1,0 +1,9 @@
+target_set,variant,targets,served,independent_unique_len_m,variant_unique_len_m,reduction_vs_independent_m,reduction_pct,attached_targets,seconds
+gap>0 m,"stageA_credit_only (no fresh attachment, no re-route)",35,33,2238.5,2238.5,0.0,0.0,0,0.1
+gap>0 m,"attachment, no re-route pass",35,33,2238.5,2214.0,24.6,1.1,2,0.7
+gap>0 m,full (attachment + re-route),35,33,2238.5,2214.0,24.6,1.1,2,0.8
+gap>0 m,full with k=1 alternative,35,33,2238.5,2214.0,24.6,1.1,2,0.7
+gap>50 m,"stageA_credit_only (no fresh attachment, no re-route)",15,13,1516.6,1516.6,0.0,0.0,0,0.1
+gap>50 m,"attachment, no re-route pass",15,13,1516.6,1506.1,10.4,0.69,1,0.3
+gap>50 m,full (attachment + re-route),15,13,1516.6,1506.1,10.4,0.69,1,0.3
+gap>50 m,full with k=1 alternative,15,13,1516.6,1506.1,10.4,0.69,1,0.2

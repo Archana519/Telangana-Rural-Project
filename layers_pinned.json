@@ -1,0 +1,9 @@
+{
+  "roads": "https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20",
+  "anganwadi": "https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2",
+  "health": [
+    "https://tgrac.telangana.gov.in/arcgis/rest/services/GovtHospitals_Folder/Health_Facilities_Query/MapServer/0",
+    "https://tgrac.telangana.gov.in/arcgis/rest/services/GovtHospitals_Folder/Health_Facilities_Query/MapServer/6"
+  ],
+  "plinth": "https://tgrac.telangana.gov.in/arcgis/rest/services/Abadi_Folder/Abadi_Final/MapServer/20"
+}

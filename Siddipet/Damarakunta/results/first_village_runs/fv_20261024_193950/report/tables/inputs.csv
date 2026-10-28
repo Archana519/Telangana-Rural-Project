@@ -1,0 +1,10 @@
+param,path,exists,bytes,sha256,hash_seconds
+access_gpkg,D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances\access\access_assessment.gpkg,True,765952,08e3bc4c6cc0f67d...,0.0
+roads,D:\Telangana_Rural_Project\Siddipet\Damarakunta\reference\tgrac_road_network.gpkg,True,163840,3574defb203f2453...,0.0
+cost,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_cost_surface_10m.tif,True,814171,911ebeb1860aa49f...,0.0
+worldcover,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_worldcover_10m.tif,True,26258,587eb4d652e3e66f...,0.0
+blocked,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_prohibited_mask_10m.tif,True,8617,7330837ba9b55588...,0.0
+slope,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_slope_10m.tif,True,859864,6f6b3c6d26837564...,0.0
+buildings,D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances\buildings_v8_full.gpkg,True,1146880,0eae82fea8ada939...,0.0
+raster,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_esri_highres_mosaic_0p6m.tif,True,241258858,9013449ce5bd3079...,0.5
+v4_script,D:\Telangana_Rural_Project\scripts\reconstruct_damarakunta_routes_v4.py,True,24342,e1cc0c708766fa3f...,0.0

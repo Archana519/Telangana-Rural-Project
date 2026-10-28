@@ -1,0 +1,71 @@
+{
+  "overall": "PASS",
+  "checks": [
+    {
+      "check": "summary.inputs hashes equal (reference vs reproduced)",
+      "passed": true,
+      "detail": "3 hashes equal"
+    },
+    {
+      "check": "planner hash of 'access' equals sha256 of file now",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "planner hash of 'roads' equals sha256 of file now",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "planner hash of 'cost' equals sha256 of file now",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "parameters equal (ignoring tag, out_root, no_map)",
+      "passed": true,
+      "detail": "33 parameters compared"
+    },
+    {
+      "check": "plan_comparison.csv identical",
+      "passed": true,
+      "detail": "3 rows identical (floats rounded to 6 dp)"
+    },
+    {
+      "check": "target_table.csv identical",
+      "passed": true,
+      "detail": "15 rows identical (floats rounded to 6 dp)"
+    },
+    {
+      "check": "summary.json['c2_check'] identical (NaN = null)",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "summary.json['failed_targets'] identical (NaN = null)",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "summary.json['plan_comparison'] identical (NaN = null)",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "summary.json['data_check'] identical (NaN = null)",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "summary.json['constraints_resolved'] identical (NaN = null)",
+      "passed": true,
+      "detail": "equal"
+    },
+    {
+      "check": "network_v2.gpkg layers/geometry/attributes identical",
+      "passed": true,
+      "detail": "constraints_hard: n=86 geometry identical (1 mm), attributes identical; routes_independent: n=13 geometry identical (1 mm), attributes identical; routes_network_aware: n=13 geometry identical (1 mm), attributes identical; routes_straight_line: n=15 geometry identical (1 mm), attributes identical; stageA_alternatives: n=37 geometry identical (1 mm), attributes identical; targets: n=15 geometry identical (1 mm), attributes identical"
+    }
+  ],
+  "note": "PASS means the reproduced run matches the reference run on the checks listed; it does not validate the planning result."
+}

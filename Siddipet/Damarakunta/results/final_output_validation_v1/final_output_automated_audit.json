@@ -1,0 +1,30 @@
+{
+  "package_status": "REVIEW_DRAFT_NOT_FINAL_VERIFIED",
+  "project_area": "Damarakunta, Siddipet, Telangana",
+  "crs_expected": "EPSG:32644",
+  "building_candidates_inside_village": 165,
+  "candidate_quality_counts": {
+    "PLAUSIBLE": 71,
+    "UNRESOLVED_MERGE": 62,
+    "REVIEW": 30
+  },
+  "invalid_footprint_geometries": 0,
+  "footprint_points_outside_boundary_check": 0,
+  "facility_feature_count": 4,
+  "facility_category_counts": {
+    "SCHOOL": 2,
+    "HEALTH": 2
+  },
+  "facility_source_layer_semantics": "NOT independently verified; source data and imagery overlay need review",
+  "routes_count": 163,
+  "route_features_missing_for_target_ids": [],
+  "duplicated_route_id_records": 0,
+  "route_length_sum_m": 5231.610000000001,
+  "unique_network_edge_length_m": 5231.5426817189145,
+  "sum_route_cost_score_model_units_not_INR": 28700.295400000003,
+  "financial_construction_cost_inr": null,
+  "financial_cost_reason": "No verified road-width, road-surface/design specification, quantity schedule, or unit rates were supplied.",
+  "geometry_correctness_caveat": "Geometry validity, boundary and proximity checks are not semantic ground truth. Review footprints against high-resolution imagery and authoritative facility records before calling them confirmed.",
+  "manual_validation_required": true,
+  "validation_checklist": "building_footprint_verification_checklist.csv and public_facility_verification_checklist.csv"
+}

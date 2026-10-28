@@ -1,0 +1,4 @@
+,routed,of,sum_len,unique_len,saving,fac_routed,cluster_bldgs_served,hits_road
+independent_shortest,15.0,15.0,2009.1,1845.0,164.1,4.0,14.0,7.0
+credit_greedy,15.0,15.0,2009.1,1845.0,164.1,4.0,14.0,7.0
+straight_to_road_baseline,15.0,15.0,1643.0,1628.2,14.8,4.0,14.0,15.0

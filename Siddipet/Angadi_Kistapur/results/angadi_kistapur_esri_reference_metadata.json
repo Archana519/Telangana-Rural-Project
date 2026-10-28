@@ -1,0 +1,17 @@
+{
+  "source": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export",
+  "crs": "EPSG:32644",
+  "extent_from_map_service": {
+    "xmin": 257731.4995299348,
+    "ymin": 1968209.6947521735,
+    "xmax": 261914.92766307437,
+    "ymax": 1970713.4764898575,
+    "spatialReference": {
+      "wkid": 32644,
+      "latestWkid": 32644
+    }
+  },
+  "image_width": 2000,
+  "image_height": 1197,
+  "note": "Independent reference candidate; not yet matched or validated against TGRAC image."
+}

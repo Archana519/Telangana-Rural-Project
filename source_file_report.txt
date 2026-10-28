@@ -1,0 +1,46 @@
+=== FILE DETAILS ===
+ Volume in drive D is New Volume
+ Volume Serial Number is A803-B87E
+
+ Directory of D:\Telangana_Rural_Project\scripts
+
+12-10-2026  05.20 PM              3613 create_damarakunta_cost_surface.py
+               1 File(s)           3613 bytes
+               0 Dir(s)    213074198528 bytes free
+ Volume in drive D is New Volume
+ Volume Serial Number is A803-B87E
+
+ Directory of D:\Telangana_Rural_Project\scripts
+
+22-10-2026  03.59 PM             24342 reconstruct_damarakunta_routes_v4.py
+               1 File(s)          24342 bytes
+               0 Dir(s)    213074198528 bytes free
+ Volume in drive D is New Volume
+ Volume Serial Number is A803-B87E
+
+ Directory of D:\Telangana_Rural_Project\scripts
+
+23-10-2026  11.31 PM             47435 plan_network_v2.py
+               1 File(s)          47435 bytes
+               0 Dir(s)    213074194432 bytes free
+ Volume in drive D is New Volume
+ Volume Serial Number is A803-B87E
+
+ Directory of D:\Telangana_Rural_Project\scripts
+
+23-10-2026  11.25 PM             24526 run_planning_experiments.py
+               1 File(s)          24526 bytes
+               0 Dir(s)    213074194432 bytes free
+=== SHA256 HASHES ===
+SHA256 hash of scripts\create_damarakunta_cost_surface.py:
+1d642099f5de0f9e823d53aa3bcbb2a91a3ca03417812de6964f8b6b67075d13
+CertUtil: -hashfile command completed successfully.
+SHA256 hash of scripts\reconstruct_damarakunta_routes_v4.py:
+e1cc0c708766fa3f109d459ab7a7e719a83540997671cf5e73f0afae8977f503
+CertUtil: -hashfile command completed successfully.
+SHA256 hash of scripts\plan_network_v2.py:
+d00ea92028101131627b8592e3df2c33ff350efac9b1de09f9b64cdd56ef70a4
+CertUtil: -hashfile command completed successfully.
+SHA256 hash of scripts\run_planning_experiments.py:
+d5a64cccb3721d0adcf7de3e76ca2be04dd6db3c29d8c39931e51fd2933fafba
+CertUtil: -hashfile command completed successfully.

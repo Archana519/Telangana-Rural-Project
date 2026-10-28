@@ -1,0 +1,3 @@
+source,facility_name,nin_id,latitude,longitude,easting,northing,distance_between_records_m
+tgrac_health.gpkg,"Sub Centre, Damarakunta",8734223673,17.7082018,78.7538197,261775.37244724084,1959323.4713042239,235.71172172264687
+tgrac_sub_centres.gpkg,"SubCentre, Damarakunta",8734223673,17.707178,78.751872,261567.36359999515,1959212.6005000193,235.71172172264687

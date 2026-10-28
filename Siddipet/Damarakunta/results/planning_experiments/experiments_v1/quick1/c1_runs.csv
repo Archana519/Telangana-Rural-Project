@@ -1,0 +1,17 @@
+family,level,seed,label,input_buildings,clusters,cluster_targets,targets,served_clusters_na,served_facilities_na,failed_targets,failed_reasons,weighted_benefit_na,na_total_len_m,na_unique_len_m,na_unique_cost,ic_unique_len_m,ic_total_len_m,c2_reduction_m,c2_reduction_pct,attached_targets,hard_violating_selected_routes,ref_building_coverage,net_overlap_with_baseline,baseline_overlap_with_net,seconds
+baseline,0.0,0,baseline (unperturbed v8 buildings),163,33,11,15,9,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,23.25,1506.1,1506.1,9438.7,1516.6,1516.6,10.4,0.69,1,0,0.6875,1.0,1.0,0.5
+random_omission,0.1,0,random omission 10% seed 0,147,37,11,15,10,4,1,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,24.25,1626.1,1626.1,9781.6,1636.6,1636.6,10.4,0.64,1,0,0.6875,0.9262,1.0,0.7
+random_omission,0.1,1,random omission 10% seed 1,147,33,12,16,10,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,24.5,1581.7,1581.7,9884.3,1593.1,1593.1,11.4,0.71,1,0,0.6875,0.9605,1.0,0.7
+random_omission,0.1,2,random omission 10% seed 2,147,34,13,17,11,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,25.5,1694.0,1694.0,10352.6,1723.1,1753.1,29.2,1.69,2,0,0.6875,0.8986,1.0,0.6
+random_omission,0.3,0,random omission 30% seed 0,114,32,8,12,8,4,0,,21.5,1212.8,1212.8,6739.9,1310.3,1310.3,97.6,7.45,2,0,0.625,0.6432,0.5179,0.5
+random_omission,0.3,1,random omission 30% seed 1,114,32,12,16,10,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,24.25,1400.1,1400.1,8664.3,1533.4,1533.4,133.3,8.69,3,0,0.5625,0.883,0.8028,0.5
+random_omission,0.3,2,random omission 30% seed 2,114,37,12,16,10,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,27.25,1689.7,1689.7,9702.4,1695.9,1695.9,6.2,0.36,1,0,0.8125,0.7749,0.859,0.7
+systematic_omission:smallest,0.1,0,omit 10% smallest,147,28,9,13,8,4,1,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,22.0,1356.9,1356.9,8500.5,1367.4,1367.3,10.4,0.76,1,0,0.625,1.0,0.9009,0.6
+systematic_omission:smallest,0.3,0,omit 30% smallest,114,22,7,11,7,4,0,,21.0,1311.0,1311.0,7308.9,1321.4,1321.4,10.4,0.79,1,0,0.5,0.8931,0.7774,0.4
+systematic_omission:farthest_from_road,0.1,0,omit 10% farthest_from_road,147,30,8,12,8,4,0,,22.25,1212.9,1212.9,7154.4,1223.3,1223.3,10.4,0.85,1,0,0.5625,0.9095,0.7324,0.5
+systematic_omission:farthest_from_road,0.3,0,omit 30% farthest_from_road,114,26,3,7,3,4,0,,16.0,534.6,534.6,3106.7,545.0,545.0,10.4,1.92,1,0,0.125,0.8831,0.3134,0.1
+systematic_omission:nearest_to_road,0.1,0,omit 10% nearest_to_road,147,36,11,15,9,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,23.25,1506.1,1506.1,9438.7,1516.6,1516.6,10.4,0.69,1,0,0.6875,1.0,1.0,0.5
+systematic_omission:nearest_to_road,0.3,0,omit 30% nearest_to_road,114,37,11,15,9,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,23.25,1492.0,1492.0,9372.5,1498.1,1498.1,6.2,0.41,1,0,0.6875,1.0,0.9912,0.5
+inflation,2.0,0,inflate footprints +2.0 m,163,27,9,13,8,4,1,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,22.25,1388.3,1388.3,9059.7,1390.7,1400.7,2.4,0.18,1,0,0.625,1.0,0.9215,0.5
+merge_closing,3.0,0,merge (closing 3.0 m),101,33,11,15,9,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,22.75,1513.0,1513.0,9517.6,1523.4,1523.4,10.4,0.69,1,0,0.75,0.9051,0.9095,0.5
+area_threshold,20.0,0,min footprint 20.0 m2,157,30,10,14,8,4,2,TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID,22.25,1356.9,1356.9,8500.5,1367.4,1367.3,10.4,0.76,1,0,0.625,1.0,0.9009,0.4

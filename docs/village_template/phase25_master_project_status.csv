@@ -1,0 +1,28 @@
+phase,phase_name,status
+PHASE 0,Project Setup,COMPLETED
+PHASE 1,Existing Project Audit,COMPLETED
+PHASE 2,Verify Angadi Kistapur,COMPLETED
+PHASE 3,Inspect TGRAC Data,COMPLETED
+PHASE 4,Imagery Decision,COMPLETED
+PHASE 5,Obtain / Prepare Real Imagery,COMPLETED
+PHASE 6,Image / GeoTIFF Inspection,COMPLETED
+PHASE 7,Village Preparation,COMPLETED
+PHASE 8,UTM / Georeferencing,COMPLETED
+PHASE 9,GIS Reference Data,COMPLETED
+PHASE 10,StrongDINOv2Seg,COMPLETED
+PHASE 11,Model Input Preparation,COMPLETED
+PHASE 12,Segmentation,COMPLETED
+PHASE 13,Building / Road Extraction,COMPLETED
+PHASE 14,Facility Identification,COMPLETED
+PHASE 15,Accessibility Analysis,COMPLETED
+PHASE 16,Priority Assignment,COMPLETED
+PHASE 17,Cost Surface,COMPLETED
+PHASE 18,Candidate Routes,COMPLETED
+PHASE 19,Routing Comparison,COMPLETED
+PHASE 20,Route Evaluation,COMPLETED
+PHASE 21,Before / After Connectivity,COMPLETED
+PHASE 22,Fair Comparison,COMPLETED
+PHASE 23,Ablation Study,COMPLETED
+PHASE 24,Sensitivity Analysis,COMPLETED
+PHASE 25,Multiple Villages,IN PROGRESS
+PHASE 26,Final Outputs,PENDING

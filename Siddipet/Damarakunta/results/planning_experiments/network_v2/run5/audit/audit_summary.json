@@ -1,0 +1,49 @@
+{
+  "tol_m": 1.0,
+  "rasters_checked": [
+    "cost_invalid",
+    "prohibited",
+    "slope",
+    "water"
+  ],
+  "summary": {
+    "routes_network_aware": {
+      "routes": 13,
+      "invalid_or_empty_geometries": 0,
+      "total_len_m": 1506.1,
+      "unique_len_geometric_m": 1506.1,
+      "overlap_exact_m": 0.0,
+      "overlap_within_tol_m": 1.0,
+      "hard_samples_on_path": 0,
+      "hard_samples_on_connectors": 0,
+      "diagonal_corner_squeezes": 0,
+      "attachments_declared_to_other_routes": 1,
+      "attachments_inferred_to_other_routes": 1,
+      "declared_vs_inferred_mismatch": {},
+      "routes_connected_to_roads_by_geometry": 13,
+      "routes_not_connected": []
+    },
+    "routes_independent": {
+      "routes": 13,
+      "invalid_or_empty_geometries": 0,
+      "total_len_m": 1516.6,
+      "unique_len_geometric_m": 1516.6,
+      "overlap_exact_m": 0.0,
+      "overlap_within_tol_m": 0.0,
+      "hard_samples_on_path": 0,
+      "hard_samples_on_connectors": 0,
+      "diagonal_corner_squeezes": 0
+    },
+    "routes_straight_line": {
+      "routes": 15,
+      "invalid_or_empty_geometries": 0,
+      "total_len_m": 1625.7,
+      "unique_len_geometric_m": 1625.7,
+      "overlap_exact_m": 0.0,
+      "overlap_within_tol_m": 4.9,
+      "hard_samples_on_path": 619,
+      "hard_samples_on_connectors": 0,
+      "diagonal_corner_squeezes": 0
+    }
+  }
+}

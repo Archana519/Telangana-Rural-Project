@@ -1,0 +1,8 @@
+end_id,from_seg,to_seg,from_comp,to_comp,same_component_t0,dist_m,angle_deg,direction_ok,valid_bridge_at_max_tol,q_end_id,px,py,qx,qy,within_1m,within_2m,within_5m,within_10m,within_15m
+2:E,2,25,1,1,True,0.15,6.35,True,True,,259680.91,1959580.92,259680.88,1959580.77,True,True,True,True,True
+10:S,10,25,1,1,True,1.04,52.71,False,False,,259885.32,1959536.77,259885.51,1959537.79,False,True,True,True,True
+10:E,10,30,1,1,True,1.11,93.04,False,False,,259733.55,1959210.5,259734.62,1959210.21,False,True,True,True,True
+9:S,9,25,6,1,False,1.64,49.13,False,False,,259589.34,1959594.17,259589.6,1959595.79,False,True,True,True,True
+1:S,1,17,1,1,True,1.86,73.72,False,False,,261018.21,1960435.47,261016.45,1960436.06,False,True,True,True,True
+17:E,17,1,1,1,True,1.97,106.28,False,False,,261016.66,1960436.7,261018.28,1960435.58,False,True,True,True,True
+35:E,35,36,1,1,True,7.8,180.0,False,False,,263579.24,1960469.01,263582.76,1960462.04,False,False,False,True,True

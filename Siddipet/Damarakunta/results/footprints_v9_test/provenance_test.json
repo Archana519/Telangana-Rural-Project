@@ -1,0 +1,43 @@
+{
+  "created": "2026-10-24T16:36:26",
+  "input": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+  "input_sha256": "badbe4499ed4e121cccd2faad955749f0dd686979dc12d0778c277aea5ae7756",
+  "crs": "EPSG:32644",
+  "pixel_size_m": 0.6,
+  "params": {
+    "prob": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "out_dir": "Siddipet\\Damarakunta\\results\\footprints_v9_test",
+    "tag": "test",
+    "thr": 0.5,
+    "sigma": 1.0,
+    "open_px": 1,
+    "close_px": 1,
+    "min_area": 12.0,
+    "split_area": 150.0,
+    "peak_px": 15,
+    "min_peak_m": 1.2,
+    "large_area": 400.0,
+    "rect_thr": 0.78,
+    "regularize": true,
+    "simplify": 0.35,
+    "block": 2048,
+    "overlap": 96,
+    "window": [
+      261300.0,
+      1959200.0,
+      261800.0,
+      1959700.0
+    ]
+  },
+  "n_polygons": 58,
+  "n_large_blob": 10,
+  "n_rect": 9,
+  "area_m2_percentiles": {
+    "5": 20.466,
+    "25": 87.30000000000001,
+    "50": 186.84,
+    "75": 290.43,
+    "95": 754.2269999999999
+  },
+  "caveat": "Unverified model-derived polygons; not surveyed buildings or house counts."
+}

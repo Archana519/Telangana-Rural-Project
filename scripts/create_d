@@ -1,0 +1,93 @@
+import os
+import numpy as np
+import rasterio
+import matplotlib.pyplot as plt
+
+
+PROJECT_ROOT = r"D:\Telangana_Rural_Project"
+
+IMAGE_FILE = os.path.join(
+    PROJECT_ROOT,
+    "Siddipet",
+    "Damarakunta",
+    "predictions",
+    "input_tiles",
+    "tile_000.tif"
+)
+
+MASK_FILE = os.path.join(
+    PROJECT_ROOT,
+    "Siddipet",
+    "Damarakunta",
+    "predictions",
+    "segmentation_masks",
+    "tile_000.tif"
+)
+
+OUTPUT_FILE = os.path.join(
+    PROJECT_ROOT,
+    "Siddipet",
+    "Damarakunta",
+    "results",
+    "damarakunta_tile000_diagnostic.png"
+)
+
+os.makedirs(
+    os.path.dirname(OUTPUT_FILE),
+    exist_ok=True
+)
+
+
+CLASS_NAMES = {
+    0: "Ignore",
+    1: "Background",
+    2: "Building",
+    3: "Road",
+    4: "Water",
+    5: "Barren",
+    6: "Forest",
+    7: "Agriculture"
+}
+
+
+print("=" * 80)
+print("DAMARAKUNTA VISUAL DIAGNOSTIC")
+print("=" * 80)
+
+
+print("\nINPUT CHECK")
+print("-" * 80)
+
+print("Image:", IMAGE_FILE)
+print("Image exists:", os.path.isfile(IMAGE_FILE))
+
+print("Mask:", MASK_FILE)
+print("Mask exists:", os.path.isfile(MASK_FILE))
+
+
+if not os.path.isfile(IMAGE_FILE):
+    raise SystemExit("[ERROR] Image not found.")
+
+if not os.path.isfile(MASK_FILE):
+    raise SystemExit("[ERROR] Segmentation mask not found.")
+
+
+# ------------------------------------------------------------------
+# READ IMAGE
+# ------------------------------------------------------------------
+
+with rasterio.open(IMAGE_FILE) as src:
+
+    image = src.read(
+        indexes=[1, 2, 3]
+    )
+
+    bounds = src.bounds
+
+
+image = np.transpose(
+    image,
+    (1, 2, 0)
+)
+
+image

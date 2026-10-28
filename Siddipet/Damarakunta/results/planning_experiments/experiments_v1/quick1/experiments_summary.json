@@ -1,0 +1,140 @@
+{
+  "version": "run_planning_experiments v1",
+  "params": {
+    "access_gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+    "roads": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+    "cost": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "worldcover": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "blocked": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "slope": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "slope_limit_deg": 10.0,
+    "v4_script": "D:\\Telangana_Rural_Project\\scripts\\reconstruct_damarakunta_routes_v4.py",
+    "water_class": null,
+    "builtup_class": null,
+    "buildings": "",
+    "buildings_layer": "buildings",
+    "raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "out_root": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\experiments_v1",
+    "tag": "quick1",
+    "k": 3,
+    "corridor_m": 20.0,
+    "corridor_mults": [
+      3.0,
+      8.0
+    ],
+    "max_overlap": 0.8,
+    "max_search_m": 1500.0,
+    "snap_m": 30.0,
+    "attach_tol_m": 15.0,
+    "builtup_mult": 1.0,
+    "building_mult": 4.0,
+    "building_quality": "PLAUSIBLE,REVIEW,UNRESOLVED_MERGE",
+    "passes": 2,
+    "budget": null,
+    "weights_json": null,
+    "cluster_weight_per_building": 0.25,
+    "unverified_keywords": "anganwadi,aganwadi,sub-centre,sub centre,subcentre",
+    "include_nongap_clusters": false,
+    "corner_cut": "forbid",
+    "no_map": false,
+    "only": "all",
+    "seeds": 3,
+    "levels": [
+      0.1,
+      0.3
+    ],
+    "inflate_m": [
+      2.0
+    ],
+    "closing_m": [
+      3.0
+    ],
+    "area_thresholds": [
+      20.0
+    ],
+    "gap_values": [
+      0.0,
+      50.0
+    ],
+    "subset_fracs": [
+      0.5
+    ],
+    "cluster_radius_m": 20.0,
+    "settlement_min_n": 8,
+    "gap_m": 50.0,
+    "coverage_radius_m": 50.0,
+    "overlap_tol_m": 15.0,
+    "quick": true
+  },
+  "constraints_resolved": {
+    "prohibited_raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "slope_raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "slope_limit_deg": 10.0,
+    "slope_limit_source": "--slope-limit-deg",
+    "corner_cut": "forbid",
+    "water_class": 80,
+    "v4_script_loaded": true
+  },
+  "recluster_check": {
+    "clusters_rebuilt": 33,
+    "clusters_in_file": 33,
+    "gap_clusters_rebuilt": 11,
+    "gap_clusters_in_file": 11
+  },
+  "evaluation_set": {
+    "reference_buildings": 16,
+    "reference_gap_clusters": 11,
+    "facilities": 4
+  },
+  "hashes": {
+    "planner": "d00ea92028101131627b8592e3df2c33ff350efac9b1de09f9b64cdd56ef70a4",
+    "this_script": "d5a64cccb3721d0adcf7de3e76ca2be04dd6db3c29d8c39931e51fd2933fafba",
+    "access_gpkg": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f",
+    "cost": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e",
+    "roads": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+  },
+  "results": {
+    "c1_baseline": {
+      "family": "baseline",
+      "level": 0,
+      "seed": 0,
+      "label": "baseline (unperturbed v8 buildings)",
+      "input_buildings": 163,
+      "clusters": 33,
+      "cluster_targets": 11,
+      "targets": 15,
+      "served_clusters_na": 9,
+      "served_facilities_na": 4,
+      "failed_targets": 2,
+      "failed_reasons": "TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID",
+      "weighted_benefit_na": 23.25,
+      "na_total_len_m": 1506.1,
+      "na_unique_len_m": 1506.1,
+      "na_unique_cost": 9438.7,
+      "ic_unique_len_m": 1516.6,
+      "ic_total_len_m": 1516.6,
+      "c2_reduction_m": 10.4,
+      "c2_reduction_pct": 0.69,
+      "attached_targets": 1,
+      "hard_violating_selected_routes": 0,
+      "ref_building_coverage": 0.6875,
+      "net_overlap_with_baseline": 1.0,
+      "baseline_overlap_with_net": 1.0,
+      "seconds": 0.5
+    },
+    "c2_reduction_pct_min_max_mean": [
+      0.69,
+      1.1,
+      0.984
+    ],
+    "c2_scenarios_where_attachment_changed_selection": 5,
+    "c2_scenarios_total": 5
+  },
+  "total_seconds": 101.4,
+  "caveats": [
+    "C1 perturbations are synthetic; they are NOT measured segmentation error and say nothing about real accuracy.",
+    "Few seeds: results are descriptive; no statistical significance is claimed.",
+    "Weights, cost units and the hard slope rule are project parameters; cost units are not money.",
+    "All building polygons are unverified model predictions; routes are planning alternatives, not roads."
+  ]
+}

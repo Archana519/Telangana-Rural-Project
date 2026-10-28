@@ -1,0 +1,2 @@
+status,message
+NO_BUILDING_FOOTPRINT_LAYER_FOUND,Supply a polygon building-footprint layer or run a validated building segmentation model.

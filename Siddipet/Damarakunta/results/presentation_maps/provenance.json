@@ -1,0 +1,55 @@
+{
+  "generated": "2026-10-24T16:10:57",
+  "crs": "EPSG:32644",
+  "inputs": {
+    "roads": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+    "facilities": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\damarakunta_priority_facilities.gpkg",
+    "audit": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\connectivity_audit_v1\\ca1\\connectivity_audit.gpkg",
+    "planner": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg",
+    "boundary": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+    "worldcover": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "imagery": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+      "bands": 3,
+      "dtype": "uint8",
+      "res_m": 9.987,
+      "crs": "EPSG:32643",
+      "coverage": 0.91,
+      "nodata": null
+    },
+    "imagery_sha256": "39ce061b97ec9d6bc4c326dc816fad16bff2cae56493959741779de71b9df89a",
+    "fig1": [
+      "roads",
+      "facilities",
+      "boundary(if found)",
+      "audit.candidates(if found)"
+    ]
+  },
+  "log": [
+    "INPUT roads     : D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+    "INPUT facilities: D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\damarakunta_priority_facilities.gpkg",
+    "INPUT audit     : D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\connectivity_audit_v1\\ca1\\connectivity_audit.gpkg",
+    "INPUT planner   : D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress\\network_v2.gpkg",
+    "INPUT boundary  : D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+    "INPUT worldcover: D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "Audit layers: ['candidates', 'facilities', 'road_segments', 'dangling_ends', 'inferred_bridges', 'routes_at_attach_tol']",
+    "Planner layers: ['targets', 'routes_network_aware', 'routes_independent', 'routes_straight_line', 'stageA_alternatives', 'constraints_hard']",
+    "Study extent EPSG:32644 (m): (258564.9, 1956359.3, 265842.3, 1961162.1)",
+    "Imagery candidates scanned: 339",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif | bands=3 res=9.987 m crs=EPSG:32643 covers=91% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\sentinel2_20260429\\damarakunta_sentinel2_RGB_B04_B03_B02_10m.tif | bands=3 res=9.987 m crs=EPSG:32643 covers=91% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif | bands=3 res=0.6 m crs=EPSG:32644 covers=83% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif | bands=3 res=3.309 m crs=EPSG:32644 covers=83% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\damarakunta_sentinel_feb2022.tif | bands=3 res=3.309 m crs=EPSG:32644 covers=83% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\sentinel2_input_tiles\\tile_000.tif | bands=3 res=9.987 m crs=EPSG:32643 covers=77% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\sentinel2_input_tiles\\tile_001.tif | bands=3 res=9.987 m crs=EPSG:32643 covers=20% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_01.tif | bands=4 res=0.6 m crs=EPSG:32644 covers=9% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_02.tif | bands=4 res=0.6 m crs=EPSG:32644 covers=9% of extent",
+    "  D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_03.tif | bands=4 res=0.6 m crs=EPSG:32644 covers=9% of extent",
+    "IMAGERY used: D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif (res 9.987 m, crs EPSG:32643, coverage 91%)",
+    "WROTE Siddipet\\Damarakunta\\results\\presentation_maps\\01_damarakunta_study_area_overview.png (2.08 MB) + PDF",
+    "WROTE Siddipet\\Damarakunta\\results\\presentation_maps\\02_building_extraction_road_network.png (1.58 MB) + PDF",
+    "WROTE Siddipet\\Damarakunta\\results\\presentation_maps\\03_proposed_rural_road_network.png (2.10 MB) + PDF",
+    "WROTE Siddipet\\Damarakunta\\results\\presentation_maps\\04_damarakunta_connectivity_audit_satellite.png (2.10 MB) + PDF"
+  ]
+}

@@ -1,0 +1,72 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.vscode/
+*.tif
+*.tiff
+*.img
+*.vrt
+
+# Large GIS data and temporary sidecar files
+*.gpkg-wal
+*.gpkg-shm
+*.tif.aux.xml
+*.ovr
+
+# Downloaded building-data caches
+**/_cache/
+**/cache/
+
+# Archived Python environments
+archive_cleanup/**/site-packages/
+
+# Accidental empty files at project root
+/1
+/SLOPE_LIMIT_DEG
+
+# Large generated overview images (keep local originals)
+**/final_satellite_overview*.png
+
+# Oversized generated validation archive
+/Siddipet/Damarakunta/results/final_output_validation_v4_1.zip
+
+# Accidental captured command output
+/--layers-json
+
+# Older oversized generated overview
+**/final_review_satellite_overview.png
+
+# Archived virtual environment
+/archive_cleanup/scripts_venv_backup/
+
+# Temporary Python backup scripts
+*.py.bak*
+*.bak_ca1
+*.bak_ca2patch
+
+# Temporary command outputs and local system details
+/full1_before.txt
+/full1_after.txt
+/run5_before.txt
+/run5_after.txt
+/run6_before.txt
+/run6_after.txt
+/logs/20260930_172153/system_info.txt
+
+# Duplicate generated images; preserve local copies
+/Siddipet/Damarakunta/results/ALL_OUTPUT_IMAGES/ALL_OUTPUT_IMAGES/
+
+# Large consolidated image collection; originals remain locally
+/Siddipet/Damarakunta/results/ALL_OUTPUT_IMAGES/
+
+# Large generated overview and comparison images
+/Siddipet/Damarakunta/results/individual_house_routing_v1/individual_house_routes_v1_overview.png
+/Siddipet/Angadi_Kistapur/predictions_esri_lod18/qa/roads_comparison_overlay.png
+
+# High-resolution route-atlas image tiles; retain the reports and other results
+/Siddipet/Damarakunta/results/final_output_validation_v3_1/route_atlas_tile_v3_1_*.png
+/Siddipet/Damarakunta/results/final_output_validation_v3_2/route_atlas_tile_v3_2_*.png

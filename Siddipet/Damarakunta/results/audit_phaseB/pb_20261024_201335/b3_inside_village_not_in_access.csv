@@ -1,0 +1,3 @@
+cand_id,area_m2_used,quality_class,quality_kept,area_ge_min,status,est_roofs
+189,7.2,REVIEW,True,False,AUTO_DETECTED_UNVERIFIED,1
+202,8.28,REVIEW,True,False,AUTO_DETECTED_UNVERIFIED,1

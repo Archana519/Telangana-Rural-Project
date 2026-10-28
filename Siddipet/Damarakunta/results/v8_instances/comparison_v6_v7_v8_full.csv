@@ -1,0 +1,4 @@
+layer,polygons,inside_village,area_p50,area_p90,n_gt400m2,W1_CORE,W2_EAST,W3_FRINGE,W4_GAP,W5_GAP,W6_FARMNEG
+v6 components,113,113,204.8,1044.4,33,4,21,9,4,1,0
+v7 instances,326,197,175.5,678.8,68,27,31,17,9,1,0
+v8 instances,278,165,170.5,731.4,62,16,28,15,6,1,0

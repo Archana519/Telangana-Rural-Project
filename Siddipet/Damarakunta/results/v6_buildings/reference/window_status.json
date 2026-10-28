@@ -1,0 +1,16 @@
+{
+  "written": "2026-10-23T15:14:41",
+  "gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v6_buildings\\reference\\digitize_windows.gpkg",
+  "complete_windows": [
+    "W5_GAP",
+    "W6_FARMNEG"
+  ],
+  "extents_per_window": {
+    "W1_CORE": 0,
+    "W2_EAST": 0,
+    "W3_FRINGE": 0,
+    "W4_GAP": 0,
+    "W5_GAP": 0,
+    "W6_FARMNEG": 0
+  }
+}

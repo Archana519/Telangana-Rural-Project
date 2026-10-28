@@ -1,0 +1,102 @@
+{
+  "village": "Damarakunta",
+  "root": "D:/Telangana_Rural_Project",
+  "crs": "EPSG:32644",
+  "resolution_m": 0.6,
+  "building_class_id": 2,
+  "optional_inputs": [
+    "worldcover",
+    "cost",
+    "windows_gpkg"
+  ],
+  "paths": {
+    "raster": "Siddipet/Damarakunta/aligned/damarakunta_esri_highres_mosaic_0p6m.tif",
+    "roads": "Siddipet/Damarakunta/reference/tgrac_road_network.gpkg",
+    "roads_layer": "",
+    "facilities": "Siddipet/Damarakunta/reference/damarakunta_priority_facilities.gpkg",
+    "facilities_layer": "priority_facilities",
+    "boundary": "Siddipet/Damarakunta/study_area/damarakunta_boundary.gpkg",
+    "boundary_layer": "",
+    "windows_gpkg": "Siddipet/Damarakunta/results/v6_buildings/reference/digitize_windows.gpkg",
+    "worldcover": "Siddipet/Damarakunta/aligned/damarakunta_worldcover_10m.tif",
+    "cost": "Siddipet/Damarakunta/aligned/damarakunta_cost_surface_10m.tif",
+    "pred_classes": "Siddipet/Damarakunta/predictions/tiled_v1/pred_classes_full.tif",
+    "building_prob": "Siddipet/Damarakunta/predictions/tiled_v1/building_prob_full.tif",
+    "scripts": "scripts",
+    "results_dir": "Siddipet/Damarakunta/results",
+    "v8_dir": "Siddipet/Damarakunta/results/v8_instances"
+  },
+  "stages": [
+    {
+      "name": "inference",
+      "script": "{scripts}/run_tiled_inference.py",
+      "args": [],
+      "inputs": [
+        "{raster}"
+      ],
+      "outputs": [
+        "{pred_classes}",
+        "{building_prob}"
+      ],
+      "expensive": true,
+      "note": "61 min on CPU; never started automatically"
+    },
+    {
+      "name": "extract_buildings_v8",
+      "script": "{scripts}/extract_buildings_v8.py",
+      "args": [
+        "--no-overlays",
+        "--overwrite"
+      ],
+      "inputs": [
+        "{raster}",
+        "{pred_classes}",
+        "{building_prob}",
+        "{boundary}"
+      ],
+      "outputs": [
+        "{v8_dir}/buildings_v8_full.gpkg",
+        "{v8_dir}/buildings_v8_full.json"
+      ],
+      "summary_json": [
+        "{v8_dir}/buildings_v8_full.json"
+      ],
+      "note": "semantic mask -> candidate footprints + quality flags (UNVERIFIED)"
+    },
+    {
+      "name": "access",
+      "script": "{scripts}/assess_building_access_v2.py",
+      "args": [
+        "--cands",
+        "{v8_dir}/buildings_v8_full.gpkg",
+        "--out-dir",
+        "{v8_dir}/access",
+        "--overwrite"
+      ],
+      "inputs": [
+        "{v8_dir}/buildings_v8_full.gpkg",
+        "{roads}",
+        "{facilities}"
+      ],
+      "outputs": [
+        "{v8_dir}/access/access_assessment.gpkg"
+      ],
+      "note": "distance to TGRAC roads is a proxy, not proof of inaccessibility"
+    },
+    {
+      "name": "network_planner",
+      "enabled": false,
+      "script": "{scripts}/plan_network_v2.py",
+      "args": [],
+      "inputs": [
+        "{v8_dir}/access/access_assessment.gpkg",
+        "{cost}",
+        "{worldcover}"
+      ],
+      "outputs": [
+        "{results_dir}/planning_experiments/network_v2/selected_network.gpkg"
+      ],
+      "note": "NOT WRITTEN YET: network-aware Stage A/B (attach to selected routes). Disabled on purpose."
+    }
+  ]
+}

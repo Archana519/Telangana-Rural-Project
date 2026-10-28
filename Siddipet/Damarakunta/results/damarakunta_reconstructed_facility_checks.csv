@@ -1,0 +1,5 @@
+facility_id,facility_name,facility_type,facility_easting,facility_northing,facility_to_nearest_road_m,selected_start_snap_m,start_cell_easting,start_cell_northing,status,note
+36181600902,Mpps Damarakunta,School,261420.52,1959224.8,11.05,15.52,261405.0,1959225.0,REFERENCE_POINT_NOT_FIELD_VERIFIED,Check point against imagery and official records; nearest-road distance is straight-line.
+36181600903,Zphs Damarakunta,School,261417.07,1959258.41,43.14,22.33,261395.0,1959255.0,REFERENCE_POINT_NOT_FIELD_VERIFIED,Check point against imagery and official records; nearest-road distance is straight-line.
+HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,261775.37,1959323.47,62.2,1.57,261775.0,1959325.0,REFERENCE_POINT_NOT_FIELD_VERIFIED,Check point against imagery and official records; nearest-road distance is straight-line.
+1702300,Damarakunt-I,Anganwadi,261088.4,1958844.32,121.11,3.46,261085.0,1958845.0,REFERENCE_POINT_NOT_FIELD_VERIFIED,Check point against imagery and official records; nearest-road distance is straight-line.

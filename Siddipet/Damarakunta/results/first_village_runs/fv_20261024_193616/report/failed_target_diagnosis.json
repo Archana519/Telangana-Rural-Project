@@ -1,0 +1,101 @@
+{
+  "C12": {
+    "planner_failure_reason": "TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID",
+    "records_found": [
+      {
+        "gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg",
+        "layer": "targets",
+        "column": "id",
+        "n_rows": 1
+      },
+      {
+        "gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg",
+        "layer": "routes_straight_line",
+        "column": "target",
+        "n_rows": 1
+      }
+    ],
+    "tests": [
+      {
+        "point": "point",
+        "x": 259389.69,
+        "y": 1960017.79,
+        "flags": [
+          "slope > 10.0 deg"
+        ],
+        "cost": {
+          "inside_grid": true,
+          "value": 10.0,
+          "nodata": -9999.0
+        },
+        "prohibited": {
+          "inside_grid": true,
+          "value": 0.0,
+          "nodata": 255.0
+        },
+        "slope_deg": {
+          "inside_grid": true,
+          "value": 10.348694801330566,
+          "nodata": -9999.0
+        },
+        "worldcover": {
+          "inside_grid": true,
+          "value": 40.0,
+          "nodata": 0.0
+        },
+        "distance_to_nearest_cell_valid_under_all_hard_constraints_m": 6.0
+      }
+    ],
+    "conclusion": "CONSISTENT WITH the planner failure reason: [('slope > 10.0 deg',)] at the tested point(s). Geometry source: targets.id in network_v2.gpkg. This layer looks like the planner's own target layer."
+  },
+  "C13": {
+    "planner_failure_reason": "TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID",
+    "records_found": [
+      {
+        "gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg",
+        "layer": "targets",
+        "column": "id",
+        "n_rows": 1
+      },
+      {
+        "gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1\\network_v2.gpkg",
+        "layer": "routes_straight_line",
+        "column": "target",
+        "n_rows": 1
+      }
+    ],
+    "tests": [
+      {
+        "point": "point",
+        "x": 259398.69,
+        "y": 1960050.79,
+        "flags": [
+          "cost invalid (nodata or <= 0)",
+          "prohibited mask > 0"
+        ],
+        "cost": {
+          "inside_grid": true,
+          "value": -9999.0,
+          "nodata": -9999.0
+        },
+        "prohibited": {
+          "inside_grid": true,
+          "value": 1.0,
+          "nodata": 255.0
+        },
+        "slope_deg": {
+          "inside_grid": true,
+          "value": -9999.0,
+          "nodata": -9999.0
+        },
+        "worldcover": {
+          "inside_grid": true,
+          "value": 0.0,
+          "nodata": 0.0
+        },
+        "distance_to_nearest_cell_valid_under_all_hard_constraints_m": 17.3
+      }
+    ],
+    "conclusion": "CONSISTENT WITH the planner failure reason: [('cost invalid (nodata or <= 0)', 'prohibited mask > 0')] at the tested point(s). Geometry source: targets.id in network_v2.gpkg. This layer looks like the planner's own target layer."
+  }
+}

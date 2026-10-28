@@ -1,0 +1,42 @@
+check_id,description,status,observed,expected,detail
+CFG_attach_tol,attach_tol_m read from the run summaries (identical in all runs),PASS,15.0,"[15.0, 15.0]",
+CRS_all,all inputs are EPSG:32644,PASS,32644,32644,
+CAND_unique_ids,candidate cand_id unique,PASS,163,163,
+CLUS_unique_ids,cluster_id unique in clusters,PASS,33,33,
+JOIN_cluster,every candidate cluster_id exists in clusters,PASS,[],none missing,
+ROAD_geometry_issues,road layer features with empty / non-line / zero-length geometry (skipped),PASS,0,0,
+ROAD_total_length,total geometric road length (m),INFO,93496.76,,
+ROAD_main_tie,largest and second-largest components do not tie on length,PASS,False,False,
+ROAD_components_t0,road components at tolerance 0 (headline policy assume_junction),INFO,7,,explicit_only: 7
+DIST_polygon_stored,recomputed polygon->road distance equals stored dist_to_ref_road_m,PASS,max abs diff 0.0050 m,<= 0.011 m,FLAG means the road file or distance definition differs from the one used by the access assessment
+GAP_polygon_def,candidate gap_flag == (stored distance > 50 m),PASS,0 mismatches,0,
+DIST_point_vs_polygon,OBSERVATION: polygons whose representative-point distance is smaller than the filled-polygon distance (no ordering is assumed or enforced),INFO,0,,"a non-zero count would indicate an invalid or repaired geometry; reported, not asserted"
+DIST_boundary_vs_polygon,OBSERVATION: polygons with a road inside the footprint (boundary-ring distance > filled-polygon distance),INFO,0,,
+CAND_unevaluable,polygons that could not be evaluated,PASS,0,0,
+DIST_facility_stored,recomputed facility->road distance equals stored value,PASS,max abs diff 0.0500 m,<= 0.06 m (stored value rounded),
+ROUTES_run7_regress_network_aware,run7_regress/routes_network_aware: routes evaluated / total rows,PASS,13/13,13/13,
+ORIENT_run7_regress_network_aware,run7_regress/network_aware: route orientation identified from the targets layer,PASS,VERIFIED,VERIFIED,
+ROUTES_run7_regress_independent,run7_regress/routes_independent: routes evaluated / total rows,PASS,13/13,13/13,
+ORIENT_run7_regress_independent,run7_regress/independent: route orientation identified from the targets layer,PASS,VERIFIED,VERIFIED,
+ROUTES_fv_repro1_network_aware,fv_repro1/routes_network_aware: routes evaluated / total rows,PASS,13/13,13/13,
+ORIENT_fv_repro1_network_aware,fv_repro1/network_aware: route orientation identified from the targets layer,PASS,VERIFIED,VERIFIED,
+ROUTES_fv_repro1_independent,fv_repro1/routes_independent: routes evaluated / total rows,PASS,13/13,13/13,
+ORIENT_fv_repro1_independent,fv_repro1/independent: route orientation identified from the targets layer,PASS,VERIFIED,VERIFIED,
+CLAIM_attach_fv_repro1_independent,fv_repro1/independent: stored attach_to disagrees with independent geometry at 15 m,PASS,0,0,"labels: NO_CLAIM=12,AGREE=1"
+CLAIM_connected_fv_repro1_independent,fv_repro1/independent: stored connected disagrees with independent geometry at 15 m,PASS,0,0,labels: NO_CLAIM=13
+CLAIM_attach_fv_repro1_network_aware,fv_repro1/network_aware: stored attach_to disagrees with independent geometry at 15 m,PASS,0,0,"labels: AGREE=12,AGREE_WITHIN_AMBIGUOUS_OPTIONS=1"
+CLAIM_connected_fv_repro1_network_aware,fv_repro1/network_aware: stored connected disagrees with independent geometry at 15 m,PASS,0,0,labels: AGREE=13
+CLAIM_attach_run7_regress_independent,run7_regress/independent: stored attach_to disagrees with independent geometry at 15 m,PASS,0,0,"labels: NO_CLAIM=12,AGREE=1"
+CLAIM_connected_run7_regress_independent,run7_regress/independent: stored connected disagrees with independent geometry at 15 m,PASS,0,0,labels: NO_CLAIM=13
+CLAIM_attach_run7_regress_network_aware,run7_regress/network_aware: stored attach_to disagrees with independent geometry at 15 m,PASS,0,0,"labels: AGREE=12,AGREE_WITHIN_AMBIGUOUS_OPTIONS=1"
+CLAIM_connected_run7_regress_network_aware,run7_regress/network_aware: stored connected disagrees with independent geometry at 15 m,PASS,0,0,labels: AGREE=13
+PRIOR_components_t0,road components at tolerance 0 (assume_junction),INFO,7,7,prior comparison skipped
+PRIOR_terminals_on_main,"route terminals whose nearest road is in the main component (all runs x scenarios, tolerance 0)",INFO,52,54,prior comparison skipped
+PRIOR_candidates_total,candidate polygons in candidate_access,INFO,163,163,prior comparison skipped
+PRIOR_facilities_total,facility points in facility_access,INFO,4,4,prior comparison skipped
+PRIOR_baseline_within50,baseline polygons within 50 m of any road (polygon distance),INFO,103,103,prior comparison skipped
+INFO_run7_regress_within50,run7_regress: polygons within 50 m of roads+network-aware routes,INFO,118,,network_aware=118; independent=118; denominator 163; roads+main-connected routes (network_aware)=118
+INFO_fv_repro1_within50,fv_repro1: polygons within 50 m of roads+network-aware routes,INFO,118,,network_aware=118; independent=118; denominator 163; roads+main-connected routes (network_aware)=118
+PRIOR_gap_cluster_polygons,polygons in planner-targeted gap clusters,INFO,16,16,prior comparison skipped
+INPUT_unchanged_before_write,"SHA-256, size and sidecar/run-folder listings unchanged after processing",PASS,unchanged,unchanged,
+DICT_complete,every output column has a definition,FLAG,4,0,candidate_connectivity.csv:fv_repro1__network_aware__gain_spillover_headline; candidate_connectivity.csv:fv_repro1__network_aware__gain_by_construction_headline; candidate_connectivity.csv:fv_repro1__independent__gain_spillover_headline; candidate_connectivity.csv:fv_repro1__independent__gain_by_construction_headline

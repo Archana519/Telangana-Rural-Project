@@ -1,0 +1,167 @@
+{
+  "tag": "fv_20261024_193616",
+  "started_utc": "2026-10-24T14:06:16.808559+00:00",
+  "argv": [
+    "scripts\\run_first_village.py"
+  ],
+  "cwd": "D:\\Telangana_Rural_Project",
+  "project_root": "D:\\Telangana_Rural_Project",
+  "versions": {
+    "python": "3.10.0",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "geopandas": "1.1.4",
+    "shapely": "2.1.2",
+    "rasterio": "1.4.4"
+  },
+  "reference_run": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\run7_regress",
+  "reproduced_run": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2\\fv_repro1",
+  "inputs": [
+    {
+      "param": "access_gpkg",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg",
+      "exists": true,
+      "bytes": 765952,
+      "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "roads",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+      "exists": true,
+      "bytes": 163840,
+      "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "cost",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+      "exists": true,
+      "bytes": 814171,
+      "sha256": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "worldcover",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+      "exists": true,
+      "bytes": 26258,
+      "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "blocked",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+      "exists": true,
+      "bytes": 8617,
+      "sha256": "7330837ba9b5558818d0b19812f24616948d67d786a01aaffb80499b12f10929",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "slope",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+      "exists": true,
+      "bytes": 859864,
+      "sha256": "6f6b3c6d268375643ea5124a5e25b5c7ee6779191d112cae78a357d25591d368",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "buildings",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.gpkg",
+      "exists": true,
+      "bytes": 1146880,
+      "sha256": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+      "hash_seconds": 0.0
+    },
+    {
+      "param": "raster",
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+      "exists": true,
+      "bytes": 241258858,
+      "sha256": "9013449ce5bd307971c93fac6a259c0bfe4517c327f35c5534f9872a7a7d57c1",
+      "hash_seconds": 0.4
+    },
+    {
+      "param": "v4_script",
+      "path": "D:\\Telangana_Rural_Project\\scripts\\reconstruct_damarakunta_routes_v4.py",
+      "exists": true,
+      "bytes": 24342,
+      "sha256": "e1cc0c708766fa3f109d459ab7a7e719a83540997671cf5e73f0afae8977f503",
+      "hash_seconds": 0.0
+    }
+  ],
+  "missing_inputs": [],
+  "stages": [
+    {
+      "name": "S0_preflight",
+      "exit_code": 0,
+      "status": "OK",
+      "detail": "9 inputs hashed"
+    },
+    {
+      "name": "S1_repro_check",
+      "exit_code": 0,
+      "status": "FAIL",
+      "seconds": 0.5,
+      "output": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\repro_check.json"
+    },
+    {
+      "name": "S2_access_gain",
+      "command": [
+        "D:\\Telangana_Rural_Project\\.venv\\Scripts\\python.exe",
+        "D:\\Telangana_Rural_Project\\scripts\\summarise_access_gain.py",
+        "--runs-root",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2",
+        "--runs",
+        "run7_regress",
+        "fv_repro1",
+        "--out-root",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\access_gain",
+        "--tag",
+        "ag"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "seconds": 1.6,
+      "stdout_log": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\logs\\S2_access_gain.stdout.txt",
+      "stderr_log": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\logs\\S2_access_gain.stderr.txt",
+      "expected_outputs": [
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\access_gain\\ag"
+      ],
+      "outputs_exist": true
+    },
+    {
+      "name": "S3_report",
+      "command": [
+        "D:\\Telangana_Rural_Project\\.venv\\Scripts\\python.exe",
+        "D:\\Telangana_Rural_Project\\scripts\\make_first_village_report.py",
+        "--run-dir",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616",
+        "--ref-run",
+        "run7_regress",
+        "--repro-run",
+        "fv_repro1",
+        "--runs-root",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\network_v2",
+        "--experiments-dir",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\planning_experiments\\experiments_v1\\full1",
+        "--ag-dir",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\access_gain\\ag",
+        "--village-dir",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta"
+      ],
+      "exit_code": 0,
+      "status": "OK",
+      "seconds": 1.9,
+      "stdout_log": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\logs\\S3_report.stdout.txt",
+      "stderr_log": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\logs\\S3_report.stderr.txt",
+      "expected_outputs": [
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\report"
+      ],
+      "outputs_exist": true
+    }
+  ],
+  "final_status": "COMPLETED_WITH_FAILURES_SEE_STAGES",
+  "finished_utc": "2026-10-24T14:06:22.792450+00:00"
+}

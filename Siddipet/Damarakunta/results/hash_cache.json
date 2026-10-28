@@ -1,0 +1,62 @@
+{
+ "D:\\Telangana_Rural_Project\\scripts\\run_tiled_inference.py": {
+  "key": "6161:1792735980711561800",
+  "sha256": "de4c69ff4e26a80ede3c69af036a458993c74009674aedbd583bf13cb43828f1"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif": {
+  "key": "241258858:1791127381756969000",
+  "sha256": "9013449ce5bd307971c93fac6a259c0bfe4517c327f35c5534f9872a7a7d57c1"
+ },
+ "D:\\Telangana_Rural_Project\\scripts\\extract_buildings_v8.py": {
+  "key": "24134:1792750164758620300",
+  "sha256": "a2de86f8c234728ddc395ea3f644268a607a554476214d27d7d5826ad76c4f01"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif": {
+  "key": "1365176:1792739844825967800",
+  "sha256": "a38af489765289acf65d8c8412ed58440c940aafa26354b9b7a4f8418737a4d8"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif": {
+  "key": "4014798:1792739846098683700",
+  "sha256": "badbe4499ed4e121cccd2faad955749f0dd686979dc12d0778c277aea5ae7756"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg": {
+  "key": "102400:1790859426052761100",
+  "sha256": "10d58278f82515c2ed8c386598b954ecb86d1627194c79d08bbfff00dadd0197"
+ },
+ "D:\\Telangana_Rural_Project\\scripts\\assess_building_access_v2.py": {
+  "key": "8838:1792753771711504500",
+  "sha256": "ab5ecd26733e11dd1d0c9510e3436f1f5f0bcd36f024ecd625d50edac1f9ac20"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.gpkg": {
+  "key": "1146880:1792750333815170400",
+  "sha256": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg": {
+  "key": "163840:1791180669060648500",
+  "sha256": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\damarakunta_priority_facilities.gpkg": {
+  "key": "98304:1791806195625625200",
+  "sha256": "fc8c5368f5d8b527dfbc38f375f034d6b10de81b3b3d8317f0f91d340e650bee"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif": {
+  "key": "814171:1791805797332534100",
+  "sha256": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif": {
+  "key": "26258:1791805592677124300",
+  "sha256": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v6_buildings\\reference\\digitize_windows.gpkg": {
+  "key": "118784:1792743348321362900",
+  "sha256": "ef858e881111bd7b214a9695353177ebd20ca61ebff45062e380ed0f49b3741b"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.json": {
+  "key": "3985:1792750333937822600",
+  "sha256": "a51f70d7af5aa56929662892439302b0b7f346a1331ed0f197aefcfd33bdd8a0"
+ },
+ "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg": {
+  "key": "765952:1792753911629450600",
+  "sha256": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+ }
+}

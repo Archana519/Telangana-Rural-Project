@@ -1,0 +1,2 @@
+district,village,folder_structure_ready,input_data_ready,manifest_ready,batch_results_ready,pipeline_results_found,pipeline_results_required,missing_directories,overall_status
+Siddipet,Angadi_Kistapur,True,True,True,True,10,10,,READY_FOR_MULTI_VILLAGE_PIPELINE

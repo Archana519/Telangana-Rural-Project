@@ -1,0 +1,6 @@
+target_set,clusters,targets,served_na,served_independent,failed,ic_total_len_m,ic_unique_len_m,ic_overlap_m,na_total_len_m,na_unique_len_m,unique_len_reduction_m,unique_len_reduction_pct,unique_cost_na,unique_cost_ic,attached_targets,attached_ids,hard_violating_selected,seconds
+gap>0 m,31,35,33,33,2,2238.5,2238.5,-0.0,2214.0,2214.0,24.6,1.1,14279.4,14357.7,2,F:36181600903;C22,0,2.8
+gap>50 m,11,15,13,13,2,1516.6,1516.6,-0.0,1506.1,1506.1,10.4,0.69,9438.7,9456.5,1,F:36181600903,0,1.0
+"random 50% of gap>50 m clusters, seed 0",6,10,9,9,1,952.7,952.7,-0.0,942.3,942.3,10.4,1.1,5307.2,5325.0,1,F:36181600903,0,0.4
+"random 50% of gap>50 m clusters, seed 1",6,10,9,9,1,1054.4,1054.4,-0.0,1043.9,1043.9,10.4,0.99,6384.1,6401.9,1,F:36181600903,0,0.5
+"random 50% of gap>50 m clusters, seed 2",6,10,9,9,1,1008.8,1008.8,0.0,998.3,998.3,10.4,1.04,6017.0,6034.8,1,F:36181600903,0,0.4

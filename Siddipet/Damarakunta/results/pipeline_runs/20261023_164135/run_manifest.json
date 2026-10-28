@@ -1,0 +1,168 @@
+{
+  "run_id": "20261023_164135",
+  "village": "Damarakunta",
+  "config": "D:\\Telangana_Rural_Project\\configs\\damarakunta.json",
+  "config_sha256": "1bf2cf561276583f0b19de9ec02858a2bfde6bdb2194cc457aa4568e77309f5c",
+  "started": "2026-10-23T16:41:35",
+  "python": "3.10.0",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "preflight": [
+    [
+      "OK",
+      "raster.crs",
+      "EPSG:32644 (expected EPSG:32644)"
+    ],
+    [
+      "OK",
+      "raster.bands",
+      "3 bands"
+    ],
+    [
+      "OK",
+      "raster.res",
+      "(0.6, 0.6) m"
+    ],
+    [
+      "INFO",
+      "raster.size",
+      "11296 x 7171, nodata=None, dtype=uint8"
+    ],
+    [
+      "WARN",
+      "raster.blank",
+      "3.32% of pixels are all-zero (no imagery). They are NOT land cover; extraction rejects building blobs on them."
+    ],
+    [
+      "OK",
+      "roads.crs",
+      "32644 (will be reprojected to EPSG:32644 if needed)"
+    ],
+    [
+      "OK",
+      "roads.geometry",
+      "43 features, 0 invalid, 0 empty"
+    ],
+    [
+      "OK",
+      "facilities.crs",
+      "32644 (will be reprojected to EPSG:32644 if needed)"
+    ],
+    [
+      "OK",
+      "facilities.geometry",
+      "4 features, 0 invalid, 0 empty"
+    ],
+    [
+      "OK",
+      "boundary.crs",
+      "32644 (will be reprojected to EPSG:32644 if needed)"
+    ],
+    [
+      "OK",
+      "boundary.geometry",
+      "1 features, 0 invalid, 0 empty"
+    ],
+    [
+      "OK",
+      "windows_gpkg.crs",
+      "32644 (will be reprojected to EPSG:32644 if needed)"
+    ],
+    [
+      "OK",
+      "windows_gpkg.geometry",
+      "6 features, 0 invalid, 0 empty"
+    ],
+    [
+      "OK",
+      "pred.class_ids",
+      "IDs present (subsampled): [1, 2, 3, 4, 5, 6, 7]; expected within 0-7"
+    ],
+    [
+      "OK",
+      "pred.shape",
+      "(7171, 11296) vs raster (7171, 11296)"
+    ],
+    [
+      "OK",
+      "pred.crs",
+      "EPSG:32644"
+    ],
+    [
+      "OK",
+      "pred.prob",
+      "building_prob dtype uint8 (expected uint8 0-255 = softmax channel 2)"
+    ]
+  ],
+  "stages": [
+    {
+      "name": "inference",
+      "planned": "ADOPT",
+      "signature": "dc2c7d9384a9915b5b1057b0289e1901caca0cb9b69cafe1c42183c6046ba8db",
+      "status": "ADOPTED_EXISTING_OUTPUTS",
+      "warning": "outputs existed with no recorded provenance; hashed and recorded, NOT rerun",
+      "output_hashes": {
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif": "a38af489765289acf65d8c8412ed58440c940aafa26354b9b7a4f8418737a4d8",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif": "badbe4499ed4e121cccd2faad955749f0dd686979dc12d0778c277aea5ae7756"
+      }
+    },
+    {
+      "name": "extract_buildings_v8",
+      "planned": "ADOPT",
+      "signature": "166a35f5e48bd19c01283f5d2af48495010cf576521226eb4d296bb7861b7241",
+      "status": "ADOPTED_EXISTING_OUTPUTS",
+      "warning": "outputs existed with no recorded provenance; hashed and recorded, NOT rerun",
+      "output_hashes": {
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.gpkg": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.json": "a51f70d7af5aa56929662892439302b0b7f346a1331ed0f197aefcfd33bdd8a0"
+      }
+    },
+    {
+      "name": "access",
+      "planned": "RUN",
+      "signature": "8b1e3e3d9322857f4e24b3c786aa80c486522932da22b7ee6367b064a59ceb01",
+      "seconds": 17.0,
+      "returncode": 0,
+      "log": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\pipeline_runs\\20261023_164135\\access.log",
+      "command": [
+        "D:\\Telangana_Rural_Project\\.venv\\Scripts\\python.exe",
+        "D:\\Telangana_Rural_Project\\scripts\\assess_building_access_v2.py",
+        "--cands",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances/buildings_v8_full.gpkg",
+        "--out-dir",
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances/access"
+      ],
+      "status": "RAN_OK",
+      "output_hashes": {
+        "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\access\\access_assessment.gpkg": "08e3bc4c6cc0f67d9d0abee524dc91ff77beb438d535cfb1a5dbb6d76352949f"
+      }
+    },
+    {
+      "name": "network_planner",
+      "planned": "DISABLED",
+      "signature": "21ff9b25e0ce026da957d0bb325a86e6757ca23df873917ff830c667819fa78e",
+      "status": "DISABLED"
+    }
+  ],
+  "inputs": {
+    "raster": "9013449ce5bd307971c93fac6a259c0bfe4517c327f35c5534f9872a7a7d57c1",
+    "roads": "3574defb203f245385ddfd968a45302bb2d3676e0814b8a6f19c129d79a9fd61",
+    "facilities": "fc8c5368f5d8b527dfbc38f375f034d6b10de81b3b3d8317f0f91d340e650bee",
+    "boundary": "10d58278f82515c2ed8c386598b954ecb86d1627194c79d08bbfff00dadd0197",
+    "windows_gpkg": "ef858e881111bd7b214a9695353177ebd20ca61ebff45062e380ed0f49b3741b",
+    "worldcover": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a",
+    "cost": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e",
+    "pred_classes": "a38af489765289acf65d8c8412ed58440c940aafa26354b9b7a4f8418737a4d8",
+    "building_prob": "badbe4499ed4e121cccd2faad955749f0dd686979dc12d0778c277aea5ae7756"
+  },
+  "versions": {
+    "numpy": "2.2.6",
+    "rasterio": "1.4.4",
+    "geopandas": "1.1.4",
+    "shapely": "2.1.2",
+    "pandas": "2.3.3",
+    "cv2": "5.0.0",
+    "networkx": "3.4.2"
+  },
+  "finished": "2026-10-23T16:41:52",
+  "overall": "OK"
+}

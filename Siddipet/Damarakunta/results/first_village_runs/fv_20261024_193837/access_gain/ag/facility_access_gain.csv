@@ -1,0 +1,9 @@
+run,facility_id,facility_name,facility_type,target_id,dist_base_m,dist_stored_m,dist_na_m,dist_ic_m,within_25_base,within_25_na,within_25_ic,within_50_base,within_50_na,within_50_ic,within_100_base,within_100_na,within_100_ic,planner_status,failure_reason,route_len_m
+run7_regress,36181600902,Mpps Damarakunta,School,F:36181600902,11.050,11.100,0.000,0.000,True,True,True,True,True,True,True,True,True,SERVED,,16.900
+run7_regress,36181600903,Zphs Damarakunta,School,F:36181600903,43.139,43.100,0.000,0.000,False,True,True,True,True,True,True,True,True,SERVED,,52.300
+run7_regress,HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,F:HEALTH_8734223673,62.202,62.200,0.000,0.000,False,True,True,False,True,True,True,True,True,SERVED,,73.300
+run7_regress,1702300,Damarakunt-I,Anganwadi,F:1702300,121.110,121.100,0.000,0.000,False,True,True,False,True,True,False,True,True,SERVED,,168.900
+fv_repro1,36181600902,Mpps Damarakunta,School,F:36181600902,11.050,11.100,0.000,0.000,True,True,True,True,True,True,True,True,True,SERVED,,16.900
+fv_repro1,36181600903,Zphs Damarakunta,School,F:36181600903,43.139,43.100,0.000,0.000,False,True,True,True,True,True,True,True,True,SERVED,,52.300
+fv_repro1,HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,F:HEALTH_8734223673,62.202,62.200,0.000,0.000,False,True,True,False,True,True,True,True,True,SERVED,,73.300
+fv_repro1,1702300,Damarakunt-I,Anganwadi,F:1702300,121.110,121.100,0.000,0.000,False,True,True,False,True,True,False,True,True,SERVED,,168.900

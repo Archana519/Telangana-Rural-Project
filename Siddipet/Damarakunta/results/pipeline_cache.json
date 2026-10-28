@@ -1,0 +1,16 @@
+{
+ "inference": {
+  "signature": "dc2c7d9384a9915b5b1057b0289e1901caca0cb9b69cafe1c42183c6046ba8db",
+  "adopted": true,
+  "when": "2026-10-23T16:41:35"
+ },
+ "extract_buildings_v8": {
+  "signature": "166a35f5e48bd19c01283f5d2af48495010cf576521226eb4d296bb7861b7241",
+  "adopted": true,
+  "when": "2026-10-23T16:41:35"
+ },
+ "access": {
+  "signature": "8b1e3e3d9322857f4e24b3c786aa80c486522932da22b7ee6367b064a59ceb01",
+  "when": "2026-10-23T16:41:52"
+ }
+}
