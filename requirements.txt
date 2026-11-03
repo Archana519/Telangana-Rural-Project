@@ -9,6 +9,7 @@ pyproj>=3.6
 pyogrio>=0.7
 networkx
 matplotlib
+Pillow
 scipy
 # Only for building-detection (modeling) work
 # torch

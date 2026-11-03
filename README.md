@@ -77,7 +77,9 @@ After that, the `telangana` command works from **any folder**:
 telangana run --dry-run      # check everything first, runs nothing
 telangana run                # quick run
 telangana run --profile full # full run
-telangana package            # build the final maps and tables
+telangana package            # build the final maps and tables, then show them
+telangana all                # run + maps + show, the whole thing (about 40 minutes)
+telangana show               # put the newest results in Desktop/Telangana_Latest_Results
 telangana latest             # show where the newest results are
 telangana open               # open the newest results folder
 telangana clean              # remove old runs, keep the newest 3
@@ -104,6 +106,10 @@ outputs/
 ```
 
 **In VS Code:** press `Ctrl+Shift+P` (Mac: `Cmd+Shift+P`), choose **Tasks: Run Task**, and pick a `Telangana: ...` item. No typing needed.
+
+**Easy viewing:** after a run, a small folder called `Telangana_Latest_Results` appears on the Desktop (maps, charts, key tables) and opens in VS Code. It is replaced each time, so it is always the newest.
+
+**How long it takes:** quick run about 5 minutes; the full `final` run about 35 minutes (her Nov 2 run took 34 minutes), plus a few minutes for maps.
 
 **Results are never pushed to Git.** The `outputs/` folder and the per-run folders are ignored, so running many times never clutters the repo.
 

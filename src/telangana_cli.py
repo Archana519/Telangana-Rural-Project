@@ -3,6 +3,8 @@
     telangana run [--profile quick|final|full] [--dry-run]   run the pipeline, then tidy old runs
     telangana package                                        build the final maps, tables and chapter
     telangana latest                                         print the folder of the newest outputs
+    telangana show                                           put the newest results in a small Desktop folder and open them
+    telangana all                                            run + package + show: the whole thing, one command
     telangana open                                           open the newest outputs folder
     telangana clean [--keep N] [--yes]                       delete old runs, keep the newest N (default 3)
 
@@ -69,6 +71,77 @@ def write_index():
         (OUT / "INDEX.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
 
+def desktop():
+    home = Path.home()
+    for c in (home / "OneDrive" / "Desktop", home / "Desktop"):
+        if c.exists():
+            return c
+    return home / "Desktop"
+
+
+def open_in_vscode_or_folder(files, folder):
+    """Show the files in VS Code if the `code` command exists, otherwise open the folder."""
+    code = shutil.which("code")
+    if code:
+        subprocess.call([code, "-r", str(folder)] + [str(f) for f in files])
+        return
+    if sys.platform.startswith("win"):
+        os.startfile(str(folder))
+    else:
+        subprocess.call(["open" if sys.platform == "darwin" else "xdg-open", str(folder)])
+
+
+def small_image(src, dst):
+    """Copy an image, shrunk to at most 1600 px wide as a JPEG so the folder stays small."""
+    try:
+        from PIL import Image
+        im = Image.open(src).convert("RGB")
+        im.thumbnail((1600, 1600))
+        im.save(dst.with_suffix(".jpg"), quality=82)
+    except Exception:
+        shutil.copy2(src, dst)
+
+
+def show(open_after=True):
+    """Make Desktop/Telangana_Latest_Results: a small folder with only the newest results, replaced each time."""
+    n = newest()
+    if n is None:
+        print("No runs yet. Try: telangana run")
+        return 1
+    dest = desktop() / "Telangana_Latest_Results"
+    shutil.rmtree(dest, ignore_errors=True)
+    dest.mkdir(parents=True)
+    summ = n / "RUN_SUMMARY.md"
+    if summ.exists():
+        shutil.copy2(summ, dest / "RUN_SUMMARY.md")
+    for sub, pattern, kind in (("final_maps", "*.png", "maps"), ("final_comparison/charts", "*.png", "charts")):
+        for f in sorted((OUT / sub).glob(pattern)):
+            (dest / kind).mkdir(exist_ok=True)
+            small_image(f, dest / kind / f.name)
+    for pattern in ("table1_*.csv", "table5_*.csv", "comparison_report.md", "economic_impact.md"):
+        for f in sorted((OUT / "final_comparison").glob(pattern)):
+            (dest / "tables").mkdir(exist_ok=True)
+            shutil.copy2(f, dest / "tables" / f.name)
+    when = datetime.strptime(n.name[4:], "%Y%m%d_%H%M%S").strftime("%d %b %Y, %H:%M")
+    text = summ.read_text(encoding="utf-8") if summ.exists() else ""
+    status = "PASS" if "Status: **PASS**" in text else ("FAILED" if "Status: **FAILED**" in text else "unknown")
+    have_pkg = (dest / "maps").exists()
+    L = ["# Latest results", "", "Run on: **%s**  |  Result: **%s**" % (when, status), "",
+         "| Look here | What it shows |", "|---|---|",
+         "| `maps/` | The final village maps (start with `map4_...`: alternatives vs. the shared network) |" if have_pkg else "| (maps) | Not built yet. Run `telangana package` |",
+         "| `charts/` | Lengths, materials, cost, accessibility |" if have_pkg else "| (charts) | Not built yet. Run `telangana package` |",
+         "| `tables/` | The key numbers as spreadsheets (CSV) and a short report |",
+         "| `RUN_SUMMARY.md` | Pass/fail of every step in this run |", "",
+         "This folder is replaced every time you run `telangana show`. The full results stay in the project's `outputs/` folder.", ""]
+    (dest / "START_HERE.md").write_text("\n".join(L), encoding="utf-8")
+    print("Latest results folder:", dest)
+    if open_after:
+        first = [dest / "START_HERE.md"]
+        pics = sorted((dest / "maps").glob("map4*")) + sorted((dest / "charts").glob("chart1*")) if have_pkg else []
+        open_in_vscode_or_folder(first + pics, dest)
+    return 0
+
+
 def clean(keep, yes):
     victims = old_runs(keep)
     if not victims:
@@ -95,7 +168,11 @@ def main(argv=None):
     r = sub.add_parser("run", help="run the pipeline (extra options go to run_pipeline.py)")
     r.add_argument("--keep", type=int, default=DEFAULT_KEEP, help="how many recent runs to keep (default 3)")
     r.add_argument("--no-clean", action="store_true", help="do not delete old runs after this one")
-    sub.add_parser("package", help="build final maps, tables and chapter")
+    r.add_argument("--no-show", action="store_true", help="do not open the results afterwards")
+    sub.add_parser("package", help="build final maps, tables and chapter, then show them")
+    sub.add_parser("show", help="put the newest results in a small Desktop folder and open them")
+    al = sub.add_parser("all", help="run + package + show (about 40 minutes with real data)")
+    al.add_argument("--keep", type=int, default=DEFAULT_KEEP)
     sub.add_parser("latest", help="print the newest outputs folder")
     sub.add_parser("open", help="open the newest outputs folder")
     c = sub.add_parser("clean", help="delete old runs")
@@ -116,9 +193,20 @@ def main(argv=None):
             if not a.no_clean:
                 clean(a.keep, yes=True)
             write_index()
+            if not a.no_show:
+                show()
         return code
     if a.cmd == "package":
-        return run_script("run_final_package.py", rest)
+        code = run_script("run_final_package.py", rest)
+        return show() if code == 0 else code
+    if a.cmd == "show":
+        return show()
+    if a.cmd == "all":
+        print("This takes about 35 to 45 minutes. You can leave it running.")
+        code = main(["run", "--no-show", "--profile", "final", "--keep", str(a.keep)] + rest)
+        if code:
+            return code
+        return main(["package"])
     if a.cmd == "latest":
         n = newest()
         print(n if n else "No runs yet. Try: telangana run")

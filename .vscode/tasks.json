@@ -1,11 +1,41 @@
 {
   "version": "2.0.0",
   "tasks": [
-    { "label": "Telangana: check everything (dry run)", "type": "shell", "command": "telangana run --dry-run", "problemMatcher": [] },
-    { "label": "Telangana: run (quick)", "type": "shell", "command": "telangana run", "problemMatcher": [] },
-    { "label": "Telangana: run (full)", "type": "shell", "command": "telangana run --profile full", "problemMatcher": [] },
-    { "label": "Telangana: build final maps and tables", "type": "shell", "command": "telangana package", "problemMatcher": [] },
-    { "label": "Telangana: open newest results", "type": "shell", "command": "telangana open", "problemMatcher": [] },
-    { "label": "Telangana: clean old runs", "type": "shell", "command": "telangana clean", "problemMatcher": [] }
+    {
+      "label": "Telangana: DO EVERYTHING (run + maps + show, ~40 min)",
+      "type": "shell",
+      "command": "telangana all",
+      "problemMatcher": []
+    },
+    {
+      "label": "Telangana: check everything (dry run)",
+      "type": "shell",
+      "command": "telangana run --dry-run",
+      "problemMatcher": []
+    },
+    {
+      "label": "Telangana: quick run (~5 min)",
+      "type": "shell",
+      "command": "telangana run",
+      "problemMatcher": []
+    },
+    {
+      "label": "Telangana: build maps and tables, then show",
+      "type": "shell",
+      "command": "telangana package",
+      "problemMatcher": []
+    },
+    {
+      "label": "Telangana: show latest results (Desktop folder)",
+      "type": "shell",
+      "command": "telangana show",
+      "problemMatcher": []
+    },
+    {
+      "label": "Telangana: clean old runs",
+      "type": "shell",
+      "command": "telangana clean",
+      "problemMatcher": []
+    }
   ]
 }
