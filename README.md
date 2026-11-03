@@ -65,16 +65,26 @@ Case study: **Damarakunta village**, Markook mandal, Siddipet district, Telangan
 
 ## Run it yourself
 
-You need Python with the GIS packages the project uses (`rasterio`, `geopandas`, `shapely`, `numpy`, `networkx`).
+One-time setup (from the project folder):
 
 ```bash
-python src/run_pipeline.py --dry-run     # check everything first, runs nothing
-python src/run_pipeline.py               # quick run
-python src/run_pipeline.py --profile full   # full run
-python src/run_final_package.py          # build the final maps and tables
+pip install -e .
 ```
 
-Large input data is not stored here, so a run needs the original data files on your computer.
+After that, the `telangana` command works from **any folder**:
+
+```bash
+telangana run --dry-run      # check everything first, runs nothing
+telangana run                # quick run
+telangana run --profile full # full run
+telangana package            # build the final maps and tables
+telangana latest             # show where the newest results are
+telangana clean              # remove old runs, keep the newest 3
+```
+
+Each run is saved in its own folder, `outputs/run_<date>_<time>/`. After every run the tool points `outputs/latest` at the newest one and **deletes older runs beyond the newest 3**, so results do not pile up. Change that with `--keep 5`, or switch it off with `--no-clean`. The reference run is never deleted.
+
+You also need the original data files on your computer (they are not stored here), plus Python packages `rasterio`, `geopandas`, `shapely`, `numpy`, `networkx`.
 
 ---
 

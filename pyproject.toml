@@ -1,0 +1,16 @@
+[project]
+name = "telangana-rural-project"
+version = "0.1.0"
+description = "Shared village road planning from satellite images and terrain data (Damarakunta case study)"
+requires-python = ">=3.9"
+
+[project.scripts]
+telangana = "telangana_cli:main"
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["telangana_cli"]

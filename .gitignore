@@ -80,3 +80,8 @@ Siddipet/Damarakunta/results/independent_verification_audit_draft1/
 Siddipet/Damarakunta/results/project_inventory_phase1/
 *.zip
 ~$*
+
+# Installed-package metadata, run pointers
+*.egg-info/
+outputs/latest
+outputs/latest.txt
