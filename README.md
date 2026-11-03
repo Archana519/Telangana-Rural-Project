@@ -30,7 +30,7 @@ Case study: **Damarakunta village**, Markook mandal, Siddipet district, Telangan
 | Open the review slides | `Presentation_Review/MTech_Major_Project_Review.pptx` |
 | See what is finished and what is still open | `DELIVERABLES_DAMARAKUNTA_STAGE_B/00_START_HERE/COMPLETION_GATE.md` |
 | Trace building roofs by hand | `digitizer/README.md` |
-| Check where the data came from | `inputs/METADATA.md` and `docs/DATA_SOURCES.md` |
+| Check where the data came from | `inputs/METADATA.md` and `docs/data/DATA_SOURCES.md` |
 | Run the whole thing again | see **Run it yourself** below |
 
 ---
@@ -40,26 +40,26 @@ Case study: **Damarakunta village**, Markook mandal, Siddipet district, Telangan
 | Folder | In plain words |
 |---|---|
 | `DELIVERABLES_DAMARAKUNTA_STAGE_B/` | The finished results: maps, tables, checks. Start with `00_START_HERE`. |
-| `Phase1_Report_CBIT_Format/` | The written report. |
+| `Phase1_Report_CBIT_Format/` | The written report and the tools that build it. |
 | `Presentation_Review/` | The slide deck. |
-| `src/` | The code that does the work (see below). |
-| `scripts/` | Older copies of the same code. Keep them for now; the runner still looks here. |
+| `scripts/` | The verified working scripts. Hash-checked, so please do not move them (see `scripts/README.md`). |
+| `src/` | Newer helper code: the pipeline, reports, extra checks. Safe to change. |
 | `digitizer/` | A small app for tracing roofs in your browser. |
 | `configs/`, `inputs/` | Settings and notes about the input data. |
-| `docs/` | Background notes, decisions and project status. |
-| `Siddipet/` | Village data and earlier work. Mostly for reference. |
-| `outputs/` | Files made by earlier runs. |
+| `docs/` | Status, plans, data notes and decisions (see `docs/README.md`). |
+| `Siddipet/Damarakunta/` | The village data the pipeline reads. |
+| `outputs/` | Created when you run the tool. Not stored in Git. |
 
 ### Inside `src/`
 
 | Folder | What it does |
 |---|---|
-| `preprocessing/` | Prepares the village map (boundary, land type, slope, cost). |
-| `modeling/` | Finds buildings in the satellite image. |
-| `routing/` | Plans the shared road network. |
-| `stress_test/` | Asks "what if some buildings are missing or extra?" |
-| `validation/` | Checks that the results are sound and connected. |
-| `reporting/` | Draws the maps and charts. |
+| `run_pipeline.py`, `run_final_package.py` | The two big steps (`telangana run`, `telangana package`). |
+| `telangana_cli.py` | The `telangana` command. |
+| `routing/` | Explains why each route was chosen. |
+| `validation/` | Extra checks on detection, facilities and connectivity. |
+| `reporting/` | Maps, charts, tables and the thesis chapter. |
+| `modeling/`, `preprocessing/` | Model training and road clipping. |
 
 ---
 
@@ -94,4 +94,4 @@ You also need the original data files on your computer (they are not stored here
 - The satellite image licence is not settled yet.
 - Some result files were rebuilt after the originals were lost. The result tables are the source of truth.
 
-Questions about the project? Start with `docs/PROJECT_COMPLETION_STATUS.md`.
+Questions about the project? Start with `docs/status/PROJECT_COMPLETION_STATUS.md`.

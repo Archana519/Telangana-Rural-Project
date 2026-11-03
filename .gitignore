@@ -85,3 +85,9 @@ Siddipet/Damarakunta/results/project_inventory_phase1/
 *.egg-info/
 outputs/latest
 outputs/latest.txt
+
+# Generated results (rebuilt by `telangana run` / `telangana package`)
+/outputs/
+.DS_Store
+Thumbs.db
+*.bak
