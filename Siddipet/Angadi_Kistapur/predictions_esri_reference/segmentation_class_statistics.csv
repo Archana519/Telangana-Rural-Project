@@ -1,0 +1,9 @@
+class_id,class_name,pixel_count,percentage
+0,Background,0,0.0000
+1,Building,400409,16.7255
+2,Road,4494,0.1877
+3,Water,0,0.0000
+4,Barren,5935,0.2479
+5,Forest,0,0.0000
+6,Agriculture,3,0.0001
+7,Other,1983159,82.8387

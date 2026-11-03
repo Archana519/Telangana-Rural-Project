@@ -1,0 +1,416 @@
+{
+ "raster": {
+  "config_key": "raster",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+  "exists": true,
+  "bytes": 241258858,
+  "kind": "raster",
+  "crs": "EPSG:32644",
+  "epsg": 32644,
+  "width": 11296,
+  "height": 7171,
+  "bands": 3,
+  "res": [
+   0.6,
+   0.6
+  ],
+  "bounds": [
+   258814.8855999997,
+   1956609.4879999994,
+   265592.48559999967,
+   1960912.0879999995
+  ],
+  "dtype": "uint8",
+  "nodata": null,
+  "transform": [
+   0.6,
+   0.0,
+   258814.8855999997,
+   0.0,
+   -0.6,
+   1960912.0879999995
+  ],
+  "decimation": 5,
+  "valid_share_all_pixels": 1.0,
+  "all_zero_share_rgb": 0.033156078614412644,
+  "village_bbox_inside_raster_bounds": false,
+  "village_polygon_share_inside_raster_bounds": 0.9999999960059188,
+  "valid_share_inside_polygon": 1.0,
+  "class_values_if_small_int": null
+ },
+ "roads": {
+  "config_key": "roads",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+  "exists": true,
+  "bytes": 163840,
+  "kind": "vector",
+  "layers_in_file": [
+   "tgrac_road_network"
+  ],
+  "layer_reports": [
+   {
+    "layer": "tgrac_road_network",
+    "requested": false,
+    "n": 43,
+    "crs": "EPSG:32644",
+    "epsg": 32644,
+    "geometry_types": {
+     "MultiLineString": 43
+    },
+    "columns": [
+     "OBJECTID_1",
+     "RD_TYPE",
+     "RD_SUB_TYP",
+     "PR_ROAD_ID",
+     "LENGTH",
+     "OWNER",
+     "ROAD_NAME",
+     "REMARKS",
+     "DISTRICT",
+     "MANDAL",
+     "ASSEMBLY",
+     "RD_CODE",
+     "NH_NO",
+     "OBJECTID",
+     "Shape_Length"
+    ],
+    "invalid": 0,
+    "empty": 0,
+    "duplicate_geometries": 0,
+    "intersect_village": 43,
+    "outside_village": 0,
+    "length_m_total": 93496.76078278398,
+    "length_m_inside_village": 51707.250321110565,
+    "bounds_utm": [
+     251660.28991150524,
+     1955007.4260028796,
+     265756.0274621082,
+     1969606.8032846283
+    ]
+   }
+  ]
+ },
+ "facilities": {
+  "config_key": "facilities",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\damarakunta_priority_facilities.gpkg",
+  "exists": true,
+  "bytes": 98304,
+  "kind": "vector",
+  "layers_in_file": [
+   "priority_facilities"
+  ],
+  "layer_reports": [
+   {
+    "layer": "priority_facilities",
+    "requested": true,
+    "n": 4,
+    "crs": "EPSG:32644",
+    "epsg": 32644,
+    "geometry_types": {
+     "Point": 4
+    },
+    "columns": [
+     "facility_id",
+     "facility_name",
+     "facility_type",
+     "priority_group",
+     "source"
+    ],
+    "invalid": 0,
+    "empty": 0,
+    "duplicate_geometries": 0,
+    "intersect_village": 4,
+    "outside_village": 0,
+    "bounds_utm": [
+     261088.39689999027,
+     1958844.3171000094,
+     261775.37244724084,
+     1959323.4713042239
+    ]
+   }
+  ]
+ },
+ "boundary": {
+  "config_key": "boundary",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+  "exists": true,
+  "bytes": 102400,
+  "kind": "vector",
+  "layers_in_file": [
+   "village_boundary"
+  ],
+  "layer_reports": [
+   {
+    "layer": "village_boundary",
+    "requested": false,
+    "n": 1,
+    "crs": "EPSG:32644",
+    "epsg": 32644,
+    "geometry_types": {
+     "Polygon": 1
+    },
+    "columns": [
+     "district",
+     "mandal",
+     "village",
+     "tgrac_village_code",
+     "tgrac_dmv_code"
+    ],
+    "invalid": 0,
+    "empty": 0,
+    "duplicate_geometries": 0,
+    "intersect_village": 1,
+    "outside_village": 0,
+    "bounds_utm": [
+     258814.8855999997,
+     1956609.3078000005,
+     265592.3487999998,
+     1960912.0879999995
+    ]
+   }
+  ]
+ },
+ "windows_gpkg": {
+  "config_key": "windows_gpkg",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v6_buildings\\reference\\digitize_windows.gpkg",
+  "exists": true,
+  "bytes": 118784,
+  "kind": "vector",
+  "layers_in_file": [
+   "windows",
+   "reference_buildings"
+  ],
+  "layer_reports": [
+   {
+    "layer": "windows",
+    "requested": false,
+    "n": 6,
+    "crs": "EPSG:32644",
+    "epsg": 32644,
+    "geometry_types": {
+     "Polygon": 6
+    },
+    "columns": [
+     "window_id",
+     "role",
+     "cx",
+     "cy",
+     "n_pred",
+     "pred_area_m2"
+    ],
+    "invalid": 0,
+    "empty": 0,
+    "duplicate_geometries": 0,
+    "intersect_village": 6,
+    "outside_village": 0,
+    "bounds_utm": [
+     259431.07799973118,
+     1957961.2551948694,
+     264685.54362548527,
+     1960490.3788177844
+    ]
+   },
+   {
+    "layer": "reference_buildings",
+    "requested": false,
+    "n": 0,
+    "crs": "EPSG:32644",
+    "epsg": 32644,
+    "geometry_types": {},
+    "columns": [
+     "window_id",
+     "note"
+    ]
+   }
+  ]
+ },
+ "worldcover": {
+  "config_key": "worldcover",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+  "exists": true,
+  "bytes": 26258,
+  "kind": "raster",
+  "crs": "EPSG:32644",
+  "epsg": 32644,
+  "width": 679,
+  "height": 432,
+  "bands": 1,
+  "res": [
+   10.0,
+   10.0
+  ],
+  "bounds": [
+   258810.0,
+   1956600.0,
+   265600.0,
+   1960920.0
+  ],
+  "dtype": "uint8",
+  "nodata": 0.0,
+  "transform": [
+   10.0,
+   0.0,
+   258810.0,
+   0.0,
+   -10.0,
+   1960920.0
+  ],
+  "decimation": 1,
+  "valid_share_all_pixels": 0.6288796159930181,
+  "village_bbox_inside_raster_bounds": true,
+  "village_polygon_share_inside_raster_bounds": 1.000000000000001,
+  "valid_share_inside_polygon": 0.9990359931977947,
+  "class_values_if_small_int": [
+   10,
+   20,
+   30,
+   40,
+   50,
+   60,
+   80
+  ]
+ },
+ "cost": {
+  "config_key": "cost",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+  "exists": true,
+  "bytes": 814171,
+  "kind": "raster",
+  "crs": "EPSG:32644",
+  "epsg": 32644,
+  "width": 679,
+  "height": 432,
+  "bands": 1,
+  "res": [
+   10.0,
+   10.0
+  ],
+  "bounds": [
+   258810.0,
+   1956600.0,
+   265600.0,
+   1960920.0
+  ],
+  "dtype": "float32",
+  "nodata": -9999.0,
+  "transform": [
+   10.0,
+   0.0,
+   258810.0,
+   0.0,
+   -10.0,
+   1960920.0
+  ],
+  "decimation": 1,
+  "valid_share_all_pixels": 0.6251363661157476,
+  "village_bbox_inside_raster_bounds": true,
+  "village_polygon_share_inside_raster_bounds": 1.000000000000001,
+  "valid_share_inside_polygon": 0.9930894793280114,
+  "class_values_if_small_int": null
+ },
+ "pred_classes": {
+  "config_key": "pred_classes",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+  "exists": true,
+  "bytes": 1365176,
+  "kind": "raster",
+  "crs": "EPSG:32644",
+  "epsg": 32644,
+  "width": 11296,
+  "height": 7171,
+  "bands": 1,
+  "res": [
+   0.6,
+   0.6
+  ],
+  "bounds": [
+   258814.8855999997,
+   1956609.4879999994,
+   265592.48559999967,
+   1960912.0879999995
+  ],
+  "dtype": "uint8",
+  "nodata": 0.0,
+  "transform": [
+   0.6,
+   0.0,
+   258814.8855999997,
+   0.0,
+   -0.6,
+   1960912.0879999995
+  ],
+  "decimation": 5,
+  "valid_share_all_pixels": 1.0,
+  "village_bbox_inside_raster_bounds": false,
+  "village_polygon_share_inside_raster_bounds": 0.9999999960059188,
+  "valid_share_inside_polygon": 1.0,
+  "class_values_if_small_int": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ]
+ },
+ "building_prob": {
+  "config_key": "building_prob",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+  "exists": true,
+  "bytes": 4014798,
+  "kind": "raster",
+  "crs": "EPSG:32644",
+  "epsg": 32644,
+  "width": 11296,
+  "height": 7171,
+  "bands": 1,
+  "res": [
+   0.6,
+   0.6
+  ],
+  "bounds": [
+   258814.8855999997,
+   1956609.4879999994,
+   265592.48559999967,
+   1960912.0879999995
+  ],
+  "dtype": "uint8",
+  "nodata": null,
+  "transform": [
+   0.6,
+   0.0,
+   258814.8855999997,
+   0.0,
+   -0.6,
+   1960912.0879999995
+  ],
+  "decimation": 5,
+  "valid_share_all_pixels": 1.0,
+  "village_bbox_inside_raster_bounds": false,
+  "village_polygon_share_inside_raster_bounds": 0.9999999960059188,
+  "valid_share_inside_polygon": 1.0,
+  "class_values_if_small_int": null
+ },
+ "scripts": {
+  "config_key": "scripts",
+  "path": "D:\\Telangana_Rural_Project\\scripts",
+  "exists": true,
+  "kind": "directory",
+  "entries": 196
+ },
+ "results_dir": {
+  "config_key": "results_dir",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results",
+  "exists": true,
+  "kind": "directory",
+  "entries": 100
+ },
+ "v8_dir": {
+  "config_key": "v8_dir",
+  "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances",
+  "exists": true,
+  "kind": "directory",
+  "entries": 6
+ }
+}

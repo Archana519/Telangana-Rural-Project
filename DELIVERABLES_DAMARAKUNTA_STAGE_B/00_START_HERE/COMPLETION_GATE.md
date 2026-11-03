@@ -1,0 +1,26 @@
+> **RECONSTRUCTION (2026-11-02).** The original deliverables folder was lost and was not under version control. This file was rebuilt from the live result files and from the original text as displayed earlier in the same working session, and updated where later evidence changed it. It is not the original file.
+
+# Completion gate: Damarakunta
+
+Status values: PASS, PARTIAL, NOT VERIFIED, NOT IMPLEMENTED. No approval is implied; the five additional villages are NOT started.
+
+| Requirement | Current evidence | Status | Remaining work | Source / experiment needed |
+|---|---|---|---|---|
+| House connectivity | 163/163 routed, 0 failed; audit v2: 2 FAIL per scenario (P01:house and G04) both from house C0002, which attaches to a 5-cell road component (151.55 m from the main cells in the audit, 155.24 m in the road-cell diagnostic); on the TGRAC road lines the same road is connected (outputs/connectivity); C0076 is an INFO label/snap mismatch | PARTIAL | Decide how the boundary-truncation limitation is reported; physical road not verified | `05_DIAGNOSTICS/CONNECTIVITY_EXCEPTIONS` |
+| Facility connectivity | 5/5 facilities in the final layer routed and connected (2 schools, 1 sub-centre, 2 Gram Panchayat HQ points); the anganwadi (unsupported coordinate) was excluded at the project owner's request | PASS (model connectivity only) for the 5 facilities | A verified anganwadi location; facility identities are not field-verified | `facility_status.csv`, `EXCLUSIONS.md` |
+| Segmentation-error sensitivity (C1) | primary and P3 omission scenarios, footprint exposure, 5-seed omit/add runs | PARTIAL | scenarios are synthetic, not measured false-negative rates | real segmentation error rates if claimed |
+| Route-selection ablation (C2) | K x passes ablation, control identical, R01-R03 PASS | PASS for the stated ablation | K1/K3 pairwise geometry identity not established; no global-optimality claim; no run switches shared-edge accounting off | optional geometry comparison |
+| Multi-criteria route selection | planner selects by weight / marginal cost; provisional equal facility weights; cost = land cover + slope | PARTIAL | A formal multi-criteria scheme (criteria, weights and their source) is not implemented or approved | decision on criteria; code change only after approval |
+| Road width | no width parameter or output in planner or runner | NOT IMPLEMENTED | Needs source data and a design decision | requirement owner decision |
+| Monetary construction cost | costs are ordinal units, NOT INR; an assumption-driven illustrative estimate exists in outputs/final_comparison (Table 5) and is not project data | NOT IMPLEMENTED | Needs a cost basis and approval | cost source |
+| Additional-village transfer (C3) | none run; multi-village testing is extended future work | NOT IMPLEMENTED | Wait for written approval of this gate | five more villages |
+| Imagery and TGRAC data licences | unresolved: Esri mosaic built from export requests (not Content Packages), enquiry draft not sent; TGRAC terms not found; attribution wording in Section 13.1 | NOT VERIFIED | Licence enquiry/answer; no imagery redistributed | `docs/DAMARAKUNTA_IMAGERY_LICENCE_ENQUIRY_DRAFT.md` |
+| TGRAC data source and currentness | boundary copy equals stored response (IoU 1.0); live service not re-queried; licence not stated | NOT VERIFIED | Query date/version record; independent boundary comparison | TGRAC |
+| Field validation, legal access, physical passability | none; routes are GIS/DEM simulations and ground truthing is designated for future phases | NOT IMPLEMENTED | Field work or authoritative records | `07_LIMITATIONS_AND_OPEN_ISSUES/METHODOLOGICAL_LIMITATIONS_AND_FUTURE_SCOPE.md` |
+| P3 baseline reproduction | the P3 run is regenerated in every pipeline run and its lengths and costs match the reference exactly (3 fresh runs); route-level geometry comparison was done for the primary run only | PARTIAL | Run `dk_stageB_run_repro_compare_v1.py` for P3 | `06_REPRODUCIBILITY/P3_BASELINE_REPRODUCTION` |
+| Building-footprint avoidance | active in the final network: buffer 7.1 m, penalty x100; fewer house routes cross another footprint at the price of a longer network (table6_obstacle_avoidance.csv); hard block failed (163/163 targets). Routes do NOT completely skirt buildings | PARTIAL | Remaining crossings occur where a target starts among touching buildings | `table6_obstacle_avoidance.csv` |
+| Anganwadi exclusion | excluded from planning layers, CSVs and maps (derived layer; original input untouched) | OPEN (needs a verified location) | Verified coordinate, then re-include | `inputs/EXCLUSIONS.md` |
+| Administrative utilities | 2 Gram Panchayat HQ points (TGRAC layer 10) included, each on or within 1 m of a detected footprint; MeeSeva and Directorate of ESD centres NOT located (no source in 162 TGRAC services or OpenStreetMap) | PARTIAL | Coordinates and source for MeeSeva and ESD; confirm the Panchayat building | `inputs/ADMIN_UTILITIES.md`, `inputs/admin_utilities_intake.csv` |
+| Visual audit of facilities | protocol and Visual Grounding Table prepared (5 facilities) | NOT VERIFIED | Fill the observation columns in Google Earth | `outputs/visual_audit/` |
+
+Approval: this gate is **not approved**. Written approval from the project owner is required before any further village is started.

@@ -1,0 +1,3 @@
+runs audited: 33
+counts: {'PASS': 432, 'INFO': 31, 'FAIL': 1}
+note: INFO/WARN rows are listed in validation_results.csv; no field validation is implied.

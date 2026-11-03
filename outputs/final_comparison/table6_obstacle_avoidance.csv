@@ -1,0 +1,6 @@
+scenario,run,penalty_multiplier,avoid_buildings,houses_routed,failed,house_unique_len_m,independent_unique_len_m_same_config,saving_vs_independent_pct,house_routes_crossing_other_footprints,crossing_len_m,crossing_only_in_first_20m,crossing_beyond_first_20m,facility_unique_len_m,reach_main_component,targets
+"x1, no penalty (P3 control)",S2_fac_C0_s25_final_x1,1.0,off,163,0,4705.4,6921.3,32.0,56,660.1,21,35,235.2,167,168
+"x4, penalty on footprint cells (primary)",S2_fac_C0_s25_final_x4,4.0,off,163,0,5069.0,6753.1,24.9,28,209.1,12,16,249.3,167,168
+"buffer 7.1 m, penalty x20",S2_fac_C0_s25_final_avoid_buf20,20.0,buffer,163,0,6238.1,7650.0,18.5,19,147.9,16,3,302.4,167,168
+"buffer 7.1 m, penalty x100",S2_fac_C0_s25_final_avoid_buf100,100.0,buffer,163,0,6190.3,7633.0,18.9,19,144.8,16,3,322.9,167,168
+"buffer 7.1 m, penalty x1000",S2_fac_C0_s25_final_avoid_buf1000,1000.0,buffer,163,0,6190.3,7661.4,19.2,19,144.8,16,3,322.9,167,168

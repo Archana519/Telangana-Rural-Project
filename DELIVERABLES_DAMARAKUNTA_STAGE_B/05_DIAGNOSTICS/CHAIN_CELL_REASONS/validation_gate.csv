@@ -1,0 +1,9 @@
+check,rebuilt,expected,ok
+component sizes equal road_components.csv,"[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]","[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]",True
+input hashes equal manifest,"{'cost': True, 'worldcover': True, 'roads': True}",manifest,True
+component 2 chain cells / impassable equal previous component_summary.csv,34/32,34/32,True
+component 5 chain cells / impassable equal previous component_summary.csv,8/6,8/6,True
+component 6 chain cells / impassable equal previous component_summary.csv,20/18,20/18,True
+component 10 chain cells / impassable equal previous component_summary.csv,56/36,56/36,True
+component 11 chain cells / impassable equal previous component_summary.csv,6/4,6/4,True
+component 12 chain cells / impassable equal previous component_summary.csv,5/3,5/3,True

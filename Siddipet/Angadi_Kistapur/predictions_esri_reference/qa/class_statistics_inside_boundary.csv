@@ -1,0 +1,9 @@
+class_id,class_name,total_pixels,inside_boundary_pixels,outside_boundary_pixels,inside_boundary_percent
+0,Background,0,0,0,0.0
+1,Building,400409,193746,206663,18.421
+2,Road,4494,64,4430,0.006
+3,Water,0,0,0,0.0
+4,Barren,5935,2113,3822,0.201
+5,Forest,0,0,0,0.0
+6,Agriculture,3,0,3,0.0
+7,Other,1983159,855864,1127295,81.372

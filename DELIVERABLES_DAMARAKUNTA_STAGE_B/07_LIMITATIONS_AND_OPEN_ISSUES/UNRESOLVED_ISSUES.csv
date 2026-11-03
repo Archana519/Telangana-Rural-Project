@@ -1,0 +1,20 @@
+id,issue,status,next_action,where
+U01,P3 baseline reproduction: route-level geometry comparison not run (lengths and costs reproduce),PARTIAL,Run the comparison for P3,06_REPRODUCIBILITY/P3_BASELINE_REPRODUCTION
+U02,"Research parameters (x4 penalty, class set, equal facility weights) not confirmed as final",PROVISIONAL,Owner decision,config_stageB.json
+U03,Road width not implemented,NOT IMPLEMENTED,Requirement owner decision and data,COMPLETION_GATE.md
+U04,Monetary construction cost not implemented from project data (an illustrative assumption-based estimate exists),NOT IMPLEMENTED,Cost basis and approval,COMPLETION_GATE.md
+U05,Formal multi-criteria route selection not implemented/approved,PARTIAL,Criteria and weights,COMPLETION_GATE.md
+U06,Imagery licence unresolved,NOT VERIFIED,Licence answer; enquiry draft not yet sent,docs/DAMARAKUNTA_IMAGERY_LICENCE_ENQUIRY_DRAFT.md
+U07,"TGRAC boundary/road authority, currentness and licence",NOT VERIFIED,Query date record; independent comparison,05_DIAGNOSTICS/BOUNDARY_AND_ROADS
+U08,Why 30 m DEM cells are masked at some inside cells (29 of 32 interior blocked road cells fall on masked DEM cells; 3 unexplained),UNRESOLVED,Inspect DEM clip footprint vs polygon,05_DIAGNOSTICS/CHAIN_CELL_REASONS
+U09,"Road components C3, C4, C7, C8, C9: no line chain to main within grid extent",UNRESOLVED,Optional: test beyond the bounding box,05_DIAGNOSTICS/ROAD_COMPONENTS
+U10,Older phase22-24 and ranking scripts not audited,NOT VERIFIED,Code audit if used in the dissertation,scripts/ (legacy copies in archive)
+U11,14 planner tests and 31 audit tests not re-run in this pass,PROVISIONAL,Re-run only if scripts change,test_plan_network_v2.py
+U12,C1 chart legend overlaps a value label (original chart),DEFECT,Regenerate as a new versioned figure,03_RESULTS_TABLES/C1_SEGMENTATION_SENSITIVITY/figures
+U13,No second village; C3 not assessed,NOT IMPLEMENTED,Await written gate approval,COMPLETION_GATE.md
+U14,"No field validation, legal access or physical passability evidence",NOT IMPLEMENTED,Out of current scope,LIMITATIONS.md
+U15,"Anganwadi excluded at the owner's request (coordinate 371 m from the nearest footprint, 126 m from the nearest Open Buildings polygon)",OPEN,"Verify the location (registry or Google Earth), then re-include",inputs/EXCLUSIONS.md
+U16,"Detection accuracy unknown: no reference buildings; agreement with Open Buildings 72%, REVIEW class 44%",UNRESOLVED,Label a village subset,outputs/verification
+U17,House routes still crossing another footprint in the building-avoiding final network (see table6_obstacle_avoidance.csv),BOUNDED,Needs building-level geometry or a finer grid,outputs/final_comparison/table6_obstacle_avoidance.csv
+U18,Visual Grounding Table observation columns empty,NOT STARTED,Fill in Google Earth Pro,outputs/visual_audit
+U19,Original DELIVERABLES folder lost; this folder is a reconstruction,NOTED,Commit the folder to git,00_START_HERE/README_PROJECT_OVERVIEW.md

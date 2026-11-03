@@ -1,0 +1,2 @@
+check,status,detail
+inputs unchanged after audit (sha256 of every file read),PASS,19 files hashed before and after

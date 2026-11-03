@@ -1,0 +1,36 @@
+﻿table_no,key,reported_result_from_abstract,status
+1,L34,,no score in abstract
+2,L35,"mean IoU 67.60% (iSAID), 55.86% (LoveDA), 80.07% (Potsdam) and 96.46% (Vaihingen)",stated in abstract
+3,L29,,no score in abstract
+4,L30,,abstract not retrievable
+5,L31,"preprint: mean IoU of 74.62% (ISPRS-Potsdam) and 50.97% (LoveDA) with 5% labels, against 72.01% and 44.20% without the proposed modules",from open-access preprint
+6,L33,,abstract not retrievable
+7,L41,,no score in abstract
+8,L16,,no score in abstract
+9,L17,,no score in abstract
+10,L18,"54.5% mIoU (LoveDA), 87.8% (Potsdam) and 84.1% (Vaihingen) at 132.7 FPS; 72.6% mIoU at 164.0 FPS (CityScapes) and 72.3% mIoU at 186.4 FPS (CamVid)",stated in abstract
+11,L19,preprint: F1 higher by 3.21% (buildings) and 3.38% (roads) than the baseline (81.85% and 71.03%),from open-access preprint
+12,L20,,no score in abstract
+13,L21,F1 higher by 4.3 to 7.2 points and IoU higher by 4.9 to 8.0 points than the strong baseline on MSAW,stated in abstract
+14,L22,"IoU +1.49%, +1.16%, +2.26% and F1 +0.82%, +0.70%, +1.22% over HD-Net on WHU, Inria and AIRS",stated in abstract
+15,L23,"IoU of 0.8556, 0.8163 and 0.7797 on the three datasets",stated in abstract
+16,L24,,no score in abstract
+17,L38,F1 improved by 3.3% to 4.5% and IoU by 2.0% to 5.1% over state-of-the-art methods,stated in abstract
+18,L40,,no score in abstract
+19,L42,"computation more than 1000 times faster than MILP, and an investment decrease of 30% or more with shortest-path distance instead of Euclidean or Manhattan distance",stated in abstract
+20,L43,,no score in abstract
+21,L45,,no score in abstract
+22,L11,,no score in abstract
+23,L12,,no score in abstract
+24,L14,,no score in abstract
+25,L37,,no score in abstract
+26,L39,"IoU of 70.71% (SpaceNet) and 75.52% (OSM); preprint: IoU higher than the best baseline by 1.25% (OSM) and 0.52% (SpaceNet), and APLS 0.8028 against 0.7843 on OSM",stated in abstract and preprint
+27,L03,"preprint: mean IoU higher by 2.73% (Inria) and 3.26% (MAS) than the baseline, and by 1.51% over the second-best method on Inria",from open-access preprint
+28,L04,,abstract not retrievable
+29,L05,"preprint: F1 of 75.08% for DeepLabv3-CG on Berlin TerraSAR-X data, F1 and IoU 4.40% and 5.45% higher with complete footprints than with sensor-visible segments, and a mean building-height error of 2.39 m",from open-access preprint
+30,L06,,no score in abstract
+31,L07,,no score in abstract
+32,L08,,no score in abstract
+33,L09,"building-roof F1 77.05% and IoU 63.55%; whole-building F1 79.02% and IoU 66.05%, the best among the baseline models",stated in abstract
+34,L44,preprint: best segmentation accuracy of 48.06% and 52.03% in the two adaptation directions,from open-access preprint
+35,L36,,no score in abstract

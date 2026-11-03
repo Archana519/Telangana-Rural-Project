@@ -1,0 +1,111 @@
+{
+  "currentVersion": 10.22,
+  "serviceDescription": "Master Administrative Boundary",
+  "mapName": "Layers",
+  "description": "",
+  "copyrightText": "",
+  "supportsDynamicLayers": false,
+  "layers": [
+    {
+      "id": 0,
+      "name": "Assembly_Constituency_Boundary",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 1,
+      "name": "Parliament_Constituency_Boundary",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 2,
+      "name": "District_Boundary",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 3,
+      "name": "Revenue_Division_Boundary",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 4,
+      "name": "Mandal_Boundary",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 5,
+      "name": "Village_Boundary",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    }
+  ],
+  "tables": [],
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "singleFusedMapCache": false,
+  "initialExtent": {
+    "xmin": 78.24425281032647,
+    "ymin": 16.27101254790437,
+    "xmax": 78.93939844491958,
+    "ymax": 16.69390210731173,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  },
+  "fullExtent": {
+    "xmin": 77.23725451000007,
+    "ymin": 15.836406686000032,
+    "xmax": 81.31660838800008,
+    "ymax": 19.91690008100005,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  },
+  "minScale": 0,
+  "maxScale": 0,
+  "units": "esriDecimalDegrees",
+  "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+  "documentInfo": {
+    "Title": "",
+    "Author": "",
+    "Comments": "Master Administrative Boundary",
+    "Subject": "Master Administrative Boundary",
+    "Category": "",
+    "AntialiasingMode": "None",
+    "TextAntialiasingMode": "Force",
+    "Keywords": "Master Administrative Boundary"
+  },
+  "capabilities": "Map,Query,Data",
+  "supportedQueryFormats": "JSON, AMF",
+  "exportTilesAllowed": false,
+  "maxRecordCount": 1000,
+  "maxImageHeight": 4096,
+  "maxImageWidth": 4096,
+  "supportedExtensions": ""
+}

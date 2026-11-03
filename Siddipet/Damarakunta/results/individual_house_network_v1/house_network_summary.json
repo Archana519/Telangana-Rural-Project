@@ -1,0 +1,44 @@
+{
+  "project_area": "Damarakunta, Siddipet, Telangana",
+  "targets_source_count": 278,
+  "inside_village_count": 165,
+  "after_min_area_count": 163,
+  "targets_planned": 163,
+  "network_connected_targets": 163,
+  "independent_routes_generated": 163,
+  "network_route_geometries": 163,
+  "route_length_sum_network_aware_m": 5231.61,
+  "route_length_sum_independent_m": 10047.65,
+  "unique_grid_edge_length_network_aware_m": 5231.5426817189145,
+  "unique_grid_edge_length_independent_m": 6755.360141024099,
+  "shared_network_unique_length_reduction_m": 1523.82,
+  "slope_limit_deg": 25.0,
+  "hard_constraints_resolved": {
+    "prohibited_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "slope_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "slope_limit_deg": 25.0,
+    "slope_limit_source": "--slope-limit-deg",
+    "corner_cut": "forbid",
+    "water_class": 80,
+    "v4_script_loaded": false
+  },
+  "planner_notes": [
+    "65 cells exceed the slope limit but have a VALID cost: the cost surface does not exclude them; the planner now does"
+  ],
+  "parameters": {
+    "k": 3,
+    "corridor_m": 20.0,
+    "corridor_mults": [
+      3.0,
+      8.0
+    ],
+    "max_overlap": 0.8,
+    "passes": 2,
+    "snap_m": 30.0,
+    "max_search_m": 1500.0,
+    "attach_tol_m": 15.0,
+    "building_mult": 4.0,
+    "corner_cut": "forbid"
+  },
+  "caveat": "These are planning alternatives based on model-derived building polygons and reference roads; not field-verified houses or roads."
+}

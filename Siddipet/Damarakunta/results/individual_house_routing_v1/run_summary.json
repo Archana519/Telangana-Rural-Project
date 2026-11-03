@@ -1,0 +1,53 @@
+{
+  "project_area": "Damarakunta, Siddipet, Telangana",
+  "input_buildings": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances\\buildings_v8_full.gpkg",
+  "input_roads": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\reference\\tgrac_road_network.gpkg",
+  "cost_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+  "prohibited_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+  "slope_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+  "slope_limit_deg": null,
+  "targets_attempted": 163,
+  "routes_with_geometry": 163,
+  "route_status_counts": {
+    "ROUTE_GENERATED_GRID_CHECKS_PASS_UNVERIFIED": 163
+  },
+  "quality_status_counts": [
+    {
+      "quality_class": "PLAUSIBLE",
+      "route_status": "ROUTE_GENERATED_GRID_CHECKS_PASS_UNVERIFIED",
+      "count": 71
+    },
+    {
+      "quality_class": "REVIEW",
+      "route_status": "ROUTE_GENERATED_GRID_CHECKS_PASS_UNVERIFIED",
+      "count": 30
+    },
+    {
+      "quality_class": "UNRESOLVED_MERGE",
+      "route_status": "ROUTE_GENERATED_GRID_CHECKS_PASS_UNVERIFIED",
+      "count": 62
+    }
+  ],
+  "interpretation": "All routes are unverified planning alternatives from model-derived building polygons to reference-road geometry. Route generation does not establish that a real house or road exists, that land is available, or that a route is construction-ready.",
+  "parameters": {
+    "min_area_m2": 10.0,
+    "quality_keep": "PLAUSIBLE,REVIEW,UNRESOLVED_MERGE",
+    "snap_m": 30.0,
+    "max_search_m": 1500.0,
+    "attach_tol_m": 15.0,
+    "building_mult": 4.0,
+    "corner_cut": "forbid"
+  },
+  "planner_notes": [
+    "slope layer not applied"
+  ],
+  "hard_constraints_resolved": {
+    "prohibited_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "slope_raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "slope_limit_deg": null,
+    "slope_limit_source": "NONE: slope is a soft cost only",
+    "corner_cut": "forbid",
+    "water_class": 80,
+    "v4_script_loaded": false
+  }
+}

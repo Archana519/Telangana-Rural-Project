@@ -1,0 +1,52 @@
+{
+  "created": "2026-10-24T15:15:51+00:00",
+  "discovery_dir": "D:\\Telangana_Rural_Project\\Siddipet\\_village_discovery\\disc_20261024T145933Z",
+  "layers_pinned": {
+    "roads": "https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20",
+    "anganwadi": "https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2",
+    "health": [
+      "https://tgrac.telangana.gov.in/arcgis/rest/services/GovtHospitals_Folder/Health_Facilities_Query/MapServer/0",
+      "https://tgrac.telangana.gov.in/arcgis/rest/services/GovtHospitals_Folder/Health_Facilities_Query/MapServer/6"
+    ],
+    "plinth": "https://tgrac.telangana.gov.in/arcgis/rest/services/Abadi_Folder/Abadi_Final/MapServer/20"
+  },
+  "roles": {
+    "roads": [
+      {
+        "url": "https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20",
+        "source": "pinned by --layers-json"
+      }
+    ],
+    "anganwadi": [
+      {
+        "url": "https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2",
+        "source": "pinned by --layers-json"
+      }
+    ],
+    "health": [
+      {
+        "url": "https://tgrac.telangana.gov.in/arcgis/rest/services/GovtHospitals_Folder/Health_Facilities_Query/MapServer/0",
+        "source": "pinned by --layers-json"
+      },
+      {
+        "url": "https://tgrac.telangana.gov.in/arcgis/rest/services/GovtHospitals_Folder/Health_Facilities_Query/MapServer/6",
+        "source": "pinned by --layers-json"
+      }
+    ],
+    "plinth": [
+      {
+        "url": "https://tgrac.telangana.gov.in/arcgis/rest/services/Abadi_Folder/Abadi_Final/MapServer/20",
+        "source": "pinned by --layers-json"
+      }
+    ]
+  },
+  "dem_tiles": [
+    "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\dem\\damarakunta_dem_clip.tif"
+  ],
+  "worldcover_tiles": [
+    "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\landcover\\damarakunta_worldcover_clip.tif"
+  ],
+  "network": true
+}

@@ -1,0 +1,70 @@
+{
+  "run_utc": "2026-10-24T12:19:44.820052Z",
+  "source": "tiles",
+  "dataset": "Google Open Buildings v3",
+  "s2_level4_tiles": [
+    "3bd"
+  ],
+  "url_pattern": "https://storage.googleapis.com/open-buildings-data/v3/polygons_s2_level_4_gzip/{tok}_buildings.csv.gz",
+  "study_area": {
+    "type": "boundary",
+    "file": "Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+    "features": 1
+  },
+  "study_area_covered_by_imagery_pct": 100.0,
+  "imagery": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+  "output_crs": "EPSG:32644",
+  "feature_count": 1537,
+  "bounds_output_crs": [
+    259361.15,
+    1956879.29,
+    265112.48,
+    1960815.05
+  ],
+  "attributes": [
+    "latitude",
+    "longitude",
+    "area_in_meters",
+    "confidence",
+    "full_plus_code",
+    "clipped_to_study_area",
+    "area_m2_utm"
+  ],
+  "confidence": {
+    "n": 1537,
+    "mean": 0.792,
+    "percentiles_0_10_25_50_75_90_100": [
+      0.65,
+      0.681,
+      0.732,
+      0.799,
+      0.853,
+      0.887,
+      0.954
+    ],
+    "histogram": {
+      "0.65-0.70": 239,
+      "0.70-0.75": 242,
+      "0.75-0.80": 297,
+      "0.80-0.85": 355,
+      "0.85-0.90": 308,
+      "0.90-0.95": 94,
+      "0.95-1.00": 2
+    },
+    "below_0.65": 0
+  },
+  "min_confidence_filter": 0.0,
+  "comparison": {
+    "candidates": 58,
+    "candidates_touching_any_google_polygon": 54,
+    "median_fraction_of_candidate_area_covered_by_google": 0.472,
+    "google_polygons_inside_candidate_bounds_box": 258,
+    "note": "descriptive overlap only; neither layer is ground truth"
+  },
+  "licence": "Google Open Buildings v3: CC BY 4.0 and ODbL v1.0 (dual licence per the dataset page; confirm on https://sites.research.google/open-buildings/ before publication). Attribute: 'Google Open Buildings v3'.",
+  "script_sha256": "dfb329502933f0d90634ae9f0eb62e80ff3c68c18b3556fd64e798aa88ac5999",
+  "caveats": [
+    "Google polygons are model-derived, not verified buildings",
+    "image-date mismatch between Google's source imagery and the ESRI mosaic is unknown"
+  ]
+}

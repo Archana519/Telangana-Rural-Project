@@ -1,0 +1,26 @@
+{
+  "raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+  "checkpoint": "D:\\new_MPS\\remoteSensingWebApp\\checkpoints\\best_model.pth",
+  "window": [
+    0,
+    0,
+    11296,
+    7171
+  ],
+  "tile": 560,
+  "stride": 420,
+  "margin": 70,
+  "device": "cpu",
+  "tiles_run": 459,
+  "seconds": 3640.5,
+  "class_percent": {
+    "1": 38.479,
+    "2": 0.332,
+    "3": 0.05,
+    "4": 0.765,
+    "5": 38.795,
+    "6": 2.35,
+    "7": 19.228
+  },
+  "note": "raw argmax over classes 1-7; unvalidated"
+}

@@ -1,0 +1,285 @@
+{
+  "currentVersion": 10.22,
+  "serviceDescription": "t",
+  "mapName": "Layers",
+  "description": "",
+  "copyrightText": "",
+  "supportsDynamicLayers": false,
+  "layers": [
+    {
+      "id": 0,
+      "name": "Administrative Layers",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 1,
+      "name": "Roads",
+      "parentLayerId": 0,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 2,
+      "name": "Roads",
+      "parentLayerId": 0,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 3,
+      "name": "Drinage",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 4,
+      "name": "Eletricity",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 5,
+      "name": "Sanitation",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 6,
+      "name": "Water Supply",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 7,
+      "name": "OHSR1",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 8,
+      "name": "Taps",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 9,
+      "name": "trans",
+      "parentLayerId": 0,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 10,
+      "name": "Building Roof Type",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 11,
+      "name": "Abadi Prpperties Drone Image",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": [
+        12,
+        13,
+        14
+      ],
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 12,
+      "name": "Plinth_Area",
+      "parentLayerId": 11,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 13,
+      "name": "Property_Area",
+      "parentLayerId": 11,
+      "defaultVisibility": true,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 14,
+      "name": "Property_Area_Lines",
+      "parentLayerId": 11,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 15,
+      "name": "Abadi - Angadi Kistapur and Yavapur",
+      "parentLayerId": -1,
+      "defaultVisibility": true,
+      "subLayerIds": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 16,
+      "name": "Ground Control Points",
+      "parentLayerId": 15,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 17,
+      "name": "Boundary Points Coordinates",
+      "parentLayerId": 15,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 18,
+      "name": "Boundary Facings Map Measurements",
+      "parentLayerId": 15,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 19,
+      "name": "GIS ID",
+      "parentLayerId": 15,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 20,
+      "name": "Plinth",
+      "parentLayerId": 15,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 21,
+      "name": "Plot Boundaries Area Measurements",
+      "parentLayerId": 15,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    },
+    {
+      "id": 22,
+      "name": "AbadiProperties Satellite Image",
+      "parentLayerId": -1,
+      "defaultVisibility": false,
+      "subLayerIds": null,
+      "minScale": 0,
+      "maxScale": 0
+    }
+  ],
+  "tables": [],
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "singleFusedMapCache": false,
+  "initialExtent": {
+    "xmin": 77.85894565199742,
+    "ymin": 16.86441134354606,
+    "xmax": 77.85968685410073,
+    "ymax": 16.864862251406663,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  },
+  "fullExtent": {
+    "xmin": 77.84667128100006,
+    "ymin": 16.86139526465257,
+    "xmax": 80.08863170100005,
+    "ymax": 19.38303029800005,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326
+    }
+  },
+  "minScale": 0,
+  "maxScale": 0,
+  "units": "esriDecimalDegrees",
+  "supportedImageFormatTypes": "PNG32,PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,BMP",
+  "documentInfo": {
+    "Title": "",
+    "Author": "",
+    "Comments": "t",
+    "Subject": "t",
+    "Category": "",
+    "AntialiasingMode": "None",
+    "TextAntialiasingMode": "Force",
+    "Keywords": "t"
+  },
+  "capabilities": "Map,Query,Data",
+  "supportedQueryFormats": "JSON, AMF",
+  "exportTilesAllowed": false,
+  "maxRecordCount": 1000,
+  "maxImageHeight": 4096,
+  "maxImageWidth": 4096,
+  "supportedExtensions": "KmlServer"
+}

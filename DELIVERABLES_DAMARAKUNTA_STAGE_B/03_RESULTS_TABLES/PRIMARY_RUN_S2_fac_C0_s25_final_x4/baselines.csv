@@ -1,0 +1,4 @@
+kind,baseline,verification,n,total_len_m,unique_len_m,shared_len_m,unique_cost,total_cost,infeasible
+house,independent_least_cost,code-derived (planner indep = alt1 to goals),163,10045.378978793671,6753.100141024099,3292.2788377695724,33865.04005664037,45054.96748805124,
+house,straight_line,code-derived,163,8092.29959258149,,,,,2.0
+house,length_only,VERIFIED by control test,163,9166.253741785335,6979.754513539329,2186.4992282460053,6400.366100106796,8586.884136262892,

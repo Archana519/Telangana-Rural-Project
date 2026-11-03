@@ -1,0 +1,4 @@
+facility_id,facility_name,facility_type,priority_group,facility_x_m,facility_y_m,nearest_graph_x_m,nearest_graph_y_m,facility_to_road_distance_m,road_component,largest_component
+F001,MPPS GANESHPALLY,School,Public_Service,261453.82302355493,1969989.367332727,261478.125,1969956.606,40.790819815106964,1,True
+F002,MPUPS ANGADI KISTAPURP,School,Public_Service,260572.5390960373,1969002.3861733237,260588.483,1968964.28,41.307245356568906,1,True
+F003,Ganeshapally (Mini),Anganwadi,Public_Service,261402.39089919892,1969989.9854109178,261414.688,1970001.994,17.18792889955577,1,True

@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roof Digitizer</title>
+<style>
+  :root { --bg:#16181d; --panel:#1f232b; --line:#323846; --text:#e6e9ef; --dim:#9aa3b5; --accent:#4cc2ff;
+          --ok:#5bd68a; --warn:#ffb454; --bad:#ff6b6b; }
+  * { box-sizing: border-box; }
+  html, body { height:100%; margin:0; background:var(--bg); color:var(--text);
+               font:14px/1.4 system-ui, "Segoe UI", sans-serif; }
+  #app { display:grid; grid-template-columns: 270px 1fr; grid-template-rows: auto 1fr auto; height:100%; }
+  header { grid-column:1 / 3; background:var(--panel); border-bottom:1px solid var(--line);
+           padding:6px 10px; display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; }
+  header .group { display:flex; gap:4px; align-items:center; }
+  header .sep { width:1px; height:22px; background:var(--line); }
+  button { background:#2a3040; color:var(--text); border:1px solid var(--line); border-radius:6px;
+           padding:5px 10px; cursor:pointer; font:inherit; }
+  button:hover { border-color:var(--accent); }
+  button.active { background:var(--accent); color:#06222f; border-color:var(--accent); font-weight:600; }
+  button.danger:hover { border-color:var(--bad); color:var(--bad); }
+  button.primary { background:var(--ok); color:#082616; border-color:var(--ok); font-weight:600; }
+  button:disabled { opacity:.4; cursor:not-allowed; }
+  label { display:flex; align-items:center; gap:5px; color:var(--dim); cursor:pointer; }
+  input[type=range] { width:90px; }
+  aside { background:var(--panel); border-right:1px solid var(--line); overflow:auto; padding:8px; }
+  aside h3 { margin:4px 2px 8px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--dim); }
+  .win { display:block; width:100%; text-align:left; margin-bottom:6px; padding:8px; }
+  .win.sel { border-color:var(--accent); background:#243247; }
+  .win .id { font-weight:600; }
+  .win .meta { color:var(--dim); font-size:12px; }
+  .badge { font-size:11px; padding:1px 6px; border-radius:9px; margin-left:6px; }
+  .badge.done { background:var(--ok); color:#082616; }
+  .badge.todo { background:#3a4256; color:var(--dim); }
+  main { position:relative; overflow:hidden; background:#000; }
+  canvas { position:absolute; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+  #hint { position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.6); padding:6px 10px;
+          border-radius:6px; color:var(--dim); font-size:12px; pointer-events:none; max-width:70%; }
+  footer { grid-column:1 / 3; background:var(--panel); border-top:1px solid var(--line);
+           padding:5px 10px; display:flex; gap:18px; color:var(--dim); font-size:12px; }
+  #msg { color:var(--text); }
+  #msg.err { color:var(--bad); } #msg.ok { color:var(--ok); }
+  dialog { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:10px;
+           max-width:680px; width:92%; padding:18px; }
+  dialog::backdrop { background:rgba(0,0,0,.6); }
+  pre { background:#12151b; padding:10px; border-radius:6px; overflow:auto; max-height:46vh; white-space:pre-wrap; }
+  .legend span { display:inline-block; width:10px; height:10px; margin:0 4px 0 10px; border-radius:2px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="group" id="tools">
+      <button data-tool="pan" title="Pan (1)">Pan</button>
+      <button data-tool="roof" title="Trace a roof (2)">Trace roof</button>
+      <button data-tool="extent" title="Trace the TRACED_EXTENT area (3)">Traced extent</button>
+      <button data-tool="select" title="Select a polygon (4)">Select</button>
+    </div>
+    <div class="sep"></div>
+    <div class="group">
+      <label title="Mark the next roof(s) as uncertain (U)"><input type="checkbox" id="unsure"> unsure</label>
+      <button id="finish" title="Close polygon (Enter / double-click)">Finish</button>
+      <button id="cancel" title="Cancel drawing (Esc)">Cancel</button>
+      <button id="undoSaved" title="Delete the most recent saved polygon in this window">Undo last saved</button>
+      <button id="delSel" class="danger" title="Delete selected polygon (Delete)">Delete selected</button>
+      <button id="toggleUnsure" title="Toggle unsure on the selected polygon">Toggle unsure</button>
+    </div>
+    <div class="sep"></div>
+    <div class="group">
+      <label><input type="checkbox" id="showCand" checked> AI candidates (C)</label>
+      <label><input type="checkbox" id="showRef" checked> traced</label>
+      <label>bright <input type="range" id="bright" min="60" max="200" value="100"></label>
+      <label>contrast <input type="range" id="contrast" min="60" max="220" value="100"></label>
+      <button id="fit">Fit</button>
+    </div>
+    <div class="sep"></div>
+    <div class="group">
+      <label><input type="checkbox" id="complete"> window complete</label>
+      <button id="wholeExtent" title="Use the entire window as the traced extent">Whole window = extent</button>
+      <button id="commit" class="primary">Review &amp; commit…</button>
+    </div>
+  </header>
+
+  <aside>
+    <h3>Sampling windows</h3>
+    <div id="winlist"></div>
+    <h3 style="margin-top:14px">Legend</h3>
+    <div class="legend" style="line-height:1.9">
+      <div><span style="background:#ffd400"></span>window boundary</div>
+      <div><span style="background:#ff4d4d"></span>AI candidate (not ground truth)</div>
+      <div><span style="background:#4cc2ff"></span>saved to GeoPackage</div>
+      <div><span style="background:#5bd68a"></span>draft (autosaved)</div>
+      <div><span style="background:#ffb454"></span>unsure roof</div>
+      <div><span style="background:#ff4de0"></span>TRACED_EXTENT</div>
+      <div><span style="background:#888"></span>marked for removal</div>
+    </div>
+    <h3 style="margin-top:14px">Files</h3>
+    <div id="paths" style="color:var(--dim); font-size:12px; word-break:break-all"></div>
+  </aside>
+
+  <main id="stage">
+    <canvas id="cv"></canvas>
+    <div id="hint"></div>
+  </main>
+
+  <footer>
+    <span id="msg">Loading…</span>
+    <span id="coord"></span>
+    <span id="zoom"></span>
+    <span id="pending"></span>
+  </footer>
+</div>
+
+<dialog id="dlg">
+  <h3 style="margin-top:0">Review before writing to the GeoPackage</h3>
+  <pre id="preview">…</pre>
+  <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:12px">
+    <button id="dlgCancel">Close</button>
+    <button id="dlgGo" class="primary">Commit now</button>
+  </div>
+</dialog>
+
+<script>
+"use strict";
+const TOKEN = "__TOKEN__";
+const $ = id => document.getElementById(id);
+const S = { windows: [], cur: null, meta: null, img: null, feats: [], cands: [], winPx: [],
+            tool: "pan", scale: 1, ox: 0, oy: 0, drawing: [], mouse: null, sel: null, spaceDown: false };
+const cv = $("cv"), ctx = cv.getContext("2d");
+
+async function api(path, opts) {
+  const sep = path.includes("?") ? "&" : "?";
+  const r = await fetch(path + sep + "t=" + TOKEN, opts);
+  const ct = r.headers.get("content-type") || "";
+  const data = ct.includes("json") ? await r.json() : null;
+  if (!r.ok) throw new Error((data && data.error) || ("HTTP " + r.status));
+  return data;
+}
+const post = (path, body) => api(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+function say(text, cls) { const m = $("msg"); m.textContent = text; m.className = cls || ""; }
+
+/* ---------- geometry helpers (display only; saving converts on the server) ---------- */
+function toScreen(p) { return [p[0] * S.scale + S.ox, p[1] * S.scale + S.oy]; }
+function toImg(sx, sy) { return [(sx - S.ox) / S.scale, (sy - S.oy) / S.scale]; }
+function pip(pt, ring) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i], [xj, yj] = ring[j];
+    if (((yi > pt[1]) !== (yj > pt[1])) && (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi)) inside = !inside;
+  }
+  return inside;
+}
+function area(ring) { let a = 0; for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) a += ring[j][0] * ring[i][1] - ring[i][0] * ring[j][1]; return Math.abs(a / 2); }
+function mapXY(ix, iy) { const t = S.meta.transform; return [t[0] * ix + t[1] * iy + t[2], t[3] * ix + t[4] * iy + t[5]]; }
+
+/* ---------- drawing ---------- */
+function resize() {
+  const dpr = window.devicePixelRatio || 1, r = cv.getBoundingClientRect();
+  cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); draw();
+}
+function pathRing(ring, close) {
+  ring.forEach((p, i) => { const [x, y] = toScreen(p); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+  if (close) ctx.closePath();
+}
+function strokePoly(rings, color, fillAlpha, width, dash) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width || 1.5; ctx.setLineDash(dash || []);
+  ctx.beginPath(); rings.forEach(r => pathRing(r, true));
+  if (fillAlpha) { ctx.fillStyle = color; ctx.globalAlpha = fillAlpha; ctx.fill("evenodd"); ctx.globalAlpha = 1; }
+  ctx.stroke(); ctx.restore();
+}
+function featColor(f) {
+  if (f.removed) return "#888888";
+  if (f.kind === "extent") return "#ff4de0";
+  if ((f.note || "").toLowerCase().includes("unsure")) return "#ffb454";
+  return f.source === "draft" ? "#5bd68a" : "#4cc2ff";
+}
+function draw() {
+  const r = cv.getBoundingClientRect(); ctx.clearRect(0, 0, r.width, r.height);
+  if (!S.img || !S.meta) return;
+  ctx.save();
+  ctx.filter = `brightness(${$("bright").value}%) contrast(${$("contrast").value}%)`;
+  ctx.imageSmoothingEnabled = S.scale < 4;
+  ctx.drawImage(S.img, S.ox, S.oy, S.meta.width * S.scale, S.meta.height * S.scale);
+  ctx.restore();
+  if ($("showCand").checked) S.cands.forEach(c => strokePoly(c.rings, "#ff4d4d", 0.10, 1.2));
+  if ($("showRef").checked) {
+    S.feats.forEach(f => {
+      const sel = S.sel === f.uid;
+      strokePoly(f.rings, featColor(f), f.kind === "extent" ? 0.04 : 0.18, sel ? 3 : 1.8, (f.kind === "extent" || f.removed) ? [8, 5] : []);
+    });
+  }
+  strokePoly(S.winPx.map(x => x), "#ffd400", 0, 2, [10, 6]);
+  if (S.drawing.length) {
+    const col = S.tool === "extent" ? "#ff4de0" : ($("unsure").checked ? "#ffb454" : "#ffffff");
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); pathRing(S.drawing, false);
+    if (S.mouse) { const [x, y] = S.mouse; ctx.lineTo(x, y); }
+    ctx.stroke();
+    S.drawing.forEach((p, i) => { const [x, y] = toScreen(p); ctx.fillStyle = i === 0 ? "#ffd400" : col; ctx.beginPath(); ctx.arc(x, y, i === 0 ? 5 : 3, 0, 7); ctx.fill(); });
+    ctx.restore();
+  }
+  $("zoom").textContent = `zoom ×${S.scale.toFixed(2)}`;
+}
+function fit() {
+  if (!S.meta) return; const r = cv.getBoundingClientRect();
+  S.scale = Math.min(r.width / S.meta.width, r.height / S.meta.height) * 0.96;
+  S.ox = (r.width - S.meta.width * S.scale) / 2; S.oy = (r.height - S.meta.height * S.scale) / 2; draw();
+}
+
+/* ---------- loading ---------- */
+async function loadState() {
+  const st = await api("/api/state"); S.windows = st.windows;
+  $("paths").textContent = `GeoPackage: ${st.gpkg}\nDraft: ${st.draft_path}\nBackups: ${st.backup_dir}`;
+  $("pending").textContent = `pending: ${st.pending_new} new, ${st.pending_removed} removals`;
+  const box = $("winlist"); box.textContent = "";
+  st.windows.forEach(w => {
+    const b = document.createElement("button"); b.className = "win" + (w.window_id === S.cur ? " sel" : "");
+    const id = document.createElement("div"); id.className = "id"; id.textContent = w.window_id;
+    const bd = document.createElement("span"); bd.className = "badge " + (w.complete ? "done" : "todo"); bd.textContent = w.complete ? "complete" : "in progress";
+    id.appendChild(bd);
+    const m = document.createElement("div"); m.className = "meta";
+    m.textContent = `${w.role || ""} · ${w.roofs} roofs (${w.unsure} unsure) · extent ${w.extents}` + (w.n_pred != null ? ` · AI blobs ${w.n_pred}` : "");
+    b.append(id, m); b.onclick = () => openWindow(w.window_id); box.appendChild(b);
+  });
+  const w = S.windows.find(x => x.window_id === S.cur);
+  $("complete").checked = !!(w && w.complete);
+}
+async function openWindow(wid, keepView) {
+  const meta = await api("/api/window/" + encodeURIComponent(wid));
+  const view = keepView ? { s: S.scale, x: S.ox, y: S.oy } : null;
+  S.cur = wid; S.meta = meta; S.feats = meta.features; S.cands = meta.candidates; S.winPx = meta.window_px;
+  S.drawing = []; S.sel = null;
+  await new Promise((res, rej) => {
+    const im = new Image(); im.onload = () => { S.img = im; res(); }; im.onerror = () => rej(new Error("image failed to load"));
+    im.src = `/api/window/${encodeURIComponent(wid)}/image.png?t=${TOKEN}&v=${Date.now()}`;
+  });
+  if (view) { S.scale = view.s; S.ox = view.x; S.oy = view.y; draw(); } else fit();
+  await loadState();
+  say(`${wid}: ${meta.width}×${meta.height} px crop at EPSG:32644. Pick 'Trace roof' (2) and click the roof corners.`);
+  setTool(S.tool);
+}
+const refresh = () => openWindow(S.cur, true);
+
+/* ---------- tools ---------- */
+function setTool(t) {
+  S.tool = t; S.drawing = [];
+  document.querySelectorAll("#tools button").forEach(b => b.classList.toggle("active", b.dataset.tool === t));
+  cv.style.cursor = t === "pan" ? "grab" : (t === "select" ? "pointer" : "crosshair");
+  const h = { pan: "Drag to pan, wheel to zoom.",
+    roof: "Click each roof corner. Close with Enter, double-click, or by clicking the yellow first vertex. Backspace removes the last vertex, Esc cancels.",
+    extent: "Draw the area you finished tracing (saved as TRACED_EXTENT; not counted as a roof).",
+    select: "Click a polygon, then Delete / 'Toggle unsure'." }[t];
+  $("hint").textContent = h; draw();
+}
+async function finishPolygon() {
+  if (S.drawing.length < 3) { say("Need at least 3 vertices.", "err"); return; }
+  const kind = S.tool === "extent" ? "extent" : "roof";
+  try {
+    const r = await post("/api/draft/add", { window_id: S.cur, kind, unsure: $("unsure").checked && kind === "roof", pixels: S.drawing });
+    S.drawing = []; say(`Saved ${kind} (${r.area_m2} m²) to the draft.`, "ok"); await refresh();
+  } catch (e) { say(e.message, "err"); }
+}
+function hit(p) {
+  const hits = S.feats.filter(f => pip(p, f.rings[0])).sort((a, b) => area(a.rings[0]) - area(b.rings[0]));
+  return hits.length ? hits[0] : null;
+}
+async function deleteSelected() {
+  const f = S.feats.find(x => x.uid === S.sel); if (!f) { say("Nothing selected.", "err"); return; }
+  try {
+    if (f.source === "committed") {
+      if (f.removed) { await post("/api/draft/restore", { uid: f.uid }); say("Restored.", "ok"); }
+      else {
+        if (!confirm("This polygon is already saved in the GeoPackage. Mark it for removal at the next commit?")) return;
+        await post("/api/draft/delete", { uid: f.uid, confirm_committed: true }); say("Marked for removal (applies at commit).", "ok");
+      }
+    } else { await post("/api/draft/delete", { uid: f.uid }); say("Deleted draft polygon.", "ok"); }
+    S.sel = null; await refresh();
+  } catch (e) { say(e.message, "err"); }
+}
+
+/* ---------- mouse / keyboard ---------- */
+let drag = null;
+cv.addEventListener("mousedown", e => {
+  const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  drag = { x, y, ox: S.ox, oy: S.oy, moved: false, pan: e.button === 1 || e.button === 2 || S.tool === "pan" || S.spaceDown };
+  if (drag.pan) cv.style.cursor = "grabbing";
+});
+window.addEventListener("mousemove", e => {
+  const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top; S.mouse = [x, y];
+  if (S.meta) { const p = toImg(x, y), m = mapXY(p[0], p[1]); $("coord").textContent = `E ${m[0].toFixed(2)}  N ${m[1].toFixed(2)}  (display only)`; }
+  if (drag) {
+    const dx = x - drag.x, dy = y - drag.y; if (Math.hypot(dx, dy) > 4) drag.moved = true;
+    if (drag.pan && drag.moved) { S.ox = drag.ox + dx; S.oy = drag.oy + dy; }
+  }
+  draw();
+});
+window.addEventListener("mouseup", e => {
+  if (!drag) return; const d = drag; drag = null; cv.style.cursor = S.tool === "pan" ? "grab" : (S.tool === "select" ? "pointer" : "crosshair");
+  if (d.moved || e.button !== 0 || !S.meta || e.target !== cv) return;
+  const p = toImg(d.x, d.y);
+  if (S.tool === "select") { const f = hit(p); S.sel = f ? f.uid : null; say(f ? `Selected ${f.kind} (${f.source}${f.removed ? ", marked for removal" : ""}).` : "No polygon here."); draw(); return; }
+  if (S.tool === "roof" || S.tool === "extent") {
+    if (S.drawing.length >= 3) { const [fx, fy] = toScreen(S.drawing[0]); if (Math.hypot(fx - d.x, fy - d.y) < 10) { finishPolygon(); return; } }
+    const last = S.drawing[S.drawing.length - 1];
+    if (!last || Math.hypot(...[0, 1].map(i => (last[i] - p[i]) * S.scale)) > 2) S.drawing.push(p);
+    draw();
+  }
+});
+cv.addEventListener("dblclick", e => { if ((S.tool === "roof" || S.tool === "extent") && S.drawing.length >= 3) finishPolygon(); });
+cv.addEventListener("contextmenu", e => e.preventDefault());
+cv.addEventListener("wheel", e => {
+  e.preventDefault(); const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+  const f = e.deltaY < 0 ? 1.18 : 1 / 1.18, ns = Math.min(40, Math.max(0.3, S.scale * f)), k = ns / S.scale;
+  S.ox = x - (x - S.ox) * k; S.oy = y - (y - S.oy) * k; S.scale = ns; draw();
+}, { passive: false });
+window.addEventListener("keydown", e => {
+  if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName) && document.activeElement.type !== "checkbox" && document.activeElement.type !== "range") return;
+  if (e.key === " ") { S.spaceDown = true; e.preventDefault(); }
+  else if (e.key === "1") setTool("pan"); else if (e.key === "2") setTool("roof");
+  else if (e.key === "3") setTool("extent"); else if (e.key === "4") setTool("select");
+  else if (e.key === "u" || e.key === "U") { $("unsure").checked = !$("unsure").checked; draw(); }
+  else if (e.key === "c" || e.key === "C") { $("showCand").checked = !$("showCand").checked; draw(); }
+  else if (e.key === "Enter") { if (S.drawing.length) finishPolygon(); }
+  else if (e.key === "Escape") { S.drawing = []; S.sel = null; draw(); }
+  else if (e.key === "Backspace") { if (S.drawing.length) { S.drawing.pop(); draw(); e.preventDefault(); } }
+  else if (e.key === "Delete") deleteSelected();
+});
+window.addEventListener("keyup", e => { if (e.key === " ") S.spaceDown = false; });
+window.addEventListener("resize", resize);
+
+/* ---------- buttons ---------- */
+document.querySelectorAll("#tools button").forEach(b => b.onclick = () => setTool(b.dataset.tool));
+$("finish").onclick = finishPolygon; $("cancel").onclick = () => { S.drawing = []; draw(); };
+$("fit").onclick = fit; $("delSel").onclick = deleteSelected;
+["showCand", "showRef", "bright", "contrast", "unsure"].forEach(id => $(id).addEventListener("input", draw));
+$("undoSaved").onclick = async () => {
+  const drafts = S.feats.filter(f => f.source === "draft"); if (!drafts.length) { say("No uncommitted polygon to undo.", "err"); return; }
+  try { await post("/api/draft/delete", { uid: drafts[drafts.length - 1].uid }); say("Removed the last saved draft polygon.", "ok"); await refresh(); } catch (e) { say(e.message, "err"); }
+};
+$("toggleUnsure").onclick = async () => {
+  const f = S.feats.find(x => x.uid === S.sel); if (!f) { say("Select a polygon first.", "err"); return; }
+  try { await post("/api/draft/unsure", { uid: f.uid, unsure: !(f.note || "").toLowerCase().includes("unsure") }); await refresh(); } catch (e) { say(e.message, "err"); }
+};
+$("wholeExtent").onclick = async () => {
+  if (!confirm(`Use the entire ${S.cur} window as its traced extent? Only do this if you traced every roof in it.`)) return;
+  try { await post("/api/draft/extent_whole", { window_id: S.cur }); say("Whole window saved as TRACED_EXTENT (draft).", "ok"); await refresh(); } catch (e) { say(e.message, "err"); }
+};
+$("complete").onchange = async () => {
+  try { await post("/api/window/complete", { window_id: S.cur, complete: $("complete").checked }); await loadState(); say($("complete").checked ? `${S.cur} marked complete (takes effect for evaluation after commit).` : `${S.cur} marked in progress.`, "ok"); }
+  catch (e) { $("complete").checked = !$("complete").checked; say(e.message, "err"); }
+};
+$("commit").onclick = async () => {
+  const dlg = $("dlg"), pre = $("preview"); pre.textContent = "Checking…"; dlg.showModal();
+  try {
+    const p = await api("/api/commit/preview");
+    const L = [];
+    L.push(`Target: ${p.gpkg}`, `Backup folder: ${p.backup_dir}`, "");
+    L.push(`Saved polygons now : ${p.existing_total}`, `New polygons       : ${p.new_total}`, `Marked for removal : ${p.removed.length}`, `Total after commit : ${p.total_after}`);
+    if (p.duplicates_skipped) L.push(`Duplicates skipped  : ${p.duplicates_skipped}`);
+    L.push("", "New per window:");
+    const keys = Object.keys(p.new_by_window); if (!keys.length) L.push("  (none)");
+    keys.forEach(k => { const d = p.new_by_window[k]; L.push(`  ${k}: ${d.roofs} roofs (${d.unsure} unsure), ${d.extents} extent`); });
+    L.push("", `Windows marked complete (scored by evaluation): ${p.complete_windows.join(", ") || "none"}`,
+           `'windows' layer fingerprint (must stay the same): ${p.windows_layer_digest}`);
+    if (p.warnings.length) L.push("", "Warnings:", ...p.warnings.map(x => "  ! " + x));
+    if (p.errors.length) L.push("", "BLOCKING PROBLEMS:", ...p.errors.map(x => "  X " + x));
+    L.push("", "Only the reference_buildings layer is rewritten. All other layers are verified identical before the file is replaced.");
+    pre.textContent = L.join("\n"); $("dlgGo").disabled = p.errors.length > 0;
+  } catch (e) { pre.textContent = "Error: " + e.message; $("dlgGo").disabled = true; }
+};
+$("dlgCancel").onclick = () => $("dlg").close();
+$("dlgGo").onclick = async () => {
+  $("dlgGo").disabled = true;
+  try {
+    const r = await post("/api/commit", { confirm: "COMMIT" });
+    $("preview").textContent = `Committed.\n\nNew polygons written: ${r.committed_new}\nRemoved: ${r.removed}\nTotal in layer: ${r.total_in_layer}\nBackup: ${r.backup || "(no change to GeoPackage; nothing to back up)"}\n'windows' layer unchanged: ${r.windows_layer_unchanged ? 'yes (verified)' : 'NO - RESTORE FROM THE BACKUP ABOVE'}\nWindow status file: ${r.status_file}\nComplete windows: ${r.complete_windows.join(", ") || "none"}`;
+    say("Commit finished and verified.", "ok"); await refresh();
+  } catch (e) { $("preview").textContent = "Commit failed - nothing was changed.\n\n" + e.message; say("Commit failed: " + e.message, "err"); $("dlgGo").disabled = false; }
+};
+
+/* ---------- start ---------- */
+(async function () {
+  try {
+    resize(); await loadState();
+    if (!S.windows.length) { say("No windows found in the GeoPackage.", "err"); return; }
+    const first = S.windows.find(w => !w.complete) || S.windows[0];
+    await openWindow(first.window_id); setTool("roof");
+  } catch (e) { say("Startup error: " + e.message, "err"); }
+})();
+</script>
+</body>
+</html>

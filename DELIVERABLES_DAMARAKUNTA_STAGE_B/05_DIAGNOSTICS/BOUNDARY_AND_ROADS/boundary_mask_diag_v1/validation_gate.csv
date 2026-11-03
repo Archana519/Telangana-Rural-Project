@@ -1,0 +1,8 @@
+check,rebuilt,expected,ok
+rebuilt component sizes equal road_components.csv,"[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]","[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]",True
+input hashes equal inputs_manifest_stageB.csv,"{'cost': True, 'worldcover': True, 'roads': True}",manifest,True
+road-line-covered cells,8061,8061,True
+road cells dropped as impassable,1567,1567,True
+road cells invalid-cost AND prohibited>0,1564,1564,True
+blocked chain cells in chain csv,36,36,True
+every chain cell is in set B,36,36,True

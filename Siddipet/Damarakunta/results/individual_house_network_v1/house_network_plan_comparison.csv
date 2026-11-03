@@ -1,0 +1,4 @@
+plan,targets_routed,targets_total,total_len_m,unique_len_m,shared_len_m,unique_cost,weighted_benefit,facilities_served,cluster_buildings_served,infeasible_routes
+network_aware,163,163,5231.6,5231.5,0.0,28700.3,163.0,0,0,0
+independent_least_cost,163,163,10047.6,6755.4,3292.3,33887.7,163.0,0,0,0
+straight_line,163,163,8015.1,8015.1,0.0,,163.0,0,0,2

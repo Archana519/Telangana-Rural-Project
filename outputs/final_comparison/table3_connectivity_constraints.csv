@@ -1,0 +1,3 @@
+configuration,targets,failed,planner_verified_connected,cell_graph_connected,reach_main_component_raster,hard_constraint_violations,routes_crossing_without_shared_cell,cycles,max_chain_depth,network_len_slope_gt25_m,network_len_slope_gt10_m,network_len_in_penalised_cells_m,network_routes_crossing_other_footprints_houses,network_routes_crossing_other_footprints_all,reach_main_component_road_lines
+x4 (primary),168,0,168,168,167,0,0,0,9,0.0,44.1,614.9,28,31,168.0
+x1 (P3 control),168,0,168,168,167,0,0,0,10,0.0,44.1,0.0,56,60,

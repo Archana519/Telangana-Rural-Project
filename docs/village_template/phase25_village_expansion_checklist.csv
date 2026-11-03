@@ -1,0 +1,20 @@
+stage,requirement,purpose,required_for_new_village
+1,Village study-area boundary,Defines the rural village study extent,YES
+2,Real village satellite imagery,Primary imagery input for the village,YES
+3,Georeferenced / aligned imagery,Places imagery in the project coordinate system,YES
+4,DEM,Provides terrain/elevation information,YES
+5,Land-cover data,Supports land-use and routing-cost analysis,YES
+6,Reference GIS data,Provides existing roads and available facility/reference information,YES
+7,StrongDINOv2Seg inference,Provides AI-based segmentation for the village,YES
+8,Building and road extraction,Extracts infrastructure features from segmentation,YES
+9,Public-service facility identification,"Identifies schools, healthcare and government/public-service facilities",YES
+10,Accessibility-gap analysis,Measures facility/structure relationship to the existing road network,YES
+11,Priority assignment,"Applies public-service, residential and well-connected priority groups",YES
+12,Cost surface,Combines land-cover and terrain constraints for route planning,YES
+13,Candidate route generation,Generates possible new connections,YES
+14,Existing-road comparison,Separates candidate connections from existing-road proximity,YES
+15,Multi-criteria route evaluation,Evaluates candidate routes using multiple planning criteria,YES
+16,Before/after connectivity analysis,Compares planning-model connectivity before and after a proposed connection,YES
+17,Ablation study,Tests the effect of removing selected evaluation criteria,YES
+18,Sensitivity analysis,Tests route-selection stability under alternative weights,YES
+19,Final GIS outputs,"Produces maps, spatial layers and planning results",YES

@@ -1,0 +1,141 @@
+{
+  "params": {
+    "tag": "full",
+    "pred_dir": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\predictions\\tiled_v1",
+    "raster": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "boundary": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\study_area\\damarakunta_boundary.gpkg",
+    "windows_gpkg": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v6_buildings\\reference\\digitize_windows.gpkg",
+    "v6": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v6_buildings\\candidate_buildings_full.gpkg",
+    "v7": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v7_instances\\buildings_v7_full.gpkg",
+    "out_dir": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\results\\v8_instances",
+    "out_name": null,
+    "diagnose": false,
+    "prob_thr": null,
+    "min_area_m2": 6.0,
+    "small_flag_m2": 15.0,
+    "low_conf": 0.5,
+    "neck_ratio": 0.65,
+    "seed_h_m": 0.3,
+    "smooth_px": 1.0,
+    "split_min_m2": 40.0,
+    "min_piece_m2": 12.0,
+    "unresolved_factor": 4.0,
+    "nodata_dilate_px": 7,
+    "nodata_reject_frac": 0.5,
+    "isolated_m": 50.0,
+    "overwrite": false,
+    "no_overlays": false
+  },
+  "reference_roof_area_m2": 80.1,
+  "components": 228,
+  "components_inside_village": 115,
+  "components_split": 34,
+  "instances": 278,
+  "instances_inside_village": 165,
+  "rejected_nodata": 10,
+  "quality_class": {
+    "PLAUSIBLE": 135,
+    "UNRESOLVED_MERGE": 84,
+    "REVIEW": 59
+  },
+  "flag_counts": {
+    "SPLIT_AT_NECK": 94,
+    "SMALL": 7,
+    "UNRESOLVED_MERGE": 84,
+    "COMPLEX_SHAPE": 0,
+    "LOW_CONF": 50,
+    "ISOLATED": 17,
+    "NEAR_NODATA": 2,
+    "EDGE_OF_MOSAIC": 3
+  },
+  "area_m2_percentiles_10_50_90_99": [
+    37.1,
+    170.5,
+    731.4,
+    2815.1
+  ],
+  "neck_ratio_sensitivity": {
+    "0.4": {
+      "instances": 246,
+      "components_split": 11
+    },
+    "0.5": {
+      "instances": 260,
+      "components_split": 20
+    },
+    "0.65": {
+      "instances": 288,
+      "components_split": 34
+    },
+    "0.8": {
+      "instances": 319,
+      "components_split": 45
+    },
+    "1.0": {
+      "instances": 365,
+      "components_split": 57
+    },
+    "none": {
+      "instances": 228,
+      "components_split": 0
+    }
+  },
+  "threshold_diagnostics": [
+    {
+      "threshold": "argmax==2",
+      "fg_pixels": 268596,
+      "components_ge6m2": 218,
+      "inside_village": 114,
+      "median_area_m2": 149.9,
+      "p90_area_m2": 728.6,
+      "share_area_in_comps_gt400": 0.748
+    },
+    {
+      "threshold": "prob>=0.40",
+      "fg_pixels": 354418,
+      "components_ge6m2": 186,
+      "inside_village": 96,
+      "median_area_m2": 185.2,
+      "p90_area_m2": 1075.5,
+      "share_area_in_comps_gt400": 0.856
+    },
+    {
+      "threshold": "prob>=0.50",
+      "fg_pixels": 212752,
+      "components_ge6m2": 233,
+      "inside_village": 132,
+      "median_area_m2": 120.6,
+      "p90_area_m2": 624.0,
+      "share_area_in_comps_gt400": 0.693
+    },
+    {
+      "threshold": "prob>=0.60",
+      "fg_pixels": 124751,
+      "components_ge6m2": 233,
+      "inside_village": 154,
+      "median_area_m2": 91.4,
+      "p90_area_m2": 428.3,
+      "share_area_in_comps_gt400": 0.525
+    },
+    {
+      "threshold": "prob>=0.70",
+      "fg_pixels": 61018,
+      "components_ge6m2": 176,
+      "inside_village": 125,
+      "median_area_m2": 60.7,
+      "p90_area_m2": 272.5,
+      "share_area_in_comps_gt400": 0.338
+    },
+    {
+      "threshold": "prob>=0.80",
+      "fg_pixels": 19015,
+      "components_ge6m2": 76,
+      "inside_village": 59,
+      "median_area_m2": 51.3,
+      "p90_area_m2": 225.2,
+      "share_area_in_comps_gt400": 0.228
+    }
+  ],
+  "seconds": 37.8,
+  "note": "UNVERIFIED model predictions; not a house count; accuracy unmeasured until scored against traced windows"
+}

@@ -1,0 +1,159 @@
+{
+  "run_key": "S1_fac_C0_s10_final",
+  "scenario": "S1",
+  "n_house_targets": 101,
+  "n_facility_targets": 5,
+  "slope_limit_deg": 10.0,
+  "cost_scenario": "C0",
+  "building_quality": [
+    "PLAUSIBLE",
+    "REVIEW",
+    "UNRESOLVED_MERGE"
+  ],
+  "building_mult": 4.0,
+  "houses_primary": {
+    "n": 99,
+    "total_len_m": 3339.381554588687,
+    "unique_len_m": 3339.3743417595233,
+    "shared_len_m": 0.007212829163563583,
+    "unique_cost": 18339.463635605425,
+    "total_cost": 18339.463635605425
+  },
+  "facilities_primary": {
+    "n": 5,
+    "total_len_m": 249.30854131895782,
+    "unique_len_m": 249.30922061357856,
+    "shared_len_m": -0.0006792946207383466,
+    "unique_cost": 897.253990917779,
+    "total_cost": 897.253990917779
+  },
+  "combined_primary": {
+    "n": 104,
+    "total_len_m": 3588.6900959076443,
+    "unique_len_m": 3588.683562373102,
+    "shared_len_m": 0.006533534542086272,
+    "unique_cost": 19236.717626523205,
+    "total_cost": 19236.7176265232
+  },
+  "houses_independent_baseline": {
+    "n": 99,
+    "total_len_m": 6220.083188025966,
+    "unique_len_m": 4469.798410471456,
+    "shared_len_m": 1750.2847775545097,
+    "unique_cost": 21774.11073935879,
+    "total_cost": 27177.20220252205
+  },
+  "facilities_independent_baseline": {
+    "n": 5,
+    "total_len_m": 259.7568835170342,
+    "unique_len_m": 259.7570849898476,
+    "shared_len_m": -0.00020147281338722678,
+    "unique_cost": 915.0503679011213,
+    "total_cost": 915.0503679011213
+  },
+  "combined_independent_baseline": {
+    "n": 104,
+    "total_len_m": 6479.840071542999,
+    "unique_len_m": 4685.413359837573,
+    "shared_len_m": 1794.426711705426,
+    "unique_cost": 22542.79649660072,
+    "total_cost": 28092.25257042317
+  },
+  "credit_vs_independent_unique_cost_combined": 8855.534943899966,
+  "houses_straight_line": {
+    "n": 101,
+    "total_len_m": 5446.0788590907305,
+    "infeasible": 2
+  },
+  "houses_length_only": {
+    "n": 99,
+    "total_len_m": 5716.322228624737,
+    "unique_len_m": 4883.506376115487,
+    "shared_len_m": 832.8158525092504,
+    "unique_cost": 4537.4617136804,
+    "total_cost": 5370.304426155012
+  },
+  "length_only_control": {
+    "pass_mask_identical": true,
+    "same_start_cell": "101/101",
+    "verified": true
+  },
+  "houses_roads_only_reference": {
+    "n": 99,
+    "total_len_m": 3461.4950142067833,
+    "unique_len_m": 3461.495019878178,
+    "shared_len_m": -5.671394774253713e-06,
+    "unique_cost": 18638.997424344307,
+    "total_cost": 18638.997424344307
+  },
+  "facility_effect_on_house_unique_len_m": 122.12067811865472,
+  "facility_effect_note": "positive = fewer NEW house-route metres because houses can attach to facility routes; facility routes themselves are counted separately",
+  "combined_primary_vs_separate_unique_len_m": {
+    "combined_primary": 3588.683562373102,
+    "facilities_plus_roads_only_houses": 3710.8042404917564
+  },
+  "failures_primary": {
+    "TARGET_IN_HARD_CONSTRAINT_CELL_OR_OUTSIDE_GRID": 2
+  },
+  "failures_facilities": {},
+  "attach_class_counts_primary_houses": {
+    "ROAD": 57,
+    "FACILITY_ROUTE": 4,
+    "HOUSE_ROUTE": 38
+  },
+  "attach_class_counts_facilities": {
+    "ROAD": 4,
+    "FACILITY_ROUTE": 1
+  },
+  "connectivity": {
+    "routed_total": 104,
+    "terminal_road": 104,
+    "reach_main_component": 103,
+    "max_chain_depth": 9,
+    "cycles": 0,
+    "planner_verified_connected": 104,
+    "cell_graph_connected": 104,
+    "routes_with_crossing_no_shared_cell": 0,
+    "road_goal_cells": 6430,
+    "road_components": 13,
+    "road_component_sizes": [
+      6078,
+      159,
+      62,
+      28,
+      24,
+      23,
+      13,
+      13,
+      10,
+      9,
+      5,
+      4,
+      2
+    ]
+  },
+  "world": {
+    "grid": [
+      432,
+      679
+    ],
+    "resolution_m": 10.0,
+    "penalised_cells_all": 966,
+    "penalised_cells_valid": 748,
+    "road_cells_total": {
+      "total": 6541,
+      "passable": 6430,
+      "dropped_impassable": 111
+    },
+    "slope_check": {
+      "path": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+      "forbidden_share": 0.008089919816723941,
+      "limit_deg": 10.0,
+      "forbidden_cells_with_valid_cost": 2317
+    },
+    "notes": [
+      "2317 cells exceed the slope limit but have a VALID cost: the cost surface does not exclude them; the planner now does"
+    ]
+  },
+  "baseline_note": "roads-only reference"
+}

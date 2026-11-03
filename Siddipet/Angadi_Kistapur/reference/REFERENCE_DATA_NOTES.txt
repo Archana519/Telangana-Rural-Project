@@ -1,0 +1,45 @@
+ANGADI KISTAPUR — GIS REFERENCE DATA NOTES
+==========================================
+
+Study Area:
+Angadi Kistapur, Markook Mandal, Siddipet District, Telangana, India.
+
+Reference Road Network:
+- Source: TGRAC District / Village Road Network
+- Layer: SchoolGIS_Folder/Schools/MapServer/20
+- 23 road segments intersect the verified Angadi Kistapur village boundary.
+- Road attributes include road type, road subtype, road ID, source length,
+  road code and related fields.
+- These roads are treated as REFERENCE DATA, not ground truth.
+
+Public-Service Facility Reference:
+- TGRAC Anganwadi layer returned 1 record spatially inside the verified
+  Angadi Kistapur village boundary.
+- Facility name: Ganeshapally (Mini)
+- Habitation: GANESHPALLY
+- TGRAC Village_Name attribute: CHEBARTHI
+- The point is spatially inside the Angadi Kistapur boundary.
+- The administrative village/habitation attributes do not match the
+  study-area village name.
+- Therefore, retain the original TGRAC attributes and treat this facility
+  as a SPATIALLY LOCATED REFERENCE FACILITY with an administrative-name
+  mismatch.
+- Do not rename the facility or alter its original attributes.
+
+Health Facilities:
+- No TGRAC Health Facility records intersected the queried village extent.
+
+Health Sub-Centres:
+- No TGRAC Sub-Centre records intersected the queried village extent.
+
+Abadi Roads:
+- No records were returned for the queried Angadi Kistapur extent.
+
+Building Roof Reference:
+- No records were returned for the queried Angadi Kistapur extent.
+
+Methodological Decision:
+- TGRAC reference layers are not treated as ground truth.
+- AI-derived building and road outputs will be evaluated separately.
+- External/reference datasets will retain source information and uncertainty.
+- Sensitive personal/household attributes will not be used or published.

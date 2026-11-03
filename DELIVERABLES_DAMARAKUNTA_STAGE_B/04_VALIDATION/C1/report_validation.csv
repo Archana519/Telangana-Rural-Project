@@ -1,0 +1,50 @@
+id,status,name,detail
+V01 C1_report.md,PASS,file exists and is non-empty,32076
+V01 figures/fig1_length_and_per_routed.png,PASS,file exists and is non-empty,77636
+V01 figures/fig2_length_inside_omitted_footprints.png,PASS,file exists and is non-empty,71455
+V02,PASS,no empty files in the report folder,
+V03,PASS,no NaN/inf/NOT FOUND/TODO/placeholder tokens in the report,
+V04,PASS,14 numbered sections present,"['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']"
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,5137.71
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,31.52
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,23.95
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,311.34
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,3890.60
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,31.89
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,23.75
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,311.34
+V10 omit_small P10 2,PASS,scenario value from CSV appears in the report,4717.53
+V10 omit_small P10 2,PASS,scenario value from CSV appears in the report,32.31
+V10 omit_small P10 2,PASS,scenario value from CSV appears in the report,23.83
+V10 omit_small P10 2,PASS,scenario value from CSV appears in the report,311.34
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,3627.87
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,35.92
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,25.67
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,303.72
+V11 omit_small P25,PASS,exposure value from CSV appears with 2 decimals,25.86
+V11 omit_small P25,PASS,exposure value from CSV appears with 2 decimals,33.31
+V11 omit_small P10,PASS,exposure value from CSV appears with 2 decimals,14.95
+V11 omit_small P10,PASS,exposure value from CSV appears with 2 decimals,3.60
+V11 omit_merge,PASS,exposure value from CSV appears with 2 decimals,52.60
+V11 omit_merge,PASS,exposure value from CSV appears with 2 decimals,177.99
+V12 Primary baseline (building penalty x4),PASS,C07 summary equals validation CSV,10 PASS / 2 INFO
+V13 Primary baseline (building penalty x4),PASS,omitted counts reconcile to 163 in every run,
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,4761.73
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,29.21
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,31.22
+V10 Baseline 2,PASS,scenario value from CSV appears in the report,291.34
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,3580.23
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,29.35
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,29.37
+V10 omit_small P25 2,PASS,scenario value from CSV appears in the report,291.34
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,3425.66
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,33.92
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,29.64
+V10 omit_merge 2,PASS,scenario value from CSV appears in the report,291.34
+V11 omit_small P25,PASS,exposure value from CSV appears with 2 decimals,40.18
+V11 omit_small P25,PASS,exposure value from CSV appears with 2 decimals,27.94
+V11 omit_merge,PASS,exposure value from CSV appears with 2 decimals,148.28
+V11 omit_merge,PASS,exposure value from CSV appears with 2 decimals,113.53
+V12 P3 baseline (no building penalty),PASS,C07 summary equals validation CSV,8 PASS / 0 INFO
+V13 P3 baseline (no building penalty),PASS,omitted counts reconcile to 163 in every run,
+V14,PASS,built-up cost 3.0 no longer listed as a provisional setting of these runs,

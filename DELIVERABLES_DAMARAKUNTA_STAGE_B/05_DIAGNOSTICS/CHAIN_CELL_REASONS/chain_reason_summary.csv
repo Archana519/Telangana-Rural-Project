@@ -1,0 +1,14 @@
+chain_component,centre_in_polygon,invalid_reason,reason_status,n_cells
+2,False,centre_outside_polygon (WorldCover=0 and slope=nodata by align_damarakunta_terrain.py rule),OBSERVED_RULE_CONSISTENT,31
+2,True,inside_polygon: slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,1
+5,False,centre_outside_polygon (WorldCover=0 and slope=nodata by align_damarakunta_terrain.py rule),OBSERVED_RULE_CONSISTENT,3
+5,True,inside_polygon: slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,2
+5,True,inside_polygon: worldcover_nodata+slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,1
+6,False,centre_outside_polygon (WorldCover=0 and slope=nodata by align_damarakunta_terrain.py rule),OBSERVED_RULE_CONSISTENT,15
+6,True,inside_polygon: slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,1
+6,True,inside_polygon: worldcover_nodata+slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,2
+10,False,centre_outside_polygon (WorldCover=0 and slope=nodata by align_damarakunta_terrain.py rule),OBSERVED_RULE_CONSISTENT,33
+10,True,inside_polygon: slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,1
+10,True,inside_polygon: worldcover_nodata+slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,2
+11,True,inside_polygon: slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,4
+12,True,inside_polygon: slope_nodata,OBSERVED_flag_dem30_centre_cell_masked,3

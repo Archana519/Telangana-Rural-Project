@@ -1,0 +1,20 @@
+{
+  "created": "2026-10-24T14:59:35+00:00",
+  "service": "https://tgrac.telangana.gov.in/arcgis/rest/services/AdministrativeInfoSystem_Folder/Administrative_Information_System/MapServer",
+  "mandal_query": "MARKOOK",
+  "layers_used": [
+    27
+  ],
+  "villages_returned": 9,
+  "reference_village_area_km2": 18.46609227923426,
+  "dem_tiles_checked": [
+    "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\dem\\damarakunta_dem_clip.tif"
+  ],
+  "worldcover_tiles_checked": [
+    "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+    "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\landcover\\damarakunta_worldcover_clip.tif"
+  ],
+  "boundary_status": "UNVERIFIED: returned by the TGRAC service; not compared with an independent boundary source",
+  "not_known_from_this_script": "imagery availability, imagery licence, road/facility layers, building counts"
+}

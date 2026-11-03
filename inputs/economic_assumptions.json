@@ -1,0 +1,20 @@
+{
+  "_status": "ASSUMPTIONS, NOT PROJECT DATA. Replace with the State Schedule of Rates / PMGSY design values before any financial use. The project has no road-width, cross-section or cost data; none of these values was measured or verified.",
+  "rate_lakh_per_km": {
+    "central": 75.0,
+    "low": 60.0,
+    "high": 90.0,
+    "source": "central value supplied by the project owner as a PMGSY-based rate; not verified against a PMGSY document or a State SOR. Low/high are +/-20% for sensitivity only."
+  },
+  "pavement": {
+    "carriageway_width_m": 3.75,
+    "sub_base_gsb_thickness_m": 0.150,
+    "wbm_base_thickness_m": 0.150,
+    "bituminous_surface_thickness_m": 0.020,
+    "bitumen_kg_per_m2_total": 2.0,
+    "formation_width_m": 5.0,
+    "earthwork_average_depth_m": 0.30,
+    "loose_to_compact_factor_aggregate": 1.30,
+    "note": "Typical order-of-magnitude values for a single-lane rural road with a bituminous surface; bitumen rate is a round assumption covering tack, binder and seal coat."
+  }
+}

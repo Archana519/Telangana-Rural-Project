@@ -1,0 +1,3 @@
+cand_id,bld_id,comp_id,piece,n_in_comp,split_method,neck_ratio,area_m2,perimeter_m,solidity,compactness,mean_prob,max_prob,nodata_frac,edge_mosaic,est_roofs,nearest_m,flags,quality_class,inside_village,status,area_m2_numeric
+189,B8_00189,155,1,1,none,,7.2,12.0,0.93,0.628,0.4761,0.4824,0.0,False,1,1.8,SMALL;LOW_CONF,REVIEW,True,AUTO_DETECTED_UNVERIFIED,7.2
+202,B8_00202,165,1,1,none,,8.28,16.8,0.868,0.369,0.4994,0.5294,0.0,False,1,1.8,SMALL;LOW_CONF,REVIEW,True,AUTO_DETECTED_UNVERIFIED,8.28

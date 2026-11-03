@@ -1,0 +1,13 @@
+key,exists,kind,crs,res,size,valid_in_polygon,village_in_bounds,open_error,path
+raster,True,raster,EPSG:32644,"[0.6, 0.6]","(11296, 7171)",1.0,0.9999999960059188,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_esri_highres_mosaic_0p6m.tif
+roads,True,vector,,,"(None, None)",,,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\reference\tgrac_road_network.gpkg
+facilities,True,vector,,,"(None, None)",,,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\reference\damarakunta_priority_facilities.gpkg
+boundary,True,vector,,,"(None, None)",,,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\study_area\damarakunta_boundary.gpkg
+windows_gpkg,True,vector,,,"(None, None)",,,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v6_buildings\reference\digitize_windows.gpkg
+worldcover,True,raster,EPSG:32644,"[10.0, 10.0]","(679, 432)",0.9990359931977947,1.000000000000001,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_worldcover_10m.tif
+cost,True,raster,EPSG:32644,"[10.0, 10.0]","(679, 432)",0.9930894793280114,1.000000000000001,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_cost_surface_10m.tif
+pred_classes,True,raster,EPSG:32644,"[0.6, 0.6]","(11296, 7171)",1.0,0.9999999960059188,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\predictions\tiled_v1\pred_classes_full.tif
+building_prob,True,raster,EPSG:32644,"[0.6, 0.6]","(11296, 7171)",1.0,0.9999999960059188,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\predictions\tiled_v1\building_prob_full.tif
+scripts,True,directory,,,"(None, None)",,,,D:\Telangana_Rural_Project\scripts
+results_dir,True,directory,,,"(None, None)",,,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\results
+v8_dir,True,directory,,,"(None, None)",,,,D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\v8_instances

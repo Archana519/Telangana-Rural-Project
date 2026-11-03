@@ -1,0 +1,6 @@
+id,status,name,detail
+R01 houses,PASS,S2_fac_C0_s25_final_K3_P2 routes identical to S2_fac_C0_s25_final_x4 (houses),163/163 identical; counts 163 vs 163
+R01 facilities,PASS,S2_fac_C0_s25_final_K3_P2 routes identical to S2_fac_C0_s25_final_x4 (facilities),5/5 identical; counts 5 vs 5
+R02 unique_len_m,PASS,house unique/total length equal to reference,abs diff 0.000000000 m
+R02 total_len_m,PASS,house unique/total length equal to reference,abs diff 0.000000000 m
+R03,PASS,control uses the same k and passes as the reference,

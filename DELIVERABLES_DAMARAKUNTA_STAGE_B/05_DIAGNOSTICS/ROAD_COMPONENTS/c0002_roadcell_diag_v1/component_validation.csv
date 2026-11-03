@@ -1,0 +1,6 @@
+check,rebuilt,recorded,ok
+rebuilt road-cell total,6494,6494,True
+rebuilt component sizes equal road_components.csv,"[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]","[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]",True
+C0002 attachment-cell component equals connectivity_checks road_component,10,10,True
+"input hashes equal inputs_manifest_stageB.csv (cost, worldcover, roads)","{'cost': True, 'worldcover': True, 'roads': True}",manifest,True
+constraint rasters applied (on the cost grid),"{'water': True, 'prohibited': True, 'slope': True}","{'prohibited_raster': 'D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif', 'slope_raster': 'D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif', 'slope_limit_deg': 25.0, 'water_class': 80}",True

@@ -1,0 +1,156 @@
+--- C1_report_v1.md
++++ C1_report_v4.md
+@@ -3 +3 @@
+-Village: Damarakunta, Siddipet, Telangana (EPSG:32644). Generated 2026-10-29 18:02 by `dk_stageB_c1_report_v1.py` from existing outputs only.
++Village: Damarakunta, Siddipet, Telangana (EPSG:32644). Generated 2026-10-29 18:49 by `dk_stageB_c1_report_v4.py` from existing outputs only.
+@@ -101,0 +102,12 @@
++### 3.1 Settings used in these runs and their status
++
++| Setting | Value | Status |
++|---|---|---|
++| Cost scenario | C0 | Fixed: land-cover table `c0_land_cost` plus slope term, recorded in each config. The separate `C1` cost scenario (built-up cost 3.0, a provisional table in the runner) was NOT used (`c1_land_cost_json` = None); note that this `C1` is a cost scenario, unrelated to the contribution C1. |
++| Slope limit (hard) | 25.0 deg | Fixed setting for all runs. |
++| Building penalty | x4.0 on PLAUSIBLE,REVIEW,UNRESOLVED_MERGE | Design parameter (soft multiplier, not a fact). P3 repeats the experiment with multiplier 1.0. |
++| Target and facility weights | 1.0 for every house and facility | Design choice set in the Stage B runner (source inspection: `dk_stageB_run_v1_3.py` lines 498 and 506); the planner's own default weights (health 4, school 3, government 2) are not used in Stage B. |
++| Cadastral file | D:\Telangana_Rural_Project\Siddipet\Damarakunta\reference\damarakunta_cadastral_valid.gpkg | Used only for parcel-overlap metrics; routes do not depend on it. Repaired by make_valid; parcel counts are crossings of parcel units, not ownership. |
++| Slope data | Sobel slope from a ~30 m DEM, resampled to 10 m | Not genuine 10 m terrain detail (noted in the run configs). |
++| Costs | ordinal model units | Not money; no construction-cost claim is made. |
++
+@@ -132 +144 @@
+-The omission modes are deterministic; the `perturb_seed` value shown in the configs is not used by them. Run commands used:
++The omission modes are deterministic; the `perturb_seed` value shown in the configs is not used by them. The runs record their arguments and version in each `config_stageB.json`; the command lines below are **reconstructed from the working session**, not machine-recorded:
+@@ -135 +147,3 @@
+-scripts\dk_stageB_run_v1_3.py --scenario S2 --perturb omit_small --small-pct 25 | 10   (and --building-mult 1.0 --label P3_none for the P3 pair)
++scripts\dk_stageB_run_v1_3.py --scenario S2 --perturb omit_small --small-pct 25      (also --small-pct 10)
++scripts\dk_stageB_run_v1_3.py --scenario S2 --building-mult 1.0 --perturb omit_small --small-pct 25 --label P3_none
++scripts\dk_stageB_run_v1_3.py --scenario S2 --building-mult 1.0 --perturb omit_merge --label P3_none
+@@ -137,4 +151,5 @@
+-scripts\dk_stageB_c1_compare_v2.py ... --buildings <v8 buildings> --cost-raster <aligned cost surface>
+-scripts\dk_stageB_c1_footprint_eval_v1.py ...
+-scripts\dk_stageB_c1_omitted_exposure_v1.py ...
+-scripts\dk_stageB_c1_report_v1.py ...
++scripts\dk_stageB_c1_compare_v2.py --stageb-root $B --label c07fix_primary|c07fix_p3 --buildings <v8 buildings> --cost-raster <aligned cost surface> --baseline <baseline run> --runs <omission runs>
++scripts\dk_stageB_c1_footprint_eval_v1.py --label fp_primary|fp_p3 ... --ref-comparison <c07fix folder>\c1_scenario_comparison.csv
++scripts\dk_stageB_c1_omitted_exposure_v1.py --label ex_primary|ex_p3 ... --fp-summary <fp folder>\c1_footprint_crossings_full_set.csv
++scripts\dk_stageB_c2_ablation_summary_v1.py --stageb-root $B --label abl_v1 --reference S2_fac_C0_s25_v11 --same-config-control S2_fac_C0_s25_K3_P2 --runs <K1_P0 K1_P2 K3_P0 K3_P2 run labels>
++scripts\dk_stageB_c1_report_v4.py --stageb-root $B --label report_v4 --scripts-dir <scripts> --buildings <v8 buildings> --cost-raster <aligned cost surface> --v1-report <_c1_report_v1>\C1_report.md --c2-abl _c2_abl_v1
+@@ -141,0 +157,14 @@
++
++### 5.1 Runner versions and comparability
++
++| Run | Recorded runner version |
++|---|---|
++| S2_fac_C0_s25_v11 | dk_stageB_run v1.1 |
++| S2_fac_C0_s25_P3_none | dk_stageB_run v1.2 |
++| omit_small P25 (Primary) | dk_stageB_run v1.3 |
++| omit_small P10 (Primary) | dk_stageB_run v1.3 |
++| omit_merge (Primary) | dk_stageB_run v1.3 |
++| omit_small P25 (P3) | dk_stageB_run v1.3 |
++| omit_merge (P3) | dk_stageB_run v1.3 |
++
++Source comparison of the three runner scripts (hashes below): v1.1 to v1.2 adds the `--perturb`, `--perturb-frac`, `--perturb-seed`, `--add-min-m` and `--add-max-m` options and code gated by `--perturb != none`, plus lookups guarded by an index test that is always true for real candidates. v1.2 to v1.3 adds the `omit_small` and `omit_merge` modes, `--small-pct`, and branches gated by those modes. No change to routing, cost, penalty or evaluation code was found for `--perturb none`. The check C06 compared every baseline configuration key except the perturbation, label and path keys, and found no difference. **Empirical check:** the v1.3 runner was re-run with `--perturb none` and the primary-baseline settings (k=3, passes=2; run `S2_fac_C0_s25_K3_P2`). Its house and facility route geometries are identical to the primary baseline run recorded by v1.1 (163/163 identical; counts 163 vs 163; 4/4 identical; counts 4 vs 4) and its unique and total house lengths differ by 0 m (checks R01 to R03, Appendix A). **Still not verified:** an empirical re-run of the P3 baseline (recorded by v1.2); for it the conclusion rests on the static source comparison only.
+@@ -146,0 +176,2 @@
++| dk_stageB_run_v1_1.py | 48b87aa4c7d41a064566537dede74e2bf831ef8916eefba6500235c610fd9b2a |
++| dk_stageB_run_v1_2.py | 1fc317dc9074b721d6682805c51011baa2d35eda1c4590a9f08dfc26cf0ac525 |
+@@ -158,0 +190,4 @@
++| dk_stageB_c1_report_v2.py | 94514cb402bf51080b5a2d4bc366941f5da6a9b7841c89840ab4d103a6123983 |
++| dk_stageB_c2_ablation_summary_v1.py | a6ac7b4faddae7355e43cecbf11a6160789785cb91a8b9901a3017017715d9a3 |
++| dk_stageB_c1_report_v3.py | e95200c7ab07564dd2d35e7ca91ab7b2bf3d376c1f0277735dc2060c1677c2ac |
++| dk_stageB_c1_report_v4.py | ef14609eadefd16cb363e96e23921a7ee52e11d8e4e7f422ddc2329a1e2bf45e |
+@@ -160,0 +196,8 @@
++
++Cost raster input: `D:\Telangana_Rural_Project\Siddipet\Damarakunta\aligned\damarakunta_cost_surface_10m.tif` SHA-256 `911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e`
++
++### 5.2 Input provenance and licence status
++
++- Building candidates (`buildings_v8_full.gpkg`) are model-derived polygons extracted from a high-resolution imagery mosaic; they are unverified candidates, not surveyed buildings.
++- The mosaic was assembled on 4 Oct 2026 from Esri World Imagery map-export requests. The project document `DAMARAKUNTA_STAGE_B_C_PROPOSALS.md` records that the licence for this use is **not verified** (storage, inference, derived maps, publication and sharing are undetermined). Nothing in this report is licence-cleared.
++- Reference roads, facilities and cadastral data are used as provided in the project folders; their provenance is documented in the project data-source notes, not re-verified here.
+@@ -185,5 +228,5 @@
+-- Primary baseline (building penalty x4), omit_small P25: unique length fell from 5137.7 m to 3890.6 m; per routed target rose from 31.5 m to 31.9 m.
+-- Primary baseline (building penalty x4), omit_small P10: unique length fell from 5137.7 m to 4717.5 m; per routed target rose from 31.5 m to 32.3 m.
+-- Primary baseline (building penalty x4), omit_merge: unique length fell from 5137.7 m to 3627.9 m; per routed target rose from 31.5 m to 35.9 m.
+-- P3 baseline (no building penalty), omit_small P25: unique length fell from 4761.7 m to 3580.2 m; per routed target rose from 29.2 m to 29.3 m.
+-- P3 baseline (no building penalty), omit_merge: unique length fell from 4761.7 m to 3425.7 m; per routed target rose from 29.2 m to 33.9 m.
++- Primary baseline (building penalty x4), omit_small P25: unique length fell from 5137.71 m to 3890.60 m; per routed target rose from 31.52 m to 31.89 m.
++- Primary baseline (building penalty x4), omit_small P10: unique length fell from 5137.71 m to 4717.53 m; per routed target rose from 31.52 m to 32.31 m.
++- Primary baseline (building penalty x4), omit_merge: unique length fell from 5137.71 m to 3627.87 m; per routed target rose from 31.52 m to 35.92 m.
++- P3 baseline (no building penalty), omit_small P25: unique length fell from 4761.73 m to 3580.23 m; per routed target rose from 29.21 m to 29.35 m.
++- P3 baseline (no building penalty), omit_merge: unique length fell from 4761.73 m to 3425.66 m; per routed target rose from 29.21 m to 33.92 m.
+@@ -247 +290 @@
+-### Controlled contrast on identical footprints
++### 10.3 Controlled contrast on identical footprints
+@@ -255,3 +298,3 @@
+-| omit_small P25 | 41 | 122 | 4 | 25.9 | 6 | 33.3 | +7.5 |
+-| omit_small P10 | 17 | 146 | 3 | 14.9 | 1 | 3.6 | -11.3 |
+-| omit_merge | 62 | 101 | 4 | 52.6 | 17 | 178.0 | +125.4 |
++| omit_small P25 | 41 | 122 | 4 | 25.86 | 6 | 33.31 | +7.45 |
++| omit_small P10 | 17 | 146 | 3 | 14.95 | 1 | 3.60 | -11.35 |
++| omit_merge | 62 | 101 | 4 | 52.60 | 17 | 177.99 | +125.40 |
+@@ -263,8 +306,8 @@
+-| omit_small P25 | 41 | 122 | 7 | 40.2 | 5 | 27.9 | -12.2 |
+-| omit_merge | 62 | 101 | 12 | 148.3 | 9 | 113.5 | -34.7 |
+-
+-- Primary, omit_merge: length inside omitted footprints rose from 52.6 m to 178.0 m (4 to 17 routes).
+-- Primary, omit_small P25: length inside omitted footprints rose from 25.9 m to 33.3 m (4 to 6 routes).
+-- Primary, omit_small P10: length inside omitted footprints fell from 14.9 m to 3.6 m (3 to 1 routes).
+-- P3 (no penalty), omit_small P25: fell from 40.2 m to 27.9 m - this is the structural component only, since the planner ignores footprints in P3.
+-- P3 (no penalty), omit_merge: fell from 148.3 m to 113.5 m - this is the structural component only, since the planner ignores footprints in P3.
++| omit_small P25 | 41 | 122 | 7 | 40.18 | 5 | 27.94 | -12.25 |
++| omit_merge | 62 | 101 | 12 | 148.28 | 9 | 113.53 | -34.75 |
++
++- Primary, omit_merge: length inside omitted footprints rose from 52.60 m to 177.99 m (routes crossing: 4 in the baseline routes, 17 in the omission run).
++- Primary, omit_small P25: length inside omitted footprints rose from 25.86 m to 33.31 m (routes crossing: 4 in the baseline routes, 6 in the omission run).
++- Primary, omit_small P10: length inside omitted footprints fell from 14.95 m to 3.60 m (routes crossing: 3 in the baseline routes, 1 in the omission run).
++- P3 (no penalty), omit_small P25: fell from 40.18 m to 27.94 m - this is the structural component only, since the planner ignores footprints in P3.
++- P3 (no penalty), omit_merge: fell from 148.28 m to 113.53 m - this is the structural component only, since the planner ignores footprints in P3.
+@@ -276,2 +319,2 @@
+-| omit_small P25 | +7.5 | -12.2 | +19.7 |
+-| omit_merge | +125.4 | -34.7 | +160.1 |
++| omit_small P25 | +7.45 | -12.25 | +19.70 |
++| omit_merge | +125.40 | -34.75 | +160.15 |
+@@ -282,0 +326,2 @@
++*Figure 1. Unique network length (left) and unique length per routed target (right) for each baseline and omission scenario. Absolute length falls mainly because fewer targets are connected; per-routed length is the comparable quantity. Source: `c1_scenario_comparison.csv` in the two compare folders.*
++
+@@ -283,0 +329,2 @@
++
++*Figure 2. Route length inside the footprints each scenario omits, for the baseline routes of the same remaining targets (footprints known) and for the omission-run routes (footprints unknown). One deterministic scenario per mode; not an effect size. Source: `c1_omitted_footprint_exposure.csv`.*
+@@ -296 +343,3 @@
+-- The Stage B provisional settings (built-up cost 3.0, cadastral `_valid` file, equal facility weights, penalty set) have not been confirmed by the author.
++- The building-penalty multiplier (x4) and the penalised class set are design parameters, not facts; equal target weights (1.0) are likewise a design choice. None has been confirmed against reference data (section 3.1).
++- The baselines and omission runs were produced by different recorded runner versions (section 5.1). The primary baseline was reproduced exactly by v1.3 (Appendix A); the P3 baseline (v1.2) was not re-run and rests on a static source comparison.
++- Input imagery licence: the Esri World Imagery mosaic used to derive the building candidates has an unverified licence status (project document `DAMARAKUNTA_STAGE_B_C_PROPOSALS.md`, Part B). Derived maps and footprints must not be described as licence-cleared.
+@@ -302 +351 @@
+-- In the primary baseline, omitting the UNRESOLVED_MERGE targets rose from 52.6 m to 178.0 m of route length inside the omitted footprints, across 4 to 17 routes.
++- In the primary baseline (one village, one deterministic scenario), the route length inside the omitted UNRESOLVED_MERGE footprints rose from 52.60 m to 177.99 m when the planner no longer knew those footprints; the number of routes crossing them went from 4 to 17. The same measure fell under P3, where the planner ignores footprints (section 10.3).
+@@ -305,0 +355 @@
++- The primary baseline is reproduced exactly (route geometry and lengths) by runner v1.3 with `--perturb none` (Appendix A).
+@@ -342,0 +393,28 @@
++
++
++## Appendix A. Runner reproduction and C2 ablation (supporting evidence, not a C1 result)
++
++Source: `_c2_abl_v1` (`dk_stageB_c2_ablation_summary_v1.py`, read-only on existing run folders). The first row is the original primary baseline (v1.1); the rest are v1.3 runs with `--perturb none` and the same settings except K and leaf-reroute passes.
++
++| Run | Runner | K | Passes | Houses routed | House unique length (m) | House total length (m) | Shared-edge credit (%) | Facility unique (m) | Houses identical to K3_P2 | Facilities identical to K3_P2 |
++|---|---|---|---|---|---|---|---|---|---|---|
++| v11 | dk_stageB_run v1.1 | 3 | 2 | 163 | 5137.706 | 5137.763 | 23.946 | 311.34 | 163/163 | 4/4 |
++| K3_P2 | dk_stageB_run v1.3 | 3 | 2 | 163 | 5137.706 | 5137.763 | 23.946 | 311.34 | 163/163 | 4/4 |
++| K1_P0 | dk_stageB_run v1.3 | 1 | 0 | 163 | 5147.981 | 5148.042 | 23.794 | 311.34 | 161/163 | 4/4 |
++| K1_P2 | dk_stageB_run v1.3 | 1 | 2 | 163 | 5137.706 | 5137.763 | 23.946 | 311.34 | 163/163 | 4/4 |
++| K3_P0 | dk_stageB_run v1.3 | 3 | 0 | 163 | 5147.981 | 5148.042 | 23.794 | 311.34 | 161/163 | 4/4 |
++
++Checks (`c2_ablation_validation.csv`):
++
++| id | status | name | detail |
++|---|---|---|---|
++| R01 houses | PASS | S2_fac_C0_s25_K3_P2 routes identical to S2_fac_C0_s25_v11 (houses) | 163/163 identical; counts 163 vs 163 |
++| R01 facilities | PASS | S2_fac_C0_s25_K3_P2 routes identical to S2_fac_C0_s25_v11 (facilities) | 4/4 identical; counts 4 vs 4 |
++| R02 unique_len_m | PASS | house unique/total length equal to reference | abs diff 0.000000000 m |
++| R02 total_len_m | PASS | house unique/total length equal to reference | abs diff 0.000000000 m |
++| R03 | PASS | control uses the same k and passes as the reference | n/a |
++
++- R01 compares each target route geometry of the same-settings v1.3 control with the v1.1 baseline (Hausdorff distance at most 1e-6 m). R02 compares house unique and total length. R03 confirms the same K and passes. They validate reproduction of the primary baseline only.
++- Two leaf-reroute passes versus none: house unique length fell from 5147.981 m to 5137.706 m in this village (a difference of 10.274 m; with passes = 0 the house geometries matching the K3_P2 control are: 161/163).
++- K = 1 and K = 3 give equal lengths and equal agreement with the control at each pass setting. The row-by-row comparison of their `selection_summary.csv` files (identical for K1 vs K3 at both pass settings) was done outside this generator; pairwise geometry identity of K1 and K3 was not tested.
++- Deterministic results for one village and one scenario: this does not show that leaf rerouting is generally superior or that larger K is generally useless.

@@ -1,0 +1,13 @@
+component,n_cells,n_unique_features,feature_ids,n_parts,crossings_within_assoc_m,excursion_ends_within_assoc_m,min_cell_dist_to_polygon_boundary_m,centre_gap_to_main_m,shares_part_with_main,min_along_gap_to_main_m,chain_found,chain_cells,chain_impassable,chain_impassable_centre_outside,gap_part,gap_outside_len_m,gap_dropped_cells,gap_dropped_cells_centre_outside
+1,6149,35,28138;28139;28140;28141;28142;28313;28314;30615;30626;30657;30660;30667;30668;30670;30699;30708;30740;30797;30798;30799;30800;30801;30802;30803;30804;30805;30806;30807;30808;30809;30810;30811;30812;30813;35574,38,12,3,0.43,,,,,,,,,,,
+2,159,2,28303;35545,2,0,0,21.19,162.79,False,,True,34.0,32.0,31.0,,,,
+3,62,1,37392,1,1,0,0.07,36.06,False,,False,,,,,,,
+4,29,1,44941,1,1,0,7.31,582.58,False,,False,,,,,,,
+5,28,1,30626,1,2,1,6.42,76.16,True,77.558,True,8.0,6.0,3.0,30626:0,49.647,9.0,5.0
+6,23,1,28144,1,1,1,0.62,128.06,False,,True,20.0,18.0,15.0,,,,
+7,16,1,28292,1,0,0,21.17,254.95,False,,False,,,,,,,
+8,10,1,28305,1,1,0,1.18,290.17,False,,False,,,,,,,
+9,9,1,37393,1,1,0,12.87,160.0,False,,False,,,,,,,
+10,5,1,28144,1,1,1,1.62,155.24,False,,True,56.0,36.0,33.0,,,,
+11,2,1,30799,1,1,0,3.0,50.99,True,51.674,True,6.0,4.0,0.0,30799:0,0.0,5.0,0.0
+12,2,1,30813,1,1,1,4.62,41.23,True,41.478,True,5.0,3.0,0.0,30813:0,0.0,4.0,0.0

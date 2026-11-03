@@ -1,0 +1,5 @@
+facility_id,facility_name,facility_type,priority_group,source,dist_to_ref_road_m,nearest_cand_id,dist_to_nearest_cand_m,nearest_cluster_id,dist_to_nearest_cluster_m,near_candidate_building,note
+36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,104,8.5,5,0.0,True,facility location/type taken from source layer; not verified here
+36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,104,3.1,5,0.0,True,facility location/type taken from source layer; not verified here
+HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,1,tgrac_health.gpkg,62.2,80,1.8,4,0.0,True,facility location/type taken from source layer; not verified here
+1702300,Damarakunt-I,Anganwadi,1,tgrac_anganwadi.gpkg,121.1,157,371.4,4,361.4,False,facility location/type taken from source layer; not verified here

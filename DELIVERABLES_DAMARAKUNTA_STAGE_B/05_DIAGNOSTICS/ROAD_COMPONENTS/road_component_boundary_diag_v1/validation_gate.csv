@@ -1,0 +1,6 @@
+check,rebuilt,expected,ok
+component sizes equal road_components.csv,"[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]","[6149, 159, 62, 29, 28, 23, 16, 10, 9, 5, 2, 2]",True
+input hashes equal manifest,"{'cost': True, 'worldcover': True, 'roads': True}",manifest,True
+road-line-covered cells,8061,8061,True
+dropped cells,1567,1567,True
+component 10 minimum chain impassable cells,36,36,True

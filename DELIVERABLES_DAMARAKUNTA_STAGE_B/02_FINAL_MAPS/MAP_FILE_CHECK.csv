@@ -1,0 +1,6 @@
+file,kind,pixels,dpi,pages,valid,page_size
+02_FINAL_MAPS/final_maps_1_to_5/map1_imagery_boundary_roads.png,PNG,3304x2022,"(299.9994, 299.9994)",,readable,
+02_FINAL_MAPS/final_maps_1_to_5/map2_footprints_facilities_latlon.png,PNG,3964x1986,"(299.9994, 299.9994)",,readable,
+02_FINAL_MAPS/final_maps_1_to_5/map3_terrain_cost_landcover_slope.png,PNG,3270x2799,"(299.9994, 299.9994)",,readable,
+02_FINAL_MAPS/final_maps_1_to_5/map4_alternatives_vs_network.png,PNG,3862x1754,"(299.9994, 299.9994)",,readable,
+02_FINAL_MAPS/final_maps_1_to_5/map5_village_detail_shared_paths.png,PNG,4787x2335,"(299.9994, 299.9994)",,readable,

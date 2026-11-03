@@ -1,0 +1,44 @@
+test_id,status,name,detail
+PRE-01,PASS,required inputs exist,all present
+PRE-02,PASS,planner SHA-256 equals the reviewed copy,d00ea92028101131627b8592e3df2c33ff350efac9b1de09f9b64cdd56ef70a4
+PRE-03,PASS,Stage A master has required columns,[]
+PRE-04,PASS,"S1 default IDs: count, uniqueness",rows=101 unique=101 expected=101
+PRE-05,PASS,"merged-sensitivity IDs: count, uniqueness",rows=62 unique=62 expected=62
+PRE-06,PASS,S1 and merged sets are disjoint,overlap=0
+PRE-07,PASS,S2 = S1 + merged distinct IDs,S2=163
+PRE-08,PASS,all S2 IDs exist once in the Stage A master,missing=0
+PRE-09,PASS,"S1 classes in {PLAUSIBLE,REVIEW}; merged all UNRESOLVED_MERGE","S1={'PLAUSIBLE': 71, 'REVIEW': 30} merged={'UNRESOLVED_MERGE': 62}"
+PRE-10,PASS,v8 buildings CRS is EPSG:32644,EPSG:32644
+PRE-11,PASS,v8 eligible set (inside_village and area>=10) equals S2,eligible=163 S2=163 sym.diff=0
+PRE-12,PASS,v8 cand_id unique and <= 9999 (planner key C####),
+PRE-13,PASS,"priority facilities: count, unique IDs, EPSG:32644",n=5
+PRE-14,PASS,baseline cost raster SHA-256 vs the value seen in G0,911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e
+PRE-15,PASS,run folder does not exist yet,D:\Telangana_Rural_Project\Siddipet\Damarakunta\results\run_20261102_141136\stageB\S2_fac_C0_s25_final_x4
+RUN-01,PASS,slope limit resolved from the explicit argument (no V4 fallback),25.0 via --slope-limit-deg
+RUN-02,PASS,replicated penalty mask equals planner's building_cells_penalised,mine=966 planner=966
+RUN-03,PASS,"scenario target set built, ascending cand_id",163 of 163
+RUN-04[facilities->roads],PASS,every target is exactly one of routed / failed,routed=5 failed=0 total=5
+RUN-04[houses->roads+facility routes],PASS,every target is exactly one of routed / failed,routed=163 failed=0 total=163
+RUN-04[houses->roads only (reference)],PASS,every target is exactly one of routed / failed,routed=163 failed=0 total=163
+RUN-05,PASS,"length-only baseline control test (identical pass mask, identical start cells, same goals)","{'pass_mask_identical': True, 'same_start_cell': '163/163', 'verified': True}"
+RUN-06,PASS,no cycles in the attachment graph,cycles=0
+RUN-07,PASS,every attachment is classified ROAD / FACILITY_ROUTE / HOUSE_ROUTE,unclassified=0
+RUN-08,PASS,all selected route geometries valid and non-empty,bad=0
+RUN-09,PASS,all selected routes: endpoint within tolerance and no hard-constraint samples,bad=0
+RUN-10,PASS,route length = grid edges + start/end connectors (planner rounds snaps to 0.01 m; tol 0.011),bad=0
+RUN-11,PASS,attachment-chain connectivity agrees with shared-cell connectivity,disagreements=0
+RUN-12,PASS,no proper crossings without a shared grid cell,
+RUN-13[facility_phase],PASS,sum of equal-share allocations equals unique network proxy cost,sum=897.2540 C_net=897.2540
+RUN-14[facility_phase],PASS,C_net equals planner unique_edge_metrics unique_cost,mine=897.2540 planner=897.2540
+RUN-15[facility_phase],PASS,shared-edge table built,unique edges=18 shared edges=0
+RUN-13[house_phase],PASS,sum of equal-share allocations equals unique network proxy cost,sum=28273.8666 C_net=28273.8666
+RUN-14[house_phase],PASS,C_net equals planner unique_edge_metrics unique_cost,mine=28273.8666 planner=28273.8666
+RUN-15[house_phase],PASS,shared-edge table built,unique edges=367 shared edges=0
+RUN-13[house_roads_only_ref],PASS,sum of equal-share allocations equals unique network proxy cost,sum=28677.6042 C_net=28677.6042
+RUN-14[house_roads_only_ref],PASS,C_net equals planner unique_edge_metrics unique_cost,mine=28677.6042 planner=28677.6042
+RUN-15[house_roads_only_ref],PASS,shared-edge table built,unique edges=378 shared edges=0
+IMP-01,PASS,original and repaired cadastral attribute tables identical (row correspondence),identical=True
+RUN-16,PASS,facility table has one row per prepared priority facility,5
+REG-00,INFO,V1 regression not applicable to this run configuration,"needs S2, 25 deg, C0, all three penalty classes, V1 planner parameters, roads-only reference"
+VER-02,INFO,straight-line baselines of zero length (target point lies on the reference road),8 of 163
+VER-01,PASS,read-back verification of all written files,"19 files verified; layers={'routes_network_houses': 163, 'routes_network_facilities': 5, 'routes_roads_only_houses': 163, 'routes_independent_houses': 163, 'routes_independent_facilities': 5, 'routes_straight_line_houses': 163, 'routes_length_only_houses': 163, 'targets_houses': 163, 'targets_facilities': 5, 'stageA_alternatives_houses': 316, 'road_cells_main_component': 1}"

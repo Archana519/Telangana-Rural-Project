@@ -1,0 +1,2103 @@
+{
+ "A_school_provenance": {
+  "school_compounds.gpkg": {
+   "exists": true,
+   "bytes": 98304,
+   "modified": "2026-10-05T12:02:37.196372",
+   "sha256": "25c91bc5242283fa19944948828d01b99ad23c3e0353fcd163ca4701ba92a7c8",
+   "internals": {
+    "application_id": 1196444487,
+    "user_version": 10400,
+    "gpkg_contents": [
+     [
+      "school_compounds",
+      "features",
+      "school_compounds",
+      "",
+      "2026-10-05T06:32:37.193Z",
+      "78.75021617336472",
+      "17.70713997038899",
+      "78.75067038516941",
+      "17.70777991395227",
+      "4326"
+     ]
+    ],
+    "gpkg_geometry_columns": [
+     [
+      "school_compounds",
+      "geom",
+      "POLYGON",
+      "4326",
+      "0",
+      "0"
+     ]
+    ],
+    "gpkg_spatial_ref_sys": [
+     [
+      "Undefined Cartesian SRS",
+      "-1",
+      "NONE",
+      "-1",
+      "undefined",
+      "undefined Cartesian coordinate reference system"
+     ],
+     [
+      "Undefined geographic SRS",
+      "0",
+      "NONE",
+      "0",
+      "undefined",
+      "undefined geographic coordinate reference system"
+     ],
+     [
+      "WGS 84 geodetic",
+      "4326",
+      "EPSG",
+      "4326",
+      "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]",
+      "longitude/latitude coordinates in decimal degrees on the WGS 84 spheroid"
+     ]
+    ],
+    "gpkg_metadata": "absent (OperationalError)",
+    "gpkg_extensions": [
+     [
+      "school_compounds",
+      "geom",
+      "gpkg_rtree_index",
+      "http://www.geopackage.org/spec120/#extension_rtree",
+      "write-only"
+     ]
+    ],
+    "gpkg_ogr_contents": [
+     [
+      "school_compounds",
+      "2"
+     ]
+    ],
+    "tables": [
+     "gpkg_spatial_ref_sys",
+     "gpkg_contents",
+     "gpkg_ogr_contents",
+     "gpkg_geometry_columns",
+     "gpkg_tile_matrix_set",
+     "gpkg_tile_matrix",
+     "school_compounds",
+     "sqlite_sequence",
+     "gpkg_extensions",
+     "rtree_school_compounds_geom",
+     "rtree_school_compounds_geom_rowid",
+     "rtree_school_compounds_geom_node",
+     "rtree_school_compounds_geom_parent"
+    ]
+   }
+  },
+  "school_compounds_utm44n.gpkg": {
+   "exists": true,
+   "bytes": 98304,
+   "modified": "2026-10-05T12:04:20.340449",
+   "sha256": "bc54d6e8c85bf602bfe26dfd86f5f7416fd020e4d99480df14559b50c6c049b5",
+   "internals": {
+    "application_id": 1196444487,
+    "user_version": 10400,
+    "gpkg_contents": [
+     [
+      "school_compounds_utm44n",
+      "features",
+      "school_compounds_utm44n",
+      "",
+      "2026-10-05T06:34:20.337Z",
+      "261392.1108999909",
+      "1959210.035500008",
+      "261440.4845999918",
+      "1959281.119800009",
+      "32644"
+     ]
+    ],
+    "gpkg_geometry_columns": [
+     [
+      "school_compounds_utm44n",
+      "geom",
+      "POLYGON",
+      "32644",
+      "0",
+      "0"
+     ]
+    ],
+    "gpkg_spatial_ref_sys": [
+     [
+      "Undefined Cartesian SRS",
+      "-1",
+      "NONE",
+      "-1",
+      "undefined",
+      "undefined Cartesian coordinate reference system"
+     ],
+     [
+      "Undefined geographic SRS",
+      "0",
+      "NONE",
+      "0",
+      "undefined",
+      "undefined geographic coordinate reference system"
+     ],
+     [
+      "WGS 84 geodetic",
+      "4326",
+      "EPSG",
+      "4326",
+      "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]",
+      "longitude/latitude coordinates in decimal degrees on the WGS 84 spheroid"
+     ],
+     [
+      "WGS 84 / UTM zone 44N",
+      "32644",
+      "EPSG",
+      "32644",
+      "PROJCS[\"WGS 84 / UTM zone 44N\",GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AUTHORITY[\"EPSG\",\"4326\"]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",81],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH],AUTHORITY[\"EPSG\",\"32644\"]]",
+      "None"
+     ]
+    ],
+    "gpkg_metadata": "absent (OperationalError)",
+    "gpkg_extensions": [
+     [
+      "school_compounds_utm44n",
+      "geom",
+      "gpkg_rtree_index",
+      "http://www.geopackage.org/spec120/#extension_rtree",
+      "write-only"
+     ]
+    ],
+    "gpkg_ogr_contents": [
+     [
+      "school_compounds_utm44n",
+      "2"
+     ]
+    ],
+    "tables": [
+     "gpkg_spatial_ref_sys",
+     "gpkg_contents",
+     "gpkg_ogr_contents",
+     "gpkg_geometry_columns",
+     "gpkg_tile_matrix_set",
+     "gpkg_tile_matrix",
+     "school_compounds_utm44n",
+     "sqlite_sequence",
+     "gpkg_extensions",
+     "rtree_school_compounds_utm44n_geom",
+     "rtree_school_compounds_utm44n_geom_rowid",
+     "rtree_school_compounds_utm44n_geom_node",
+     "rtree_school_compounds_utm44n_geom_parent"
+    ]
+   }
+  },
+  "comparison": {
+   "crs_file1": "EPSG:4326",
+   "crs_file2": "EPSG:32644",
+   "n1": 2,
+   "n2": 2,
+   "columns_equal": true,
+   "symmetric_difference_area_m2": [
+    0.0,
+    0.0
+   ],
+   "hausdorff_m": [
+    0.0,
+    0.0
+   ],
+   "vertex_counts": [
+    [
+     5,
+     5
+    ],
+    [
+     7,
+     7
+    ]
+   ],
+   "area_file2_m2": [
+    613.7430078420973,
+    1248.4032769912371
+   ],
+   "attribute_columns_identical": true,
+   "only_in_file1": [],
+   "only_in_file2": [],
+   "School_Code": [
+    "36181600902",
+    "36181600903"
+   ],
+   "School_Name": [
+    "MPPS DAMARAKUNTA",
+    "ZPHS DAMARAKUNTA"
+   ],
+   "Village_Name": [
+    "Damarakunta",
+    "Damarakunta"
+   ],
+   "Latitude": [
+    "17.707246",
+    "17.707494"
+   ],
+   "Longitude": [
+    "78.750422",
+    "78.750568"
+   ],
+   "Shape_Area": [
+    "613.7430078195748",
+    "1248.4032769644118"
+   ]
+  },
+  "text_mentions": [
+   {
+    "file": "DATA_SOURCES.md",
+    "n": 1,
+    "first": [
+     [
+      23,
+      "| Schools (SchoolGIS) | TGRAC | \u2026/SchoolGIS_Folder/Schools/MapServer | Telangana | Points | ArcGIS REST | Not verified | Not verified | Not stated | REST query "
+     ]
+    ],
+    "modified": "2026-09-30T16:59:39.527832"
+   },
+   {
+    "file": "scripts\\prepare_siddipet_village.py",
+    "n": 1,
+    "first": [
+     [
+      23,
+      "--tgrac-layer schools=https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/<id> ^"
+     ]
+    ],
+    "modified": "2026-09-30T16:59:39.612832"
+   },
+   {
+    "file": "scripts\\inspect_reference_layers.py",
+    "n": 1,
+    "first": [
+     [
+      4,
+      "\"TGRAC_SCHOOLS\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer\","
+     ]
+    ],
+    "modified": "2026-09-30T18:20:09.032276"
+   },
+   {
+    "file": "scripts\\inspect_reference_layer_fields.py",
+    "n": 2,
+    "first": [
+     [
+      6,
+      "\"SchoolGIS_Folder/Schools/MapServer/20\""
+     ],
+     [
+      10,
+      "\"SchoolGIS_Folder/Schools/MapServer/2\""
+     ]
+    ],
+    "modified": "2026-09-30T18:21:06.624304"
+   },
+   {
+    "file": "scripts\\extract_village_reference_data.py",
+    "n": 2,
+    "first": [
+     [
+      21,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\","
+     ],
+     [
+      25,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ]
+    ],
+    "modified": "2026-09-30T18:24:15.317011"
+   },
+   {
+    "file": "Siddipet\\Angadi_Kistapur\\reference\\REFERENCE_DATA_NOTES.txt",
+    "n": 1,
+    "first": [
+     [
+      9,
+      "- Layer: SchoolGIS_Folder/Schools/MapServer/20"
+     ]
+    ],
+    "modified": "2026-09-30T18:26:52.141309"
+   },
+   {
+    "file": "scripts\\query_village_reference_data.py",
+    "n": 2,
+    "first": [
+     [
+      48,
+      "\"SchoolGIS_Folder/Schools/MapServer/20\""
+     ],
+     [
+      54,
+      "\"SchoolGIS_Folder/Schools/MapServer/2\""
+     ]
+    ],
+    "modified": "2026-10-05T11:40:51.891190"
+   },
+   {
+    "file": "scripts\\calculate_school_overlap.py",
+    "n": 5,
+    "first": [
+     [
+      12,
+      "BASE, \"reference\", \"school_compounds_utm44n.gpkg\""
+     ],
+     [
+      31,
+      "for school_name, mask_file in pairs:"
+     ],
+     [
+      33,
+      "print(\"SCHOOL:\", school_name)"
+     ]
+    ],
+    "modified": "2026-10-11T09:03:21.129285"
+   },
+   {
+    "file": "scripts\\visualize_school_predictions.py",
+    "n": 4,
+    "first": [
+     [
+      16,
+      "BASE, \"reference\", \"school_compounds_utm44n.gpkg\""
+     ],
+     [
+      60,
+      "if \"School_Name\" not in refs.columns:"
+     ],
+     [
+      62,
+      "\"School_Name column missing. Available columns: \""
+     ]
+    ],
+    "modified": "2026-10-12T14:44:12.188116"
+   },
+   {
+    "file": "scripts\\inspect_damarakunta_facilities.py",
+    "n": 1,
+    "first": [
+     [
+      9,
+      "\"school_compounds_utm44n.gpkg\","
+     ]
+    ],
+    "modified": "2026-10-12T17:25:27.149476"
+   },
+   {
+    "file": "scripts\\prepare_damarakunta_priority_facilities.py",
+    "n": 5,
+    "first": [
+     [
+      10,
+      "# Use verified school compound polygons and derive representative points."
+     ],
+     [
+      11,
+      "schools = gpd.read_file(REF / \"school_compounds_utm44n.gpkg\")"
+     ],
+     [
+      21,
+      "name = str(row.get(\"School_Name\", \"Unknown school\")).strip().title()"
+     ]
+    ],
+    "modified": "2026-10-12T17:26:25.557278"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\damarakunta_route_feasibility_screening.csv",
+    "n": 1,
+    "first": [
+     [
+      1,
+      "facility_id,facility_name,alternative,route_length_m,intersected_parcel_count,parcel_survey_ids,school_compound_intersections,distance_to_nearest_existing_road_"
+     ]
+    ],
+    "modified": "2026-10-14T16:27:53.346285"
+   },
+   {
+    "file": "scripts\\draw_damarakunta_named_routes.py",
+    "n": 9,
+    "first": [
+     [
+      24,
+      "SCHOOLS = REF / \"school_compounds_utm44n.gpkg\""
+     ],
+     [
+      200,
+      "def draw_school_compounds(ax, schools):"
+     ],
+     [
+      201,
+      "\"\"\"Outline school compounds for visual inspection.\"\"\""
+     ]
+    ],
+    "modified": "2026-10-14T16:41:22.912261"
+   },
+   {
+    "file": "scripts\\assess_damarakunta_route_feasibility.py",
+    "n": 3,
+    "first": [
+     [
+      13,
+      "SCHOOLS = REF / \"school_compounds_utm44n.gpkg\""
+     ],
+     [
+      120,
+      "# B. School compound intersections"
+     ],
+     [
+      137,
+      "\"school_compound_intersections\": len(school_hits),"
+     ]
+    ],
+    "modified": "2026-10-14T17:08:28.176294"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\damarakunta_route_feasibility_screening_v2.csv",
+    "n": 1,
+    "first": [
+     [
+      1,
+      "facility_id,facility_name,alternative,route_length_m,intersected_parcel_count,parcel_survey_ids,school_compound_intersections,distance_to_nearest_existing_road_"
+     ]
+    ],
+    "modified": "2026-10-14T17:08:39.561954"
+   },
+   {
+    "file": "scripts\\assess_damarakunta_route_feasibility_v3.py",
+    "n": 3,
+    "first": [
+     [
+      18,
+      "SCHOOLS = REF / \"school_compounds_utm44n.gpkg\""
+     ],
+     [
+      127,
+      "# B. School compound intersections"
+     ],
+     [
+      167,
+      "\"school_compound_intersections\": len(school_hits),"
+     ]
+    ],
+    "modified": "2026-10-14T17:30:47.643709"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\damarakunta_route_feasibility_screening_v3.csv",
+    "n": 1,
+    "first": [
+     [
+      1,
+      "facility_id,facility_name,alternative,route_length_m,intersected_parcel_count,parcel_survey_ids,school_compound_intersections,distance_to_nearest_existing_road_"
+     ]
+    ],
+    "modified": "2026-10-14T17:33:16.942338"
+   },
+   {
+    "file": "scripts\\draw_damarakunta_named_routes_v3.py",
+    "n": 10,
+    "first": [
+     [
+      40,
+      "SCHOOL_COMPOUND_CANDIDATES = ["
+     ],
+     [
+      41,
+      "REFERENCE / \"damarakunta_school_compounds.gpkg\","
+     ],
+     [
+      42,
+      "REFERENCE / \"school_compounds.gpkg\","
+     ]
+    ],
+    "modified": "2026-10-14T17:44:27.693858"
+   },
+   {
+    "file": "scripts\\rank_damarakunta_routes_v3.py",
+    "n": 4,
+    "first": [
+     [
+      58,
+      "\"school_compound_intersections\","
+     ],
+     [
+      160,
+      "\"school_compound_intersections\","
+     ],
+     [
+      186,
+      "\"compound_impact\": \"school_compound_intersections\","
+     ]
+    ],
+    "modified": "2026-10-14T17:51:54.092129"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\damarakunta_routes_v3_multi_criteria_ranking.csv",
+    "n": 1,
+    "first": [
+     [
+      1,
+      "facility_id,facility_name,facility_type,alternative,status,route_length_m,facility_to_start_snap_m,facility_to_nearest_road_m,snap_plus_route_length_proxy_m,acc"
+     ]
+    ],
+    "modified": "2026-10-14T17:52:03.936080"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\damarakunta_routes_v3_preferred_candidates.csv",
+    "n": 1,
+    "first": [
+     [
+      1,
+      "facility_id,facility_name,facility_type,alternative,status,route_length_m,facility_to_start_snap_m,facility_to_nearest_road_m,snap_plus_route_length_proxy_m,acc"
+     ]
+    ],
+    "modified": "2026-10-14T17:52:03.941114"
+   },
+   {
+    "file": "scripts\\evaluate_damarakunta_accessibility_v3.py",
+    "n": 1,
+    "first": [
+     [
+      369,
+      "\"school_compound_intersections\","
+     ]
+    ],
+    "modified": "2026-10-22T14:42:55.687371"
+   },
+   {
+    "file": "scripts\\evaluate_damarakunta_accessibility_v3_backup.py",
+    "n": 1,
+    "first": [
+     [
+      369,
+      "\"school_compound_intersections\","
+     ]
+    ],
+    "modified": "2026-10-22T14:42:55.687371"
+   },
+   {
+    "file": "scripts\\evaluate_damarakunta_accessibility_v3_working_backup.py",
+    "n": 1,
+    "first": [
+     [
+      369,
+      "\"school_compound_intersections\","
+     ]
+    ],
+    "modified": "2026-10-22T14:42:55.687371"
+   },
+   {
+    "file": "scripts\\evaluate_damarakunta_accessibility_v3_corrected.py",
+    "n": 1,
+    "first": [
+     [
+      403,
+      "\"school_compound_intersections\","
+     ]
+    ],
+    "modified": "2026-10-22T15:35:04.246005"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\damarakunta_accessibility_evaluation_v3.csv",
+    "n": 1,
+    "first": [
+     [
+      1,
+      "\ufefffacility_id,facility_name,facility_type,alternative,route_status,route_length_m,baseline_facility_to_existing_road_m,facility_to_route_geometry_m,route_geometr"
+     ]
+    ],
+    "modified": "2026-10-22T15:36:44.759962"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\v6_buildings\\access\\facility_access.csv",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,40,8.5,5,0.0,True,facility location/type taken from source layer; not verified here"
+     ],
+     [
+      3,
+      "36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,40,3.1,5,0.0,True,facility location/type taken from source layer; not verified here"
+     ]
+    ],
+    "modified": "2026-10-23T13:05:12.585736"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\v8_instances\\access\\facility_access.csv",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,104,8.5,5,0.0,True,facility location/type taken from source layer; not verified here"
+     ],
+     [
+      3,
+      "36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,104,3.1,5,0.0,True,facility location/type taken from source layer; not verified here"
+     ]
+    ],
+    "modified": "2026-10-23T16:41:51.662591"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\connectivity_audit_v1\\ca1\\facility_connectivity.csv",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,OK,,11.05,11.05,1588.01,11.05,11.05,11.05,11.05,11.05,main,False,25,VALID,False,1,0,Fals"
+     ],
+     [
+      3,
+      "36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,OK,,43.14,43.14,1558.46,43.14,43.14,43.14,43.14,43.14,main,False,25,VALID,False,1,0,Fals"
+     ]
+    ],
+    "modified": "2026-10-24T13:33:03.713459"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\connectivity_audit_v1\\ca_angle60\\facility_connectivity.csv",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,OK,,11.05,11.05,1588.01,11.05,11.05,11.05,11.05,11.05,main,False,25,VALID,False,1,0,Fals"
+     ],
+     [
+      3,
+      "36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,OK,,43.14,43.14,1558.46,43.14,43.14,43.14,43.14,43.14,main,False,25,VALID,False,1,0,Fals"
+     ]
+    ],
+    "modified": "2026-10-24T13:41:49.590267"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\connectivity_audit_v1\\ca2\\facility_connectivity.csv",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,OK,,11.05,11.05,1588.01,11.05,11.05,11.05,11.05,11.05,main,False,25,VALID,False,1,0,Fals"
+     ],
+     [
+      3,
+      "36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,OK,,43.14,43.14,1558.46,43.14,43.14,43.14,43.14,43.14,main,False,25,VALID,False,1,0,Fals"
+     ]
+    ],
+    "modified": "2026-10-24T14:00:40.605656"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\connectivity_audit_v1\\ca3\\facility_connectivity.csv",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "36181600902,Mpps Damarakunta,School,1,school_compounds_utm44n.gpkg,11.1,OK,,11.05,11.05,1588.01,11.05,11.05,11.05,11.05,11.05,main,False,25,VALID,False,1,0,Fals"
+     ],
+     [
+      3,
+      "36181600903,Zphs Damarakunta,School,1,school_compounds_utm44n.gpkg,43.1,OK,,43.14,43.14,1558.46,43.14,43.14,43.14,43.14,43.14,main,False,25,VALID,False,1,0,Fals"
+     ]
+    ],
+    "modified": "2026-10-24T14:09:40.921795"
+   },
+   {
+    "file": "scripts\\make_first_village_report.py",
+    "n": 2,
+    "first": [
+     [
+      234,
+      "(\"Facilities (school compounds, TGRAC health, TGRAC anganwadi)\", \"UNVERIFIED\", \"From named source files; planner flags the sub-centre and anganwadi as UNVERIFIE"
+     ],
+     [
+      348,
+      "\"Facility source files (school compounds, TGRAC health, TGRAC anganwadi) are **not independently verified**; the sub-centre and anganwadi are flagged unverified"
+     ]
+    ],
+    "modified": "2026-10-24T19:31:58.720180"
+   },
+   {
+    "file": "scripts\\make_first_village_report (1).py",
+    "n": 2,
+    "first": [
+     [
+      234,
+      "(\"Facilities (school compounds, TGRAC health, TGRAC anganwadi)\", \"UNVERIFIED\", \"From named source files; planner flags the sub-centre and anganwadi as UNVERIFIE"
+     ],
+     [
+      348,
+      "\"Facility source files (school compounds, TGRAC health, TGRAC anganwadi) are **not independently verified**; the sub-centre and anganwadi are flagged unverified"
+     ]
+    ],
+    "modified": "2026-10-24T19:32:00.720931"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193616\\report\\FIRST_VILLAGE_REPORT.md",
+    "n": 2,
+    "first": [
+     [
+      54,
+      "| Facilities (school compounds, TGRAC health, TGRAC anganwadi) | UNVERIFIED | From named source files; planner flags the sub-centre and anganwadi as UNVERIFIED_"
+     ],
+     [
+      253,
+      "- `LIMITATION` Facility source files (school compounds, TGRAC health, TGRAC anganwadi) are **not independently verified**; the sub-centre and anganwadi are flag"
+     ]
+    ],
+    "modified": "2026-10-24T19:36:22.668463"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193707\\report\\FIRST_VILLAGE_REPORT.md",
+    "n": 2,
+    "first": [
+     [
+      54,
+      "| Facilities (school compounds, TGRAC health, TGRAC anganwadi) | UNVERIFIED | From named source files; planner flags the sub-centre and anganwadi as UNVERIFIED_"
+     ],
+     [
+      253,
+      "- `LIMITATION` Facility source files (school compounds, TGRAC health, TGRAC anganwadi) are **not independently verified**; the sub-centre and anganwadi are flag"
+     ]
+    ],
+    "modified": "2026-10-24T19:37:13.312056"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193837\\report\\FIRST_VILLAGE_REPORT.md",
+    "n": 2,
+    "first": [
+     [
+      54,
+      "| Facilities (school compounds, TGRAC health, TGRAC anganwadi) | UNVERIFIED | From named source files; planner flags the sub-centre and anganwadi as UNVERIFIED_"
+     ],
+     [
+      253,
+      "- `LIMITATION` Facility source files (school compounds, TGRAC health, TGRAC anganwadi) are **not independently verified**; the sub-centre and anganwadi are flag"
+     ]
+    ],
+    "modified": "2026-10-24T19:38:42.591569"
+   },
+   {
+    "file": "Siddipet\\Damarakunta\\results\\first_village_runs\\fv_20261024_193950\\report\\FIRST_VILLAGE_REPORT.md",
+    "n": 2,
+    "first": [
+     [
+      54,
+      "| Facilities (school compounds, TGRAC health, TGRAC anganwadi) | UNVERIFIED | From named source files; planner flags the sub-centre and anganwadi as UNVERIFIED_"
+     ],
+     [
+      253,
+      "- `LIMITATION` Facility source files (school compounds, TGRAC health, TGRAC anganwadi) are **not independently verified**; the sub-centre and anganwadi are flag"
+     ]
+    ],
+    "modified": "2026-10-24T19:39:55.095964"
+   },
+   {
+    "file": "DECISIONS_proposed_additions.md",
+    "n": 1,
+    "first": [
+     [
+      16,
+      "| 16 | 2026-10-24 | Facility records (school compounds, TGRAC health, TGRAC anganwadi) are used as external records and labelled not independently verified; the"
+     ]
+    ],
+    "modified": "2026-10-24T19:44:32.501981"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_20261024T145347Z\\tgrac_layers_found.json",
+    "n": 2,
+    "first": [
+     [
+      227,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\": {"
+     ],
+     [
+      264,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\": {"
+     ]
+    ],
+    "modified": "2026-10-24T20:23:52.738597"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_20261024T145347Z\\village_readiness_detail.json",
+    "n": 18,
+    "first": [
+     [
+      70,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ],
+     [
+      82,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ],
+     [
+      132,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ]
+    ],
+    "modified": "2026-10-24T20:24:59.816132"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_20261024T145347Z\\provenance.json",
+    "n": 2,
+    "first": [
+     [
+      19,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ],
+     [
+      23,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ]
+    ],
+    "modified": "2026-10-24T20:24:59.824822"
+   },
+   {
+    "file": "scripts\\layers_pinned.json",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "\"roads\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\","
+     ],
+     [
+      3,
+      "\"anganwadi\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ]
+    ],
+    "modified": "2026-10-24T20:28:15.781529"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_20261024T150446Z\\tgrac_layers_found.json",
+    "n": 2,
+    "first": [
+     [
+      230,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\": {"
+     ],
+     [
+      268,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\": {"
+     ]
+    ],
+    "modified": "2026-10-24T20:34:49.942717"
+   },
+   {
+    "file": "layers_pinned.json",
+    "n": 2,
+    "first": [
+     [
+      2,
+      "\"roads\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\","
+     ],
+     [
+      3,
+      "\"anganwadi\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ]
+    ],
+    "modified": "2026-10-24T20:39:54.018194"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_20261024T150956Z\\tgrac_layers_found.json",
+    "n": 2,
+    "first": [
+     [
+      230,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\": {"
+     ],
+     [
+      268,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\": {"
+     ]
+    ],
+    "modified": "2026-10-24T20:40:00.145817"
+   },
+   {
+    "file": "scripts\\village_readiness.py",
+    "n": 1,
+    "first": [
+     [
+      169,
+      "(the path names the whole service, so every layer of 'SchoolGIS_Folder/Schools' would look like a school layer).\"\"\""
+     ]
+    ],
+    "modified": "2026-10-24T20:44:08.425328"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_v2\\tgrac_layers_found.json",
+    "n": 2,
+    "first": [
+     [
+      230,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\": {"
+     ],
+     [
+      268,
+      "\"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\": {"
+     ]
+    ],
+    "modified": "2026-10-24T20:44:38.087962"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_v2\\village_readiness.csv",
+    "n": 9,
+    "first": [
+     [
+      2,
+      "Damarakunta,18.466,D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta,PRESENT,polygon returned by the TGRAC service; valid; NOT compared with an independent bounda"
+     ],
+     [
+      3,
+      "Cheberthy,12.204,,PRESENT,polygon returned by the TGRAC service; valid; NOT compared with an independent boundary,MISSING,no local village folder,UNVERIFIED,not"
+     ],
+     [
+      4,
+      "Erravalli,10.504,,PRESENT,polygon returned by the TGRAC service; valid; NOT compared with an independent boundary,MISSING,no local village folder,UNVERIFIED,not"
+     ]
+    ],
+    "modified": "2026-10-24T20:45:51.970851"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_v2\\village_readiness_detail.json",
+    "n": 18,
+    "first": [
+     [
+      64,
+      "\"SchoolGIS_Folder/Schools/MapServer/20: 23 intersect (pinned by --layers)\","
+     ],
+     [
+      73,
+      "\"SchoolGIS_Folder/Schools/MapServer/2: 1 intersect (pinned by --layers)\""
+     ],
+     [
+      111,
+      "\"SchoolGIS_Folder/Schools/MapServer/20: 29 intersect (pinned by --layers)\""
+     ]
+    ],
+    "modified": "2026-10-24T20:45:51.975846"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_v2\\tgrac_layer_counts.csv",
+    "n": 18,
+    "first": [
+     [
+      5,
+      "Angadi kistapur,https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2,Anganwadi_Locations_Dept,esriGeometryPoint,1,1,False,"
+     ],
+     [
+      6,
+      "Angadi kistapur,https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20,District / Village Road Network,esriGeometryPolyline,2"
+     ],
+     [
+      10,
+      "Cheberthy,https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2,Anganwadi_Locations_Dept,esriGeometryPoint,0,1,False,"
+     ]
+    ],
+    "modified": "2026-10-24T20:45:51.980844"
+   },
+   {
+    "file": "Siddipet\\_village_readiness\\ready_v2\\provenance.json",
+    "n": 4,
+    "first": [
+     [
+      5,
+      "\"roads\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\","
+     ],
+     [
+      6,
+      "\"anganwadi\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/2\","
+     ],
+     [
+      16,
+      "\"url\": \"https://tgrac.telangana.gov.in/arcgis/rest/services/SchoolGIS_Folder/Schools/MapServer/20\","
+     ]
+    ],
+    "modified": "2026-10-24T20:45:51.984847"
+   },
+   {
+    "file": "DAMARAKUNTA_STAGE_A_INPUT_VALIDATION.md",
+    "n": 1,
+    "first": [
+     [
+      38,
+      "| School compound polygons | creation method **unknown** (no script found that creates them) |"
+     ]
+    ],
+    "modified": "2026-10-24T21:52:50.309139"
+   },
+   {
+    "file": "scripts\\audit_provenance_alignment.py",
+    "n": 3,
+    "first": [
+     [
+      20,
+      "NEEDLES = [\"school_compounds\", \"School_Code\", \"School_Name\", \"SchoolGIS\", \"school compound\", \"school_compound\"]"
+     ],
+     [
+      61,
+      "f1, f2 = ref / \"school_compounds.gpkg\", ref / \"school_compounds_utm44n.gpkg\""
+     ],
+     [
+      79,
+      "for c in (\"School_Code\", \"School_Name\", \"Village_Name\", \"Latitude\", \"Longitude\", \"Shape_Area\"):"
+     ]
+    ],
+    "modified": "2026-10-24T21:58:35.704576"
+   }
+  ],
+  "sources.json": {
+   "exists": false,
+   "mentions_school": false
+  },
+  "study_area_config.json": {
+   "exists": false,
+   "mentions_school": false
+  }
+ },
+ "D_raster_alignment": {
+  "rasters": {
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif": {
+    "epsg": 32644,
+    "w": 679,
+    "h": 432,
+    "res": [
+     10.0,
+     10.0
+    ],
+    "origin": [
+     258810.0,
+     1960920.0
+    ],
+    "transform": [
+     10.0,
+     0.0,
+     258810.0,
+     0.0,
+     -10.0,
+     1960920.0
+    ],
+    "bounds": [
+     258810.0,
+     1956600.0,
+     265600.0,
+     1960920.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif": {
+    "epsg": 32644,
+    "w": 227,
+    "h": 144,
+    "res": [
+     30.0,
+     30.0
+    ],
+    "origin": [
+     258810.0,
+     1960920.0
+    ],
+    "transform": [
+     30.0,
+     0.0,
+     258810.0,
+     0.0,
+     -30.0,
+     1960920.0
+    ],
+    "bounds": [
+     258810.0,
+     1956600.0,
+     265620.0,
+     1960920.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif": {
+    "epsg": 32644,
+    "w": 11296,
+    "h": 7171,
+    "res": [
+     0.6,
+     0.6
+    ],
+    "origin": [
+     258814.8855999997,
+     1960912.0879999995
+    ],
+    "transform": [
+     0.6,
+     0.0,
+     258814.8855999997,
+     0.0,
+     -0.6,
+     1960912.0879999995
+    ],
+    "bounds": [
+     258814.8855999997,
+     1956609.4879999994,
+     265592.48559999967,
+     1960912.0879999995
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif": {
+    "epsg": 32644,
+    "w": 2048,
+    "h": 2048,
+    "res": [
+     3.309308203125056,
+     2.1009668945307567
+    ],
+    "origin": [
+     258814.8855999997,
+     1960912.0879999995
+    ],
+    "transform": [
+     3.309308203125056,
+     0.0,
+     258814.8855999997,
+     0.0,
+     -2.1009668945307567,
+     1960912.0879999995
+    ],
+    "bounds": [
+     258814.8855999997,
+     1956609.3078000005,
+     265592.3487999998,
+     1960912.0879999995
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif": {
+    "epsg": 32644,
+    "w": 679,
+    "h": 432,
+    "res": [
+     10.0,
+     10.0
+    ],
+    "origin": [
+     258810.0,
+     1960920.0
+    ],
+    "transform": [
+     10.0,
+     0.0,
+     258810.0,
+     0.0,
+     -10.0,
+     1960920.0
+    ],
+    "bounds": [
+     258810.0,
+     1956600.0,
+     265600.0,
+     1960920.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif": {
+    "epsg": 32643,
+    "w": 682,
+    "h": 436,
+    "res": [
+     10.0,
+     10.0
+    ],
+    "origin": [
+     895310.0,
+     1963480.0
+    ],
+    "transform": [
+     10.0,
+     0.0,
+     895310.0,
+     0.0,
+     -10.0,
+     1963480.0
+    ],
+    "bounds": [
+     895310.0,
+     1959120.0,
+     902130.0,
+     1963480.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif": {
+    "epsg": 32644,
+    "w": 679,
+    "h": 432,
+    "res": [
+     10.0,
+     10.0
+    ],
+    "origin": [
+     258810.0,
+     1960920.0
+    ],
+    "transform": [
+     10.0,
+     0.0,
+     258810.0,
+     0.0,
+     -10.0,
+     1960920.0
+    ],
+    "bounds": [
+     258810.0,
+     1956600.0,
+     265600.0,
+     1960920.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif": {
+    "epsg": 32644,
+    "w": 227,
+    "h": 144,
+    "res": [
+     30.0,
+     30.0
+    ],
+    "origin": [
+     258810.0,
+     1960920.0
+    ],
+    "transform": [
+     30.0,
+     0.0,
+     258810.0,
+     0.0,
+     -30.0,
+     1960920.0
+    ],
+    "bounds": [
+     258810.0,
+     1956600.0,
+     265620.0,
+     1960920.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif": {
+    "epsg": 32644,
+    "w": 679,
+    "h": 432,
+    "res": [
+     10.0,
+     10.0
+    ],
+    "origin": [
+     258810.0,
+     1960920.0
+    ],
+    "transform": [
+     10.0,
+     0.0,
+     258810.0,
+     0.0,
+     -10.0,
+     1960920.0
+    ],
+    "bounds": [
+     258810.0,
+     1956600.0,
+     265600.0,
+     1960920.0
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif": {
+    "epsg": 32644,
+    "w": 11296,
+    "h": 7171,
+    "res": [
+     0.6,
+     0.6
+    ],
+    "origin": [
+     258814.8855999997,
+     1960912.0879999995
+    ],
+    "transform": [
+     0.6,
+     0.0,
+     258814.8855999997,
+     0.0,
+     -0.6,
+     1960912.0879999995
+    ],
+    "bounds": [
+     258814.8855999997,
+     1956609.4879999994,
+     265592.48559999967,
+     1960912.0879999995
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif": {
+    "epsg": 32644,
+    "w": 1400,
+    "h": 1400,
+    "res": [
+     0.6,
+     0.6
+    ],
+    "origin": [
+     261814.8855999997,
+     1959112.0879999995
+    ],
+    "transform": [
+     0.6,
+     0.0,
+     261814.8855999997,
+     0.0,
+     -0.6,
+     1959112.0879999995
+    ],
+    "bounds": [
+     261814.8855999997,
+     1958272.0879999995,
+     262654.8855999997,
+     1959112.0879999995
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif": {
+    "epsg": 32644,
+    "w": 11296,
+    "h": 7171,
+    "res": [
+     0.6,
+     0.6
+    ],
+    "origin": [
+     258814.8855999997,
+     1960912.0879999995
+    ],
+    "transform": [
+     0.6,
+     0.0,
+     258814.8855999997,
+     0.0,
+     -0.6,
+     1960912.0879999995
+    ],
+    "bounds": [
+     258814.8855999997,
+     1956609.4879999994,
+     265592.48559999967,
+     1960912.0879999995
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   },
+   "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif": {
+    "epsg": 32644,
+    "w": 1400,
+    "h": 1400,
+    "res": [
+     0.6,
+     0.6
+    ],
+    "origin": [
+     261814.8855999997,
+     1959112.0879999995
+    ],
+    "transform": [
+     0.6,
+     0.0,
+     261814.8855999997,
+     0.0,
+     -0.6,
+     1959112.0879999995
+    ],
+    "bounds": [
+     261814.8855999997,
+     1958272.0879999995,
+     262654.8855999997,
+     1959112.0879999995
+    ],
+    "rotation": [
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "families": {
+   "10 m": [
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+     "same_transform_as_first": false,
+     "same_shape_as_first": false,
+     "origin_offset_vs_first_in_cells": [
+      63650.0,
+      256.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "30 m": [
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    }
+   ],
+   "0.6 m": [
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+     "same_transform_as_first": false,
+     "same_shape_as_first": false,
+     "origin_offset_vs_first_in_cells": [
+      5000.0,
+      -3000.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "raster": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+     "same_transform_as_first": false,
+     "same_shape_as_first": false,
+     "origin_offset_vs_first_in_cells": [
+      5000.0,
+      -3000.0
+     ]
+    }
+   ],
+   "3.30931 m": [
+    {
+     "raster": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+     "same_transform_as_first": true,
+     "same_shape_as_first": true,
+     "origin_offset_vs_first_in_cells": [
+      0.0,
+      0.0
+     ]
+    }
+   ]
+  },
+  "cross_family_origin_offsets": [
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "ratio": 5.515513671875094,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "ratio": 5.515513671875094,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "ratio": 5.515513671875094,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.5338783395969813,
+    "fractional_offset_y_in_coarse_cells": 0.2516120621579603,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295693,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507707,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\building_prob_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295693,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507707,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "ratio": 5.515513671875094,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_full.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "ratio": 5.515513671875094,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.5338783395969813,
+    "fractional_offset_y_in_coarse_cells": 0.2516120621579603,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "ratio": 16.666666666666668,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295693,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507707,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\predictions\\tiled_v1\\pred_classes_smoke.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 50.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295693,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507707,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "ratio": 3.0217795944653236,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "ratio": 3.0217795944653236,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "ratio": 3.0217795944653236,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995230492,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "ratio": 3.0217795944653236,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "ratio": 3.0217795944653236,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.4885599999688566,
+    "fractional_offset_y_in_coarse_cells": 0.20879999995231624,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 9.06533878339597,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 9.06533878339597,
+    "ratio_is_integer": false,
+    "fractional_offset_x_in_coarse_cells": 0.16285333332295218,
+    "fractional_offset_y_in_coarse_cells": 0.7362666666507721,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_cost_surface_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_prohibited_mask_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.6666666666678793,
+    "fractional_offset_y_in_coarse_cells": 0.3333333333333286,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.6666666666678793,
+    "fractional_offset_y_in_coarse_cells": 0.3333333333333286,
+    "fine_origin_on_coarse_cell_edge": false
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_dem_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   },
+   {
+    "fine": "Siddipet\\Damarakunta\\aligned\\damarakunta_worldcover_10m.tif",
+    "coarse": "Siddipet\\Damarakunta\\aligned\\damarakunta_slope_30m.tif",
+    "ratio": 3.0,
+    "ratio_is_integer": true,
+    "fractional_offset_x_in_coarse_cells": 0.0,
+    "fractional_offset_y_in_coarse_cells": 0.0,
+    "fine_origin_on_coarse_cell_edge": true
+   }
+  ]
+ }
+}

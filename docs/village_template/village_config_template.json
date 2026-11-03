@@ -1,0 +1,28 @@
+{
+    "district": "District_Name",
+    "mandal": "Mandal_Name",
+    "village": "Village_Name",
+    "study_area": {
+        "boundary": "",
+        "imagery": ""
+    },
+    "data": {
+        "raw_imagery": "",
+        "dem": "",
+        "landcover": "",
+        "reference_roads": "",
+        "schools": "",
+        "health_facilities": "",
+        "government_facilities": ""
+    },
+    "processing": {
+        "segmentation": "StrongDINOv2Seg",
+        "facility_priority": [
+            "Public-service facilities",
+            "Residential areas",
+            "Already well-connected areas"
+        ],
+        "routing": "Multi-criteria road network optimization"
+    },
+    "status": "NOT_STARTED"
+}

@@ -1,0 +1,3 @@
+facility_id,facility_name,facility_type,lat,lon,coordinate_source,verified_by,verified_date,notes
+MEESEVA_DAMARAKUNTA,MeeSeva centre (Damarakunta),Administrative (MeeSeva),,,,,,"no coordinate source found; fill lat/lon and source"
+ESD_DAMARAKUNTA,Directorate of ESD (Aadhaar/service) centre (Damarakunta),Administrative (ESD service centre),,,,,,"no coordinate source found; fill lat/lon and source"

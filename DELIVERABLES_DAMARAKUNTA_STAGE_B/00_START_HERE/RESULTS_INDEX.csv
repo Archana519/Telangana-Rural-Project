@@ -1,0 +1,11 @@
+metric,value,source
+final x4 (5 facilities): house unique length (m),5068.995596729069,PRIMARY_RUN/evaluation_summary.json
+final x4 (5 facilities): facility unique length (m),249.30922061357856,PRIMARY_RUN/evaluation_summary.json
+final x4 (5 facilities): combined unique length (m),5318.304817342646,PRIMARY_RUN/evaluation_summary.json
+final x4 (5 facilities): combined unique ordinal cost,29171.120577872647,PRIMARY_RUN/evaluation_summary.json
+final x4 (5 facilities): independent baseline house unique length (m),6753.100141024099,PRIMARY_RUN/evaluation_summary.json
+final x4 (5 facilities): roads-only reference house unique length (m),5229.282681718914,PRIMARY_RUN/evaluation_summary.json
+final x1 (5 facilities): house unique length (m),4705.442104868028,S2_fac_C0_s25_final_x1/evaluation_summary.json
+final x1 (5 facilities): facility unique length (m),235.1670849898476,S2_fac_C0_s25_final_x1/evaluation_summary.json
+final x1 (5 facilities): combined unique ordinal cost,21052.226395297384,S2_fac_C0_s25_final_x1/evaluation_summary.json
+targets reaching the main road component (raster) / routed,167 / 168,PRIMARY_RUN/connectivity_checks.csv

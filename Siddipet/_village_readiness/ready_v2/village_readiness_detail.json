@@ -1,0 +1,656 @@
+{
+  "Angadi kistapur": {
+    "imagery": {
+      "files": [
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\aligned\\angadi_kistapur_full_village_georeferenced.tif",
+          "resolution_m": 1.982,
+          "crs": "EPSG:4326",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 2000,
+          "height": 2000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\aligned\\angadi_kistapur_georeferenced.tif",
+          "resolution_m": 1.989,
+          "crs": "EPSG:4326",
+          "bbox_coverage": 0.425,
+          "valid_share_inside_village": 1.0,
+          "width": 1000,
+          "height": 1000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\aligned\\angadi_kistapur_utm44n.tif",
+          "resolution_m": 2.027,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 1981,
+          "height": 2066
+        }
+      ]
+    },
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        76,
+        135
+      ],
+      "res_m": 29.5,
+      "min": 553.0,
+      "max": 621.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        252,
+        449
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 1824,
+        "20": 239,
+        "30": 23351,
+        "40": 82541,
+        "50": 2345,
+        "60": 2640,
+        "80": 208
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 23 intersect (pinned by --layers)",
+      "local file tgrac_road_network_angadi_kistapur.gpkg: 23 features intersect"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 0 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 0 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 1 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 366 intersect (pinned by --layers)"
+    ]
+  },
+  "Cheberthy": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        145,
+        184
+      ],
+      "res_m": 29.5,
+      "min": 550.0,
+      "max": 621.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        482,
+        613
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 4120,
+        "20": 429,
+        "30": 39985,
+        "40": 232789,
+        "50": 4781,
+        "60": 6883,
+        "80": 6479
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 29 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 0 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 1 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 0 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Erravalli": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        195,
+        103
+      ],
+      "res_m": 29.5,
+      "min": 550.0,
+      "max": 599.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        649,
+        344
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 5083,
+        "20": 848,
+        "30": 30771,
+        "40": 174163,
+        "50": 2898,
+        "60": 3282,
+        "80": 6211
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 35 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 2 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 1 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 1 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Sivar Venkatapur": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        134,
+        92
+      ],
+      "res_m": 29.5,
+      "min": 573.0,
+      "max": 619.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        447,
+        307
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 3626,
+        "20": 370,
+        "30": 31446,
+        "40": 97989,
+        "50": 330,
+        "60": 2110,
+        "80": 1358
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 24 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 0 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 0 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 0 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Vardarajpur": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        121,
+        165
+      ],
+      "res_m": 29.5,
+      "min": 530.0,
+      "max": 597.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        404,
+        551
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 17075,
+        "20": 12602,
+        "30": 58799,
+        "40": 123379,
+        "50": 1191,
+        "60": 2512,
+        "80": 7046
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 21 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 1 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 0 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 0 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Damarakunta": {
+    "imagery": {
+      "files": [
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_esri_highres_mosaic_0p6m.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 11296,
+          "height": 7171
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_model_input_rgb.tif",
+          "resolution_m": 3.309,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\aligned\\damarakunta_sentinel2_model_rgb_uint8.tif",
+          "resolution_m": 10.0,
+          "crs": "EPSG:32643",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 682,
+          "height": 436
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\damarakunta_sentinel_feb2022.tif",
+          "resolution_m": 3.309,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 2048,
+          "height": 2048
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_damarakunta_test_1km.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_damarakunta_test_1km_georef.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.035,
+          "valid_share_inside_village": 1.0,
+          "width": 1667,
+          "height": 1667
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_damarakunta_test_raw.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_01.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.112,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_02.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.113,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_03.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.113,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_04.tif",
+          "resolution_m": 0.459,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.086,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_05.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.113,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_06.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.114,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_07.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.113,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_08.tif",
+          "resolution_m": 0.459,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.087,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_09.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.044,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_10.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.044,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\damarakunta_esri_tile_11.tif",
+          "resolution_m": 0.6,
+          "crs": "EPSG:32644",
+          "bbox_coverage": 0.043,
+          "valid_share_inside_village": 1.0,
+          "width": 3000,
+          "height": 3000
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_01.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_02.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_03.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_04.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_05.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_06.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_07.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_08.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_09.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_10.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\esri_full_tiles\\raw_damarakunta_esri_tile_11.tif",
+          "skipped": "not georeferenced (no CRS / identity transform)"
+        },
+        {
+          "file": "D:\\Telangana_Rural_Project\\Siddipet\\Damarakunta\\raw\\imagery\\sentinel2_20260429\\damarakunta_sentinel2_RGB_B04_B03_B02_10m.tif",
+          "resolution_m": 10.0,
+          "crs": "EPSG:32643",
+          "bbox_coverage": 1.0,
+          "valid_share_inside_village": 1.0,
+          "width": 682,
+          "height": 436
+        }
+      ]
+    },
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        140,
+        230
+      ],
+      "res_m": 29.5,
+      "min": 550.0,
+      "max": 630.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        467,
+        767
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 15506,
+        "20": 16274,
+        "30": 130957,
+        "40": 185266,
+        "50": 2311,
+        "60": 7579,
+        "80": 296
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 43 intersect (pinned by --layers)",
+      "local file tgrac_road_network.gpkg: 43 features intersect"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 1 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 1 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 5 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Karkapatla": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        135,
+        114
+      ],
+      "res_m": 29.5,
+      "min": 561.0,
+      "max": 633.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        448,
+        379
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 3144,
+        "20": 12937,
+        "30": 94843,
+        "40": 48797,
+        "50": 3780,
+        "60": 6168,
+        "80": 123
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 24 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 1 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 0 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 2 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Markook": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        248,
+        152
+      ],
+      "res_m": 29.5,
+      "min": 560.0,
+      "max": 621.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        826,
+        506
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 8497,
+        "20": 2383,
+        "30": 69609,
+        "40": 298987,
+        "50": 7325,
+        "60": 9657,
+        "80": 21498
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 41 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 0 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 1 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 5 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  },
+  "Pamulaparthi": {
+    "imagery": {},
+    "dem": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\dem\\n17_e078_1arc_v3.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        176,
+        187
+      ],
+      "res_m": 29.5,
+      "min": 567.0,
+      "max": 621.0
+    },
+    "worldcover": {
+      "file": "D:\\Telangana_Rural_Project\\Siddipet\\Angadi_Kistapur\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N15E078_Map.tif",
+      "valid_share": 1.0,
+      "window_shape": [
+        585,
+        622
+      ],
+      "res_m": 8.9,
+      "classes": {
+        "10": 15108,
+        "20": 3972,
+        "30": 53600,
+        "40": 205345,
+        "50": 14116,
+        "60": 11800,
+        "80": 59929
+      }
+    },
+    "roads": [
+      "SchoolGIS_Folder/Schools/MapServer/20: 30 intersect (pinned by --layers)"
+    ],
+    "schools": [],
+    "health": [
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/0: 0 intersect (pinned by --layers)",
+      "GovtHospitals_Folder/Health_Facilities_Query/MapServer/6: 0 intersect (pinned by --layers)"
+    ],
+    "anganwadi": [
+      "SchoolGIS_Folder/Schools/MapServer/2: 3 intersect (pinned by --layers)"
+    ],
+    "plinth": [
+      "Abadi_Folder/Abadi_Final/MapServer/20: 0 intersect (pinned by --layers)"
+    ]
+  }
+}
