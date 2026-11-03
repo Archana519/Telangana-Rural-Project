@@ -4,6 +4,7 @@ pandas
 rasterio>=1.3
 geopandas>=1.0
 shapely>=2.0
+fiona
 pyproj>=3.6
 pyogrio>=0.7
 networkx

@@ -104,6 +104,11 @@ def main(argv=None):
     a, rest = ap.parse_known_args(argv)
 
     if a.cmd == "run":
+        if not (RES / "run_20261029_01").exists():
+            print("The original project data is missing, so the pipeline cannot run here.\n"
+                  "It needs the reference run (Siddipet/Damarakunta/results/run_20261029_01) and the input rasters.\n"
+                  "Copy the data folder from the original computer into this project, then try again.")
+            return 2
         code = run_script("run_pipeline.py", rest)
         if code == 0 and "--dry-run" not in rest:
             n = point_latest()
