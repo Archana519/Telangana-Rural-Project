@@ -1,5 +1,9 @@
 # Roof Digitizer (no QGIS)
 
+> **In short:** this app lets you trace roofs on the satellite image in your browser. Nothing is saved until you press **Commit**.
+> 1. Do the one-time setup (section 1).  2. Run `python app.py` (section 2).  3. Pick **Trace roof**, click the corners, press **Enter**.
+> New to the project? Read the main [README](../README.md) first.
+
 A local, browser-based tool for tracing reference roofs on the Damarakunta mosaic. It runs on your own
 computer (127.0.0.1 only), reads the imagery and the AI candidates read-only, and writes your traces to
 the `reference_buildings` layer of `digitize_windows.gpkg` **only when you press Commit**.

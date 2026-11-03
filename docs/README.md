@@ -1,3 +1,5 @@
+> **New here?** Start with the main [README](../README.md). This page covers the early setup scripts for the Siddipet villages.
+
 # Siddipet scripts (Angadi Kistapur first)
 
 All scripts are read-only towards TGRAC and never overwrite earlier raw files
