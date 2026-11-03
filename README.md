@@ -85,6 +85,24 @@ telangana clean              # remove old runs, keep the newest 3
 
 Each run is saved in its own folder, `outputs/run_<date>_<time>/`. After every run the tool points `outputs/latest` at the newest one and **deletes older runs beyond the newest 3**, so results do not pile up. Change that with `--keep 5`, or switch it off with `--no-clean`. The reference run is never deleted.
 
+### What the results look like
+
+Every run gets its own dated folder, so runs never mix:
+
+```
+outputs/
+├── INDEX.md                      <- all saved runs, newest first, with date and PASS/FAILED
+├── latest/                       <- shortcut to the newest run
+└── run_20261103_195802/          <- one run (3 Nov 2026, 19:58)
+    ├── RUN_SUMMARY.md            <- read this first: date, result, what is where
+    ├── 1_buildings/              <- building footprints, facilities
+    ├── 2_terrain/                <- cost map, existing roads
+    ├── 3_routes/                 <- new routes and why each was chosen
+    ├── 4_what_if_tests/          <- stress-test results
+    ├── 5_checks/                 <- validation and connectivity checks
+    └── pipeline.log              <- full log
+```
+
 **In VS Code:** press `Ctrl+Shift+P` (Mac: `Cmd+Shift+P`), choose **Tasks: Run Task**, and pick a `Telangana: ...` item. No typing needed.
 
 **Results are never pushed to Git.** The `outputs/` folder and the per-run folders are ignored, so running many times never clutters the repo.

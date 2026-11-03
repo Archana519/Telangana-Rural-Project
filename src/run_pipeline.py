@@ -247,40 +247,49 @@ class Pipeline:
                 shutil.copytree(src, dst, dirs_exist_ok=True)
             elif Path(src).exists():
                 shutil.copy2(src, dst)
-        cp(VILLAGE / "results" / "v8_instances" / "buildings_v8_full.gpkg", o / "stage1_detect" / "building_footprints" / "buildings_v8_full.gpkg")
-        cp(SN.FAC_LAYER, o / "stage1_detect" / "priority_facilities_excl_1702300.gpkg")
+        cp(VILLAGE / "results" / "v8_instances" / "buildings_v8_full.gpkg", o / "1_buildings" / "building_footprints" / "buildings_v8_full.gpkg")
+        cp(SN.FAC_LAYER, o / "1_buildings" / "priority_facilities_excl_1702300.gpkg")
         for f in ("damarakunta_cost_surface_10m.tif", "damarakunta_prohibited_mask_10m.tif", "damarakunta_slope_10m.tif", "damarakunta_worldcover_10m.tif"):
-            cp(VILLAGE / "aligned" / f, o / "stage2_terrain" / "cost_surface_rasters" / f)
-        cp(VILLAGE / "reference" / "tgrac_road_network.gpkg", o / "stage2_terrain" / "existing_roads" / "tgrac_road_network.gpkg")
-        cp(VILLAGE / "reference" / "derived" / "tgrac_road_network_clipped.gpkg", o / "stage2_terrain" / "existing_roads" / "tgrac_road_network_clipped.gpkg")
+            cp(VILLAGE / "aligned" / f, o / "2_terrain" / "cost_surface_rasters" / f)
+        cp(VILLAGE / "reference" / "tgrac_road_network.gpkg", o / "2_terrain" / "existing_roads" / "tgrac_road_network.gpkg")
+        cp(VILLAGE / "reference" / "derived" / "tgrac_road_network_clipped.gpkg", o / "2_terrain" / "existing_roads" / "tgrac_road_network_clipped.gpkg")
         s3 = [SN.PRIMARY, SN.P3] + [d.name for d in sorted(self.stageB.iterdir()) if d.is_dir() and d.name.startswith(SN.AVOID_PREFIX)]
         for r in s3:
             src = self.stageB / r
             for f in ("routes.gpkg", "selection_summary.csv", "route_edges.csv", "route_alternatives.csv", "evaluation_summary.json", "config_stageB.json",
                       "connectivity_checks.csv", "road_components.csv", "inputs_manifest_stageB.csv", "outputs_manifest.csv"):
-                cp(src / f, o / "stage3_plan" / r / f)
+                cp(src / f, o / "3_routes" / r / f)
             if (self.stageB / "_route_explanations" / r).exists():
-                cp(self.stageB / "_route_explanations" / r, o / "stage3_plan" / r / "why_chosen")
+                cp(self.stageB / "_route_explanations" / r, o / "3_routes" / r / "why_chosen")
         for d in sorted(self.stageB.iterdir()):
             if d.is_dir() and not d.name.startswith("_") and d.name not in s3:
                 for f in ("evaluation_summary.json", "config_stageB.json"):      # reference-family runs keep the 4-facility baseline; no per-facility rows are copied
-                    cp(d / f, o / "stage4_stress" / d.name / f)
+                    cp(d / f, o / "4_what_if_tests" / d.name / f)
         for d in sorted(self.stageB.iterdir()):
             if d.is_dir() and d.name.startswith("_"):
-                cp(d, o / "stage5_validate" / d.name.lstrip("_"))
-        cp(self.res / "stageA", o / "stage5_validate" / "stageA_checks")
+                cp(d, o / "5_checks" / d.name.lstrip("_"))
+        cp(self.res / "stageA", o / "5_checks" / "stageA_checks")
 
     def finish(self, ok):
         if self.a.dry_run:
             return
         self.out.mkdir(parents=True, exist_ok=True)
-        L = ["# Pipeline run %s" % self.run_id, "", "Status: **%s**. Profile `%s`. Planner SHA-256 `%s`." % ("PASS" if ok else "FAILED", self.a.profile, PLANNER_SHA), "",
-             "| Stage | Step | Status | Seconds | Note |", "|---|---|---|---|---|"]
+        ran = datetime.strptime(self.run_id[4:], "%Y%m%d_%H%M%S").strftime("%d %b %Y, %H:%M") if len(self.run_id) == 19 else self.run_id
+        L = ["# Pipeline run %s" % self.run_id, "", "Ran on: **%s**" % ran, "",
+             "Status: **%s**. Profile `%s`. Planner SHA-256 `%s`." % ("PASS" if ok else "FAILED", self.a.profile, PLANNER_SHA), "",
+             "## Where to look", "", "| Folder | What is inside |", "|---|---|",
+             "| `1_buildings` | Building footprints and the facilities that were routed |",
+             "| `2_terrain` | The cost map (land type, slope) and the existing roads |",
+             "| `3_routes` | The new route plans, the alternatives, and why each route was chosen |",
+             "| `4_what_if_tests` | Results of the stress tests (missing or extra buildings, settings) |",
+             "| `5_checks` | Validation and connectivity checks |",
+             "| `pipeline.log` | The full log of this run |", "",
+             "## Steps", "", "| Stage | Step | Status | Seconds | Note |", "|---|---|---|---|---|"]
         for s, n, st, sec, note in self.steps:
             L.append("| %s | %s | %s | %.0f | %s |" % (s, n, st, sec, str(note).replace("|", "/")[:300]))
         L += ["", "Costs are ordinal planning units; routes are planning alternatives, not roads; the stress-test runs are synthetic. "
-              "Detection (Stage 1) and terrain (Stage 2) are verified inputs, not re-run. Where each output is: `stage1_detect` (footprints, facilities), "
-              "`stage2_terrain` (cost surface rasters, existing roads), `stage3_plan` (new routes, alternatives, why-chosen), `stage4_stress`, `stage5_validate`.", ""]
+              "Detection (Stage 1) and terrain (Stage 2) are verified inputs, not re-run. "
+              "See the folder table above for where each output is.", ""]
         if getattr(self, "input_rows", None):
             L += ["## Input hashes", "", "| Role | SHA-256 now | Equals reference |", "|---|---|---|"] + ["| %s | %s | %s |" % (r[0], r[2][:16], r[4]) for r in self.input_rows]
         (self.out / "RUN_SUMMARY.md").write_text("\n".join(L) + "\n", encoding="utf-8")

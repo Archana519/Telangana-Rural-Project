@@ -233,7 +233,7 @@ def main():
               t4[t4.perturbation == "omit merged blobs"].unique_len_per_routed_m_mean.iloc[0] if (t4.perturbation == "omit merged blobs").any() else float("nan")))
         A("")
     A("## 8. Why each route was chosen")
-    A("For every selected route the planner log and the cost rasters were combined into one explanation (`stage3_plan/<run>/why_chosen/route_explanations.csv` and `.md`): the greedy step, the candidate used (Stage A alternative or a fresh path to the network), "
+    A("For every selected route the planner log and the cost rasters were combined into one explanation (`3_routes/<run>/why_chosen/route_explanations.csv` and `.md`): the greedy step, the candidate used (Stage A alternative or a fresh path to the network), "
       "marginal and route cost, the land cover crossed, slope, building-penalty edges, the saving against the independent route and the object the route ends on. In the primary run %d of %d routes end on another route and %d routes enter penalised building cells. "
       "No grid edge is shared by two routes (shared length %.2f m): the saving arises because routes end on one another or on roads, not because they overlap." % (
           int((exp.attach_class.isin(["HOUSE_ROUTE", "FACILITY_ROUTE"])).sum()), len(exp), int((exp.building_penalty_edges > 0).sum()), ev["combined_primary"]["shared_len_m"]))

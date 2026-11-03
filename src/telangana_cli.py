@@ -15,6 +15,7 @@ import re
 import shutil
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,6 +52,21 @@ def point_latest():
     except OSError:
         pass                       # e.g. Windows without symlink rights: latest.txt still works
     return n
+
+
+def write_index():
+    """outputs/INDEX.md: every saved run, newest first, with the date it ran and whether it passed."""
+    runs = sorted((d for d in OUT.glob("run_*") if d.is_dir() and RUN_NAME.match(d.name)), reverse=True) if OUT.exists() else []
+    L = ["# Saved runs", "", "Newest first. Open a folder and read its `RUN_SUMMARY.md` first.", "", "| Ran on | Result | Folder |", "|---|---|---|"]
+    for d in runs:
+        when = datetime.strptime(d.name[4:], "%Y%m%d_%H%M%S").strftime("%d %b %Y, %H:%M")
+        summ = d / "RUN_SUMMARY.md"
+        text = summ.read_text(encoding="utf-8") if summ.exists() else ""
+        status = "PASS" if "Status: **PASS**" in text else ("FAILED" if "Status: **FAILED**" in text else "unknown")
+        L.append("| %s | %s | [%s](%s/RUN_SUMMARY.md) |" % (when, status, d.name, d.name))
+    if runs:
+        OUT.mkdir(exist_ok=True)
+        (OUT / "INDEX.md").write_text("\n".join(L) + "\n", encoding="utf-8")
 
 
 def clean(keep, yes):
@@ -94,6 +110,7 @@ def main(argv=None):
             print("\nNewest outputs:", n)
             if not a.no_clean:
                 clean(a.keep, yes=True)
+            write_index()
         return code
     if a.cmd == "package":
         return run_script("run_final_package.py", rest)
@@ -112,6 +129,7 @@ def main(argv=None):
             subprocess.call(["open" if sys.platform == "darwin" else "xdg-open", str(n)])
         return 0
     clean(a.keep, a.yes)
+    write_index()
     return 0
 
 
