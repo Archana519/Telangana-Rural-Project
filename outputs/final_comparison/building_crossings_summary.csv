@@ -1,6 +1,0 @@
-run,house_routes,routes_crossing_other_footprints,crossing_len_m,crossing_only_in_first_20m,crossing_beyond_first_20m
-S2_fac_C0_s25_final_x4,163,28,209.1,12,16
-S2_fac_C0_s25_final_x1,163,56,660.1,21,35
-S2_fac_C0_s25_final_avoid_buf100,163,19,144.8,16,3
-S2_fac_C0_s25_final_avoid_buf1000,163,19,144.8,16,3
-S2_fac_C0_s25_final_avoid_buf20,163,19,147.9,16,3

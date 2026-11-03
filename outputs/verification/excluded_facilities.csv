@@ -1,2 +1,0 @@
-facility_id,name,lat,lon,nearest_footprint_m,nearest_open_buildings_m,status
-1702300,Damarakunt-I (anganwadi),17.7038,78.7474,371.4,125.7,"EXCLUDED from planning layers, CSVs and maps at the project owner's request; see inputs/EXCLUSIONS.md"

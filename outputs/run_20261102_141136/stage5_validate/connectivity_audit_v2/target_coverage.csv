@@ -1,5 +1,0 @@
-scenario,kind,n_scenario_targets,n_status_records,n_target_points_layer,n_route_features,n_unique_route_ids,n_connectivity_rows,n_status_routed,n_failed_or_not_routed,duplicate_route_ids,duplicate_connectivity_ids,in_scenario_not_in_status,in_status_not_in_scenario,in_scenario_not_routed_layer,in_routed_layer_not_scenario,in_routed_layer_not_connectivity,in_connectivity_not_routed_layer,in_scenario_not_target_points,failed_ids,evidence_source
-S2_fac_C0_s25_final_x4,house,163,163,163,163,163,163,163,0,,,,,,,,,,,scenario_targets.csv|target_status.csv|facility_status.csv|routes.gpkg|connectivity_checks.csv
-S2_fac_C0_s25_final_x4,facility,5,5,5,5,5,5,5,0,,,,,,,,,,,scenario_targets.csv|target_status.csv|facility_status.csv|routes.gpkg|connectivity_checks.csv
-S2_fac_C0_s25_final_x1,house,163,163,163,163,163,163,163,0,,,,,,,,,,,scenario_targets.csv|target_status.csv|facility_status.csv|routes.gpkg|connectivity_checks.csv
-S2_fac_C0_s25_final_x1,facility,5,5,5,5,5,5,5,0,,,,,,,,,,,scenario_targets.csv|target_status.csv|facility_status.csv|routes.gpkg|connectivity_checks.csv

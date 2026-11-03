@@ -1,5 +1,0 @@
-group,candidates,proxy_TP,proxy_FP,proxy_agreement_rate
-ALL,165,118,47,0.715
-PLAUSIBLE,71,51,20,0.718
-REVIEW,32,14,18,0.438
-UNRESOLVED_MERGE,62,53,9,0.855

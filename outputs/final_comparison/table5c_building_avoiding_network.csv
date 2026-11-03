@@ -1,2 +1,0 @@
-scenario,independent_unique_len_same_config_m,network_len_m,length_saving_vs_independent_m,length_saving_vs_independent_pct,cost_saving_central_Rs_lakh,extra_length_vs_x4_network_m,extra_cost_vs_x4_network_central_Rs_lakh,extra_aggregate_loose_m3_vs_x4,extra_gsb_subbase_loose_m3_vs_x4,extra_earthwork_m3_vs_x4,extra_bitumen_t_vs_x4
-"Building-avoiding network (buffer 7.1 m, penalty x100)",7633.0,6190.3,1442.7,18.9,108.2,1121.3,84.1,929.3,819.9,1681.9,8.4

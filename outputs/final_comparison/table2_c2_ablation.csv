@@ -1,6 +1,0 @@
-run,alternatives_per_target_K,leaf_reroute_passes,unique_len_m,total_len_m,saving_vs_independent_pct
-S2_fac_C0_s25_final_K1_P0,1,0,5079.27,5079.323,24.786
-S2_fac_C0_s25_final_K1_P2,1,2,5068.996,5069.044,24.938
-S2_fac_C0_s25_final_K3_P0,3,0,5079.27,5079.323,24.786
-S2_fac_C0_s25_final_K3_P2,3,2,5068.996,5069.044,24.938
-S2_fac_C0_s25_final_x4,3,2,5068.996,5069.044,24.938

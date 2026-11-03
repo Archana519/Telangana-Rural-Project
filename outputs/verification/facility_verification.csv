@@ -1,8 +1,0 @@
-facility_id,name,type,source_layer,lat,lon,table_lat,table_lon,table_vs_geometry_m,in_boundary,inside_school_compound,footprints_in_compound,nearest_footprint_cand_id,nearest_footprint_class,dist_to_nearest_footprint_m,nearest_open_buildings_m,in_parcel,verdict
-36181600902,Mpps Damarakunta,School,priority_facilities.gpkg,17.707272,78.750487,,,,True,MPPS DAMARAKUNTA,0,104,UNRESOLVED_MERGE,8.5,0.0,True,CORROBORATED
-36181600903,Zphs Damarakunta,School,priority_facilities.gpkg,17.707576,78.750451,,,,True,ZPHS DAMARAKUNTA,2,104,UNRESOLVED_MERGE,3.1,1.4,True,CORROBORATED
-HEALTH_8734223673,"Sub Centre, Damarakunta",Healthcare,priority_facilities.gpkg,17.708202,78.75382,,,,True,,0,80,UNRESOLVED_MERGE,1.8,8.7,True,CORROBORATED
-GP_DAMARAKUNTA,Damarakunta Gram Panchayat HQ,Administrative (Gram Panchayat headquarters),priority_facilities.gpkg,17.706404,78.753015,17.7064041738134,78.7530145015436,0.0,True,,0,94,UNRESOLVED_MERGE,0.7,3.4,True,CORROBORATED
-GP_KASHIREDDYPALLY,Kashireddypally Gram Panchayat HQ (Damarakunta revenue village),Administrative (Gram Panchayat headquarters),priority_facilities.gpkg,17.699092,78.779906,17.6990923828744,78.7799057002404,0.0,True,,0,190,UNRESOLVED_MERGE,0.0,2.5,True,CORROBORATED
-HEALTH_ALT_health_layer,"Sub Centre, Damarakunta",Sub Centre (alternative TGRAC record),tgrac_health.gpkg,17.708202,78.75382,17.7082018,78.7538197,0.0,True,,0,80,UNRESOLVED_MERGE,1.8,8.7,True,CORROBORATED
-HEALTH_ALT_sub_centres_layer,"SubCentre, Damarakunta",Sub Centre (alternative TGRAC record),tgrac_sub_centres.gpkg,17.707178,78.751872,17.707178,78.751872,0.0,True,,0,119,PLAUSIBLE,0.0,0.5,True,CORROBORATED
