@@ -100,8 +100,10 @@ class Pipeline:
             raise RuntimeError("reference planner hash is not the reviewed one")
         if not SN.FAC_LAYER.exists():
             raise RuntimeError("derived facility layer missing: %s (see inputs/EXCLUSIONS.md)" % SN.FAC_LAYER)
-        mism = [f.name for g in ("routing", "validation", "preprocessing", "stress_test") for f in (SRC / g).glob("*.py")
-                if (SCRIPTS / f.name).exists() and sha(f) != sha(SCRIPTS / f.name)]
+        def sha_text(p):          # same content counts as equal even if one copy has Windows (CRLF) line endings
+            return hashlib.sha256(Path(p).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+        mism = [f.name for g in ("routing", "validation", "preprocessing", "stress_test") if (SRC / g).exists() for f in (SRC / g).glob("*.py")
+                if (SCRIPTS / f.name).exists() and sha_text(f) != sha_text(SCRIPTS / f.name)]
         if mism:
             raise RuntimeError("src copy differs from scripts/: %s" % mism)
         return "%d input hashes equal the reference manifest; planner %s...; src copies equal scripts/" % (len(rows), PLANNER_SHA[:12])
