@@ -79,10 +79,15 @@ telangana run                # quick run
 telangana run --profile full # full run
 telangana package            # build the final maps and tables
 telangana latest             # show where the newest results are
+telangana open               # open the newest results folder
 telangana clean              # remove old runs, keep the newest 3
 ```
 
 Each run is saved in its own folder, `outputs/run_<date>_<time>/`. After every run the tool points `outputs/latest` at the newest one and **deletes older runs beyond the newest 3**, so results do not pile up. Change that with `--keep 5`, or switch it off with `--no-clean`. The reference run is never deleted.
+
+**In VS Code:** press `Ctrl+Shift+P` (Mac: `Cmd+Shift+P`), choose **Tasks: Run Task**, and pick a `Telangana: ...` item. No typing needed.
+
+**Results are never pushed to Git.** The `outputs/` folder and the per-run folders are ignored, so running many times never clutters the repo.
 
 You also need the original data files on your computer (they are not stored here), plus Python packages `rasterio`, `geopandas`, `shapely`, `numpy`, `networkx`.
 

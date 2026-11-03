@@ -3,12 +3,14 @@
     telangana run [--profile quick|final|full] [--dry-run]   run the pipeline, then tidy old runs
     telangana package                                        build the final maps, tables and chapter
     telangana latest                                         print the folder of the newest outputs
+    telangana open                                           open the newest outputs folder
     telangana clean [--keep N] [--yes]                       delete old runs, keep the newest N (default 3)
 
 Every run is saved in outputs/run_<date>_<time>/. After each run, `outputs/latest` points to the newest one and
 older runs beyond --keep are removed, so the folder does not fill up. The reference run (run_20261029_01) is never touched.
 """
 import argparse
+import os
 import re
 import shutil
 import subprocess
@@ -79,6 +81,7 @@ def main(argv=None):
     r.add_argument("--no-clean", action="store_true", help="do not delete old runs after this one")
     sub.add_parser("package", help="build final maps, tables and chapter")
     sub.add_parser("latest", help="print the newest outputs folder")
+    sub.add_parser("open", help="open the newest outputs folder")
     c = sub.add_parser("clean", help="delete old runs")
     c.add_argument("--keep", type=int, default=DEFAULT_KEEP)
     c.add_argument("--yes", action="store_true", help="do not ask first")
@@ -98,6 +101,16 @@ def main(argv=None):
         n = newest()
         print(n if n else "No runs yet. Try: telangana run")
         return 0 if n else 1
+    if a.cmd == "open":
+        n = newest()
+        if n is None:
+            print("No runs yet. Try: telangana run")
+            return 1
+        if sys.platform.startswith("win"):
+            os.startfile(str(n))
+        else:
+            subprocess.call(["open" if sys.platform == "darwin" else "xdg-open", str(n)])
+        return 0
     clean(a.keep, a.yes)
     return 0
 

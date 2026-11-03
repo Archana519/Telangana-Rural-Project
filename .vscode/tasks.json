@@ -1,0 +1,11 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Telangana: check everything (dry run)", "type": "shell", "command": "telangana run --dry-run", "problemMatcher": [] },
+    { "label": "Telangana: run (quick)", "type": "shell", "command": "telangana run", "problemMatcher": [] },
+    { "label": "Telangana: run (full)", "type": "shell", "command": "telangana run --profile full", "problemMatcher": [] },
+    { "label": "Telangana: build final maps and tables", "type": "shell", "command": "telangana package", "problemMatcher": [] },
+    { "label": "Telangana: open newest results", "type": "shell", "command": "telangana open", "problemMatcher": [] },
+    { "label": "Telangana: clean old runs", "type": "shell", "command": "telangana clean", "problemMatcher": [] }
+  ]
+}
