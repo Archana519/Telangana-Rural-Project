@@ -1,0 +1,52 @@
+%  Remote Sensing (MDPI) manuscript. Compile with the MDPI template folder (Definitions/mdpi.cls) alongside this file.
+%  If you do not have the MDPI class, compile remotesensing_manuscript_article.tex instead.
+\documentclass[remotesensing, article, submit, moreauthors, pdftex]{Definitions/mdpi}
+
+\firstpage{1}
+\makeatletter
+\setcounter{page}{\@firstpage}
+\makeatother
+
+\pubvolume{18}
+\issuenum{x}
+\articlenumber{xxxx}
+\pubyear{2026}
+\externaleditor{Academic Editor: Firstname Lastname}
+\history{Received: date; Accepted: date; Published: date}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\providecommand{\needs}[1]{{\color{red}[#1]}}% red placeholders; delete before submission
+
+\Title{Cost-Surface-Driven Network Routing Framework for Rural Clusters Using Extended DS-UNet and StrongDINOv2Seg}
+
+\Author{Pendyala Archana $^{1,*}$ \needs{add co-authors, e.g. supervisor}}
+
+\address{%
+$^{1}$ \quad Department of Technology (M.Tech), Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, India; \needs{e-mail}}
+
+\corres{Correspondence: \needs{e-mail}}
+
+\abstract{\textbf{Background:} Planning internal access routes for rural villages is usually manual, and detection studies seldom connect building extraction to route planning. \textbf{Methods:} We present a framework that derives building and facility targets from 0.6~m imagery with an extended DS-UNet and StrongDINOv2Seg, builds an ordinal 10~m cost surface from land cover and slope with hard constraints, and plans a shared network in two stages in which routes may end on roads or on other routes. The case study is Damarakunta village, Siddipet district, Telangana, India. \textbf{Results:} For 163 house targets, independent least-cost routes total 6753~m of unique length, whereas the proposed network needs 5069~m, a reduction of 24.9\%. All 168 targets connect on the road-line network and no hard constraint is violated. Under synthetic omission and addition of targets the saving remains between 24.9\% and 26.6\%. Keeping routes out of detected buildings lengthens the network by about 22\%. Detection agreement with an independent building layer is 72\%, and no field validation exists. \textbf{Conclusions:} Shared-network planning on a cost surface can substantially shorten rural access networks, but the results are planning alternatives and require labelled buildings and field verification.}
+
+\keyword{geospatial analysis; remote sensing; deep learning; network routing; cost surface; DS-UNet; DINOv2; rural connectivity}
+
+\begin{document}
+
+\input{body}
+
+\vspace{6pt}
+\authorcontributions{Conceptualization, P.A.; methodology, P.A.; software, P.A.; validation, P.A.; formal analysis, P.A.; writing---original draft preparation, P.A.; writing---review and editing, P.A. \needs{adjust to the actual contributions and add co-authors}. All authors have read and agreed to the published version of the manuscript.}
+
+\funding{\needs{State the funding source, or: This research received no external funding.}}
+
+\dataavailability{The input layers and outputs are described in the project repository (Telangana-Rural-Project). The satellite imagery licence is unresolved, so the imagery and maps that contain it cannot be redistributed. TGRAC layers, ESA WorldCover and Google Open Buildings are available from their providers. \needs{Add repository DOI or URL.}}
+
+\conflictsofinterest{The authors declare no conflicts of interest.}
+
+\reftitle{References}
+\input{references}
+
+\end{document}
