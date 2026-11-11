@@ -57,7 +57,7 @@ The framework has five stages: detection, terrain modelling, planning, stress-te
 \begin{equation}
 \mathcal{L} = 0.5\,\mathcal{L}_{\mathrm{CE}} + 0.4\,\mathcal{L}_{\mathrm{Dice}} + 0.1\,\mathcal{L}_{\mathrm{edge}} + 0.4\sum_{k=1}^{3}\mathcal{L}_{\mathrm{aux},k}.
 \end{equation}
-The best checkpoint reached mIoU 53.80\% and mDice 68.91\% on the LoveDA validation set. These are source-domain scores and are not accuracy in Damarakunta. \needs{confirm the optimizer and the checkpoint metadata; the training log is not in the repository.}
+The best checkpoint reached mIoU 53.80\%, mDice 68.91\% and pixel accuracy 72.0\% on the LoveDA validation set. These are source-domain scores and are not accuracy in Damarakunta. \needs{confirm the optimizer and the checkpoint metadata; the training log is not in the repository.}
 
 \textit{Targets.} The building extraction produced 278 candidate polygons (165 inside the boundary), grouped by quality into plausible, review and unresolved-merge classes. 163 house targets entered planning. No reference buildings exist for the village, so detection is assessed only by agreement with independent layers.
 
