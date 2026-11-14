@@ -21,11 +21,11 @@
       "exists": true
     },
     "landcover": {
-      "path": "/home/user/Telangana-Rural-Project/Siddipet/Damarakunta/aligned/damarakunta_worldcover_10m.tif",
+      "path": "/home/user/Telangana-Rural-Project/Siddipet/Damarakunta/aligned_open/worldcover_10m.tif",
       "exists": true
     },
     "dem": {
-      "path": "/home/user/Telangana-Rural-Project/Siddipet/Damarakunta/aligned/damarakunta_dem_30m.tif",
+      "path": "/home/user/Telangana-Rural-Project/Siddipet/Damarakunta/aligned_open/dem_30m.tif",
       "exists": true
     }
   },

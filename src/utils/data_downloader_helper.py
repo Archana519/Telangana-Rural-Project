@@ -48,6 +48,7 @@ WC_URL = "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA
 COP_URL = "https://copernicus-dem-30m.s3.amazonaws.com/{name}/{name}.tif"
 SRTM_URL = "https://s3.amazonaws.com/elevation-tiles-prod/skadi/{ns}{lat:02d}/{ns}{lat:02d}{ew}{lon:03d}.hgt.gz"
 OVERTURE_BUCKET = "overturemaps-us-west-2"
+PINNED_RELEASE = None                  # set (CLI --overture-release) to make Overture reads reproducible
 ANCHOR = (78.7538, 17.7082)            # a point inside Damarakunta; selects Siddipet district / Markook mandal
 DISTRICT_NAME, MANDAL_NAME = "Siddipet", "Markook"
 ROAD_CLASSES = {
@@ -288,6 +289,8 @@ def fetch_rasters(cfg, root=REPO, level="gp", dem_source="copernicus", force=Fal
 
 # ============================================================================================ Overture (roads, places, villages)
 def overture_release(fs=None) -> str:
+    if PINNED_RELEASE:
+        return PINNED_RELEASE
     import pyarrow.fs as pafs
     fs = fs or pafs.S3FileSystem(anonymous=True, region="us-west-2")
     infos = fs.get_file_info(pafs.FileSelector(f"{OVERTURE_BUCKET}/release/"))
@@ -463,11 +466,14 @@ def main(argv=None):
                     choices=["boundaries", "rasters", "roads", "places"])
     ap.add_argument("--dem-source", default="copernicus", choices=["copernicus", "srtm"])
     ap.add_argument("--roads-source", default="overture", choices=["overture", "osmnx"])
+    ap.add_argument("--overture-release", default=None, help="pin an Overture release (e.g. 2026-10-21.0); default = latest")
     ap.add_argument("--force", action="store_true", help="re-download even if the file exists")
     ap.add_argument("--plan", action="store_true", help="only list present/missing inputs")
     ap.add_argument("--config", default=None)
     a = ap.parse_args(argv)
     cfg = _cfg(a.config)
+    global PINNED_RELEASE
+    PINNED_RELEASE = a.overture_release
     print("input status (configs/hierarchy_levels.yaml):")
     for art in plan(cfg, REPO, a.levels):
         print(art.line())

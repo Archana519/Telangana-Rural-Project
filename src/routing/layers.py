@@ -45,6 +45,21 @@ def grid_for(bounds: Bounds, res: float):
     return from_origin(minx, maxy, res, res), (H, W)
 
 
+def slope_sobel(dem: np.ndarray, res: float) -> np.ndarray:
+    """Slope in degrees by the Stage B method (scripts/align_damarakunta_terrain.py): Sobel/8/res on a DEM whose missing
+    cells are temporarily filled with the median; NaN where the DEM itself is NaN."""
+    from scipy.ndimage import sobel
+    valid = np.isfinite(dem)
+    if not valid.any():
+        return np.full(dem.shape, np.nan, dtype="float32")
+    filled = np.where(valid, dem, np.nanmedian(dem[valid])).astype("float64")
+    dzdx = sobel(filled, axis=1, mode="nearest") / 8.0 / res
+    dzdy = -sobel(filled, axis=0, mode="nearest") / 8.0 / res
+    s = np.degrees(np.arctan(np.hypot(dzdx, dzdy))).astype("float32")
+    s[~valid] = np.nan
+    return s
+
+
 def slope_from_dem(dem: np.ndarray, res: float) -> np.ndarray:
     """Slope in degrees by central differences (np.gradient). NaN where the DEM is NaN."""
     gy, gx = np.gradient(dem.astype("float64"), res)
@@ -126,8 +141,12 @@ class RasterLayerProvider(LayerProvider):
     """
     name = "raster"
 
-    def __init__(self, landcover_path: Optional[str], dem_path: Optional[str] = None):
-        self.landcover_path, self.dem_path = landcover_path, dem_path
+    DEM_RES = 30.0                      # native DEM grid (SRTM 1" and Copernicus GLO-30 are both ~30 m)
+
+    def __init__(self, landcover_path: Optional[str], dem_path: Optional[str] = None, slope_method: str = "sobel_native"):
+        """slope_method 'sobel_native' (default, = Stage B): slope by Sobel on a 30 m DEM grid, then bilinear to the target grid.
+        'gradient_target': np.gradient on the DEM resampled to the target grid (legacy, differs from Stage B)."""
+        self.landcover_path, self.dem_path, self.slope_method = landcover_path, dem_path, slope_method
 
     @staticmethod
     def _read(path, bounds, res, T, shape, resampling, dtype, fill):
@@ -146,9 +165,22 @@ class RasterLayerProvider(LayerProvider):
         lc = slope = None
         if self.landcover_path:
             lc = self._read(self.landcover_path, bounds, res, T, shape, Resampling.nearest, "uint8", 0)
-        if self.dem_path:
+        if self.dem_path and self.slope_method == "gradient_target":
             dem = self._read(self.dem_path, bounds, res, T, shape, Resampling.bilinear, "float32", np.nan)
             slope = slope_from_dem(dem, res)
+        elif self.dem_path:
+            r = self.DEM_RES                                           # DEM lattice aligned to the window, 2 cells of margin
+            nb = (bounds[0] - 2 * r, bounds[1] - 2 * r, bounds[2] + 2 * r, bounds[3] + 2 * r)
+            T30, shape30 = grid_for(nb, r)
+            dem30 = self._read(self.dem_path, nb, r, T30, shape30, Resampling.bilinear, "float32", np.nan)
+            s30 = slope_sobel(dem30, r)
+            slope = np.full(shape, np.nan, dtype="float32")
+            from rasterio.warp import reproject
+            import rasterio
+            with rasterio.open(self.dem_path) as src:
+                crs = src.crs
+            reproject(s30, slope, src_transform=T30, src_crs=crs, dst_transform=T, dst_crs=crs,
+                      src_nodata=np.nan, dst_nodata=np.nan, resampling=Resampling.bilinear)
         return Layers(T, lc, slope, shape, self.name)
 
 

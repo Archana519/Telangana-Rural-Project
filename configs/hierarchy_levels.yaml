@@ -30,8 +30,8 @@ data:
     facilities: Siddipet/Damarakunta/reference/derived/damarakunta_priority_facilities_final_5.gpkg
     buildings: Siddipet/Damarakunta/results/v8_instances/buildings_v8_full.gpkg
     house_targets_csv: DELIVERABLES_DAMARAKUNTA_STAGE_B/03_RESULTS_TABLES/PRIMARY_RUN_S2_fac_C0_s25_final_x4/scenario_targets.csv
-    landcover: Siddipet/Damarakunta/aligned/damarakunta_worldcover_10m.tif   # *.tif is git-ignored
-    dem: Siddipet/Damarakunta/aligned/damarakunta_dem_30m.tif                # not in repo
+    landcover: Siddipet/Damarakunta/aligned_open/worldcover_10m.tif   # open-data copy (helper); NOT the Stage B file aligned/damarakunta_worldcover_10m.tif
+    dem: Siddipet/Damarakunta/aligned_open/dem_30m.tif                              # Copernicus GLO-30 (Stage B used SRTM, see DECISIONS U08)
   mandal:
     boundary: Siddipet/_mandal/markook_boundary.gpkg
     gp_boundaries: Siddipet/_mandal/gram_panchayats.gpkg

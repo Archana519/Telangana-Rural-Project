@@ -48,7 +48,7 @@ Outputs per level: `<level>_routes.gpkg` (routes_shared, routes_independent, nod
 
 ## Fetching the open inputs (`src/utils/data_downloader_helper.py`)
 Folder convention: the project uses `Siddipet/...` (EPSG:32644); there is no `data/processed/` tree, so none is configured. Downloads are cached in
-`data/raw/_cache/`; products written to `Siddipet/_mandal/` and `Siddipet/_district/` and `Siddipet/Damarakunta/aligned/` are regenerable and git-ignored.
+`data/raw/_cache/`; products written to `Siddipet/_mandal/` and `Siddipet/_district/` and `Siddipet/Damarakunta/aligned_open/` (deliberately NOT `aligned/`, which holds Stage B's own, differently hashed rasters) are regenerable and git-ignored.
 ```bash
 python -m src.utils.data_downloader_helper --plan                       # present / missing per level
 python -m src.utils.data_downloader_helper --levels gp mandal district  # fetch whatever is missing (never overwrites without --force)
@@ -56,9 +56,12 @@ python -m src.utils.data_downloader_helper --levels district --what rasters --de
 ```
 | Product | Source | Notes |
 |---|---|---|
-| WorldCover 10 m, DEM 30 m (all levels) | ESA WorldCover v200 2021, Copernicus GLO-30 (or SRTM) public AWS COGs, windowed + reprojected | Stage B docs list SRTM as the DEM; Copernicus is the default, use `--dem-source srtm` to match |
+| WorldCover 10 m, DEM 30 m (all levels) | ESA WorldCover v200 2021, Copernicus GLO-30 (or SRTM) public AWS COGs, windowed + reprojected | Stage B used SRTM 1\"; Levels 2-4 use Copernicus with the same Sobel slope method; difference quantified (DECISIONS rows 10, U08, `docs/results/U08_dem_comparison.json`) |
 | District / mandal polygons | geoBoundaries gbOpen IND ADM2/ADM3 (CC BY 4.0) | release has 23 mandals in Siddipet district; the current administrative set may differ |
 | Roads (Levels 3-4) | Overture Maps transportation (OSM-derived, ODbL); `--roads-source osmnx` where Overpass is reachable | not a PMGSY/TGRAC inventory; district uses motorway-tertiary only |
 | GP hubs (Level 3) | Overture village localities (points) | **not GP polygons**, unknown house counts (weight 1) |
 | Facilities / terminals | Overture places (name rules) + **proxy** Mandal HQ and mandal terminals (interior points of polygons) | flagged `proxy=True`; replace with verified HQ/PHC/market coordinates |
 Every product has a `<file>.provenance.json`. All of it is REFERENCE data, never ground truth (docs/DECISIONS.md row 6).
+
+## Provenance and reproducibility
+`python -m src.evaluation.provenance_audit --write docs/results/PROVENANCE_AND_PROOFS.md --rerun --redownload` hashes every input, re-reads the Level 1 tables, recomputes derived figures, re-executes Levels 2-4 and the penalty sweep and compares them with the committed outputs, re-downloads rasters/roads and compares them pixel-for-pixel, and checks that key numbers appear in `paper/main.tex`. Pin the Overture release with `--overture-release 2026-10-21.0`.

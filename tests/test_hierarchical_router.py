@@ -317,3 +317,12 @@ def test_district_reports_new_construction_vs_existing_road():
     m = r.meta
     assert 0.0 <= m["on_existing_road_m"] <= r.unique_length_m + 1e-6
     assert m["new_construction_m"] == pytest.approx(r.unique_length_m - m["on_existing_road_m"])
+
+
+def test_slope_sobel_matches_stage_b_method_and_is_nan_where_dem_is_nan():
+    from src.routing.layers import slope_sobel
+    ramp = np.fromfunction(lambda r, c: 15.0 * c, (20, 20))           # 15 m per 30 m cell = 26.57 deg in x
+    s = slope_sobel(ramp.astype("float32"), 30.0)
+    assert s[10, 10] == pytest.approx(np.degrees(np.arctan(0.5)), abs=1e-3)
+    ramp[5, 5] = np.nan
+    assert np.isnan(slope_sobel(ramp.astype("float32"), 30.0)[5, 5])

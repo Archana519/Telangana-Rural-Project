@@ -3,7 +3,7 @@
 % and Downstream Impact Analysis of Building Detection Omissions
 % Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main
 % All numerical results in Sections 5.2-5.4 are taken from the project outputs
-% in DELIVERABLES_DAMARAKUNTA_STAGE_B/.
+% in DELIVERABLES_DAMARAKUNTA_STAGE_B/ and docs/results/ (see docs/results/PROVENANCE_AND_PROOFS.md).
 % =============================================================================
 \documentclass[journal]{IEEEtran}
 
@@ -36,7 +36,7 @@
 
 % -----------------------------------------------------------------------------
 \begin{abstract}
-\textbf{Background:} Habitation-level rural road programmes depend on building inventories that are still largely digitised by hand, and automated building extraction is judged by pixel-level scores (IoU, Dice) that say little about its effect on network planning. \textbf{Methods:} We couple building-footprint extraction, using a fine-tuned DINOv2 foundation-model segmenter (StrongDINOv2Seg), with a 10~m multi-criteria cost surface (land cover, slope, footprint penalty) that includes a local penalty override for a health sub-centre, and with a two-stage generate-and-select planner that builds a shared access network by greedy marginal-cost attachment. The pipeline is applied to Damarakunta (Siddipet district, Telangana; 18.5~km$^2$). Controlled omission scenarios then measure how missing buildings propagate into the plan. \textbf{Results:} StrongDINOv2Seg reaches 53.8\% mIoU, 68.9\% Dice and 71.3\% pixel accuracy on the LoveDA validation split. On the village, the shared network connects all 163 routed houses with 5{,}069~m of new corridor, 24.9\% shorter than independent least-cost routes (6{,}753~m). The sub-centre override shortens its access route from 73.3~m to 67.4~m (cost $-27.3\%$) and changes none of the 163 house routes. Omitting 10--20\% of candidates at random shortens the plan by 7.6--16.9\% while leaving 16--33 households without a route. Omitting the 62 merged-blob candidates understates network length by 29.4\%, leaves 38.0\% of households unplanned, and raises length per routed target by 14\%. \textbf{Conclusion:} Pixel-level accuracy is an insufficient proxy for planning utility; omission-aware reporting should accompany detection metrics. Results come from one village with synthetic omissions and unverified candidates.
+\textbf{Background:} Habitation-level rural road programmes need building inventories that are still digitised by hand, and automated extraction is judged by pixel scores (IoU, Dice) that say little about planning impact; planners also need the same logic at Gram Panchayat, mandal and district scale. \textbf{Methods:} We couple a fine-tuned DINOv2 segmenter (StrongDINOv2Seg) with a 10~m multi-criteria cost surface (land cover, slope, footprint penalty, local penalty override) and a shared-network planner, apply it to Damarakunta (Siddipet district, Telangana), propagate controlled building omissions through the plan, and extend it hierarchically to Gram Panchayat, mandal and district tiers (coarse-to-fine routing with graph contraction). \textbf{Results:} StrongDINOv2Seg reaches 53.8\% mIoU, 68.9\% Dice and 71.3\% pixel accuracy on LoveDA validation. At village level the shared network connects 163 houses with 5{,}069~m of corridor, 24.9\% less than independent routes; omitting 10--20\% of candidates understates length by 7.6--16.9\% and leaves 16--33 households unplanned, and omitting 62 merged blobs leaves 38.0\% unserved. At Gram Panchayat level a footprint penalty of 4 removes 89.0\% of route length inside footprints for 5.2\% more length. Mandal and district runs on proxy nodes demonstrate scalability: the district backbone is 95.9\% existing road, with 14.7~km of new construction. \textbf{Conclusion:} Pixel accuracy is an insufficient proxy for planning utility; omission-aware, per-target reporting should accompany detection metrics. Village and Gram Panchayat results use real inputs; the mandal and district runs use proxy hubs and are not planning findings.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -55,6 +55,7 @@ This paper closes that loop for a concrete rural case. We build an end-to-end pi
 \item \textbf{A multi-criteria cost surface with a local penalty override.} Land-cover resistance, slope limits and a soft building-footprint penalty are combined on a 10~m grid; a spatially bounded override lifts the footprint penalty around a priority facility whose point lies on the edge of its own footprint.
 \item \textbf{A two-stage shared-network planner.} Stage~A generates up to $K$ distinct least-cost alternatives per target; Stage~B selects among them greedily by marginal cost with shared-edge credit, followed by leaf re-routing. We compare it with independent routing, a length-only control, a straight-line baseline and a roads-only shared reference.
 \item \textbf{An omission-propagation analysis.} Deterministic and random omission and addition scenarios quantify changes in network length, length per routed target, unserved households and route length inside omitted footprints, separating the planner's information loss from structural restructuring using a no-penalty control.
+\item \textbf{A hierarchical multi-scale extension.} The same cost-surface and shared-network logic is lifted to Gram Panchayat (10~m, local overrides), mandal (30~m, collector-road attachment) and district (250~m coarse plan, graph contraction, windowed 30~m refinement) tiers, together with a footprint-penalty sensitivity sweep ($\mu\in\{1,2,4,8,20,100\}$) that supports $\mu=4$. The mandal and district tiers are reported strictly as a computational scalability demonstration on proxy nodes.
 \item \textbf{Planning guidance.} We argue for reporting omission-aware, per-target quantities alongside IoU and Dice, and discuss implications for PMGSY-style programmes.
 \end{itemize}
 
@@ -89,6 +90,9 @@ The building candidates are derived from StrongDINOv2Seg predictions: the projec
 No pixel-level reference exists for Damarakunta: the project has neither a manual building mask nor a field survey. Two evaluations are therefore used and must be kept distinct. First, \emph{source-domain} validation of the segmentation model on LoveDA (Section~\ref{sec:segres}). Second, a \emph{proxy agreement} check of the village candidates against Google Open Buildings v3~\cite{sirko2021openbuildings}, a different detector on other imagery; a candidate agrees if an Open Buildings polygon lies within 30~m, and a facility is supported if a footprint lies within 20~m of its point. Agreement is not accuracy, and neither layer is treated as truth. A visual-audit protocol (imagery crops and a decision rule: confirm within 20~m, relocate within 200~m, otherwise reject) has been prepared for the facilities but has not yet been completed in the field or in imagery.
 
 % -----------------------------------------------------------------------------
+\subsection{Open Data for the Hierarchical Levels}\label{sec:opendata}
+Levels 2--4 (Section~\ref{sec:hier}) use only open layers, fetched by a script that records the URL, release, licence and SHA-256 of every file. \textbf{Land cover:} ESA WorldCover 10~m v200 (2021)~\cite{zanaga2021worldcover}. \textbf{Terrain:} the Copernicus GLO-30 DEM~\cite{esa2022copdem}, read as windows and reprojected to EPSG:32644; slope is computed with the Stage~B method (Sobel on the 30~m grid, bilinear to the target grid). Stage~B itself used the SRTM 1~arc-second DEM, which is not in the repository; over the Damarakunta window the two DEMs differ by an RMSE of 2.3~m (bias $-1.6$~m, $r=0.996$), the $>25^\circ$ hard-block mask differs in no cell, and re-running Level~2 with either DEM changes the shared length by 1.0\% and the ordinal cost by 2.6\%, with an identical override detour reduction (the SRTM used for this comparison is a public SRTM-derived tile set, a proxy for the original file). \textbf{Boundaries:} geoBoundaries gbOpen ADM2/ADM3~\cite{runfola2020geoboundaries}, giving the Siddipet district polygon (3{,}722~km$^2$), its 23 mandal polygons (as released; the current administrative set may differ) and Markook mandal (116~km$^2$). \textbf{Roads and villages:} Overture Maps transportation segments and village localities~\cite{overture2026}, release 2026-10-21.0 (OSM-derived), restricted to collector-grade classes (motorway to tertiary) as attachment targets at Levels~3--4. Roads and villages from Overture are not a PMGSY or TGRAC inventory, and no open Gram Panchayat polygons exist. Hence the mandal and district tiers use \emph{proxy} nodes: village points as Gram Panchayat hubs (weight 1, house counts unknown), the interior point of the Markook polygon as the Mandal HQ, and the interior points of the 23 mandal polygons as terminals; none is a verified HQ, PHC or market location. Google Open Buildings v3~\cite{sirko2021openbuildings} is used only for the proxy agreement check of Section~\ref{sec:data}.
+
 \section{Methodology}\label{sec:method}
 
 \subsection{Pipeline Overview}
@@ -200,6 +204,32 @@ Let $T$ be the full target set and $M\subset T$ an omission set, standing for bu
 E_M &= \text{route length inside footprints of } M \text{ in the plan for } T\setminus M.\label{eq:exposure}
 \end{align}
 Here $\kappa$ is coverage, $U$ the number of households without a planned route, $\delta_L$ the underestimation of network length, $\bar\ell$ the length per routed target (the quantity that is comparable across scenarios, because absolute length shrinks mechanically when fewer targets are connected), and $E_M$ the exposure to omitted buildings. Omission modes are: random omission of 10\% and 20\% of targets (five draws each); omission of all \textsc{Unresolved\_Merge} candidates ($|M|=62$); omission of the smallest 10\% and 25\% of targets by footprint area (areas $\le46.7$ and $\le113.4$~m$^2$; $|M|=17,41$), a plausible false-negative pattern for small or low-contrast roofs; and random \emph{additions} of 10\% and 20\% synthetic targets as a false-positive analogue. To separate the loss of obstacle information from plain restructuring, every omission run is repeated with $\mu=1$ (no penalty), where the planner ignores footprints and any change in $E_M$ reflects restructuring alone.
+
+\subsection{Hierarchical Multi-Scale Extension}\label{sec:hier}
+Level~1 is the village pipeline above. The three coarser tiers reuse its search engine (8-connected Dijkstra with no diagonal corner-cutting) and the shared-network rule of Section~\ref{sec:method}, changing only the nodes, the grid and what counts as an attachment target.
+
+\paragraph{Level 2: Gram Panchayat.}
+The 163 house targets are aggregated into hamlet hubs (connected components of houses closer than 150~m; the hub is the member nearest the cluster centroid, its weight the number of houses), which together with the school, sub-centre and two panchayat-office points form the node set. The grid is 10~m, with the footprint penalty $\mu$ and the local override of Eq.~\eqref{eq:override} applied around the amenity points (radius 20~m), and the existing roads are the goal set $R$. Detection omissions act on houses: a fraction of the 163 houses is removed and the hamlets are re-aggregated.
+
+\paragraph{Level 3: mandal.}
+Nodes are Gram Panchayat hubs, the Mandal HQ, primary health centres and markets on a 30~m grid. Only collector-grade roads (motorway to tertiary) are attachment targets; lower-class roads merely reduce the cost of travelling along them, and every road cell is traversable (bridges and culverts) at a cost multiplier $0.25$. Water is blocked, tree cover carries an extra multiplier, and slopes above $25^\circ$ are blocked.
+
+\paragraph{Level 4: district.}
+A coarse grid (250~m) is built from the same cost recipe with road cells discounted by $0.2$, and the terminals are attached to the root (district HQ) or to one another by the shared rule. The resulting cell tree is contracted into chains between terminals, junctions and leaves (every cell of degree two is eliminated), and each chain is refined at 30~m inside a corridor of 1~km around the coarse path. A chain is cut into segments of at most 4~km; every segment is refined in its own window, with windows aligned to one global 30~m lattice so that neighbouring segments meet in the same cell, and the memory held at any time is the coarse grid plus one window. A window above a cell limit is coarsened rather than failing, and a segment with no fine path keeps its coarse geometry and is flagged. Because a backbone may run along existing roads, we separate new construction from reuse. With $N$ the refined network, $R$ the existing roads and $\mathcal{B}(R,\delta)$ their $\delta$-buffer ($\delta=1.5$ fine cells),
+\begin{equation}
+L_{\mathrm{new}}=\operatorname{len}\bigl(N\setminus\mathcal{B}(R,\delta)\bigr),\qquad
+\rho_{\mathrm{road}}=1-\frac{L_{\mathrm{new}}}{\operatorname{len}(N)},
+\label{eq:newconstr}
+\end{equation}
+and the baseline is the star layout in which every terminal is routed to the root separately.
+
+\paragraph{Penalty sensitivity.}
+The exposure of a plan to footprints is the route length lying inside a footprint beyond the first 20~m of each route (the start point sits in or next to its own building),
+\begin{equation}
+E(\mu)=\sum_{t}\operatorname{len}\Bigl(\bigl(\pi_t\setminus D(p_t,20)\bigr)\cap\mathcal{P}\Bigr),
+\label{eq:expo}
+\end{equation}
+where $D(p,r)$ is the disc of radius $r$ about the start $p_t$ of route $\pi_t$ and $\mathcal{P}$ the footprints. We evaluate $\mu\in\{1,2,4,8,20,100\}$ at Level~2 and report $E(\mu)$ and the network length relative to $\mu=1$.
 
 % -----------------------------------------------------------------------------
 \section{Experimental Results and Discussion}\label{sec:results}
@@ -322,23 +352,91 @@ Removing footprints from the penalty layer also removes information that steers 
 \paragraph{Why IoU is not enough.}
 The segmentation metric of Table~\ref{tab:seg} is area-weighted over classes, whereas the planner counts \emph{instances}. A model that misses the smallest quarter of buildings by count can lose only a small share of building pixels, yet it removes a quarter of the households from the plan. Conversely a model that merges adjacent roofs scores a high pixel IoU but, as the merged-blob scenario shows, loses 38\% of the targets in a single stroke. We therefore recommend that detection studies intended for infrastructure use report instance-level recall stratified by footprint size and by merge status, alongside mIoU and Dice.
 
+\subsection{Gram Panchayat Level and the Footprint-Penalty Sweep}\label{sec:gp}
+Level~2 is the second real-data tier: the Damarakunta Gram Panchayat with the repository's TGRAC roads, the five facilities, the v8 building footprints, the 163 house targets, WorldCover and the Copernicus DEM. Its 18 hamlet hubs and 5 facilities connect with 1{,}743.7~m of shared network against 1{,}782.3~m for independent routing (a 2.2\% saving; Table~\ref{tab:gp}). The small saving is expected: 12 of the 18 hubs (median 60~m) already lie within 100~m of a road, so there is little corridor left to share. Hamlet-hub lengths are not comparable with the 5{,}069~m of Level~1, which routes 163 individual houses. Lifting the footprint penalty within 20~m of an amenity (Eq.~\eqref{eq:override}) shortens two facility routes by 22.4 and 20.0~m (42.4~m in total), lowers the ordinal cost of all five facility routes by 33--67\%, and changes none of the other 18 hub routes. Removing 10\% and 20\% of the houses at random (three seeds) shortens the plan by 5.9\% (range 2.3--8.5\%) and 11.1\% (7.3--14.0\%) and leaves 16 and 33 houses unserved, the same pattern as at village level.
+
+\begin{table}[t]
+\centering
+\caption{Level 2: Damarakunta Gram Panchayat, real inputs (10~m grid, $\mu=4$). Omission rows are means of three seeds (11, 12, 13) with the range in brackets; units are houses.}
+\label{tab:gp}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Quantity & Value\\
+\midrule
+Nodes (hamlet hubs + facilities) & 18 + 5\\
+Houses represented by the hubs & 163\\
+Shared unique length (m) & 1{,}743.7\\
+Independent unique length (m) & 1{,}782.3\\
+Saving vs.\ independent (\%) & 2.2\\
+Override detour reduction (m) & 42.4\\
+Other routes changed by the override & 0\\
+Omit 10\% of houses: $\delta_L$ (\%), unserved & 5.9 [2.3--8.5], 16\\
+Omit 20\% of houses: $\delta_L$ (\%), unserved & 11.1 [7.3--14.0], 33\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The sweep of Table~\ref{tab:sweep} shows that the penalty has a knee. Raising $\mu$ from 1 to 4 removes 89.0\% of the route length inside footprints (109.1 to 12.0~m) and cuts the routes crossing a footprint from 6 to 3 for 5.2\% more network length. Going on to $\mu=8$ buys 4.4 more points of exposure reduction for 2.9 more points of length, and $\mu\ge 20$ changes the exposure no further while the length keeps growing. We therefore keep $\mu=4$, the value used at Level~1, as the primary penalty and report the sweep as a sensitivity. At Level~1 the same direction appears: removing the penalty ($\mu=1$) gives the shortest plan (4{,}705~m) but 56 routes through other houses, whereas $\mu=4$ halves the crossings (Table~\ref{tab:routing}).
+
+\begin{table}[t]
+\centering
+\caption{Footprint-penalty sensitivity at Level 2 (real inputs). $E(\mu)$ is the route length inside footprints (Eq.~\eqref{eq:expo}); changes are relative to $\mu=1$.}
+\label{tab:sweep}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}rrrrrr@{}}
+\toprule
+$\mu$ & Length (m) & $\Delta L$ (\%) & Routes crossing & $E(\mu)$ (m) & $E$ reduction (\%)\\
+\midrule
+1 & 1{,}657.1 & 0.0 & 6 & 109.1 & 0.0\\
+2 & 1{,}692.0 & 2.1 & 4 & 45.6 & 58.2\\
+\textbf{4} & \textbf{1{,}743.7} & \textbf{5.2} & \textbf{3} & \textbf{12.0} & \textbf{89.0}\\
+8 & 1{,}791.2 & 8.1 & 2 & 7.2 & 93.4\\
+20 & 1{,}813.7 & 9.5 & 2 & 7.2 & 93.4\\
+100 & 1{,}842.0 & 11.2 & 2 & 7.2 & 93.4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Mandal and District Levels: A Scalability Demonstration}\label{sec:scale}
+\emph{The mandal and district runs are a computational and architectural demonstration, not planning findings.} Their terminals are proxies (Section~\ref{sec:opendata}): village points as Gram Panchayat hubs, the interior point of a polygon as the Mandal HQ and as every mandal terminal, and an interior point of the Siddipet Urban polygon as the district HQ. Their only purpose is to show that the cost recipe, the shared rule and the coarse-to-fine machinery run on real rasters and real road layers at the scale of a mandal (116~km$^2$) and a district (3{,}722~km$^2$) without memory growth.
+
+At the mandal level, 14 village points and the proxy Mandal HQ attach to collector-grade roads with 5{,}913~m of new link; the villages are scattered, so shared and independent plans coincide (Table~\ref{tab:scale}). At the district level, 22 proxy terminals connect to the proxy district HQ with a backbone of 358.7~km, of which 344.1~km (95.9\%) already exists as road and only 14.7~km is new construction; the star layout would need 19.8~km of new construction, so sharing saves 25.9\% of it. The total-length saving over the star (22.2\%) would overstate the benefit, which is why Eq.~\eqref{eq:newconstr} separates reuse from construction. The district run used 112{,}847 coarse cells and 105 fine windows (all refined at 30~m, none degraded or falling back to the coarse path) and took about 47~s on one CPU core. Removing 10\% and 20\% of the units at random changes the district backbone by 7.6\% (4.8--10.4\%) and 11.5\% (4.2--16.3\%), and the Markook plan by 2.1\% and 25.5\% (the latter ranging 5.4--63.2\% because only three of the 14 village units are removed); these omission rows only exercise the sensitivity code on proxy nodes.
+
+\begin{table*}[t]
+\centering
+\caption{Levels 3 and 4: scalability demonstration on \emph{proxy} nodes (real rasters, Overture roads). Not planning findings. Omission: mean $\delta_L$ (\%) of three seeds [range] for 10\% / 20\% of units removed.}
+\label{tab:scale}
+\footnotesize
+\begin{tabular}{@{}lllrrrrrl@{}}
+\toprule
+Level & Nodes (proxy) & Grid & Shared (km) & On existing (km) & New (km) & Star, new (km) & Sharing saves new (\%) & Omission $\delta_L$\\
+\midrule
+3 Mandal (Markook, 116~km$^2$) & 14 villages + 1 HQ & 30~m & 5.9 & -- & 5.9 & 5.9 & 0.0 & 2.1 [1.2--3.3] / 25.5 [5.4--63.2]\\
+4 District (Siddipet, 3{,}722~km$^2$) & 22 mandal terminals & 250~m / 30~m & 358.7 & 344.1 & 14.7 & 19.8 & 25.9 & 7.6 [4.8--10.4] / 11.5 [4.2--16.3]\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \subsection{Implications for Rural Infrastructure Planners}
 For PMGSY-style schemes, three practical points emerge. (i)~\emph{Treat building inventories as uncertain planning inputs.} A network sized from a candidate layer should carry a sensitivity band; in this village a 10--20\% omission corresponds to a 7.6--16.9\% length understatement and 16--33 unserved households. (ii)~\emph{Prefer shared corridors.} Sharing saves roughly a quarter of the unique length against house-by-house links and this saving is stable under omissions, which makes it a robust planning argument even where inventories are poor. (iii)~\emph{Use local overrides sparingly and visibly.} A facility whose point lies on a footprint edge can otherwise force a detour in a high-priority route; a bounded override fixes this without changing other routes, and its effect can be reported separately. All outputs are \emph{planning alternatives}: costs are ordinal, no field survey, land ownership, legal access, road width or construction cost is modelled, and the plans are not substitutes for engineering survey.
 
 \subsection{Threats to Validity}
-The study covers one village and the omission scenarios are synthetic, not measured segmentation false-negative rates. The candidate layer has no surveyed reference. The LoveDA figures are source-domain results from the epoch-4 checkpoint (metadata recovered from the training notebook), and the checkpoint's hash was not logged with the village candidates. No model comparison on Damarakunta is claimed. The planner is greedy and not globally optimal; shared-edge credit counts only identical grid edges. Slope derives from a 30~m DEM. About 45\% of the reference road length lies outside the village boundary; one house (C0002) attaches to a road component that is not the main component inside the clipped domain, which we regard as a boundary-truncation artefact rather than a planner defect. The imagery licence for derived products has not been cleared.
+The study covers one village and the omission scenarios are synthetic, not measured segmentation false-negative rates. The candidate layer has no surveyed reference. The LoveDA figures are source-domain results from the epoch-4 checkpoint (metadata recovered from the training notebook), and the checkpoint's hash was not logged with the village candidates. No model comparison on Damarakunta is claimed. The planner is greedy and not globally optimal; shared-edge credit counts only identical grid edges. Slope derives from a 30~m DEM. About 45\% of the reference road length lies outside the village boundary; one house (C0002) attaches to a road component that is not the main component inside the clipped domain, which we regard as a boundary-truncation artefact rather than a planner defect. The imagery licence for derived products has not been cleared. For the hierarchical tiers, the Gram Panchayat result routes hamlet hubs on a real land-cover and DEM surface, the mandal and district tiers rest on proxy nodes and OSM-derived roads of unknown completeness, the geoBoundaries release may not match the current mandal set, and Levels~2--4 use a different DEM (Copernicus GLO-30) from Level~1 (SRTM), a difference we quantify but do not remove. Omission scenarios at every tier are synthetic. Costs are ordinal units; no rupee construction cost is modelled yet.
 
 % -----------------------------------------------------------------------------
 \section{Conclusion and Future Work}\label{sec:conclusion}
-We presented an end-to-end pipeline from satellite imagery to shared rural access roads, comprising a fine-tuned DINOv2 segmenter, a penalised multi-criteria cost surface with a local override and a two-stage generate-and-select planner, and used it to quantify how building omissions propagate into network length, topology and household coverage in Damarakunta. The shared plan connects all 163 houses with 24.9\% less unique corridor than independent routing; the sub-centre override removes a detour (cost $-27.3$\%) without changing any other route. Omissions shorten the plan, drop households from it, and make corridors cross the buildings that were missed; in the worst scenario length is understated by 29.4\% and 38.0\% of households are unserved, while pixel metrics would suggest a competent model. Planners should read detection quality through instance recall, per-target length and coverage.
+We presented an end-to-end pipeline from satellite imagery to shared rural access roads, comprising a fine-tuned DINOv2 segmenter, a penalised multi-criteria cost surface with a local override and a two-stage generate-and-select planner, and used it to quantify how building omissions propagate into network length, topology and household coverage in Damarakunta. The shared plan connects all 163 houses with 24.9\% less unique corridor than independent routing; the sub-centre override removes a detour (cost $-27.3$\%) without changing any other route. Omissions shorten the plan, drop households from it, and make corridors cross the buildings that were missed; in the worst scenario length is understated by 29.4\% and 38.0\% of households are unserved, while pixel metrics would suggest a competent model. Planners should read detection quality through instance recall, per-target length and coverage. We then lifted the same logic to Gram Panchayat, mandal and district tiers: at Gram Panchayat level on real inputs a footprint penalty of 4 is the knee of the length--exposure trade-off (89.0\% less exposure for 5.2\% more length), and the coarse-to-fine district run shows that the approach scales to 3{,}722~km$^2$ while exposing that 95.9\% of an open-data backbone is existing road. The mandal and district tiers use proxy nodes and are a scalability demonstration only.
 
 \paragraph{Limitations.} Besides the threats above, seasonal occlusion (canopy, shadows, crop cover) is not modelled and affects both detection and land-cover cost; DEM resolution limits the terrain term; the footprint penalty is a tunable multiplier rather than a measured resistance; and a rigorous evaluation requires a surveyed reference for at least one village.
 
-\paragraph{Future work.} (i)~Evaluate the segmenter, and the CNN baselines from earlier prototyping, under one protocol on a hand-labelled Damarakunta subset and measure real false-negative patterns instead of synthetic ones. (ii)~Propagate detection probabilities through the planner (Monte-Carlo or expected-length formulations) to produce uncertainty bands. (iii)~Add multi-modal inputs, namely SAR for cloud and season robustness, a higher-resolution DEM, and mobile-phone or field-survey priors. (iv)~Replace the greedy selector by a Steiner-tree solver on the alternative graph, and attach facilities to house routes. (v)~Test transfer to further villages and to hill and tribal terrain where PMGSY thresholds differ.
+\paragraph{Future work.} (i)~Evaluate the segmenter, and the CNN baselines from earlier prototyping, under one protocol on a hand-labelled Damarakunta subset and measure real false-negative patterns instead of synthetic ones. (ii)~Propagate detection probabilities through the planner (Monte-Carlo or expected-length formulations) to produce uncertainty bands. (iii)~Add multi-modal inputs, namely SAR for cloud and season robustness, a higher-resolution DEM, and mobile-phone or field-survey priors. (iv)~Replace the greedy selector by a Steiner-tree solver on the alternative graph, and attach facilities to house routes. (v)~Test transfer to further villages and to hill and tribal terrain where PMGSY thresholds differ. (vi)~Replace the proxy hubs by verified Gram Panchayat polygons with house counts and verified Mandal HQ, PHC and market coordinates, so that Levels~3 and 4 become planning results, and replace ordinal cost by a rupee model based on a State Schedule of Rates.
 
 % -----------------------------------------------------------------------------
 \section*{Data and Code Availability}
-Planning outputs, validation manifests and scripts are in the project repository; the imagery mosaic is not redistributable without licence clearance.
+Planning outputs, validation manifests and scripts are in the project repository; the imagery mosaic is not redistributable without licence clearance. Every number in Section~\ref{sec:results} is mapped to its input hashes, command, seed and output file in \texttt{docs/results/PROVENANCE\_AND\_PROOFS.md}, which is generated and checked by \texttt{python -m src.evaluation.provenance\_audit}; the hierarchical results are in \texttt{docs/results/hierarchy\_real\_run/}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

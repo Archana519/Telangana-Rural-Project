@@ -1,19 +1,17 @@
 # Real-data multi-level run (2026-11-14)
 
-Command: `python -m src.routing.run_hierarchy --levels 2 3 4 --data real --out outputs/hierarchy_real` (log: `run_log.txt`).
-Inputs were fetched with `src/utils/data_downloader_helper.py` (Copernicus GLO-30 DEM, ESA WorldCover 2021, geoBoundaries, Overture roads / villages); Level 2 also uses the
-repository's TGRAC roads, 5 facilities, v8 building footprints and the 163 Stage B house targets. See each input's `.provenance.json` (regenerable, git-ignored).
+Command: `python -m src.routing.run_hierarchy --levels 2 3 4 --data real --out docs/results/hierarchy_real_run` (log: `run_log.txt`; omission seeds 11, 12, 13).
+Inputs: open data fetched by `src/utils/data_downloader_helper.py` (Copernicus GLO-30 DEM, ESA WorldCover 2021, geoBoundaries, Overture release 2026-10-21.0) plus, for Level 2, the repository's TGRAC roads, 5 facilities, v8 building footprints and 163 Stage B house targets.
+Every input is hashed in `../input_manifest.csv`; every number is mapped to its source in `../PROVENANCE_AND_PROOFS.md` (generated and re-checked by `python -m src.evaluation.provenance_audit`).
 
-| Level | Nodes | Shared unique length | New construction | Independent (new) | Reading |
-|---|---|---|---|---|---|
-| 2 GP (Damarakunta) | 18 hamlet hubs + 5 facilities (163 houses) | 1,764 m | 1,764 m | 1,791 m | sharing saves 1.5%; the local override shortens facility routes by 42 m in total and changes no other route |
-| 3 Mandal (Markook) | 14 village points + 1 PROXY Mandal HQ | 5,913 m | 5,913 m | 5,913 m | villages are scattered, so no sharing; attachments are to collector-grade roads (tertiary and above) |
-| 4 District (Siddipet) | 22 PROXY mandal terminals -> PROXY district HQ | 359.9 km | **15.1 km** | 19.1 km | 95.8% of the backbone runs on existing roads; the headline saving is road reuse, the new-construction saving is 20.9% |
+| Level | Evidence class | Shared unique length | New construction | Independent (new) |
+|---|---|---|---|---|
+| 2 GP (Damarakunta) | real inputs | 1,743.7 m | 1,743.7 m | 1,782.3 m |
+| 3 Mandal (Markook) | **proxy nodes - scalability demonstration** | 5,912.9 m | 5,912.9 m | 5,912.9 m |
+| 4 District (Siddipet) | **proxy nodes - scalability demonstration** | 358.7 km | 14.7 km (95.9% of the backbone is existing road) | 19.8 km |
 
 ## Read before quoting any number
-* Levels 3 and 4 terminals are interior points of geoBoundaries polygons (`proxy=True`), not verified HQ/PHC/market locations. GP hubs at Level 3 are OSM village points with weight 1 (no GP polygons / house counts exist in the open sources).
-* Level 2 routes hamlet hubs, not houses: not comparable with the Level-1 5,069 m.
-* Costs are ordinal planning units, not rupees (see docs/DECISIONS.md, U03/U04 for the plan).
-* Omission columns are synthetic random omissions of units (3 seeds x 10/20%), not measured detection false-negative rates.
+* Levels 3-4: terminals are interior points of geoBoundaries polygons (`proxy=True`), GP hubs are OSM village points (weight 1); none is a verified HQ/PHC/market/GP location. Do not draw planning conclusions.
+* Level 2 routes hamlet hubs, not houses: not comparable with Level 1's house-by-house 5,069 m.
+* Costs are ordinal planning units, not rupees. Omission columns are synthetic random omissions of units, not measured detection errors. Nothing is field validated.
 * Roads are Overture (OSM-derived) segments, not a PMGSY/TGRAC inventory; the district run uses motorway-tertiary only.
-* Nothing is field validated.
