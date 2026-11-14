@@ -100,3 +100,4 @@ Thumbs.db
 /data/raw/_cache/
 /Siddipet/_mandal/
 /Siddipet/_district/
+*.tif.provenance.json
