@@ -60,7 +60,13 @@ FOOT = ("Planning alternatives on open data, not verified roads. Costs are ordin
 
 
 # ============================================================================================ helpers
+TEXT_SUFFIXES = {".md", ".csv", ".txt", ".json", ".tex", ".bib", ".yaml", ".yml", ".py"}
+
+
 def sha256(p: Path) -> str:
+    """SHA-256 of the file; text files are hashed with CRLF read as LF so the manifest is identical on Windows and Linux checkouts."""
+    if p.suffix.lower() in TEXT_SUFFIXES:
+        return hashlib.sha256(p.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
     h = hashlib.sha256()
     with open(p, "rb") as fh:
         for b in iter(lambda: fh.read(1 << 20), b""):

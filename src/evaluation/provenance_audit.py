@@ -51,6 +51,16 @@ CM = np.array([
     [44986441, 172473, 520963, 1154217, 2252864, 5382724, 91205885]], dtype=np.int64)
 
 
+TEXT_SUFFIXES = {".md", ".csv", ".txt", ".json", ".tex", ".bib", ".yaml", ".yml", ".py"}
+
+
+def sha256_lf(path: Path) -> str:
+    """SHA-256 of a text file with CRLF read as LF (Git for Windows may check text out with CRLF); other files are hashed as-is."""
+    if path.suffix.lower() not in TEXT_SUFFIXES:
+        return sha256(path)
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as fh:
@@ -383,7 +393,7 @@ def deliverables_checks() -> list:
     missing = [r for r in DELIV_REQUIRED if not (DELIV / r).exists() or (DELIV / r).stat().st_size == 0]
     out.append(check("DV-required", f"all {len(DELIV_REQUIRED)} required package files exist and are non-empty", [], missing, src))
     man = pd.read_csv(DELIV / "MANIFEST.csv") if (DELIV / "MANIFEST.csv").exists() else pd.DataFrame(columns=["path", "bytes", "sha256"])
-    bad = [r.path for r in man.itertuples() if not (DELIV / r.path).exists() or sha256(DELIV / r.path) != r.sha256]
+    bad = [r.path for r in man.itertuples() if not (DELIV / r.path).exists() or sha256_lf(DELIV / r.path) != r.sha256]
     out.append(check("DV-manifest", f"SHA-256 of all {len(man)} MANIFEST.csv rows match the files", [], bad, src + "MANIFEST.csv"))
     listed = set(man.path)
     unlisted = sorted(str(f.relative_to(DELIV)).replace("\\", "/") for d in ("01_ARCHITECTURE", "02_FINAL_MAPS", "03_RESULTS_TABLES", "05_LIMITATIONS_AND_OPEN_ISSUES")

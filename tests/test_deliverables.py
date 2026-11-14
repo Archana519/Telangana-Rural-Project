@@ -49,3 +49,16 @@ def test_proxy_status_is_stated_in_the_readme_and_limitations():
     for f in ("00_README_SUMMARY.md", "05_LIMITATIONS_AND_OPEN_ISSUES/LIMITATIONS.md"):
         txt = (D / f).read_text(encoding="utf-8")
         assert "PROXY" in txt and "not planning" in txt.lower() or "no planning conclusion" in txt.lower()
+
+
+def test_manifest_check_accepts_crlf_checkout(tmp_path, monkeypatch):
+    """Git for Windows may check text files out with CRLF; the manifest hash check must still pass for them."""
+    from src.evaluation import provenance_audit as pa
+    f = tmp_path / "a.md"
+    f.write_bytes(b"line1\nline2\n")
+    want = pa.sha256(f)
+    f.write_bytes(b"line1\r\nline2\r\n")
+    assert pa.sha256(f) != want and pa.sha256_lf(f) == want
+    png = tmp_path / "b.png"
+    png.write_bytes(b"\x89PNG\r\n\x1a\n")
+    assert pa.sha256_lf(png) == pa.sha256(png)          # binary files are never normalised
