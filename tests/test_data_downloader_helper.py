@@ -206,3 +206,29 @@ def test_main_plan_only_does_not_download(monkeypatch, capsys):
     monkeypatch.setattr(dl, "run", lambda *a, **k: (_ for _ in ()).throw(AssertionError("download attempted")))
     dl.main(["--plan", "--levels", "gp"])
     assert "input status" in capsys.readouterr().out
+
+
+def test_with_retries_recovers_after_transient_network_errors():
+    calls, waits = [], []
+
+    def flaky():
+        calls.append(1)
+        if len(calls) < 3:
+            raise OSError("AWS Error NETWORK_CONNECTION")
+        return "ok"
+    assert dl.with_retries(flaky, tries=5, wait=2, log=lambda *_: None, sleep=waits.append) == "ok"
+    assert len(calls) == 3 and waits == [2, 4]
+
+
+def test_with_retries_gives_up_and_raises_last_error():
+    def always():
+        raise OSError("down")
+    with pytest.raises(OSError, match="down"):
+        dl.with_retries(always, tries=3, wait=0, log=lambda *_: None, sleep=lambda s: None)
+
+
+def test_with_retries_does_not_swallow_other_errors():
+    def bug():
+        raise ValueError("not a network problem")
+    with pytest.raises(ValueError):
+        dl.with_retries(bug, tries=3, wait=0, log=lambda *_: None, sleep=lambda s: None)

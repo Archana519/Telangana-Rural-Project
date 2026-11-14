@@ -296,11 +296,39 @@ def fetch_rasters(cfg, root=REPO, level="gp", dem_source="copernicus", force=Fal
 
 
 # ============================================================================================ Overture (roads, places, villages)
+def _s3_filesystem():
+    """Anonymous S3 client with AWS-standard retries and generous timeouts (Windows / home networks drop long parquet reads)."""
+    import pyarrow.fs as pafs
+    kw = dict(anonymous=True, region="us-west-2")
+    try:
+        kw.update(retry_strategy=pafs.AwsStandardS3RetryStrategy(max_attempts=10), connect_timeout=30, request_timeout=300)
+    except (AttributeError, TypeError):   # older pyarrow without these options
+        pass
+    try:
+        return pafs.S3FileSystem(**kw)
+    except TypeError:
+        return pafs.S3FileSystem(anonymous=True, region="us-west-2")
+
+
+def with_retries(fn, tries: int = 6, wait: float = 5.0, log=print, sleep=None):
+    """Call fn(); on a network OSError wait (growing) and try again; raise the last error after `tries` attempts."""
+    import time
+    sleep = sleep or time.sleep
+    for i in range(1, tries + 1):
+        try:
+            return fn()
+        except OSError as e:
+            if i == tries:
+                raise
+            log(f"  network error ({str(e)[:110]}...); retry {i}/{tries - 1} in {wait * i:.0f}s")
+            sleep(wait * i)
+
+
 def overture_release(fs=None) -> str:
     if PINNED_RELEASE:
         return PINNED_RELEASE
     import pyarrow.fs as pafs
-    fs = fs or pafs.S3FileSystem(anonymous=True, region="us-west-2")
+    fs = fs or _s3_filesystem()
     infos = fs.get_file_info(pafs.FileSelector(f"{OVERTURE_BUCKET}/release/"))
     rel = sorted(Path(i.path).name for i in infos if i.type == pafs.FileType.Directory)
     if not rel:
@@ -312,13 +340,13 @@ def overture_table(theme: str, typ: str, wgs_bounds, columns, release=None):
     import pyarrow.compute as pc
     import pyarrow.dataset as ds
     import pyarrow.fs as pafs
-    fs = pafs.S3FileSystem(anonymous=True, region="us-west-2")
+    fs = _s3_filesystem()
     release = release or overture_release(fs)
     dset = ds.dataset(f"{OVERTURE_BUCKET}/release/{release}/theme={theme}/type={typ}/", filesystem=fs, format="parquet")
     cols = [c for c in columns if c in dset.schema.names]
     xmin, ymin, xmax, ymax = wgs_bounds
     flt = (pc.field("bbox", "xmin") < xmax) & (pc.field("bbox", "xmax") > xmin) & (pc.field("bbox", "ymin") < ymax) & (pc.field("bbox", "ymax") > ymin)
-    return dset.to_table(columns=cols, filter=flt).to_pandas(), release
+    return with_retries(lambda: dset.to_table(columns=cols, filter=flt).to_pandas()), release
 
 
 def _primary(v):
