@@ -313,3 +313,6 @@ Stage B used **SRTM 1 arc-second** (`n17_e078_1arc_v3.tif`, USGS) with Sobel slo
 * The sub-centre *without-override* figures (73.3 m, 5,324.2 m) have a single prose source.
 * LoveDA metrics come from an external notebook; the checkpoint hash is unrecorded and no Damarakunta pixel reference exists (agreement with Open Buildings is a proxy, not accuracy).
 * Levels 3-4 inputs are proxies; omission scenarios are synthetic random omissions of units, not measured detection errors; nothing is field validated.
+
+## Reference spot-check (2026-11-14)
+Checked by web search (direct DOI resolution is blocked in the build sandbox): Copernicus GLO-30 (10.5270/ESA-c5d3d65, in the ESA/FEDEO catalogue), OpenTopography GLO-30 (10.5069/G9028PQB, resolves to the OpenTopography GLO-30 page), ESA WorldCover v200 (10.5281/zenodo.7254221), geoBoundaries (10.1371/journal.pone.0231866, PLOS ONE 15(4) e0231866), OSMnx 2017 (10.1016/j.compenvurbsys.2017.05.004, CEUS 65:126-139), OSMnx 2025 (10.1111/gean.70009, Geogr. Anal. 57(4):567-577), Open Buildings (arXiv:2107.12283). No bibliographic field needed correction. Not re-checked: the 20 other entries without DOIs (classic CNN, Steiner and path-planning references) and the Overture and PMGSY web entries.

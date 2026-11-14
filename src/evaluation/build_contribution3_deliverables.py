@@ -699,6 +699,8 @@ Levels 3-4 nodes are proxies (see `05_LIMITATIONS_AND_OPEN_ISSUES/LIMITATIONS.md
     lim.mkdir(exist_ok=True, parents=True)
     (lim / "LIMITATIONS.md").write_text("""# Limitations and open issues (Contribution 3)
 
+> **PROXY WARNING.** Levels 3 and 4 (Markook mandal, Siddipet district) use PROXY nodes: Overture village points as Gram Panchayat hubs, the interior point of the Markook polygon as the Mandal HQ, and interior points of the 23 mandal polygons as terminals. None is a verified HQ, PHC or market coordinate, and no coordinate was invented. These results are a scalability demonstration, not verified planning findings.
+
 ## What is real and what is not
 | Item | Status |
 |---|---|
