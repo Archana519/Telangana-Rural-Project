@@ -13,8 +13,9 @@ Pillow
 scipy
 python-docx
 pyarrow
+openpyxl
 pyyaml
-pytest
+pytest<9
 # Optional: OSM road extraction hook (src/routing/data_hooks.py fetch_osm_roads)
 # osmnx
 # Only for building-detection (modeling) work
