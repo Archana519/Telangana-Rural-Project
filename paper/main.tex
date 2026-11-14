@@ -317,7 +317,7 @@ Combined unique length (m) & 5{,}324.2 & 5{,}318.3 & $-0.1\%$\\
 \end{table}
 
 \subsection{Impact of Building Omissions on Network Coverage}
-Table~\ref{tab:omission} summarises the omission analysis against the 5{,}069~m baseline. Three observations follow.
+Table~\ref{tab:omission} and Fig.~\ref{fig:level1} summarise the omission analysis against the 5{,}069~m baseline. Three observations follow.
 
 \emph{First, the plan becomes shorter, not longer.} Missing buildings make the corridor budget \emph{look} smaller: 10\% random omission (16 houses) understates length by 7.6\%, 20\% by 16.9\%, omission of the smallest quarter by 25.1\% and omission of all merged blobs by 29.4\%. A planner reading only total length would therefore underfund the scheme.
 
@@ -346,6 +346,14 @@ Add 20\% (random) & 190.6 & --- & --- & 5{,}868.3 & $+15.8$ & 30.8 & 25.4\\
 \bottomrule
 \end{tabular}
 \end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/figD_level1_omission.png}
+\caption{Level 1 (Stage B) omission sensitivity, redrawn from the recorded results table (163 baseline targets, 5{,}069~m; random scenarios are five seeds with min--max error bars). (a)~Change of the unique network length against the number of households left without a route $U$: every omission shortens the plan while losing households, whereas additions lengthen it. (b)~Unique length per routed target: stable under random omission and 14\% higher when the merged blobs are removed. ``Smallest'' denotes removal by footprint area. Source: \texttt{table4\_c1\_sensitivity.csv}.}
+\label{fig:level1}
+\end{figure*}
+
 
 \paragraph{Does the planner's information loss matter?}
 Removing footprints from the penalty layer also removes information that steers routes around houses. On an earlier baseline run of the same planner (5{,}137.7~m), length inside omitted footprints rose from 52.6~m to 178.0~m when merged blobs were omitted, and routes crossing an omitted footprint rose from 4 to 17. For the smallest-quarter scenario the increase was modest (25.9 to 33.3~m), and for the smallest 10\% it fell (14.9 to 3.6~m), so the effect is not monotone. With the penalty disabled, the same comparisons fall (148.3 to 113.5~m for merged blobs), which indicates that the primary-run increase is attributable to lost obstacle information, whereas the control isolates restructuring. These are single deterministic scenarios per mode; they indicate direction and rough magnitude, not effect sizes with uncertainty. They also show that omission errors act twice: they drop households from the plan and let corridors run through the dwellings that were omitted.

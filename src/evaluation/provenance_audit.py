@@ -340,7 +340,7 @@ def redownload_checks(cfg) -> list:
     return out
 
 
-FIGS = {"figA_level2_gp_network": "fig:level2", "figB_penalty_sweep": "fig:sweep", "figC_scalability_levels3_4": "fig:scale"}
+FIGS = {"figA_level2_gp_network": "fig:level2", "figB_penalty_sweep": "fig:sweep", "figC_scalability_levels3_4": "fig:scale", "figD_level1_omission": "fig:level1"}
 
 
 def figure_checks() -> list:
@@ -462,8 +462,8 @@ Artifacts: `docs/results/hierarchy_real_run/mandal/`, `docs/results/hierarchy_re
 {('### 6.2 Re-download of rasters and roads' + chr(10) + md_table(RD, ['id', 'claim', 'status', 'source'])) if RD else 'Re-download not executed in this audit.' + chr(10)}
 ## 7. Manuscript numbers present in `paper/main.tex`
 {md_table(PP, ['id', 'claim', 'status'])}
-### 7.1 Figures (`python -m src.evaluation.plot_hierarchy_figures`)
-Figures A-C are drawn only from the committed results (`docs/results/hierarchy_real_run/*/*_routes.gpkg`, `gp_override.csv`, the summaries and `U02_penalty_sweep_gp.csv`) and the real input layers; the only recomputation is the without-override routes in Figure A(c). Copies live in `paper/figures/` and `docs/results/hierarchy_real_run/figures/`. The sweep covers mu in {{1, 2, 4, 8, 20, 100}} (a value of 16 was never run, so it is not plotted).
+### 7.1 Figures (`python -m src.evaluation.plot_hierarchy_figures`, `python -m src.evaluation.plot_level1_omission`)
+Figure D (Level 1 omission sensitivity, regenerated from `table4_c1_sensitivity.csv`, resolves U12) and Figures A-C are drawn only from the committed results (`docs/results/hierarchy_real_run/*/*_routes.gpkg`, `gp_override.csv`, the summaries and `U02_penalty_sweep_gp.csv`) and the real input layers; the only recomputation is the without-override routes in Figure A(c). Copies live in `paper/figures/` and `docs/results/hierarchy_real_run/figures/`. The sweep covers mu in {{1, 2, 4, 8, 20, 100}} (a value of 16 was never run, so it is not plotted).
 {md_table(FG, ['id', 'claim', 'status'])}
 ## 8. DEM consistency (U08 follow-up)
 Stage B used **SRTM 1 arc-second** (`n17_e078_1arc_v3.tif`, USGS) with Sobel slope on a 30 m grid, bilinearly resampled to 10 m; Levels 2-4 use **Copernicus GLO-30** with the *same* slope method (`slope_sobel`, 30 m native grid -> bilinear to the target grid). Over the Damarakunta window the two DEMs agree to RMSE {R['dem']['comparison']['elevation_m']['rmse']:.1f} m (bias {R['dem']['comparison']['elevation_m']['bias_cop_minus_srtm']:.1f} m, r = {R['dem']['comparison']['elevation_m']['pearson_r']:.3f}); slopes correlate at r = {R['dem']['comparison']['slope_deg']['pearson_r']:.2f} (noise on flat ground), and the >25 deg hard-block mask differs in {R['dem']['comparison']['slope_deg']['hard_block_gt25_disagree_cells']} cells. Re-running Level 2 with each DEM changes the shared length by {R['dem']['level2_relative_difference_pct']['shared_unique_length_m']:.1f} % and the ordinal cost by {R['dem']['level2_relative_difference_pct']['shared_unique_cost']:.1f} %; the override detour reduction is identical. The SRTM used for this comparison is the AWS 'skadi' product, a proxy for the USGS file (which is not in the repository). Full numbers: `docs/results/U08_dem_comparison.json`.

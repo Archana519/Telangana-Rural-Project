@@ -20,5 +20,6 @@ Every input is hashed in `../input_manifest.csv`; every number is mapped to its 
 * `figA_level2_gp_network.png` - Level 2 shared network vs existing roads, hamlet hubs, facilities, local-override comparison (real inputs).
 * `figB_penalty_sweep.png` - footprint-penalty trade-off curve, mu in {1, 2, 4, 8, 20, 100} (16 was never run).
 * `figC_scalability_levels3_4.png` - Level 3 and Level 4 on **proxy nodes**; Level 4 splits existing-road reuse from new construction.
+* `figD_level1_omission.png` - Level 1 (Stage B) omission sensitivity redrawn from `table4_c1_sensitivity.csv` (`python -m src.evaluation.plot_level1_omission`; replaces the original chart with the overlapping legend, U12).
 Identical copies are in `paper/figures/`, the files `paper/main.tex` includes.
 Level 1 (Stage B) maps and charts are in `DELIVERABLES_DAMARAKUNTA_STAGE_B/02_FINAL_MAPS/` and `03_RESULTS_TABLES/CHARTS/`.
