@@ -15,3 +15,10 @@ Every input is hashed in `../input_manifest.csv`; every number is mapped to its 
 * Level 2 routes hamlet hubs, not houses: not comparable with Level 1's house-by-house 5,069 m.
 * Costs are ordinal planning units, not rupees. Omission columns are synthetic random omissions of units, not measured detection errors. Nothing is field validated.
 * Roads are Overture (OSM-derived) segments, not a PMGSY/TGRAC inventory; the district run uses motorway-tertiary only.
+
+## Figures (`figures/`, 300 dpi PNG; `python -m src.evaluation.plot_hierarchy_figures`)
+* `figA_level2_gp_network.png` - Level 2 shared network vs existing roads, hamlet hubs, facilities, local-override comparison (real inputs).
+* `figB_penalty_sweep.png` - footprint-penalty trade-off curve, mu in {1, 2, 4, 8, 20, 100} (16 was never run).
+* `figC_scalability_levels3_4.png` - Level 3 and Level 4 on **proxy nodes**; Level 4 splits existing-road reuse from new construction.
+Identical copies are in `paper/figures/`, the files `paper/main.tex` includes.
+Level 1 (Stage B) maps and charts are in `DELIVERABLES_DAMARAKUNTA_STAGE_B/02_FINAL_MAPS/` and `03_RESULTS_TABLES/CHARTS/`.

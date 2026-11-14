@@ -14,3 +14,15 @@ def test_sync_copies_all_deliverables_and_dry_run_writes_nothing(tmp_path):
     for rel in ("hierarchy_real_run/hierarchy_summary.csv", "hierarchy_real_run/gp/gp_routes.gpkg", "input_manifest.csv",
                 "PROVENANCE_AND_PROOFS.md", "manuscript/manuscript.docx", "manuscript/main.tex", "manuscript/references.bib"):
         assert (root / rel).stat().st_size > 0, rel
+
+
+def test_sync_includes_figures_and_optional_docx_at_root(tmp_path):
+    m.sync(tmp_path, log=lambda *_: None, docx_at_root=True)
+    root = tmp_path / "contribution3"
+    for f in ("figA_level2_gp_network.png", "figB_penalty_sweep.png", "figC_scalability_levels3_4.png"):
+        assert (root / "manuscript" / "figures" / f).stat().st_size > 0
+        assert (root / "hierarchy_real_run" / "figures" / f).stat().st_size > 0
+    assert (root / "manuscript.docx").stat().st_size > 0
+    tmp2 = tmp_path / "second"
+    m.sync(tmp2, log=lambda *_: None)
+    assert not (tmp2 / "contribution3" / "manuscript.docx").exists()

@@ -65,3 +65,6 @@ Every product has a `<file>.provenance.json`. All of it is REFERENCE data, never
 
 ## Provenance and reproducibility
 `python -m src.evaluation.provenance_audit --write docs/results/PROVENANCE_AND_PROOFS.md --rerun --redownload` hashes every input, re-reads the Level 1 tables, recomputes derived figures, re-executes Levels 2-4 and the penalty sweep and compares them with the committed outputs, re-downloads rasters/roads and compares them pixel-for-pixel, and checks that key numbers appear in `paper/main.tex`. Pin the Overture release with `--overture-release 2026-10-21.0`.
+
+## Figures
+`python -m src.evaluation.plot_hierarchy_figures` renders Figures A-C (300 dpi) into `paper/figures/` and `docs/results/hierarchy_real_run/figures/` from the committed results; the audit checks that they exist, are 300 dpi, are identical in both places and are included and cited in `paper/main.tex`.

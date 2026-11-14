@@ -353,7 +353,14 @@ Removing footprints from the penalty layer also removes information that steers 
 The segmentation metric of Table~\ref{tab:seg} is area-weighted over classes, whereas the planner counts \emph{instances}. A model that misses the smallest quarter of buildings by count can lose only a small share of building pixels, yet it removes a quarter of the households from the plan. Conversely a model that merges adjacent roofs scores a high pixel IoU but, as the merged-blob scenario shows, loses 38\% of the targets in a single stroke. We therefore recommend that detection studies intended for infrastructure use report instance-level recall stratified by footprint size and by merge status, alongside mIoU and Dice.
 
 \subsection{Gram Panchayat Level and the Footprint-Penalty Sweep}\label{sec:gp}
-Level~2 is the second real-data tier: the Damarakunta Gram Panchayat with the repository's TGRAC roads, the five facilities, the v8 building footprints, the 163 house targets, WorldCover and the Copernicus DEM. Its 18 hamlet hubs and 5 facilities connect with 1{,}743.7~m of shared network against 1{,}782.3~m for independent routing (a 2.2\% saving; Table~\ref{tab:gp}). The small saving is expected: 12 of the 18 hubs (median 60~m) already lie within 100~m of a road, so there is little corridor left to share. Hamlet-hub lengths are not comparable with the 5{,}069~m of Level~1, which routes 163 individual houses. Lifting the footprint penalty within 20~m of an amenity (Eq.~\eqref{eq:override}) shortens two facility routes by 22.4 and 20.0~m (42.4~m in total), lowers the ordinal cost of all five facility routes by 33--67\%, and changes none of the other 18 hub routes. Removing 10\% and 20\% of the houses at random (three seeds) shortens the plan by 5.9\% (range 2.3--8.5\%) and 11.1\% (7.3--14.0\%) and leaves 16 and 33 houses unserved, the same pattern as at village level.
+Level~2 is the second real-data tier: the Damarakunta Gram Panchayat with the repository's TGRAC roads, the five facilities, the v8 building footprints, the 163 house targets, WorldCover and the Copernicus DEM. Its 18 hamlet hubs and 5 facilities connect with 1{,}743.7~m of shared network against 1{,}782.3~m for independent routing (a 2.2\% saving; Table~\ref{tab:gp} and Fig.~\ref{fig:level2}). The small saving is expected: 12 of the 18 hubs (median 60~m) already lie within 100~m of a road, so there is little corridor left to share. Hamlet-hub lengths are not comparable with the 5{,}069~m of Level~1, which routes 163 individual houses. Lifting the footprint penalty within 20~m of an amenity (Eq.~\eqref{eq:override}) shortens two facility routes by 22.4 and 20.0~m (42.4~m in total), lowers the ordinal cost of all five facility routes by 33--67\%, and changes none of the other 18 hub routes. Removing 10\% and 20\% of the houses at random (three seeds) shortens the plan by 5.9\% (range 2.3--8.5\%) and 11.1\% (7.3--14.0\%) and leaves 16 and 33 houses unserved, the same pattern as at village level.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{figures/figA_level2_gp_network.png}
+\caption{Level 2, Damarakunta Gram Panchayat (real inputs, 10~m grid, $\mu=4$). (a)~Shared new network (orange) against the existing TGRAC roads (grey) and the building footprints, with hamlet hubs (circles sized by the number of houses) and the five facilities. (b)~Ordinal route cost of each facility with and without the local penalty override (percentages are the cost reduction). (c)~The two facility routes that shorten under the override, with the 20~m override disc: 22.4~m and 20.0~m shorter. Source: \texttt{gp\_routes.gpkg} and \texttt{gp\_override.csv} in \texttt{docs/results/hierarchy\_real\_run/}.}
+\label{fig:level2}
+\end{figure*}
 
 \begin{table}[t]
 \centering
@@ -378,7 +385,7 @@ Omit 20\% of houses: $\delta_L$ (\%), unserved & 11.1 [7.3--14.0], 33\\
 \end{tabular}
 \end{table}
 
-The sweep of Table~\ref{tab:sweep} shows that the penalty has a knee. Raising $\mu$ from 1 to 4 removes 89.0\% of the route length inside footprints (109.1 to 12.0~m) and cuts the routes crossing a footprint from 6 to 3 for 5.2\% more network length. Going on to $\mu=8$ buys 4.4 more points of exposure reduction for 2.9 more points of length, and $\mu\ge 20$ changes the exposure no further while the length keeps growing. We therefore keep $\mu=4$, the value used at Level~1, as the primary penalty and report the sweep as a sensitivity. At Level~1 the same direction appears: removing the penalty ($\mu=1$) gives the shortest plan (4{,}705~m) but 56 routes through other houses, whereas $\mu=4$ halves the crossings (Table~\ref{tab:routing}).
+The sweep of Table~\ref{tab:sweep} and Fig.~\ref{fig:sweep} shows that the penalty has a knee. Raising $\mu$ from 1 to 4 removes 89.0\% of the route length inside footprints (109.1 to 12.0~m) and cuts the routes crossing a footprint from 6 to 3 for 5.2\% more network length. Going on to $\mu=8$ buys 4.4 more points of exposure reduction for 2.9 more points of length, and $\mu\ge 20$ changes the exposure no further while the length keeps growing. We therefore keep $\mu=4$, the value used at Level~1, as the primary penalty and report the sweep as a sensitivity. At Level~1 the same direction appears: removing the penalty ($\mu=1$) gives the shortest plan (4{,}705~m) but 56 routes through other houses, whereas $\mu=4$ halves the crossings (Table~\ref{tab:routing}).
 
 \begin{table}[t]
 \centering
@@ -400,10 +407,18 @@ $\mu$ & Length (m) & $\Delta L$ (\%) & Routes crossing & $E(\mu)$ (m) & $E$ redu
 \end{tabular}
 \end{table}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/figB_penalty_sweep.png}
+\caption{Footprint-penalty sensitivity at Level 2 (real inputs). (a)~Exposure reduction against network length increase, both relative to $\mu=1$; $\mu=4$ (red circle) removes 89.0\% of the route length inside footprints for 5.2\% more length, and larger penalties add almost no further reduction. (b)~Route length inside footprints $E(\mu)$ (bars) and network length increase (line, zero-based axis). The swept set is $\{1,2,4,8,20,100\}$. Source: \texttt{U02\_penalty\_sweep\_gp.csv}.}
+\label{fig:sweep}
+\end{figure*}
+
+
 \subsection{Mandal and District Levels: A Scalability Demonstration}\label{sec:scale}
 \emph{The mandal and district runs are a computational and architectural demonstration, not planning findings.} Their terminals are proxies (Section~\ref{sec:opendata}): village points as Gram Panchayat hubs, the interior point of a polygon as the Mandal HQ and as every mandal terminal, and an interior point of the Siddipet Urban polygon as the district HQ. Their only purpose is to show that the cost recipe, the shared rule and the coarse-to-fine machinery run on real rasters and real road layers at the scale of a mandal (116~km$^2$) and a district (3{,}722~km$^2$) without memory growth.
 
-At the mandal level, 14 village points and the proxy Mandal HQ attach to collector-grade roads with 5{,}913~m of new link; the villages are scattered, so shared and independent plans coincide (Table~\ref{tab:scale}). At the district level, 22 proxy terminals connect to the proxy district HQ with a backbone of 358.7~km, of which 344.1~km (95.9\%) already exists as road and only 14.7~km is new construction; the star layout would need 19.8~km of new construction, so sharing saves 25.9\% of it. The total-length saving over the star (22.2\%) would overstate the benefit, which is why Eq.~\eqref{eq:newconstr} separates reuse from construction. The district run used 112{,}847 coarse cells and 105 fine windows (all refined at 30~m, none degraded or falling back to the coarse path) and took about 47~s on one CPU core. Removing 10\% and 20\% of the units at random changes the district backbone by 7.6\% (4.8--10.4\%) and 11.5\% (4.2--16.3\%), and the Markook plan by 2.1\% and 25.5\% (the latter ranging 5.4--63.2\% because only three of the 14 village units are removed); these omission rows only exercise the sensitivity code on proxy nodes.
+At the mandal level, 14 village points and the proxy Mandal HQ attach to collector-grade roads with 5{,}913~m of new link; the villages are scattered, so shared and independent plans coincide (Table~\ref{tab:scale}). At the district level, 22 proxy terminals connect to the proxy district HQ with a backbone of 358.7~km, of which 344.1~km (95.9\%) already exists as road and only 14.7~km is new construction; the star layout would need 19.8~km of new construction, so sharing saves 25.9\% of it (Fig.~\ref{fig:scale}). The total-length saving over the star (22.2\%) would overstate the benefit, which is why Eq.~\eqref{eq:newconstr} separates reuse from construction. The district run used 112{,}847 coarse cells and 105 fine windows (all refined at 30~m, none degraded or falling back to the coarse path) and took about 47~s on one CPU core. Removing 10\% and 20\% of the units at random changes the district backbone by 7.6\% (4.8--10.4\%) and 11.5\% (4.2--16.3\%), and the Markook plan by 2.1\% and 25.5\% (the latter ranging 5.4--63.2\% because only three of the 14 village units are removed); these omission rows only exercise the sensitivity code on proxy nodes.
 
 \begin{table*}[t]
 \centering
@@ -419,6 +434,14 @@ Level & Nodes (proxy) & Grid & Shared (km) & On existing (km) & New (km) & Star,
 \bottomrule
 \end{tabular}
 \end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/figC_scalability_levels3_4.png}
+\caption{Scalability demonstration on \emph{proxy} nodes (not planning findings). (a)~Level 3, Markook mandal: 14 village points (proxy Gram Panchayat hubs) attach to collector-grade roads with 5.9~km of new links; the Mandal HQ is an interior point of the mandal polygon. (b)~Level 4, Siddipet district: backbone from 22 proxy mandal terminals to a proxy district HQ, of which 344.1~km (95.9\%) runs on existing roads (blue) and 14.7~km is new construction (red). Roads: Overture Maps (OSM-derived); boundaries: geoBoundaries.}
+\label{fig:scale}
+\end{figure*}
+
 
 \subsection{Implications for Rural Infrastructure Planners}
 For PMGSY-style schemes, three practical points emerge. (i)~\emph{Treat building inventories as uncertain planning inputs.} A network sized from a candidate layer should carry a sensitivity band; in this village a 10--20\% omission corresponds to a 7.6--16.9\% length understatement and 16--33 unserved households. (ii)~\emph{Prefer shared corridors.} Sharing saves roughly a quarter of the unique length against house-by-house links and this saving is stable under omissions, which makes it a robust planning argument even where inventories are poor. (iii)~\emph{Use local overrides sparingly and visibly.} A facility whose point lies on a footprint edge can otherwise force a detour in a high-priority route; a bounded override fixes this without changing other routes, and its effect can be reported separately. All outputs are \emph{planning alternatives}: costs are ordinal, no field survey, land ownership, legal access, road width or construction cost is modelled, and the plans are not substitutes for engineering survey.

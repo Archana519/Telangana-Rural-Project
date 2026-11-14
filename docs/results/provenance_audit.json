@@ -5,7 +5,7 @@
     "geopandas": "1.2.0",
     "rasterio": "1.5.2",
     "shapely": "2.2.0",
-    "git_commit_at_audit": "c320dc60e1f10675dd864633e68f0d99e7252aa9",
+    "git_commit_at_audit": "cb78938619fc5e80ea348de372d8e811d077eb21",
     "platform": "Linux-6.18.44-fc-v470-x86_64-with-glibc2.39"
   },
   "inputs": [
@@ -1750,6 +1750,128 @@
       "actual": 93.4,
       "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
       "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    }
+  ],
+  "figures": [
+    {
+      "id": "FG-figA_level2_gp_network-copies",
+      "claim": "figA_level2_gp_network.png is byte-identical in paper/figures and docs/results/hierarchy_real_run/figures",
+      "expected": "85bf32406950cc310747b574835c1e910670fad73edf52b4ce9863c322c12173",
+      "actual": "85bf32406950cc310747b574835c1e910670fad73edf52b4ce9863c322c12173",
+      "source": "paper/figures/figA_level2_gp_network.png",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figA_level2_gp_network-dpi",
+      "claim": "figA_level2_gp_network.png resolution (dpi)",
+      "expected": 300.0,
+      "actual": 300.0,
+      "source": "paper/figures/figA_level2_gp_network.png",
+      "tolerance": 0.5,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figA_level2_gp_network-size",
+      "claim": "figA_level2_gp_network.png is at least 2000 px wide (2148 x 1980 px, sha256 85bf32406950cc31...)",
+      "expected": true,
+      "actual": true,
+      "source": "paper/figures/figA_level2_gp_network.png",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figA_level2_gp_network-included",
+      "claim": "paper/main.tex includes figA_level2_gp_network.png and cites it as \\ref{fig:level2}",
+      "expected": true,
+      "actual": true,
+      "source": "paper/main.tex",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figB_penalty_sweep-copies",
+      "claim": "figB_penalty_sweep.png is byte-identical in paper/figures and docs/results/hierarchy_real_run/figures",
+      "expected": "75b3289968c7aa60085181ab0b25dd1fdff66d0bf002752cd1cbfd833ba6c7c6",
+      "actual": "75b3289968c7aa60085181ab0b25dd1fdff66d0bf002752cd1cbfd833ba6c7c6",
+      "source": "paper/figures/figB_penalty_sweep.png",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figB_penalty_sweep-dpi",
+      "claim": "figB_penalty_sweep.png resolution (dpi)",
+      "expected": 300.0,
+      "actual": 300.0,
+      "source": "paper/figures/figB_penalty_sweep.png",
+      "tolerance": 0.5,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figB_penalty_sweep-size",
+      "claim": "figB_penalty_sweep.png is at least 2000 px wide (2148 x 870 px, sha256 75b3289968c7aa60...)",
+      "expected": true,
+      "actual": true,
+      "source": "paper/figures/figB_penalty_sweep.png",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figB_penalty_sweep-included",
+      "claim": "paper/main.tex includes figB_penalty_sweep.png and cites it as \\ref{fig:sweep}",
+      "expected": true,
+      "actual": true,
+      "source": "paper/main.tex",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figC_scalability_levels3_4-copies",
+      "claim": "figC_scalability_levels3_4.png is byte-identical in paper/figures and docs/results/hierarchy_real_run/figures",
+      "expected": "c54283954d5e75fd9419b689e094d0e6867f2e16a8d2d926e03b97a0251d2696",
+      "actual": "c54283954d5e75fd9419b689e094d0e6867f2e16a8d2d926e03b97a0251d2696",
+      "source": "paper/figures/figC_scalability_levels3_4.png",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figC_scalability_levels3_4-dpi",
+      "claim": "figC_scalability_levels3_4.png resolution (dpi)",
+      "expected": 300.0,
+      "actual": 300.0,
+      "source": "paper/figures/figC_scalability_levels3_4.png",
+      "tolerance": 0.5,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figC_scalability_levels3_4-size",
+      "claim": "figC_scalability_levels3_4.png is at least 2000 px wide (2148 x 1380 px, sha256 c54283954d5e75fd...)",
+      "expected": true,
+      "actual": true,
+      "source": "paper/figures/figC_scalability_levels3_4.png",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "FG-figC_scalability_levels3_4-included",
+      "claim": "paper/main.tex includes figC_scalability_levels3_4.png and cites it as \\ref{fig:scale}",
+      "expected": true,
+      "actual": true,
+      "source": "paper/main.tex",
+      "tolerance": 0.0,
       "status": "PASS",
       "evidence_class": "REAL"
     }

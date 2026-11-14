@@ -96,6 +96,21 @@ def number_tab(m):
     return t
 main = re.sub(r"\\begin\{table\*?\}.*?\\end\{table\*?\}", number_tab, main, flags=re.S)
 
+# figures: number in order, prefix caption, absolute image paths (pandoc runs on a temp copy), fixed width
+fig_n = 0
+def number_fig(m):
+    global fig_n
+    fig_n += 1
+    t = m.group(0)
+    lab = re.search(r"\\label\{([^}]*)\}", t)
+    if lab: labels[lab.group(1)] = str(fig_n)
+    t = re.sub(r"\\label\{[^}]*\}", "", t)
+    t = re.sub(r"\\caption\{", "\\\\caption{Figure %d. " % fig_n, t, count=1)
+    t = t.replace("\\begin{figure*}", "\\begin{figure}").replace("\\end{figure*}", "\\end{figure}").replace("\\begin{figure}[t]", "\\begin{figure}")
+    t = re.sub(r"\\includegraphics\[[^\]]*\]\{([^}]*)\}", lambda mm: "\\includegraphics[width=16cm]{%s}" % os.path.join(HERE, mm.group(1)).replace(os.sep, "/"), t)
+    return t.replace("\\centering", "")
+main = re.sub(r"\\begin\{figure\*?\}.*?\\end\{figure\*?\}", number_fig, main, flags=re.S)
+
 # algorithm: replace the algorithm2e block with an explicit step list
 labels["alg:route"] = "1"
 algo = r"""
@@ -228,7 +243,7 @@ main = main.replace("\\tcp*", "").replace("\\paragraph{", "\\textbf{").replace("
 main = re.sub(r"\\textbf\{([^}]*)\}\s*\n", lambda m: "\\textbf{%s} " % m.group(1) if False else m.group(0), main)
 
 doc = r"""\documentclass{article}
-\usepackage{amsmath,amssymb,booktabs,multirow,hyperref}
+\usepackage{amsmath,amssymb,booktabs,multirow,graphicx,hyperref}
 \title{%s}
 \author{Pendyala Archana\\Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India}
 \date{}
