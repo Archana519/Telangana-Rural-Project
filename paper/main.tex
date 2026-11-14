@@ -112,9 +112,9 @@ with $(\lambda_{\mathrm{ce}},\lambda_{\mathrm{dice}},\lambda_{\mathrm{edge}})=(0
 \end{equation}
 and the boundary term reweights cross-entropy near label edges,
 \begin{equation}
-\mathcal{L}_{\mathrm{edge}} = \frac{1}{|\Omega|}\sum_{i\in\Omega}\bigl(1+4\,e_i\bigr)\,\ell_{\mathrm{ce}}(i),\quad e_i=\min\bigl(1,\,|G_x*y|_i+|G_y*y|_i\bigr),
+\mathcal{L}_{\mathrm{edge}} = \frac{1}{|\Omega|}\sum_{i\in\Omega}\bigl(1+4\,e_i\bigr)\,\ell_{\mathrm{ce}}(i),
 \end{equation}
-where $G_x,G_y$ are Sobel kernels and $\ell_{\mathrm{ce}}(i)$ is the per-pixel cross-entropy. StrongDINOv2Seg uses $\mathcal{L}=\mathcal{L}_{\mathrm{seg}}^{(0)}+\lambda_{\mathrm{aux}}\sum_{k=1}^{3}\mathcal{L}_{\mathrm{seg}}^{(k)}$ with $\lambda_{\mathrm{aux}}=0.4$, where $\mathcal{L}^{(k)}_{\mathrm{seg}}$ is computed on the $k$-th auxiliary output upsampled to input size.
+with $e_i=\min\bigl(1,\,|G_x*y|_i+|G_y*y|_i\bigr)$, where $G_x,G_y$ are Sobel kernels and $\ell_{\mathrm{ce}}(i)$ is the per-pixel cross-entropy. StrongDINOv2Seg uses $\mathcal{L}=\mathcal{L}_{\mathrm{seg}}^{(0)}+\lambda_{\mathrm{aux}}\sum_{k=1}^{3}\mathcal{L}_{\mathrm{seg}}^{(k)}$ with $\lambda_{\mathrm{aux}}=0.4$, where $\mathcal{L}^{(k)}_{\mathrm{seg}}$ is computed on the $k$-th auxiliary output upsampled to input size.
 
 \paragraph{StrongDINOv2Seg.}
 The encoder is DINOv2 ViT-B/14~\cite{oquab2023dinov2} (768-d tokens, patch size 14), fully fine-tuned. A $560\times560$ input yields a $40\times40$ token grid. Tokens from transformer blocks 3, 6, 9 and 12 are reshaped to feature maps, projected by $1\times1$ convolutions to 256 channels, and concatenated and fused (FPN-style~\cite{lin2017fpn}) to 512 channels. An ASPP module~\cite{chen2018deeplabv3plus} with rates $\{6,12,18\}$, a $1\times1$ branch and global pooling produces the neck feature. A four-stage decoder with bilinear $\times2$ upsampling and residual convolution blocks (256, 128, 64, 32 channels) is followed by a $1\times1$ classifier and bilinear resampling to input size. Auxiliary $1\times1$ heads attached to the first three decoder stages provide deep supervision~\cite{lee2015dsn} during training. Training uses AdamW (weight decay $10^{-4}$, learning rate $5\times10^{-6}$ for the encoder and $5\times10^{-5}$ for the decoder), cosine annealing to $10^{-7}$ over 10 epochs, batch size 2, gradient-norm clipping at 1.0, and random flips and $90^\circ$ rotations.
@@ -200,10 +200,11 @@ Exposure to unmodelled buildings is the number of routes crossing a footprint ot
 Let $T$ be the full target set and $M\subset T$ an omission set, standing for building false negatives. The planner is re-run on $T\setminus M$, with the footprints of $M$ also removed from the penalty layer, because a missed detection is absent from both the target list and the obstacle layer. We define:
 \begin{align}
 \kappa &= \frac{|T\setminus M|}{|T|}, \qquad U=|M|,\label{eq:kappa}\\
-\delta_L &= \frac{L(T)-L(T\setminus M)}{L(T)},\qquad \bar\ell=\frac{L(T\setminus M)}{|T\setminus M|},\label{eq:delta}\\
-E_M &= \text{route length inside footprints of } M \text{ in the plan for } T\setminus M.\label{eq:exposure}
+\delta_L &= \frac{L(T)-L(T\setminus M)}{L(T)},\label{eq:delta}\\
+\bar\ell &= \frac{L(T\setminus M)}{|T\setminus M|},\label{eq:perlen}\\
+E_M &= \operatorname{len}\bigl(N_{T\setminus M}\cap\mathcal{P}_M\bigr),\label{eq:exposure}
 \end{align}
-Here $\kappa$ is coverage, $U$ the number of households without a planned route, $\delta_L$ the underestimation of network length, $\bar\ell$ the length per routed target (the quantity that is comparable across scenarios, because absolute length shrinks mechanically when fewer targets are connected), and $E_M$ the exposure to omitted buildings. Omission modes are: random omission of 10\% and 20\% of targets (five draws each); omission of all \textsc{Unresolved\_Merge} candidates ($|M|=62$); omission of the smallest 10\% and 25\% of targets by footprint area (areas $\le46.7$ and $\le113.4$~m$^2$; $|M|=17,41$), a plausible false-negative pattern for small or low-contrast roofs; and random \emph{additions} of 10\% and 20\% synthetic targets as a false-positive analogue. To separate the loss of obstacle information from plain restructuring, every omission run is repeated with $\mu=1$ (no penalty), where the planner ignores footprints and any change in $E_M$ reflects restructuring alone.
+Here $\kappa$ is coverage, $U$ the number of households without a planned route, $\delta_L$ the underestimation of network length, $\bar\ell$ the length per routed target (the quantity that is comparable across scenarios, because absolute length shrinks mechanically when fewer targets are connected), and $E_M$ the exposure to omitted buildings, the length of the plan $N_{T\setminus M}$ for $T\setminus M$ that lies inside the footprints $\mathcal{P}_M$ of $M$. Omission modes are: random omission of 10\% and 20\% of targets (five draws each); omission of all \textsc{Unresolved\_Merge} candidates ($|M|=62$); omission of the smallest 10\% and 25\% of targets by footprint area (areas $\le46.7$ and $\le113.4$~m$^2$; $|M|=17,41$), a plausible false-negative pattern for small or low-contrast roofs; and random \emph{additions} of 10\% and 20\% synthetic targets as a false-positive analogue. To separate the loss of obstacle information from plain restructuring, every omission run is repeated with $\mu=1$ (no penalty), where the planner ignores footprints and any change in $E_M$ reflects restructuring alone.
 
 \subsection{Hierarchical Multi-Scale Extension}\label{sec:hier}
 Level~1 is the village pipeline above. The three coarser tiers reuse its search engine (8-connected Dijkstra with no diagonal corner-cutting) and the shared-network rule of Section~\ref{sec:method}, changing only the nodes, the grid and what counts as an attachment target.
@@ -422,15 +423,17 @@ At the mandal level, 14 village points and the proxy Mandal HQ attach to collect
 
 \begin{table*}[t]
 \centering
-\caption{Levels 3 and 4: scalability demonstration on \emph{proxy} nodes (real rasters, Overture roads). Not planning findings. Omission: mean $\delta_L$ (\%) of three seeds [range] for 10\% / 20\% of units removed.}
+\caption{Levels 3 and 4: scalability demonstration on proxy nodes (real rasters, Overture roads); not planning findings. Markook is 116~km$^2$ on a 30~m grid; Siddipet is 3{,}722~km$^2$ on a 250~m / 30~m coarse-to-fine grid. ``Existing'' is backbone length on existing roads, ``New'' the new construction, ``Star, new'' the new construction if every terminal were routed to the root separately, ``New saved'' the saving of sharing on new construction. Omission columns are means of three seeds (ranges in the text).}
 \label{tab:scale}
 \footnotesize
-\begin{tabular}{@{}lllrrrrrl@{}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}llrrrrrr@{}}
 \toprule
-Level & Nodes (proxy) & Grid & Shared (km) & On existing (km) & New (km) & Star, new (km) & Sharing saves new (\%) & Omission $\delta_L$\\
+Level & Nodes (proxy) & Shared & Existing & New & Star, new & New saved & Omission $\delta_L$ (\%)\\
+ & & (km) & (km) & (km) & (km) & (\%) & 10\% / 20\% omitted\\
 \midrule
-3 Mandal (Markook, 116~km$^2$) & 14 villages + 1 HQ & 30~m & 5.9 & -- & 5.9 & 5.9 & 0.0 & 2.1 [1.2--3.3] / 25.5 [5.4--63.2]\\
-4 District (Siddipet, 3{,}722~km$^2$) & 22 mandal terminals & 250~m / 30~m & 358.7 & 344.1 & 14.7 & 19.8 & 25.9 & 7.6 [4.8--10.4] / 11.5 [4.2--16.3]\\
+3 Mandal (Markook) & 14 villages + HQ & 5.9 & -- & 5.9 & 5.9 & 0.0 & 2.1 / 25.5\\
+4 District (Siddipet) & 22 mandal terminals & 358.7 & 344.1 & 14.7 & 19.8 & 25.9 & 7.6 / 11.5\\
 \bottomrule
 \end{tabular}
 \end{table*}

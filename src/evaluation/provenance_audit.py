@@ -12,7 +12,7 @@ What it does (each step records PASS/FAIL, nothing is assumed):
      results (determinism check); recomputes derived percentages from the raw fields;
   5. with --redownload, re-fetches every raster and road layer and compares pixel arrays / geometry hashes with the local copies;
   6. checks that the key numbers appear verbatim in paper/main.tex.
-It writes docs/results/provenance_audit.json, docs/results/input_manifest.csv and (with --write) the Markdown report.
+With --write it writes docs/results/provenance_audit.json, docs/results/input_manifest.csv and the Markdown report; a bare run only prints the summary.
 """
 from __future__ import annotations
 
@@ -494,11 +494,12 @@ def main(argv=None):
         R["redownload"] = redownload_checks(cfg)
     env = environment()
     keys = ["group", "level", "role", "path", "exists", "bytes", "sha256", "note", "provenance_json"]
-    with open(RES / "input_manifest.csv", "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=keys, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(inputs)
-    (RES / "provenance_audit.json").write_text(json.dumps(dict(environment=env, inputs=inputs, **{k: v for k, v in R.items() if k != "dem"}), indent=2, default=str), encoding="utf-8")
+    if a.write:          # a bare run only prints: it must not overwrite the committed audit artifacts with a shorter run
+        with open(RES / "input_manifest.csv", "w", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=keys, extrasaction="ignore")
+            w.writeheader()
+            w.writerows(inputs)
+        (RES / "provenance_audit.json").write_text(json.dumps(dict(environment=env, inputs=inputs, **{k: v for k, v in R.items() if k != "dem"}), indent=2, default=str), encoding="utf-8")
     allr = [r for k, v in R.items() if k != "dem" for r in v]
     fails = [r for r in allr if r["status"] == "FAIL"]
     print(f"checks: {len(allr)}  PASS: {sum(r['status'] == 'PASS' for r in allr)}  FAIL: {len(fails)}  other: {len(allr) - len(fails) - sum(r['status'] == 'PASS' for r in allr)}")
