@@ -5,7 +5,7 @@
     "geopandas": "1.2.0",
     "rasterio": "1.5.2",
     "shapely": "2.2.0",
-    "git_commit_at_audit": "c45aa1900bdec0eab3a5d395cd39a7457fbe44a5",
+    "git_commit_at_audit": "c320dc60e1f10675dd864633e68f0d99e7252aa9",
     "platform": "Linux-6.18.44-fc-v470-x86_64-with-glibc2.39"
   },
   "inputs": [
