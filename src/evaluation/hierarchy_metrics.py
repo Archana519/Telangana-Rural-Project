@@ -161,6 +161,9 @@ def evaluate_level(level: str, problem, nodes: list, out_dir, crs: str, fraction
         if indep.unique_length_m else 0.0,
         saving_vs_independent_total_pct=(100.0 * (indep.total_length_m - shared.total_length_m) / indep.total_length_m)
         if indep.total_length_m else 0.0,
+        shared_new_construction_m=shared.meta.get("new_construction_m", shared.unique_length_m),
+        shared_on_existing_road_m=shared.meta.get("on_existing_road_m", 0.0),
+        independent_new_construction_m=indep.meta.get("new_construction_m", indep.unique_length_m),
         shared_unique_cost=shared.unique_cost, unit_weight_total=full_w, unit_weight_served=served,
         length_per_served_weight_m=shared.unique_length_m / served if served else float("nan"),
         detour_reduction_m_total=float(sum(r["detour_reduction_m"] for r in ov
@@ -190,7 +193,8 @@ def evaluate_level(level: str, problem, nodes: list, out_dir, crs: str, fraction
 
 def write_hierarchy_summary(out_dir, summaries: list):
     out = Path(out_dir)
-    cols = ["level", "n_nodes", "n_routed_shared", "coverage_pct", "shared_unique_length_m", "independent_unique_length_m",
+    cols = ["level", "n_nodes", "n_routed_shared", "coverage_pct", "shared_unique_length_m", "shared_new_construction_m",
+            "independent_unique_length_m", "independent_new_construction_m",
             "saving_vs_independent_unique_pct", "detour_reduction_m_total", "omission_max_delta_L_pct",
             "omission_max_unserved_weight"]
     rows = [{c: _f(s.get(c, "")) for c in cols} | {"data_source": s.get("provenance", {}).get("data_source", "")}

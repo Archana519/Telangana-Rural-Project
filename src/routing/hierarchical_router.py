@@ -113,6 +113,7 @@ class MandalInputs:
     provider: LayerProvider
     boundary: Optional[object] = None
     notes: list = field(default_factory=list)
+    local_roads: Optional[object] = None       # below-collector roads: cheaper to travel on, but NOT attachment goals
 
 
 @dataclass
@@ -448,8 +449,11 @@ def build_mandal_problem(m: MandalInputs, cfg: dict) -> RoutingProblem:
     cost = cost_from_layers(layers, cs, forest_multiplier=float(lv["forest_cost_multiplier"]))
     T, shape = layers.transform, layers.shape
     road_mask = rasterize_roads(list(m.roads.geometry), T, shape)
-    cost = apply_road_discount(cost, road_mask, float(lv["road_discount"]))
-    domain = rasterize([m.boundary], T, shape) | road_mask if m.boundary is not None else None
+    discount_mask = road_mask
+    if m.local_roads is not None and len(m.local_roads):
+        discount_mask = road_mask | rasterize_roads(list(m.local_roads.geometry), T, shape)
+    cost = apply_road_discount(cost, discount_mask, float(lv["road_discount"]))
+    domain = rasterize([m.boundary], T, shape) | discount_mask if m.boundary is not None else None
     notes = list(m.notes)
     if layers.landcover is None:
         notes.append("FALLBACK: no land-cover raster; constant cost surface")
@@ -539,6 +543,15 @@ class DistrictProblem:
         self.root = next((n for n in d.nodes if n.kind == "district_hq"), max(d.nodes, key=lambda n: n.weight))
         self.origin = (d.bounds[0], d.bounds[3])
         self._coarse = None
+        self._road_buf = None
+
+    def _existing_road_length(self, lines) -> float:
+        """Length of the refined network lying on existing roads (within 1.5 fine cells); the rest is new construction."""
+        if not lines:
+            return 0.0
+        if self._road_buf is None:
+            self._road_buf = self.d.roads.geometry.union_all().buffer(1.5 * self.fine_res)
+        return float(unary_union(lines).intersection(self._road_buf).length)
 
     # ---- coarse stage
     def coarse(self):
@@ -681,6 +694,8 @@ class DistrictProblem:
             res.served = set(res.routes)
             res.connected_any_road = set(res.routes)
             res.connected_main = set(res.routes)
+        res.meta["on_existing_road_m"] = self._existing_road_length(lines)
+        res.meta["new_construction_m"] = max(res.unique_length_m - res.meta["on_existing_road_m"], 0.0)
         res.meta["fine_status"] = status_count
         res.meta["coarse_cells"] = int(grid.H * grid.W)
         return res

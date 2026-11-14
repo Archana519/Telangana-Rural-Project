@@ -65,6 +65,7 @@ levels:
     snap_m: 90.0
     forest_cost_multiplier: 1.5      # extra avoidance of tree cover on top of the land-cost table
     road_discount: 0.25              # cost multiplier on existing-road cells (road snapping)
+    collector_road_classes: [motorway, trunk, primary, secondary, tertiary]   # goals of Level 3; other classes only get the discount
     hub_weight_per_house: 1.0
     phc_weight: 20.0
     hq_weight: 30.0

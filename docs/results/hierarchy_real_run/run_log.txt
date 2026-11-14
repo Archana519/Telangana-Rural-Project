@@ -1,0 +1,4 @@
+data fallback plan: {"gp": "REAL vectors (boundary, roads, facilities, footprints, house targets) + REAL land-cover raster + DEM slope", "mandal": "REAL inputs", "district": "REAL inputs"}
+Level 2 [real] nodes=23 routed=23 shared=1764 m independent=1791 m saving=1.5% (0.7 s)
+Level 3 [real] nodes=15 routed=15 shared=5913 m independent=5913 m saving=0.0% (0.5 s)
+Level 4 [real] nodes=22 routed=22 shared=359879 m independent=462377 m saving=22.2% (43.6 s)

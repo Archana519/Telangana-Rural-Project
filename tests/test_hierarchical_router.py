@@ -290,3 +290,30 @@ def test_make_4connected_links_diagonal_road_cells():
     anti = np.zeros((4, 4), bool)
     anti[0, 3] = anti[1, 2] = True
     assert make_4connected(anti).sum() == 3
+
+
+def test_mandal_loader_splits_collector_and_local_roads(tmp_path):
+    crs = CFG["crs"]
+    cfg = copy.deepcopy(CFG)
+    d = cfg["data"]["mandal"]
+    gpd.GeoDataFrame(geometry=[box(258000, 1950000, 268000, 1960000)], crs=crs).to_file(tmp_path / "b.gpkg", driver="GPKG")
+    gpd.GeoDataFrame(geometry=[box(259000, 1951000, 260000, 1952000)], crs=crs).to_file(tmp_path / "gp.gpkg", driver="GPKG")
+    gpd.GeoDataFrame({"class": ["primary", "residential"]}, geometry=[LineString([(258000, 1955000), (268000, 1955000)]),
+                     LineString([(259500, 1952000), (259500, 1955000)])], crs=crs).to_file(tmp_path / "r.gpkg", driver="GPKG")
+    gpd.GeoDataFrame({"facility_type": ["Mandal HQ"]}, geometry=[Point(262000, 1955500)], crs=crs).to_file(tmp_path / "f.gpkg", driver="GPKG")
+    d.update(landcover=str(tmp_path / "x.tif"), dem=str(tmp_path / "y.tif"), boundary=str(tmp_path / "b.gpkg"),
+             gp_boundaries=str(tmp_path / "gp.gpkg"), roads=str(tmp_path / "r.gpkg"), facilities=str(tmp_path / "f.gpkg"))
+    m, _ = dh.load_mandal_real(cfg)
+    assert len(m.roads) == 1 and len(m.local_roads) == 1                          # only the primary road is an attachment goal
+    prob = build_mandal_problem(m, cfg)
+    assert prob.road_mask.sum() < (prob.cost < 1.0).sum() + prob.road_mask.sum()   # local road cells are discounted but not goals
+    r = prob.solve()
+    assert not r.failures and r.unique_length_m > 1000.0                           # the village must reach the primary road, not the track
+
+
+def test_district_reports_new_construction_vs_existing_road():
+    d = sw.make_synthetic_district(seed=4, n_mandals=5, size_m=30000.0)
+    r = build_district_problem(d, CFG).solve()
+    m = r.meta
+    assert 0.0 <= m["on_existing_road_m"] <= r.unique_length_m + 1e-6
+    assert m["new_construction_m"] == pytest.approx(r.unique_length_m - m["on_existing_road_m"])

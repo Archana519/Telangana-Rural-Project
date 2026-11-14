@@ -1,0 +1,126 @@
+[
+  {
+    "level": "gp",
+    "n_nodes": 23,
+    "n_routed_shared": 23,
+    "n_failed_shared": 0,
+    "coverage_pct": 100.0,
+    "connected_any_road": 23,
+    "connected_main_component": 23,
+    "shared_unique_length_m": 1763.6753236814714,
+    "shared_total_length_m": 1763.6753236814714,
+    "independent_unique_length_m": 1790.5382386916237,
+    "independent_total_length_m": 1800.538238691624,
+    "saving_vs_independent_unique_pct": 1.5002703896333192,
+    "saving_vs_independent_total_pct": 2.0473275278474152,
+    "shared_new_construction_m": 1763.6753236814714,
+    "shared_on_existing_road_m": 0.0,
+    "independent_new_construction_m": 1790.5382386916237,
+    "shared_unique_cost": 11070.976603243074,
+    "unit_weight_total": 163.0,
+    "unit_weight_served": 163.0,
+    "length_per_served_weight_m": 10.820094010315776,
+    "detour_reduction_m_total": 42.42640687119285,
+    "other_routes_changed_by_override": 0,
+    "omission_max_delta_L_pct": 14.134649305008265,
+    "omission_max_unserved_weight": 33.0,
+    "failures": {},
+    "shared_meta": {
+      "snap_m_max": 5.783514170324864,
+      "n_road_cells": 6554
+    },
+    "provenance": {
+      "data_source": "real",
+      "notes": [],
+      "layer_source": "raster",
+      "resolution_m": 10.0
+    },
+    "runtime_s": 0.7
+  },
+  {
+    "level": "mandal",
+    "n_nodes": 15,
+    "n_routed_shared": 15,
+    "n_failed_shared": 0,
+    "coverage_pct": 100.0,
+    "connected_any_road": 15,
+    "connected_main_component": 15,
+    "shared_unique_length_m": 5912.86363288515,
+    "shared_total_length_m": 5912.86363288515,
+    "independent_unique_length_m": 5912.86363288515,
+    "independent_total_length_m": 5912.863632885149,
+    "saving_vs_independent_unique_pct": 0.0,
+    "saving_vs_independent_total_pct": -1.5381628230264892e-14,
+    "shared_new_construction_m": 5912.86363288515,
+    "shared_on_existing_road_m": 0.0,
+    "independent_new_construction_m": 5912.86363288515,
+    "shared_unique_cost": 6676.23259416749,
+    "unit_weight_total": 14.0,
+    "unit_weight_served": 14.0,
+    "length_per_served_weight_m": 422.3474023489393,
+    "detour_reduction_m_total": 0.0,
+    "other_routes_changed_by_override": 0,
+    "omission_max_delta_L_pct": 63.202138707606856,
+    "omission_max_unserved_weight": 3.0,
+    "failures": {},
+    "shared_meta": {
+      "snap_m_max": 16.27213907380888,
+      "n_road_cells": 5233
+    },
+    "provenance": {
+      "data_source": "real",
+      "notes": [
+        "roads split: 296 collector-grade segments are attachment goals; 1283 local segments only discounted"
+      ],
+      "layer_source": "raster",
+      "resolution_m": 30.0
+    },
+    "runtime_s": 0.5
+  },
+  {
+    "level": "district",
+    "n_nodes": 22,
+    "n_routed_shared": 22,
+    "n_failed_shared": 0,
+    "coverage_pct": 100.0,
+    "connected_any_road": 22,
+    "connected_main_component": 22,
+    "shared_unique_length_m": 359879.07119716925,
+    "shared_total_length_m": 365799.214050668,
+    "independent_unique_length_m": 462376.9325999089,
+    "independent_total_length_m": 800495.7094245566,
+    "saving_vs_independent_unique_pct": 22.167598376156505,
+    "saving_vs_independent_total_pct": 54.30341352939593,
+    "shared_new_construction_m": 15147.881614982267,
+    "shared_on_existing_road_m": 344731.189582187,
+    "independent_new_construction_m": 19145.53653829143,
+    "shared_unique_cost": 417608.0910155914,
+    "unit_weight_total": 22.0,
+    "unit_weight_served": 22.0,
+    "length_per_served_weight_m": 16358.139599871329,
+    "detour_reduction_m_total": 0.0,
+    "other_routes_changed_by_override": 0,
+    "omission_max_delta_L_pct": 16.439619198120322,
+    "omission_max_unserved_weight": 4.0,
+    "failures": {},
+    "shared_meta": {
+      "n_coarse_edges": 1140,
+      "n_chains": 41,
+      "served_terminals": 22,
+      "on_existing_road_m": 344731.189582187,
+      "new_construction_m": 15147.881614982267,
+      "fine_status": {
+        "fine": 105
+      },
+      "coarse_cells": 112847
+    },
+    "provenance": {
+      "data_source": "real",
+      "notes": [],
+      "layer_source": "RasterLayerProvider",
+      "coarse_resolution_m": 250.0,
+      "fine_resolution_m": 30.0
+    },
+    "runtime_s": 43.6
+  }
+]

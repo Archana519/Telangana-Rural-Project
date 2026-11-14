@@ -1,0 +1,7 @@
+mu,shared_unique_length_m,independent_unique_length_m,saving_vs_independent_pct,shared_unique_cost,routes_crossing_footprints,length_in_footprints_m,routed,failed,length_increase_vs_mu1_pct,exposure_reduction_vs_mu1_pct
+1.0,1668.8,1684.0,0.9,8373.5,6,124.0,23,0,0.0,0.0
+2.0,1703.7,1730.5,1.55,9398.0,4,48.3,23,0,2.09,61.05
+4.0,1763.7,1790.5,1.5,11071.0,3,12.0,23,0,5.69,90.32
+8.0,1827.8,1854.7,1.45,13738.9,2,7.2,23,0,9.53,94.19
+20.0,1827.8,1854.7,1.45,21274.5,2,7.2,23,0,9.53,94.19
+100.0,1856.1,1883.0,1.43,71022.7,2,7.2,23,0,11.22,94.19

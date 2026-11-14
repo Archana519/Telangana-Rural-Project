@@ -181,6 +181,15 @@ def load_mandal_real(cfg: dict, root: Path | str = REPO):
     roads = gpd.read_file(_p(root, d["roads"])).to_crs(cfg["crs"])
     gps = gpd.read_file(_p(root, d["gp_boundaries"])).to_crs(cfg["crs"])
     fac = gpd.read_file(_p(root, d["facilities"])).to_crs(cfg["crs"])
+    local = None
+    classes = lv.get("collector_road_classes")
+    if classes and "class" in roads.columns:
+        is_coll = roads["class"].isin(classes)
+        if is_coll.any():
+            local, roads = roads[~is_coll], roads[is_coll]
+            rep["notes"].append(f"roads split: {len(roads)} collector-grade segments are attachment goals; {len(local)} local segments only discounted")
+        else:
+            rep["notes"].append("no collector-class roads found: all roads used as goals")
     nodes = []
     for i, r in gps.reset_index(drop=True).iterrows():
         c = r.geometry.representative_point()
@@ -195,7 +204,7 @@ def load_mandal_real(cfg: dict, root: Path | str = REPO):
         if kind:
             nodes.append(Node(str(r.get("facility_id", f"{kind}_{i}")), r.geometry.x, r.geometry.y, float(w), kind))
     b = tuple(boundary.buffer(float(lv["snap_m"])).bounds)
-    return MandalInputs("MANDAL", roads, nodes, b, _provider(d, root, rep["notes"]), boundary, rep["notes"]), rep
+    return MandalInputs("MANDAL", roads, nodes, b, _provider(d, root, rep["notes"]), boundary, rep["notes"], local_roads=local), rep
 
 
 def load_district_real(cfg: dict, root: Path | str = REPO):
