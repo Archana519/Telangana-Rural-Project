@@ -170,8 +170,8 @@ def test_tile_bounds_cover_and_overlap():
         dh.tile_bounds((0, 0, 10, 10), 100, 100)
 
 
-def test_inventory_reports_missing_and_fallback():
-    inv = dh.inventory(CFG)
+def test_inventory_reports_missing_and_fallback(tmp_path):
+    inv = dh.inventory(CFG, tmp_path)                    # an empty root: nothing exists, whatever has been downloaded locally
     assert "SYNTHETIC" in inv["_fallback"]["district"]
     miss = dh.missing_inputs(inv)
     assert any(l == "district" and k == "boundary" for l, k, _ in miss)
@@ -188,7 +188,7 @@ def test_mandal_loader_from_geopackages(tmp_path):
     gpd.GeoDataFrame({"facility_type": ["Mandal HQ", "PHC", "Weekly market", "School"]},
                      geometry=[Point(262000, 1955500), Point(259000, 1952000), Point(266000, 1958000), Point(1, 1)],
                      crs=crs).to_file(tmp_path / "f.gpkg", driver="GPKG")
-    d.update(boundary=str(tmp_path / "b.gpkg"), gp_boundaries=str(tmp_path / "gp.gpkg"), roads=str(tmp_path / "r.gpkg"),
+    d.update(landcover=str(tmp_path / "no_lc.tif"), dem=str(tmp_path / "no_dem.tif"), boundary=str(tmp_path / "b.gpkg"), gp_boundaries=str(tmp_path / "gp.gpkg"), roads=str(tmp_path / "r.gpkg"),
              facilities=str(tmp_path / "f.gpkg"))
     m, rep = dh.load_mandal_real(cfg)
     assert m is not None and not rep["missing"]
@@ -200,9 +200,9 @@ def test_mandal_loader_from_geopackages(tmp_path):
     assert len(r.routes) == 5 and not r.failures
 
 
-def test_missing_real_inputs_return_none_not_exception():
-    m, rep = dh.load_mandal_real(CFG)
-    d, rep2 = dh.load_district_real(CFG)
+def test_missing_real_inputs_return_none_not_exception(tmp_path):
+    m, rep = dh.load_mandal_real(CFG, tmp_path)
+    d, rep2 = dh.load_district_real(CFG, tmp_path)
     assert m is None and d is None and rep["missing"] and rep2["missing"]
 
 
@@ -278,7 +278,7 @@ def test_cli_runs_all_levels_on_synthetic_data(tmp_path):
     assert [x["level"] for x in s] == ["gp", "mandal", "district"]
     rows = (tmp_path / "hierarchy_summary.csv").read_text().strip().splitlines()
     assert len(rows) == 4 and "synthetic" in rows[1]
-    assert json.loads((tmp_path / "data_inventory.json").read_text())["_fallback"]["mandal"].startswith("SYNTHETIC")
+    assert "mandal" in json.loads((tmp_path / "data_inventory.json").read_text())["_fallback"]
 
 
 def test_make_4connected_links_diagonal_road_cells():

@@ -45,3 +45,20 @@ Outputs per level: `<level>_routes.gpkg` (routes_shared, routes_independent, nod
 | 2 (any GP) | boundary, roads, facilities, buildings, house targets, `*_worldcover_10m.tif`, DEM | EPSG:32644 or any CRS with a defined projection |
 | 3 | `Siddipet/_mandal/{markook_boundary,gram_panchayats,roads,facilities}.gpkg`, WorldCover, DEM | GP polygons (optional `houses`, `gp_name`); facilities with `facility_type` containing "Mandal HQ", "PHC"/"Primary Health", "market"; roads NH/SH/MDR/PMGSY or OSM |
 | 4 | `Siddipet/_district/{siddipet_boundary,mandals,roads,terminals}.gpkg`, WorldCover, DEM | terminals: points with `kind` (`district_hq` once, `mandal_hq`) and optional `weight` |
+
+## Fetching the open inputs (`src/utils/data_downloader_helper.py`)
+Folder convention: the project uses `Siddipet/...` (EPSG:32644); there is no `data/processed/` tree, so none is configured. Downloads are cached in
+`data/raw/_cache/`; products written to `Siddipet/_mandal/` and `Siddipet/_district/` and `Siddipet/Damarakunta/aligned/` are regenerable and git-ignored.
+```bash
+python -m src.utils.data_downloader_helper --plan                       # present / missing per level
+python -m src.utils.data_downloader_helper --levels gp mandal district  # fetch whatever is missing (never overwrites without --force)
+python -m src.utils.data_downloader_helper --levels district --what rasters --dem-source srtm --force
+```
+| Product | Source | Notes |
+|---|---|---|
+| WorldCover 10 m, DEM 30 m (all levels) | ESA WorldCover v200 2021, Copernicus GLO-30 (or SRTM) public AWS COGs, windowed + reprojected | Stage B docs list SRTM as the DEM; Copernicus is the default, use `--dem-source srtm` to match |
+| District / mandal polygons | geoBoundaries gbOpen IND ADM2/ADM3 (CC BY 4.0) | release has 23 mandals in Siddipet district; the current administrative set may differ |
+| Roads (Levels 3-4) | Overture Maps transportation (OSM-derived, ODbL); `--roads-source osmnx` where Overpass is reachable | not a PMGSY/TGRAC inventory; district uses motorway-tertiary only |
+| GP hubs (Level 3) | Overture village localities (points) | **not GP polygons**, unknown house counts (weight 1) |
+| Facilities / terminals | Overture places (name rules) + **proxy** Mandal HQ and mandal terminals (interior points of polygons) | flagged `proxy=True`; replace with verified HQ/PHC/market coordinates |
+Every product has a `<file>.provenance.json`. All of it is REFERENCE data, never ground truth (docs/DECISIONS.md row 6).

@@ -185,7 +185,8 @@ def load_mandal_real(cfg: dict, root: Path | str = REPO):
     for i, r in gps.reset_index(drop=True).iterrows():
         c = r.geometry.representative_point()
         nodes.append(Node(f"GP_{r.get('gp_name', i + 1)}", c.x, c.y,
-                          float(r["houses"]) * float(lv["hub_weight_per_house"]) if "houses" in gps else 1.0, "gp_hub"))
+                          (float(r["houses"]) if "houses" in gps and np.isfinite(r["houses"]) else 1.0)
+                          * float(lv["hub_weight_per_house"]), "gp_hub"))
     for i, r in fac.reset_index(drop=True).iterrows():
         t = str(r.get("facility_type", "")).lower()
         kind, w = (("mandal_hq", lv["hq_weight"]) if "mandal" in t and "hq" in t else
