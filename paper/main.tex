@@ -213,15 +213,15 @@ The lower block of Table~\ref{tab:seg} gives the only village-level evidence: ag
 \centering
 \caption{Segmentation evaluation. Top: LoveDA validation (source domain). Bottom: agreement of Damarakunta candidates with Open Buildings v3 (a proxy; not accuracy). Precision and recall are macro-averages over the seven scored classes; Dice for the Building class is its F1.}
 \label{tab:seg}
-\small
-\setlength{\tabcolsep}{3pt}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{@{}lccccc@{}}
 \toprule
 \multicolumn{6}{@{}l}{\textit{LoveDA validation split (\%)}}\\
 Model & mIoU & Dice & Pixel Acc. & Prec. & Rec.\\
 \midrule
 StrongDINOv2Seg & 53.8 & 68.9 & 71.3 & 72.4 & 66.9\\
-\quad Building class only & 54.0 & 70.1 & --- & 62.1 & 80.6\\
+\quad Building class & 54.0 & 70.1 & --- & 62.1 & 80.6\\
 \midrule
 \multicolumn{6}{@{}l}{\textit{Damarakunta candidates vs.\ Open Buildings v3}}\\
 Class & Cand. & Agree & Disagree & \multicolumn{2}{c}{Agreement}\\
