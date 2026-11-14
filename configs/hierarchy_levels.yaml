@@ -1,0 +1,83 @@
+# Hierarchical routing configuration (Contribution 3): village -> GP -> mandal -> district.
+# Level 1 (village) is the completed Stage B pipeline (configs/damarakunta.json + scripts/dk_stageB_*).
+# All parameters here are PLANNING parameters, not facts; costs are ordinal model units (not INR).
+# Paths are relative to the repository root unless absolute.
+
+crs: EPSG:32644                      # UTM 44N, as for Damarakunta (Siddipet district lies inside this zone)
+
+# --- cost-surface recipe shared by all levels (mirrors scripts/create_damarakunta_cost_surface.py) ---
+cost_surface:
+  worldcover_cost:                   # ESA WorldCover class -> base cost units
+    10: 8.0                          # tree cover
+    20: 5.0                          # shrubland
+    30: 3.0                          # grassland
+    40: 6.0                          # cropland
+    50: 2.0                          # built-up
+    60: 4.0                          # bare / sparse vegetation
+  water_class: 80                    # hard-blocked
+  invalid_class: 0                   # hard-blocked
+  slope_ref_deg: 10.0                # slope term = clip(slope, 0, ref) / ref * slope_weight
+  slope_weight: 4.0
+  slope_limit_deg: 25.0              # hard-blocked above this slope
+  flat_fallback_cost: 3.0            # used ONLY when no land-cover raster exists (flagged in outputs)
+
+# --- data inventory: where each level looks for inputs (missing -> graceful fallback, see run_hierarchy.py) ---
+data:
+  village_root: Siddipet/Damarakunta
+  gp:
+    boundary: Siddipet/Damarakunta/study_area/damarakunta_boundary.gpkg
+    roads: Siddipet/Damarakunta/reference/derived/tgrac_road_network_clipped.gpkg
+    facilities: Siddipet/Damarakunta/reference/derived/damarakunta_priority_facilities_final_5.gpkg
+    buildings: Siddipet/Damarakunta/results/v8_instances/buildings_v8_full.gpkg
+    house_targets_csv: DELIVERABLES_DAMARAKUNTA_STAGE_B/03_RESULTS_TABLES/PRIMARY_RUN_S2_fac_C0_s25_final_x4/scenario_targets.csv
+    landcover: Siddipet/Damarakunta/aligned/damarakunta_worldcover_10m.tif   # *.tif is git-ignored
+    dem: Siddipet/Damarakunta/aligned/damarakunta_dem_30m.tif                # not in repo
+  mandal:
+    boundary: Siddipet/_mandal/markook_boundary.gpkg
+    gp_boundaries: Siddipet/_mandal/gram_panchayats.gpkg
+    roads: Siddipet/_mandal/roads.gpkg
+    facilities: Siddipet/_mandal/facilities.gpkg          # Mandal HQ, PHCs, markets
+    landcover: Siddipet/_mandal/worldcover_10m.tif
+    dem: Siddipet/_mandal/dem_30m.tif
+  district:
+    boundary: Siddipet/_district/siddipet_boundary.gpkg
+    mandal_boundaries: Siddipet/_district/mandals.gpkg
+    roads: Siddipet/_district/roads.gpkg                  # NH / SH / MDR / PMGSY or OSM extract
+    terminals: Siddipet/_district/terminals.gpkg          # mandal HQs, district HQ
+    landcover: Siddipet/_district/worldcover_10m.tif
+    dem: Siddipet/_district/dem_30m.tif
+
+levels:
+  gp:                                # Level 2: habitations / hamlets + local amenities inside one Gram Panchayat
+    resolution_m: 10.0
+    footprint_penalty: 4.0           # mu in Eq. (override); x4 is the Stage B primary value (provisional)
+    override_radius_m: 20.0          # local penalty override radius around exempt facilities
+    exempt_facility_types: [School, Healthcare, Panchayat Office, Government]
+    hamlet_eps_m: 150.0              # houses closer than this belong to the same hamlet cluster
+    hamlet_min_houses: 1
+    snap_m: 30.0
+    domain_buffer_m: 0.0             # extra routable margin around the GP polygon
+    facility_weight: 1.0             # Stage B uses equal weights (open decision U02)
+    omission_fractions: [0.10, 0.20]
+    omission_seeds: [11, 12, 13]
+  mandal:                            # Level 3: inter-GP collector roads
+    resolution_m: 30.0
+    snap_m: 90.0
+    forest_cost_multiplier: 1.5      # extra avoidance of tree cover on top of the land-cost table
+    road_discount: 0.25              # cost multiplier on existing-road cells (road snapping)
+    hub_weight_per_house: 1.0
+    phc_weight: 20.0
+    hq_weight: 30.0
+    market_weight: 10.0
+    omission_fractions: [0.10, 0.20]
+    omission_seeds: [11, 12, 13]
+  district:                          # Level 4: coarse-to-fine backbone for the whole district
+    coarse_resolution_m: 250.0
+    fine_resolution_m: 30.0
+    corridor_m: 1000.0               # fine search is confined to this buffer around the coarse path
+    segment_m: 4000.0                # coarse path is refined in windows of at most this length (bounds memory)
+    knn: 5                           # candidate coarse edges per terminal
+    road_discount: 0.2
+    max_fine_cells: 2000000          # hard guard on any single fine window
+    omission_fractions: [0.10, 0.20]
+    omission_seeds: [11, 12, 13]

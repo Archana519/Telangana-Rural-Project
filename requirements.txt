@@ -11,6 +11,10 @@ networkx
 matplotlib
 Pillow
 scipy
+pyyaml
+pytest
+# Optional: OSM road extraction hook (src/routing/data_hooks.py fetch_osm_roads)
+# osmnx
 # Only for building-detection (modeling) work
 # torch
 # transformers
