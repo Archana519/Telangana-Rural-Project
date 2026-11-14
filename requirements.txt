@@ -11,6 +11,8 @@ networkx
 matplotlib
 Pillow
 scipy
+python-docx
+pyarrow
 pyyaml
 pytest
 # Optional: OSM road extraction hook (src/routing/data_hooks.py fetch_osm_roads)
