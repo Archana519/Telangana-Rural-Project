@@ -1,0 +1,2053 @@
+{
+  "environment": {
+    "python": "3.13.18",
+    "numpy": "2.5.3",
+    "geopandas": "1.2.0",
+    "rasterio": "1.5.2",
+    "shapely": "2.2.0",
+    "git_commit_at_audit": "c320dc60e1f10675dd864633e68f0d99e7252aa9",
+    "platform": "Linux-6.18.44-fc-v470-x86_64-with-glibc2.39"
+  },
+  "inputs": [
+    {
+      "group": "repository (TGRAC / Stage B)",
+      "level": "1,2",
+      "role": "boundary",
+      "path": "Siddipet/Damarakunta/study_area/damarakunta_boundary.gpkg",
+      "exists": true,
+      "bytes": 102400,
+      "sha256": "10d58278f82515c2ed8c386598b954ecb86d1627194c79d08bbfff00dadd0197",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (TGRAC / Stage B)",
+      "level": "1,2",
+      "role": "roads",
+      "path": "Siddipet/Damarakunta/reference/derived/tgrac_road_network_clipped.gpkg",
+      "exists": true,
+      "bytes": 143360,
+      "sha256": "3fa25aa8f2ac339c506c486a7b2cda7e9596c2a133b3dca8140c653c1db3db01",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (TGRAC / Stage B)",
+      "level": "1,2",
+      "role": "facilities",
+      "path": "Siddipet/Damarakunta/reference/derived/damarakunta_priority_facilities_final_5.gpkg",
+      "exists": true,
+      "bytes": 98304,
+      "sha256": "4d57636206c86f701a8cd9ca8c46dc19ec64fa46893956063b4600e45f0822f4",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (TGRAC / Stage B)",
+      "level": "1,2",
+      "role": "buildings",
+      "path": "Siddipet/Damarakunta/results/v8_instances/buildings_v8_full.gpkg",
+      "exists": true,
+      "bytes": 1146880,
+      "sha256": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (TGRAC / Stage B)",
+      "level": "1,2",
+      "role": "house_targets_csv",
+      "path": "DELIVERABLES_DAMARAKUNTA_STAGE_B/03_RESULTS_TABLES/PRIMARY_RUN_S2_fac_C0_s25_final_x4/scenario_targets.csv",
+      "exists": true,
+      "bytes": 15551,
+      "sha256": "ecd2616e8eb8ece3c00eb7c5a271a3051c5ed5e9d0442d64d9dc672e1bec9ec1",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (Stage B code/data)",
+      "level": "1",
+      "role": "Stage B planner (search engine reused by Levels 2-4)",
+      "path": "scripts/plan_network_v2.py",
+      "exists": true,
+      "bytes": 47435,
+      "sha256": "d00ea92028101131627b8592e3df2c33ff350efac9b1de09f9b64cdd56ef70a4",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (Stage B code/data)",
+      "level": "1",
+      "role": "Stage B runner v1.6",
+      "path": "scripts/dk_stageB_run_v1_6.py",
+      "exists": true,
+      "bytes": 80382,
+      "sha256": "cb71d2f4f0810497908c80cd251f6f868e070247e314aa5de9c101efc316030b",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (Stage B code/data)",
+      "level": "1",
+      "role": "school compounds",
+      "path": "Siddipet/Damarakunta/reference/school_compounds_utm44n.gpkg",
+      "exists": true,
+      "bytes": 98304,
+      "sha256": "bc54d6e8c85bf602bfe26dfd86f5f7416fd020e4d99480df14559b50c6c049b5",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (Stage B code/data)",
+      "level": "1",
+      "role": "cadastre (valid)",
+      "path": "Siddipet/Damarakunta/reference/damarakunta_cadastral_valid.gpkg",
+      "exists": true,
+      "bytes": 376832,
+      "sha256": "22d87307efef919ad11ed07024dd30d18f5e3bc2787d0a36fbc78bc13d753965",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "repository (Stage B code/data)",
+      "level": "1",
+      "role": "cadastre (raw)",
+      "path": "Siddipet/Damarakunta/reference/damarakunta_cadastral.gpkg",
+      "exists": true,
+      "bytes": 372736,
+      "sha256": "998d5841637cc8f56babb1576c3e9928ab3bd40284a732857b8b200746c29215",
+      "note": "",
+      "provenance_json": ""
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "2",
+      "role": "gp.landcover",
+      "path": "Siddipet/Damarakunta/aligned_open/worldcover_10m.tif",
+      "exists": true,
+      "bytes": 62247,
+      "sha256": "67feb8d14f76e39506b788381bac7e28a05d957016d83259f0e325e773c497a8",
+      "note": "",
+      "provenance_json": "Siddipet/Damarakunta/aligned_open/worldcover_10m.tif.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "2",
+      "role": "gp.dem",
+      "path": "Siddipet/Damarakunta/aligned_open/dem_30m.tif",
+      "exists": true,
+      "bytes": 250653,
+      "sha256": "117e5d567fb2eb32d2a6d4ae56d5fb75662c4a4e9af67b9105b397a875a68241",
+      "note": "",
+      "provenance_json": "Siddipet/Damarakunta/aligned_open/dem_30m.tif.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "3",
+      "role": "mandal.boundary",
+      "path": "Siddipet/_mandal/markook_boundary.gpkg",
+      "exists": true,
+      "bytes": 98304,
+      "sha256": "9d9e55e960d4af6d35f47f01f4bb363e579409cb5535d3ddc7714ee4d2c1c948",
+      "note": "",
+      "provenance_json": "Siddipet/_mandal/markook_boundary.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "3",
+      "role": "mandal.gp_boundaries",
+      "path": "Siddipet/_mandal/gram_panchayats.gpkg",
+      "exists": true,
+      "bytes": 98304,
+      "sha256": "1736a09421b50f14d6251f413f404842763d0174773e78706f97dd18f3b96c99",
+      "note": "",
+      "provenance_json": "Siddipet/_mandal/gram_panchayats.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "3",
+      "role": "mandal.roads",
+      "path": "Siddipet/_mandal/roads.gpkg",
+      "exists": true,
+      "bytes": 598016,
+      "sha256": "687a922e982193f239cc956028ea11fc11a8af25450af28e949e22c1f89af901",
+      "note": "",
+      "provenance_json": "Siddipet/_mandal/roads.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "3",
+      "role": "mandal.facilities",
+      "path": "Siddipet/_mandal/facilities.gpkg",
+      "exists": true,
+      "bytes": 98304,
+      "sha256": "a1c79a0e87bba1ff99487d5e059e4003c660bb8a62912c680fc820f77654a85f",
+      "note": "",
+      "provenance_json": "Siddipet/_mandal/facilities.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "3",
+      "role": "mandal.landcover",
+      "path": "Siddipet/_mandal/worldcover_10m.tif",
+      "exists": true,
+      "bytes": 240755,
+      "sha256": "bf0a827d391f62841e55fb9aa4e825da48d00bffddf3f50657946b330b49f4c7",
+      "note": "",
+      "provenance_json": "Siddipet/_mandal/worldcover_10m.tif.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "3",
+      "role": "mandal.dem",
+      "path": "Siddipet/_mandal/dem_30m.tif",
+      "exists": true,
+      "bytes": 1162571,
+      "sha256": "932471d613477a2313bd5e59e09e48d97f40bfbca599a599a6d41698496ee4e8",
+      "note": "",
+      "provenance_json": "Siddipet/_mandal/dem_30m.tif.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "4",
+      "role": "district.boundary",
+      "path": "Siddipet/_district/siddipet_boundary.gpkg",
+      "exists": true,
+      "bytes": 102400,
+      "sha256": "d5749c130d0a9ae16e044a8fe15610802f840070af18b0780777d8525972a95b",
+      "note": "",
+      "provenance_json": "Siddipet/_district/siddipet_boundary.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "4",
+      "role": "district.mandal_boundaries",
+      "path": "Siddipet/_district/mandals.gpkg",
+      "exists": true,
+      "bytes": 159744,
+      "sha256": "4861a2ac0bb68502ab6e00fc3b50f02ccad950252590dda6a96831fb4129f9a6",
+      "note": "",
+      "provenance_json": "Siddipet/_district/mandals.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "4",
+      "role": "district.roads",
+      "path": "Siddipet/_district/roads.gpkg",
+      "exists": true,
+      "bytes": 2945024,
+      "sha256": "f7ffc3798a399c9467c435fef00a56b560e7a138c64eb6673c8e95fcbcf29f02",
+      "note": "",
+      "provenance_json": "Siddipet/_district/roads.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "4",
+      "role": "district.terminals",
+      "path": "Siddipet/_district/terminals.gpkg",
+      "exists": true,
+      "bytes": 98304,
+      "sha256": "0d2aea5b1c4090a208223749bd2ca69d3cb0a9f9e47c2ba6ad502c72d2f1329b",
+      "note": "",
+      "provenance_json": "Siddipet/_district/terminals.gpkg.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "4",
+      "role": "district.landcover",
+      "path": "Siddipet/_district/worldcover_10m.tif",
+      "exists": true,
+      "bytes": 5475722,
+      "sha256": "7dfbf6e3ed2771112b124c5827fb4a423a1c1fff46dd94420c67cdca16df535f",
+      "note": "",
+      "provenance_json": "Siddipet/_district/worldcover_10m.tif.provenance.json"
+    },
+    {
+      "group": "downloaded (open data)",
+      "level": "4",
+      "role": "district.dem",
+      "path": "Siddipet/_district/dem_30m.tif",
+      "exists": true,
+      "bytes": 30488802,
+      "sha256": "e325383fa89988b87155ac57ef01b9cd52f2079fbf9cd561743f6fa222c9120c",
+      "note": "",
+      "provenance_json": "Siddipet/_district/dem_30m.tif.provenance.json"
+    },
+    {
+      "group": "download cache",
+      "level": "3,4",
+      "role": "geoBoundaries raw",
+      "path": "data/raw/_cache/gb_IND_ADM2.geojson",
+      "exists": true,
+      "bytes": 48317735,
+      "sha256": "8bef6929fd65432e7dc775e7c44473e84efff064ebddbfd6b834e6291546db40",
+      "note": "raw national file before clipping",
+      "provenance_json": ""
+    },
+    {
+      "group": "download cache",
+      "level": "3,4",
+      "role": "geoBoundaries raw",
+      "path": "data/raw/_cache/gb_IND_ADM3.geojson",
+      "exists": true,
+      "bytes": 106291594,
+      "sha256": "f9c38b47f2b8755af59d30bb846f66d0823aba127872668ccc2fa9f0dc3cd48f",
+      "note": "raw national file before clipping",
+      "provenance_json": ""
+    }
+  ],
+  "hashes": [
+    {
+      "id": "H-plan_network_v2.py",
+      "claim": "SHA-256 of plan_network_v2.py equals the hash Stage B recorded",
+      "expected": "d00ea92028101131627b8592e3df2c33ff350efac9b1de09f9b64cdd56ef70a4",
+      "actual": "d00ea92028101131627b8592e3df2c33ff350efac9b1de09f9b64cdd56ef70a4",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-buildings_v8_full.gpkg",
+      "claim": "SHA-256 of buildings_v8_full.gpkg equals the hash Stage B recorded",
+      "expected": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+      "actual": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-tgrac_road_network_clipped.gpkg",
+      "claim": "SHA-256 of tgrac_road_network_clipped.gpkg equals the hash Stage B recorded",
+      "expected": "3fa25aa8f2ac339c506c486a7b2cda7e9596c2a133b3dca8140c653c1db3db01",
+      "actual": "3fa25aa8f2ac339c506c486a7b2cda7e9596c2a133b3dca8140c653c1db3db01",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-damarakunta_cost_surface_10m.tif",
+      "claim": "damarakunta_cost_surface_10m.tif: recorded hash 911ebeb1860aa49f...",
+      "expected": "911ebeb1860aa49f7a701e28e54850a009dff365a11b564dfc42602043b4888e",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-damarakunta_worldcover_10m.tif",
+      "claim": "damarakunta_worldcover_10m.tif: recorded hash 587eb4d652e3e66f...",
+      "expected": "587eb4d652e3e66fec9b870ac26635e207c763f01ed4728fbff327987a3bee1a",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-damarakunta_prohibited_mask_10m.tif",
+      "claim": "damarakunta_prohibited_mask_10m.tif: recorded hash 7330837ba9b55588...",
+      "expected": "7330837ba9b5558818d0b19812f24616948d67d786a01aaffb80499b12f10929",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-damarakunta_slope_10m.tif",
+      "claim": "damarakunta_slope_10m.tif: recorded hash 6f6b3c6d26837564...",
+      "expected": "6f6b3c6d268375643ea5124a5e25b5c7ee6779191d112cae78a357d25591d368",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-damarakunta_priority_facilities_final_5.gpkg",
+      "claim": "SHA-256 of damarakunta_priority_facilities_final_5.gpkg equals the hash Stage B recorded",
+      "expected": "4d57636206c86f701a8cd9ca8c46dc19ec64fa46893956063b4600e45f0822f4",
+      "actual": "4d57636206c86f701a8cd9ca8c46dc19ec64fa46893956063b4600e45f0822f4",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-school_compounds_utm44n.gpkg",
+      "claim": "SHA-256 of school_compounds_utm44n.gpkg equals the hash Stage B recorded",
+      "expected": "bc54d6e8c85bf602bfe26dfd86f5f7416fd020e4d99480df14559b50c6c049b5",
+      "actual": "bc54d6e8c85bf602bfe26dfd86f5f7416fd020e4d99480df14559b50c6c049b5",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-damarakunta_cadastral_valid.gpkg",
+      "claim": "SHA-256 of damarakunta_cadastral_valid.gpkg equals the hash Stage B recorded",
+      "expected": "22d87307efef919ad11ed07024dd30d18f5e3bc2787d0a36fbc78bc13d753965",
+      "actual": "22d87307efef919ad11ed07024dd30d18f5e3bc2787d0a36fbc78bc13d753965",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-damarakunta_cadastral.gpkg",
+      "claim": "SHA-256 of damarakunta_cadastral.gpkg equals the hash Stage B recorded",
+      "expected": "998d5841637cc8f56babb1576c3e9928ab3bd40284a732857b8b200746c29215",
+      "actual": "998d5841637cc8f56babb1576c3e9928ab3bd40284a732857b8b200746c29215",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-buildings_v8_full.gpkg",
+      "claim": "SHA-256 of buildings_v8_full.gpkg equals the hash Stage B recorded",
+      "expected": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+      "actual": "0eae82fea8ada939167253a1cd147e52f26320544113be39e7c2d6e1fb815b47",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "H-candidates_master.csv",
+      "claim": "candidates_master.csv: recorded hash cb99bc6ff88e8688...",
+      "expected": "cb99bc6ff88e86887e8b7222c2af9c33dc494d54e60031ac4c62f1cc0c50e821",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-targets_default_ids.csv",
+      "claim": "targets_default_ids.csv: recorded hash 8e6c037ddb8c8497...",
+      "expected": "8e6c037ddb8c8497ef4adbea71aa8c81430ebf3d399a73f0f465fb96ac7c229a",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-targets_merged_sensitivity_ids.csv",
+      "claim": "targets_merged_sensitivity_ids.csv: recorded hash 6a8e0904f4f1345c...",
+      "expected": "6a8e0904f4f1345ce2f723690983fd041a40bef141b82d6c5867f6a1b3e2695f",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-inputs_manifest.csv",
+      "claim": "inputs_manifest.csv: recorded hash e8d45bc3c1443121...",
+      "expected": "e8d45bc3c1443121651c031d2ba0b25f110de66a05f99313e4ec13d20a1cb020",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-config.json",
+      "claim": "config.json: recorded hash 2295bfb2c14f9678...",
+      "expected": "2295bfb2c14f96786459cf8788cf5c7b5cd0afd55c9d4767d7c8c3e05d818534",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-stageA_checks.txt",
+      "claim": "stageA_checks.txt: recorded hash f71e360348080440...",
+      "expected": "f71e3603480804408e0863f717992e44c5f1062e028af7ae78c7a9f5c3b8f77c",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-house_network_summary.json",
+      "claim": "house_network_summary.json: recorded hash 227fd1d15ee3c12e...",
+      "expected": "227fd1d15ee3c12e6675b4f42aa95b143f60f02ab963b278358f6dc8fb59340c",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-house_network_status.csv",
+      "claim": "house_network_status.csv: recorded hash 4d0530e2a23968eb...",
+      "expected": "4d0530e2a23968ebb960977473183b65b4c9ccdef0a15936dd2a7f33ebebbc9a",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-individual_house_network_v1.gpkg",
+      "claim": "individual_house_network_v1.gpkg: recorded hash 92aa58bf4a157709...",
+      "expected": "92aa58bf4a157709df2358d240e525179bfc7b5a0d05d0845cf7980013202e96",
+      "actual": "file not in the repository (git-ignored raster or run output)",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0,
+      "status": "RECORDED-NOT-RECOMPUTABLE",
+      "evidence_class": "RECORDED"
+    },
+    {
+      "id": "H-dk_stageB_run_v1_6.py",
+      "claim": "SHA-256 of dk_stageB_run_v1_6.py equals the hash Stage B recorded (equal after LF->CRLF conversion: content identical, only line endings were normalised)",
+      "expected": "5e15aaa963793c11ccff0e0e423f2ad003117a0df54917196ad57a6daf15e695",
+      "actual": "5e15aaa963793c11ccff0e0e423f2ad003117a0df54917196ad57a6daf15e695",
+      "source": "06_REPRODUCIBILITY/INPUT_HASHES.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    }
+  ],
+  "level1": [
+    {
+      "id": "L1-x4-two-unique",
+      "claim": "[x4] two-stage plan unique length (m)",
+      "expected": 5069.0,
+      "actual": 5069.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-two-total",
+      "claim": "[x4] two-stage plan total length (m)",
+      "expected": 5069.0,
+      "actual": 5069.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-ind-unique",
+      "claim": "[x4] independent least-cost unique length (m)",
+      "expected": 6753.1,
+      "actual": 6753.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-ind-total",
+      "claim": "[x4] independent least-cost total length (m)",
+      "expected": 10045.4,
+      "actual": 10045.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-saving",
+      "claim": "[x4] saving vs independent unique (%)",
+      "expected": 24.9,
+      "actual": 24.9,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-saving-recomputed",
+      "claim": "[x4] saving recomputed from the two lengths (%)",
+      "expected": 24.9,
+      "actual": 24.9,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-cross",
+      "claim": "[x4] two-stage routes crossing other footprints",
+      "expected": 28,
+      "actual": 28.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-inlen",
+      "claim": "[x4] two-stage length inside other footprints (m)",
+      "expected": 209.1,
+      "actual": 209.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-ind-cross",
+      "claim": "[x4] independent routes crossing",
+      "expected": 46,
+      "actual": 46.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-ind-inlen",
+      "claim": "[x4] independent length inside other footprints (m)",
+      "expected": 328.3,
+      "actual": 328.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-two-unique",
+      "claim": "[x1] two-stage plan unique length (m)",
+      "expected": 4705.4,
+      "actual": 4705.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-two-total",
+      "claim": "[x1] two-stage plan total length (m)",
+      "expected": 4705.5,
+      "actual": 4705.5,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-ind-unique",
+      "claim": "[x1] independent least-cost unique length (m)",
+      "expected": 6921.3,
+      "actual": 6921.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-ind-total",
+      "claim": "[x1] independent least-cost total length (m)",
+      "expected": 9595.9,
+      "actual": 9595.9,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-saving",
+      "claim": "[x1] saving vs independent unique (%)",
+      "expected": 32.0,
+      "actual": 32.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-saving-recomputed",
+      "claim": "[x1] saving recomputed from the two lengths (%)",
+      "expected": 32.0,
+      "actual": 32.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-cross",
+      "claim": "[x1] two-stage routes crossing other footprints",
+      "expected": 56,
+      "actual": 56.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-inlen",
+      "claim": "[x1] two-stage length inside other footprints (m)",
+      "expected": 660.1,
+      "actual": 660.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-ind-cross",
+      "claim": "[x1] independent routes crossing",
+      "expected": 63,
+      "actual": 63.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x1-ind-inlen",
+      "claim": "[x1] independent length inside other footprints (m)",
+      "expected": 1423.1,
+      "actual": 1423.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Straight",
+      "claim": "[x4] Straight: total length (m)",
+      "expected": 8092.3,
+      "actual": 8092.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Straight-c",
+      "claim": "[x4] Straight: routes crossing",
+      "expected": 60,
+      "actual": 60.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Straight-l",
+      "claim": "[x4] Straight: length in footprints (m)",
+      "expected": 1453.2,
+      "actual": 1453.2,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Length-only",
+      "claim": "[x4] Length-only: total length (m)",
+      "expected": 9166.3,
+      "actual": 9166.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Length-only-u",
+      "claim": "[x4] Length-only: unique length (m)",
+      "expected": 6979.8,
+      "actual": 6979.8,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Length-only-c",
+      "claim": "[x4] Length-only: routes crossing",
+      "expected": 64,
+      "actual": 64.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Length-only-l",
+      "claim": "[x4] Length-only: length in footprints (m)",
+      "expected": 1615.8,
+      "actual": 1615.8,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Roads-only",
+      "claim": "[x4] Roads-only: total length (m)",
+      "expected": 5229.3,
+      "actual": 5229.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Roads-only-u",
+      "claim": "[x4] Roads-only: unique length (m)",
+      "expected": 5229.3,
+      "actual": 5229.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Roads-only-c",
+      "claim": "[x4] Roads-only: routes crossing",
+      "expected": 29,
+      "actual": 29.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-Roads-only-l",
+      "claim": "[x4] Roads-only: length in footprints (m)",
+      "expected": 216.1,
+      "actual": 216.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-x4-lengthonly-pct",
+      "claim": "[x4] length-only control vs independent unique (%)",
+      "expected": -3.4,
+      "actual": -3.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf20-len",
+      "claim": "buffer x20 house unique length (m)",
+      "expected": 6238.1,
+      "actual": 6238.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf20-pct",
+      "claim": "buffer x20 saving (%)",
+      "expected": 18.5,
+      "actual": 18.5,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf20-cr",
+      "claim": "buffer x20 routes crossing",
+      "expected": 19,
+      "actual": 19.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf20-ln",
+      "claim": "buffer x20 crossing length (m)",
+      "expected": 147.9,
+      "actual": 147.9,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf100-len",
+      "claim": "buffer x100 house unique length (m)",
+      "expected": 6190.3,
+      "actual": 6190.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf100-pct",
+      "claim": "buffer x100 saving (%)",
+      "expected": 18.9,
+      "actual": 18.9,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf100-cr",
+      "claim": "buffer x100 routes crossing",
+      "expected": 19,
+      "actual": 19.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-buf100-ln",
+      "claim": "buffer x100 crossing length (m)",
+      "expected": 144.8,
+      "actual": 144.8,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table6_obstacle_avoidance.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-routed",
+      "claim": "[omit 10%] routed targets",
+      "expected": 147.0,
+      "actual": 147.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-len",
+      "claim": "[omit 10%] unique length (m)",
+      "expected": 4684.43,
+      "actual": 4684.43,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-per",
+      "claim": "[omit 10%] length per routed target (m)",
+      "expected": 31.87,
+      "actual": 31.87,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-sav",
+      "claim": "[omit 10%] saving vs independent (%)",
+      "expected": 25.09,
+      "actual": 25.09,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-dL",
+      "claim": "[omit 10%] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": 7.6,
+      "actual": 7.6,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-U",
+      "claim": "[omit 10%] unserved households = 163 - routed",
+      "expected": 16,
+      "actual": 16,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 10%-kappa",
+      "claim": "[omit 10%] coverage kappa (%)",
+      "expected": 90.2,
+      "actual": 90.2,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-routed",
+      "claim": "[omit 20%] routed targets",
+      "expected": 130.0,
+      "actual": 130.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-len",
+      "claim": "[omit 20%] unique length (m)",
+      "expected": 4211.49,
+      "actual": 4211.49,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-per",
+      "claim": "[omit 20%] length per routed target (m)",
+      "expected": 32.4,
+      "actual": 32.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-sav",
+      "claim": "[omit 20%] saving vs independent (%)",
+      "expected": 24.95,
+      "actual": 24.95,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-dL",
+      "claim": "[omit 20%] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": 16.9,
+      "actual": 16.9,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-U",
+      "claim": "[omit 20%] unserved households = 163 - routed",
+      "expected": 33,
+      "actual": 33,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit 20%-kappa",
+      "claim": "[omit 20%] coverage kappa (%)",
+      "expected": 79.8,
+      "actual": 79.8,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-routed",
+      "claim": "[omit smallest 10%] routed targets",
+      "expected": 146,
+      "actual": 146.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-len",
+      "claim": "[omit smallest 10%] unique length (m)",
+      "expected": 4648.65,
+      "actual": 4648.65,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-per",
+      "claim": "[omit smallest 10%] length per routed target (m)",
+      "expected": 31.84,
+      "actual": 31.84,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-sav",
+      "claim": "[omit smallest 10%] saving vs independent (%)",
+      "expected": 24.92,
+      "actual": 24.92,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-dL",
+      "claim": "[omit smallest 10%] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": 8.3,
+      "actual": 8.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-U",
+      "claim": "[omit smallest 10%] unserved households = 163 - routed",
+      "expected": 17,
+      "actual": 17,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 10%-kappa",
+      "claim": "[omit smallest 10%] coverage kappa (%)",
+      "expected": 89.6,
+      "actual": 89.6,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-routed",
+      "claim": "[omit smallest 25%] routed targets",
+      "expected": 122,
+      "actual": 122.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-len",
+      "claim": "[omit smallest 25%] unique length (m)",
+      "expected": 3798.29,
+      "actual": 3798.29,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-per",
+      "claim": "[omit smallest 25%] length per routed target (m)",
+      "expected": 31.13,
+      "actual": 31.13,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-sav",
+      "claim": "[omit smallest 25%] saving vs independent (%)",
+      "expected": 25.56,
+      "actual": 25.56,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-dL",
+      "claim": "[omit smallest 25%] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": 25.1,
+      "actual": 25.1,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-U",
+      "claim": "[omit smallest 25%] unserved households = 163 - routed",
+      "expected": 41,
+      "actual": 41,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit smallest 25%-kappa",
+      "claim": "[omit smallest 25%] coverage kappa (%)",
+      "expected": 74.8,
+      "actual": 74.8,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-routed",
+      "claim": "[omit merged blobs] routed targets",
+      "expected": 101,
+      "actual": 101.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-len",
+      "claim": "[omit merged blobs] unique length (m)",
+      "expected": 3579.04,
+      "actual": 3579.04,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-per",
+      "claim": "[omit merged blobs] length per routed target (m)",
+      "expected": 35.44,
+      "actual": 35.44,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-sav",
+      "claim": "[omit merged blobs] saving vs independent (%)",
+      "expected": 26.64,
+      "actual": 26.64,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-dL",
+      "claim": "[omit merged blobs] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": 29.4,
+      "actual": 29.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-U",
+      "claim": "[omit merged blobs] unserved households = 163 - routed",
+      "expected": 62,
+      "actual": 62,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-omit merged blobs-kappa",
+      "claim": "[omit merged blobs] coverage kappa (%)",
+      "expected": 62.0,
+      "actual": 62.0,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 10%-routed",
+      "claim": "[add 10%] routed targets",
+      "expected": 177.4,
+      "actual": 177.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 10%-len",
+      "claim": "[add 10%] unique length (m)",
+      "expected": 5502.4,
+      "actual": 5502.4,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 10%-per",
+      "claim": "[add 10%] length per routed target (m)",
+      "expected": 31.02,
+      "actual": 31.02,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 10%-sav",
+      "claim": "[add 10%] saving vs independent (%)",
+      "expected": 25.62,
+      "actual": 25.62,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 10%-dL",
+      "claim": "[add 10%] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": -8.6,
+      "actual": -8.6,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 20%-routed",
+      "claim": "[add 20%] routed targets",
+      "expected": 190.6,
+      "actual": 190.6,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 20%-len",
+      "claim": "[add 20%] unique length (m)",
+      "expected": 5868.27,
+      "actual": 5868.27,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 20%-per",
+      "claim": "[add 20%] length per routed target (m)",
+      "expected": 30.79,
+      "actual": 30.79,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 20%-sav",
+      "claim": "[add 20%] saving vs independent (%)",
+      "expected": 25.39,
+      "actual": 25.39,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv",
+      "tolerance": 0.005,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-add 20%-dL",
+      "claim": "[add 20%] delta_L recomputed vs baseline 5,069.0 (%; negative = longer)",
+      "expected": -15.8,
+      "actual": -15.8,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table4_c1_sensitivity.csv (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-targets",
+      "claim": "163 house targets, quality classes PLAUSIBLE/REVIEW/UNRESOLVED_MERGE = 71/30/62",
+      "expected": [
+        163,
+        71,
+        30,
+        62
+      ],
+      "actual": [
+        163,
+        71,
+        30,
+        62
+      ],
+      "source": "03_RESULTS_TABLES/PRIMARY_RUN_S2_fac_C0_s25_final_x4/scenario_targets.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-health-len",
+      "claim": "Sub-centre route length WITH override (m, incl. connector)",
+      "expected": 67.4,
+      "actual": 67.4,
+      "source": "03_RESULTS_TABLES/PRIMARY_RUN_S2_fac_C0_s25_final_x4/facility_status.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-health-cost",
+      "claim": "Sub-centre route cost WITH override (units)",
+      "expected": 260.1,
+      "actual": 260.1,
+      "source": "03_RESULTS_TABLES/PRIMARY_RUN_S2_fac_C0_s25_final_x4/facility_status.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-combined",
+      "claim": "Houses + facilities combined unique length (m)",
+      "expected": 5318.3,
+      "actual": 5318.3,
+      "source": "03_RESULTS_TABLES/COMPARISON_TABLES/table1_length_reduction.csv",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L1-health-without",
+      "claim": "Sub-centre route WITHOUT override: 73.3 m, cost 357.7; combined unique 5,324.2 m",
+      "expected": "73.3 m / 357.7 / 5,324.2 m",
+      "actual": "cost 357.692 is quoted in C1_report.md (C07 check); the 73.3 m and 5,324.2 m figures appear only in Phase1_Report_CBIT_Format/MISSING_ITEMS_SUMMARY.md and inputs/METADATA.md (no machine-readable file)",
+      "source": "03_RESULTS_TABLES/C1_SEGMENTATION_SENSITIVITY/C1_report.md; Phase1_Report_CBIT_Format/MISSING_ITEMS_SUMMARY.md",
+      "tolerance": 0,
+      "status": "RECORDED-SINGLE-SOURCE",
+      "evidence_class": "RECORDED"
+    }
+  ],
+  "loveda": [
+    {
+      "id": "LV-miou",
+      "claim": "mIoU (%)",
+      "expected": 53.8,
+      "actual": 53.8,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-dice",
+      "claim": "mDice = macro F1 (%)",
+      "expected": 68.9,
+      "actual": 68.9,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-acc",
+      "claim": "pixel accuracy (%) = trace/total of the 7x7 matrix (log: 0.7134)",
+      "expected": 71.3,
+      "actual": 71.3,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-prec",
+      "claim": "macro precision (%)",
+      "expected": 72.4,
+      "actual": 72.4,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-rec",
+      "claim": "macro recall (%)",
+      "expected": 66.9,
+      "actual": 66.9,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-bld-iou",
+      "claim": "Building class IoU (%)",
+      "expected": 54.0,
+      "actual": 54.0,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-bld-prec",
+      "claim": "Building class precision (%)",
+      "expected": 62.1,
+      "actual": 62.1,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-bld-rec",
+      "claim": "Building class recall (%)",
+      "expected": 80.6,
+      "actual": 80.6,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "LV-bld-f1",
+      "claim": "Building class Dice/F1 (%)",
+      "expected": 70.1,
+      "actual": 70.1,
+      "source": "Archana519/smart_village_infrastructure final_MPS_project.ipynb cells 6, 16, 22 (epoch-4 confusion matrix embedded in CM)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    }
+  ],
+  "levels": [
+    {
+      "id": "L2-nodes",
+      "claim": "L2: nodes routed = nodes",
+      "expected": 23,
+      "actual": 23,
+      "source": "docs/results/hierarchy_real_run/gp/gp_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L2-saving-recomputed",
+      "claim": "L2: saving vs independent (%) recomputed from the two lengths",
+      "expected": 2.164599,
+      "actual": 2.164599,
+      "source": "docs/results/hierarchy_real_run/gp/gp_summary.json (derived)",
+      "tolerance": 1e-05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L3-nodes",
+      "claim": "L3: nodes routed = nodes",
+      "expected": 15,
+      "actual": 15,
+      "source": "docs/results/hierarchy_real_run/mandal/mandal_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L3-saving-recomputed",
+      "claim": "L3: saving vs independent (%) recomputed from the two lengths",
+      "expected": 0.0,
+      "actual": 0.0,
+      "source": "docs/results/hierarchy_real_run/mandal/mandal_summary.json (derived)",
+      "tolerance": 1e-05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L4-nodes",
+      "claim": "L4: nodes routed = nodes",
+      "expected": 22,
+      "actual": 22,
+      "source": "docs/results/hierarchy_real_run/district/district_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L4-saving-recomputed",
+      "claim": "L4: saving vs independent (%) recomputed from the two lengths",
+      "expected": 22.22086,
+      "actual": 22.22086,
+      "source": "docs/results/hierarchy_real_run/district/district_summary.json (derived)",
+      "tolerance": 1e-05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L2-detour",
+      "claim": "L2: detour reduction from the local override, all exempt facilities (m)",
+      "expected": 42.43,
+      "actual": 42.43,
+      "source": "docs/results/hierarchy_real_run/gp/gp_override.csv",
+      "tolerance": 0.01,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L2-other-routes",
+      "claim": "L2: routes changed by the override other than the exempt facilities",
+      "expected": 0,
+      "actual": 0,
+      "source": "docs/results/hierarchy_real_run/gp/gp_override.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L2-weight",
+      "claim": "L2: 163 houses aggregated into hamlet hubs (sum of hub weights)",
+      "expected": 163,
+      "actual": 163.0,
+      "source": "docs/results/hierarchy_real_run/gp/gp_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L4-existing-share",
+      "claim": "L4: share of the backbone on existing roads (%)",
+      "expected": 95.9,
+      "actual": 95.9,
+      "source": "docs/results/hierarchy_real_run/district/district_summary.json (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "L4-new-saving",
+      "claim": "L4: new-construction saving vs star layout (%)",
+      "expected": 25.9,
+      "actual": 25.9,
+      "source": "docs/results/hierarchy_real_run/district/district_summary.json (derived)",
+      "tolerance": 0.05,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu1-len",
+      "claim": "U02 mu=1: length increase vs mu=1 recomputed (%)",
+      "expected": 0.0,
+      "actual": 0.0,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu1-exp",
+      "claim": "U02 mu=1: exposure reduction vs mu=1 recomputed (%)",
+      "expected": 0.0,
+      "actual": 0.0,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu2-len",
+      "claim": "U02 mu=2: length increase vs mu=1 recomputed (%)",
+      "expected": 2.11,
+      "actual": 2.11,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu2-exp",
+      "claim": "U02 mu=2: exposure reduction vs mu=1 recomputed (%)",
+      "expected": 58.2,
+      "actual": 58.2,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu4-len",
+      "claim": "U02 mu=4: length increase vs mu=1 recomputed (%)",
+      "expected": 5.23,
+      "actual": 5.23,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu4-exp",
+      "claim": "U02 mu=4: exposure reduction vs mu=1 recomputed (%)",
+      "expected": 89.0,
+      "actual": 89.0,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu8-len",
+      "claim": "U02 mu=8: length increase vs mu=1 recomputed (%)",
+      "expected": 8.09,
+      "actual": 8.09,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu8-exp",
+      "claim": "U02 mu=8: exposure reduction vs mu=1 recomputed (%)",
+      "expected": 93.4,
+      "actual": 93.4,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu20-len",
+      "claim": "U02 mu=20: length increase vs mu=1 recomputed (%)",
+      "expected": 9.45,
+      "actual": 9.45,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu20-exp",
+      "claim": "U02 mu=20: exposure reduction vs mu=1 recomputed (%)",
+      "expected": 93.4,
+      "actual": 93.4,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu100-len",
+      "claim": "U02 mu=100: length increase vs mu=1 recomputed (%)",
+      "expected": 11.16,
+      "actual": 11.16,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "U02-mu100-exp",
+      "claim": "U02 mu=100: exposure reduction vs mu=1 recomputed (%)",
+      "expected": 93.4,
+      "actual": 93.4,
+      "source": "docs/results/U02_penalty_sweep_gp.csv (derived)",
+      "tolerance": 0.011,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    }
+  ],
+  "paper": [
+    {
+      "id": "PP-0",
+      "claim": "paper/main.tex contains the Level 2 shared length (m) value '1{,}743.7'",
+      "expected": "1{,}743.7",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-1",
+      "claim": "paper/main.tex contains the Level 2 independent length (m) value '1{,}782.3'",
+      "expected": "1{,}782.3",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-2",
+      "claim": "paper/main.tex contains the Level 3 shared length (m) value '5{,}913'",
+      "expected": "5{,}913",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-3",
+      "claim": "paper/main.tex contains the Level 4 backbone length (km) value '358.7'",
+      "expected": "358.7",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-4",
+      "claim": "paper/main.tex contains the Level 4 new construction (km) value '14.7'",
+      "expected": "14.7",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-5",
+      "claim": "paper/main.tex contains the Level 4 existing-road share (%) value '95.9'",
+      "expected": "95.9",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-6",
+      "claim": "paper/main.tex contains the mu=4 exposure reduction (%) value '89.0'",
+      "expected": "89.0",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "PP-7",
+      "claim": "paper/main.tex contains the mu=4 length increase (%) value '5.2'",
+      "expected": "5.2",
+      "actual": "present",
+      "source": "paper/main.tex",
+      "tolerance": 0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    }
+  ],
+  "rerun": [
+    {
+      "id": "RR-gp-summary",
+      "claim": "re-run gp_summary.json equals the committed file (all numeric fields)",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/gp/gp_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-gp-omission",
+      "claim": "re-run gp_omission.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/gp/gp_omission.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-gp-override",
+      "claim": "re-run gp_override.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/gp/gp_override.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-gp-metrics",
+      "claim": "re-run gp_metrics.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/gp/gp_metrics.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-mandal-summary",
+      "claim": "re-run mandal_summary.json equals the committed file (all numeric fields)",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/mandal/mandal_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-mandal-omission",
+      "claim": "re-run mandal_omission.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/mandal/mandal_omission.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-mandal-override",
+      "claim": "re-run mandal_override.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/mandal/mandal_override.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-mandal-metrics",
+      "claim": "re-run mandal_metrics.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/mandal/mandal_metrics.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-district-summary",
+      "claim": "re-run district_summary.json equals the committed file (all numeric fields)",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/district/district_summary.json",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-district-omission",
+      "claim": "re-run district_omission.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/district/district_omission.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-district-override",
+      "claim": "re-run district_override.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/district/district_override.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-district-metrics",
+      "claim": "re-run district_metrics.csv equals the committed file",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/hierarchy_real_run/district/district_metrics.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RR-sweep",
+      "claim": "re-run penalty sweep equals the committed U02_penalty_sweep_gp.csv",
+      "expected": true,
+      "actual": true,
+      "source": "docs/results/U02_penalty_sweep_gp.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    }
+  ],
+  "redownload": [
+    {
+      "id": "RD-gp-landcover",
+      "claim": "re-downloaded gp landcover raster is pixel-identical to the local copy",
+      "expected": true,
+      "actual": true,
+      "source": "Siddipet/Damarakunta/aligned_open/worldcover_10m.tif",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-gp-dem",
+      "claim": "re-downloaded gp dem raster is pixel-identical to the local copy",
+      "expected": true,
+      "actual": true,
+      "source": "Siddipet/Damarakunta/aligned_open/dem_30m.tif",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-mandal-landcover",
+      "claim": "re-downloaded mandal landcover raster is pixel-identical to the local copy",
+      "expected": true,
+      "actual": true,
+      "source": "Siddipet/_mandal/worldcover_10m.tif",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-mandal-dem",
+      "claim": "re-downloaded mandal dem raster is pixel-identical to the local copy",
+      "expected": true,
+      "actual": true,
+      "source": "Siddipet/_mandal/dem_30m.tif",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-district-landcover",
+      "claim": "re-downloaded district landcover raster is pixel-identical to the local copy",
+      "expected": true,
+      "actual": true,
+      "source": "Siddipet/_district/worldcover_10m.tif",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-district-dem",
+      "claim": "re-downloaded district dem raster is pixel-identical to the local copy",
+      "expected": true,
+      "actual": true,
+      "source": "Siddipet/_district/dem_30m.tif",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-mandal-roads",
+      "claim": "re-fetched mandal roads (Overture release 2026-10-21.0) have identical geometries",
+      "expected": "7a915cf579a5d70f8bdbbb75ef4b980dac73cee2c02e03d2bd32fed4bc86dfde",
+      "actual": "7a915cf579a5d70f8bdbbb75ef4b980dac73cee2c02e03d2bd32fed4bc86dfde",
+      "source": "Siddipet/_mandal/roads.gpkg",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    },
+    {
+      "id": "RD-district-roads",
+      "claim": "re-fetched district roads (Overture release 2026-10-21.0) have identical geometries",
+      "expected": "85c00c1933d0f4a5b3b3972336711e2d50129ffad0e6b9deb8841e40e7d61f06",
+      "actual": "85c00c1933d0f4a5b3b3972336711e2d50129ffad0e6b9deb8841e40e7d61f06",
+      "source": "Siddipet/_district/roads.gpkg",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REPRODUCED"
+    }
+  ]
+}

@@ -95,3 +95,9 @@ Thumbs.db
 
 # Per-run working folders written by the pipeline
 /Siddipet/Damarakunta/results/run_*/
+
+# Downloaded by src/utils/data_downloader_helper.py (regenerable)
+/data/raw/_cache/
+/Siddipet/_mandal/
+/Siddipet/_district/
+*.tif.provenance.json
