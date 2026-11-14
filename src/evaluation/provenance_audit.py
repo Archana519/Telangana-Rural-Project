@@ -365,6 +365,53 @@ def figure_checks() -> list:
     return out
 
 
+DELIV = REPO / "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING"
+STAGE_B_TREE = "4e5cedcefcfb9231074a10667e8050f4650d8766"      # git tree of DELIVERABLES_DAMARAKUNTA_STAGE_B/ before any Contribution 3 work
+DELIV_REQUIRED = ["00_README_SUMMARY.md", "MANIFEST.csv", "01_ARCHITECTURE/ARCHITECTURE_DIAGRAM.png", "01_ARCHITECTURE/WORKFLOW_DIAGRAM.png", "01_ARCHITECTURE/DATA_AND_PROCESS_FLOW.md",
+                  "02_FINAL_MAPS/map1_level2_damarakunta_gp_network.png", "02_FINAL_MAPS/map2_level2_facility_override_zooms.png", "02_FINAL_MAPS/map3_level3_markook_mandal_network.png",
+                  "02_FINAL_MAPS/map4_level4_siddipet_district_backbone.png", "03_RESULTS_TABLES/T1_level2_gp_metrics.csv", "03_RESULTS_TABLES/T2_mu_penalty_sensitivity.csv",
+                  "03_RESULTS_TABLES/T3_levels3_4_scalability.csv", "03_RESULTS_TABLES/contribution3_summary_tables.md", "03_RESULTS_TABLES/contribution3_summary_tables.xlsx",
+                  "03_RESULTS_TABLES/CHARTS/chart1_mu_penalty_tradeoff.png", "03_RESULTS_TABLES/CHARTS/chart2_multiscale_network_comparison.png",
+                  "04_PROVENANCE_AND_AUDIT/PROVENANCE_AND_PROOFS.md", "05_LIMITATIONS_AND_OPEN_ISSUES/LIMITATIONS.md"]
+
+
+def deliverables_checks() -> list:
+    """The Contribution 3 deliverables package: required files, manifest hashes, 300 dpi images, README numbers from the results, and Stage B unchanged."""
+    from PIL import Image
+    out = []
+    src = "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/"
+    missing = [r for r in DELIV_REQUIRED if not (DELIV / r).exists() or (DELIV / r).stat().st_size == 0]
+    out.append(check("DV-required", f"all {len(DELIV_REQUIRED)} required package files exist and are non-empty", [], missing, src))
+    man = pd.read_csv(DELIV / "MANIFEST.csv") if (DELIV / "MANIFEST.csv").exists() else pd.DataFrame(columns=["path", "bytes", "sha256"])
+    bad = [r.path for r in man.itertuples() if not (DELIV / r.path).exists() or sha256(DELIV / r.path) != r.sha256]
+    out.append(check("DV-manifest", f"SHA-256 of all {len(man)} MANIFEST.csv rows match the files", [], bad, src + "MANIFEST.csv"))
+    listed = set(man.path)
+    unlisted = sorted(str(f.relative_to(DELIV)).replace("\\", "/") for d in ("01_ARCHITECTURE", "02_FINAL_MAPS", "03_RESULTS_TABLES", "05_LIMITATIONS_AND_OPEN_ISSUES")
+                      for f in (DELIV / d).rglob("*") if f.is_file()) if (DELIV / "01_ARCHITECTURE").exists() else []
+    unlisted = [u for u in unlisted if u not in listed]
+    out.append(check("DV-manifest-complete", "every file in folders 01-03 and 05 is listed in MANIFEST.csv", [], unlisted, src + "MANIFEST.csv"))
+    pngs = [f for f in DELIV.rglob("*.png")] if DELIV.exists() else []
+    lowres = [str(f.relative_to(DELIV)) for f in pngs if abs(Image.open(f).info.get("dpi", (0, 0))[0] - 300) > 1]
+    out.append(check("DV-dpi", f"all {len(pngs)} package images are 300 dpi", [], lowres, src))
+    S = {l: json.loads((RUN / l / f"{l}_summary.json").read_text()) for l in ("gp", "mandal", "district")}
+    sw = pd.read_csv(RES / "U02_penalty_sweep_gp.csv").set_index("mu")
+    readme = (DELIV / "00_README_SUMMARY.md").read_text(encoding="utf-8") if (DELIV / "00_README_SUMMARY.md").exists() else ""
+    need = [f"{S['gp']['shared_unique_length_m']:,.1f} m", f"{S['district']['shared_unique_length_m'] / 1000:,.1f} km", f"{S['district']['shared_new_construction_m'] / 1000:.1f} km",
+            f"{sw.loc[4.0, 'exposure_reduction_vs_mu1_pct']:.1f} %", f"+{sw.loc[4.0, 'length_increase_vs_mu1_pct']:.1f} %"]
+    out.append(check("DV-readme-numbers", "README headline numbers equal the current results files", [], [n for n in need if n not in readme], src + "00_README_SUMMARY.md"))
+    try:
+        tree = subprocess.run(["git", "rev-parse", "HEAD:DELIVERABLES_DAMARAKUNTA_STAGE_B"], cwd=REPO, capture_output=True, text=True, check=True).stdout.strip()
+        dirty = subprocess.run(["git", "status", "--porcelain", "--", "DELIVERABLES_DAMARAKUNTA_STAGE_B"], cwd=REPO, capture_output=True, text=True, check=True).stdout.strip()
+        ok = tree == STAGE_B_TREE and not dirty
+        out.append(dict(id="DV-stageB-untouched", claim="DELIVERABLES_DAMARAKUNTA_STAGE_B/ is byte-identical to its state before Contribution 3 (git tree hash) with no working-tree changes",
+                        expected=STAGE_B_TREE, actual=tree if not dirty else tree + " + uncommitted changes", source="git", tolerance=0,
+                        status="PASS" if ok else "CHANGED", evidence_class="REAL"))
+    except Exception as e:  # git not available
+        out.append(dict(id="DV-stageB-untouched", claim="Stage B unchanged (needs git)", expected=STAGE_B_TREE, actual=f"not checked: {e}", source="git", tolerance=0,
+                        status="SKIPPED", evidence_class="REAL"))
+    return out
+
+
 def paper_checks() -> list:
     tex = (REPO / "paper" / "main.tex").read_text(encoding="utf-8")
     S = {l: json.loads((RUN / l / f"{l}_summary.json").read_text()) for l in ("gp", "mandal", "district")}
@@ -406,6 +453,7 @@ def write_report(path: Path, R: dict, inputs: list, env: dict):
         return {s: sum(1 for r in rs if r["status"] == s) for s in sorted({r["status"] for r in rs})}
     L1, LV, LX, RR, RD, PP, HH = R["level1"], R["loveda"], R["levels"], R.get("rerun", []), R.get("redownload", []), R["paper"], R["hashes"]
     FG = R["figures"]
+    DV = R["deliverables"]
     txt = f"""# Provenance and proofs
 
 *Generated by `python -m src.evaluation.provenance_audit --write docs/results/PROVENANCE_AND_PROOFS.md --rerun --redownload` on top of git commit
@@ -420,7 +468,7 @@ input hashes: `docs/results/input_manifest.csv`.*
 | **SCALABILITY DEMONSTRATION (proxy nodes)** | the machinery runs on real rasters and roads, but terminals / hubs are *proxies* (polygon interior points, OSM village points), not verified HQ, PHC, market or GP locations | Level 3 Markook and Level 4 Siddipet - no administrative or planning conclusion may be drawn from them |
 | **REPRODUCED** | re-executed or re-downloaded in this audit and compared with the committed copy | Levels 2-4, the sweep, all raster/road downloads |
 
-Status counts - Level 1: {cnt(L1)}; LoveDA: {cnt(LV)}; Levels 2-4 + sweep: {cnt(LX)}; input hashes: {cnt(HH)}; re-run: {cnt(RR) if RR else 'not run'}; re-download: {cnt(RD) if RD else 'not run'}; manuscript numbers: {cnt(PP)}; figures: {cnt(FG)}.
+Status counts - Level 1: {cnt(L1)}; LoveDA: {cnt(LV)}; Levels 2-4 + sweep: {cnt(LX)}; input hashes: {cnt(HH)}; re-run: {cnt(RR) if RR else 'not run'}; re-download: {cnt(RD) if RD else 'not run'}; manuscript numbers: {cnt(PP)}; figures: {cnt(FG)}; Contribution 3 package: {cnt(DV)}.
 
 ## 1. Environment, commands and seeds
 Python {env['python']}, numpy {env['numpy']}, geopandas {env['geopandas']}, rasterio {env['rasterio']}, shapely {env['shapely']} ({env['platform']}).
@@ -465,6 +513,9 @@ Artifacts: `docs/results/hierarchy_real_run/mandal/`, `docs/results/hierarchy_re
 ### 7.1 Figures (`python -m src.evaluation.plot_hierarchy_figures`, `python -m src.evaluation.plot_level1_omission`)
 Figure D (Level 1 omission sensitivity, regenerated from `table4_c1_sensitivity.csv`, resolves U12) and Figures A-C are drawn only from the committed results (`docs/results/hierarchy_real_run/*/*_routes.gpkg`, `gp_override.csv`, the summaries and `U02_penalty_sweep_gp.csv`) and the real input layers; the only recomputation is the without-override routes in Figure A(c). Copies live in `paper/figures/` and `docs/results/hierarchy_real_run/figures/`. The sweep covers mu in {{1, 2, 4, 8, 20, 100}} (a value of 16 was never run, so it is not plotted).
 {md_table(FG, ['id', 'claim', 'status'])}
+### 7.2 Contribution 3 deliverables package (`DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/`, built by `python -m src.evaluation.build_contribution3_deliverables`)
+Required files, `MANIFEST.csv` hashes (folders 01-03 and 05; the folder-04 copies are snapshots and are not hash-checked because the audit rewrites its own report), 300 dpi images, README numbers read from the results, and the Stage B subtree hash.
+{md_table(DV, ['id', 'claim', 'status'])}
 ## 8. DEM consistency (U08 follow-up)
 Stage B used **SRTM 1 arc-second** (`n17_e078_1arc_v3.tif`, USGS) with Sobel slope on a 30 m grid, bilinearly resampled to 10 m; Levels 2-4 use **Copernicus GLO-30** with the *same* slope method (`slope_sobel`, 30 m native grid -> bilinear to the target grid). Over the Damarakunta window the two DEMs agree to RMSE {R['dem']['comparison']['elevation_m']['rmse']:.1f} m (bias {R['dem']['comparison']['elevation_m']['bias_cop_minus_srtm']:.1f} m, r = {R['dem']['comparison']['elevation_m']['pearson_r']:.3f}); slopes correlate at r = {R['dem']['comparison']['slope_deg']['pearson_r']:.2f} (noise on flat ground), and the >25 deg hard-block mask differs in {R['dem']['comparison']['slope_deg']['hard_block_gt25_disagree_cells']} cells. Re-running Level 2 with each DEM changes the shared length by {R['dem']['level2_relative_difference_pct']['shared_unique_length_m']:.1f} % and the ordinal cost by {R['dem']['level2_relative_difference_pct']['shared_unique_cost']:.1f} %; the override detour reduction is identical. The SRTM used for this comparison is the AWS 'skadi' product, a proxy for the USGS file (which is not in the repository). Full numbers: `docs/results/U08_dem_comparison.json`.
 
@@ -486,7 +537,7 @@ def main(argv=None):
     from src.routing.hierarchical_router import load_config
     cfg = load_config()
     inputs = input_manifest(cfg)
-    R = dict(hashes=stageb_recorded_hashes(inputs), level1=level1_checks(), loveda=loveda_checks(), levels=levels_checks(), figures=figure_checks(), paper=paper_checks(),
+    R = dict(hashes=stageb_recorded_hashes(inputs), level1=level1_checks(), loveda=loveda_checks(), levels=levels_checks(), figures=figure_checks(), deliverables=deliverables_checks(), paper=paper_checks(),
              dem=json.loads((RES / "U08_dem_comparison.json").read_text()))
     if a.rerun:
         R["rerun"] = rerun_checks()

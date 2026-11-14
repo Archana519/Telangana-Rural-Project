@@ -1,0 +1,3 @@
+level,evidence,nodes,grid,shared_total_km,on_existing_road_km,new_construction_km,independent_new_km,new_construction_saving_pct,coverage_pct
+3 Mandal (Markook),PROXY nodes,14 village points + 1 proxy HQ,30 m,5.913,0.0,5.913,5.913,0.0,100.0
+4 District (Siddipet),PROXY nodes,22 proxy mandal terminals -> proxy district HQ,250 m / 30 m,358.715,344.061,14.654,19.776,25.901,100.0

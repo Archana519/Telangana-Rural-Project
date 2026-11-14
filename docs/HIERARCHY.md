@@ -68,3 +68,6 @@ Every product has a `<file>.provenance.json`. All of it is REFERENCE data, never
 
 ## Figures
 `python -m src.evaluation.plot_hierarchy_figures` renders Figures A-C (300 dpi) into `paper/figures/` and `docs/results/hierarchy_real_run/figures/` from the committed results; the audit checks that they exist, are 300 dpi, are identical in both places and are included and cited in `paper/main.tex`.
+
+## Deliverables package
+`python -m src.evaluation.build_contribution3_deliverables` builds `DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/` (Stage B layout: `00_README_SUMMARY.md`, `01_ARCHITECTURE`, `02_FINAL_MAPS`, `03_RESULTS_TABLES` with `CHARTS/`, `04_PROVENANCE_AND_AUDIT`, `05_LIMITATIONS_AND_OPEN_ISSUES`, `MANIFEST.csv`). The maps need the downloaded rasters; run it after the pipeline and before the final audit. It never writes to `DELIVERABLES_DAMARAKUNTA_STAGE_B/`.

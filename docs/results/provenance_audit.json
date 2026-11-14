@@ -5,7 +5,7 @@
     "geopandas": "1.2.0",
     "rasterio": "1.5.2",
     "shapely": "2.2.0",
-    "git_commit_at_audit": "4dc2938b089815d729f7b6d53fe2581b4728f878",
+    "git_commit_at_audit": "fbb6511e61dd6eb7a0867fcd5741e5556f374a1b",
     "platform": "Linux-6.18.44-fc-v470-x86_64-with-glibc2.39"
   },
   "inputs": [
@@ -1912,6 +1912,68 @@
       "actual": true,
       "source": "paper/main.tex",
       "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "DV-required",
+      "claim": "all 18 required package files exist and are non-empty",
+      "expected": [],
+      "actual": [],
+      "source": "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "DV-manifest",
+      "claim": "SHA-256 of all 18 MANIFEST.csv rows match the files",
+      "expected": [],
+      "actual": [],
+      "source": "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/MANIFEST.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "DV-manifest-complete",
+      "claim": "every file in folders 01-03 and 05 is listed in MANIFEST.csv",
+      "expected": [],
+      "actual": [],
+      "source": "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/MANIFEST.csv",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "DV-dpi",
+      "claim": "all 8 package images are 300 dpi",
+      "expected": [],
+      "actual": [],
+      "source": "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "DV-readme-numbers",
+      "claim": "README headline numbers equal the current results files",
+      "expected": [],
+      "actual": [],
+      "source": "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/00_README_SUMMARY.md",
+      "tolerance": 0.0,
+      "status": "PASS",
+      "evidence_class": "REAL"
+    },
+    {
+      "id": "DV-stageB-untouched",
+      "claim": "DELIVERABLES_DAMARAKUNTA_STAGE_B/ is byte-identical to its state before Contribution 3 (git tree hash) with no working-tree changes",
+      "expected": "4e5cedcefcfb9231074a10667e8050f4650d8766",
+      "actual": "4e5cedcefcfb9231074a10667e8050f4650d8766",
+      "source": "git",
+      "tolerance": 0,
       "status": "PASS",
       "evidence_class": "REAL"
     }

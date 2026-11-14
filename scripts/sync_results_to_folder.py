@@ -6,6 +6,7 @@ Creates <dest>/contribution3/ with:
   hierarchy_real_run/            real-data Levels 2-4 outputs (GeoPackages, summary JSON, override/omission CSVs, figures/ = 300 dpi PNGs)
   input_manifest.csv             SHA-256 of every input
   PROVENANCE_AND_PROOFS.md       provenance and proofs report (+ provenance_audit.json, U02/U08 evidence)
+  DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING/   the Stage-B-style deliverables package (maps, charts, tables, architecture, provenance copies)
   manuscript/                    main.tex, references.bib, main.pdf (compiled), manuscript.docx, figures/ (the PNGs main.tex includes)
   --docx-at-root                 also place a copy of manuscript.docx directly in <dest>/contribution3/
 Existing files in <dest>/contribution3/ are overwritten; nothing outside that folder is touched.
@@ -22,6 +23,7 @@ ITEMS = [("docs/results/hierarchy_real_run", "hierarchy_real_run"),
          ("docs/results/provenance_audit.json", "provenance_audit.json"),
          ("docs/results/U02_penalty_sweep_gp.csv", "U02_penalty_sweep_gp.csv"),
          ("docs/results/U08_dem_comparison.json", "U08_dem_comparison.json"),
+         ("DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING", "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING"),
          ("paper/figures", "manuscript/figures"),
          ("paper/manuscript.docx", "manuscript/manuscript.docx"),
          ("paper/main.pdf", "manuscript/main.pdf"),
