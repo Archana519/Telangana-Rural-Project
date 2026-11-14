@@ -142,7 +142,10 @@ Costs are ordinal planning units and not currency.
 \paragraph{Local penalty override.}
 Let $\mu>1$ be the footprint penalty (here $\mu=4$) and $D(p,r)$ the disc of radius $r$ about a point $p$. For a set of exempted facilities $F_{\mathrm{ex}}\subseteq F$ with radii $\{r_f\}$, the multiplier is
 \begin{equation}
-m(x)=1+(\mu-1)\,\mathbb{1}[x\in\mathcal{P}]\;\Bigl(1-\mathbb{1}\Bigl[x\in\textstyle\bigcup_{f\in F_{\mathrm{ex}}}D(p_f,r_f)\Bigr]\Bigr).
+\begin{split}
+m(x)=1+(\mu-1)\,&\mathbb{1}[x\in\mathcal{P}]\\
+&\times\Bigl(1-\mathbb{1}\Bigl[x\in\textstyle\bigcup_{f\in F_{\mathrm{ex}}}D(p_f,r_f)\Bigr]\Bigr).
+\end{split}
 \label{eq:override}
 \end{equation}
 The override applies where a facility point lies on the edge of its own footprint, so that the penalty would otherwise make its route detour around its own building. We use it for the health sub-centre (HEALTH\_8734223673) with $r_f=20$~m. Radii of 10, 20 and 30~m were tested; 20~m was the smallest that removed the detour without altering any other route. Crossing statistics are always computed on the original footprints, so the override does not flatter the reported exposure.

@@ -126,3 +126,83 @@ def test_terminals_flagged_as_proxy(tmp_path):
     dl.fetch_district_terminals(cfg, tmp_path, log=lambda *_: None)
     t = gpd.read_file(tmp_path / "t.gpkg")
     assert t.proxy.all() and set(t.kind) == {"mandal_hq", "district_hq"} and "DISTRICT_HQ" in set(t.id)
+
+
+# ------------------------------------------------------------------ failure paths
+def test_warp_all_sources_unreadable_raises_and_writes_nothing(tmp_path):
+    out = tmp_path / "o.tif"
+    with pytest.raises(RuntimeError, match="none of the 2 source rasters"):
+        dl.warp_to_grid([str(tmp_path / "m1.tif"), str(tmp_path / "m2.tif")], dl.aligned_bounds((248000.0, 1957000.0, 256000.0, 1960000.0), 30.0),
+                        "EPSG:32644", 30.0, out, "nearest", "float32", -9999.0)
+    assert not out.exists()
+
+
+def test_http_download_failure_leaves_no_partial_file(tmp_path, monkeypatch):
+    class Broken:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self, n=-1):
+            raise ConnectionResetError("connection reset")
+
+    monkeypatch.setattr(dl.urllib.request, "urlopen", lambda *a, **k: Broken())
+    dest = tmp_path / "d" / "f.bin"
+    with pytest.raises(ConnectionResetError):
+        dl.http_download("https://example.invalid/f", dest, log=lambda *_: None)
+    assert not dest.exists() and not list(dest.parent.glob("*.part"))
+
+
+def test_http_download_urlerror_propagates(tmp_path, monkeypatch):
+    def boom(*a, **k):
+        raise dl.urllib.error.URLError("proxy refused")
+    monkeypatch.setattr(dl.urllib.request, "urlopen", boom)
+    with pytest.raises(dl.urllib.error.URLError):
+        dl.http_download("https://example.invalid/f", tmp_path / "f.bin", log=lambda *_: None)
+    assert not (tmp_path / "f.bin").exists()
+
+
+def test_http_download_zero_byte_cache_is_redownloaded(tmp_path, monkeypatch):
+    import io
+    dest = tmp_path / "f.bin"
+    dest.write_bytes(b"")
+
+    class Ok(io.BytesIO):
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+    monkeypatch.setattr(dl.urllib.request, "urlopen", lambda *a, **k: Ok(b"fresh"))
+    assert dl.http_download("https://example.invalid/f", dest, log=lambda *_: None).read_bytes() == b"fresh"
+
+
+def test_fetch_boundaries_download_error_writes_nothing(tmp_path, monkeypatch):
+    cfg = copy.deepcopy(CFG)
+    monkeypatch.setattr(dl, "CACHE", tmp_path / "cache")
+    monkeypatch.setattr(dl, "http_download", lambda *a, **k: (_ for _ in ()).throw(OSError("offline")))
+    with pytest.raises(OSError):
+        dl.fetch_boundaries(cfg, tmp_path, log=lambda *_: None)
+    assert not list(tmp_path.rglob("*.gpkg"))
+
+
+def test_derive_boundaries_anchor_outside_all_polygons_raises():
+    adm = gpd.GeoDataFrame({"shapeName": ["Elsewhere"], "shapeID": ["x"]}, geometry=[box(0, 0, 1, 1)], crs=4326)
+    with pytest.raises(ValueError, match="no ADM2 polygon"):
+        dl.derive_boundaries(adm, adm)
+
+
+def test_derive_boundaries_missing_mandal_raises():
+    ax, ay = dl.ANCHOR
+    adm2 = gpd.GeoDataFrame({"shapeName": [dl.DISTRICT_NAME], "shapeID": ["d"]}, geometry=[box(ax - 1, ay - 1, ax + 1, ay + 1)], crs=4326)
+    adm3 = gpd.GeoDataFrame({"shapeName": ["Some Other Mandal"], "shapeID": ["m"]}, geometry=[box(ax - .1, ay - .1, ax + .1, ay + .1)], crs=4326)
+    with pytest.raises(ValueError, match="not found"):
+        dl.derive_boundaries(adm2, adm3)
+
+
+def test_main_plan_only_does_not_download(monkeypatch, capsys):
+    monkeypatch.setattr(dl, "run", lambda *a, **k: (_ for _ in ()).throw(AssertionError("download attempted")))
+    dl.main(["--plan", "--levels", "gp"])
+    assert "input status" in capsys.readouterr().out

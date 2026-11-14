@@ -87,9 +87,13 @@ def http_download(url: str, dest: Path, log=print) -> Path:
     tmp = dest.with_suffix(dest.suffix + ".part")
     log(f"  downloading {url}")
     req = urllib.request.Request(url, headers={"User-Agent": "telangana-rural-project-data-helper"})
-    with urllib.request.urlopen(req, timeout=300, context=_ssl_context()) as r, open(tmp, "wb") as fh:
-        shutil.copyfileobj(r, fh, 1 << 20)
-    tmp.replace(dest)
+    try:
+        with urllib.request.urlopen(req, timeout=300, context=_ssl_context()) as r, open(tmp, "wb") as fh:
+            shutil.copyfileobj(r, fh, 1 << 20)
+        tmp.replace(dest)
+    except BaseException:
+        tmp.unlink(missing_ok=True)       # a failed or interrupted download must not leave a partial file behind
+        raise
     return dest
 
 
@@ -184,6 +188,7 @@ def warp_to_grid(sources: list, bounds, crs: str, res: float, out_path: Path, re
     T = from_origin(minx, maxy, res, res)
     dst = np.full((H, W), nodata, dtype=dtype)
     rs = getattr(Resampling, resampling)
+    n_read = 0
     with gdal_env():
         for s in sources:
             path = s if not str(s).startswith("http") else (("/vsigzip//vsicurl/" if gz else "/vsicurl/") + s)
@@ -194,8 +199,11 @@ def warp_to_grid(sources: list, bounds, crs: str, res: float, out_path: Path, re
                               dst_transform=T, dst_crs=crs, resampling=rs, src_nodata=src.nodata, dst_nodata=nodata)
                     fill = dst == nodata if not (isinstance(nodata, float) and math.isnan(nodata)) else np.isnan(dst)
                     dst[fill] = tmp[fill]
+                    n_read += 1
             except rasterio.errors.RasterioIOError as e:
                 print(f"  WARNING: could not read {s}: {e}")
+    if n_read == 0:                       # never write an all-nodata raster that later looks like a valid input
+        raise RuntimeError(f"none of the {len(sources)} source rasters could be read; nothing written to {out_path}")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with rasterio.open(out_path, "w", driver="GTiff", height=H, width=W, count=1, dtype=dtype, crs=crs, transform=T,
                        nodata=nodata, compress="lzw", tiled=True, blockxsize=256, blockysize=256) as d:
