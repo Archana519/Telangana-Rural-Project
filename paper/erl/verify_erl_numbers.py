@@ -91,7 +91,10 @@ need("168 of 168 connected", "table3", f"{int(t3.planner_verified_connected)} of
 need("0 hard-constraint violations", "table3", "no hard-constraint violation" if int(t3.hard_constraint_violations) == 0 else "FAIL")
 need("0 cycles", "table3", "no cycle" if int(t3.cycles) == 0 else "FAIL")
 
-t4 = pd.read_csv(CT / "table4_c1_sensitivity.csv").set_index("perturbation")
+_pr = pd.read_csv(CT / "table4_c1_sensitivity_per_run.csv")          # unrounded per-run values (the 2-decimal summary CSV double-rounds)
+t4 = _pr.groupby("perturbation").agg(runs=("run", "count"), house_targets_routed_mean=("house_targets_routed", "mean"), unique_len_m_mean=("unique_len_m", "mean"),
+                                     unique_len_m_min=("unique_len_m", "min"), unique_len_m_max=("unique_len_m", "max"),
+                                     unique_len_per_routed_m_mean=("unique_len_per_routed_m", "mean"), saving_vs_independent_pct_mean=("saving_vs_independent_pct", "mean"))
 base = t4.loc["baseline (no perturbation)"]
 for k, lab in (("omit 10%", "Omit 10\\% (random)"), ("omit 20%", "Omit 20\\% (random)"), ("omit smallest 10%", "Omit smallest 10\\%"),
                ("omit smallest 25%", "Omit smallest 25\\%"), ("omit merged blobs", "Omit merged blobs"), ("add 10%", "Add 10\\% (random)"), ("add 20%", "Add 20\\% (random)")):
@@ -122,6 +125,13 @@ b = t6.loc[[i for i in t6.index if "avoid" in i]]
 need("buffered +1.1-1.2 km", "table6", f"{rd((b.house_unique_len_m.min() - mu4) / 1000,1)}--{rd((b.house_unique_len_m.max() - mu4) / 1000,1)}~km")
 need("buffered 145-148", "table6", f"{rd(b.crossing_len_m.min(),0)}--{rd(b.crossing_len_m.max(),0)}~m")
 need("16 of 19 first 20 m", "table6", f"{int(b.crossing_only_in_first_20m.iloc[0])} of {int(b.house_routes_crossing_other_footprints.iloc[0])}")
+
+# area thresholds of the "omit smallest" scenarios (script: thr = np.percentile(area_m2, small_pct); omitted = area <= thr)
+_tg = pd.read_csv(RUN / "scenario_targets.csv"); _tg = _tg[_tg.planner_key.astype(str).str.startswith("C")]
+for _p, _n in ((10, 17), (25, 41)):
+    _thr = np.percentile(_tg.area_m2, _p)
+    need(f"P{_p} area threshold", "scenario_targets.csv + scripts/dk_stageB_run_v1_6.py line 387", f"{rd(_thr, 1)}" if _p == 10 else f"{rd(_thr, 1)}")
+    need(f"P{_p} targets omitted ({_n})", "scenario_targets.csv", "17 and 41 targets" if int((_tg.area_m2 <= _thr).sum()) == _n else "FAIL")
 
 # LoveDA
 cm = pd.read_csv(HERE / "supplementary" / "loveda_epoch4_confusion_matrix.csv", index_col=0).values.astype(float)

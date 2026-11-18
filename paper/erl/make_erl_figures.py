@@ -72,7 +72,7 @@ def fig_workflow():
     box(70, 2, 29, 11, "Omission impact: length change,\nhouseholds unserved, crossings", c4, fs=6.7)
     arrow(49.5, 20.4, 49.5, 13.6)
     arrow(64.5, 7.5, 69.5, 7.5)
-    arrow(84.5, 13.6, 84.5, 20.4)
+    arrow(84.5, 20.4, 84.5, 13.6)
     save(fig, "fig1_workflow")
 
 
@@ -108,8 +108,11 @@ def fig_study_area():
     zx0, zx1, zy0, zy1 = 260750, 261900, 1959000, 1960000
     zoom = bl[(bl.geometry.centroid.x.between(zx0, zx1)) & (bl.geometry.centroid.y.between(zy0, zy1))]
     cx, cy = zoom.geometry.centroid.x.median(), zoom.geometry.centroid.y.median()
-    hw = 520
-    zx0, zx1, zy0, zy1 = cx - hw, cx + hw, cy - hw * 0.8, cy + hw * 0.8
+    near = bl[np.hypot(bl.geometry.centroid.x - cx, bl.geometry.centroid.y - cy) < 800]       # the main settlement cluster
+    bx0_, by0_, bx1_, by1_ = near.total_bounds
+    mx, my = (bx0_ + bx1_) / 2, (by0_ + by1_) / 2
+    hw = max((bx1_ - bx0_) / 2, (by1_ - by0_) / 2 / 0.8) + 110                                   # margin; panel aspect 1.25
+    zx0, zx1, zy0, zy1 = mx - hw, mx + hw, my - hw * 0.8, my + hw * 0.8
     b.set_xlim(zx0, zx1)
     b.set_ylim(zy0, zy1)
     a.plot([zx0, zx1, zx1, zx0, zx0], [zy0, zy0, zy1, zy1, zy0], color="k", lw=0.9, zorder=7)

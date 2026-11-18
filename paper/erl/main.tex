@@ -38,11 +38,11 @@
 
 \title[Missed buildings and shared rural access roads]{Missed buildings and shared rural access roads: propagating satellite building-detection omissions through road planning in a Telangana village, India}
 
-\author{Pendyala Archana\textsuperscript{1} and Dr.~[SUPERVISOR FULL NAME]\textsuperscript{2}}
+\author{Pendyala Archana\textsuperscript{1} and Dr.~Kolikipogu Ramakrishna\textsuperscript{2}}
 \address{\textsuperscript{1}~Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India\\
-\textsuperscript{2}~[DESIGNATION], Department of Information Technology, Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India}
+\textsuperscript{2}~Professor, Department of Information Technology, Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India}
 \ead{[CORRESPONDING AUTHOR E-MAIL]}
-% TODO (author): replace the three bracketed fields above (supervisor name, designation, corresponding-author e-mail of P. Archana) before submission.
+% TODO (author): replace the bracketed corresponding-author e-mail (P. Archana) before submission.
 \submitto{\ERL}
 
 \begin{abstract}
@@ -117,7 +117,7 @@ For each target, Stage~A computes a least-cost path to the existing road cells w
 where $E_S$ is the edge set already selected, so built edges are free and a route may end on another route. This is the shortest-path heuristic for Steiner trees \cite{kou1981steiner,mehlhorn1988steiner,hwang1992steiner} applied to a penalised, land-cover-weighted graph with the road network as a free sub-tree; it carries no optimality guarantee. Two passes of leaf re-routing follow. Facilities are planned before houses. We compare with (i) straight lines, (ii) independent least-cost routes, (iii) a length-only control (shortest distance under the same constraints) and (iv) a roads-only shared reference. With $L(\cdot)$ the unique edge length, the saving is $\rho=100\,(L_{\mathrm{indep}}-L_{\mathrm{plan}})/L_{\mathrm{indep}}$.
 
 \subsection{Omission and addition scenarios}
-Let $T$ be the target set and $M\subset T$ an omitted set standing for false negatives. The planner is re-run on $T\setminus M$ with the footprints of $M$ also removed from the penalty layer, because a missed detection is absent from both the target list and the obstacle layer. We report coverage $\kappa=|T\setminus M|/|T|$, unserved households $U=|T|-|\text{routed}|$, the change in unique length $\delta_L=(L(T\setminus M)-L(T))/L(T)$ and length per routed target $\bar{\ell}=L/|\text{routed}|$, which is the comparable quantity because absolute length shrinks mechanically when fewer targets are connected. Scenarios are random omission of 10\% and 20\% of targets (five draws each), omission of the smallest 10\% and 25\% of targets by footprint area, omission of all 62 \textsc{Unresolved\_Merge} candidates, and random additions of 10\% and 20\% synthetic targets as a false-positive analogue. Omission scenarios are synthetic, not measured detection errors.
+Let $T$ be the target set and $M\subset T$ an omitted set standing for false negatives. The planner is re-run on $T\setminus M$ with the footprints of $M$ also removed from the penalty layer, because a missed detection is absent from both the target list and the obstacle layer. We report coverage $\kappa=|T\setminus M|/|T|$, unserved households $U=|T|-|\text{routed}|$, the change in unique length $\delta_L=(L(T\setminus M)-L(T))/L(T)$ and length per routed target $\bar{\ell}=L/|\text{routed}|$, which is the comparable quantity because absolute length shrinks mechanically when fewer targets are connected. Scenarios are random omission of 10\% and 20\% of targets (five draws each), omission of the smallest 10\% and 25\% of targets by footprint area (areas $\le 46.7$ and $\le 113.4$~m$^2$, the 10th and 25th percentiles of target footprint area; 17 and 41 targets), omission of all 62 \textsc{Unresolved\_Merge} candidates, and random additions of 10\% and 20\% synthetic targets as a false-positive analogue. Omission scenarios are synthetic, not measured detection errors.
 
 \begin{figure}[t]
 \centering
@@ -213,8 +213,8 @@ Scenario & Routed & $U$ & $\kappa$ (\%) & $L$ (m) & $\delta_L$ (\%) & $\bar\ell$
 \midrule
 Baseline & 163 & 0 & 100.0 & 5{,}069.0 & 0.0 & 31.1 & 24.9\\
 Omit 10\% (random) & 147.0 & 16 & 90.2 & 4{,}684.4 & $-7.6$ & 31.9 & 25.1\\
-Omit 20\% (random) & 130.0 & 33 & 79.8 & 4{,}211.5 & $-16.9$ & 32.4 & 25.0\\
-Omit smallest 10\% & 146 & 17 & 89.6 & 4{,}648.7 & $-8.3$ & 31.8 & 24.9\\
+Omit 20\% (random) & 130.0 & 33 & 79.8 & 4{,}211.5 & $-16.9$ & 32.4 & 24.9\\
+Omit smallest 10\% & 146 & 17 & 89.6 & 4{,}648.6 & $-8.3$ & 31.8 & 24.9\\
 Omit smallest 25\% & 122 & 41 & 74.8 & 3{,}798.3 & $-25.1$ & 31.1 & 25.6\\
 Omit merged blobs & 101 & 62 & 62.0 & 3{,}579.0 & $-29.4$ & 35.4 & 26.6\\
 \midrule
