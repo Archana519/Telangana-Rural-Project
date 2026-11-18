@@ -19,7 +19,7 @@
 \@ifclassloaded{iopart}{}{%
   \usepackage[margin=2.5cm]{geometry}\usepackage{setspace}\onehalfspacing
   \newcommand{\address}[1]{\gdef\ERL@address{#1}}
-  \newcommand{\ead}[1]{}
+  \newcommand{\ead}[1]{\gdef\ERL@ead{#1}}\newcommand{\ERL@ead}{}
   \newcommand{\submitto}[1]{}
   \newcommand{\ack}{\section*{Acknowledgments}}
   \usepackage{environ}\newcommand{\ERL@kw}{}\newcommand{\ERL@abs}{}
@@ -27,7 +27,7 @@
   \newcommand{\ERLkeywords}[1]{\gdef\ERL@kw{#1}}
   \renewcommand{\title}[2][]{\gdef\ERL@title{#2}}
   \renewcommand{\author}[1]{\gdef\ERL@author{#1}}
-  \renewcommand{\maketitle}{\begin{center}{\Large\bfseries\ERL@title\par}\vspace{0.8em}{\large\ERL@author\par}\vspace{0.4em}{\small\ERL@address\par}\end{center}\vspace{0.5em}\begin{quote}\small\textbf{Abstract.} \ERL@abs\end{quote}\vspace{0.4em}\noindent{\small\textit{Keywords}: \ERL@kw}\par\bigskip}
+  \renewcommand{\maketitle}{\begin{center}{\Large\bfseries\ERL@title\par}\vspace{0.8em}{\large\ERL@author\par}\vspace{0.4em}{\small\ERL@address\par}\vspace{0.3em}{\small Author to whom any correspondence should be addressed. E-mail: \ERL@ead\par}\end{center}\vspace{0.5em}\begin{quote}\small\textbf{Abstract.} \ERL@abs\end{quote}\vspace{0.4em}\noindent{\small\textit{Keywords}: \ERL@kw}\par\bigskip}
 }
 \@ifclassloaded{iopart}{\newcommand{\ERLkeywords}[1]{\noindent{\it Keywords\/}: #1\par}}{}
 \makeatother
@@ -38,9 +38,11 @@
 
 \title[Missed buildings and shared rural access roads]{Missed buildings and shared rural access roads: propagating satellite building-detection omissions through road planning in a Telangana village, India}
 
-\author{Pendyala Archana}
-\address{Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India}
-% TODO (author): add supervisor / co-author name, designation, department and corresponding-author e-mail (\ead{...}).
+\author{Pendyala Archana\textsuperscript{1} and Dr.~[SUPERVISOR FULL NAME]\textsuperscript{2}}
+\address{\textsuperscript{1}~Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India\\
+\textsuperscript{2}~[DESIGNATION], Department of Information Technology, Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India}
+\ead{[CORRESPONDING AUTHOR E-MAIL]}
+% TODO (author): replace the three bracketed fields above (supervisor name, designation, corresponding-author e-mail of P. Archana) before submission.
 \submitto{\ERL}
 
 \begin{abstract}
@@ -245,18 +247,17 @@ Limitations are as follows. The study covers one village, and the omission scena
 A pipeline from satellite imagery to shared access roads connects all 163 houses and five facilities of Damarakunta with 24.9\% less unique corridor than independent routing, and a footprint penalty of 4 halves the number of routes crossing other dwellings for a 7.7\% longer network. Simulated detection errors shorten the plan, drop households from it and leave the relative benefit of sharing unchanged: omitting 20\% of buildings at random understates corridor length by 16.9\% and leaves 33 households unplanned, and omitting merged roofs leaves 38.0\% unserved. Pixel scores would not reveal this. Rural road planning that relies on automatically extracted buildings should therefore report instance-level recall and unserved households, and treat corridor length and land take as ranges. Validating the segmenter and the omission patterns on a hand-labelled subset, and quantifying the land cover crossed, are the next steps.
 
 \ack
-The author acknowledges the Telangana State Remote Sensing Application Centre (TGRAC) for the boundary, road and facility layers, and the providers of the open datasets used (ESA WorldCover, Google Open Buildings, LoveDA).
-% TODO (author): add supervisor / institutional acknowledgements.
+The authors acknowledge the Telangana State Remote Sensing Application Centre (TGRAC) for the boundary, road and facility layers, and the providers of the open datasets used (ESA WorldCover, Google Open Buildings, LoveDA).
 
 \section*{Funding}
-% TODO (author): state funding sources, or confirm that none was received.
-[Funding statement to be completed by the author.]
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 
 \section*{Data availability statement}
-The derived result tables (routing, omission and sensitivity runs), the building-candidate layer, the TGRAC-derived planning layers used here, the planner and analysis scripts, and the figure-generation script are available in the project repository (\url{https://github.com/Archana519/Telangana-Rural-Project}, folder \path{DELIVERABLES_DAMARAKUNTA_STAGE_B} and \path{paper/erl}). The LoveDA epoch-4 confusion matrix is in the supplementary file \path{paper/erl/supplementary/loveda_epoch4_confusion_matrix.csv}. The 0.6~m imagery mosaic is third-party data (Esri) and is not redistributed, because the licence for derived products has not been cleared; the geometry of the planned routes of the primary run is not archived in the repository. ESA WorldCover and Google Open Buildings are openly available from their providers. A permanent archive with a DOI will be deposited on acceptance. % TODO (author): create the Zenodo deposit and insert its DOI.
+The reproducible Phase~1 code (planner, analysis and figure-generation scripts) and the derived summary tables (routing, omission and sensitivity runs), together with the building-candidate layer and the planning layers derived from TGRAC data, are available in the public project repository \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_DAMARAKUNTA_STAGE_B} and \path{paper/erl}); the repository serves as the access point until a Zenodo archive with a DOI is minted. The LoveDA epoch-4 confusion matrix is in \path{paper/erl/supplementary/loveda_epoch4_confusion_matrix.csv}. The 0.6~m Esri World Imagery mosaic is third-party data and is not redistributed, because the licence for derived products has not been cleared. The TGRAC boundary, road and facility layers are third-party data whose licence terms are not stated; the derived planning layers are shared for review and their redistribution is subject to the data holder's terms. The geometry of the planned routes of the primary run is not archived in the repository. ESA WorldCover and Google Open Buildings are openly available from their providers.
+% TODO (author): insert the Zenodo DOI here once the archive is minted.
 
 \section*{Conflict of interest}
-The author declares no competing interests. % TODO (author): confirm.
+The authors declare no competing interests.
 
 \bibliographystyle{\ERLbst}
 \bibliography{references}

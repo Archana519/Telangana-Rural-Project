@@ -25,8 +25,9 @@ OUT = HERE / "manuscript.docx"
 
 body = TEX[TEX.index("\\begin{document}") + len("\\begin{document}"):TEX.index("\\end{document}")]
 title = re.search(r"\\title\[[^\]]*\]\{(.*?)\}\s*\n", body, re.S).group(1).strip()
-author = re.search(r"\\author\{(.*?)\}\s*\n", body).group(1).strip()
-address = re.search(r"\\address\{(.*?)\}\s*\n", body).group(1).strip()
+author = re.search(r"(?m)^\\author\{(.*)\}\s*$", body).group(1).strip()
+address = re.search(r"\\address\{(.*?)\}\s*\n\\ead", body, re.S).group(1).strip()
+ead = re.search(r"\\ead\{(.*?)\}\s*\n", body).group(1).strip()
 abstract = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", body, re.S).group(1).strip()
 keywords = re.search(r"\\ERLkeywords\{(.*?)\}\s*\n", body).group(1).strip()
 main = body[body.index("\\section{Introduction}"):body.index("\\bibliographystyle")]
