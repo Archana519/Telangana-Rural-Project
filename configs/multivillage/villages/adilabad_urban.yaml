@@ -1,0 +1,14 @@
+id: adilabad_urban
+order: 1
+name: Adilabad (urban / peri-urban window)
+mandal: Adilabad Urban
+district: Adilabad
+state: Telangana
+tier: "Tier 1 - urban / peri-urban fringe"
+boundary_method: geoboundaries_adm3     # administrative polygon "Adilabad Urban" (geoBoundaries gbOpen IND ADM3, as released); NOT a revenue-village boundary
+adm3_name: Adilabad Urban
+building_source: overture_buildings
+# --- target rule (documented adaptation for dense fabric; see 00_DATA_SOURCE_AUDIT.md) ---
+min_house_area_m2: 30        # footprints smaller than this are excluded (sheds, kiosks)
+min_conf: 0.70               # Google Open Buildings model confidence threshold (OSM polygons are human-mapped: treated as 1.0)
+min_dist_to_road_m: 30       # targets = houses whose representative point is farther than this from an existing road (= the planner's snap distance, plan_network_v2 snap_m)

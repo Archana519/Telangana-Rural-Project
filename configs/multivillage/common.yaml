@@ -1,0 +1,33 @@
+# Contribution 3 (multi-village generalisation): parameters shared by EVERY village.
+# They replicate the Phase 1 / Stage B settings of Damarakunta (scripts/plan_network_v2.py defaults, scripts/dk_stageB_run_v1_6.py,
+# scripts/create_damarakunta_cost_surface.py, scripts/align_damarakunta_terrain.py). Costs are ordinal planning units, not INR.
+crs: EPSG:32644                  # UTM 44N; all three target villages lie between 78 and 84 degrees east
+res_m: 10.0                      # planning grid
+overture_release: "2026-10-21.0" # pinned; every Overture layer in every village comes from this release
+
+cost_surface:                    # mirrors Stage B (also used by src/routing/layers.py)
+  worldcover_cost: {10: 8.0, 20: 5.0, 30: 3.0, 40: 6.0, 50: 2.0, 60: 4.0}
+  water_class: 80
+  invalid_class: 0
+  slope_ref_deg: 10.0
+  slope_weight: 4.0
+  slope_limit_deg: 25.0
+
+planner:                         # plan_network_v2.py defaults used by Stage B
+  k: 3
+  corridor_m: 20.0
+  corridor_mults: [3.0, 8.0]
+  max_overlap: 0.8
+  max_search_m: 1500.0
+  snap_m: 30.0
+  attach_tol_m: 15.0
+  passes: 2
+  building_mult: 4.0             # footprint penalty mu, applied to cells whose CENTRE lies in a footprint
+  corner_cut: forbid
+
+weights: {health: 4.0, hospital: 4.0, "sub-centre": 4.0, phc: 4.0, school: 3.0, anganwadi: 3.0, panchayat: 2.0, _default: 1.0}
+
+sensitivity:
+  penalties: [1.0, 4.0, 20.0, 100.0]
+  omit_fractions: [0.10, 0.20]
+  omit_seeds: [1, 2, 3, 4, 5]
