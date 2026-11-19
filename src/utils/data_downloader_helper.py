@@ -9,7 +9,7 @@ Existing files are never overwritten unless --force. Every product gets `<file>.
 licence, bbox, date, caveats). Raw downloads are cached in data/raw/_cache/ (git-ignored).
 
 Sources (all open; verified reachable from the project's cloud container on 2026-11-14)
-  boundaries  geoBoundaries gbOpen IND ADM2/ADM3 (CC BY 4.0) - district + mandal polygons. NOTE: the release has 23 mandals
+  boundaries  geoBoundaries gbOpen IND ADM2/ADM3 (ODbL 1.0 per the geoBoundaries metadata JSON; source lgdirectory.gov.in) - district + mandal polygons. NOTE: the release has 23 mandals
               inside Siddipet district whereas the district has since been re-organised; names/extents are 'as released'.
   rasters     ESA WorldCover 10 m v200 (2021) and Copernicus GLO-30 DEM (or SRTM 1 arc-second) from public AWS COGs,
               read as windows, reprojected to the working CRS. (Stage B docs list SRTM as the DEM; Copernicus is the default
@@ -239,7 +239,7 @@ def fetch_boundaries(cfg, root=REPO, force=False, log=print) -> list:
     adm2 = gpd.read_file(http_download(GB_BASE.format(lvl="ADM2"), CACHE / "gb_IND_ADM2.geojson", log))
     adm3 = gpd.read_file(http_download(GB_BASE.format(lvl="ADM3"), CACHE / "gb_IND_ADM3.geojson", log))
     dist, mandals, mandal = derive_boundaries(adm2, adm3)
-    prov = dict(source="geoBoundaries gbOpen IND (CC BY 4.0, wmgeolab/geoBoundaries)", urls=[GB_BASE.format(lvl="ADM2"), GB_BASE.format(lvl="ADM3")],
+    prov = dict(source="geoBoundaries gbOpen IND (ODbL 1.0 per the geoBoundaries metadata JSON; source lgdirectory.gov.in; wmgeolab/geoBoundaries)", urls=[GB_BASE.format(lvl="ADM2"), GB_BASE.format(lvl="ADM3")],
                 caveat=f"{len(mandals)} mandals inside the district polygon as released; current administrative reorganisation may differ")
     for key, gdf, col in (("district", dist, "district"), ("mandals", mandals, "mandal"), ("markook", mandal, "mandal")):
         out = gdf[["shapeName", "shapeID", "geometry"]].rename(columns={"shapeName": col}).to_crs(crs)

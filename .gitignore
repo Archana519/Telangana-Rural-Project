@@ -98,6 +98,7 @@ Thumbs.db
 
 # Downloaded by src/utils/data_downloader_helper.py (regenerable)
 /data/raw/_cache/
+/data/villages/
 /Siddipet/_mandal/
 /Siddipet/_district/
 *.tif.provenance.json

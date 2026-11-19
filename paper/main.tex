@@ -123,7 +123,7 @@ The encoder is DINOv2 ViT-B/14~\cite{oquab2023dinov2} (768-d tokens, patch size 
 Predicted building masks are thresholded, vectorised and cleaned into candidate polygons with a quality class (Section~\ref{sec:data}). The representative point of each candidate becomes a routing target $t\in T$ with weight $w_t=1$; facility points form the set $F$ with weight 1.
 
 \subsection{Graph and Cost Surface}
-Let $\Omega_g$ denote the grid cells, $\mathcal{B}\subset\Omega_g$ the cells that are blocked (water, no-data or slope $s(x)>s_{\max}=25^\circ$), and $\mathcal{P}\subset\Omega_g$ the cells intersecting a building footprint of quality class \textsc{Plausible}, \textsc{Review} or \textsc{Unresolved\_Merge}. The planning graph is $G=(V,E)$ with $V=\Omega_g\setminus\mathcal{B}$ and $E$ the 8-neighbour adjacencies with no diagonal corner-cutting through blocked cells. The per-cell cost combines land-cover resistance, slope and a footprint multiplier,
+Let $\Omega_g$ denote the grid cells, $\mathcal{B}\subset\Omega_g$ the cells that are blocked (water, no-data or slope $s(x)>s_{\max}=25^\circ$), and $\mathcal{P}\subset\Omega_g$ the cells whose centre lies inside a building footprint of quality class \textsc{Plausible}, \textsc{Review} or \textsc{Unresolved\_Merge}. The planning graph is $G=(V,E)$ with $V=\Omega_g\setminus\mathcal{B}$ and $E$ the 8-neighbour adjacencies with no diagonal corner-cutting through blocked cells. The per-cell cost combines land-cover resistance, slope and a footprint multiplier,
 \begin{equation}
 c(x)=\bigl[\,c_{\mathrm{lc}}(\ell(x)) + g\bigl(s(x)\bigr)\bigr]\cdot m(x),
 \label{eq:cell}
