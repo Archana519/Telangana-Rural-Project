@@ -57,7 +57,7 @@ python -m src.utils.data_downloader_helper --levels district --what rasters --de
 | Product | Source | Notes |
 |---|---|---|
 | WorldCover 10 m, DEM 30 m (all levels) | ESA WorldCover v200 2021, Copernicus GLO-30 (or SRTM) public AWS COGs, windowed + reprojected | Stage B used SRTM 1\"; Levels 2-4 use Copernicus with the same Sobel slope method; difference quantified (DECISIONS rows 10, U08, `docs/results/U08_dem_comparison.json`) |
-| District / mandal polygons | geoBoundaries gbOpen IND ADM2/ADM3 (CC BY 4.0) | release has 23 mandals in Siddipet district; the current administrative set may differ |
+| District / mandal polygons | geoBoundaries gbOpen IND ADM2/ADM3 (ODbL 1.0) | release has 23 mandals in Siddipet district; the current administrative set may differ |
 | Roads (Levels 3-4) | Overture Maps transportation (OSM-derived, ODbL); `--roads-source osmnx` where Overpass is reachable | not a PMGSY/TGRAC inventory; district uses motorway-tertiary only |
 | GP hubs (Level 3) | Overture village localities (points) | **not GP polygons**, unknown house counts (weight 1) |
 | Facilities / terminals | Overture places (name rules) + **proxy** Mandal HQ and mandal terminals (interior points of polygons) | flagged `proxy=True`; replace with verified HQ/PHC/market coordinates |

@@ -30,7 +30,7 @@ No field validation, legal access, ownership, drainage, road width or constructi
 
 ## Data sources
 ESA WorldCover 10 m v200 2021 (CC BY 4.0); Copernicus GLO-30 DEM (Stage B used SRTM 1 arc-second: difference quantified in `04_PROVENANCE_AND_AUDIT/U08_dem_comparison.json`, RMSE 2.3 m, effect on Level 2 length 1.0 %);
-geoBoundaries gbOpen IND ADM2/ADM3 (CC BY 4.0; 23 mandals as released); Overture Maps release 2026-10-21.0 (OSM-derived, ODbL); TGRAC roads, facilities and boundary, v8 building footprints and the 163 Stage B house targets (Level 2). Hashes: `04_PROVENANCE_AND_AUDIT/input_manifest.csv`.
+geoBoundaries gbOpen IND ADM2/ADM3 (ODbL 1.0; 23 mandals as released); Overture Maps release 2026-10-21.0 (OSM-derived, ODbL); TGRAC roads, facilities and boundary, v8 building footprints and the 163 Stage B house targets (Level 2). Hashes: `04_PROVENANCE_AND_AUDIT/input_manifest.csv`.
 
 ## Deliverable files
 * `01_ARCHITECTURE/ARCHITECTURE_DIAGRAM.png`, `WORKFLOW_DIAGRAM.png`, `DATA_AND_PROCESS_FLOW.md`
