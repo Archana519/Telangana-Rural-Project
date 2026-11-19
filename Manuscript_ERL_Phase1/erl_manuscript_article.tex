@@ -1,0 +1,27 @@
+% Fallback of erl_manuscript.tex: standard `article`, compiles with any TeX Live. Same body, abstract, back matter and references.
+% Build: pdflatex erl_manuscript_article  (twice, for cross-references)
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}\onehalfspacing
+\usepackage{graphicx,booktabs,amsmath,amssymb,array,url}
+\usepackage[round,authoryear]{natbib}
+\setcitestyle{round,aysep={},notesep={, }}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{3em}
+
+\title{Cost-surface-driven rural road network optimization using foundation-model semantic segmentation to minimize land disturbance and structural encroachment}
+\author{Pendyala Archana and Kolikipogu Ramakrishna\\[3pt]
+\small Department of Information Technology, Chaitanya Bharathi Institute of Technology, Hyderabad 500075, India}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\noindent\input{abstract}
+\end{abstract}
+\noindent\textit{Keywords}: rural road infrastructure, remote sensing, semantic segmentation, cost-surface routing, land-use disturbance, Telangana
+
+\input{body}
+\input{backmatter}
+\input{references}
+\end{document}

@@ -1,0 +1,26 @@
+% Environmental Research Letters (IOP Publishing) -- Letter, Phase 1 / Stage B.
+% Official IOP class `iopjournal`. NOT compiled here (class not installed in the build container); if the IOP kit on your machine
+% uses different front-matter macros, adjust the block between the two marker lines and keep \input{body}, \input{backmatter}.
+% Fallback that compiles anywhere: erl_manuscript_article.tex.   Build: pdflatex; pdflatex  (bibliography is pre-typeset in references.tex)
+\documentclass{iopjournal}
+\usepackage{graphicx,booktabs,amsmath,amssymb,url}
+\makeatletter\@ifpackageloaded{natbib}{}{\usepackage[round,authoryear]{natbib}}\makeatother
+\setcitestyle{round,aysep={},notesep={, }}
+
+%%%%% front matter (iopjournal) %%%%%
+\title{Cost-surface-driven rural road network optimization using foundation-model semantic segmentation to minimize land disturbance and structural encroachment}
+\author{Pendyala Archana$^{1}$ and Kolikipogu Ramakrishna$^{1}$}
+\address{$^{1}$ Department of Information Technology, Chaitanya Bharathi Institute of Technology, Hyderabad 500075, India}
+\providecommand{\corremail}{}
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+\keywords{rural road infrastructure, remote sensing, semantic segmentation, cost-surface routing, land-use disturbance, Telangana}
+%%%%% end front matter %%%%%
+
+\begin{document}
+\maketitle
+\input{body}
+\input{backmatter}
+\input{references}
+\end{document}

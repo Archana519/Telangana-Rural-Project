@@ -1,0 +1,18 @@
+% Shared ERL back matter. \roles and \suppdata are IOP macros; \providecommand keeps this file compiling with plain article.
+\providecommand{\roles}[1]{#1}
+\providecommand{\suppdata}[2]{#2 (\url{#1})}
+
+\section*{Acknowledgments}
+The authors thank the Telangana State Remote Sensing Application Centre (TGRAC) for the village boundary, road and facility layers, and the providers of the open datasets used: ESA WorldCover, Google Open Buildings, SRTM (USGS) and LoveDA. The work was carried out as part of the M.Tech dissertation of the first author at the Department of Information Technology, Chaitanya Bharathi Institute of Technology, Hyderabad.
+
+\section*{Funding}
+This research received no specific grant from any funding agency in the public, commercial or not-for-profit sectors.
+
+\section*{Author contributions}
+\roles{Pendyala Archana: Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, Visualization, Writing -- original draft. Kolikipogu Ramakrishna: Conceptualization, Supervision, Writing -- review \& editing.}
+
+\section*{Conflict of interest}
+The authors declare no competing interests.
+
+\section*{Data availability statement}
+\suppdata{https://github.com/Archana519/Telangana-Rural-Project}{The code (planner, analysis and figure scripts), the derived result tables of the routing, ablation and omission runs, and the building-candidate and planning layers derived from TGRAC data are openly available in the project repository} (folders \texttt{DELIVERABLES\_DAMARAKUNTA\_STAGE\_B}, \texttt{paper/erl} and \texttt{Manuscript\_ERL\_Phase1}); the repository is the access point until an archive with a persistent identifier is deposited. The LoveDA epoch-4 confusion matrix behind the reported segmentation scores is in \texttt{paper/erl/supplementary}. Public input datasets are available from their providers: ESA WorldCover v200 (\url{https://doi.org/10.5281/zenodo.7254221}), SRTM 1 arc-second (\url{https://doi.org/10.5066/F7PR7TFT}), Google Open Buildings (\url{https://sites.research.google/open-buildings/}) and LoveDA (\url{https://github.com/Junjue-Wang/LoveDA}). The 0.6~m Esri World Imagery mosaic is third-party data and is not redistributed because the licence for derived products has not been cleared. The TGRAC layers are third-party data whose licence terms are not stated, so the derived planning layers are shared for review subject to the data holder's terms. The geometry of the planned routes of the primary run is not archived.
