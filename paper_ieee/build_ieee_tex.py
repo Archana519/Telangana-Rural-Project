@@ -15,11 +15,17 @@ ESC = {"&": r"\&", "%": r"\%", "#": r"\#", "_": r"\_", "$": r"\$", "{": r"\{", "
 TOK = re.compile(r"(\*\*.+?\*\*|\*.+?\*|_\{.+?\}|\^\{.+?\})")
 def esc(s):
     return "".join(MAP.get(c) or ESC.get(c) or c for c in s)
+HASH = "2e7c4646dc77ceb2a357f44f11cb3f7ff84e636871d70ba4c31e194e5ec00cf3"
+HASHTEX = r"\texttt{" + r"\allowbreak ".join(HASH[i:i + 16] for i in range(0, 64, 16)) + "}"
+
 def conv(text):
     out = []
     for seg in re.split(r"(<<[^>]+>>)", text):
         if seg.startswith("<<"):
             out.append("\\cite{" + ",".join(k.strip() for k in seg[2:-2].split(",")) + "}"); continue
+        if HASH in seg:
+            pre, post = seg.split(HASH, 1)
+            out.append(conv(pre) + HASHTEX + conv(post)); continue
         for part in TOK.split(seg):
             if not part: continue
             if part.startswith("**"): out.append(r"\textbf{" + conv(part[2:-2]) + "}")
