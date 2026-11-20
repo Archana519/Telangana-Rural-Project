@@ -3,3 +3,5 @@
 Rebuild: `python paper_ieee/build_ieee_docx.py` (python-docx; references parsed from `paper_eris/references.bib`).
 Verify: `python paper_ieee/verify_ieee_numbers.py` (runs the ERIS ledger, then checks every DOCX number/table row against it and the result CSVs).
 Open items: corresponding e-mail, Zenodo DOI, imagery licence. No IEEE membership grades or funding were invented.
+
+LaTeX: `python paper_ieee/build_ieee_tex.py` regenerates `main.tex` (IEEEtran journal) from the same content as the docx; compile with `pdflatex main && bibtex main && pdflatex main && pdflatex main`. `references.bib` is the ERIS bib (55 entries, all cited).
