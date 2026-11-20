@@ -45,6 +45,12 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `01_DAMARAKUNTA_RURAL/tables/table6_obstacle_avoidance.csv` | Damarakunta Stage B: building-crossing / obstacle-avoidance comparison |
 | `02_ADILABAD_URBAN/facility_tables/verified_facilities_open_footprint_run.csv` | same, open-footprint run |
 | `02_ADILABAD_URBAN/facility_tables/verified_facilities_segmentation_run.csv` | Adilabad Overture place candidates with status (lat, lon, x, y) - segmentation run |
+| `02_ADILABAD_URBAN/maps/adilabad_fac_route_2panel.png` | compact 2-panel figure: verified facilities and final shared network (central zone) |
+| `02_ADILABAD_URBAN/maps/map1_imagery_boundary_roads.png` | Adilabad map1 (StrongDINOv2Seg footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `02_ADILABAD_URBAN/maps/map2_footprints_facilities_latlon.png` | Adilabad map2 (StrongDINOv2Seg footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `02_ADILABAD_URBAN/maps/map3_terrain_cost_landcover_slope.png` | Adilabad map3 (StrongDINOv2Seg footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `02_ADILABAD_URBAN/maps/map4_alternatives_vs_network.png` | Adilabad map4 (StrongDINOv2Seg footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `02_ADILABAD_URBAN/maps/map5_village_detail_shared_paths.png` | Adilabad map5 (StrongDINOv2Seg footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN/open_footprint_check/fig3_sensitivity.png` | Adilabad open Overture footprints: open-footprint sensitivity |
 | `02_ADILABAD_URBAN/open_footprint_check/map1_study_area.png` | Adilabad open Overture footprints: open-footprint study area (WorldCover background) |
 | `02_ADILABAD_URBAN/open_footprint_check/map2_network_comparison.png` | Adilabad open Overture footprints: open-footprint route comparison |
@@ -75,8 +81,6 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `03_COMPARISON/master_comparison_three_settings.csv` | Damarakunta vs Adilabad (StrongDINOv2Seg footprints) vs Adilabad (open Overture footprints): every shared metric |
 
 ## Notes you should read before using these files
-
-* **The five-map Adilabad series (map1 to map5) is not in this folder yet.** It needs the Esri mosaic, the StrongDINOv2Seg footprints and the route state, which exist only on the machine that ran `scripts/run_adilabad_end_to_end.py` (they are git-ignored). Generate it there with `python scripts\make_adilabad_map_series.py`, then re-run `python scripts/build_final_project_outputs.py`; the five PNGs and the compact 2-panel figure are picked up automatically. Until then `02_ADILABAD_URBAN/satellite_overlays/` holds the satellite maps of the segmentation run.
 
 * **Facility coordinates (Adilabad).** 10 of the 68 verified Overture records share an identical point with at least one other record (for example one point carries several schools and a hospital), which indicates a generic or locality geocode rather than a surveyed facility position. In a dense fabric the '20 m from a footprint' check is weak evidence. Callouts on the maps therefore label only records with a unique coordinate. One verified school is named 'University Of Mirpurkhas' (a Pakistani place name) at the same point as 'Dr. BR Ambedkar Open University Regional centre'; treat it as a mislabelled duplicate.
 * **Damarakunta map footers.** The five Damarakunta PNGs are the unchanged Stage B files. Their footers still read 'licence unresolved - review draft, do not redistribute', which is superseded by the Esri attribution used in the papers: *Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.* (non-commercial academic use; raw tiles not redistributed). Crop or cover the footer for the thesis, or cite the attribution next to the figure.
