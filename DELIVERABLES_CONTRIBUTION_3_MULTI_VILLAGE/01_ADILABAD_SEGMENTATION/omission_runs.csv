@@ -1,0 +1,13 @@
+scenario,group,house_targets,routed_houses,unserved_vs_all_gap_houses,coverage_pct,unique_len_m,saving_vs_independent_pct,routes_crossing,delta_len_pct,len_per_routed_house_m
+"omit 10% (random, seed 1)",omit 10% (random),311,311,34,90.1,16660.5,13.7,51,-8.9,53.6
+"omit 10% (random, seed 2)",omit 10% (random),311,311,34,90.1,17096.2,13.7,50,-6.5,55.0
+"omit 10% (random, seed 3)",omit 10% (random),311,311,34,90.1,16722.2,14.4,50,-8.6,53.8
+"omit 10% (random, seed 4)",omit 10% (random),311,311,34,90.1,16800.7,14.4,47,-8.1,54.0
+"omit 20% (random, seed 1)",omit 20% (random),276,276,69,80.0,15140.8,13.5,45,-17.2,54.9
+"omit 10% (random, seed 5)",omit 10% (random),311,311,34,90.1,16156.7,14.2,52,-11.7,52.0
+"omit 20% (random, seed 2)",omit 20% (random),276,276,69,80.0,15081.4,13.4,47,-17.5,54.6
+"omit 20% (random, seed 3)",omit 20% (random),276,276,69,80.0,14290.6,14.8,47,-21.9,51.8
+"omit 20% (random, seed 5)",omit 20% (random),276,276,69,80.0,14824.7,12.5,44,-18.9,53.7
+"omit 20% (random, seed 4)",omit 20% (random),276,276,69,80.0,15408.2,13.4,46,-15.8,55.8
+omit smallest 10%,omit smallest 10%,310,310,35,89.9,16817.3,14.0,45,-8.0,54.2
+omit smallest 25%,omit smallest 25%,258,258,87,74.8,14418.4,12.6,32,-21.2,55.9
