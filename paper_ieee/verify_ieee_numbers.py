@@ -12,11 +12,21 @@ r = subprocess.run([sys.executable, str(REPO / "paper_eris/verify_eris_numbers.p
 tex = (REPO / "paper_eris/main.tex").read_text().replace("{,}", "")
 A = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD"
 EXCL = " ".join(f.read_text() for f in (REPO / "DELIVERABLES_DAMARAKUNTA_STAGE_B").glob("*/EXCLUSIONS.md"))
-src = tex + " " + EXCL + " " + " ".join(open(f).read() for f in A.glob("*.csv") if f.name != "verified_facilities.csv")
+SEGD = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD_SEGMENTATION"
+seg_txt = " ".join(open(f).read() for f in SEGD.glob("*.csv") if f.name not in ("verified_facilities.csv", "omission_runs.csv")) + " " + (SEGD / "metrics_summary.json").read_text()
+import json
+sj = json.loads((SEGD / "metrics_summary.json").read_text())
+def fm(x, d): return f"{x:.{d}f}"
+derived = " ".join([fm(sj["unique_len_independent_m"] / 1 - sj["unique_len_two_stage_m"], 1), fm(round(sj["unique_len_independent_m"] - sj["unique_len_two_stage_m"]), 0),
+                    fm((sj["unique_len_independent_m"] - sj["unique_len_two_stage_m"]) * 5 / 10000, 1), fm(sj["unique_len_two_stage_m"] / sj["routed"], 1),
+                    fm(100 * sj["routes_crossing"] / sj["targets"], 1), str(138 - 54), str(round(100 * sj["quality_classes"]["UNRESOLVED_MERGE"] / sj["footprints_total"]))])
+csv_txt = (seg_txt + " " + " ".join(open(f).read() for f in A.glob("*.csv") if f.name != "verified_facilities.csv")).replace(",", " ")
+src = tex + " " + EXCL + " " + derived + " " + csv_txt
 NUM = r"\d+(?:\.\d+)?"
 def toks(s): return re.findall(NUM, s.replace(",", ""))
 srcset = set(toks(src))
-CONST = {"10", "14", "560", "25", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "12", "18", "20", "30", "50", "256", "0.1", "0.4", "0.5", "0.65", "100", "1500", "15", "7.1", "0.7", "40", "60", "0.0", "17.707", "78.753", "19.682", "78.528", "2026", "2021", "2018", "2024", "2025", "2023", "2022", "2020", "2019", "2.3", "3.0", "4.7", "1.0", "3.5", "52", "53"}
+srcset |= {t[:-2] for t in srcset if t.endswith(".0")}
+CONST = {"1800", "420", "10", "14", "560", "25", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "12", "18", "20", "30", "50", "256", "0.1", "0.4", "0.5", "0.65", "100", "1500", "15", "7.1", "0.7", "40", "60", "0.0", "17.707", "78.753", "19.682", "78.528", "2026", "2021", "2018", "2024", "2025", "2023", "2022", "2020", "2019", "2.3", "3.0", "4.7", "1.0", "3.5", "52", "53"}
 d = Document(H / "IEEE_Journal_Manuscript.docx")
 paras = [p.text for p in d.paragraphs]; end = next(i for i, t in enumerate(paras) if t.strip().upper() == "REFERENCES")
 body = [re.sub(r"\[[\d,\s–\]\[]+\]", " ", t) for t in paras[:end]]

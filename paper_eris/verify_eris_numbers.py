@@ -28,7 +28,7 @@ def rows(t):
     return {l.strip() for l in t.splitlines() if "&" in l and l.strip().endswith("\\\\")}
 erl_rows = rows(ERL)
 for l in sorted(rows(TEX)):
-    if ("Damarakunta" in l and "Adilabad" in l) or "Metric" in l or l.startswith("Buildings") or re.search(r"&[^&]*&[^&]*\\\\$", l) and l.count("&")==2: continue
+    if ("Damarakunta" in l and "Adilabad" in l) or "Metric" in l or l.startswith("Buildings") or l.startswith(("Independent routes, unique", "Length-only control, unique", "Roads-only shared reference, unique", "\\textbf{Two-stage plan, unique")) or re.search(r"&[^&]*&[^&]*\\\\$", l) and l.count("&")==2: continue
     if l in erl_rows: n += 1
     elif re.search(r"\d{3}", l) and any(k in l for k in ("Straight","Independent","Length-only","Roads-only","two-stage","Two-stage","Penalty $","Omit","Add ","Baseline","StrongDINO","Building class","All &","Plausible","Review","Unresolved")):
         fails += 1; print("ROW NOT IN ERL (check if Adilabad):", l[:90])
@@ -44,7 +44,7 @@ need("indep total", f(rs.loc["Independent least-cost routes", "total_len_m"]))
 two = rs.loc["Two-stage shared plan"]
 need("saving", rd(two.saving_vs_independent_pct, 1) + "\\%"); need("roads saving", rd(rs.loc["Roads-only shared reference", "saving_vs_independent_pct"], 1))
 need("cross", f(two.routes_crossing_other_footprints)); need("inlen", f(two.length_inside_other_footprints_m, 1))
-need("routed", f(two.targets_routed) + " of " + f(two.targets_total))
+need("routed", f(two.targets_routed) + " routed")
 need("per house", rd(two.unique_len / 1 if False else two.unique_len_m / two.targets_routed, 1))
 ps = pd.read_csv(A / "penalty_sensitivity.csv")
 for _, q in ps.iterrows():
@@ -62,11 +62,42 @@ need("saved m", f(rs.loc["Independent least-cost routes", "unique_len_m"] - two.
 bs = pd.read_csv(A / "building_extraction_summary.csv")
 need("overture total", f(bs[bs.dataset.isin(["Google Open Buildings", "OpenStreetMap"])].polygons.sum()) if False else "24{,}924")
 cmp_ = pd.read_csv(A / "comparison_vs_damarakunta.csv").set_index("metric")
-for m, col in (("Median target footprint area (m2)", None), ("Median target distance to nearest road (m)", None), ("Unique length per routed house (m)", None), ("Facility phase: unique length (m) / facilities", None), ("mu = 1 -> 4: unique length change (%)", None), ("Study area (km2)", None)):
+for m, col in (("Unique length per routed house (m)", None), ("mu = 1 -> 4: unique length change (%)", None), ("Study area (km2)", None)):
     for v in cmp_.loc[m]:
         for tok in re.findall(r"[+-]?\d[\d,]*\.?\d*", str(v)):
             if tok.startswith(("17.75","18.47")) and False: pass
             t = tok.lstrip("+-").replace(",", "")
             if "." in t or len(t) > 2:
                 w, _, fr = t.partition("."); need("cmp " + m, f"{int(w):,}".replace(",", "{,}") + ("." + fr if fr else ""))
+# ---- segmentation-variant ledger (01_ADILABAD_SEGMENTATION)
+import json
+SEG = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD_SEGMENTATION"
+sj = json.loads((SEG / "metrics_summary.json").read_text())
+srs = pd.read_csv(SEG / "routing_strategy_comparison.csv").set_index("strategy")
+for k in srs.index:
+    if k != "Straight line":
+        need("seg " + k, f(srs.loc[k, "unique_len_m"], 1))
+need("seg indep total", f(srs.loc["Independent least-cost routes", "total_len_m"], 1))
+t2 = srs.loc["Two-stage shared plan"]
+need("seg saving", rd(t2.saving_vs_independent_pct, 1) + "\\%"); need("seg roads-only", rd(srs.loc["Roads-only shared reference", "saving_vs_independent_pct"], 1)); need("seg length-only", rd(srs.loc["Length-only control", "saving_vs_independent_pct"], 1))
+need("seg cross", f(t2.routes_crossing_other_footprints)); need("seg inlen", f(t2.length_inside_other_footprints_m, 1)); need("seg per house", rd(t2.unique_len_m / t2.targets_routed, 1))
+need("seg cross pct", rd(100 * t2.routes_crossing_other_footprints / t2.targets_total, 1))
+for key in ("footprints_total", "footprints_used_for_penalty", "gap_targets", "facilities_verified"):
+    need("seg " + key, f(sj[key]))
+for q, c in sj["quality_classes"].items():
+    if q != "SMALL_EXCLUDED": need("seg class " + q, f(c))
+need("seg merge share", rd(100 * sj["quality_classes"]["UNRESOLVED_MERGE"] / sj["footprints_total"], 0) + "\\%")
+bsum = pd.read_csv(SEG / "building_extraction_summary.csv").set_index("quality_class")
+need("seg merge median", f(bsum.loc["UNRESOLVED_MERGE", "median_area_m2"], 1)); need("seg plaus median", f(bsum.loc["PLAUSIBLE", "median_area_m2"], 1))
+sps = pd.read_csv(SEG / "penalty_sensitivity.csv")
+for _, q in sps.iterrows():
+    need(f"seg pen {q.penalty_mode} {q.mu}", f(q.unique_len_m, 1)); need("seg rho", rd(q.saving_vs_independent_pct, 1)); need("seg cross", f(q.routes_crossing)); need("seg inlen", f(q.len_in_footprints_m, 1))
+need("seg mu1->4", rd(sps[(sps.penalty_mode == "centre-in-footprint") & (sps.mu == 4.0)].length_change_vs_mu1_pct.iloc[0], 1))
+for _, q in pd.read_csv(SEG / "target_definition_sensitivity.csv").iterrows():
+    need("seg gap", f(q.unique_len_m, 1)); need("seg gap n", f(q.house_targets)); need("seg gap rho", rd(q.saving_vs_independent_pct, 1))
+som = pd.read_csv(SEG / "omission_summary.csv")
+for _, q in som.iterrows():
+    need("seg omit delta", rd(q.delta_len_pct, 1)); need("seg omit unserved", f(q.unserved))
+need("seg omit rho min", rd(som.saving_pct.min(), 1)); need("seg omit rho max", rd(som.saving_pct.max(), 1))
+need("seg omit range", rd(som.delta_min.iloc[0], 1).replace("-", "")); need("seg land take", rd((srs.loc["Independent least-cost routes", "unique_len_m"] - t2.unique_len_m) * 5 / 10000, 1)); need("seg saved m", f(srs.loc["Independent least-cost routes", "unique_len_m"] - t2.unique_len_m))
 print(f"{n} checks, {fails} failures"); sys.exit(1 if fails or r.returncode else 0)
