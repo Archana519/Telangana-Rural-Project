@@ -1,0 +1,34 @@
+{
+  "raster": "D:\\Telangana_Rural_Project\\data\\villages\\adilabad_esri\\aligned\\adilabad_esri_highres_mosaic_0p6m.tif",
+  "window": [
+    0,
+    0,
+    7248,
+    9590
+  ],
+  "tile": 560,
+  "stride": 420,
+  "margin": 70,
+  "tiles_run": 391,
+  "seconds": 1583.5,
+  "class_percent": {
+    "0": 0.0,
+    "1": 41.328,
+    "2": 16.399,
+    "3": 1.088,
+    "4": 2.333,
+    "5": 23.178,
+    "6": 4.69,
+    "7": 10.984
+  },
+  "model": "original project file D:\\new_MPS\\remoteSensingWebApp\\project\\model.py",
+  "device": "cpu",
+  "checkpoint": "D:\\new_MPS\\remoteSensingWebApp\\checkpoints\\best_model.pth",
+  "checkpoint_info": {
+    "epoch": 4,
+    "mIoU": 0.5380210471992978,
+    "mDice": 0.6890675805979438
+  },
+  "checkpoint_sha256": "2e7c4646dc77ceb2a357f44f11cb3f7ff84e636871d70ba4c31e194e5ec00cf3",
+  "note": "raw argmax over classes 1-7; unvalidated"
+}
