@@ -79,9 +79,11 @@ def C(text): return re.sub(r"<<([^>]+)>>", lambda m: cite(m.group(1)), text)
 counters = {"fig": 0, "tab": 0}
 ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"]
 sec_i = [0]; sub_i = [0]
-def one_col():
+def one_col(force=False):
+    if not force: return
     s = doc.add_section(WD_SECTION.CONTINUOUS); set_cols(s, 1); return s
-def two_col():
+def two_col(force=False):
+    if not force: return
     s = doc.add_section(WD_SECTION.CONTINUOUS); set_cols(s, 2, 0.25); return s
 def H1(text):
     sec_i[0] += 1; sub_i[0] = 0
@@ -108,7 +110,7 @@ def TABLE(title, header, rows, widths, bold_rows=(), sub_rows=(), size=8, align=
     counters["tab"] += 1
     p = doc.add_paragraph(); add_runs(p, f"TABLE {ROMAN[counters['tab']-1]}", 8); fmt(p, AL.CENTER, 6, 0, keep=True)
     p2 = doc.add_paragraph(); add_runs(p2, title.upper(), 8); fmt(p2, AL.CENTER, 0, 3, keep=True)
-    avail = 7.2 if sum(widths) > 3.7 else 3.45
+    avail = 3.45
     widths = [w * avail / sum(widths) for w in widths]
     t = doc.add_table(rows=1 + len(rows), cols=len(header)); t.autofit = False; cell_margins(t)
     lay = OxmlElement("w:tblLayout"); lay.set(qn("w:type"), "fixed"); t._tbl.tblPr.append(lay)
@@ -129,19 +131,20 @@ def TABLE(title, header, rows, widths, bold_rows=(), sub_rows=(), size=8, align=
 # =====================================================================  TITLE BLOCK (single column)
 set_cols(sec, 1)
 p = doc.add_paragraph(); add_runs(p, "Smart Village Infrastructure Planning and Road Network Optimization for Rural Telangana: A Satellite-to-Network Pipeline and Its Transfer Across Settlement Types", 24); fmt(p, AL.CENTER, 0, 10)
-p = doc.add_paragraph(); add_runs(p, "Pendyala Archana and Kolikipogu Ramakrishna", 11); fmt(p, AL.CENTER, 0, 2)
-p = doc.add_paragraph(); add_runs(p, "Department of Information Technology, Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India", 9, italic=True); fmt(p, AL.CENTER, 0, 1)
-p = doc.add_paragraph(); add_runs(p, "Corresponding author: [CORRESPONDING AUTHOR E-MAIL]", 9); fmt(p, AL.CENTER, 0, 10)
+AUTH = [("Ramakrishna Kolikipogu", "krkrishna.cse@gmail.com"), ("Pendyala Archana", "pendyalaarchanareddy98@gmail.com")]
+tb = doc.add_table(rows=1, cols=2); tb.autofit = False
+for ci, (nm, em) in enumerate(AUTH):
+    c = tb.cell(0, ci); c.width = Inches(3.6)
+    lines = [(nm, 11, True, False), ("Department of Information Technology", 9, False, True), ("Chaitanya Bharathi Institute of Technology (A)", 9, False, True), ("Hyderabad, India", 9, False, False), (em, 9, False, False)]
+    for li, (tx, sz, b, it) in enumerate(lines):
+        par = c.paragraphs[0] if li == 0 else c.add_paragraph(); add_runs(par, tx, sz, bold=b, italic=it); fmt(par, AL.CENTER, 0, 0)
+sp = doc.add_paragraph(); fmt(sp, AL.CENTER, 0, 12)
 
-ABS = ("*Abstract*—Extending all-weather road access to dispersed rural hamlets depends on knowing where dwellings are, yet planning still relies on manually digitised building inventories and on connecting each house independently. "
-       "This paper presents an end-to-end, open-source pipeline that converts satellite imagery and open geospatial layers into a shared access-road network. It combines a fine-tuned DINOv2 segmenter (StrongDINOv2Seg; 53.8% mIoU, 68.9% Dice and 71.3% pixel accuracy on the LoveDA validation split), marker-controlled distance-transform instance extraction, a 10 m multi-criteria cost surface with a soft building-footprint penalty, and a two-stage planner that selects least-cost route alternatives by marginal cost so that shared corridors are built once. "
-       "In the rural village of Damarakunta the plan connects 163 houses and five facilities with 5,069.0 m of unique new corridor, 24.9% less than independent least-cost routes (6,753.1 m). "
-       "Re-applied with open Overture Maps footprints, roads and facilities to the Adilabad Urban mandal (urban and peri-urban, 17.75 km^{2}), the same cost surface and solver connect 873 of 874 road-gap houses with 34,358.8 m, 26.0% less than independent routing, whereas a roads-only shared reference saves only 2.9% there against 22.6% in Damarakunta. "
-       "Footprint penalties trade corridor length for fewer routes through other dwellings, and simulated building omissions shorten the plan while stranding households, so network length alone is a misleading quality indicator. Costs are ordinal planning units; results are planning alternatives, not engineered alignments.")
+ABS = ("*Abstract*—Rural road infrastructure planning faces several challenges, including incomplete spatial data, unplanned settlements, difficult terrain, and limited information about suitable road connections to essential public services such as hospitals, schools, and government institutions. Conventional road-planning approaches often rely on manual decision-making and shortest-path algorithms, which may not adequately consider the influence of spatial-data errors, terrain conditions, land-use constraints, and opportunities for sharing road segments. To address these challenges, this work proposes an AI- and GIS-based framework for rural village infrastructure planning and road-network optimization. The proposed framework integrates high-resolution satellite imagery, existing road-network data, village boundary information, land-cover maps, elevation data, and public-service locations. A StrongDINOv2Seg deep-learning model is employed for semantic segmentation, supported by GIS-based feature extraction to identify relevant spatial features. A multi-criteria cost surface is then generated by considering land-cover conditions, terrain slope, and restricted areas to identify suitable movement paths. For road-network planning, a two-stage approach is implemented: in the first stage, alternative least-cost routes are generated using grid-based Dijkstra pathfinding; in the second stage, a greedy shared-network selection strategy evaluates alternative routes based on their marginal cost and gives credit to road segments already included in the selected network, reducing unnecessary route duplication while prioritizing connections to public-service facilities and residential buildings. The framework is demonstrated on Damarakunta village in Siddipet District, Telangana, and evaluated for cross-morphology transferability in Adilabad Urban. On the LoveDA validation benchmark, the segmentation model achieved a mean Intersection over Union (mIoU) of 53.8% and a mean Dice score of 68.9%. In the Damarakunta building-access planning experiment, the two-stage network-aware approach produced 5,069.0 m of unique route length compared with 6,753.1 m for independent least-cost routing, representing a reduction of 24.9%. Re-applied with open Overture Maps footprints to Adilabad Urban, the same cost surface and solver reduced unique route length from 46,419.2 m to 34,358.8 m (26.0%), confirming consistent network-sharing behavior across contrasting settlement densities, although a roads-only shared reference recovered most of the saving in Damarakunta (22.6%) but little in Adilabad (2.9%). The proposed framework provides a GIS-based decision-support approach for analyzing rural infrastructure requirements and generating cost-aware road-network alternatives as computational planning suggestions requiring field validation prior to implementation.")
 p = doc.add_paragraph(); add_runs(p, ABS, 9, bold=False); fmt(p, AL.JUSTIFY, 0, 4, left=0.0)
 p = doc.add_paragraph(); add_runs(p, "*Index Terms*—Building footprint extraction, DINOv2, least-cost path, open geospatial data, rural roads, shared network, spatial transferability, Telangana.", 9); fmt(p, AL.JUSTIFY, 0, 6)
 
-two_col()
+two_col(True)
 
 # =====================================================================  I. INTRODUCTION
 H1("Introduction")
@@ -162,8 +165,9 @@ P("*Gap.* To our knowledge no cited work combines (i) satellite-derived building
 # =====================================================================  III. STUDY AREAS AND DATA
 H1("Study Areas and Data")
 H2("Damarakunta (rural)")
-P("Damarakunta is a rural revenue village in Markook mandal, Siddipet district, Telangana (≈17.707°N, 78.753°E). Its boundary, from the Telangana State Remote Sensing Application Centre (TGRAC), encloses 18.47 km^{2} (UTM zone 44N, EPSG:32644). Settlement is dispersed: houses form small clusters separated by farmland (Fig. 1). A 0.6 m three-band mosaic (11,296 × 7,171 px) was assembled from Esri World Imagery exports. Building candidates are model outputs: 278 polygons, 165 inside the boundary, of which 163 are routing targets. Each carries a quality class: Plausible (71), Review (32) and Unresolved_Merge (62), the last denoting blobs that merge adjacent roofs and could not be split. Five TGRAC facilities (schools, a health sub-centre and the gram-panchayat headquarters points) are planned in a separate phase. A TGRAC anganwadi record was excluded because its coordinate lies about 371 m from the nearest footprint and was judged unsupported; its true location remains to be verified. No ground-truth building mask exists for Damarakunta.")
+P("Damarakunta is a rural revenue village in Markook mandal, Siddipet district, Telangana (≈17.707°N, 78.753°E). Its boundary, from the Telangana State Remote Sensing Application Centre (TGRAC), encloses 18.47 km^{2} (UTM zone 44N, EPSG:32644). Settlement is dispersed: houses form small clusters separated by farmland (Figs. 1 and 2). A 0.6 m three-band mosaic (11,296 × 7,171 px) was assembled from Esri World Imagery exports. Building candidates are model outputs: 278 polygons, 165 inside the boundary, of which 163 are routing targets. Each carries a quality class: Plausible (71), Review (32) and Unresolved_Merge (62), the last denoting blobs that merge adjacent roofs and could not be split. Five TGRAC facilities (schools, a health sub-centre and the gram-panchayat headquarters points) are planned in a separate phase. A TGRAC anganwadi record was excluded because its coordinate lies about 371 m from the nearest footprint and was judged unsupported; its true location remains to be verified. No ground-truth building mask exists for Damarakunta.")
 FIGURE("fig2_study_area.png", "Damarakunta. (a) Boundary, TGRAC roads and detected footprints by quality class, with the five facilities. (b) Main settlement. Footprints are automatic detections, not a census; no imagery basemap is shown.", 3.4)
+FIGURE("dk_map1_satellite.png", "Damarakunta: village boundary (TGRAC, yellow) and existing TGRAC roads (cyan) over satellite imagery. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).", 3.4)
 H2("Adilabad Urban (urban and peri-urban)")
 P("The second window is the Adilabad Urban mandal, Adilabad district (geoBoundaries ADM3 polygon <<runfola2020geoboundaries>>; centroid 19.682°N, 78.528°E), 17.75 km^{2}, close to Damarakunta in area. Its 10 m grid has 424 × 564 cells, 177,533 of them inside the polygon and 0.62% blocked (water or slope above 25°). About 60% of cells are not WorldCover built-up, so the window holds an urban core and a peri-urban fringe. The boundary is the 2018 release and may differ from current municipal limits.")
 P("All Adilabad layers are open (Table I). Overture release 2026-10-21.0 <<overture2026>> supplies 4,850 road segments, 24,924 building polygons (18,846 from OpenStreetMap and 6,078 from Google Open Buildings v3 <<sirko2021openbuildings>>) and 738 places. Footprints with area ≥ 30 m^{2} and confidence ≥ 0.7 (18,242 polygons) form the penalty layer. Of 107 school, health and government place candidates, 83 fall inside the window and 71 are verified (44 schools, 20 health, 7 government): records with mis-geocoded foreign place names were removed manually and a footprint within 20 m of the point was required. StrongDINOv2Seg was **not** run on Adilabad: the weights' location was not recorded, the Esri imagery is used under non-commercial academic terms and is not redistributed and no open sub-metre imagery was available. The Adilabad building layer is therefore open map data, not model output, and has not been field-verified.")
@@ -181,7 +185,8 @@ TABLE("Input data and licence status",
 
 # =====================================================================  IV. METHODOLOGY
 H1("Methodology")
-P("Fig. 2 summarises the architecture. The two settlements differ in the perception and target stages and share the cost surface, planner and evaluation stages.")
+P("Fig. 3 summarises the architecture. The two settlements differ in the perception and target stages and share the cost surface, planner and evaluation stages.")
+FIGURE("fig_architecture.png", "System architecture. Inputs feed a perception stage (Damarakunta: segmentation and instance extraction; Adilabad: open footprints enter the target stage directly with the road-gap filter), a shared cost surface, a two-stage shared-network planner and an evaluation stage that includes the cross-settlement transfer.", 3.4)
 H2("Semantic segmentation: StrongDINOv2Seg")
 P("StrongDINOv2Seg uses the pre-trained facebook/dinov2-base encoder (DINOv2 ViT-B/14 <<oquab2023dinov2>>), fully fine-tuned. Tokens from transformer blocks 3, 6, 9 and 12 are projected to 256 channels and fused in a feature-pyramid manner <<lin2017fpn>>, passed through an atrous spatial pyramid pooling neck with rates 6, 12 and 18 <<chen2018deeplabv3plus>> and a four-stage residual decoder with auxiliary heads for deep supervision <<lee2015dsn>>. Training on LoveDA <<wang2021loveda>> used 560 px inputs for a scheduled 10 epochs with AdamW, a cosine learning-rate schedule to 10^{-7}, an encoder learning rate of 0.1 times the base rate, and the loss 0.5·CE + 0.4·Dice + 0.1·edge <<milletari2016vnet>> with auxiliary weight 0.4. The epoch-4 checkpoint was evaluated and used.")
 H2("Instance extraction and facility verification")
@@ -191,7 +196,8 @@ P("For Adilabad, Overture footprints replace the segmenter output. Because conne
 H2("Multi-criteria cost surface")
 P("Let *B* be the set of blocked cells (water, invalid cells, slope above 25°) and *P* the set of cells whose centre lies inside a footprint. The graph has the unblocked 10 m cells as nodes and 8-neighbour edges without diagonal corner-cutting. The cell cost is")
 EQ("*c*(*x*) = [ *c*_{lc}(ℓ(*x*)) + *g*(*s*(*x*)) ] · *m*(*x*)", 1)
-P("where *m*(*x*) = μ if *x* ∈ P and 1 otherwise, ℓ is the ESA WorldCover class <<zanaga2021worldcover>> with resistances 8, 5, 3, 6, 2 and 4 for classes 10 (tree cover), 20 (shrubland), 30 (grassland), 40 (cropland), 50 (built-up) and 60 (bare/sparse), g(s) = 4·clip(s, 0, 10)/10 with s the slope in degrees derived from the DEM <<esa2022copdem>>, and μ = 4 is the footprint penalty. Edge weights are the mean end-cell cost times step length. The 25° slope limit is a project rule, not a transcription of Indian Roads Congress standards, and costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20 m disc around the health sub-centre, whose point lies on the edge of its own footprint.", first=0)
+P("where *m*(*x*) = μ if *x* ∈ P and 1 otherwise, ℓ is the ESA WorldCover class <<zanaga2021worldcover>> with resistances 8, 5, 3, 6, 2 and 4 for classes 10 (tree cover), 20 (shrubland), 30 (grassland), 40 (cropland), 50 (built-up) and 60 (bare/sparse), g(s) = 4·clip(s, 0, 10)/10 with s the slope in degrees derived from the DEM <<esa2022copdem>>, and μ = 4 is the footprint penalty. Edge weights are the mean end-cell cost times step length. The 25° slope limit is a project rule, not a transcription of Indian Roads Congress standards, and costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20 m disc around the health sub-centre, whose point lies on the edge of its own footprint. The base cost surface of Damarakunta is shown in Fig. 4.", first=0)
+FIGURE("dk_cost_surface.png", "Damarakunta base cost surface (land cover plus slope, before the footprint penalty; ordinal planning units per 10 m cell, not rupees). White cells are blocked (water or invalid cells); blue lines are existing TGRAC roads.", 3.4)
 H2("Two-stage shared-network planner")
 P("For each target, Stage A computes a least-cost path to the existing road cells with Dijkstra's algorithm <<dijkstra1959note,hart1968astar,collischonn2000lcp>> and obtains alternatives by inflating costs along earlier paths (K = 3 alternatives in total). Stage B greedily selects the (target, alternative) pair with the highest weight per marginal cost")
 EQ("Δ*L*_{cost}(π | *S*) = Σ *w*(*e*),  *e* ∈ π∖*E*_{S}", 2)
@@ -200,9 +206,6 @@ H2("Baselines, scenarios and metrics")
 P("Four baselines are compared: straight lines, independent least-cost routes, a length-only control (distance instead of cost surface) and a roads-only shared reference (routes may share edges only with the existing road network). The saving against independent routing is ρ = (*L*_{ind} − *L*)/*L*_{ind}, with *L* the unique network length (shared edges counted once). Exposure is measured by the number of routes crossing another house's footprint and the route length inside other footprints. The footprint penalty is varied (μ ∈ {1, 4, 20, 100}, with a variant in which footprints are buffered by 7.1 m). For omissions, a target set *M* is removed from the targets and from the penalty layer (a missed detection is absent from both) and the planner re-run; random draws use seeds 1–5. Reported are coverage, unserved households, change in unique length and length per routed target. No monetary cost is computed: the repository holds no rupee-denominated estimates, and the PMGSY scheme <<pmgsy>> is used only as planning context.")
 
 # wide figure: architecture
-one_col()
-FIGURE("fig_architecture.png", "System architecture. Inputs feed a perception stage (Damarakunta: segmentation and instance extraction; Adilabad: open footprints enter the target stage directly with the road-gap filter), a shared cost surface, a two-stage shared-network planner and an evaluation stage that includes the cross-settlement transfer.", 7.1)
-two_col()
 
 # =====================================================================  V. RESULTS
 H1("Experiments and Results")
@@ -221,7 +224,7 @@ TABLE("Detection evaluation (LoveDA validation, %; and proxy agreement)",
       [1.2, 0.4, 0.42, 0.52, 0.45, 0.45], sub_rows=(2,), bold_rows=(3,), size=7.5)
 H2("Damarakunta: shared network and footprint penalty")
 P("Independent least-cost routes for the 163 houses total 10,045.4 m, but because neighbouring houses re-trace the same corridors the unique built length is 6,753.1 m (Table III). The two-stage plan reduces this to 5,069.0 m, a saving of 24.9%; all 163 houses and five facilities are connected. The length-only control has 3.4% more unique length than independent cost-surface routing, and the roads-only shared reference saves 22.6%, so most of the saving comes from sharing and a further 2.3 percentage points from sharing among new routes.")
-P("The penalty trades length for exposure (Fig. 3). With μ = 1 the plan is shortest (4,705.4 m) but 56 routes pass through other houses (660.1 m inside footprints). With μ = 4 it is 7.7% longer while crossings halve to 28 routes and 209.1 m. Buffering footprints by 7.1 m with μ = 20 or 100 lowers crossings to 19 routes at 6,238.1 m and 6,190.3 m.")
+P("The penalty trades length for exposure (Fig. 5). With μ = 1 the plan is shortest (4,705.4 m) but 56 routes pass through other houses (660.1 m inside footprints). With μ = 4 it is 7.7% longer while crossings halve to 28 routes and 209.1 m. Buffering footprints by 7.1 m with μ = 20 or 100 lowers crossings to 19 routes at 6,238.1 m and 6,190.3 m.")
 TABLE("Damarakunta routing, 163 houses (μ = 4 unless stated)",
       ["Strategy", "Total (m)", "Unique (m)", "ρ (%)", "Cross.", "In fp. (m)"],
       [["Straight line (2 infeasible)", "8,092.3", "—", "—", "60", "1,453.2"],
@@ -238,7 +241,7 @@ TABLE("Damarakunta routing, 163 houses (μ = 4 unless stated)",
       [1.2, 0.5, 0.5, 0.4, 0.35, 0.55], sub_rows=(5, 8), size=7.5)
 FIGURE("fig3_routing.png", "Damarakunta routing results for 163 houses. (a) Total and unique corridor length by strategy. (b) Unique network length against route length inside other houses' footprints for μ = 1, μ = 4 and buffered footprints with large penalties.", 3.4)
 H2("Damarakunta: impact of building omissions")
-P("Table IV and Fig. 4 give the omission analysis against the 5,069.0 m baseline. Missing buildings make the plan *shorter*: 10% random omission (16 houses) understates length by 7.6%, 20% by 16.9%, omission of the smallest quarter by 25.1% and omission of all merged blobs by 29.4%. At the same time U households lose access: 16 and 33 for random 10% and 20% omission, 41 for the smallest quarter and 62 (38.0%) for merged blobs. A planner reading only total length would therefore underfund the scheme. Random additions lengthen the plan by 8.6% and 15.8%. The saving ρ stays within 24.9–26.6% across omissions, so the benefit of sharing is robust to inventory error.")
+P("Table IV and Fig. 6 give the omission analysis against the 5,069.0 m baseline. Missing buildings make the plan *shorter*: 10% random omission (16 houses) understates length by 7.6%, 20% by 16.9%, omission of the smallest quarter by 25.1% and omission of all merged blobs by 29.4%. At the same time U households lose access: 16 and 33 for random 10% and 20% omission, 41 for the smallest quarter and 62 (38.0%) for merged blobs. A planner reading only total length would therefore underfund the scheme. Random additions lengthen the plan by 8.6% and 15.8%. The saving ρ stays within 24.9–26.6% across omissions, so the benefit of sharing is robust to inventory error.")
 TABLE("Simulated omissions and additions, Damarakunta (baseline 5,069.0 m, 163 routed)",
       ["Scenario", "Routed", "U", "κ (%)", "L (m)", "δ_{L} (%)", "ρ (%)"],
       [["Baseline", "163", "0", "100.0", "5,069.0", "0.0", "24.9"],
@@ -252,7 +255,7 @@ TABLE("Simulated omissions and additions, Damarakunta (baseline 5,069.0 m, 163 r
       [1.15, 0.45, 0.3, 0.4, 0.5, 0.45, 0.35], size=7.5)
 FIGURE("fig4_omission.png", "Damarakunta omission sensitivity (163 baseline targets; random scenarios are five draws with min–max bars). (a) Change in unique length against households left without a route. (b) Unique length per routed target.", 3.4)
 H2("Transfer to Adilabad Urban")
-P("Of 18,242 penalty-layer footprints, 874 (4.8%) lie more than 30 m from a road and form the targets; their median footprint is 139.6 m^{2} and median distance to the nearest road 42.3 m (Damarakunta: 235.8 m^{2} and 27.7 m). The planner routes 873 of 874. Independent least-cost routes total 56,308.0 m (unique 46,419.2 m); the two-stage plan needs 34,358.8 m, a saving of 26.0% (Table V, Fig. 5). The facility phase connects 71 verified facilities with 1,090.1 m of unique corridor.")
+P("Of 18,242 penalty-layer footprints, 874 (4.8%) lie more than 30 m from a road and form the targets; their median footprint is 139.6 m^{2} and median distance to the nearest road 42.3 m (Damarakunta: 235.8 m^{2} and 27.7 m). The planner routes 873 of 874. Independent least-cost routes total 56,308.0 m (unique 46,419.2 m); the two-stage plan needs 34,358.8 m, a saving of 26.0% (Table V, Figs. 7 and 8). The facility phase connects 71 verified facilities with 1,090.1 m of unique corridor.")
 P("The baselines behave differently from the rural case. The roads-only shared reference saves just 2.9% (22.6% in Damarakunta) and the length-only control 5.7% (−3.4% in Damarakunta). In the dense fabric, targets are scattered among many existing roads, so sharing among *new* routes accounts for almost all the gain, whereas in the dispersed village a trunk-and-branch structure off existing roads already captures most of it. Exposure is much higher: 332 of 873 routes (38%) cross another footprint (2,041.1 m) against 28 of 163 (17%) in Damarakunta.")
 one_col()
 TABLE("Cross-settlement comparison under the same cost surface and solver",
@@ -275,10 +278,11 @@ TABLE("Cross-settlement comparison under the same cost surface and solver",
        ["20% random omission: length change (%) / unserved", "−16.9 / 33 of 163", "−15.0 / 176 of 874"],
        ["Smallest-25% omission: length change (%) / unserved", "−25.1 / 41 of 163", "−21.2 / 220 of 874"]],
       [3.6, 1.7, 1.8], size=8)
-FIGURE("adilabad_map2_network_comparison.png", "Adilabad Urban route comparison for 874 road-gap houses (μ = 4): (a) independent least-cost routes, (b) two-stage shared plan, (c), (d) zoom on the densest road-gap cluster. Planning alternatives, not engineered roads; the basemap shows land cover and footprints only.", 7.1)
+FIGURE("adilabad_map2_ab.png", "Adilabad Urban route comparison for 874 road-gap houses (μ = 4), full window: (a) independent least-cost routes (total 56,308.0 m, unique 46,419.2 m; blue), (b) two-stage shared plan (34,358.8 m; red). Existing roads and footprints grey, road-gap houses orange. Planning alternatives, not engineered roads; the basemap shows land cover and footprints only.", 3.4)
+FIGURE("adilabad_map2_cd.png", "Adilabad Urban, zoom on the densest road-gap cluster (200 m scale bar): (c) independent least-cost routes, (d) two-stage shared plan.", 3.4)
 two_col()
 H2("Adilabad robustness")
-P("*Footprint penalty.* As in Damarakunta, raising μ from 1 to 4 lengthens the unique network by 13.3% and removes 286 crossing routes (618 to 332). Settings μ = 20 and 100 give 37,024.1 m and 37,513.9 m with 271 and 275 routes crossing; buffered footprints give 42,071.9 m and 44,094.6 m with 231 and 221 crossing (Table VI, Fig. 6a). The saving against independent routing stays between 17.8% and 30.8% across all settings.")
+P("*Footprint penalty.* As in Damarakunta, raising μ from 1 to 4 lengthens the unique network by 13.3% and removes 286 crossing routes (618 to 332). Settings μ = 20 and 100 give 37,024.1 m and 37,513.9 m with 271 and 275 routes crossing; buffered footprints give 42,071.9 m and 44,094.6 m with 231 and 221 crossing (Table VI, Fig. 9a). The saving against independent routing stays between 17.8% and 30.8% across all settings.")
 P("*Road-gap threshold.* Defining targets as houses more than 20, 30 or 50 m from a road gives 2,190, 874 and 296 targets and savings of 21.9%, 26.0% and 29.5%. The saving therefore depends on the target definition, which should be reported with any such result.")
 P("*Omissions.* Random omission of 10% and 20% (five seeds) changes unique length by −7.6% (range −8.9 to −6.7) and −15.0% (−16.1 to −13.9), with 88 and 176 households unserved including one baseline failure; single-run smallest-10% and smallest-25% omissions give −7.9% and −21.2% (89 and 220 unserved). As in Damarakunta, missing buildings shorten the plan while stranding households, and the saving stays at 23.8–25.2%. Merged-blob and addition scenarios were not defined for the open footprints.")
 TABLE("Adilabad sensitivity (874 targets unless stated)",
@@ -294,7 +298,7 @@ TABLE("Adilabad sensitivity (874 targets unless stated)",
        ["Road-gap > 50 m (296 targets)", "15,880.9", "29.5", "126", "809.9"]],
       [1.5, 0.6, 0.4, 0.4, 0.55], size=7.5)
 one_col()
-FIGURE("adilabad_fig3_sensitivity.png", "Adilabad sensitivity. (a) Footprint-penalty trade-off between unique network length and route length inside other footprints. (b) Omission sensitivity (random: mean and min–max over five seeds; smallest-q: single run).", 6.2)
+FIGURE("adilabad_sens_col.png", "Adilabad sensitivity. (a) Footprint-penalty trade-off between unique network length and route length inside other footprints. (b) Omission sensitivity (random: mean and min–max over five seeds; smallest-q: single run).", 3.4)
 two_col()
 
 # =====================================================================  VI. DISCUSSION
