@@ -52,4 +52,10 @@ for t in d.tables[1:]:
         if not any(all(v in rt for v in vals) for rt in rows_tex) and not all(v in srcset or v in CONST for v in vals):
             miss += 1; print("ROW NOT TRACEABLE:", [c.text for c in row.cells][:4])
 print(f"{chk} table rows checked, {miss} untraceable")
-sys.exit(1 if bad or miss or r.returncode else 0)
+# ---- run metadata against the committed Adilabad run log
+al = json.loads((SEGD / "run_log_full.json").read_text())
+alltxt = " ".join(paras) + " " + " ".join(c.text for t in d.tables for row in t.rows for c in row.cells)
+need_txt = [f"{al['window'][2]:,} × {al['window'][3]:,} px", f"{al['tiles_run']} tiles of {al['tile']} × {al['tile']} px", f"stride {al['stride']} px, margin {al['margin']} px", al["checkpoint_sha256"]]
+logmiss = [t for t in need_txt if t not in alltxt]
+print("run-log metadata missing from DOCX:", logmiss if logmiss else "none")
+sys.exit(1 if bad or miss or logmiss or r.returncode else 0)

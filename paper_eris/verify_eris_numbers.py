@@ -100,11 +100,16 @@ for _, q in som.iterrows():
     need("seg omit delta", rd(q.delta_len_pct, 1)); need("seg omit unserved", f(q.unserved))
 need("seg omit rho min", rd(som.saving_pct.min(), 1)); need("seg omit rho max", rd(som.saving_pct.max(), 1))
 need("seg omit range", rd(som.delta_min.iloc[0], 1).replace("-", "")); need("seg land take", rd((srs.loc["Independent least-cost routes", "unique_len_m"] - t2.unique_len_m) * 5 / 10000, 1)); need("seg saved m", f(srs.loc["Independent least-cost routes", "unique_len_m"] - t2.unique_len_m))
-# ---- RECORDED run metadata (from the local run_log_full.json of the Adilabad run, supplied by the author; that log is not in the repository)
-for lbl, tok in (("mosaic width", "7{,}248"), ("mosaic height", "9{,}590"), ("tiles", "391 tiles"), ("tile size", "$560\\times560$"), ("sha256 first", "2e7c4646dc77ceb2"), ("sha256 last", "c31e194e5ec00cf3")):
-    need("RECORDED " + lbl, tok)
+# ---- Adilabad run metadata, read from the committed run log (01_ADILABAD_SEGMENTATION/run_log_full.json)
+al = json.loads((SEG / "run_log_full.json").read_text())
+assert (al["tile"], al["stride"], al["margin"]) == (560, 420, 70), "tiling differs from the Damarakunta run"
+W, Hh = al["window"][2], al["window"][3]
+need("log mosaic width", f(W)); need("log mosaic height", f(Hh)); need("log tiles", f(al["tiles_run"]) + " tiles")
+need("log checkpoint sha256", "\\allowbreak ".join(al["checkpoint_sha256"][i:i + 16] for i in range(0, 64, 16)))
+assert round(100 * al["checkpoint_info"]["mIoU"], 1) == 53.8 and round(100 * al["checkpoint_info"]["mDice"], 1) == 68.9 and al["checkpoint_info"]["epoch"] == 4
+need("log checkpoint mIoU", rd(100 * al["checkpoint_info"]["mIoU"], 1) + "\\%"); need("log checkpoint Dice", rd(100 * al["checkpoint_info"]["mDice"], 1) + "\\%")
 dkp = REPO / "Siddipet/Damarakunta/predictions/tiled_v1/run_log_full.json"
 if dkp.exists():
     dk = json.loads(dkp.read_text())
-    need("Damarakunta tiles (run log)", f"{dk['tiles_run']} tiles"); assert (dk["tile"], dk["stride"], dk["margin"]) == (560, 420, 70)
+    need("Damarakunta tiles (run log)", f"{dk['tiles_run']} tiles"); assert (dk["tile"], dk["stride"], dk["margin"]) == (560, 420, 70) and dk["checkpoint"] == al["checkpoint"]
 print(f"{n} checks, {fails} failures"); sys.exit(1 if fails or r.returncode else 0)
