@@ -187,8 +187,8 @@ def plot_fac(ax, f, size, edge="w"):
             ax.scatter(g.geometry.x, g.geometry.y, marker=FMARK[k], s=size, c=c, edgecolors=edge, linewidths=0.6, zorder=20)
 
 
-def footer(fig, text):
-    fig.text(0.5, 0.012, text + (" " + CREDIT if True else ""), ha="center", va="bottom", fontsize=6.2, wrap=True)
+def footer(fig, text, credit=True):
+    fig.text(0.5, 0.012, text + (" " + CREDIT if credit else ""), ha="center", va="bottom", fontsize=6.2, wrap=True)
 
 
 NOTE = ("Footprints are automatic StrongDINOv2Seg detections (unvalidated; merged roofs are flagged Unresolved merge), not a census. Planning alternatives, not engineered roads. "
@@ -265,15 +265,16 @@ def map3(ctx):
         ctx.roads.plot(ax=ax, color="#1f77b4", lw=0.35)
         ax.set_xlim(lim[0], lim[1]); ax.set_ylim(lim[2], lim[3]); ax.set_title(title, fontsize=9)
         decor(ax, (lim[0], lim[2], lim[1], lim[3]), 1000); ax.tick_params(labelsize=6)
-        if "slope" in title:
+        ax.ticklabel_format(style="plain")
+        if title.startswith("Slope"):
             plt.colorbar(im, ax=ax, fraction=0.04, label="slope (degrees)")
-        if "Cost" in title:
+        if title.startswith("Cost"):
             plt.colorbar(im, ax=ax, fraction=0.04, label="ordinal cost per 10 m (land cover + slope)")
         if "Land" in title:
             ax.legend(handles=[Patch(fc=WC[c][0], label=WC[c][1]) for c in codes], loc="lower right", fontsize=6)
     fig.suptitle("Map 3. Terrain, land-cover and constraint rasters used to build the cost surface", fontsize=11)
     footer(fig, "Blue lines: existing roads. Cost = land-cover base cost + slope surcharge (0 to 4 for slopes 0 to 10°); cells steeper than 25° are blocked. Land cover: ESA WorldCover v200 (CC BY 4.0); "
-                "terrain: Copernicus GLO-30. Planning alternatives, not verified roads. EPSG:32644 (UTM 44N).")
+                "terrain: Copernicus GLO-30. Planning alternatives, not verified roads. EPSG:32644 (UTM 44N).", credit=False)
     fig.subplots_adjust(0.05, 0.06, 0.97, 0.94, 0.12, 0.14)
     save(fig, ctx, "map3_terrain_cost_landcover_slope")
 

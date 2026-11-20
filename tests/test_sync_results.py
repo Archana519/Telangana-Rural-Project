@@ -19,7 +19,7 @@ def test_sync_copies_all_deliverables_and_dry_run_writes_nothing(tmp_path):
 def test_sync_includes_figures_and_optional_docx_at_root(tmp_path):
     m.sync(tmp_path, log=lambda *_: None, docx_at_root=True)
     root = tmp_path / "contribution3"
-    for f in ("fig_architecture.png", "fig3_routing.png", "adilabad_map2_network_comparison.png"):
+    for f in ("fig_architecture.png", "fig3_routing.png", "adilabad_map1.jpg"):
         assert (root / "manuscript" / "figures" / f).stat().st_size > 0
     assert (root / "manuscript.docx").stat().st_size > 0
     tmp2 = tmp_path / "second"

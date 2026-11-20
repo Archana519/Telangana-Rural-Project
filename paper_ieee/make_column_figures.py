@@ -56,6 +56,16 @@ if (SEG / "penalty_sensitivity.csv").exists():
     pair(a1, right, "(a)", "(b)", "adilabad_sat_overview.jpg")
     pair(g("sat_map2_independent_window.png"), g("sat_map2_two_stage_window.png"), "(a)", "(b)", "adilabad_sat_routes_window.jpg")
     pair(g("sat_map2_independent_zoom.png"), g("sat_map2_two_stage_zoom.png"), "(c)", "(d)", "adilabad_sat_routes_zoom.jpg")
+# ERIS: the real five-map series (JPEG copies; map 3 without its stray colour bar and its footer, which wrongly carried the imagery credit in the first run)
+MAPS = SEG / "final_maps_1_to_5"
+if (MAPS / "map1_imagery_boundary_roads.png").exists():
+    from PIL import ImageDraw
+    E = REPO / "paper_eris/figures"
+    for src_, dst_, w_ in (("map1_imagery_boundary_roads", "adilabad_map1.jpg", 1639), ("map2_footprints_facilities_latlon", "adilabad_map2.jpg", 2600), ("map5_village_detail_shared_paths", "adilabad_map5.jpg", 2600)):
+        im_ = Image.open(MAPS / f"{src_}.png").convert("RGB"); im_.resize((w_, int(im_.height * w_ / im_.width)), Image.LANCZOS).save(E / dst_, quality=88)
+    m3_ = Image.open(MAPS / "map3_terrain_cost_landcover_slope.png").convert("RGB"); W_, H_ = m3_.size
+    ImageDraw.Draw(m3_).rectangle([int(0.935 * W_), int(0.52 * H_), W_, int(0.94 * H_)], fill="white")
+    m3_.crop((0, 0, W_, int(0.962 * H_))).save(E / "adilabad_map3.jpg", quality=88)
 _cf = SEG / "final_maps_1_to_5" / "adilabad_fac_route_2panel.png"
 if _cf.exists():
     import shutil

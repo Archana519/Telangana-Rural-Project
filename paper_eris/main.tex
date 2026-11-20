@@ -88,7 +88,21 @@ Damarakunta is a rural revenue village in Markook mandal, Siddipet district, Tel
 \subsection{Adilabad Urban (urban and peri-urban)}\label{sec:adilabad_data}
 The second window is the Adilabad Urban mandal, Adilabad district (geoBoundaries ADM3 polygon; centroid $19.682^{\circ}$N, $78.528^{\circ}$E), 17.75~km$^2$, close to Damarakunta in area. The 10~m grid has 424 $\times$ 564 cells, 177{,}533 of them inside the polygon, 0.62\% blocked (water or slope $>25^{\circ}$). About 60\% of cells are not WorldCover built-up, so the window holds an urban core and a peri-urban fringe. The boundary layer is the 2018 release and may differ from current municipal limits.
 
-Two sets of building footprints are used. (i)~\emph{Segmentation footprints (primary, end to end).} A 0.6~m Esri World Imagery mosaic of the window (7{,}248 $\times$ 9{,}590~px, EPSG:32644) was exported with the Damarakunta recipe (1{,}800~m tiles). \dinoseg{} was applied to 391 tiles of $560\times560$~px (stride 420~px, margin 70~px, the Damarakunta tiling; Damarakunta: 459 tiles) and the same instance extraction. This yields 2{,}769 instances, of which 2{,}690 have an area of at least 30~m$^2$ and form the penalty layer; their quality classes are \textsc{Plausible} (1{,}033), \textsc{Review} (77) and \textsc{Unresolved\_Merge} (1{,}580), the last with a median area of 1{,}125.5~m$^2$ (\textsc{Plausible}: 207.4~m$^2$). Of 83 Overture place candidates inside the window, 68 are verified with the Damarakunta rule (a detected footprint within 20~m): 44 schools, 20 health and 4 government. (ii)~\emph{Open footprints (independent check).} Overture release 2026-10-21.0 \cite{overture2026} supplies 4{,}850 road segments, 24{,}924 building polygons (18{,}846 from OpenStreetMap, 6{,}078 from Google Open Buildings v3 \cite{sirko2021openbuildings}) and 738 places; footprints with area $\ge 30$~m$^2$ and confidence $\ge 0.7$ (18{,}242 polygons) form the penalty layer, and 71 of the 83 facility candidates are verified (44 schools, 20 health, 7 government) after manual removal of mis-geocoded records. Roads are Overture/OSM segments in both variants (table~\ref{tab:data}). Neither footprint set has been field-verified.
+Two sets of building footprints are used. (i)~\emph{Segmentation footprints (primary, end to end).} A 0.6~m Esri World Imagery mosaic of the window (7{,}248 $\times$ 9{,}590~px, EPSG:32644) was exported with the Damarakunta recipe (1{,}800~m tiles). \dinoseg{} was applied to 391 tiles of $560\times560$~px (stride 420~px, margin 70~px, the Damarakunta tiling; Damarakunta: 459 tiles) and the same instance extraction. This yields 2{,}769 instances, of which 2{,}690 have an area of at least 30~m$^2$ and form the penalty layer; their quality classes are \textsc{Plausible} (1{,}033), \textsc{Review} (77) and \textsc{Unresolved\_Merge} (1{,}580), the last with a median area of 1{,}125.5~m$^2$ (\textsc{Plausible}: 207.4~m$^2$). Of 83 Overture place candidates inside the window, 68 are verified with the Damarakunta rule (a detected footprint within 20~m): 44 schools, 20 health and 4 government. (ii)~\emph{Open footprints (independent check).} Overture release 2026-10-21.0 \cite{overture2026} supplies 4{,}850 road segments, 24{,}924 building polygons (18{,}846 from OpenStreetMap, 6{,}078 from Google Open Buildings v3 \cite{sirko2021openbuildings}) and 738 places; footprints with area $\ge 30$~m$^2$ and confidence $\ge 0.7$ (18{,}242 polygons) form the penalty layer, and 71 of the 83 facility candidates are verified (44 schools, 20 health, 7 government) after manual removal of mis-geocoded records. Roads are Overture/OSM segments in both variants (table~\ref{tab:data}). Neither footprint set has been field-verified. Figure~\ref{fig:adilmap1} shows the study window and figure~\ref{fig:adilmap2} the detected built-up units and the verified facilities.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/adilabad_map1.jpg}
+\caption{Adilabad Urban: study boundary (yellow, geoBoundaries ADM3, 17.75~km$^2$) and existing Overture/OSM roads (cyan) on Esri satellite imagery. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
+\label{fig:adilmap1}
+\end{figure}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/adilabad_map2.jpg}
+\caption{Adilabad Urban: detected built-up units outlined by extraction class and the 68 verified public facilities (schools, health, government) on Esri imagery; left, whole window with the zoom box; right, central urban zone with boxed callouts giving latitude and longitude for facilities with a unique coordinate. The legend counts are the extraction classes before the 30~m$^2$ size rule is applied, so Plausible and Review exceed the counts in Section~\ref{sec:adilabad_data}. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
+\label{fig:adilmap2}
+\end{figure*}
 
 \begin{table}[t]
 \caption{Input data and licence status. ``Not re-verified'' marks Overture licences taken from the provider documentation, which could not be opened from the execution environment.}
@@ -131,7 +145,14 @@ Let $\mathcal{B}$ be blocked cells (water, invalid cells, slope $>25^{\circ}$) a
 c(x)=\bigl[c_{\mathrm{lc}}(\ell(x))+g(s(x))\bigr]\,m(x),\qquad m(x)=\begin{cases}\mu & x\in\mathcal{P}\\ 1 & \text{otherwise,}\end{cases}
 \label{eq:cell}
 \end{equation}
-where $\ell$ is the WorldCover class with resistance $c_{\mathrm{lc}}=8,5,3,6,2,4$ for trees, shrubland, grassland, cropland, built-up and bare/sparse land respectively (classes 10--60 in the order 10, 20, 30, 40, 50, 60), $g(s)=4\,\mathrm{clip}(s,0,10)/10$ with $s$ the slope in degrees, and $\mu=4$ is the footprint penalty. Edge weights are the mean end-cell cost times step length. Costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20~m disc around the health sub-centre, whose point lies on the edge of its own footprint.
+where $\ell$ is the WorldCover class with resistance $c_{\mathrm{lc}}=8,5,3,6,2,4$ for trees, shrubland, grassland, cropland, built-up and bare/sparse land respectively (classes 10--60 in the order 10, 20, 30, 40, 50, 60), $g(s)=4\,\mathrm{clip}(s,0,10)/10$ with $s$ the slope in degrees, and $\mu=4$ is the footprint penalty. Edge weights are the mean end-cell cost times step length. Costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20~m disc around the health sub-centre,  Figure~\ref{fig:adilcost} shows the land-cover, slope, cost and blocked-cell rasters of the Adilabad window.whose point lies on the edge of its own footprint.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/adilabad_map3.jpg}
+\caption{Adilabad Urban rasters used to build the cost surface: ESA WorldCover v200 land cover, slope from the 30~m Copernicus GLO-30 DEM, composite cost surface C0 (ordinal planning units per 10~m cell, not currency) and blocked cells (water, invalid cells, slope above $25^{\circ}$). Existing roads in blue; axes are UTM 44N metres.}
+\label{fig:adilcost}
+\end{figure}
 
 \subsection{Shared-network planner}
 For each target, Stage~A computes a least-cost path to the existing road cells with Dijkstra's algorithm \cite{dijkstra1959note,hart1968astar,collischonn2000lcp} and alternatives by inflating costs along earlier paths ($K=3$ alternatives in total). Stage~B greedily selects the (target, alternative) pair with the highest weight per marginal cost
@@ -244,13 +265,20 @@ Add 20\% (random) & 190.6 & --- & --- & 5{,}868.3 & $+15.8$ & 30.8 & 25.4\\
 
 \section{Results: transfer to Adilabad Urban}\label{sec:adilabad}
 \subsection{Road-gap targets and routing}
-\emph{End-to-end run (\dinoseg{} footprints).} Of the 2{,}690 footprints of at least 30~m$^2$, 345 lie more than 30~m from a road and form the targets (Damarakunta: 163). The planner routes all 345. Independent least-cost routes total 23{,}312.5~m (unique 21{,}440.8~m); the two-stage plan needs 18{,}288.7~m, a saving of 14.7\% (table~\ref{tab:adilabad}, figures~\ref{fig:adilsat}--\ref{fig:adilzoom}). The roads-only shared reference saves 2.3\% and the length-only control 6.9\%, so almost all of the saving comes from sharing among new routes. Exposure: 54 of 345 routes (15.7\%) cross another footprint (398.0~m), against 28 of 163 (17\%) in Damarakunta.
+\emph{End-to-end run (\dinoseg{} footprints).} Of the 2{,}690 footprints of at least 30~m$^2$, 345 lie more than 30~m from a road and form the targets (Damarakunta: 163). The planner routes all 345. Independent least-cost routes total 23{,}312.5~m (unique 21{,}440.8~m); the two-stage plan needs 18{,}288.7~m, a saving of 14.7\% (table~\ref{tab:adilabad}, figure~\ref{fig:adilmap5}). The roads-only shared reference saves 2.3\% and the length-only control 6.9\%, so almost all of the saving comes from sharing among new routes. Exposure: 54 of 345 routes (15.7\%) cross another footprint (398.0~m), against 28 of 163 (17\%) in Damarakunta.
 
 These numbers must be read with the extraction quality in mind. More than half of the instances (1{,}580 of 2{,}769) are \textsc{Unresolved\_Merge} blobs with a median area of 1{,}125.5~m$^2$: in the dense fabric the segmenter merges neighbouring roofs, so the 345 targets are built-up units rather than houses, and the footprint penalty acts on merged blocks. No reference mask exists for Adilabad, so detection accuracy there is not known.
 
 \emph{Open-footprint check.} With 874 road-gap targets (873 routed) among 18{,}242 Overture footprints (median footprint 139.6~m$^2$, median distance to the nearest road 42.3~m), independent routes total 56{,}308.0~m (unique 46{,}419.2~m) and the two-stage plan 34{,}358.8~m, a saving of 26.0\%; the roads-only reference saves 2.9\% and the length-only control 5.7\%; 332 of 873 routes (38\%) cross another footprint (2{,}041.1~m). The facility phase connects 71 verified facilities with 1{,}090.1~m of unique corridor.
 
 Both Adilabad variants agree that sharing helps (14.7\% and 26.0\%) and that a roads-only reference does not (2.3\% and 2.9\%, against 22.6\% in Damarakunta), but they differ in the size of the saving. This is consistent with fewer, more widely spaced targets (345 against 874) offering less opportunity to share, an explanation that was not tested. The comparison is between two footprint sources, not a validation of either.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/adilabad_map5.jpg}
+\caption{Adilabad Urban, central urban zone: (a)~primary shared network (footprint penalty $\mu=4$ on footprint cells), in which 54 of the 345 house routes cross another footprint, and (b)~building-avoiding shared network (footprints buffered by 7.1~m, $\mu=100$), in which 7 of 345 do. House routes in blue, facility routes in red, route segments crossing another footprint in magenta, verified facilities as markers (callouts give latitude and longitude). Planning alternatives, not engineered roads. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
+\label{fig:adilmap5}
+\end{figure*}
 
 \begin{table}[t]
 \caption{Cross-settlement comparison under the same cost surface and solver. ``Seg.'' = \dinoseg{} footprints on Esri imagery; ``open'' = Overture footprints. Targets are defined by different rules (all candidates in Damarakunta, road-gap houses in Adilabad).}
@@ -280,22 +308,6 @@ Smallest-25\% omission: change (\%) / unserved & $-25.1$ / 41 & $-21.2$ / 87 & $
 \bottomrule
 \end{tabular}
 \end{table}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.62\textwidth]{figures/adilabad_sat_overview.jpg}
-\caption{Adilabad Urban on Esri satellite imagery: (a)~study window with the polygon boundary (yellow), existing roads (cyan), \dinoseg{} instances outlined by quality class (green \textsc{Plausible}, amber \textsc{Review}, red \textsc{Unresolved\_Merge}), road-gap targets (orange) and verified facilities (stars); (b)~zoom on the densest road-gap cluster. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
-\label{fig:adilsat}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.62\textwidth]{figures/adilabad_sat_routes_window.jpg}\\[4pt]
-\includegraphics[width=0.62\textwidth]{figures/adilabad_sat_routes_zoom.jpg}
-\caption{Adilabad Urban route comparison for the 345 road-gap targets ($\mu=4$) on Esri imagery. (a)~Independent least-cost routes (blue) and (b)~two-stage shared plan (red), full window; (c), (d)~the same two plans in the densest road-gap cluster (200~m scale bar). Planning alternatives, not engineered roads. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
-\label{fig:adilzoom}
-\end{figure}
-
 \subsection{Robustness}
 \emph{Footprint penalty.} Raising $\mu$ from 1 to 4 lengthens the unique network by 9.2\% and removes 84 crossing routes (138 to 54); $\mu=20$ and 100 give 19{,}777.0~m and 19{,}924.5~m with 49 and 48 routes crossing, and buffered footprints give 22{,}757.0~m and 23{,}475.5~m with 7 crossing each (table~\ref{tab:sens}, figure~\ref{fig:adilsens}a). The saving against independent routing stays between 10.1\% and 17.7\% across all settings (open footprints: 17.8\% to 30.8\%, table~\ref{tab:sens_open}).
 
