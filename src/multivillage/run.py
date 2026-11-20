@@ -32,8 +32,8 @@ FOLDERS = {"adilabad_urban": "01_ADILABAD"}
 CTX: dict = {}                              # shared with forked workers
 
 
-def out_dir(cfg) -> Path:
-    d = OUT_ROOT / FOLDERS[cfg["village"]["id"]]
+def out_dir(cfg, variant: str | None = None) -> Path:
+    d = OUT_ROOT / (FOLDERS[cfg["village"]["id"]] + (f"_{variant.upper()}" if variant else ""))
     (d / "figures").mkdir(parents=True, exist_ok=True)
     return d
 
@@ -74,6 +74,10 @@ def _plan_metrics(world, targets, p, houses_all):
     ind = PL.metrics("independent", list(res["indep"].values()), tmap, len(targets), houses_all)
     rho = 100 * (ind["unique_len_m"] - two["unique_len_m"]) / ind["unique_len_m"] if ind["unique_len_m"] else float("nan")
     return res, two, ind, rho
+
+
+def _init_worker(ctx):
+    CTX.update(ctx)
 
 
 def job(spec: dict) -> dict:
@@ -164,12 +168,25 @@ def main(argv=None):
     ap.add_argument("--village", required=True)
     ap.add_argument("--steps", nargs="+", default=["acquire", "prepare", "extract", "route", "report"])
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--variant", default=None, choices=[None, "segmentation"], help="segmentation = footprints from StrongDINOv2Seg (needs --footprints); outputs go to <folder>_SEGMENTATION")
+    ap.add_argument("--footprints", default=None, help="buildings_v8_*.gpkg written by scripts/extract_buildings_v8.py (layer 'buildings')")
+    ap.add_argument("--mosaic", default=None, help="Esri 0.6 m mosaic GeoTIFF for the satellite overlay figures (report step, segmentation variant)")
+    ap.add_argument("--limit-targets", type=int, default=None, help="DEBUG ONLY: keep the first N road-gap targets (code-path tests; never use for results)")
+    ap.add_argument("--quick", action="store_true", help="route step: run only the main strategy comparison (skips the penalty / omission / target-definition sweeps)")
     a = ap.parse_args(argv)
     cfg = A.load_cfg(a.village)
     v = cfg["village"]
-    ddir, odir = A.data_dir(cfg), out_dir(cfg)
-    state = ddir / "state.pkl"
-    S = pickle.load(open(state, "rb")) if state.exists() else {}
+    if a.variant == "segmentation" and not a.footprints and any(x in a.steps for x in ("extract",)):
+        ap.error("--variant segmentation needs --footprints")
+    ddir, odir = A.data_dir(cfg), out_dir(cfg, a.variant)
+    base_state = ddir / "state.pkl"
+    state = ddir / (f"state_{a.variant}.pkl" if a.variant else "state.pkl")
+    if a.variant and not state.exists():
+        if not base_state.exists():
+            ap.error("run the open-data acquire/prepare/extract steps first (state.pkl missing)")
+        S = pickle.load(open(base_state, "rb"))           # boundary, roads, places, layers: identical to the open-data run
+    else:
+        S = pickle.load(open(state, "rb")) if state.exists() else {}
     if "acquire" in a.steps:
         cell, rec = A.boundary(cfg)
         L = A.fetch_layers(cfg, cell)
@@ -185,9 +202,15 @@ def main(argv=None):
         S.update(prep_meta=dict(shape=prep["shape"], bounds=prep["bounds"], transform=tuple(prep["transform"]), sources=prep["sources"],
                                 inside_cells=int(inside.sum()), blocked_inside=float(np.isnan(cost[inside]).mean())))
     if "extract" in a.steps:
-        b = classify(L["buildings"], v)
+        if a.variant == "segmentation":
+            from src.multivillage import segmentation_variant as SV
+            b = SV.load_footprints(a.footprints, cell, v)
+        else:
+            b = classify(L["buildings"], v)
         roads_u = L["roads"].geometry.intersection(cell).union_all()
         houses_all, gap = split_targets(b, roads_u, v["min_dist_to_road_m"])
+        if a.limit_targets:
+            gap = gap.iloc[: a.limit_targets].copy()
         excl = pd.read_csv(REPO / f"configs/multivillage/villages/{v['id']}_facility_exclusions.csv")
         fac_all = FAC.candidates(L["places_4km"], cell, b, excl)
         fac = fac_all[fac_all.status == "VERIFIED_USED"].reset_index(drop=True)
@@ -197,15 +220,21 @@ def main(argv=None):
         pickle.dump(S, open(state, "wb"))
         print(f"houses {len(houses_all)}, gap houses (> {v['min_dist_to_road_m']} m from road) {len(gap)}, verified facilities {len(fac)}/{int(fac_all.inside_window.sum())} candidates in window")
     if "route" in a.steps:
+        if a.variant == "segmentation" and not (S["classified"].dataset == "StrongDINOv2Seg").all():
+            raise SystemExit("segmentation variant: targets are not from StrongDINOv2Seg footprints - run the 'extract' step with --footprints first")
         S["prep_arrays"] = dict()
         houses_all, gap, fac = S["houses_all"], S["gap"], S["fac"]
         CTX.update(cost=cost, transform=prep["transform"], shape=prep["shape"], roads=[g.intersection(cell) for g in L["roads"].geometry], houses_all=houses_all, gap=gap,
                    houses=houses_all, fac=fac.rename(columns={"name": "name"})[["fid", "name", "facility_type", "geometry"]], p=PL.planner_params(cfg), mu=cfg["planner"]["building_mult"])
-        jobs = make_jobs(cfg, gap)
+        jobs = make_jobs(cfg, gap) if not a.quick else [dict(kind="main")]
         print(len(jobs), "jobs on", a.workers, "workers", flush=True)
         t0 = time.time()
         results = []
-        with mp.get_context("fork").Pool(a.workers) as pool:
+        if "fork" in mp.get_all_start_methods():
+            pool = mp.get_context("fork").Pool(a.workers)                       # workers inherit CTX
+        else:                                                                   # Windows: no fork -> pass CTX through an initializer
+            pool = mp.get_context("spawn").Pool(a.workers, initializer=_init_worker, initargs=(CTX,))
+        with pool:
             for r in pool.imap_unordered(job, jobs):
                 results.append(r)
                 print(f"  done {r['spec'].get('label') or r['spec'].get('mode') or r['spec']['kind']} {r['spec'].get('mu', '')} ({len(results)}/{len(jobs)}, {round(time.time() - t0)} s)", flush=True)
@@ -213,6 +242,15 @@ def main(argv=None):
                 pickle.dump(S, open(state, "wb"))
         S["runtime_s"] = round(time.time() - t0, 1)
         pickle.dump(S, open(state, "wb"))
+    if "report" in a.steps and a.variant == "segmentation":
+        from src.multivillage import segmentation_variant as SV
+        res = S["results"]
+        summ = SV.write_tables(S, res, odir, cfg, a.quick)
+        print("segmentation-variant tables written to", odir, "|", {k: summ[k] for k in ("gap_targets", "unique_len_two_stage_m", "saving_vs_independent_pct")})
+        if a.mosaic:
+            main_out = next(r for r in res if r["spec"]["kind"] == "main")["out"]
+            for p in SV.satellite_overlays(S, main_out, Path(a.mosaic), odir):
+                print("  figure", p)
     print("steps done:", a.steps)
 
 
