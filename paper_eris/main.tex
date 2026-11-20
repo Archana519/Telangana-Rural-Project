@@ -1,0 +1,355 @@
+% =============================================================================================================
+% Environmental Research: Infrastructure and Sustainability (ERIS, IOP Publishing) -- full research article
+% Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Double-anonymous build (author, affiliations, acknowledgements, repository URL removed):
+%   pdflatex "\def\ANON{1}\input{main}"      (then bibtex / pdflatex as above)
+% The IOP class (iopjournal / iopart) is not installed in this build environment, so the manuscript uses a plain
+% `article` layout with the same logical front matter. At submission, paste the sections into the IOP journal
+% template (Overleaf: "IOP journal article template", option [anonymous] for double-anonymous review).
+% Every number in Sections 3-5 is checked by paper_eris/verify_eris_numbers.py against
+% DELIVERABLES_DAMARAKUNTA_STAGE_B/ and DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD/.
+% =============================================================================================================
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}\onehalfspacing
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{3em}
+\newif\ifanon
+\ifdefined\ANON\anontrue\fi
+\newcommand{\dinoseg}{StrongDINOv2Seg}
+\newcommand{\Lcost}{L_{\mathrm{cost}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Smart village infrastructure planning and road network optimization for rural Telangana\par}
+\vspace{0.8em}
+\ifanon
+{\large [Authors withheld for double-anonymous review]\par}
+\else
+{\large Pendyala Archana\textsuperscript{1} and Kolikipogu Ramakrishna\textsuperscript{2}\par}
+\vspace{0.4em}
+{\small \textsuperscript{1}~Department of Information Technology, Chaitanya Bharathi Institute of Technology (CBIT), Hyderabad, Telangana, India\\
+\textsuperscript{2}~Professor, Department of Information Technology, CBIT, Hyderabad, Telangana, India\par}
+\vspace{0.3em}
+{\small Corresponding author: [CORRESPONDING AUTHOR E-MAIL]\par}
+\fi
+\end{center}
+
+\begin{abstract}
+\noindent Extending all-weather road access to dispersed rural hamlets is a major source of new linear infrastructure, yet planning still depends on manually digitised building inventories, and each house is often treated as a separate connection problem. We present an end-to-end, open-source pipeline that turns satellite imagery and open geospatial layers into a shared access-road network: a fine-tuned DINOv2 segmenter (StrongDINOv2Seg; 53.8\% mIoU on the LoveDA validation split), distance-transform instance extraction, a 10~m multi-criteria cost surface with a soft building-footprint penalty, and a two-stage planner that selects least-cost route alternatives by marginal cost so that shared corridors are built once. In the rural village of Damarakunta (Telangana) the plan connects 163 houses and five facilities with 5{,}069~m of unique new corridor, 24.9\% less than independent least-cost routes (6{,}753~m). Re-run with open footprints, roads and facility points on the Adilabad Urban mandal (urban and peri-urban, 17.75~km$^2$), the same cost surface and solver connect 873 of 874 road-gap houses with 34{,}359~m, 26.0\% less than independent routing, whereas a roads-only shared reference saves only 2.9\% there against 22.6\% in Damarakunta. Footprint penalties trade corridor length for fewer routes through other dwellings, and simulated building omissions shorten the plan while dropping households, so network length alone is a misleading indicator of inventory quality. The results are planning alternatives under ordinal costs, not engineered alignments.
+\end{abstract}
+
+\noindent\textit{Keywords}: rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana
+
+\section{Introduction}
+Road building is among the most consequential land-use changes of the coming decades. Global road length is projected to grow by roughly 3.0--4.7 million km by 2050 \cite{meijer2018global}, and new roads open land to clearing, fragmentation and conversion \cite{laurance2014global}. Much of this growth is local. In India the Pradhan Mantri Gram Sadak Yojana (PMGSY) connects habitations through all-weather rural roads \cite{pmgsy}, and planning for such schemes depends on knowing where dwellings and facilities are, what terrain and land cover a corridor must cross, and which connection rule is applied.
+
+Computational support for this planning has matured along three separate lines. Remote sensing now maps buildings and roads at large scale, from continental building inventories \cite{sirko2021openbuildings} to foundation-model segmenters \cite{oquab2023dinov2}, with recent work addressing small and isolated rural buildings, uncertainty, and domain shift \cite{r62,r63,r64,r65,r66,r67,r68,r69,r70}. Multi-criteria and least-cost analysis translates terrain and land cover into route costs \cite{r06,r53,r54,collischonn2000lcp}. Network-design formulations connect many demand points at low total cost, including Steiner-tree heuristics \cite{kou1981steiner,mehlhorn1988steiner,hwang1992steiner,r51}, rural road design models \cite{r41,r42,r43,r44} and recent analogues for power and transport networks \cite{r45,r46,r47,r50}. These lines are rarely joined: detectors are judged by pixel overlap \cite{r01}, planners assume an error-free inventory, and each house is often connected independently, so neighbouring houses re-trace the same corridor.
+
+We join them in a single reproducible pipeline and test it at two settlement densities. Our contributions are:
+\begin{enumerate}
+\item \textbf{End-to-end pipeline.} A pipeline from satellite imagery to a shared access network: StrongDINOv2Seg segmentation, OpenCV/NumPy distance-transform instance extraction with an explicit merge flag, a multi-criteria cost surface with a footprint penalty, and a two-stage shared-network planner (Section~\ref{sec:methods}).
+\item \textbf{Error propagation.} Controlled omission and addition scenarios that propagate building-inventory errors through the planner, measuring their effect on unique length, coverage and exposure of dwellings (Sections~\ref{sec:damar}--\ref{sec:adilabad}).
+\item \textbf{Multi-settlement spatial transferability and open-data scalability.} The rural Damarakunta workflow is re-applied, with the same cost-surface definition and the same solver, to a semi-open setting, the Adilabad Urban mandal (urban and peri-urban), using open Overture Maps footprints, roads and facilities and a road-gap rule for selecting targets. Robustness is examined across footprint-penalty settings, road-gap thresholds and synthetic omissions (Section~\ref{sec:adilabad}).
+\end{enumerate}
+Two scope limits apply. Only these two settlements were evaluated; a semi-urban and a second rural window are planned but not yet run, so we make no claim about a full rural--semi-urban--urban gradient. And in the Adilabad run the footprints are open map data rather than StrongDINOv2Seg output (Section~\ref{sec:adilabad_data}), so the transfer tested is that of the planning stages, not of the segmenter.
+
+\section{Related work}
+\textbf{Building extraction.} Reviews of building extraction from remote sensing \cite{r01} document the shift from fully convolutional networks \cite{ji2019whu} to transformer and foundation-model encoders. Recent studies target isolated small buildings \cite{r63}, weak supervision \cite{r62}, uncertainty-guided refinement \cite{r64,r65}, and domain generalisation or adaptation across imagery sources \cite{r02,r66,r67,r68,r69,r70}. Road extraction has followed the same path, with width-adaptive, topology-preserving and foundation-model-based networks for rural and arid scenes \cite{r56,r57,r58,r59,r60}, and topological analysis has been used to detect informal settlements worldwide \cite{r48}. Evaluation is overwhelmingly through overlap scores on benchmark data \cite{foody2002status}; the effect of detection errors on downstream infrastructure decisions is rarely quantified, although error propagation in GIS models is long established \cite{heuvelink1998error}.
+
+\textbf{Route and network planning.} Multi-criteria GIS analysis \cite{r06} and least-cost path methods \cite{collischonn2000lcp,r53,r54} underlie corridor selection for roads, with dedicated treatments of slope \cite{r54}, route alternatives \cite{r53} and travel-time uncertainty \cite{r61}, and GIS route reconstruction has been applied to historical transport routes \cite{r55}. Rural road design has been addressed with improved network-design models \cite{r41}, ant-colony optimisation \cite{r42}, algorithmic planning under constrained capacities in India \cite{r43} and facility-based methodology \cite{r44}. Steiner-tree formulations \cite{hwang1992steiner} and their shortest-path-based heuristics \cite{kou1981steiner,mehlhorn1988steiner} connect many terminals at low total length and are applied to sub-network identification \cite{r51}, multi-terminal routing \cite{r52}, cable routing \cite{r45}, minimum spanning trees of road networks \cite{r46}, rural grids \cite{r47} and least-cost electrification \cite{r50}.
+
+\textbf{Gap.} To our knowledge no cited work combines (i) satellite-derived building instances, (ii) a land-cover- and slope-based cost surface with building avoidance, (iii) a shared-network planner whose marginal cost credits built corridors, and (iv) a systematic test of how inventory omissions and the settlement setting change the result. This paper addresses that combination for rural Telangana and treats the comparison between two settlements as an explicit transferability test.
+
+\section{Study areas and data}
+\subsection{Damarakunta (rural)}
+Damarakunta is a rural revenue village in Markook mandal, Siddipet district, Telangana ($\approx 17.707^{\circ}$N, $78.753^{\circ}$E). Its boundary, from the Telangana State Remote Sensing Application Centre (TGRAC), encloses 18.47~km$^2$ (UTM zone 44N, EPSG:32644; figure~\ref{fig:area}). Settlement is dispersed, with small house clusters separated by farmland. A 0.6~m, three-band mosaic (11{,}296 $\times$ 7{,}171 px) was assembled from Esri World Imagery exports. Building candidates are model outputs: 278 polygons, 165 inside the boundary, of which 163 are used as routing targets. They carry a quality class: \textsc{Plausible} (71), \textsc{Review} (32) and \textsc{Unresolved\_Merge} (62), the last denoting blobs that merge adjacent roofs and could not be split. Five TGRAC facilities (schools, a health sub-centre and the gram-panchayat headquarters points) are planned in a separate phase. No ground-truth building mask exists for Damarakunta.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_study_area.png}
+\caption{Damarakunta. (a)~Boundary, TGRAC roads and detected footprints coloured by quality class, with the five facilities. (b)~Main settlement (box in a). Footprints are automatic detections, not a census. No imagery basemap is shown because the imagery licence for derived products is unresolved.}
+\label{fig:area}
+\end{figure}
+
+\subsection{Adilabad Urban (urban and peri-urban)}\label{sec:adilabad_data}
+The second window is the Adilabad Urban mandal, Adilabad district (geoBoundaries ADM3 polygon; centroid $19.682^{\circ}$N, $78.528^{\circ}$E), 17.75~km$^2$, close to Damarakunta in area. The 10~m grid has 424 $\times$ 564 cells, 177{,}533 of them inside the polygon, 0.62\% blocked (water or slope $>25^{\circ}$). About 60\% of cells are not WorldCover built-up, so the window holds an urban core and a peri-urban fringe. The boundary layer is the 2018 release and may differ from current municipal limits.
+
+All layers are open (table~\ref{tab:data}). Overture release 2026-10-21.0 supplies 4{,}850 road segments, 24{,}924 building polygons (18{,}846 from OpenStreetMap, 6{,}078 from Google Open Buildings v3) and 738 places. Footprints with area $\ge 30$~m$^2$ and confidence $\ge 0.7$ (18{,}242 polygons) form the penalty layer. Of 107 school, health and government place candidates, 83 fall inside the window and 71 pass verification (44 schools, 20 health, 7 government): records with mis-geocoded foreign place names were removed manually and a footprint within 20~m was required. \dinoseg{} was \emph{not} run on Adilabad: the model weights' location was not recorded, the Esri imagery licence for derived products is unresolved, and no open sub-metre imagery was available. The Adilabad building layer is therefore open map data (OpenStreetMap and Google Open Buildings), not model output, and has not been field-verified.
+
+\begin{table}[t]
+\caption{Input data and licence status. ``Not re-verified'' marks Overture licences taken from the provider documentation, which could not be opened from the execution environment.}
+\label{tab:data}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{5.9cm}>{\raggedright\arraybackslash}p{5.5cm}@{}}
+\toprule
+Layer & Damarakunta / Adilabad source & Licence status \\
+\midrule
+Boundary & TGRAC polygon / geoBoundaries ADM3 \cite{runfola2020geoboundaries} & TGRAC: not stated / ODbL 1.0 \\
+Roads, facilities & TGRAC (43 road features, 5 facilities) / Overture Maps 2026-10-21.0 \cite{overture2026} & TGRAC: not stated / ODbL 1.0 (roads), CDLA-Permissive-2.0 (places); not re-verified \\
+Buildings & StrongDINOv2Seg candidates (0.6~m Esri imagery) / Overture footprints (OSM, Google Open Buildings v3 \cite{sirko2021openbuildings}) & Imagery licence for derived products unresolved / ODbL 1.0 and CC BY 4.0; not re-verified \\
+Land cover & ESA WorldCover v200, 10~m \cite{zanaga2021worldcover} & CC BY 4.0 \\
+Terrain & $\sim$30~m DEM (source not recorded) / Copernicus GLO-30 \cite{esa2022copdem}; Sobel slope, bilinear to 10~m & Not stated / as stated by provider \\
+Training benchmark & LoveDA \cite{wang2021loveda} & Source domain only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Methods}\label{sec:methods}
+Figure~\ref{fig:arch} summarises the architecture. The two settlements differ in the perception and target stages and share the cost surface, planner and evaluation stages.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig_architecture.png}
+\caption{System architecture. Inputs feed a perception stage (Damarakunta: segmentation and instance extraction; Adilabad: open footprints enter the target stage directly with the road-gap filter), a shared cost surface, a two-stage shared-network planner and an evaluation stage that includes the cross-settlement transfer.}
+\label{fig:arch}
+\end{figure}
+
+\subsection{Building extraction}
+\dinoseg{} is a fully fine-tuned DINOv2 ViT-B/14 encoder \cite{oquab2023dinov2}. Tokens from blocks 3, 6, 9 and 12 are projected to 256 channels, fused (FPN-style \cite{lin2017fpn}), passed through an ASPP neck (rates 6, 12, 18) \cite{chen2018deeplabv3plus} and a four-stage decoder with auxiliary heads for deep supervision \cite{lee2015dsn}. Training used LoveDA \cite{wang2021loveda} at 560~px for a scheduled 10 epochs (AdamW, cosine schedule to $10^{-7}$, encoder learning rate $\times 0.1$) with loss $0.5\,\mathrm{CE}+0.4\,\mathrm{Dice}+0.1\,\mathrm{edge}$ \cite{milletari2016vnet} and auxiliary weight 0.4. Building instances are extracted from the predicted mask with OpenCV and NumPy: h-maxima of the distance transform give markers, a neck test (ratio 0.65) decides whether touching blobs are split, and blobs that cannot be split are flagged \textsc{Unresolved\_Merge}.
+
+\subsection{Open-data mode and road-gap targets}
+For Adilabad, Overture footprints replace the segmenter output. Because a planner connecting every footprint is meaningless in a built-up fabric already served by roads, only houses more than 30~m (the planner snap distance) from an existing road are routed. The planner cost grows roughly quadratically with the number of targets, which also motivates the filter. The threshold is varied (20, 30, 50~m) in Section~\ref{sec:adilabad}.
+
+\subsection{Cost surface}
+Let $\mathcal{B}$ be blocked cells (water, invalid cells, slope $>25^{\circ}$) and $\mathcal{P}$ the cells whose centre lies inside a footprint. The graph has the unblocked 10~m cells as nodes and 8-neighbour edges with no diagonal corner-cutting. The cell cost is
+\begin{equation}
+c(x)=\bigl[c_{\mathrm{lc}}(\ell(x))+g(s(x))\bigr]\,m(x),\qquad m(x)=\begin{cases}\mu & x\in\mathcal{P}\\ 1 & \text{otherwise,}\end{cases}
+\label{eq:cell}
+\end{equation}
+where $\ell$ is the WorldCover class with resistance $c_{\mathrm{lc}}=8,5,3,6,2,4$ for trees, shrubland, grassland, cropland, built-up and bare/sparse land respectively (classes 10--60 in the order 10, 20, 30, 40, 50, 60), $g(s)=4\,\mathrm{clip}(s,0,10)/10$ with $s$ the slope in degrees, and $\mu=4$ is the footprint penalty. Edge weights are the mean end-cell cost times step length. Costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20~m disc around the health sub-centre, whose point lies on the edge of its own footprint.
+
+\subsection{Shared-network planner}
+For each target, Stage~A computes a least-cost path to the existing road cells with Dijkstra's algorithm \cite{dijkstra1959note,hart1968astar,collischonn2000lcp} and alternatives by inflating costs along earlier paths ($K=3$ alternatives in total). Stage~B greedily selects the (target, alternative) pair with the highest weight per marginal cost
+\begin{equation}
+\Delta\Lcost\bigl(\pi\mid S\bigr)=\sum_{e\in\pi\setminus E_S}w(e),
+\label{eq:marginal}
+\end{equation}
+where $E_S$ is the set of already selected edges, so built edges are free and a route may end on another route. This is the shortest-path heuristic for Steiner trees \cite{kou1981steiner,mehlhorn1988steiner} on a penalised, land-cover-weighted graph with the road network as a free sub-tree; it carries no optimality guarantee. Two passes of leaf re-routing follow. Snap distance is 30~m, search limit 1{,}500~m and attachment tolerance 15~m. Facilities are planned in a separate phase.
+
+\subsection{Baselines, scenarios and metrics}
+Four baselines are compared: straight lines, independent least-cost routes, a length-only control (cost surface replaced by distance) and a roads-only shared reference (routes may share edges only with the existing road network). The saving against independent routing is $\rho=(L_{\mathrm{ind}}-L)/L_{\mathrm{ind}}$, with $L$ the unique network length (shared edges counted once). The exposure metrics are the number of routes crossing another house's footprint and the route length inside other footprints. The footprint penalty is varied ($\mu\in\{1,4,20,100\}$, with a variant in which footprints are buffered by 7.1~m). For omissions, a target set $M$ is removed from the targets and from the penalty layer (a missed detection is absent from both), and the planner is re-run; random draws use seeds 1--5. Coverage, unserved households, change in unique length and length per routed target are reported.
+
+\section{Results: Damarakunta}\label{sec:damar}
+\subsection{Detection}
+On the 1{,}669-image LoveDA validation split (560~px, seven scored classes) the epoch-4 checkpoint reached 53.8\% mIoU, 68.9\% Dice and 71.3\% pixel accuracy, with 72.4\% macro precision and 66.9\% macro recall; for the Building class IoU is 54.0\%, precision 62.1\% and recall 80.6\% (table~\ref{tab:seg}). These are source-domain figures, not accuracy on Damarakunta. Against Google Open Buildings v3 as a proxy (not ground truth), 118 of the 165 in-boundary candidates agree (71.5\%).
+
+\begin{table}[t]
+\caption{Detection evaluation. Top: LoveDA validation (source domain); precision and recall are macro-averages over the seven scored classes. Bottom: agreement of the 165 Damarakunta candidates with Open Buildings v3 (a proxy, not accuracy).}
+\label{tab:seg}
+\centering
+\small
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+\multicolumn{6}{@{}l}{\textit{LoveDA validation split (\%)}}\\
+ & mIoU & Dice & Pixel acc. & Precision & Recall\\
+\midrule
+StrongDINOv2Seg & 53.8 & 68.9 & 71.3 & 72.4 & 66.9\\
+\quad Building class & 54.0 & 70.1 & --- & 62.1 & 80.6\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Damarakunta candidates vs.\ Open Buildings v3}}\\
+Class & Candidates & Agree & Disagree & \multicolumn{2}{c}{Agreement (\%)}\\
+\midrule
+All & 165 & 118 & 47 & \multicolumn{2}{c}{71.5}\\
+\textsc{Plausible} & 71 & 51 & 20 & \multicolumn{2}{c}{71.8}\\
+\textsc{Review} & 32 & 14 & 18 & \multicolumn{2}{c}{43.8}\\
+\textsc{Unresolved\_Merge} & 62 & 53 & 9 & \multicolumn{2}{c}{85.5}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Shared network and footprint penalty}
+Independent least-cost routes for the 163 houses total 10{,}045~m, but because neighbouring houses re-trace the same corridors the unique built length is 6{,}753~m (table~\ref{tab:routing}, figure~\ref{fig:routing}a). The two-stage plan reduces this to 5{,}069~m, a saving of 24.9\%; all 163 houses and five facilities are connected. The length-only control is 3.4\% \emph{longer} in unique length than independent cost-surface routing, and the roads-only shared reference saves 22.6\%, so most of the saving comes from sharing and a further 2.3 percentage points from sharing between new routes.
+
+The penalty trades length for exposure (figure~\ref{fig:routing}b). With $\mu=1$ the plan is shortest (4{,}705~m) but 56 routes pass through other houses (660~m inside footprints). With $\mu=4$ it is 7.7\% longer while crossings halve to 28 routes and 209~m. Buffering footprints by 7.1~m with $\mu=20$ or 100 lowers crossings further (19 routes) at 6{,}190--6{,}238~m.
+
+\begin{table}[t]
+\caption{Damarakunta routing, 163 houses ($\mu=4$ unless stated). Total length counts every route; unique length counts shared edges once; $\rho$ is the saving in unique length against independent routes.}
+\label{tab:routing}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{4.3cm}rrrrr@{}}
+\toprule
+Strategy & Total (m) & Unique (m) & $\rho$ (\%) & Routes crossing & In footprints (m)\\
+\midrule
+Straight line (2 targets infeasible) & 8{,}092.3 & --- & --- & 60 & 1{,}453.2\\
+Independent least-cost routes & 10{,}045.4 & 6{,}753.1 & 0.0 & 46 & 328.3\\
+Length-only control & 9{,}166.3 & 6{,}979.8 & $-3.4$ & 64 & 1{,}615.8\\
+Roads-only shared reference & 5{,}229.3 & 5{,}229.3 & 22.6 & 29 & 216.1\\
+\textbf{Two-stage plan (proposed)} & \textbf{5{,}069.0} & \textbf{5{,}069.0} & \textbf{24.9} & \textbf{28} & \textbf{209.1}\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{No footprint penalty ($\mu=1$)}}\\
+Independent least-cost routes & 9{,}595.9 & 6{,}921.3 & 0.0 & 63 & 1{,}423.1\\
+Two-stage plan & 4{,}705.5 & 4{,}705.4 & 32.0 & 56 & 660.1\\
+\midrule
+\multicolumn{6}{@{}l}{\textit{Buffered footprints (7.1~m), two-stage plan}}\\
+Penalty $\mu=20$ & --- & 6{,}238.1 & 18.5 & 19 & 147.9\\
+Penalty $\mu=100$ & --- & 6{,}190.3 & 18.9 & 19 & 144.8\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_routing.png}
+\caption{Damarakunta routing results for 163 houses. (a)~Total and unique corridor length by strategy. (b)~Unique network length against route length inside other houses' footprints for $\mu=1$, $\mu=4$ and buffered footprints with large penalties.}
+\label{fig:routing}
+\end{figure}
+
+\subsection{Impact of building omissions}
+Table~\ref{tab:omission} and figure~\ref{fig:omission} summarise the omission analysis against the 5{,}069~m baseline. Missing buildings make the plan \emph{shorter}: 10\% random omission (16 houses) understates length by 7.6\%, 20\% by 16.9\%, omission of the smallest quarter by 25.1\% and omission of all merged blobs by 29.4\%. At the same time $U$ households lose access: 16 and 33 for random 10\% and 20\% omission, 41 for the smallest quarter and 62 (38.0\%) for merged blobs. A planner reading only total length would therefore underfund the scheme. Random additions lengthen the plan by 8.6\% and 15.8\%. The saving $\rho$ stays within 24.9--26.6\% across omissions, so the benefit of sharing is robust to inventory error.
+
+\begin{table}[t]
+\caption{Impact of simulated omissions and additions, Damarakunta. Baseline 5{,}069.0~m, 163 routed. Random scenarios are means of five draws. $U$: households without a route; $\kappa$: coverage; $\delta_L$: change in unique length; $\bar\ell$: length per routed target; $\rho$: saving against independent routing.}
+\label{tab:omission}
+\centering
+\small
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Scenario & Routed & $U$ & $\kappa$ (\%) & $L$ (m) & $\delta_L$ (\%) & $\bar\ell$ (m) & $\rho$ (\%)\\
+\midrule
+Baseline & 163 & 0 & 100.0 & 5{,}069.0 & 0.0 & 31.1 & 24.9\\
+Omit 10\% (random) & 147.0 & 16 & 90.2 & 4{,}684.4 & $-7.6$ & 31.9 & 25.1\\
+Omit 20\% (random) & 130.0 & 33 & 79.8 & 4{,}211.5 & $-16.9$ & 32.4 & 24.9\\
+Omit smallest 10\% & 146 & 17 & 89.6 & 4{,}648.6 & $-8.3$ & 31.8 & 24.9\\
+Omit smallest 25\% & 122 & 41 & 74.8 & 3{,}798.3 & $-25.1$ & 31.1 & 25.6\\
+Omit merged blobs & 101 & 62 & 62.0 & 3{,}579.0 & $-29.4$ & 35.4 & 26.6\\
+\midrule
+Add 10\% (random) & 177.4 & --- & --- & 5{,}502.4 & $+8.6$ & 31.0 & 25.6\\
+Add 20\% (random) & 190.6 & --- & --- & 5{,}868.3 & $+15.8$ & 30.8 & 25.4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig4_omission.png}
+\caption{Damarakunta omission sensitivity (163 baseline targets, 5{,}069~m; random scenarios are five draws with min--max bars). (a)~Change in unique length against households left without a route. (b)~Unique length per routed target.}
+\label{fig:omission}
+\end{figure}
+
+\section{Results: transfer to Adilabad Urban}\label{sec:adilabad}
+\subsection{Road-gap targets and routing}
+Of 18{,}242 penalty-layer footprints, 874 (4.8\%) lie more than 30~m from a road and form the targets; their median footprint is 139.6~m$^2$ and median distance to the nearest road 42.3~m (Damarakunta: 235.8~m$^2$ and 27.7~m). The planner routes 873 of 874. Independent least-cost routes total 56{,}308~m (unique 46{,}419~m); the two-stage plan needs 34{,}359~m, a saving of 26.0\% (table~\ref{tab:adilabad}, figure~\ref{fig:adilmap}). The facility phase connects 71 verified facilities with 1{,}090~m of unique corridor.
+
+The baselines behave differently from the rural case. The roads-only shared reference saves just 2.9\% (22.6\% in Damarakunta) and the length-only control 5.7\% (it was $-3.4$\% in Damarakunta). In the dense fabric, targets are scattered among many existing roads, so sharing among \emph{new} routes accounts for almost all of the gain, whereas in the dispersed village a trunk-and-branch structure off the existing roads already captures most of it. Exposure is much higher: 332 of 873 routes (38\%) cross another footprint (2{,}041~m) against 28 of 163 (17\%) in Damarakunta.
+
+\begin{table}[t]
+\caption{Cross-settlement comparison under the same cost surface and solver. Adilabad footprints are open map data (Overture), Damarakunta's are model outputs; targets are defined by different rules (all candidates vs.\ road-gap houses). Values are not directly comparable as accuracy measures.}
+\label{tab:adilabad}
+\centering
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.2cm}>{\raggedleft\arraybackslash}p{3.4cm}>{\raggedleft\arraybackslash}p{3.4cm}@{}}
+\toprule
+Metric & Damarakunta (rural) & Adilabad (urban/peri-urban)\\
+\midrule
+Study area (km$^2$) & 18.47 & 17.75\\
+House targets / routed & 163 / 163 & 874 / 873\\
+Independent routes, unique length (m) & 6{,}753.1 & 46{,}419.2\\
+Length-only control, unique (m) & 6{,}979.8 & 43{,}787.2\\
+Roads-only shared reference, unique (m) & 5{,}229.3 & 45{,}058.9\\
+\textbf{Two-stage plan, unique (m)} & \textbf{5{,}069.0} & \textbf{34{,}358.8}\\
+Saving vs independent (\%) & 24.9 & 26.0\\
+Roads-only shared saving (\%) & 22.6 & 2.9\\
+Unique length per routed house (m) & 31.1 & 39.4\\
+Routes crossing other footprints & 28 of 163 (17\%) & 332 of 873 (38\%)\\
+Length inside other footprints (m) & 209.1 & 2{,}041.1\\
+$\mu=1\rightarrow4$: unique length change (\%) & $+7.7$ & $+13.3$\\
+$\mu=1\rightarrow4$: routes crossing & 56 $\rightarrow$ 28 & 618 $\rightarrow$ 332\\
+Facility phase: facilities / unique length (m) & 5 / 249.3 & 71 / 1{,}090.1\\
+10\% random omission: length change (\%) / unserved & $-7.6$ / 16 of 163 & $-7.6$ / 88 of 874\\
+20\% random omission: length change (\%) / unserved & $-16.9$ / 33 of 163 & $-15.0$ / 176 of 874\\
+Smallest-25\% omission: length change (\%) / unserved & $-25.1$ / 41 of 163 & $-21.2$ / 220 of 874\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/adilabad_map2_network_comparison.png}
+\caption{Adilabad Urban route comparison for 874 road-gap houses ($\mu=4$): (a)~independent least-cost routes, (b)~two-stage shared plan, (c, d)~zoom on the densest road-gap cluster. Planning alternatives, not engineered roads; the basemap shows land cover and footprints only.}
+\label{fig:adilmap}
+\end{figure}
+
+\subsection{Robustness}
+\textbf{Footprint penalty.} As in Damarakunta, raising $\mu$ from 1 to 4 lengthens the unique network by 13.3\% and removes 286 crossing routes (618 to 332); $\mu=20$ and 100 give 37{,}024~m and 37{,}514~m with 271 and 275 routes crossing, and buffered footprints give 42{,}072~m and 44{,}095~m with 231 and 221 crossing (table~\ref{tab:sens}, figure~\ref{fig:adilsens}a). The saving against independent routing remains between 17.8\% and 30.8\% across all settings.
+
+\textbf{Road-gap threshold.} Defining targets as houses more than 20, 30 or 50~m from a road gives 2{,}190, 874 and 296 targets and savings of 21.9\%, 26.0\% and 29.5\%. The saving therefore depends on the target definition, which should be reported with any such result.
+
+\textbf{Omissions.} Random omission of 10\% and 20\% (five seeds) changes unique length by $-7.6\%$ (range $-8.9$ to $-6.7$) and $-15.0\%$ ($-16.1$ to $-13.9$), with 88 and 176 households unserved including one baseline failure; single-run smallest-10\% and smallest-25\% omissions give $-7.9\%$ and $-21.2\%$ (89 and 220 unserved). As in Damarakunta, missing buildings shorten the plan while stranding households, and the saving stays at 23.8--25.2\%. Merged-blob and addition scenarios were not defined for the open footprints.
+
+\begin{table}[t]
+\caption{Adilabad sensitivity. Top: footprint-penalty settings (874 targets, 873 routed). Bottom: road-gap threshold.}
+\label{tab:sens}
+\centering
+\footnotesize
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Setting & Unique (m) & $\rho$ (\%) & Crossing routes & In footprints (m) & Targets\\
+\midrule
+Centre-in-footprint, $\mu=1$ & 30{,}335.7 & 30.8 & 618 & 4{,}893.0 & 874\\
+Centre-in-footprint, $\mu=4$ & 34{,}358.8 & 26.0 & 332 & 2{,}041.1 & 874\\
+Centre-in-footprint, $\mu=20$ & 37{,}024.1 & 22.8 & 271 & 1{,}687.4 & 874\\
+Centre-in-footprint, $\mu=100$ & 37{,}513.9 & 21.7 & 275 & 1{,}744.8 & 874\\
+Buffered 7.1~m, $\mu=20$ & 42{,}071.9 & 20.1 & 231 & 1{,}397.2 & 874\\
+Buffered 7.1~m, $\mu=100$ & 44{,}094.6 & 17.8 & 221 & 1{,}310.5 & 874\\
+\midrule
+Gap $>20$~m & 65{,}204.4 & 21.9 & 815 & 4{,}543.9 & 2{,}190\\
+Gap $>30$~m (primary) & 34{,}358.8 & 26.0 & 332 & 2{,}041.1 & 874\\
+Gap $>50$~m & 15{,}880.9 & 29.5 & 126 & 809.9 & 296\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/adilabad_fig3_sensitivity.png}
+\caption{Adilabad sensitivity. (a)~Footprint-penalty trade-off between unique network length and route length inside other footprints. (b)~Omission sensitivity (random: mean and min--max over five seeds; smallest-$q$: single run).}
+\label{fig:adilsens}
+\end{figure}
+
+\section{Discussion}
+\subsection{What transfers and what does not}
+The planning stages transferred without modification: the same cost surface, solver parameters and metrics produced a connected plan in a window with more than five times as many targets (874 against 163), and the qualitative findings were reproduced: sharing saves about a quarter of the unique length (24.9\% and 26.0\%), the footprint penalty trades length for exposure, and omissions shorten the plan while stranding households. What did not transfer is the benefit of the simpler baselines: roads-only sharing recovered most of the gain in the dispersed village but almost none in the dense one. This suggests that the value of a marginal-cost planner grows with settlement density, a hypothesis supported by two settlements only. The effect of detection quality could not be tested across settings, because Adilabad uses open map footprints. Both are limitations of the evidence, not of the method.
+
+\subsection{Why pixel metrics are not enough for infrastructure use}
+Segmentation metrics are area-weighted over classes, while the planner counts instances. A detector that misses the smallest quarter of buildings can lose few building pixels yet removes a quarter of households from the plan (table~\ref{tab:omission}), and a detector that merges adjacent roofs can score a high pixel IoU yet strands 38\% of the Damarakunta houses in the merged-blob scenario. Network length falls in both cases, so total length is a poor quality indicator. Merged blobs correspond to dense multi-roof structures; whether they coincide with the core of a hamlet was not measured.
+
+\subsection{Land take and planning use}
+Shared corridors reduce the length of new road for the same households. As an illustration only, assuming a 5~m formation width (an assumption of this study; no road-width data were available), the 1{,}684~m saved in Damarakunta corresponds to about 0.84~ha less land take, and the 12{,}060~m saved in Adilabad to about 6.0~ha. For PMGSY-style schemes \cite{pmgsy} three points follow. Building inventories are uncertain inputs and a network sized from them should carry a sensitivity band. Shared corridors save about a quarter of unique length and this survives omissions. Local overrides should be used sparingly and documented. The outputs are screening-level alternatives; we do not claim compliance with Indian Roads Congress design standards, nor any engineering design value.
+
+\subsection{Limitations}
+(i) Two settlements only; the semi-urban and second rural windows are planned but have not been run. (ii) Omission scenarios are synthetic, not measured detection errors. (iii) Damarakunta has no surveyed reference and LoveDA metrics come from the epoch-4 checkpoint with metadata recovered from the training notebook; the checkpoint hash was not logged with the village candidates. (iv) Adilabad footprints are open map data of unverified completeness, and Overture licences were not re-verified. (v) Costs are ordinal, the planner is a heuristic with no optimality guarantee, and road-gap targeting changes the problem as shown by the threshold sweep. (vi) Pixel accuracy is reported as 71.3\%, the value recomputed from the saved confusion matrix.
+
+\section{Conclusions}
+A pipeline from satellite imagery and open layers to shared access roads connects the houses and facilities of a rural village (24.9\% less unique corridor than independent routing) and, without changes to the cost surface or solver, those of an urban and peri-urban mandal (26.0\%). Footprint penalties and simulated inventory errors behave consistently in both settings: penalties trade length for fewer routes through dwellings, and omissions shorten the plan while stranding households. The dependence of the roads-only baseline on settlement density, and the effect of detection quality across settings, are the main open questions; a semi-urban and a second rural window are planned to address the first.
+
+\ifanon\else
+\section*{Acknowledgments}
+The authors acknowledge the Telangana State Remote Sensing Application Centre (TGRAC) for the boundary, road and facility layers of Damarakunta, and the providers of the open datasets used (ESA WorldCover, Copernicus DEM, Overture Maps, geoBoundaries, Google Open Buildings, LoveDA).
+\fi
+
+\section*{Funding}
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
+\section*{Data availability statement}
+\ifanon
+Code, derived tables and the open-data manifests (with SHA-256 hashes) will be made available in a public repository on acceptance and are available to reviewers on request. TGRAC layers for Damarakunta are subject to the provider's terms.
+\else
+Code, derived summary tables, and the open-data manifests with SHA-256 hashes are available at \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_DAMARAKUNTA_STAGE_B} and \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE}). TGRAC layers for Damarakunta are subject to the provider's terms; Esri imagery is not redistributed. A Zenodo DOI will be added when the archive is minted.
+\fi
+
+\section*{Conflict of interest}
+The authors declare no competing interests.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

@@ -356,6 +356,9 @@ FIGS = {"figA_level2_gp_network": "fig:level2", "figB_penalty_sweep": "fig:sweep
 def figure_checks() -> list:
     """Each Contribution 3 figure exists in both places, is identical in both, is 300 dpi, and is included + cited in paper/main.tex."""
     from PIL import Image
+    if not (REPO / "paper" / "main.tex").exists():                      # the hierarchical manuscript was retired (Contribution 3 now = multi-village transfer)
+        return [dict(id="FG-retired", claim="hierarchical-extension figures embedded in paper/main.tex", expected="n/a", actual="manuscript removed", source="paper/",
+                     tolerance=0, status="SKIPPED", evidence_class="REAL")]
     tex = (REPO / "paper" / "main.tex").read_text(encoding="utf-8")
     out = []
     for name, label in FIGS.items():
@@ -423,6 +426,9 @@ def deliverables_checks() -> list:
 
 
 def paper_checks() -> list:
+    if not (REPO / "paper" / "main.tex").exists():
+        return [dict(id="PP-retired", claim="hierarchical-extension numbers in paper/main.tex", expected="n/a", actual="manuscript removed", source="paper/", tolerance=0,
+                     status="SKIPPED", evidence_class="REAL")]
     tex = (REPO / "paper" / "main.tex").read_text(encoding="utf-8")
     S = {l: json.loads((RUN / l / f"{l}_summary.json").read_text()) for l in ("gp", "mandal", "district")}
     sw = pd.read_csv(RES / "U02_penalty_sweep_gp.csv").set_index("mu")

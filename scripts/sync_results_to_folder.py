@@ -24,11 +24,11 @@ ITEMS = [("docs/results/hierarchy_real_run", "hierarchy_real_run"),
          ("docs/results/U02_penalty_sweep_gp.csv", "U02_penalty_sweep_gp.csv"),
          ("docs/results/U08_dem_comparison.json", "U08_dem_comparison.json"),
          ("DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING", "DELIVERABLES_CONTRIBUTION_3_HIERARCHICAL_ROUTING"),
-         ("paper/figures", "manuscript/figures"),
-         ("paper/manuscript.docx", "manuscript/manuscript.docx"),
-         ("paper/main.pdf", "manuscript/main.pdf"),
-         ("paper/main.tex", "manuscript/main.tex"),
-         ("paper/references.bib", "manuscript/references.bib")]
+         ("paper_eris/figures", "manuscript/figures"),
+         ("paper_eris/manuscript.docx", "manuscript/manuscript.docx"),
+         ("paper_eris/main.pdf", "manuscript/main.pdf"),
+         ("paper_eris/main.tex", "manuscript/main.tex"),
+         ("paper_eris/references.bib", "manuscript/references.bib")]
 
 
 def sync(dest, dry_run=False, log=print, docx_at_root=False) -> list:
@@ -47,8 +47,8 @@ def sync(dest, dry_run=False, log=print, docx_at_root=False) -> list:
                 shutil.copy2(src, dst)
         done.append(dst)
     if docx_at_root:
-        src, dst = REPO / "paper" / "manuscript.docx", out_root / "manuscript.docx"
-        log(f"{'would copy' if dry_run else 'copy'}  paper/manuscript.docx  ->  {dst}")
+        src, dst = REPO / "paper_eris" / "manuscript.docx", out_root / "manuscript.docx"
+        log(f"{'would copy' if dry_run else 'copy'}  paper_eris/manuscript.docx  ->  {dst}")
         if not dry_run:
             shutil.copy2(src, dst)
         done.append(dst)

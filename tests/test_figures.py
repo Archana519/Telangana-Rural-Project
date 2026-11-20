@@ -12,7 +12,7 @@ NAMES = list(pf.FIGURES)
 
 @pytest.mark.parametrize("name", NAMES)
 def test_committed_figures_exist_in_both_places_at_300_dpi(name):
-    for d in (REPO / "paper" / "figures", REPO / "docs" / "results" / "hierarchy_real_run" / "figures"):
+    for d in (REPO / "docs" / "results" / "hierarchy_real_run" / "figures",):
         im = Image.open(d / f"{name}.png")
         assert abs(im.info["dpi"][0] - 300) < 1 and im.size[0] >= 2000
 
@@ -28,7 +28,7 @@ def test_figure_b_regenerates_from_the_sweep_csv(tmp_path):
 
 def test_level1_omission_figure_is_300_dpi_in_both_places_and_values_come_from_the_csv():
     from src.evaluation import plot_level1_omission as p1
-    for d in (REPO / "paper" / "figures", REPO / "docs" / "results" / "hierarchy_real_run" / "figures"):
+    for d in (REPO / "docs" / "results" / "hierarchy_real_run" / "figures",):
         im = Image.open(d / f"{p1.NAME}.png")
         assert abs(im.info["dpi"][0] - 300) < 1 and im.size[0] >= 2000
     d, base, base_per = p1.load()
