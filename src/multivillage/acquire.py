@@ -62,15 +62,24 @@ def boundary(cfg) -> tuple:
     raise NotImplementedError("voronoi_proxy was only used for a discarded village; re-enable from git history if needed")
 
 
-def fetch_layers(cfg, cell) -> dict:
-    """Roads, buildings and places inside the cell (all from the pinned Overture release)."""
-    wgs = gpd.GeoSeries([cell.buffer(500)], crs=CRS_WORK).to_crs(4326).total_bounds
-    out = {}
+def cached_boundary(ddir: Path) -> tuple:
+    """Study polygon from the existing data/villages/<id>/boundary.gpkg (written by the first acquire run) -> (polygon in EPSG:32644, record). No network."""
+    g = gpd.read_file(ddir / "boundary.gpkg").to_crs(CRS_WORK)
+    cell = g.geometry.union_all()
+    rec = dict(method="cached boundary.gpkg (geoBoundaries gbOpen IND ADM3 polygon from the first acquire run)", shape_name=str(g.iloc[0].get("name", "")),
+               shape_id="", area_km2=cell.area / 1e6, bounds_epsg32644=[float(x) for x in cell.bounds], bounds_wgs84=[float(x) for x in g.to_crs(4326).total_bounds])
+    return cell, rec
+
+
+def _fetch_roads(cfg, cell, wgs):
     r, rel = overture(cfg, "transportation", "segment", wgs, ["id", "class", "subtype", "names", "geometry"])
     r = _geom(r).to_crs(CRS_WORK)
     r = r[r.subtype.fillna("road") == "road"]
     r["name"] = r["names"].map(lambda n: n.get("primary") if isinstance(n, dict) else None)
-    out["roads"] = r.drop(columns=["names"])[lambda d: d.intersects(cell)]
+    return r.drop(columns=["names"])[lambda d: d.intersects(cell)], rel
+
+
+def _fetch_buildings(cfg, cell, wgs):
     b, _ = overture(cfg, "buildings", "building", wgs, ["id", "sources", "class", "subtype", "geometry"])
     b = _geom(b).to_crs(CRS_WORK)
     b = b[b.geometry.representative_point().within(cell)].copy()
@@ -79,7 +88,10 @@ def fetch_layers(cfg, cell) -> dict:
     b["confidence"] = b.sources.map(lambda s: (max([x.get("confidence") or 0.0 for x in s]) if s is not None and len(s) and s[0].get("dataset") != "OpenStreetMap" else 1.0))
     b["record_id"] = b.sources.map(lambda s: s[0].get("record_id") if s is not None and len(s) else None)
     b["area_m2"] = b.geometry.area
-    out["buildings"] = b.drop(columns=["sources"])
+    return b.drop(columns=["sources"])
+
+
+def _fetch_places(cfg, cell):
     p, _ = overture(cfg, "places", "place", np.array(gpd.GeoSeries([cell.buffer(4000)], crs=CRS_WORK).to_crs(4326).total_bounds),
                     ["id", "confidence", "names", "basic_category", "taxonomy", "addresses", "sources", "operating_status", "geometry"])
     p = _geom(p).to_crs(CRS_WORK)
@@ -89,6 +101,31 @@ def fetch_layers(cfg, cell) -> dict:
     p["addr_region"] = p["addresses"].map(lambda a: a[0].get("region") if a is not None and len(a) else None)
     p["addr_locality"] = p["addresses"].map(lambda a: a[0].get("locality") if a is not None and len(a) else None)
     p["addr_postcode"] = p["addresses"].map(lambda a: a[0].get("postcode") if a is not None and len(a) else None)
-    out["places_4km"] = p.drop(columns=["names", "taxonomy", "addresses", "sources"])
-    out["release"] = rel
+    return p.drop(columns=["names", "taxonomy", "addresses", "sources"])
+
+
+def fetch_layers(cfg, cell) -> dict:
+    """Roads, buildings and places inside the cell (all from the pinned Overture release)."""
+    wgs = gpd.GeoSeries([cell.buffer(500)], crs=CRS_WORK).to_crs(4326).total_bounds
+    roads, rel = _fetch_roads(cfg, cell, wgs)
+    return {"roads": roads, "buildings": _fetch_buildings(cfg, cell, wgs), "places_4km": _fetch_places(cfg, cell), "release": rel}
+
+
+def cached_layers(cfg, cell, ddir: Path, skip_buildings: bool = False, log=print) -> dict:
+    """Same layers as fetch_layers, read from data/villages/<id>/*.gpkg when present; only the missing ones are queried from Overture (S3).
+    With skip_buildings the (slow) Overture buildings query is never made: the open buildings are replaced by an empty frame, which is only valid for the
+    segmentation variant (its footprints come from StrongDINOv2Seg)."""
+    wgs = gpd.GeoSeries([cell.buffer(500)], crs=CRS_WORK).to_crs(4326).total_bounds
+    out = {"release": cfg["overture_release"]}
+    for name in ("roads", "buildings", "places_4km"):
+        f = ddir / f"{name}.gpkg"
+        if f.exists():
+            out[name] = gpd.read_file(f).to_crs(CRS_WORK)
+            log(f"  {name}: {len(out[name]):,} rows from cache {f.name}")
+        elif name == "buildings" and skip_buildings:
+            out[name] = gpd.GeoDataFrame({"id": [], "dataset": [], "confidence": [], "area_m2": []}, geometry=[], crs=CRS_WORK)
+            log("  buildings: skipped (no Overture buildings download)")
+        else:
+            log(f"  {name}: not cached -> Overture S3 query")
+            out[name] = {"roads": lambda: _fetch_roads(cfg, cell, wgs)[0], "buildings": lambda: _fetch_buildings(cfg, cell, wgs), "places_4km": lambda: _fetch_places(cfg, cell)}[name]()
     return out

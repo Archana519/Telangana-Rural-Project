@@ -171,6 +171,8 @@ def main(argv=None):
     ap.add_argument("--variant", default=None, choices=[None, "segmentation"], help="segmentation = footprints from StrongDINOv2Seg (needs --footprints); outputs go to <folder>_SEGMENTATION")
     ap.add_argument("--footprints", default=None, help="buildings_v8_*.gpkg written by scripts/extract_buildings_v8.py (layer 'buildings')")
     ap.add_argument("--mosaic", default=None, help="Esri 0.6 m mosaic GeoTIFF for the satellite overlay figures (report step, segmentation variant)")
+    ap.add_argument("--from-cache", action="store_true", help="acquire: reuse data/villages/<id>/{boundary,roads,buildings,places_4km}.gpkg; only missing layers are queried from Overture")
+    ap.add_argument("--skip-buildings", action="store_true", help="acquire: never run the slow Overture buildings query (segmentation variant only; implies --from-cache)")
     ap.add_argument("--limit-targets", type=int, default=None, help="DEBUG ONLY: keep the first N road-gap targets (code-path tests; never use for results)")
     ap.add_argument("--quick", action="store_true", help="route step: run only the main strategy comparison (skips the penalty / omission / target-definition sweeps)")
     a = ap.parse_args(argv)
@@ -188,12 +190,19 @@ def main(argv=None):
     else:
         S = pickle.load(open(state, "rb")) if state.exists() else {}
     if "acquire" in a.steps:
-        cell, rec = A.boundary(cfg)
-        L = A.fetch_layers(cfg, cell)
+        cached = a.from_cache or a.skip_buildings
+        if cached and (ddir / "boundary.gpkg").exists():
+            cell, rec = A.cached_boundary(ddir)
+        else:
+            cell, rec = A.boundary(cfg)
+        L = A.cached_layers(cfg, cell, ddir, a.skip_buildings) if cached else A.fetch_layers(cfg, cell)
         S.update(cell=cell, rec=rec, layers=L)
         for name, gdf in (("roads", L["roads"]), ("buildings", L["buildings"]), ("places_4km", L["places_4km"])):
+            if cached and ((ddir / f"{name}.gpkg").exists() or (name == "buildings" and a.skip_buildings)):
+                continue                                    # never overwrite a cached layer, never write the empty placeholder
             gdf.to_file(ddir / f"{name}.gpkg", driver="GPKG")
-        gpd.GeoDataFrame({"name": [v["name"]]}, geometry=[cell], crs=A.CRS_WORK).to_file(ddir / "boundary.gpkg", driver="GPKG")
+        if not (cached and (ddir / "boundary.gpkg").exists()):
+            gpd.GeoDataFrame({"name": [v["name"]]}, geometry=[cell], crs=A.CRS_WORK).to_file(ddir / "boundary.gpkg", driver="GPKG")
         pickle.dump(S, open(state, "wb"))
     cell, rec, L = S["cell"], S["rec"], S["layers"]
     if "prepare" in a.steps or "extract" in a.steps or "route" in a.steps:

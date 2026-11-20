@@ -45,3 +45,14 @@ def test_dummy_inference_stitches_a_synthetic_mosaic(tmp_path):
     with rasterio.open(P.pred / "pred_classes_full.tif") as s:
         cls = s.read(1)
     assert cls.shape == (H, W) and (cls[300:420, 300:420] == 2).all() and (cls[0:200, 0:200] == 7).all()
+
+
+def test_esri_response_check_accepts_octet_stream_tiff():
+    class R:
+        def __init__(self, ct, body):
+            self.headers, self.content = {"content-type": ct}, body
+    assert E.is_tiff_or_image(R("application/octet-stream", b"II*\x00rest"))
+    assert E.is_tiff_or_image(R("application/octet-stream", b"MM\x00*rest"))
+    assert E.is_tiff_or_image(R("image/tiff", b"whatever"))
+    assert not E.is_tiff_or_image(R("application/json", b'{"error":{"code":400}}'))
+    assert not E.is_tiff_or_image(R("application/octet-stream", b"<html>"))

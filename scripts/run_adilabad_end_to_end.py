@@ -115,7 +115,14 @@ def stage_open(a, P: Paths):
     if (P.data / "state.pkl").is_file() and not a.force:
         say("open-data state exists -> skipping (use --force to rebuild)"); return
     say("STAGE open: boundary, Overture roads/places, WorldCover, DEM (internet; ~minutes)")
-    subprocess.run([sys.executable, "-m", "src.multivillage.run", "--village", VILLAGE, "--steps", "acquire", "prepare", "extract"], cwd=REPO, check=True)
+    cmd = [sys.executable, "-m", "src.multivillage.run", "--village", VILLAGE, "--steps", "acquire", "prepare"]
+    if a.skip_overture_buildings:
+        cmd += ["--skip-buildings"]                       # segmentation run: footprints come from the model, so the slow Overture buildings query is not needed
+    elif a.from_cache:
+        cmd += ["--from-cache"]
+    else:
+        cmd += ["extract"]                                # full open-data pipeline (also writes the open-footprint targets)
+    subprocess.run(cmd, cwd=REPO, check=True)
 
 
 # ================================================================================ esri tiles
@@ -135,6 +142,13 @@ def tile_grid(b, tile_m=ESRI_TILE_M):
         for c in range(nx):
             out.append((r * nx + c + 1, x0 + c * tile_m, y0 + r * tile_m, min(x0 + (c + 1) * tile_m, x1), min(y0 + (r + 1) * tile_m, y1)))
     return nx, ny, out
+
+
+def is_tiff_or_image(r) -> bool:
+    """Esri may answer HTTP 200 with content-type application/octet-stream for a TIFF; accept an image/* type or TIFF magic bytes (little/big endian, classic or BigTIFF)."""
+    ct = r.headers.get("content-type", "").lower()
+    head = bytes(r.content[:4])
+    return ct.startswith("image") or head in (b"II*\x00", b"MM\x00*", b"II+\x00", b"MM\x00+")
 
 
 def stage_esri(a, P: Paths):
@@ -169,7 +183,7 @@ def stage_esri(a, P: Paths):
             try:
                 r = sess.get(ESRI_EXPORT, params=params, timeout=180)
                 say(f"  tile {n:02d}/{len(tiles)} attempt {attempt}: HTTP {r.status_code}, {len(r.content):,} bytes")
-                if r.status_code == 200 and r.headers.get("content-type", "").startswith("image"):
+                if r.status_code == 200 and is_tiff_or_image(r):
                     break
             except requests.RequestException as e:
                 say("  network error:", e)
@@ -382,6 +396,8 @@ def main():
     ap.add_argument("--dummy-model", action="store_true", help="SELF-TEST ONLY: numpy stand-in for the network (no checkpoint, no torch)")
     ap.add_argument("--dry-run", action="store_true", help="esri: print the tile plan only")
     ap.add_argument("--hash", action="store_true", help="check: also compute the checkpoint SHA-256")
+    ap.add_argument("--skip-overture-buildings", action="store_true", help="open: reuse boundary.gpkg and any cached roads/places gpkg, never download the Overture buildings (not needed for the segmentation run)")
+    ap.add_argument("--from-cache", action="store_true", help="open: reuse every cached data/villages/adilabad_urban/*.gpkg, query only missing layers")
     ap.add_argument("--force", action="store_true")
     a = ap.parse_args()
     P = Paths(a)
