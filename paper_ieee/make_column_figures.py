@@ -56,4 +56,8 @@ if (SEG / "penalty_sensitivity.csv").exists():
     pair(a1, right, "(a)", "(b)", "adilabad_sat_overview.jpg")
     pair(g("sat_map2_independent_window.png"), g("sat_map2_two_stage_window.png"), "(a)", "(b)", "adilabad_sat_routes_window.jpg")
     pair(g("sat_map2_independent_zoom.png"), g("sat_map2_two_stage_zoom.png"), "(c)", "(d)", "adilabad_sat_routes_zoom.jpg")
+_cf = SEG / "final_maps_1_to_5" / "adilabad_fac_route_2panel.png"
+if _cf.exists():
+    import shutil
+    shutil.copy2(_cf, F / "adilabad_fac_route_2panel.png"); shutil.copy2(_cf, REPO / "paper_eris/figures/adilabad_fac_route_2panel.png")
 print("ok")

@@ -61,3 +61,14 @@ Commit and push `01_ADILABAD_SEGMENTATION`, then ask for the paper update. The n
 * The model was trained on LoveDA and was only checked on Damarakunta by proxy agreement; in Adilabad's dense urban fabric expect many touching roofs, hence a high UNRESOLVED_MERGE share and fewer, larger instances than the Overture footprints. Report the extraction counts and quality classes next to the routing numbers; nothing is validated against a manual reference.
 * The Damarakunta mosaic was exported with 3000 × 3000 px on every tile; the new script keeps 0.6 m/px on edge tiles instead.
 * Do not use `--dummy-model` or `--debug-limit-targets` for results; they exist for code-path tests.
+
+## Five-map series, compact figure and the final bundle
+
+After `--stage report` (needs `data\villages\adilabad_urban\state_segmentation.pkl` and the mosaic):
+
+```powershell
+python scripts\make_adilabad_map_series.py            # map1..map5 + the compact 2-panel figure -> 01_ADILABAD_SEGMENTATION\final_maps_1_to_5\
+python scripts\build_final_project_outputs.py         # rebuilds FINAL_PROJECT_OUTPUTS\ (INDEX.md lists every file and metric)
+python paper_ieee\make_column_figures.py              # copies the compact figure into paper_ieee\figures and paper_eris\figures
+```
+Map 5 runs one extra planner pass (footprints buffered 7.1 m, penalty 100; cached). Both papers include the compact figure automatically when `adilabad_fac_route_2panel.png` exists (the IEEE paper stays at 10 pages with it); rebuild them afterwards (`python paper_ieee\build_ieee_docx.py`, `python paper_ieee\build_ieee_tex.py`, then pdflatex/bibtex, and `python paper_eris\build_docx.py`).

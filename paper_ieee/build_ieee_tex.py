@@ -71,7 +71,7 @@ def TABLE(title, header, rows, widths, bold_rows=(), sub_rows=(), size=8, align=
         else: L.append(" & ".join(conv(c.strip() if i == 0 and False else c) for i, c in enumerate(row)) + r" \\")
     L.append(f"\\bottomrule\n\\end{{tabular}}\n\\end{{{env}}}")
 def C(t): return t
-ns = dict(CR="(Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).", H1=H1, H1u=H1u, H2=H2, P=P, BUL=BUL, EQ=EQ, FIGURE=FIGURE, TABLE=TABLE, one_col=one_col, two_col=two_col, C=C)
+ns = dict(HAVE=lambda fn: (H / "figures" / fn).exists(), CR="(Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).", H1=H1, H1u=H1u, H2=H2, P=P, BUL=BUL, EQ=EQ, FIGURE=FIGURE, TABLE=TABLE, one_col=one_col, two_col=two_col, C=C)
 exec(body, ns)
 
 abs_body = abs_txt.split("—", 1)[1]

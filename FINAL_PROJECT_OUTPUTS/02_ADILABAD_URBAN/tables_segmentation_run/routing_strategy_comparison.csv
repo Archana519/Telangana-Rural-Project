@@ -1,0 +1,6 @@
+strategy,targets_routed,targets_total,total_len_m,unique_len_m,saving_vs_independent_pct,shared_len_m,unique_cost,routes_crossing_other_footprints,length_inside_other_footprints_m
+Straight line,345,345,18382.9,18382.9,,0.0,,82,1209.2
+Independent least-cost routes,345,345,23312.5,21440.8,0.0,1871.7,110089.3,50,389.9
+Length-only control,345,345,21018.3,19961.2,6.9,1057.1,18556.9,77,1219.8
+Roads-only shared reference,345,345,23723.0,20947.0,2.3,2776.0,108892.3,46,397.8
+Two-stage shared plan,345,345,18288.7,18288.7,14.7,-0.0,101705.4,54,398.0

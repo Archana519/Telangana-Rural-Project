@@ -1,0 +1,4 @@
+min_dist_to_road_m,house_targets,routed,unique_len_m,independent_unique_len_m,saving_vs_independent_pct,routes_crossing,len_in_footprints_m,failed,unique_len_per_house_m
+20.0,2190,2189,65204.4,83525.9,21.9,815,4543.9,1,29.8
+30.0,874,873,34358.8,46419.2,26.0,332,2041.1,1,39.3
+50.0,296,296,15880.9,22519.7,29.5,126,809.9,0,53.7

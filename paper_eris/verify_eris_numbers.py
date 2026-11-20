@@ -112,4 +112,9 @@ dkp = REPO / "Siddipet/Damarakunta/predictions/tiled_v1/run_log_full.json"
 if dkp.exists():
     dk = json.loads(dkp.read_text())
     need("Damarakunta tiles (run log)", f"{dk['tiles_run']} tiles"); assert (dk["tile"], dk["stride"], dk["margin"]) == (560, 420, 70) and dk["checkpoint"] == al["checkpoint"]
+# ---- facility coordinate duplicates (limitation sentence "Ten of the 68")
+vf = pd.read_csv(SEG / "verified_facilities.csv"); vf = vf[vf.status == "VERIFIED_USED"]
+dup = int(((vf.groupby(["lon", "lat"]).name.transform("size")) > 1).sum())
+assert dup == 10 and len(vf) == 68, (dup, len(vf))
+need("Ten of the 68 verified facility points", "Ten of the 68 verified facility points")
 print(f"{n} checks, {fails} failures"); sys.exit(1 if fails or r.returncode else 0)

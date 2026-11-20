@@ -1,0 +1,5 @@
+group,runs,house_targets,routed_houses,unserved,coverage_pct,unique_len_m,delta_len_pct,delta_min,delta_max,len_per_routed_house_m,saving_pct,routes_crossing
+omit 10% (random),5,311.0,311.0,34.0,90.1,16687.3,-8.8,-11.7,-6.5,53.7,14.1,50.0
+omit 20% (random),5,276.0,276.0,69.0,80.0,14949.1,-18.3,-21.9,-15.8,54.2,13.5,45.8
+omit smallest 10%,1,310.0,310.0,35.0,89.9,16817.3,-8.0,-8.0,-8.0,54.2,14.0,45.0
+omit smallest 25%,1,258.0,258.0,87.0,74.8,14418.4,-21.2,-21.2,-21.2,55.9,12.6,32.0

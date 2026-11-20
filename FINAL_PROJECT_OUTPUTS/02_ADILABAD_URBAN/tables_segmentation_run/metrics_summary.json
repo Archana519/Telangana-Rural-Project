@@ -1,0 +1,19 @@
+{
+  "footprints_total": 2769,
+  "footprints_used_for_penalty": 2690,
+  "gap_targets": 345,
+  "facilities_verified": 68,
+  "unique_len_two_stage_m": 18288.7,
+  "unique_len_independent_m": 21440.8,
+  "saving_vs_independent_pct": 14.7,
+  "routed": 345,
+  "targets": 345,
+  "routes_crossing": 54,
+  "length_inside_other_footprints_m": 398.0,
+  "quality_classes": {
+    "UNRESOLVED_MERGE": 1580,
+    "PLAUSIBLE": 1033,
+    "SMALL_EXCLUDED": 79,
+    "REVIEW": 77
+  }
+}

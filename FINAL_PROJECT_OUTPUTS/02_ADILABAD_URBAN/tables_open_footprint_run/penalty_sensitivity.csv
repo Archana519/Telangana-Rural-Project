@@ -1,0 +1,7 @@
+penalty_mode,mu,targets,routed,unique_len_m,independent_unique_len_m,saving_vs_independent_pct,routes_crossing,len_in_footprints_m,failed,length_change_vs_mu1_pct,crossing_len_change_vs_mu1_pct
+buffered 7.1 m,20.0,874,873,42071.9,52688.6,20.1,231,1397.2,1,38.7,-71.4
+buffered 7.1 m,100.0,874,873,44094.6,53663.9,17.8,221,1310.5,1,45.4,-73.2
+centre-in-footprint,1.0,874,873,30335.7,43814.1,30.8,618,4893.0,1,0.0,0.0
+centre-in-footprint,4.0,874,873,34358.8,46419.2,26.0,332,2041.1,1,13.3,-58.3
+centre-in-footprint,20.0,874,873,37024.1,47957.2,22.8,271,1687.4,1,22.0,-65.5
+centre-in-footprint,100.0,874,873,37513.9,47886.5,21.7,275,1744.8,1,23.7,-64.3
