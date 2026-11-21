@@ -14,7 +14,7 @@
 \renewcommand\section{\@startsection{section}{1}{\z@}{-12\p@ \@plus -4\p@ \@minus -2\p@}{6\p@}{\normalfont\large\bfseries\boldmath\rightskip=\z@ \@plus 8em\pretolerance=10000 }}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}{-10\p@ \@plus -3\p@ \@minus -2\p@}{4\p@}{\normalfont\normalsize\bfseries\boldmath\rightskip=\z@ \@plus 8em\pretolerance=10000 }}
 \makeatother
-\linespread{0.95}
+\linespread{0.94}
 \setlength{\abovedisplayskip}{4pt plus 1pt minus 2pt}\setlength{\belowdisplayskip}{4pt plus 1pt minus 2pt}\setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}
 \renewcommand{\arraystretch}{0.94}
 \renewcommand{\topfraction}{0.95}\renewcommand{\textfraction}{0.05}\renewcommand{\floatpagefraction}{0.8}
@@ -213,7 +213,7 @@ Water scores highest on IoU/F1 (71.91\%/83.66\%), followed by Building (66.77\%/
 Table~\ref{tab:scenes} gives results at $r=5$ px; 4208 is also the radius-sweep tile of Table~\ref{tab:tile10} (left).
 
 \begin{table}[H]
-\caption{Additional planning scenes ($r=5$ px); multi-tile row: active-road plannable subset, per-tile means.}\label{tab:scenes}
+\caption{Additional planning scenes ($r=5$ px); last two rows: active-road plannable subsets (5 of 20 and 19 of 100 tiles), per-tile means.}\label{tab:scenes}
 \centering
 \setlength{\tabcolsep}{5pt}\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrrr}
@@ -223,20 +223,21 @@ Scene & Bldgs & Conn.\ before $\to$ after (\%) & Links & Length (px) & Mean (px)
 4208.png & 15 & 46.67 $\to$ 100.00 & 8 & 1,130.10 & 141.26 & 0.8502\\
 4200.png & 16 & 0.00 $\to$ 100.00 & 16 & 6,615.88 & 413.49 & 0.9300\\
 Multi-tile (active subset) & 8.20 & 6.67 $\to$ 100.00 & 7.60 & 1,627.81 & -- & 0.93\\
+100-tile run (active subset) & 9.95 & 13.26 $\to$ 100.00 & 8.63 & 2,055.13 & 206.46 & 0.9206\\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-\noindent Tile 4200 is an isolated hamlet with a sparse road fragment (100 road pixels detected), so its 16 routes are long (mean 413.49 px, about 227\,m). The multi-tile row keeps only the 5 of the first 20 Rural validation tiles with at least one building and one proposed route (13 had no building, 2 no plannable route): an \emph{active-road plannable subset}, not an unbiased sample.
+\noindent Tile 4200 is an isolated hamlet with a sparse road fragment (100 road pixels detected), so its 16 routes are long (mean 413.49 px, about 227\,m). The multi-tile row keeps only the 5 of the first 20 LoveDA validation tiles with at least one building and one proposed route (13 had no building, 2 no plannable route): an \emph{active-road plannable subset}, not an unbiased sample. The last row is the full 100-tile run on validation-split tiles 2522--2621: only 19 are plannable (per-tile connectivity 13.26\% $\to$ 100.00\%), while the 26 tiles with buildings but no detected road stay at 0\% and 55 tiles contain no building.
 
 \subsection{Domain-Adapted Baseline Comparison}\label{sec:sota}
-SegFormer-B2 and DeepLabV3-R101 were fine-tuned from public pretrained weights on the 2,522-tile LoveDA training split at $560\times560$ (AdamW, lr $=1.5\times10^{-4}$, 3 epochs) and scored with StrongDINOv2Seg on a 100-tile Rural validation subset against official ground truth (classes 1--7; T4, batch 1; Table~\ref{tab:sota}). This is \emph{equal LoveDA training data under a short fixed 3-epoch schedule}, not identical tuning budgets; our epoch-4 checkpoint was selected on validation mIoU, which favours it. Its 43.11\% mIoU is not comparable with the 53.80\% mIoU (68.91\% mDice) on the full validation split (Table~\ref{tab:seg}).
+SegFormer-B2 and DeepLabV3-R101 were fine-tuned from public pretrained weights on the 2,522-tile LoveDA training split at $560\times560$ (AdamW, lr $=1.5\times10^{-4}$, 3 epochs) and scored with StrongDINOv2Seg on 100 LoveDA validation tiles against official ground truth (classes 1--7; T4, batch 1; Table~\ref{tab:sota}). This is \emph{equal LoveDA training data under a short fixed 3-epoch schedule}, not identical tuning budgets; our epoch-4 checkpoint was selected on validation mIoU, which favours it. Its 43.11\% mIoU is not comparable with the 53.80\% mIoU (68.91\% mDice) on the full validation split (Table~\ref{tab:seg}).
 
 StrongDINOv2Seg gains $+5.89$ mIoU over SegFormer-B2 and $+10.73$ over DeepLabV3-R101, driven by Building IoU ($+29.91$ over SegFormer-B2). Road IoU is on par with SegFormer-B2 (34.79\% vs.\ 34.90\%), which is about $2.3\times$ faster (64.19 vs.\ 145.34\,ms). Thin, canopy-occluded roads score low for all models; skeletonization and A$^{*}$ still link isolated buildings to the nearest detected road.
 % ===== END ADDED =====
 
 \begin{table}[H]
-\caption{Fine-tuned baselines on the 100-tile Rural validation subset (not the full validation split); T4, $560\times560$, latency mean $\pm$ std.}\label{tab:sota}
+\caption{Fine-tuned baselines on 100 LoveDA validation tiles (not the full validation split); T4, $560\times560$, latency mean $\pm$ std.}\label{tab:sota}
 \centering
 \setlength{\tabcolsep}{5pt}\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lrrrrr}
