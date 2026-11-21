@@ -1,0 +1,99 @@
+\relax 
+\citation{hinton1996}
+\citation{verma2020}
+\citation{kapoor2021}
+\citation{vanetten2018}
+\citation{demir2018}
+\@writefile{toc}{\contentsline {title}{GIS-Based Smart Village Infrastructure Planning Using DINOv2 Segmentation, Graph-Based Connectivity Analysis, and A$^{*}$ Route Planning}{1}{}\protected@file@percent }
+\@writefile{toc}{\authcount {3}}
+\@writefile{toc}{\contentsline {author}{Ramakrishna Kolikipogu\and Pendyala Archana\and Palamakula Swathi}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
+\citation{xie2021}
+\citation{wang2022unet}
+\citation{oquab2023}
+\citation{zhou2018}
+\citation{bai2025,ma2026,zhang2024,qu2025}
+\citation{kamada2021,mattyus2017,xu2023,liu2017}
+\citation{ayala2021}
+\citation{dimassi2024,kakooei2026}
+\citation{wassan2025}
+\citation{zhu2021}
+\citation{boeing2017}
+\citation{verma2020}
+\citation{kapoor2021}
+\citation{wang2022astar}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{}\protected@file@percent }
+\citation{boeing2017}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Proposed Methodology}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Overall System Architecture}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}DINOv2 Encoder, FPN, ASPP, and Decoder}{3}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Loss Function}{3}{}\protected@file@percent }
+\citation{wang2022astar}
+\citation{wang2021loveda}
+\@writefile{toc}{\contentsline {section}{\numberline {4}System Architecture: Connectivity Analysis and Route Planning}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Building/Road Extraction and Connectivity Graph}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cost-Weighted A$^{*}$ Route Planning}{4}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Evaluation Metrics}{4}{}\protected@file@percent }
+\citation{wang2021loveda}
+\citation{vanetten2018}
+\citation{demir2018}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Training configuration.}}{5}{}\protected@file@percent }
+\newlabel{tab:train}{{1}{5}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-class and overall (macro-averaged) segmentation metrics, epoch-4 model.}}{5}{}\protected@file@percent }
+\newlabel{tab:seg}{{2}{5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Dataset, Preprocessing, and Experimental Setup}{5}{}\protected@file@percent }
+\newlabel{sec:setup}{{5}{5}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results and Discussion}{5}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Building Detection and Segmentation Results}{5}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Segmentation output for a sample tile. Left: input image. Centre: predicted class map. Right: prediction overlaid on the input.}}{6}{}\protected@file@percent }
+\newlabel{fig:seg}{{1}{6}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Training diagnostics over ten epochs, re-plotted from the training log with official LoveDA class names. Dashed line marks epoch 4 (selected on validation mIoU); all curves are validation-split diagnostics, not held-out test results.}}{6}{}\protected@file@percent }
+\newlabel{fig:train}{{2}{6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Connectivity, Planning, and Sensitivity Results}{6}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Left: connectivity-radius sensitivity (separate demonstration tile). Right: aggregate ten-tile planning summary ($r=5$ px).}}{6}{}\protected@file@percent }
+\newlabel{tab:tile10}{{3}{6}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Multi-Tile and Aggregate Evaluation}{6}{}\protected@file@percent }
+\citation{wang2022unet}
+\citation{verma2020,kapoor2021}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Tile 4216 before (left) and after (right) planning. Green boxes: road-connected buildings (4); red: isolated (10); yellow: existing roads; magenta: A$^{*}$-planned connections.}}{7}{}\protected@file@percent }
+\newlabel{fig:plan}{{3}{7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Discussion}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Additional Planning Scenes}{7}{}\protected@file@percent }
+\newlabel{sec:scenes}{{6.5}{7}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Domain-Adapted Baseline Comparison}{7}{}\protected@file@percent }
+\newlabel{sec:sota}{{6.6}{7}{}{}{}}
+\citation{boeing2017}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Additional planning scenes ($r=5$ px). Multi-tile row: active-road plannable subset (5 of the first 20 Rural validation tiles), per-tile means.}}{8}{}\protected@file@percent }
+\newlabel{tab:scenes}{{4}{8}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Fine-tuned baselines on the 100-tile Rural validation subset (not the full validation split of Table~\ref {tab:seg}); T4, $560\times 560$, latency mean $\pm $ std.}}{8}{}\protected@file@percent }
+\newlabel{tab:sota}{{5}{8}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations and Future Work}{8}{}\protected@file@percent }
+\citation{verma2020,kapoor2021}
+\bibcite{ayala2021}{1}
+\bibcite{bai2025}{2}
+\bibcite{boeing2017}{3}
+\bibcite{demir2018}{4}
+\bibcite{dimassi2024}{5}
+\bibcite{hinton1996}{6}
+\bibcite{kakooei2026}{7}
+\bibcite{kamada2021}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Disclosure of Interests.}{9}{}\protected@file@percent }
+\bibcite{kapoor2021}{9}
+\bibcite{liu2017}{10}
+\bibcite{ma2026}{11}
+\bibcite{mattyus2017}{12}
+\bibcite{oquab2023}{13}
+\bibcite{qu2025}{14}
+\bibcite{vanetten2018}{15}
+\bibcite{verma2020}{16}
+\bibcite{wang2021loveda}{17}
+\bibcite{wang2022unet}{18}
+\bibcite{wang2022astar}{19}
+\bibcite{wassan2025}{20}
+\bibcite{xie2021}{21}
+\bibcite{xu2023}{22}
+\bibcite{zhang2024}{23}
+\bibcite{zhou2018}{24}
+\bibcite{zhu2021}{25}
+\gdef \@abspage@last{11}
