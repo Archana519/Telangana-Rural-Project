@@ -2,7 +2,7 @@
 
     python -m src.multivillage.run --village adilabad_urban --steps acquire prepare extract
     python -m src.multivillage.run --village adilabad_urban --steps route          # parallel, ~1 h
-    python -m src.multivillage.run --village adilabad_urban --steps report
+    python -m src.multivillage.run --village adilabad_urban --steps report      # Adilabad only (its report text is Adilabad-specific); other villages: --variant segmentation, or the generic tables below
 
 Steps (identical for every village):
   acquire   1. study-area boundary, existing roads, facilities, building footprints   -> data/villages/<id>/ (git-ignored, regenerable)
@@ -28,7 +28,7 @@ from src.multivillage.sources import Source, write_manifest
 
 REPO = Path(__file__).resolve().parents[2]
 OUT_ROOT = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE"
-FOLDERS = {"adilabad_urban": "01_ADILABAD"}
+FOLDERS = {"adilabad_urban": "01_ADILABAD", "aswaraopeta": "02_ASWARAOPETA"}      # = `folder:` in each village config
 CTX: dict = {}                              # shared with forked workers
 
 
@@ -251,12 +251,12 @@ def main(argv=None):
                 pickle.dump(S, open(state, "wb"))
         S["runtime_s"] = round(time.time() - t0, 1)
         pickle.dump(S, open(state, "wb"))
-    if "report" in a.steps and a.variant == "segmentation":
-        from src.multivillage import segmentation_variant as SV
+    if "report" in a.steps and (a.variant == "segmentation" or v["id"] != "adilabad_urban"):
+        from src.multivillage import segmentation_variant as SV              # generic tables (Adilabad's open-footprint report is report.py, with Adilabad-specific text)
         res = S["results"]
         summ = SV.write_tables(S, res, odir, cfg, a.quick)
-        print("segmentation-variant tables written to", odir, "|", {k: summ[k] for k in ("gap_targets", "unique_len_two_stage_m", "saving_vs_independent_pct")})
-        if a.mosaic:
+        print("tables written to", odir, "|", {k: summ[k] for k in ("gap_targets", "unique_len_two_stage_m", "saving_vs_independent_pct")})
+        if a.mosaic and a.variant == "segmentation":
             main_out = next(r for r in res if r["spec"]["kind"] == "main")["out"]
             for p in SV.satellite_overlays(S, main_out, Path(a.mosaic), odir):
                 print("  figure", p)

@@ -44,10 +44,44 @@ def _geom(df, crs=4326):
     return gpd.GeoDataFrame(df.drop(columns=["geometry"]), geometry=[from_wkb(x) for x in df.geometry], crs=crs)
 
 
+def polygon_file_boundary(cfg) -> tuple:
+    """Study area = a village / town polygon supplied as a file (GeoJSON / GPKG, any CRS) plus an optional `<name>.provenance.json` sidecar.
+    The polygon is used exactly as given (no clipping, no buffering); it is only checked against the mandal polygon so a wrong pick is noticed."""
+    import json
+    from shapely.validation import make_valid
+    v = cfg["village"]
+    bf = REPO / v["boundary_file"]
+    if not bf.exists():
+        raise FileNotFoundError(f"{bf} not found. Fetch the true village / town polygon on a PC with internet first: python scripts/propose_aoi.py --village {v['id']}  (review the candidates), "
+                                f"then python scripts/propose_aoi.py --village {v['id']} --pick N")
+    g = gpd.read_file(bf)
+    g = g.set_crs(4326) if g.crs is None else g
+    cell = make_valid(g.to_crs(CRS_WORK).geometry.union_all())
+    prov_f = bf.with_name(bf.stem + ".provenance.json")
+    prov = json.loads(prov_f.read_text(encoding="utf-8")) if prov_f.exists() else {}
+    inside = None
+    try:                                                    # consistency check against the mandal polygon (cached geoBoundaries ADM3; skipped offline)
+        adm2 = gpd.read_file(dl.http_download(dl.GB_BASE.format(lvl="ADM2"), dl.CACHE / "gb_IND_ADM2.geojson"))
+        adm3 = gpd.read_file(dl.http_download(dl.GB_BASE.format(lvl="ADM3"), dl.CACHE / "gb_IND_ADM3.geojson"))
+        dist = adm2[adm2.shapeName == v["district"]].geometry.iloc[0]
+        m = adm3[(adm3.shapeName == v["adm3_name"]) & adm3.representative_point().within(dist)].to_crs(CRS_WORK).geometry.iloc[0]
+        inside = float(cell.intersection(m).area / cell.area)
+        if inside < 0.9:
+            raise ValueError(f"only {inside:.0%} of the polygon lies inside the {v['adm3_name']} mandal: wrong feature picked?")
+    except (OSError, IndexError):
+        pass
+    rec = dict(method=f"polygon file {bf.name}" + (f" ({prov.get('source')})" if prov.get("source") else ""), shape_name=prov.get("name", v["short_name"]), shape_id=str(prov.get("source_id", "")),
+               area_km2=cell.area / 1e6, bounds_epsg32644=[float(x) for x in cell.bounds], bounds_wgs84=[float(x) for x in g.to_crs(4326).total_bounds],
+               share_inside_mandal=inside, provenance=prov)
+    return cell, rec
+
+
 def boundary(cfg) -> tuple:
     """Study-window polygon in EPSG:32644 and a selection record. method 'geoboundaries_adm3': an administrative polygon (geoBoundaries gbOpen ADM3);
     method 'voronoi_proxy': Thiessen cell of a village point (used only when no administrative polygon exists)."""
     v = cfg["village"]
+    if v["boundary_method"] == "polygon_file":
+        return polygon_file_boundary(cfg)
     adm2 = gpd.read_file(dl.http_download(dl.GB_BASE.format(lvl="ADM2"), dl.CACHE / "gb_IND_ADM2.geojson"))
     adm3 = gpd.read_file(dl.http_download(dl.GB_BASE.format(lvl="ADM3"), dl.CACHE / "gb_IND_ADM3.geojson"))
     dist = adm2[adm2.shapeName == v["district"]].geometry.iloc[0]

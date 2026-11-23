@@ -46,6 +46,41 @@ def fmt(x, d=1):
     return f"{x:,.{d}f}"
 
 
+def seg_values(d: Path, area_text: str, open_run: bool = False) -> dict:
+    """Master-table column for one village's footprint run (segmentation or open), read from its result files."""
+    s = pd.read_csv(d / "routing_strategy_comparison.csv").set_index("strategy")
+    sj = json.loads((d / "metrics_summary.json").read_text())
+    ps = pd.read_csv(d / "penalty_sensitivity.csv")
+    og = pd.read_csv(d / "omission_summary.csv").set_index("group")
+    two, ind = s.loc["Two-stage shared plan"], s.loc["Independent least-cost routes"]
+    pc = ps[ps.penalty_mode == "centre-in-footprint"].set_index("mu")
+    n = sj["gap_targets"]
+    seg = {
+        "Study area (km2)": area_text,
+        "Building source": (f"Overture open footprints ({sj['footprints_total']:,} polygons)" if open_run else f"StrongDINOv2Seg instances on 0.6 m Esri imagery ({sj['footprints_total']:,} polygons)"),
+        "Footprints used for the penalty layer": f"{sj['footprints_used_for_penalty']:,} " + ("polygons (area >= 30 m2, confidence >= 0.7)" if open_run else "instances (area >= 30 m2)"),
+        "House targets": f"{n} (road-gap rule: > 30 m from a road)",
+        "Houses routed": f"{int(two.targets_routed)} of {int(two.targets_total)}",
+        "Independent routes: total / unique (m)": f"{fmt(ind.total_len_m)} / {fmt(ind.unique_len_m)}",
+        "Length-only control: unique (m)": fmt(s.loc['Length-only control', 'unique_len_m']),
+        "Roads-only shared reference: unique (m)": fmt(s.loc['Roads-only shared reference', 'unique_len_m']),
+        "Two-stage shared plan: unique (m)": fmt(two.unique_len_m),
+        "Saving vs independent (%)": f"{two.saving_vs_independent_pct}",
+        "Roads-only shared saving (%)": f"{s.loc['Roads-only shared reference', 'saving_vs_independent_pct']}",
+        "Length-only control vs independent (%)": f"{s.loc['Length-only control', 'saving_vs_independent_pct']}",
+        "Unique length per routed house (m)": f"{two.unique_len_m / two.targets_routed:.1f}",
+        "Routes crossing other footprints (two-stage)": f"{int(two.routes_crossing_other_footprints)} of {int(two.targets_total)} ({100 * two.routes_crossing_other_footprints / two.targets_total:.0f}%)",
+        "Length inside other footprints (m)": fmt(two.length_inside_other_footprints_m),
+        "mu = 1 -> 4: unique length change (%)": f"{pc.loc[4.0, 'length_change_vs_mu1_pct']:+.1f}",
+        "mu = 1 -> 4: routes crossing (n)": f"{int(pc.loc[1.0, 'routes_crossing'])} -> {int(pc.loc[4.0, 'routes_crossing'])}",
+        "Facilities planned": f"{sj['facilities_verified']} verified (facility-phase length not reported for this run)",
+    }
+    for g, lab in (("omit 10% (random)", "10% random omission: length change (%) / households unserved"), ("omit 20% (random)", "20% random omission: length change (%) / households unserved"),
+                   ("omit smallest 10%", "smallest-10% omission: length change (%) / households unserved"), ("omit smallest 25%", "smallest-25% omission: length change (%) / households unserved")):
+        seg[lab] = f"{og.loc[g, 'delta_len_pct']:+.1f} / {int(round(og.loc[g, 'unserved']))} of {n}"
+    return seg
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -112,42 +147,70 @@ def main():
 
     # ------------------------------------------------------------------ 4 master comparison table
     cmp_ = pd.read_csv(OPEN / "comparison_vs_damarakunta.csv").set_index("metric")
-    s = pd.read_csv(SEG / "routing_strategy_comparison.csv").set_index("strategy")
+    seg = seg_values(SEG, "17.75 (geoBoundaries ADM3 'Adilabad Urban')")
     sj = json.loads((SEG / "metrics_summary.json").read_text())
-    ps = pd.read_csv(SEG / "penalty_sensitivity.csv")
-    og = pd.read_csv(SEG / "omission_summary.csv").set_index("group")
-    two, ind = s.loc["Two-stage shared plan"], s.loc["Independent least-cost routes"]
-    pc = ps[ps.penalty_mode == "centre-in-footprint"].set_index("mu")
     n = sj["gap_targets"]
-    seg = {
-        "Study area (km2)": "17.75 (geoBoundaries ADM3 'Adilabad Urban')",
-        "Building source": f"StrongDINOv2Seg instances on 0.6 m Esri imagery ({sj['footprints_total']:,} polygons)",
-        "Footprints used for the penalty layer": f"{sj['footprints_used_for_penalty']:,} instances (area >= 30 m2)",
-        "House targets": f"{n} (road-gap rule: > 30 m from a road)",
-        "Houses routed": f"{int(two.targets_routed)} of {int(two.targets_total)}",
-        "Independent routes: total / unique (m)": f"{fmt(ind.total_len_m)} / {fmt(ind.unique_len_m)}",
-        "Length-only control: unique (m)": fmt(s.loc['Length-only control', 'unique_len_m']),
-        "Roads-only shared reference: unique (m)": fmt(s.loc['Roads-only shared reference', 'unique_len_m']),
-        "Two-stage shared plan: unique (m)": fmt(two.unique_len_m),
-        "Saving vs independent (%)": f"{two.saving_vs_independent_pct}",
-        "Roads-only shared saving (%)": f"{s.loc['Roads-only shared reference', 'saving_vs_independent_pct']}",
-        "Length-only control vs independent (%)": f"{s.loc['Length-only control', 'saving_vs_independent_pct']}",
-        "Unique length per routed house (m)": f"{two.unique_len_m / two.targets_routed:.1f}",
-        "Routes crossing other footprints (two-stage)": f"{int(two.routes_crossing_other_footprints)} of {int(two.targets_total)} ({100 * two.routes_crossing_other_footprints / two.targets_total:.0f}%)",
-        "Length inside other footprints (m)": fmt(two.length_inside_other_footprints_m),
-        "mu = 1 -> 4: unique length change (%)": f"{pc.loc[4.0, 'length_change_vs_mu1_pct']:+.1f}",
-        "mu = 1 -> 4: routes crossing (n)": f"{int(pc.loc[1.0, 'routes_crossing'])} -> {int(pc.loc[4.0, 'routes_crossing'])}",
-        "Facilities planned": f"{sj['facilities_verified']} verified (facility-phase length not reported for this run)",
-    }
-    for g, lab in (("omit 10% (random)", "10% random omission: length change (%) / households unserved"), ("omit 20% (random)", "20% random omission: length change (%) / households unserved"),
-                   ("omit smallest 10%", "smallest-10% omission: length change (%) / households unserved"), ("omit smallest 25%", "smallest-25% omission: length change (%) / households unserved")):
-        seg[lab] = f"{og.loc[g, 'delta_len_pct']:+.1f} / {int(round(og.loc[g, 'unserved']))} of {n}"
     cols = list(cmp_.columns)
     master = pd.DataFrame([dict(metric=m, damarakunta_rural=cmp_.loc[m, cols[0]] if m in cmp_.index else "n/a", adilabad_urban_segmentation=seg.get(m, "n/a"),
                                 adilabad_urban_open_footprints=cmp_.loc[m, cols[1]] if m in cmp_.index else "n/a") for m in dict.fromkeys(list(cmp_.index) + list(seg))])
     master.to_csv(OUT / "03_COMPARISON/master_comparison_three_settings.csv", index=False, lineterminator="\n")
     files.append(("03_COMPARISON/master_comparison_three_settings.csv", "Damarakunta vs Adilabad (StrongDINOv2Seg footprints) vs Adilabad (open Overture footprints): every shared metric"))
     put(OPEN / "comparison_vs_damarakunta.md", "03_COMPARISON/comparison_vs_damarakunta_open_footprints.md", "narrative comparison, open-footprint run")
+
+    # ------------------------------------------------------------------ 5 third settlement (Aswaraopeta), only once its results are committed
+    ASW_SEG, ASW_OPEN = C3 / "02_ASWARAOPETA_SEGMENTATION", C3 / "02_ASWARAOPETA"
+    asw = (ASW_SEG / "metrics_summary.json").exists()
+    asw_lines = []
+    if asw:
+        B = "03_ASWARAOPETA_SEMI_URBAN"
+        pf = REPO / "configs/multivillage/villages/aswaraopeta_boundary.provenance.json"
+        prov = json.loads(pf.read_text(encoding="utf-8")) if pf.exists() else {}
+        area_text = f"{prov['area_km2']:.2f} ({prov.get('source', 'polygon file')} village / town polygon)" if "area_km2" in prov else "village / town polygon"
+        aseg = seg_values(ASW_SEG, area_text)
+        aopen = seg_values(ASW_OPEN, area_text, open_run=True) if (ASW_OPEN / "metrics_summary.json").exists() else None
+        master["aswaraopeta_semi_urban_segmentation"] = master.metric.map(aseg).fillna("n/a")
+        extra = [m for m in aseg if m not in set(master.metric)]
+        if extra:
+            master = pd.concat([master, pd.DataFrame([dict(metric=m, aswaraopeta_semi_urban_segmentation=aseg[m]) for m in extra]).fillna("n/a")], ignore_index=True).fillna("n/a")
+        if aopen:
+            master["aswaraopeta_semi_urban_open_footprints"] = master.metric.map(aopen).fillna("n/a")
+        master.to_csv(OUT / "03_COMPARISON/master_comparison_three_settings.csv", index=False, lineterminator="\n")
+        ser = ASW_SEG / "final_maps_1_to_5"
+        for m in MAPS:
+            if (ser / f"{m}.png").exists():
+                put(ser / f"{m}.png", f"{B}/maps/{m}.png", f"Aswaraopeta {m[:4]} (StrongDINOv2Seg footprints; Esri imagery where shown; credit: {CREDIT})")
+        for extra_png in ser.glob("*_fac_route_2panel.png") if ser.exists() else []:
+            put(extra_png, f"{B}/maps/{extra_png.name}", "compact 2-panel figure: verified facilities and final shared network")
+        for n_ in ("sat_map1_a", "sat_map1_b", "sat_map2_independent_window", "sat_map2_two_stage_window", "sat_map2_independent_zoom", "sat_map2_two_stage_zoom"):
+            if (ASW_SEG / "figures" / f"{n_}.png").exists():
+                jpg(ASW_SEG / "figures" / f"{n_}.png", f"{B}/satellite_overlays/{n_}.jpg", f"Aswaraopeta satellite overlay {n_} (JPEG copy; {CREDIT})")
+        for n_, d_ in (("routing_strategy_comparison.csv", "routing strategies"), ("penalty_sensitivity.csv", "penalty sweep"), ("omission_summary.csv", "omission scenarios"), ("omission_runs.csv", "omission runs"),
+                       ("target_definition_sensitivity.csv", "road-gap threshold sweep"), ("building_extraction_summary.csv", "instances by quality class"), ("metrics_summary.json", "headline metrics"),
+                       ("run_log_full.json", "inference run log"), ("verified_facilities.csv", "facility candidates with status and lat/lon"), ("comparison_open_vs_segmentation.csv", "open vs segmentation")):
+            if (ASW_SEG / n_).exists():
+                put(ASW_SEG / n_, f"{B}/tables_segmentation_run/{n_}", f"Aswaraopeta segmentation run: {d_}")
+        if aopen:
+            for n_ in ("routing_strategy_comparison.csv", "penalty_sensitivity.csv", "omission_summary.csv", "target_definition_sensitivity.csv", "building_extraction_summary.csv", "verified_facilities.csv", "metrics_summary.json"):
+                if (ASW_OPEN / n_).exists():
+                    put(ASW_OPEN / n_, f"{B}/tables_open_footprint_run/{n_}", f"Aswaraopeta open-footprint run: {n_}")
+        for n_ in (pf, pf.with_name("aswaraopeta_boundary.geojson")):
+            if n_.exists():
+                put(n_, f"{B}/boundary/{n_.name}", "the study-area polygon (true village / town boundary) and its provenance")
+        fv_ = pd.read_csv(ASW_SEG / "verified_facilities.csv")
+        v_ = fv_[fv_.status == "VERIFIED_USED"]
+        add = [dict(settlement="Aswaraopeta", run="segmentation run", name=r["name"], facility_type=r.facility_type, taxonomy=r.taxonomy_primary, lat=r.lat, lon=r.lon,
+                    records_at_same_coordinate=int(((v_.lon == r.lon) & (v_.lat == r.lat)).sum()), dist_to_nearest_footprint_m=r.dist_to_nearest_footprint_m) for _, r in v_.iterrows()]
+        fac = pd.concat([fac, pd.DataFrame(add)], ignore_index=True)
+        fac.to_csv(OUT / "03_COMPARISON/facility_coordinates_all_settlements.csv", index=False, lineterminator="\n")
+        aj = json.loads((ASW_SEG / "metrics_summary.json").read_text())
+        aq = aj["quality_classes"]
+        asw_lines = ["", "## Aswaraopeta (semi-urban, Tier 2)", "",
+                     f"Study area: {area_text} km². Footprints: {aj['footprints_total']:,} StrongDINOv2Seg instances ({aq.get('PLAUSIBLE', 0):,} plausible, {aq.get('REVIEW', 0):,} review, {aq.get('UNRESOLVED_MERGE', 0):,} unresolved merge); "
+                     f"{aj['gap_targets']} road-gap targets; {aj['facilities_verified']} verified facilities.", "",
+                     "| metric | Aswaraopeta segmentation | Aswaraopeta open footprints |", "|---|---|---|"]
+        for m in ("Independent routes: total / unique (m)", "Two-stage shared plan: unique (m)", "Saving vs independent (%)", "Roads-only shared saving (%)", "Routes crossing other footprints (two-stage)",
+                  "Length inside other footprints (m)", "mu = 1 -> 4: unique length change (%)", "10% random omission: length change (%) / households unserved"):
+            asw_lines.append(f"| {m} | {aseg.get(m, 'n/a')} | {(aopen or {}).get(m, 'n/a')} |")
 
     # ------------------------------------------------------------------ INDEX.md
     q = sj["quality_classes"]
@@ -166,6 +229,7 @@ def main():
               "Length inside other footprints (m)", "mu = 1 -> 4: unique length change (%)", "10% random omission: length change (%) / households unserved"):
         r = master[master.metric == m].iloc[0]
         lines.append(f"| {m} | {r.damarakunta_rural} | {r.adilabad_urban_segmentation} | {r.adilabad_urban_open_footprints} |")
+    lines += asw_lines
     lines += ["", "Full table: `03_COMPARISON/master_comparison_three_settings.csv`.", "", "## Files", "", "| file | content |", "|---|---|"]
     lines += [f"| `{p}` | {d} |" for p, d in sorted(files)]
     lines += ["", "## Notes you should read before using these files", ""]

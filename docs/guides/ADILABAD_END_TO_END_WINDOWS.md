@@ -1,3 +1,5 @@
+> The scripts are now generic: `scripts\run_village_end_to_end.py --village adilabad_urban|aswaraopeta` and `scripts\make_village_map_series.py --village ...`; the old `run_adilabad_end_to_end.py` / `make_adilabad_map_series.py` names still work as wrappers.
+
 # Adilabad end to end on your Windows PC (Esri imagery → StrongDINOv2Seg → building extraction → Stage A/B routing → satellite overlays)
 
 One script runs the same chain that produced Damarakunta: `scripts\run_adilabad_end_to_end.py`.

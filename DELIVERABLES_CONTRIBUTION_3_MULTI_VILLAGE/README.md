@@ -7,7 +7,7 @@ settlements of three density tiers and compared with the Damarakunta baseline. `
 | Tier | Settlement | Status |
 |---|---|---|
 | 1, urban / peri-urban | Adilabad (Adilabad Urban mandal, Adilabad district) | **done, awaiting review** -> `01_ADILABAD/` |
-| 2, semi-urban | Aswaraopeta (Bhadradri Kothagudem district) | not started (waits for the owner's confirmation) |
+| 2, semi-urban | Aswaraopeta (Bhadradri Kothagudem district) | **set up, waiting for its true village / town boundary** (`scripts/propose_aoi.py`; guide `docs/guides/ASWARAOPETA_END_TO_END_WINDOWS.md`) -> `02_ASWARAOPETA*` |
 | 3, rural | Alampur (Jogulamba Gadwal district) | not started (waits for the owner's confirmation) |
 
 Code: `src/multivillage/` (`acquire`, `prepare`, `pipeline`, `run`, `report`, `facilities`, `sources`); parameters shared by every village: `configs/multivillage/common.yaml`;

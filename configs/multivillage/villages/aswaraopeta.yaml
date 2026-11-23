@@ -1,0 +1,24 @@
+id: aswaraopeta
+order: 2
+name: Aswaraopeta (semi-urban town, settlement boundary)
+short_name: Aswaraopeta
+mandal: Aswaraopeta
+district: Bhadradri            # geoBoundaries gbOpen ADM2 name of Bhadradri Kothagudem district
+state: Telangana
+tier: "Tier 2 - semi-urban"
+folder: 02_ASWARAOPETA
+work_slug: aswaraopeta
+bundle_folder: 03_ASWARAOPETA_SEMI_URBAN
+# --- study area = the TRUE village / town boundary, never a clipped box and never the 622.59 km2 mandal --------------------------------------------
+# The polygon is fetched on the owner's PC by `python scripts/propose_aoi.py --village aswaraopeta` (OSM / Overture divisions / Nominatim candidates),
+# reviewed, and written here with `--pick N` together with a provenance file. Until that file exists every step stops with an explanatory message.
+boundary_method: polygon_file
+boundary_file: configs/multivillage/villages/aswaraopeta_boundary.geojson
+boundary_label: Study-area boundary (village / town polygon)
+adm3_name: Aswaraopeta           # the mandal the polygon must lie inside (geoBoundaries ADM3; used as a consistency check only)
+place_aliases: [Aswaraopeta, Ashwaraopeta, Aswaraopet, Ashwaraopet, Aswaraopeta Town]
+building_source: overture_buildings        # open footprints (independent check); the primary run uses StrongDINOv2Seg footprints (--variant segmentation)
+# --- target rule: identical to Adilabad, so the three settlements are compared under one definition ---
+min_house_area_m2: 30
+min_conf: 0.70
+min_dist_to_road_m: 30

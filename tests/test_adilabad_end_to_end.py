@@ -7,7 +7,7 @@ import numpy as np
 import pytest
 
 REPO = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location("e2e", REPO / "scripts" / "run_adilabad_end_to_end.py")
+spec = importlib.util.spec_from_file_location("e2e", REPO / "scripts" / "run_village_end_to_end.py")
 E = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(E)
 

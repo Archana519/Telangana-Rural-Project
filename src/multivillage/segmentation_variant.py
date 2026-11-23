@@ -1,9 +1,9 @@
 """Segmentation variant of the multi-settlement pipeline: StrongDINOv2Seg + OpenCV building instances instead of open footprints.
 
-Used by `src.multivillage.run --variant segmentation --footprints <buildings_v8_*.gpkg>` and by scripts/run_adilabad_end_to_end.py.
+Used by `src.multivillage.run --variant segmentation --footprints <buildings_v8_*.gpkg>` and by scripts/run_village_end_to_end.py (any village).
 It changes ONLY where the building footprints come from. Boundary, roads, facilities (places), land cover, DEM, cost surface, planner parameters,
-the road-gap target rule, the penalty sweep and the omission scenarios are those of the open-data run in 01_ADILABAD, so the two runs differ in one factor.
-Outputs go to DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD_SEGMENTATION/ (the open-data deliverables are never overwritten).
+the road-gap target rule, the penalty sweep and the omission scenarios are those of the village's open-data run (e.g. 01_ADILABAD), so the two runs differ in one factor.
+Outputs go to DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/<folder>_SEGMENTATION/ (the open-data deliverables are never overwritten).
 
 Satellite overlay figures carry the credit line required by the Esri World Imagery terms used for this project:
 "Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community."
@@ -79,8 +79,8 @@ def write_tables(S: dict, res: list, odir: Path, cfg: dict, quick: bool) -> dict
         drows = [r["row"] for r in res if r["spec"]["kind"] == "def"]
         if drows:
             pd.DataFrame(drows).sort_values("min_dist_to_road_m").to_csv(odir / "target_definition_sensitivity.csv", index=False, lineterminator="\n")
-    open_dir = odir.parent / "01_ADILABAD"
-    if (open_dir / "routing_strategy_comparison.csv").exists():
+    open_dir = odir.parent / odir.name.removesuffix("_SEGMENTATION")      # the open-footprint run of the same village, when it exists
+    if open_dir != odir and (open_dir / "routing_strategy_comparison.csv").exists():
         o = pd.read_csv(open_dir / "routing_strategy_comparison.csv").set_index("strategy")
         s = strat.set_index("strategy")
         rows = []

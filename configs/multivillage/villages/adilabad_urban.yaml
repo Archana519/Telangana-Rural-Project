@@ -5,6 +5,11 @@ mandal: Adilabad Urban
 district: Adilabad
 state: Telangana
 tier: "Tier 1 - urban / peri-urban fringe"
+short_name: Adilabad Urban
+boundary_label: Study-area boundary (geoBoundaries ADM3)
+folder: 01_ADILABAD
+work_slug: adilabad
+bundle_folder: 02_ADILABAD_URBAN
 boundary_method: geoboundaries_adm3     # administrative polygon "Adilabad Urban" (geoBoundaries gbOpen IND ADM3, as released); NOT a revenue-village boundary
 adm3_name: Adilabad Urban
 building_source: overture_buildings
