@@ -1,0 +1,12 @@
+label,name,facility_type,routed,lat,lon
+F1,Agriculture college aswaraopet,school,False,17.241129,81.10435
+F2,Surya Public School,school,True,17.248253,81.128037
+F3,Chinnary Hospital,health,True,17.246962,81.131416
+F4,Government Primary School Maramangalam,school,True,17.240824,81.128813
+F5,Univercity PG College,school,True,17.244948,81.131295
+F6,Pujya Shri Madhavanji Agriculture Polytechnic College,school,False,17.243208,81.105304
+F7,A1 Kids Convent,school,True,17.241624,81.127869
+F8,ZPHS and ZPGHS Aswaraopeta,school,True,17.243224,81.130016
+F9,R and B Inspection Building,government,True,17.242674,81.132187
+F10,Primary Agricultural Cooperative Credit Society,government,True,17.243422,81.1199
+F11,Gowthami Public School,school,True,17.240813,81.128529

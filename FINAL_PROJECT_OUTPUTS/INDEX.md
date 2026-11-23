@@ -74,8 +74,12 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `01_DAMARAKUNTA_RURAL/maps/map3_terrain_cost_landcover_slope.png` | Damarakunta map3: land cover, slope, cost surface C0, blocked cells (unchanged Stage B file) |
 | `01_DAMARAKUNTA_RURAL/maps/map4_alternatives_vs_network.png` | Damarakunta map4: Stage A alternatives versus the final shared network (village + settlement zoom) (unchanged Stage B file) |
 | `01_DAMARAKUNTA_RURAL/maps/map5_village_detail_shared_paths.png` | Damarakunta map5: settlement-scale primary vs building-avoiding shared network, facilities labelled, footprint-crossing segments (unchanged Stage B file) |
+| `01_DAMARAKUNTA_RURAL/maps/master_satellite_planning_map.png` | Damarakunta master satellite planning map with building-clearance routes (new; the frozen Stage B maps are unchanged) |
 | `01_DAMARAKUNTA_RURAL/tables/building_crossings_summary.csv` | Damarakunta Stage B: route crossings of other buildings |
 | `01_DAMARAKUNTA_RURAL/tables/comparison_report.md` | Damarakunta Stage B comparison report |
+| `01_DAMARAKUNTA_RURAL/tables/damarakunta_master_RUN_STATUS.md` | how the Damarakunta master map was produced (cost surface, imagery, comparison with the frozen Stage B plan) |
+| `01_DAMARAKUNTA_RURAL/tables/damarakunta_master_clearance_verification.csv` | Damarakunta building-clearance check |
+| `01_DAMARAKUNTA_RURAL/tables/damarakunta_master_map_facility_key.csv` | Damarakunta facility key |
 | `01_DAMARAKUNTA_RURAL/tables/table1_length_reduction.csv` | Damarakunta Stage B: routing strategies: length and saving, x4 primary and x1 control |
 | `01_DAMARAKUNTA_RURAL/tables/table4_c1_sensitivity.csv` | Damarakunta Stage B: segmentation (omission/addition) sensitivity |
 | `01_DAMARAKUNTA_RURAL/tables/table6_obstacle_avoidance.csv` | Damarakunta Stage B: building-crossing / obstacle-avoidance comparison |
@@ -115,11 +119,15 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `02_ADILABAD_URBAN_UPDATED/boundary/adilabad_urban_updated_boundary.geojson` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
 | `02_ADILABAD_URBAN_UPDATED/boundary/adilabad_urban_updated_boundary.provenance.json` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
 | `02_ADILABAD_URBAN_UPDATED/maps/adilabad_updated_fac_route_2panel.png` | compact 2-panel figure: verified facilities and final shared network |
+| `02_ADILABAD_URBAN_UPDATED/maps/clearance_verification.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
 | `02_ADILABAD_URBAN_UPDATED/maps/map1_imagery_boundary_roads.png` | Adilabad Urban (Adilabad Town) map1 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN_UPDATED/maps/map2_footprints_facilities_latlon.png` | Adilabad Urban (Adilabad Town) map2 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN_UPDATED/maps/map3_terrain_cost_landcover_slope.png` | Adilabad Urban (Adilabad Town) map3 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN_UPDATED/maps/map4_alternatives_vs_network.png` | Adilabad Urban (Adilabad Town) map4 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN_UPDATED/maps/map5_village_detail_shared_paths.png` | Adilabad Urban (Adilabad Town) map5 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `02_ADILABAD_URBAN_UPDATED/maps/map_facility_key.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
+| `02_ADILABAD_URBAN_UPDATED/maps/master_satellite_planning_map.png` | Adilabad Urban (Adilabad Town): master satellite planning map, all layers on the Esri imagery (segmentation footprints; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `02_ADILABAD_URBAN_UPDATED/maps/network_length_cost_summary.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
 | `02_ADILABAD_URBAN_UPDATED/satellite_overlays/sat_map1_a.jpg` | Adilabad Urban (Adilabad Town) satellite overlay sat_map1_a (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN_UPDATED/satellite_overlays/sat_map1_b.jpg` | Adilabad Urban (Adilabad Town) satellite overlay sat_map1_b (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `02_ADILABAD_URBAN_UPDATED/satellite_overlays/sat_map2_independent_window.jpg` | Adilabad Urban (Adilabad Town) satellite overlay sat_map2_independent_window (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
@@ -142,11 +150,15 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `03_ASWARAOPETA_SEMI_URBAN/boundary/aswaraopeta_boundary.geojson` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
 | `03_ASWARAOPETA_SEMI_URBAN/boundary/aswaraopeta_boundary.provenance.json` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
 | `03_ASWARAOPETA_SEMI_URBAN/maps/aswaraopeta_fac_route_2panel.png` | compact 2-panel figure: verified facilities and final shared network |
+| `03_ASWARAOPETA_SEMI_URBAN/maps/clearance_verification.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
 | `03_ASWARAOPETA_SEMI_URBAN/maps/map1_imagery_boundary_roads.png` | Aswaraopeta (Ashwaraopet town) map1 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `03_ASWARAOPETA_SEMI_URBAN/maps/map2_footprints_facilities_latlon.png` | Aswaraopeta (Ashwaraopet town) map2 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `03_ASWARAOPETA_SEMI_URBAN/maps/map3_terrain_cost_landcover_slope.png` | Aswaraopeta (Ashwaraopet town) map3 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `03_ASWARAOPETA_SEMI_URBAN/maps/map4_alternatives_vs_network.png` | Aswaraopeta (Ashwaraopet town) map4 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `03_ASWARAOPETA_SEMI_URBAN/maps/map5_village_detail_shared_paths.png` | Aswaraopeta (Ashwaraopet town) map5 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `03_ASWARAOPETA_SEMI_URBAN/maps/map_facility_key.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
+| `03_ASWARAOPETA_SEMI_URBAN/maps/master_satellite_planning_map.png` | Aswaraopeta (Ashwaraopet town): master satellite planning map, all layers on the Esri imagery (segmentation footprints; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `03_ASWARAOPETA_SEMI_URBAN/maps/network_length_cost_summary.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
 | `03_ASWARAOPETA_SEMI_URBAN/satellite_overlays/sat_map1_a.jpg` | Aswaraopeta (Ashwaraopet town) satellite overlay sat_map1_a (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `03_ASWARAOPETA_SEMI_URBAN/satellite_overlays/sat_map1_b.jpg` | Aswaraopeta (Ashwaraopet town) satellite overlay sat_map1_b (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `03_ASWARAOPETA_SEMI_URBAN/satellite_overlays/sat_map2_independent_window.jpg` | Aswaraopeta (Ashwaraopet town) satellite overlay sat_map2_independent_window (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
