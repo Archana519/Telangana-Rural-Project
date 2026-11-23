@@ -156,8 +156,25 @@ def densest(gap, w=1400.0, h=1000.0):
     return (arg[0] - w / 2, arg[1] - h / 2, arg[0] + w / 2, arg[1] + h / 2)
 
 
-def satellite_overlays(S: dict, main: dict, mosaic: Path, odir: Path, dpi=300) -> list:
-    """Four publication panels on the Esri imagery. Single-panel PNGs are written too so they can be placed in one IEEE column each."""
+def satellite_overlays(S: dict, main: dict, mosaic: Path, odir: Path, dpi=300, clear: dict | None = None, cfg: dict | None = None) -> list:
+    """Publication panels on the Esri imagery (one IEEE column each). With `clear` (clearance.compute_clearance) every panel is self-explaining (legend, summary with route lengths, saving, illustrative
+    cost, building-clearance check) and draws routes that never run over a rooftop; without it the legacy panels (soft footprint penalty, no legend) are written."""
+    if clear is not None:
+        from . import master_map as MM
+        info = study_area_info(cfg) if cfg else dict(study_area_name="study area", boundary_type="", study_area_type="")
+        cell = S["cell"]
+        sc = MM.scene_from_clearance(info["study_area_name"], info.get("boundary_type") or info["study_area_type"], cell, S["layers"]["roads"].geometry.intersection(cell), S["classified"], S["gap"], S["fac"], clear, mosaic=mosaic)
+        ext, zext = MM.window_ext(sc), MM.pick_zoom(sc, 1400, 1000)
+        fd = odir / "figures"; fd.mkdir(parents=True, exist_ok=True)
+        outs = []
+        for name, kind in (("sat_map1", "overview"), ("sat_map2_independent", "independent"), ("sat_map2_two_stage", "two_stage")):
+            for tag, e, zoom in (("window", ext, False), ("zoom", zext, True)):
+                fn = f"sat_map1_{'a' if tag == 'window' else 'b'}.png" if kind == "overview" else f"{name}_{tag}.png"
+                outs.append(MM.render_panel(sc, e, fd / fn, kind, zoom, dpi=dpi))
+        outs.append(MM.render_legend_strip(sc, fd / "sat_legend.png"))
+        outs.append(MM.render_master(sc, fd / "master_satellite_planning_map.png", dpi=200, zoom_ext=zext))
+        MM.write_key_csv(sc, fd / "map_facility_key.csv")
+        return outs
     cell, L = S["cell"], S["layers"]
     ext = (cell.bounds[0] - 100, cell.bounds[1] - 100, cell.bounds[2] + 100, cell.bounds[3] + 100)
     zext = densest(S["gap"])

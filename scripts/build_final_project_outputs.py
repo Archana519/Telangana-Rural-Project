@@ -222,7 +222,9 @@ def main():
                     put(ser / f"{m}.png", f"{B}/maps/{m}.png", f"{name} {m[:4]} ({tag} footprints; Esri imagery where shown; credit: {CREDIT})")
             for extra_png in (ser.glob("*_fac_route_2panel.png") if ser.exists() else []):
                 put(extra_png, f"{B}/maps/{extra_png.name}", "compact 2-panel figure: verified facilities and final shared network")
-            for n_ in ("map_facility_key.csv", "network_length_cost_summary.csv"):
+            if (ser / "master_satellite_planning_map.png").exists():
+                put(ser / "master_satellite_planning_map.png", f"{B}/maps/master_satellite_planning_map.png", f"{name}: master satellite planning map, all layers on the Esri imagery ({tag} footprints; credit: {CREDIT})")
+            for n_ in ("map_facility_key.csv", "network_length_cost_summary.csv", "clearance_verification.csv"):
                 if (ser / n_).exists():
                     put(ser / n_, f"{B}/maps/{n_}", "facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps")
             for n_ in ("sat_map1_a", "sat_map1_b", "sat_map2_independent_window", "sat_map2_two_stage_window", "sat_map2_independent_zoom", "sat_map2_two_stage_zoom"):
@@ -257,6 +259,11 @@ def main():
                   "Length inside other footprints (m)", "mu = 1 -> 4: unique length change (%)", "10% random omission: length change (%) / households unserved"):
             asw_lines.append(f"| {m} | {(seg_v or {}).get(m, 'n/a')} | {(open_v or {}).get(m, 'n/a')} |")
 
+    DKM = C3 / "00_DAMARAKUNTA_MASTER_MAP"
+    for n_, d_ in (("master_satellite_planning_map.png", "Damarakunta master satellite planning map with building-clearance routes (new; the frozen Stage B maps are unchanged)"), ("clearance_verification.csv", "Damarakunta building-clearance check"),
+                   ("map_facility_key.csv", "Damarakunta facility key"), ("RUN_STATUS.md", "how the Damarakunta master map was produced (cost surface, imagery, comparison with the frozen Stage B plan)")):
+        if (DKM / n_).exists():
+            put(DKM / n_, f"01_DAMARAKUNTA_RURAL/maps/{n_}" if n_.endswith(".png") else f"01_DAMARAKUNTA_RURAL/tables/damarakunta_master_{n_}", d_)
     sources_folder()
     # ------------------------------------------------------------------ INDEX.md
     q = sj["quality_classes"]
@@ -290,6 +297,9 @@ def main():
               "treat it as a mislabelled duplicate.",
               "* **Damarakunta map footers.** The five Damarakunta PNGs are the unchanged Stage B files. Their footers still read 'licence unresolved - review draft, do not redistribute', which is superseded by the Esri attribution used in the papers: "
               f"*{CREDIT}* (non-commercial academic use; raw tiles not redistributed). Crop or cover the footer for the thesis, or cite the attribution next to the figure.",
+              "* **Building clearance (new routing mode).** The result tables use the Stage B planner with a soft footprint penalty (mu = 4); its routes can still cross a roof (Damarakunta: 28 of 163 house routes, 209 m). The `master_satellite_planning_map.png` of each study area and "
+              "maps 4 and 5 use `src/multivillage/clearance.py` instead: footprints are impassable (3.6 m clearance on a 5 m grid), each route starts at the edge of its own building, and every drawn route is intersected with all footprints "
+              "(`clearance_verification.csv`: expected 0 crossings). Targets with no free lane (enclosed by buildings) are reported as unrouted, never routed over a roof. Maps synced before this change show the soft-penalty routes; regenerate them (see the commands in the project notes) and re-run this script.",
               "* **Footprints are automatic detections, not a census.** In Adilabad most instances are merged roofs (unresolved merge), so targets are built-up units, not counted houses.",
               "* **Satellite imagery** (Esri World Imagery) may be shown in the thesis with the credit line above; do not redistribute the tiles or the mosaic.", ""]
     (OUT / "INDEX.md").write_text("\n".join(lines), encoding="utf-8")

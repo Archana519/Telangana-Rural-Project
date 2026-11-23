@@ -259,7 +259,9 @@ def main(argv=None):
         print("tables written to", odir, "|", {k: summ[k] for k in ("gap_targets", "unique_len_two_stage_m", "saving_vs_independent_pct")})
         if a.mosaic and a.variant == "segmentation":
             main_out = next(r for r in res if r["spec"]["kind"] == "main")["out"]
-            for p in SV.satellite_overlays(S, main_out, Path(a.mosaic), odir):
+            from src.multivillage import clearance as CL
+            clear = CL.compute_clearance(cfg, S, ddir, cache_path=ddir / "clearance_network_v1.pkl", log=print)         # building-clearance routes (footprints hard-blocked), cached
+            for p in SV.satellite_overlays(S, main_out, Path(a.mosaic), odir, clear=clear, cfg=cfg):
                 print("  figure", p)
     print("steps done:", a.steps)
 
