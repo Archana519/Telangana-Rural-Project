@@ -83,33 +83,61 @@ def seg_values(d: Path, area_text: str, open_run: bool = False) -> dict:
     return seg
 
 
+AREAS = [("damarakunta", "Damarakunta (rural; TGRAC village polygon; frozen Stage B)"), ("adilabad_urban_updated", "Adilabad Urban (Adilabad Town), derived built-up extent"),
+         ("aswaraopeta", "Aswaraopeta (Ashwaraopet town), derived built-up extent"), ("alampur", "Alampur (Alampur town), Jogulamba Gadwal district")]
+OV = "https://overturemaps-us-west-2.s3.amazonaws.com/release/{rel}/theme={theme}/type={typ}/"
+WC = "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_{tile}_Map.tif"
+COP = "https://copernicus-dem-30m.s3.amazonaws.com/{name}/{name}.tif"
+GB = "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/main/releaseData/gbOpen/IND/{lvl}/geoBoundaries-IND-{lvl}.geojson"
+
+
 def sources_folder():
-    """00_SOURCES_AND_PROVENANCE: where the owner records verified data-source links and proofs for the three study areas."""
+    """00_SOURCES_AND_PROVENANCE: where the owner records verified data-source links and proofs for every study area."""
     import hashlib
     S = OUT / "00_SOURCES_AND_PROVENANCE"
-    for v in ("damarakunta", "adilabad_urban_updated", "aswaraopeta"):
+    proofs = {"damarakunta": ["TGRAC village polygon and road layer: download page or e-mail that gives the source and licence", "Facility layers (TGRAC health, anganwadi, sub-centres): source page and date",
+                              "Esri export request log / screenshot of the World Imagery terms"],
+              "adilabad_urban_updated": ["Overture release notes page for the release in the provenance file", "OSM / Overpass / Nominatim response saved for the chosen boundary candidate (aoi_candidates/)", "ESA WorldCover and Copernicus DEM tile pages",
+                                         "Esri World Imagery terms page"],
+              "aswaraopeta": ["Overture release notes page for the release in the provenance file", "Boundary candidate table (aoi_candidates/) and the preview image checked against the imagery", "ESA WorldCover and Copernicus DEM tile pages",
+                              "Esri World Imagery terms page"],
+              "alampur": ["Boundary candidate table and preview (data/villages/alampur/aoi_candidates/) and the reason the chosen polygon was picked",
+                          "Overpass / Nominatim response (raw JSON) for the chosen OSM relation or way, with its retrieval date",
+                          "Overture release notes page for release 2026-10-21.0 (buildings, transportation, places) and the divisions release named in alampur_boundary.provenance.json",
+                          "ESA WorldCover v200 tile page and Copernicus DEM GLO-30 tile page for the tiles listed in `alampur_acquired_data_manifest.csv`",
+                          "Esri World Imagery terms page and a screenshot of one exported tile request (extent, size, date)",
+                          "geoBoundaries gbOpen IND ADM3 / ADM2 metadata JSON (licence ODbL 1.0, build date) used as the 2018 reference layer",
+                          "Facility exclusion decisions (alampur_facility_exclusions.csv): the evidence for every excluded record",
+                          "Any official polygon you hold (LGD / Census / municipal) if you decide to replace the derived boundary: pass it with `propose_aoi.py --use-file` and keep the file here"]}
+    for v, items in proofs.items():
         (S / "proofs" / v).mkdir(parents=True, exist_ok=True)
-        (S / "proofs" / v / "README.md").write_text(f"# Proofs for {v}\n\nPut here (not committed unless licence allows): screenshots of the download pages, licence text, API responses, "
-                                                    "e-mails or letters that confirm each source in `../../SOURCES_AND_PROOFS.md`. Name files `<source>_<date>.<ext>`.\n", encoding="utf-8")
-    rows = [("Esri World Imagery (0.6 m)", "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer", "Esri Master Agreement / World Imagery terms; non-commercial academic use, credit required", "all three"),
-            ("Overture Maps (buildings, transportation, places, divisions), release 2026-11-18.0 where used", "https://docs.overturemaps.org/", "ODbL (buildings/transportation) and CDLA-Permissive-2.0 (places, divisions); check per theme", "all three"),
-            ("ESA WorldCover 10 m", "https://esa-worldcover.org/", "CC BY 4.0", "all three"),
-            ("Copernicus DEM GLO-30", "https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model", "Copernicus licence", "all three"),
-            ("OpenStreetMap / Overpass / Nominatim (boundary candidates)", "https://www.openstreetmap.org/copyright", "ODbL", "adilabad_urban_updated, aswaraopeta"),
-            ("geoBoundaries ADM3 (2018 reference layer, frozen Adilabad run)", "https://www.geoboundaries.org/", "CC BY 4.0", "adilabad_urban (frozen)"),
-            ("TGRAC village polygon (Damarakunta)", "", "OWNER TO FILL", "damarakunta"),
-            ("PMGSY rate Rs 75 lakh/km (60-90)", "", "OWNER-SUPPLIED, UNVERIFIED: attach the circular or schedule of rates", "all three (illustrative only)")]
+        (S / "proofs" / v / "README.md").write_text(f"# Proofs for {v}\n\nPut here (not committed unless the licence allows): screenshots of the download pages, licence text, API responses, e-mails or letters that confirm each source in "
+                                                    "`../../SOURCES_AND_PROOFS.md`. Name files `<source>_<date>.<ext>`.\n\nItems to attach:\n\n" + "\n".join(f"- [ ] {i}" for i in items) + "\n", encoding="utf-8")
+    rows = [("Esri World Imagery (0.6 m)", "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export", "live service (no release number); tiles exported on the acquisition date", "Esri Master Agreement / World Imagery terms; non-commercial academic use, credit required", "all four"),
+            ("Overture Maps buildings / transportation / places (open data run)", OV.format(rel="2026-10-21.0", theme="{buildings|transportation|places}", typ="{building|segment|place}"), "release 2026-10-21.0 (pinned in configs/multivillage/common.yaml)", "ODbL 1.0 (buildings, transportation); CDLA-Permissive-2.0 (places, divisions): check per theme", "adilabad_urban_updated, aswaraopeta, alampur"),
+            ("Overture Maps divisions (boundary candidates, centre point)", OV.format(rel="<newest>", theme="divisions", typ="division_area"), "newest release at the time; the release is recorded in each *_boundary.provenance.json", "CDLA-Permissive-2.0 (per Overture documentation)", "adilabad_urban_updated, aswaraopeta, alampur"),
+            ("ESA WorldCover 10 m", WC.format(tile="<tile>"), "v200 (2021)", "CC BY 4.0 (doi:10.5281/zenodo.7254221)", "all four (Damarakunta via aligned_open)"),
+            ("Copernicus DEM GLO-30", COP.format(name="<tile name>"), "GLO-30 (DGED COG)", "Copernicus DEM licence (free, attribution; doi:10.5270/ESA-c5d3d65)", "all four"),
+            ("OpenStreetMap through Overpass / Nominatim (boundary candidates)", "https://overpass-api.de/api/interpreter ; https://nominatim.openstreetmap.org/search", "live; retrieval date in the provenance file", "ODbL 1.0 (https://www.openstreetmap.org/copyright)", "adilabad_urban_updated, aswaraopeta, alampur"),
+            ("geoBoundaries gbOpen IND ADM2 / ADM3 (2018 mandal layer; consistency reference and frozen Adilabad run)", GB.format(lvl="ADM3"), "buildDate Dec 12, 2023; boundaryYear 2018 (source lgdirectory.gov.in via Pathways Data)", "ODbL 1.0 per the geoBoundaries metadata JSON", "adilabad_urban (frozen), reference row elsewhere"),
+            ("TGRAC village polygon, road network, facilities (Damarakunta)", "", "OWNER TO FILL", "OWNER TO FILL", "damarakunta"),
+            ("PMGSY rate Rs 75 lakh/km (60-90)", "", "OWNER-SUPPLIED", "UNVERIFIED: attach the circular or schedule of rates", "all four (illustrative only)")]
     md = ["# Data sources and provenance proofs (to be completed by the owner)", "",
-          "Pre-filled with the sources the pipeline uses. Licences are as understood when written and are NOT verified: fill the last two columns after checking each page, and attach proofs under `proofs/<study area>/`.", "",
-          "| source | URL | licence (to verify) | used for | verified by owner (date) | proof file |", "|---|---|---|---|---|---|"]
-    md += [f"| {a} | {b} | {c} | {d} |  |  |" for a, b, c, d in rows]
-    md += ["", "## Study-area boundaries", "", "Polygon files and their provenance JSON are in each study area's `boundary/` folder (Adilabad updated, Aswaraopeta). Damarakunta's polygon is in `DELIVERABLES_DAMARAKUNTA_STAGE_B/` (read-only). "
-           "Adilabad updated and Aswaraopeta are derived built-up settlement extents, not administrative boundaries. SHA-256 of the committed files is in `provenance_hashes.csv`.", ""]
+          "Pre-filled with the sources the pipeline uses. Licences and versions are as understood when written and are NOT verified: fill the last two columns after checking each page, and attach proofs under `proofs/<study area>/`.", "",
+          "| source | URL (exact endpoint pattern used by the code) | release / version | licence (to verify) | used for | verified by owner (date) | proof file |", "|---|---|---|---|---|---|---|"]
+    md += [f"| {a} | {b} | {c} | {d} | {e} |  |  |" for a, b, c, d, e in rows]
+    md += ["", "## Study areas", "", "| id | study area | proofs folder |", "|---|---|---|"] + [f"| {i} | {n} | `proofs/{i}/` |" for i, n in AREAS]
+    md += ["", "## Study-area boundaries", "", "Polygon files and their provenance JSON are in each study area's `boundary/` folder (Adilabad updated, Aswaraopeta, Alampur). Damarakunta's polygon is in `DELIVERABLES_DAMARAKUNTA_STAGE_B/` (read-only). "
+           "Adilabad updated and Aswaraopeta are derived built-up settlement extents, not administrative boundaries; the type of the Alampur boundary is stated in `alampur_boundary.provenance.json`. SHA-256 of the committed files is in `provenance_hashes.csv`.",
+           "", "## Alampur acquired data", "", "`alampur_acquired_data_manifest.csv` (copied from `DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/03_ALAMPUR/`) lists every downloaded input file with its size, SHA-256 and source URL.", ""]
     (S / "SOURCES_AND_PROOFS.md").write_text("\n".join(md), encoding="utf-8")
-    cand = list((REPO / "configs/multivillage/villages").glob("*_boundary.*")) + [REPO / "inputs/economic_assumptions.json"] + list(C3.glob("*/run_log_full.json")) + list(C3.glob("*/study_area.csv"))
+    cand = list((REPO / "configs/multivillage/villages").glob("*_boundary.*")) + [REPO / "inputs/economic_assumptions.json"] + list(C3.glob("*/run_log_full.json")) + list(C3.glob("*/study_area.csv")) + list(C3.glob("*/acquired_data_manifest.csv"))
     pd.DataFrame([dict(file=str(p.relative_to(REPO)), sha256=hashlib.sha256(p.read_bytes()).hexdigest(), bytes=p.stat().st_size) for p in sorted(cand) if p.exists()]).to_csv(S / "provenance_hashes.csv", index=False, lineterminator="\n")
-    files.append(("00_SOURCES_AND_PROVENANCE/SOURCES_AND_PROOFS.md", "table of data sources and licences with blank verified-by-owner columns; attach proofs in proofs/<study area>/"))
-    files.append(("00_SOURCES_AND_PROVENANCE/provenance_hashes.csv", "SHA-256 of boundary polygons, provenance files, assumptions and run logs"))
+    files.append(("00_SOURCES_AND_PROVENANCE/SOURCES_AND_PROOFS.md", "table of data sources, versions and licences with blank verified-by-owner columns; attach proofs in proofs/<study area>/"))
+    files.append(("00_SOURCES_AND_PROVENANCE/provenance_hashes.csv", "SHA-256 of boundary polygons, provenance files, assumptions, study-area tables, run logs and acquired-data manifests"))
+    mf = C3 / "03_ALAMPUR" / "acquired_data_manifest.csv"
+    if mf.exists():
+        put(mf, "00_SOURCES_AND_PROVENANCE/alampur_acquired_data_manifest.csv", "Alampur: every downloaded input file with size, SHA-256, source URL and release")
 
 
 def main():

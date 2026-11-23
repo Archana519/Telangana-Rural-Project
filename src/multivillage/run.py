@@ -28,7 +28,7 @@ from src.multivillage.sources import Source, write_manifest
 
 REPO = Path(__file__).resolve().parents[2]
 OUT_ROOT = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE"
-FOLDERS = {"adilabad_urban": "01_ADILABAD", "aswaraopeta": "02_ASWARAOPETA"}      # = `folder:` in each village config
+FOLDERS = {"adilabad_urban": "01_ADILABAD", "aswaraopeta": "02_ASWARAOPETA", "alampur": "03_ALAMPUR"}      # = `folder:` in each village config
 CTX: dict = {}                              # shared with forked workers
 
 

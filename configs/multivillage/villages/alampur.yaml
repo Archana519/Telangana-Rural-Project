@@ -1,0 +1,30 @@
+id: alampur
+order: 3
+name: Alampur (town, settlement boundary)
+short_name: Alampur
+mandal: Alampur
+district: Jogulamba            # geoBoundaries gbOpen ADM2 name of Jogulamba Gadwal district
+state: Telangana
+tier: "Tier 3 - small town (temple town on the Tungabhadra)"
+folder: 03_ALAMPUR
+work_slug: alampur
+bundle_folder: 04_ALAMPUR
+# --- study area = the TRUE village / town boundary, never a clipped box and never the 622.59 km2 mandal --------------------------------------------
+# The polygon is fetched on the owner's PC by `python scripts/propose_aoi.py --village alampur` (OSM / Overture divisions / Nominatim candidates),
+# reviewed, and written here with `--pick N` together with a provenance file. Until that file exists every step stops with an explanatory message.
+study_area_name: "Alampur (Alampur town)"
+study_area_type: "settlement boundary of Alampur town, Alampur mandal, Jogulamba Gadwal district (type fixed by --pick; see the provenance file)"
+boundary_method: polygon_file
+boundary_file: configs/multivillage/villages/alampur_boundary.geojson
+boundary_label: Study-area boundary (village / town polygon)
+adm3_name: Alampur           # the mandal the polygon must lie inside (geoBoundaries ADM3; used as a consistency check only)
+mandal_check: warn
+search_buffer_km: 5
+legacy_reference_adm3: true
+# The candidate fetcher uses the newest OpenStreetMap / Overture polygons and an edge-continuity check (no cutting through built-up land); the 2018 mandal layer is only a consistency reference.
+place_aliases: [Alampur, Alampur Town, Alampur Chowrasta, Alampur Chaurasta, Alumpur]
+building_source: overture_buildings        # open footprints (independent check); the primary run uses StrongDINOv2Seg footprints (--variant segmentation)
+# --- target rule: identical to Adilabad, so the three settlements are compared under one definition ---
+min_house_area_m2: 30
+min_conf: 0.70
+min_dist_to_road_m: 30
