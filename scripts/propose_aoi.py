@@ -168,6 +168,8 @@ def edge_report(poly_utm, lc, transform, step=50.0, d=30.0, built_class=50, res=
     outside_pct     share of the local built-up settlement extent (derived like settlement_extent_from_raster, seeded inside the polygon) that lies outside the polygon;
     outside_km2     that area. None values when the raster does not cover the polygon or has no built-up land near its centre."""
     built = lc == built_class
+    if poly_utm.buffer(-d).is_empty:
+        raise ValueError("polygon too small for the edge check")
     inner, outer = poly_utm.buffer(-d).boundary, poly_utm.buffer(d).boundary
     bd = poly_utm.boundary
     n = max(int(bd.length // step), 1)
@@ -205,7 +207,10 @@ def add_edge_metrics(ranked: pd.DataFrame, lc, transform) -> pd.DataFrame:
     r = ranked.copy()
     cols = {k: [] for k in ("edge_both_pct", "edge_both_km", "outside_pct", "outside_km2")}
     for g in gpd.GeoSeries(r.geometry, crs=4326).to_crs(CRS):
-        e = edge_report(g, lc, transform)
+        try:
+            e = edge_report(g, lc, transform)
+        except Exception:
+            e = dict(edge_both_pct=None, edge_both_km=None, outside_pct=None, outside_km2=None)
         for k in cols:
             cols[k].append(e[k])
     for k, v in cols.items():
@@ -213,6 +218,10 @@ def add_edge_metrics(ranked: pd.DataFrame, lc, transform) -> pd.DataFrame:
     nn = lambda x: x is not None and not (isinstance(x, float) and np.isnan(x))
     flag = [bool((nn(a) and a > EDGE_FLAG_BOTH_PCT) or (nn(b) and b > EDGE_FLAG_OUTSIDE_PCT)) for a, b in zip(r.edge_both_pct, r.outside_pct)]
     r["edge_verdict"] = ["CUTS_BUILTUP" if f else ("clean" if (nn(a) or nn(b)) else "not_checked") for f, a, b in zip(flag, r.edge_both_pct, r.outside_pct)]
+    big = r.area_km2 > 120.0                                       # mandal / district polygons: the settlement edge check does not apply
+    r.loc[big, "edge_verdict"] = "not_applicable"
+    for k in ("edge_both_pct", "edge_both_km", "outside_pct", "outside_km2"):
+        r.loc[big, k] = np.nan
     pen = 0.1 * r.edge_both_pct.fillna(0) + 0.05 * r.outside_pct.fillna(0)
     r["score"] = r["score"] - pen
     return r.sort_values("score", ascending=False).reset_index(drop=True)
@@ -243,34 +252,79 @@ def _get(url, **kw):
 
 
 def fetch_nominatim(aliases, mandal, district):
-    rows = []
-    for a in aliases[:3]:
+    """Nominatim search with polygon output (format=geojson: the plain json format is rate-limited more aggressively from shared IPs)."""
+    rows, seen = [], set()
+    queries = []
+    for a in aliases[:4]:
+        queries += [f"{a}, {district}, Telangana, India", f"{a}, {mandal}, {district}, Telangana, India"]
+    for q in dict.fromkeys(queries):
         try:
-            r = _get(NOMINATIM, params=dict(q=f"{a}, {mandal}, {district}, Telangana, India", format="jsonv2", polygon_geojson=1, addressdetails=1, limit=10))
+            r = _get(NOMINATIM, params=dict(q=q, format="geojson", polygon_geojson=1, addressdetails=1, limit=10))
+            feats = r.json().get("features", [])
         except Exception as e:
-            print("  nominatim:", e)
+            print(f"  nominatim '{q}': {type(e).__name__}: {str(e)[:90]}")
+            time.sleep(2)
             continue
-        for it in r.json():
-            gj = it.get("geojson") or {}
-            if gj.get("type") in ("Polygon", "MultiPolygon"):
-                rows.append(dict(source="nominatim", name=it.get("name") or it.get("display_name", "").split(",")[0], kind=f"{it.get('category')}/{it.get('type')}", source_id=f"{it.get('osm_type')}/{it.get('osm_id')}",
-                                 url=f"https://www.openstreetmap.org/{it.get('osm_type')}/{it.get('osm_id')}", geometry=make_valid(shape(gj))))
-        time.sleep(1.1)
+        for f in feats:
+            p_, gj = f.get("properties", {}), f.get("geometry") or {}
+            key = (p_.get("osm_type"), p_.get("osm_id"))
+            if gj.get("type") in ("Polygon", "MultiPolygon") and key not in seen:
+                seen.add(key)
+                rows.append(dict(source="nominatim", name=p_.get("name") or p_.get("display_name", "").split(",")[0], kind=f"{p_.get('category')}/{p_.get('type')}", source_id=f"{p_.get('osm_type')}/{p_.get('osm_id')}",
+                                 url=f"https://www.openstreetmap.org/{p_.get('osm_type')}/{p_.get('osm_id')}", geometry=make_valid(shape(gj))))
+        time.sleep(1.2)
     return rows
+
+
+def fetch_photon_relations(aliases):
+    """Photon (komoot) finds OSM objects by name; for every relation among the hits the polygon comes from polygons.openstreetmap.fr (OSM data, ODbL). Also returns OSM place nodes (name, lon, lat)
+    for reporting: a town / village that OSM maps only as a point has no polygon to fetch."""
+    rows, points, seen = [], [], set()
+    for a in aliases[:4]:
+        try:
+            feats = _get("https://photon.komoot.io/api/", params=dict(q=a, limit=20)).json().get("features", [])
+        except Exception as e:
+            print(f"  photon '{a}': {type(e).__name__}: {str(e)[:80]}")
+            continue
+        for f in feats:
+            p_ = f["properties"]
+            if name_score(p_.get("name"), aliases) == 0:
+                continue
+            if p_.get("osm_type") == "N" and p_.get("osm_key") == "place":
+                points.append(dict(name=p_.get("name"), value=p_.get("osm_value"), osm_id=p_.get("osm_id"), lon=f["geometry"]["coordinates"][0], lat=f["geometry"]["coordinates"][1]))
+            if p_.get("osm_type") == "R" and p_["osm_id"] not in seen and p_.get("osm_key") in ("boundary", "place"):
+                seen.add(p_["osm_id"])
+                try:
+                    g = shape(_get("https://polygons.openstreetmap.fr/get_geojson.py", params=dict(id=p_["osm_id"], params=0)).json())
+                except Exception as e:
+                    print(f"  polygons.osm.fr R{p_['osm_id']}: {type(e).__name__}: {str(e)[:80]}")
+                    continue
+                rows.append(dict(source="osm", name=p_.get("name"), kind=f"{p_.get('osm_key')}/{p_.get('osm_value')}", source_id=f"relation/{p_['osm_id']}", url=f"https://www.openstreetmap.org/relation/{p_['osm_id']}", geometry=make_valid(g)))
+        time.sleep(0.5)
+    return rows, points
+
+
+OVERPASS_MIRRORS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter", "https://overpass.private.coffee/api/interpreter", "https://maps.mail.ru/osm/tools/overpass/api/interpreter"]
 
 
 def fetch_overpass(aliases, bbox_wgs):
     w, s_, e, n = bbox_wgs
     pat = "^(" + "|".join(re.escape(a) for a in aliases) + ")$"
-    q = (f'[out:json][timeout:120];(relation["name"~"{pat}",i]({s_},{w},{n},{e});way["name"~"{pat}",i]({s_},{w},{n},{e});'
+    q = (f'[out:json][timeout:90];(relation["name"~"{pat}",i]({s_},{w},{n},{e});way["name"~"{pat}",i]({s_},{w},{n},{e});'
          f'relation["name:en"~"{pat}",i]({s_},{w},{n},{e}););out geom tags;')
+    data = None
+    for url in OVERPASS_MIRRORS:
+        try:
+            import requests
+            r = requests.post(url, data={"data": q}, headers=UA, timeout=100)
+            r.raise_for_status()
+            data = r.json()
+            print("  overpass:", url.split("/")[2], "ok")
+            break
+        except Exception as e_:
+            print(f"  overpass {url.split('/')[2]}: {type(e_).__name__}: {str(e_)[:80]}")
     rows = []
-    try:
-        r = _get(OVERPASS, params={"data": q})
-    except Exception as e_:
-        print("  overpass:", e_)
-        return rows
-    for el in r.json().get("elements", []):
+    for el in (data or {}).get("elements", []):
         g = osm_to_polygon(el)
         if g is None or g.is_empty:
             continue
@@ -396,8 +450,14 @@ def main(argv=None):
         ranked = gpd.read_file(a.candidates_file).to_crs(4326)
     else:
         rows = []
+        points = []
         if "overpass" in a.sources:
             rows += fetch_overpass(aliases, bbox)
+            pr, points = fetch_photon_relations(aliases)
+            rows += pr
+            points = list({(p_["osm_id"]): p_ for p_ in points}.values())
+            if points:
+                print("OSM maps this place as a point only (no polygon in OSM):", [(p_["name"], p_["value"], round(p_["lat"], 5), round(p_["lon"], 5)) for p_ in points])
         if "nominatim" in a.sources:
             rows += fetch_nominatim(aliases, v["mandal"], v["district"])
         if "overture" in a.sources:
@@ -416,7 +476,9 @@ def main(argv=None):
             sys.exit("no candidate polygon found in any source. Options: --use-file with a village / municipal polygon you hold (LGD / Census / municipality), or --settlement-extent --centre LAT LON")
         if tv.get("legacy_reference_adm3") or v.get("legacy_reference_adm3"):
             rows.append(dict(source="geoboundaries_2018_reference", name=v["adm3_name"], kind="administrative/mandal 2018 (geoBoundaries ADM3)", source_id="geoBoundaries gbOpen IND ADM3 2018", url="https://www.geoboundaries.org", geometry=mandal))
-        ranked = rank_candidates(gpd.GeoDataFrame(rows, geometry="geometry", crs=4326), mandal, aliases, strict_mandal=strict)
+        cg = gpd.GeoDataFrame(rows, geometry="geometry", crs=4326)
+        cg = cg.drop_duplicates(subset=["source_id"], keep="first") if "source_id" in cg else cg           # the same OSM relation can come from Overpass, Photon and Nominatim
+        ranked = rank_candidates(cg, mandal, aliases, strict_mandal=strict)
         if not a.no_edge_check:
             try:
                 small = ranked[ranked.area_km2 < 400]
