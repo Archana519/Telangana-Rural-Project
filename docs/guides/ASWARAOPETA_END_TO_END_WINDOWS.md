@@ -6,6 +6,8 @@ through `scripts/propose_aoi.py`. Adilabad keeps its full ADM3 polygon (17.75 km
 
 Everything runs on your PC (internet, the StrongDINOv2Seg checkpoint) exactly as for Adilabad (`docs/guides/ADILABAD_END_TO_END_WINDOWS.md`); the scripts are now generic: `--village aswaraopeta`.
 
+> Updated: `propose_aoi.py` now uses the newest OSM / Overture polygons and an edge-continuity check (candidates that cut through built-up land are flagged `CUTS_BUILTUP` and refused by `--pick`); see `docs/guides/UPDATED_BOUNDARIES_WINDOWS.md`, which also covers the updated Adilabad boundary.
+
 ## 1. Fetch and fix the true boundary (light; a few minutes)
 ```powershell
 git pull origin main

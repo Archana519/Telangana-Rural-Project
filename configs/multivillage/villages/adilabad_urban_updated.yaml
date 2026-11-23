@@ -1,0 +1,27 @@
+id: adilabad_urban_updated
+order: 1
+name: Adilabad (town, updated boundary)
+short_name: Adilabad Urban (updated boundary)
+mandal: Adilabad Urban
+district: Adilabad
+state: Telangana
+tier: "Tier 1 - urban / peri-urban fringe"
+folder: 01_ADILABAD_UPDATED
+work_slug: adilabad_updated
+bundle_folder: 02_ADILABAD_URBAN_UPDATED
+# --- study area = the CURRENT, UNCUT town / municipal boundary (not the 2018 geoBoundaries mandal polygon, which cuts through the built-up south of the town) -------------
+# Fetched on the owner's PC with `python scripts/propose_aoi.py --village adilabad_urban` (candidates from OpenStreetMap, the newest Overture release, optional user polygon; edge-continuity check),
+# then fixed with --pick N. The 2018-based village `adilabad_urban` and its results / papers stay frozen; this is a separate village id with its own data and output folders.
+boundary_method: polygon_file
+boundary_file: configs/multivillage/villages/adilabad_urban_updated_boundary.geojson
+boundary_label: Study-area boundary (updated town polygon)
+adm3_name: Adilabad Urban        # reference mandal (2018) for the candidate search / consistency note
+mandal_check: warn               # the town boundary may extend beyond the 2018 mandal polygon: report the share, do not stop
+search_buffer_km: 5              # candidates are searched in the mandal bounding box + 5 km
+legacy_reference_adm3: true      # the 2018 polygon is shown in the candidate table as a REFERENCE row (never pickable)
+place_aliases: [Adilabad, Adilabad Town, Adilabad Municipality, Adilabad Municipal Council, Adilabad Urban]
+building_source: overture_buildings
+# --- target rule: identical to the frozen Adilabad run and to Aswaraopeta  (documented adaptation for dense fabric; see 00_DATA_SOURCE_AUDIT.md) ---
+min_house_area_m2: 30        # footprints smaller than this are excluded (sheds, kiosks)
+min_conf: 0.70               # Google Open Buildings model confidence threshold (OSM polygons are human-mapped: treated as 1.0)
+min_dist_to_road_m: 30       # targets = houses whose representative point is farther than this from an existing road (= the planner's snap distance, plan_network_v2 snap_m)

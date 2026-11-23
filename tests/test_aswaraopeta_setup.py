@@ -114,3 +114,67 @@ def test_generic_scripts_take_a_village():
     assert P.slug == "aswaraopeta" and P.mosaic.name == "aswaraopeta_esri_highres_mosaic_0p6m.tif" and P.out.name == "02_ASWARAOPETA_SEGMENTATION"
     P0 = E.Paths(argparse.Namespace(work_dir=None))
     assert P0.village == "adilabad_urban" and P0.mosaic.name == "adilabad_esri_highres_mosaic_0p6m.tif" and P0.out.name == "01_ADILABAD_SEGMENTATION"
+
+
+# ----------------------------------------------------------------------------------------- latest / uncut boundaries (propose_aoi edge-continuity check)
+def _town_raster():
+    res = 10.0
+    lc = np.full((500, 500), 40, np.uint8)
+    lc[100:400, 100:300] = 50                                              # a town 3 km x 2 km ...
+    lc[100:400, 300:360] = 50                                              # ... that continues 600 m further east (a "southern" part cut by an old administrative line)
+    return lc, from_origin(0, 5000, res, res)
+
+
+def test_edge_report_flags_a_polygon_that_cuts_the_town_and_passes_the_full_one():
+    lc, T = _town_raster()
+    cut = box(1000, 1000, 3000, 4000)                                      # stops at x = 3000: built-up continues to x = 3600
+    full = box(900, 900, 3750, 4100)                                       # encloses the whole town with a margin
+    e_cut, e_full = PA.edge_report(cut, lc, T), PA.edge_report(full, lc, T)
+    assert e_cut["edge_both_pct"] > PA.EDGE_FLAG_BOTH_PCT and e_cut["outside_pct"] > PA.EDGE_FLAG_OUTSIDE_PCT
+    assert e_full["edge_both_pct"] == 0.0 and e_full["outside_pct"] < 1.0
+
+
+def test_ranking_prefers_the_clean_boundary_and_never_the_2018_reference():
+    lc, T = _town_raster()
+    from pyproj import Transformer
+    inv = Transformer.from_crs(32644, 4326, always_xy=True)
+    to_wgs = lambda poly: Polygon([inv.transform(x, y) for x, y in poly.exterior.coords])
+    mandal = to_wgs(box(-5000, -5000, 9000, 9000))
+    rows = [dict(source="osm", name="Aswaraopeta", kind="boundary/admin_level=8", source_id="cut", geometry=to_wgs(box(1000, 1000, 3000, 4000))),
+            dict(source="osm", name="Aswaraopeta", kind="boundary/admin_level=8", source_id="full", geometry=to_wgs(box(900, 900, 3750, 4100))),
+            dict(source="geoboundaries_2018_reference", name="Aswaraopeta", kind="administrative 2018", source_id="ref", geometry=to_wgs(box(1000, 1000, 3000, 4000)))]
+    r = PA.rank_candidates(gpd.GeoDataFrame(rows, geometry="geometry", crs=4326), mandal, ["Aswaraopeta"], min_km2=0.05)
+    assert "REFERENCE ONLY" in r[r.source_id == "ref"].verdict.iloc[0]
+    # the raster is in UTM 44N metres; edge metrics are computed on the UTM geometry
+    import geopandas as _g
+    r2 = PA.add_edge_metrics(r, lc, T)
+    assert r2.iloc[0].source_id == "full" and r2.iloc[0].edge_verdict == "clean"
+    assert dict(zip(r2.source_id, r2.edge_verdict))["cut"] == "CUTS_BUILTUP"
+
+
+def test_pick_is_refused_for_the_reference_row_and_for_cut_polygons(tmp_path):
+    cache = REPO / "data/raw/_cache/gb_IND_ADM3.geojson"
+    if not cache.exists():
+        pytest.skip("geoBoundaries cache not available")
+    m = gpd.read_file(cache)
+    m = m[m.shapeName == "Aswaraopeta"].geometry.iloc[0]
+    c = m.representative_point()
+    base = dict(name="Aswaraopeta", kind="boundary", url="u", name_score=1.0, area_km2=2.0, share_in_mandal=1.0, verdict="plausible", score=5.0)
+    cands = gpd.GeoDataFrame([dict(base, source="geoboundaries_2018_reference", source_id="ref", edge_both_pct=0.0, outside_pct=0.0, edge_verdict="clean", geometry=Point(c.x, c.y).buffer(0.01)),
+                              dict(base, source="osm", source_id="cut", edge_both_pct=20.0, outside_pct=30.0, edge_verdict="CUTS_BUILTUP", geometry=Point(c.x, c.y).buffer(0.01))], geometry="geometry", crs=4326)
+    f = tmp_path / "c.geojson"
+    cands.to_file(f, driver="GeoJSON")
+    with pytest.raises(SystemExit, match="2018 reference"):
+        PA.main(["--village", "aswaraopeta", "--candidates-file", str(f), "--pick", "0"])
+    with pytest.raises(SystemExit, match="cuts through built-up"):
+        PA.main(["--village", "aswaraopeta", "--candidates-file", str(f), "--pick", "1"])
+
+
+def test_adilabad_updated_config_is_separate_and_uses_a_polygon_file():
+    old, new = A.load_cfg("adilabad_urban")["village"], A.load_cfg("adilabad_urban_updated")["village"]
+    assert old["boundary_method"] == "geoboundaries_adm3" and old["updated_boundary_village"] == "adilabad_urban_updated"          # frozen 2018 run untouched
+    assert new["boundary_method"] == "polygon_file" and new["folder"] != old["folder"] and new["work_slug"] != old["work_slug"]
+    assert new["mandal_check"] == "warn" and new["legacy_reference_adm3"] is True
+    for k in ("min_house_area_m2", "min_conf", "min_dist_to_road_m"):
+        assert new[k] == old[k]
+    assert R.out_dir(A.load_cfg("adilabad_urban_updated")).name == "01_ADILABAD_UPDATED"

@@ -66,8 +66,11 @@ def polygon_file_boundary(cfg) -> tuple:
         dist = adm2[adm2.shapeName == v["district"]].geometry.iloc[0]
         m = adm3[(adm3.shapeName == v["adm3_name"]) & adm3.representative_point().within(dist)].to_crs(CRS_WORK).geometry.iloc[0]
         inside = float(cell.intersection(m).area / cell.area)
-        if inside < 0.9:
+        mode = v.get("mandal_check", "strict")
+        if inside < 0.9 and mode == "strict":
             raise ValueError(f"only {inside:.0%} of the polygon lies inside the {v['adm3_name']} mandal: wrong feature picked?")
+        if inside < 0.9 and mode == "warn":
+            print(f"note: only {inside:.0%} of the polygon lies inside the 2018 {v['adm3_name']} mandal (expected: the current town boundary extends beyond it)")
     except (OSError, IndexError):
         pass
     rec = dict(method=f"polygon file {bf.name}" + (f" ({prov.get('source')})" if prov.get("source") else ""), shape_name=prov.get("name", v["short_name"]), shape_id=str(prov.get("source_id", "")),

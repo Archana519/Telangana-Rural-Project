@@ -33,7 +33,8 @@ CTX: dict = {}                              # shared with forked workers
 
 
 def out_dir(cfg, variant: str | None = None) -> Path:
-    d = OUT_ROOT / (FOLDERS[cfg["village"]["id"]] + (f"_{variant.upper()}" if variant else ""))
+    base = cfg["village"].get("folder") or FOLDERS[cfg["village"]["id"]]
+    d = OUT_ROOT / (base + (f"_{variant.upper()}" if variant else ""))
     (d / "figures").mkdir(parents=True, exist_ok=True)
     return d
 
