@@ -317,7 +317,8 @@ def settlement_point(cfg, aliases, bbox_wgs, release=None):
     return None
 
 
-def worldcover_extent(cfg, centre_lonlat, mandal_wgs, ddir: Path):
+def worldcover_extent(cfg, centre_lonlat, clip_wgs, ddir: Path):
+    """clip_wgs = the search area (mandal, or mandal + buffer when a town extends beyond its 2018 mandal); the built-up extent is only clipped to that."""
     import rasterio
     from pyproj import Transformer
     from shapely.geometry import box
@@ -333,7 +334,7 @@ def worldcover_extent(cfg, centre_lonlat, mandal_wgs, ddir: Path):
     with rasterio.open(out) as s:
         lc, T = s.read(1), s.transform
     g = settlement_extent_from_raster(lc, T, (cx, cy))
-    g = g.intersection(gpd.GeoSeries([mandal_wgs], crs=4326).to_crs(CRS).iloc[0])
+    g = g.intersection(gpd.GeoSeries([clip_wgs], crs=4326).to_crs(CRS).iloc[0])
     return gpd.GeoSeries([g], crs=CRS).to_crs(4326).iloc[0]
 
 
@@ -410,7 +411,7 @@ def main(argv=None):
             if centre is None:
                 sys.exit("no town centre: pass --centre LAT LON")
             rows.append(dict(source="worldcover_builtup", name=v["short_name"] + " (derived built-up extent)", kind="derived built-up extent", source_id="ESA WorldCover v200 class 50",
-                             url="https://esa-worldcover.org", geometry=worldcover_extent(cfg, centre, mandal, ddir)))
+                             url="https://esa-worldcover.org", geometry=worldcover_extent(cfg, centre, area_poly, ddir)))
         if not rows:
             sys.exit("no candidate polygon found in any source. Options: --use-file with a village / municipal polygon you hold (LGD / Census / municipality), or --settlement-extent --centre LAT LON")
         if tv.get("legacy_reference_adm3") or v.get("legacy_reference_adm3"):
