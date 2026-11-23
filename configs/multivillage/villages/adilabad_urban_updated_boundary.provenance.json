@@ -1,0 +1,68 @@
+{
+  "village": "adilabad_urban_updated",
+  "name": "Adilabad Urban (derived built-up extent)",
+  "source": "worldcover_builtup",
+  "source_id": "ESA WorldCover v200 class 50",
+  "source_url": "https://esa-worldcover.org",
+  "kind": "derived built-up extent",
+  "licence": "derived from ESA WorldCover v200 (CC BY 4.0)",
+  "retrieved": "2026-11-23",
+  "area_km2": 18.59,
+  "share_inside_mandal": 0.5,
+  "verdict": "plausible",
+  "edge_continuity": {
+    "edge_both_pct": 0.1,
+    "edge_both_km": 0.1,
+    "outside_pct": 1.5,
+    "outside_km2": 0.29,
+    "edge_verdict": "clean"
+  },
+  "overture_release": "",
+  "study_area_name": "Adilabad Urban (Adilabad Town)",
+  "study_area_type": "derived built-up settlement extent of Adilabad Town (the urban area of Adilabad Urban mandal and its adjoining built-up localities); the district of Adilabad is NOT the study area",
+  "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+  "derivation": {
+    "raster": "ESA WorldCover v200 (2021), 10 m, built-up class 50",
+    "close_m": 60.0,
+    "link_m": 250.0,
+    "seed_radius_m": 1500.0,
+    "buffer_round_trip_m": "+40 / -20",
+    "simplify_m": 5.0,
+    "fill_holes_below_km2": 0.5,
+    "window_m": "10 km x 10 km computation window around the centre (not the study area)",
+    "method": "built-up cells closed over gaps <= 60 m, linked over gaps <= 250 m, clusters reaching within 1.5 km of the centre kept, outline smoothed; clipped only to the search area",
+    "centre_lon": 78.53399,
+    "centre_lat": 19.67595,
+    "centre_source": "--centre 19.67595 78.53399 (given; e.g. the OpenStreetMap place node)"
+  },
+  "covers": {
+    "mandals_2018": [
+      {
+        "mandal": "Adilabad Urban",
+        "area_km2": 9.38,
+        "share_of_polygon_pct": 50.5
+      },
+      {
+        "mandal": "Mavala",
+        "area_km2": 5.98,
+        "share_of_polygon_pct": 32.2
+      },
+      {
+        "mandal": "Aidilabad Rural",
+        "area_km2": 3.23,
+        "share_of_polygon_pct": 17.4
+      }
+    ],
+    "localities": [
+      "Adilabad",
+      "Anukunta",
+      "Kurshid Nagar",
+      "Mavala",
+      "Vidya Nagar"
+    ],
+    "localities_source": "Overture divisions points inside the polygon, release 2026-11-18.0"
+  },
+  "derived": true,
+  "note": "derived built-up settlement extent accepted by the owner (no official polygon available); centre = OpenStreetMap place node Adilabad (city)",
+  "sha256": "b98db43491101d1146592c276f163f930d0458dce493b1696f5a6b5e5888add7"
+}

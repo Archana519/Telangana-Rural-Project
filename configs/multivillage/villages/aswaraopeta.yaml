@@ -12,6 +12,8 @@ bundle_folder: 03_ASWARAOPETA_SEMI_URBAN
 # --- study area = the TRUE village / town boundary, never a clipped box and never the 622.59 km2 mandal --------------------------------------------
 # The polygon is fetched on the owner's PC by `python scripts/propose_aoi.py --village aswaraopeta` (OSM / Overture divisions / Nominatim candidates),
 # reviewed, and written here with `--pick N` together with a provenance file. Until that file exists every step stops with an explanatory message.
+study_area_name: "Aswaraopeta (Ashwaraopet town)"
+study_area_type: "derived built-up settlement extent of Aswaraopeta (Ashwaraopet) town, Aswaraopeta mandal, Bhadradri Kothagudem district"
 boundary_method: polygon_file
 boundary_file: configs/multivillage/villages/aswaraopeta_boundary.geojson
 boundary_label: Study-area boundary (village / town polygon)

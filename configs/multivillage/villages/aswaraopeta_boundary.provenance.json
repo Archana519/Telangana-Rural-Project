@@ -1,0 +1,54 @@
+{
+  "village": "aswaraopeta",
+  "name": "Aswaraopeta (derived built-up extent)",
+  "source": "worldcover_builtup",
+  "source_id": "ESA WorldCover v200 class 50",
+  "source_url": "https://esa-worldcover.org",
+  "kind": "derived built-up extent",
+  "licence": "derived from ESA WorldCover v200 (CC BY 4.0)",
+  "retrieved": "2026-11-23",
+  "area_km2": 2.82,
+  "share_inside_mandal": 1.0,
+  "verdict": "plausible",
+  "edge_continuity": {
+    "edge_both_pct": 1.2,
+    "edge_both_km": 0.35,
+    "outside_pct": 8.4,
+    "outside_km2": 0.26,
+    "edge_verdict": "clean"
+  },
+  "overture_release": "",
+  "study_area_name": "Aswaraopeta (Ashwaraopet town)",
+  "study_area_type": "derived built-up settlement extent of Aswaraopeta (Ashwaraopet) town, Aswaraopeta mandal, Bhadradri Kothagudem district",
+  "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+  "derivation": {
+    "raster": "ESA WorldCover v200 (2021), 10 m, built-up class 50",
+    "close_m": 60.0,
+    "link_m": 250.0,
+    "seed_radius_m": 1500.0,
+    "buffer_round_trip_m": "+40 / -20",
+    "simplify_m": 5.0,
+    "fill_holes_below_km2": 0.5,
+    "window_m": "10 km x 10 km computation window around the centre (not the study area)",
+    "method": "built-up cells closed over gaps <= 60 m, linked over gaps <= 250 m, clusters reaching within 1.5 km of the centre kept, outline smoothed; clipped only to the search area",
+    "centre_lon": 81.1281746,
+    "centre_lat": 17.2409387,
+    "centre_source": "Overture division point 'Ashwaraopet' (locality)"
+  },
+  "covers": {
+    "mandals_2018": [
+      {
+        "mandal": "Aswaraopeta",
+        "area_km2": 2.82,
+        "share_of_polygon_pct": 100.0
+      }
+    ],
+    "localities": [
+      "Ashwaraopet"
+    ],
+    "localities_source": "Overture divisions points inside the polygon, release 2026-11-18.0"
+  },
+  "derived": true,
+  "note": "derived built-up settlement extent accepted by the owner (no official polygon available); centre = Overture division point Ashwaraopet",
+  "sha256": "b359af105ff98854a3919bdd9b8595ccb9d434631702bd744ca8065953088c5f"
+}

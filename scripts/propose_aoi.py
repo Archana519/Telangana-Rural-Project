@@ -367,7 +367,7 @@ def settlement_point(cfg, aliases, bbox_wgs, release=None):
         nm = r["names"].get("primary") if isinstance(r["names"], dict) else None
         if name_score(nm, aliases) >= 1.0:
             p = from_wkb(r["geometry"])
-            return p.x, p.y
+            return p.x, p.y, f"Overture division point '{nm}' ({r.get('subtype')})"
     return None
 
 
@@ -392,6 +392,10 @@ def worldcover_extent(cfg, centre_lonlat, clip_wgs, ddir: Path):
     return gpd.GeoSeries([g], crs=CRS).to_crs(4326).iloc[0]
 
 
+DERIVATION = dict(raster="ESA WorldCover v200 (2021), 10 m, built-up class 50", close_m=60.0, link_m=250.0, seed_radius_m=1500.0, buffer_round_trip_m="+40 / -20", simplify_m=5.0, fill_holes_below_km2=0.5,
+                  window_m="10 km x 10 km computation window around the centre (not the study area)", method="built-up cells closed over gaps <= 60 m, linked over gaps <= 250 m, clusters reaching within 1.5 km of the centre kept, outline smoothed; clipped only to the search area")
+
+
 # ------------------------------------------------------------------------------------------------ main
 def mandal_polygon(cfg):
     from src.utils import data_downloader_helper as dl
@@ -402,6 +406,34 @@ def mandal_polygon(cfg):
     return adm3[(adm3.shapeName == v["adm3_name"]) & adm3.representative_point().within(dist)].geometry.iloc[0]
 
 
+def coverage_report(poly_wgs, release=None) -> dict:
+    """What the polygon covers: the 2018 geoBoundaries mandals it intersects (area, share of the polygon) and the Overture localities / neighbourhoods whose point lies inside it."""
+    from shapely import from_wkb
+    out = dict(mandals_2018=[], localities=[], localities_source="")
+    u = gpd.GeoSeries([poly_wgs], crs=4326).to_crs(CRS).iloc[0]
+    try:
+        from src.utils import data_downloader_helper as dl
+        a3 = gpd.read_file(dl.http_download(dl.GB_BASE.format(lvl="ADM3"), dl.CACHE / "gb_IND_ADM3.geojson"))
+        a3 = a3[a3.geometry.intersects(poly_wgs)]
+        for _, r in a3.iterrows():
+            x = gpd.GeoSeries([r.geometry], crs=4326).to_crs(CRS).iloc[0].intersection(u)
+            if x.area > 1e4:
+                out["mandals_2018"].append(dict(mandal=r.shapeName, area_km2=round(x.area / 1e6, 2), share_of_polygon_pct=round(100 * x.area / u.area, 1)))
+        out["mandals_2018"].sort(key=lambda d: -d["area_km2"])
+    except Exception as e:
+        out["mandals_error"] = str(e)[:100]
+    try:
+        from src.utils import data_downloader_helper as dl
+        dl.PINNED_RELEASE = release
+        df, rel = dl.overture_table("divisions", "division", tuple(poly_wgs.bounds), ["id", "names", "subtype", "geometry"])
+        names = sorted({(r["names"].get("primary") if isinstance(r["names"], dict) else None) for _, r in df.iterrows()
+                        if r.get("subtype") in ("locality", "neighborhood", "macrohood", "microhood") and poly_wgs.contains(from_wkb(r["geometry"]))} - {None})
+        out["localities"], out["localities_source"] = names, f"Overture divisions points inside the polygon, release {rel}"
+    except Exception as e:
+        out["localities_error"] = str(e)[:100]
+    return out
+
+
 def write_pick(cfg, row, out_geojson: Path, note: str | None):
     g = gpd.GeoDataFrame([{"name": row["name"]}], geometry=[row["geometry"]], crs=4326)
     out_geojson.parent.mkdir(parents=True, exist_ok=True)
@@ -409,7 +441,11 @@ def write_pick(cfg, row, out_geojson: Path, note: str | None):
     prov = dict(village=cfg["village"]["id"], name=row["name"], source=row["source"], source_id=row.get("source_id", ""), source_url=row.get("url", ""), kind=row.get("kind", ""), licence=LICENCE.get(row["source"], ""),
                 retrieved=str(date.today()), area_km2=float(row["area_km2"]), share_inside_mandal=float(row["share_in_mandal"]), verdict=row["verdict"],
                 edge_continuity={k: (None if row.get(k) is None or (isinstance(row.get(k), float) and np.isnan(row.get(k))) else row.get(k)) for k in ("edge_both_pct", "edge_both_km", "outside_pct", "outside_km2", "edge_verdict")},
-                overture_release=row.get("release", ""),
+                overture_release=(row.get("release") if isinstance(row.get("release"), str) else ""),
+                study_area_name=cfg["village"].get("study_area_name", cfg["village"]["short_name"]), study_area_type=cfg["village"].get("study_area_type", ""),
+                boundary_type=("DERIVED built-up settlement extent (NOT an administrative boundary)" if row["source"] == "worldcover_builtup" else f"polygon from {row['source']}"),
+                derivation=(dict(DERIVATION, centre_lon=row.get("centre_lon"), centre_lat=row.get("centre_lat"), centre_source=row.get("centre_source")) if row["source"] == "worldcover_builtup" else None),
+                covers=coverage_report(row["geometry"], None),
                 derived=row["source"] == "worldcover_builtup", note=note or "", sha256=hashlib.sha256(out_geojson.read_bytes()).hexdigest())
     out_geojson.with_name(out_geojson.stem + ".provenance.json").write_text(json.dumps(prov, indent=2, ensure_ascii=False), encoding="utf-8")
     return prov
@@ -467,11 +503,15 @@ def main(argv=None):
             g = g.set_crs(4326) if g.crs is None else g
             rows.append(dict(source="file", name=v["short_name"], kind="user file", source_id=Path(a.use_file).name, url=str(a.use_file), geometry=make_valid(g.to_crs(4326).geometry.union_all())))
         if a.settlement_extent:
-            centre = (a.centre[1], a.centre[0]) if a.centre else settlement_point(cfg, aliases, bbox, a.overture_release)
-            if centre is None:
-                sys.exit("no town centre: pass --centre LAT LON")
+            if a.centre:
+                centre, csrc = (a.centre[1], a.centre[0]), f"--centre {a.centre[0]} {a.centre[1]} (given; e.g. the OpenStreetMap place node)"
+            else:
+                sp = settlement_point(cfg, aliases, bbox, a.overture_release)
+                if sp is None:
+                    sys.exit("no town centre: pass --centre LAT LON")
+                centre, csrc = sp[:2], sp[2]
             rows.append(dict(source="worldcover_builtup", name=v["short_name"] + " (derived built-up extent)", kind="derived built-up extent", source_id="ESA WorldCover v200 class 50",
-                             url="https://esa-worldcover.org", geometry=worldcover_extent(cfg, centre, area_poly, ddir)))
+                             url="https://esa-worldcover.org", centre_lon=float(centre[0]), centre_lat=float(centre[1]), centre_source=csrc, geometry=worldcover_extent(cfg, centre, area_poly, ddir)))
         if not rows:
             sys.exit("no candidate polygon found in any source. Options: --use-file with a village / municipal polygon you hold (LGD / Census / municipality), or --settlement-extent --centre LAT LON")
         if tv.get("legacy_reference_adm3") or v.get("legacy_reference_adm3"):

@@ -12,6 +12,8 @@ bundle_folder: 02_ADILABAD_URBAN_UPDATED
 # --- study area = the CURRENT, UNCUT town / municipal boundary (not the 2018 geoBoundaries mandal polygon, which cuts through the built-up south of the town) -------------
 # Fetched on the owner's PC with `python scripts/propose_aoi.py --village adilabad_urban` (candidates from OpenStreetMap, the newest Overture release, optional user polygon; edge-continuity check),
 # then fixed with --pick N. The 2018-based village `adilabad_urban` and its results / papers stay frozen; this is a separate village id with its own data and output folders.
+study_area_name: "Adilabad Urban (Adilabad Town)"
+study_area_type: "derived built-up settlement extent of Adilabad Town (the urban area of Adilabad Urban mandal and its adjoining built-up localities); the district of Adilabad is NOT the study area"
 boundary_method: polygon_file
 boundary_file: configs/multivillage/villages/adilabad_urban_updated_boundary.geojson
 boundary_label: Study-area boundary (updated town polygon)

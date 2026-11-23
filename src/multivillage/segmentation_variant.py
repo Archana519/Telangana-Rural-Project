@@ -53,6 +53,24 @@ def load_footprints(path: str | Path, cell, v: dict) -> gpd.GeoDataFrame:
     return b.reset_index(drop=True)
 
 
+def study_area_info(cfg: dict) -> dict:
+    """Exact name and kind of the study area, from the village config and (for polygon_file villages) the boundary provenance file."""
+    import json as _json
+    v = cfg["village"]
+    info = dict(village_id=v["id"], study_area_name=v.get("study_area_name", v["short_name"]), study_area_type=v.get("study_area_type", v.get("boundary_label", "")),
+                mandal=v["mandal"], district=v["district"], boundary_method=v["boundary_method"])
+    bf = v.get("boundary_file")
+    pf = (Path(__file__).resolve().parents[2] / bf).with_name(Path(bf).stem + ".provenance.json") if bf else None
+    if pf is not None and pf.exists():
+        pr = _json.loads(pf.read_text(encoding="utf-8"))
+        info.update(boundary_type=pr.get("boundary_type", ""), boundary_area_km2=pr.get("area_km2"), boundary_source=pr.get("source", ""),
+                    mandals_covered=[f"{m['mandal']} ({m['area_km2']} km2, {m['share_of_polygon_pct']}%)" for m in pr.get("covers", {}).get("mandals_2018", [])],
+                    localities_covered=pr.get("covers", {}).get("localities", []), edge_both_pct=pr.get("edge_continuity", {}).get("edge_both_pct"), edge_outside_pct=pr.get("edge_continuity", {}).get("outside_pct"))
+    else:
+        info.update(boundary_type="administrative polygon (geoBoundaries ADM3, 2018 release)" if v["boundary_method"] == "geoboundaries_adm3" else "")
+    return info
+
+
 # --------------------------------------------------------------------------------------------- tables
 def write_tables(S: dict, res: list, odir: Path, cfg: dict, quick: bool) -> dict:
     from src.multivillage import report as R
@@ -89,6 +107,8 @@ def write_tables(S: dict, res: list, odir: Path, cfg: dict, quick: bool) -> dict
                              open_saving_pct=o.loc[k, "saving_vs_independent_pct"], segmentation_saving_pct=s.loc[k, "saving_vs_independent_pct"],
                              open_crossing=o.loc[k, "routes_crossing_other_footprints"], segmentation_crossing=s.loc[k, "routes_crossing_other_footprints"]))
         pd.DataFrame(rows).to_csv(odir / "comparison_open_vs_segmentation.csv", index=False, lineterminator="\n")
+    summary["study_area"] = study_area_info(cfg)
+    pd.DataFrame([{k: (", ".join(v) if isinstance(v, list) else v) for k, v in summary["study_area"].items()}]).to_csv(odir / "study_area.csv", index=False, lineterminator="\n")
     (odir / "metrics_summary.json").write_text(json.dumps(summary, indent=2, default=float), encoding="utf-8")
     return summary
 
