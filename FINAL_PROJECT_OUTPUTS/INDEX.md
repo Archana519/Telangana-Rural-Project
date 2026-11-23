@@ -58,14 +58,32 @@ Footprints: 1,297 (PLAUSIBLE 772, UNRESOLVED_MERGE 452, SMALL_EXCLUDED 55, REVIE
 | mu = 1 -> 4: unique length change (%) | n/a | n/a |
 | 10% random omission: length change (%) / households unserved | n/a | n/a |
 
+## Alampur (Alampur town)
+
+**Study area:** Alampur (Alampur town); DERIVED built-up settlement extent (NOT an administrative boundary); 1.65 km². Mandals covered (2018 layer): Alampur 1.65 km² (100.0%). Localities inside: Alampur.
+
+Footprints: 3,452 (PLAUSIBLE 1780, SMALL_EXCLUDED 1306, REVIEW 214, LOWCONF_EXCLUDED 110, LARGE_POSSIBLE_MERGE 42); 370 road-gap targets; 1 verified facilities. Run(s): open-footprint.
+
+| metric | segmentation | open footprints |
+|---|---|---|
+| Independent routes: total / unique (m) | n/a | 20,821.8 / 13,411.4 |
+| Two-stage shared plan: unique (m) | n/a | 9,864.1 |
+| Saving vs independent (%) | n/a | 26.4 |
+| Roads-only shared saving (%) | n/a | 3.2 |
+| Routes crossing other footprints (two-stage) | n/a | 131 of 370 (35%) |
+| Length inside other footprints (m) | n/a | 641.3 |
+| mu = 1 -> 4: unique length change (%) | n/a | n/a |
+| 10% random omission: length change (%) / households unserved | n/a | n/a |
+
 Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 
 ## Files
 
 | file | content |
 |---|---|
-| `00_SOURCES_AND_PROVENANCE/SOURCES_AND_PROOFS.md` | table of data sources and licences with blank verified-by-owner columns; attach proofs in proofs/<study area>/ |
-| `00_SOURCES_AND_PROVENANCE/provenance_hashes.csv` | SHA-256 of boundary polygons, provenance files, assumptions and run logs |
+| `00_SOURCES_AND_PROVENANCE/SOURCES_AND_PROOFS.md` | table of data sources, versions and licences with blank verified-by-owner columns; attach proofs in proofs/<study area>/ |
+| `00_SOURCES_AND_PROVENANCE/alampur_acquired_data_manifest.csv` | Alampur: every downloaded input file with size, SHA-256, source URL and release |
+| `00_SOURCES_AND_PROVENANCE/provenance_hashes.csv` | SHA-256 of boundary polygons, provenance files, assumptions, study-area tables, run logs and acquired-data manifests |
 | `01_DAMARAKUNTA_RURAL/facility_tables/excluded_facilities.csv` | Damarakunta facilities excluded from planning (anganwadi) |
 | `01_DAMARAKUNTA_RURAL/facility_tables/facility_routing_status.csv` | Damarakunta facility routing status (x, y in EPSG:32644; route length, cost) |
 | `01_DAMARAKUNTA_RURAL/facility_tables/facility_verification.csv` | Damarakunta facility coordinates (lat/lon) and verification verdicts |
@@ -181,6 +199,14 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `03_COMPARISON/comparison_vs_damarakunta_open_footprints.md` | narrative comparison, open-footprint run |
 | `03_COMPARISON/facility_coordinates_all_settlements.csv` | verified facilities of both study areas with latitude/longitude (Adilabad: both runs; column records_at_same_coordinate flags generic shared points) |
 | `03_COMPARISON/master_comparison_three_settings.csv` | Damarakunta vs Adilabad (StrongDINOv2Seg footprints) vs Adilabad (open Overture footprints): every shared metric |
+| `04_ALAMPUR/boundary/alampur_boundary.geojson` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
+| `04_ALAMPUR/boundary/alampur_boundary.provenance.json` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
+| `04_ALAMPUR/tables_open_footprint_run/RUN_STATUS.md` | Alampur (Alampur town), open_footprint run: RUN_STATUS.md |
+| `04_ALAMPUR/tables_open_footprint_run/building_extraction_summary.csv` | Alampur (Alampur town), open_footprint run: building_extraction_summary.csv |
+| `04_ALAMPUR/tables_open_footprint_run/metrics_summary.json` | Alampur (Alampur town), open_footprint run: metrics_summary.json |
+| `04_ALAMPUR/tables_open_footprint_run/routing_strategy_comparison.csv` | Alampur (Alampur town), open_footprint run: routing_strategy_comparison.csv |
+| `04_ALAMPUR/tables_open_footprint_run/study_area.csv` | Alampur (Alampur town), open_footprint run: study_area.csv |
+| `04_ALAMPUR/tables_open_footprint_run/verified_facilities.csv` | Alampur (Alampur town), open_footprint run: verified_facilities.csv |
 
 ## Notes you should read before using these files
 

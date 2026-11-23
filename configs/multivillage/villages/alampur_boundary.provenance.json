@@ -1,0 +1,57 @@
+{
+  "village": "alampur",
+  "name": "Alampur (derived built-up extent from building footprints)",
+  "source": "overture_buildings_extent",
+  "source_id": "Overture buildings 2026-10-21.0",
+  "source_url": "https://docs.overturemaps.org/",
+  "kind": "derived built-up extent (footprints)",
+  "licence": "derived from Overture Maps buildings (ODbL 1.0; see the release in the provenance file)",
+  "retrieved": "2026-11-23",
+  "area_km2": 1.65,
+  "share_inside_mandal": 1.0,
+  "verdict": "plausible",
+  "edge_continuity": {
+    "edge_both_pct": 0.7,
+    "edge_both_km": 0.15,
+    "outside_pct": 9.1,
+    "outside_km2": 0.14,
+    "edge_verdict": "clean"
+  },
+  "overture_release": "2026-10-21.0",
+  "study_area_name": "Alampur (Alampur town)",
+  "study_area_type": "settlement boundary of Alampur town, Alampur mandal, Jogulamba Gadwal district (type fixed by --pick; see the provenance file)",
+  "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+  "derivation": {
+    "dataset": "Overture Maps buildings (theme=buildings, type=building)",
+    "close_m": 60.0,
+    "link_m": 250.0,
+    "seed_radius_m": 1200.0,
+    "margin_m": 20.0,
+    "fill_holes_below_km2": 0.5,
+    "simplify_m": 5.0,
+    "drop_parts_below_km2": 0.0,
+    "window_m": "12 km x 12 km computation window around the centre (not the study area)",
+    "method": "footprints grouped into clusters over gaps <= 250 m, clusters reaching within 1.2 km of the centre kept, outline = footprints buffered +60 m then -40 m (about 20 m outside the outermost buildings), simplified, outlying built-up parts kept; clipped only to the search area",
+    "centre_lon": 78.13508,
+    "centre_lat": 15.87996,
+    "centre_source": "--centre 15.87996 78.13508 (given; e.g. the OpenStreetMap place node)",
+    "overture_release": "2026-10-21.0",
+    "n_buildings_used": 3452.0
+  },
+  "covers": {
+    "mandals_2018": [
+      {
+        "mandal": "Alampur",
+        "area_km2": 1.65,
+        "share_of_polygon_pct": 100.0
+      }
+    ],
+    "localities": [
+      "Alampur"
+    ],
+    "localities_source": "Overture divisions points inside the polygon, release 2026-11-18.0"
+  },
+  "derived": true,
+  "note": "Alampur is mapped in OpenStreetMap only as a place=town node (15.87996 N, 78.13508 E): no polygon exists in OSM, Nominatim or the Overture divisions, and no LGD / Census village polygon is available to the project. The study area is therefore the settlement extent derived from Overture building footprints around that node (checked against Esri imagery).",
+  "sha256": "0f210870a08c3657f18270693dcffe3ffc690b495949739726e864ff2d058ded"
+}

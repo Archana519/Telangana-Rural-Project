@@ -55,7 +55,9 @@ UA = {"User-Agent": "Mozilla/5.0 (research script; boundary lookup)"}
 OVERPASS = "https://overpass-api.de/api/interpreter"
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
 LICENCE = {"osm": "ODbL 1.0 (c) OpenStreetMap contributors", "nominatim": "ODbL 1.0 (c) OpenStreetMap contributors", "overture": "per the Overture Maps release documentation (docs.overturemaps.org/attribution)",
-           "file": "as stated by the supplier of the file", "worldcover_builtup": "derived from ESA WorldCover v200 (CC BY 4.0)"}
+           "file": "as stated by the supplier of the file", "worldcover_builtup": "derived from ESA WorldCover v200 (CC BY 4.0)",
+           "overture_buildings_extent": "derived from Overture Maps buildings (ODbL 1.0; see the release in the provenance file)"}
+DERIVED_SOURCES = ("worldcover_builtup", "overture_buildings_extent")
 
 
 # ------------------------------------------------------------------------------------------------ pure helpers (unit-tested offline)
@@ -118,7 +120,7 @@ def rank_candidates(cands: gpd.GeoDataFrame, mandal_wgs, aliases, min_km2=0.2, m
         v = []
         if r.source == "geoboundaries_2018_reference":
             v.append("REFERENCE ONLY (outdated 2018 layer)")
-        elif r.name_score == 0 and r.source != "file" and r.source != "worldcover_builtup":
+        elif r.name_score == 0 and r.source != "file" and r.source not in DERIVED_SOURCES:
             v.append("name does not match")
         if r.share_in_mandal < 0.9 and strict_mandal:
             v.append(f"only {r.share_in_mandal:.0%} inside the mandal")
@@ -392,6 +394,40 @@ def worldcover_extent(cfg, centre_lonlat, clip_wgs, ddir: Path):
     return gpd.GeoSeries([g], crs=CRS).to_crs(4326).iloc[0]
 
 
+def buildings_extent(cfg, centre_lonlat, clip_wgs, close_m=60.0, link_m=250.0, seed_radius_m=1200.0, margin_m=20.0, hole_km2=0.5, min_part_km2=0.0):
+    """Settlement outline from building footprints (Overture buildings, the pinned release): footprints are grouped into clusters (gaps <= link_m), the clusters that reach within seed_radius_m
+    of the town centre are kept, and the outline is the union of those footprints closed over gaps <= close_m and smoothed (buffer +close_m, -(close_m - margin_m)), so it lies about margin_m
+    outside the outermost buildings. Used where ESA WorldCover (10 m) under-detects a small town and gives thin slivers. Returns (polygon in EPSG:4326, release, n_buildings)."""
+    from pyproj import Transformer
+    from shapely import from_wkb
+    from shapely.geometry import box
+    from src.utils import data_downloader_helper as dl
+    cx, cy = Transformer.from_crs(4326, CRS, always_xy=True).transform(*centre_lonlat)
+    half = 6000.0
+    wgs = tuple(gpd.GeoSeries([box(cx - half, cy - half, cx + half, cy + half)], crs=CRS).to_crs(4326).total_bounds)
+    dl.PINNED_RELEASE = cfg["overture_release"]
+    df, rel = dl.overture_table("buildings", "building", wgs, ["id", "geometry"])
+    b = gpd.GeoDataFrame(df.drop(columns=["geometry"]), geometry=[from_wkb(x) for x in df.geometry], crs=4326).to_crs(CRS)
+    b = b[~b.geometry.is_empty & b.geometry.is_valid]
+    link = unary_union(list(b.geometry.buffer(link_m / 2)))
+    comps = [link] if link.geom_type == "Polygon" else list(link.geoms)
+    centre = gpd.GeoSeries([Polygon([(cx, cy), (cx + 1, cy), (cx, cy + 1)])], crs=CRS).iloc[0].buffer(seed_radius_m)
+    keep = [c for c in comps if c.intersects(centre)]
+    if not keep:
+        raise ValueError("no buildings within the seed radius of the centre: check the centre coordinates")
+    sel = unary_union(keep)
+    mine = b[b.geometry.intersects(sel)]
+    g = unary_union(list(mine.geometry.buffer(close_m))).buffer(-(close_m - margin_m)).simplify(5.0)
+    parts = [g] if g.geom_type == "Polygon" else list(g.geoms)
+    parts = [Polygon(p.exterior, [h for h in p.interiors if Polygon(h).area / 1e6 >= hole_km2]) for p in parts if p.area / 1e6 >= min_part_km2]       # min_part_km2 = 0: outlying built-up parts are kept (dropping them fails the edge-continuity check)
+    g = unary_union(parts).intersection(gpd.GeoSeries([clip_wgs], crs=4326).to_crs(CRS).iloc[0])
+    return gpd.GeoSeries([g], crs=CRS).to_crs(4326).iloc[0], rel, int(len(mine))
+
+
+DERIVATION_BUILDINGS = dict(dataset="Overture Maps buildings (theme=buildings, type=building)", close_m=60.0, link_m=250.0, seed_radius_m=1200.0, margin_m=20.0, fill_holes_below_km2=0.5, simplify_m=5.0, drop_parts_below_km2=0.0,
+                            window_m="12 km x 12 km computation window around the centre (not the study area)",
+                            method="footprints grouped into clusters over gaps <= 250 m, clusters reaching within 1.2 km of the centre kept, outline = footprints buffered +60 m then -40 m (about 20 m outside the outermost buildings), simplified, outlying built-up parts kept; clipped only to the search area")
+
 DERIVATION = dict(raster="ESA WorldCover v200 (2021), 10 m, built-up class 50", close_m=60.0, link_m=250.0, seed_radius_m=1500.0, buffer_round_trip_m="+40 / -20", simplify_m=5.0, fill_holes_below_km2=0.5,
                   window_m="10 km x 10 km computation window around the centre (not the study area)", method="built-up cells closed over gaps <= 60 m, linked over gaps <= 250 m, clusters reaching within 1.5 km of the centre kept, outline smoothed; clipped only to the search area")
 
@@ -443,10 +479,11 @@ def write_pick(cfg, row, out_geojson: Path, note: str | None):
                 edge_continuity={k: (None if row.get(k) is None or (isinstance(row.get(k), float) and np.isnan(row.get(k))) else row.get(k)) for k in ("edge_both_pct", "edge_both_km", "outside_pct", "outside_km2", "edge_verdict")},
                 overture_release=(row.get("release") if isinstance(row.get("release"), str) else ""),
                 study_area_name=cfg["village"].get("study_area_name", cfg["village"]["short_name"]), study_area_type=cfg["village"].get("study_area_type", ""),
-                boundary_type=("DERIVED built-up settlement extent (NOT an administrative boundary)" if row["source"] == "worldcover_builtup" else f"polygon from {row['source']}"),
-                derivation=(dict(DERIVATION, centre_lon=row.get("centre_lon"), centre_lat=row.get("centre_lat"), centre_source=row.get("centre_source")) if row["source"] == "worldcover_builtup" else None),
+                boundary_type=("DERIVED built-up settlement extent (NOT an administrative boundary)" if row["source"] in DERIVED_SOURCES else f"polygon from {row['source']}"),
+                derivation=(dict(DERIVATION_BUILDINGS if row["source"] == "overture_buildings_extent" else DERIVATION, centre_lon=row.get("centre_lon"), centre_lat=row.get("centre_lat"), centre_source=row.get("centre_source"),
+                             **({"overture_release": row.get("release"), "n_buildings_used": row.get("n_buildings")} if row["source"] == "overture_buildings_extent" else {})) if row["source"] in DERIVED_SOURCES else None),
                 covers=coverage_report(row["geometry"], None),
-                derived=row["source"] == "worldcover_builtup", note=note or "", sha256=hashlib.sha256(out_geojson.read_bytes()).hexdigest())
+                derived=row["source"] in DERIVED_SOURCES, note=note or "", sha256=hashlib.sha256(out_geojson.read_bytes()).hexdigest())
     out_geojson.with_name(out_geojson.stem + ".provenance.json").write_text(json.dumps(prov, indent=2, ensure_ascii=False), encoding="utf-8")
     return prov
 
@@ -461,6 +498,7 @@ def main(argv=None):
     ap.add_argument("--use-file", default=None, help="your own village / town polygon (shp / gpkg / geojson, e.g. an LGD or municipal boundary) as a candidate")
     ap.add_argument("--note", default=None, help="provenance note for --use-file / --pick")
     ap.add_argument("--settlement-extent", action="store_true", help="add the derived built-up settlement extent as a candidate (needs --centre or an Overture division point)")
+    ap.add_argument("--extent-from", default="worldcover", choices=["worldcover", "buildings"], help="data behind --settlement-extent: ESA WorldCover class 50 (default) or Overture building footprints (small towns where WorldCover gives thin slivers)")
     ap.add_argument("--centre", nargs=2, type=float, metavar=("LAT", "LON"))
     ap.add_argument("--no-edge-check", action="store_true", help="skip the WorldCover edge-continuity check (not recommended)")
     ap.add_argument("--candidates-file", default=None, help="re-use a saved candidates.geojson instead of querying the sources (offline review / --pick)")
@@ -510,8 +548,13 @@ def main(argv=None):
                 if sp is None:
                     sys.exit("no town centre: pass --centre LAT LON")
                 centre, csrc = sp[:2], sp[2]
-            rows.append(dict(source="worldcover_builtup", name=v["short_name"] + " (derived built-up extent)", kind="derived built-up extent", source_id="ESA WorldCover v200 class 50",
-                             url="https://esa-worldcover.org", centre_lon=float(centre[0]), centre_lat=float(centre[1]), centre_source=csrc, geometry=worldcover_extent(cfg, centre, area_poly, ddir)))
+            if a.extent_from == "buildings":
+                bg, brel, bn = buildings_extent(cfg, centre, area_poly)
+                rows.append(dict(source="overture_buildings_extent", name=v["short_name"] + " (derived built-up extent from building footprints)", kind="derived built-up extent (footprints)",
+                                 source_id=f"Overture buildings {brel}", url="https://docs.overturemaps.org/", centre_lon=float(centre[0]), centre_lat=float(centre[1]), centre_source=csrc, release=brel, n_buildings=bn, geometry=bg))
+            else:
+                rows.append(dict(source="worldcover_builtup", name=v["short_name"] + " (derived built-up extent)", kind="derived built-up extent", source_id="ESA WorldCover v200 class 50",
+                                 url="https://esa-worldcover.org", centre_lon=float(centre[0]), centre_lat=float(centre[1]), centre_source=csrc, geometry=worldcover_extent(cfg, centre, area_poly, ddir)))
         if not rows:
             sys.exit("no candidate polygon found in any source. Options: --use-file with a village / municipal polygon you hold (LGD / Census / municipality), or --settlement-extent --centre LAT LON")
         if tv.get("legacy_reference_adm3") or v.get("legacy_reference_adm3"):

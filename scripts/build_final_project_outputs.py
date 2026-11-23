@@ -220,7 +220,8 @@ def main():
     VILLAGES = [dict(id="adilabad_urban_updated", seg=C3 / "01_ADILABAD_UPDATED_SEGMENTATION", open=C3 / "01_ADILABAD_UPDATED", bundle="02_ADILABAD_URBAN_UPDATED", label="Adilabad Urban (Adilabad Town), updated boundary",
                       col="adilabad_updated", prov="adilabad_urban_updated_boundary", slug="adilabad_updated"),
                  dict(id="aswaraopeta", seg=C3 / "02_ASWARAOPETA_SEGMENTATION", open=C3 / "02_ASWARAOPETA", bundle="03_ASWARAOPETA_SEMI_URBAN", label="Aswaraopeta (Ashwaraopet town)", col="aswaraopeta",
-                      prov="aswaraopeta_boundary", slug="aswaraopeta")]
+                      prov="aswaraopeta_boundary", slug="aswaraopeta"),
+                 dict(id="alampur", seg=C3 / "03_ALAMPUR_SEGMENTATION", open=C3 / "03_ALAMPUR", bundle="04_ALAMPUR", label="Alampur (Alampur town)", col="alampur", prov="alampur_boundary", slug="alampur")]
     asw_lines = []
     for V in VILLAGES:
         have_seg, have_open = (V["seg"] / "metrics_summary.json").exists(), (V["open"] / "metrics_summary.json").exists()

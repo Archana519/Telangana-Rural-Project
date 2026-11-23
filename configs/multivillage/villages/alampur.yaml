@@ -13,7 +13,7 @@ bundle_folder: 04_ALAMPUR
 # The polygon is fetched on the owner's PC by `python scripts/propose_aoi.py --village alampur` (OSM / Overture divisions / Nominatim candidates),
 # reviewed, and written here with `--pick N` together with a provenance file. Until that file exists every step stops with an explanatory message.
 study_area_name: "Alampur (Alampur town)"
-study_area_type: "settlement boundary of Alampur town, Alampur mandal, Jogulamba Gadwal district (type fixed by --pick; see the provenance file)"
+study_area_type: "derived built-up settlement extent of Alampur town (Overture building footprints around the OSM place node; not an administrative boundary), Alampur mandal, Jogulamba Gadwal district"
 boundary_method: polygon_file
 boundary_file: configs/multivillage/villages/alampur_boundary.geojson
 boundary_label: Study-area boundary (village / town polygon)
