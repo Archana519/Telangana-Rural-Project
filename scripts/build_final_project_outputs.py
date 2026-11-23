@@ -83,6 +83,35 @@ def seg_values(d: Path, area_text: str, open_run: bool = False) -> dict:
     return seg
 
 
+def sources_folder():
+    """00_SOURCES_AND_PROVENANCE: where the owner records verified data-source links and proofs for the three study areas."""
+    import hashlib
+    S = OUT / "00_SOURCES_AND_PROVENANCE"
+    for v in ("damarakunta", "adilabad_urban_updated", "aswaraopeta"):
+        (S / "proofs" / v).mkdir(parents=True, exist_ok=True)
+        (S / "proofs" / v / "README.md").write_text(f"# Proofs for {v}\n\nPut here (not committed unless licence allows): screenshots of the download pages, licence text, API responses, "
+                                                    "e-mails or letters that confirm each source in `../../SOURCES_AND_PROOFS.md`. Name files `<source>_<date>.<ext>`.\n", encoding="utf-8")
+    rows = [("Esri World Imagery (0.6 m)", "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer", "Esri Master Agreement / World Imagery terms; non-commercial academic use, credit required", "all three"),
+            ("Overture Maps (buildings, transportation, places, divisions), release 2026-11-18.0 where used", "https://docs.overturemaps.org/", "ODbL (buildings/transportation) and CDLA-Permissive-2.0 (places, divisions); check per theme", "all three"),
+            ("ESA WorldCover 10 m", "https://esa-worldcover.org/", "CC BY 4.0", "all three"),
+            ("Copernicus DEM GLO-30", "https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model", "Copernicus licence", "all three"),
+            ("OpenStreetMap / Overpass / Nominatim (boundary candidates)", "https://www.openstreetmap.org/copyright", "ODbL", "adilabad_urban_updated, aswaraopeta"),
+            ("geoBoundaries ADM3 (2018 reference layer, frozen Adilabad run)", "https://www.geoboundaries.org/", "CC BY 4.0", "adilabad_urban (frozen)"),
+            ("TGRAC village polygon (Damarakunta)", "", "OWNER TO FILL", "damarakunta"),
+            ("PMGSY rate Rs 75 lakh/km (60-90)", "", "OWNER-SUPPLIED, UNVERIFIED: attach the circular or schedule of rates", "all three (illustrative only)")]
+    md = ["# Data sources and provenance proofs (to be completed by the owner)", "",
+          "Pre-filled with the sources the pipeline uses. Licences are as understood when written and are NOT verified: fill the last two columns after checking each page, and attach proofs under `proofs/<study area>/`.", "",
+          "| source | URL | licence (to verify) | used for | verified by owner (date) | proof file |", "|---|---|---|---|---|---|"]
+    md += [f"| {a} | {b} | {c} | {d} |  |  |" for a, b, c, d in rows]
+    md += ["", "## Study-area boundaries", "", "Polygon files and their provenance JSON are in each study area's `boundary/` folder (Adilabad updated, Aswaraopeta). Damarakunta's polygon is in `DELIVERABLES_DAMARAKUNTA_STAGE_B/` (read-only). "
+           "Adilabad updated and Aswaraopeta are derived built-up settlement extents, not administrative boundaries. SHA-256 of the committed files is in `provenance_hashes.csv`.", ""]
+    (S / "SOURCES_AND_PROOFS.md").write_text("\n".join(md), encoding="utf-8")
+    cand = list((REPO / "configs/multivillage/villages").glob("*_boundary.*")) + [REPO / "inputs/economic_assumptions.json"] + list(C3.glob("*/run_log_full.json")) + list(C3.glob("*/study_area.csv"))
+    pd.DataFrame([dict(file=str(p.relative_to(REPO)), sha256=hashlib.sha256(p.read_bytes()).hexdigest(), bytes=p.stat().st_size) for p in sorted(cand) if p.exists()]).to_csv(S / "provenance_hashes.csv", index=False, lineterminator="\n")
+    files.append(("00_SOURCES_AND_PROVENANCE/SOURCES_AND_PROOFS.md", "table of data sources and licences with blank verified-by-owner columns; attach proofs in proofs/<study area>/"))
+    files.append(("00_SOURCES_AND_PROVENANCE/provenance_hashes.csv", "SHA-256 of boundary polygons, provenance files, assumptions and run logs"))
+
+
 def main():
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -193,11 +222,15 @@ def main():
                     put(ser / f"{m}.png", f"{B}/maps/{m}.png", f"{name} {m[:4]} ({tag} footprints; Esri imagery where shown; credit: {CREDIT})")
             for extra_png in (ser.glob("*_fac_route_2panel.png") if ser.exists() else []):
                 put(extra_png, f"{B}/maps/{extra_png.name}", "compact 2-panel figure: verified facilities and final shared network")
+            for n_ in ("map_facility_key.csv", "network_length_cost_summary.csv"):
+                if (ser / n_).exists():
+                    put(ser / n_, f"{B}/maps/{n_}", "facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps")
             for n_ in ("sat_map1_a", "sat_map1_b", "sat_map2_independent_window", "sat_map2_two_stage_window", "sat_map2_independent_zoom", "sat_map2_two_stage_zoom"):
                 if (d_ / "figures" / f"{n_}.png").exists():
                     jpg(d_ / "figures" / f"{n_}.png", f"{B}/satellite_overlays/{n_}.jpg", f"{name} satellite overlay {n_} (JPEG copy; {CREDIT})")
             for n_ in ("routing_strategy_comparison.csv", "penalty_sensitivity.csv", "omission_summary.csv", "omission_runs.csv", "target_definition_sensitivity.csv", "building_extraction_summary.csv", "metrics_summary.json",
-                       "study_area.csv", "run_log_full.json", "verified_facilities.csv", "comparison_open_vs_segmentation.csv"):
+                       "study_area.csv", "run_log_full.json", "verified_facilities.csv", "comparison_open_vs_segmentation.csv", "RUN_STATUS.md",
+                       "map_facility_key.csv", "network_length_cost_summary.csv"):
                 if (d_ / n_).exists():
                     put(d_ / n_, f"{B}/tables_{tag}_run/{n_}", f"{name}, {tag} run: {n_}")
         for n_ in (pf, pf.with_name(V["prov"] + ".geojson")):
@@ -224,6 +257,7 @@ def main():
                   "Length inside other footprints (m)", "mu = 1 -> 4: unique length change (%)", "10% random omission: length change (%) / households unserved"):
             asw_lines.append(f"| {m} | {(seg_v or {}).get(m, 'n/a')} | {(open_v or {}).get(m, 'n/a')} |")
 
+    sources_folder()
     # ------------------------------------------------------------------ INDEX.md
     q = sj["quality_classes"]
     lines = ["# FINAL_PROJECT_OUTPUTS: maps, facility coordinates and comparison tables for both study areas", "",

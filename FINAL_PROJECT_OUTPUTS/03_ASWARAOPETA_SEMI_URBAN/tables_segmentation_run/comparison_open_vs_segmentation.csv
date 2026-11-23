@@ -1,0 +1,5 @@
+strategy,open_footprints_unique_m,segmentation_unique_m,open_saving_pct,segmentation_saving_pct,open_crossing,segmentation_crossing
+Independent least-cost routes,78819.3,43136.5,0.0,0.0,1198,286
+Length-only control,89626.1,50265.1,-13.7,-16.5,1406,446
+Roads-only shared reference,79081.9,42391.4,-0.3,1.7,1298,320
+Two-stage shared plan,49495.6,29657.6,37.2,31.2,645,157

@@ -9,3 +9,5 @@ Done here (sandbox): open data (Overture roads / buildings / places, WorldCover,
 open-footprint routing, **main strategy comparison only** (`--quick`), tables in this folder.
 Not done: the penalty / omission / road-gap sweeps for this variant, and the whole StrongDINOv2Seg chain (inference, extraction, segmentation routing, maps): the checkpoint lives on the owner's PC.
 On the PC: `python scripts\run_village_end_to_end.py --village adilabad_urban_updated --stage infer` (then extract, route, report) and `python scripts\make_village_map_series.py --village adilabad_urban_updated`.
+
+**Update:** the StrongDINOv2Seg chain has since been completed on the owner's PC; see `../01_ADILABAD_UPDATED_SEGMENTATION/RUN_STATUS.md`. The statement above that segmentation was not done is superseded.

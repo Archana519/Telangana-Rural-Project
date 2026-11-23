@@ -123,11 +123,15 @@ def _read_rgb(mosaic: Path, extent, max_px=2400):
         shape = (3, max(1, int(win.height / sc)), max(1, int(win.width / sc)))
         arr = s.read([1, 2, 3], window=win, out_shape=shape, resampling=rasterio.enums.Resampling.average)
         ext = rasterio.windows.bounds(win, s.transform)
-    return np.moveaxis(arr, 0, -1), (ext[0], ext[2], ext[1], ext[3])      # imshow extent = left, right, bottom, top
+    rgb = np.moveaxis(arr, 0, -1)
+    nod = ~rgb.any(axis=2)                                   # all-zero = no imagery -> transparent (grey axes), not black
+    rgb = np.dstack([rgb, np.where(nod, 0, 255).astype(rgb.dtype)])
+    return rgb, (ext[0], ext[2], ext[1], ext[3])      # imshow extent = left, right, bottom, top
 
 
 def _panel(ax, mosaic, extent, scale_m, north=True):
     img, ex = _read_rgb(mosaic, extent)
+    ax.set_facecolor("#ececec")
     ax.imshow(img, extent=ex, origin="upper", zorder=0)
     ax.set_xlim(extent[0], extent[2]); ax.set_ylim(extent[1], extent[3])
     x0, y0, x1, y1 = extent

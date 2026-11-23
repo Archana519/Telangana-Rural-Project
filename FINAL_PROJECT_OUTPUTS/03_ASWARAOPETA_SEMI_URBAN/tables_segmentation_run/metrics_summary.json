@@ -1,0 +1,38 @@
+{
+  "footprints_total": 1297,
+  "footprints_used_for_penalty": 1242,
+  "gap_targets": 678,
+  "facilities_verified": 11,
+  "unique_len_two_stage_m": 29657.6,
+  "unique_len_independent_m": 43136.5,
+  "saving_vs_independent_pct": 31.2,
+  "routed": 636,
+  "targets": 678,
+  "routes_crossing": 157,
+  "length_inside_other_footprints_m": 1090.4,
+  "quality_classes": {
+    "PLAUSIBLE": 772,
+    "UNRESOLVED_MERGE": 452,
+    "SMALL_EXCLUDED": 55,
+    "REVIEW": 18
+  },
+  "study_area": {
+    "village_id": "aswaraopeta",
+    "study_area_name": "Aswaraopeta (Ashwaraopet town)",
+    "study_area_type": "derived built-up settlement extent of Aswaraopeta (Ashwaraopet) town, Aswaraopeta mandal, Bhadradri Kothagudem district",
+    "mandal": "Aswaraopeta",
+    "district": "Bhadradri",
+    "boundary_method": "polygon_file",
+    "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+    "boundary_area_km2": 2.82,
+    "boundary_source": "worldcover_builtup",
+    "mandals_covered": [
+      "Aswaraopeta (2.82 km2, 100.0%)"
+    ],
+    "localities_covered": [
+      "Ashwaraopet"
+    ],
+    "edge_both_pct": 1.2,
+    "edge_outside_pct": 8.4
+  }
+}
