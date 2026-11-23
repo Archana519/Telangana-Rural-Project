@@ -159,10 +159,10 @@ def tile_grid(b, tile_m=ESRI_TILE_M):
 
 
 def is_tiff_or_image(r) -> bool:
-    """Esri may answer HTTP 200 with content-type application/octet-stream for a TIFF; accept an image/* type or TIFF magic bytes (little/big endian, classic or BigTIFF)."""
+    """Esri may answer HTTP 200 with content-type application/octet-stream for a TIFF; accept an image/* type or TIFF / PNG / JPEG magic bytes (the export has been seen to return PNG bytes for format=tiff, with no content-type)."""
     ct = r.headers.get("content-type", "").lower()
     head = bytes(r.content[:4])
-    return ct.startswith("image") or head in (b"II*\x00", b"MM\x00*", b"II+\x00", b"MM\x00+")
+    return ct.startswith("image") or head in (b"II*\x00", b"MM\x00*", b"II+\x00", b"MM\x00+") or head[:3] == b"\x89PN" or head[:2] == b"\xff\xd8"      # the service may return PNG / JPEG bytes whatever `format` says
 
 
 def stage_esri(a, P: Paths):
@@ -173,6 +173,12 @@ def stage_esri(a, P: Paths):
     from rasterio.transform import from_bounds
     b = study_bounds(P, a.pad_m)
     nx, ny, tiles = tile_grid(b)
+    import geopandas as gpd
+    from shapely.geometry import box as _box
+    poly = gpd.read_file(P.boundary).to_crs(CRS_EPSG).geometry.union_all().buffer(a.pad_m)
+    allt = len(tiles)
+    tiles = [t for t in tiles if _box(t[1], t[2], t[3], t[4]).intersects(poly)]            # irregular boundaries: skip tiles that do not touch the study area (+ padding)
+    say(f"  {len(tiles)} of {allt} grid tiles touch the study polygon (+{a.pad_m:g} m)")
     say(f"STAGE esri: bbox (EPSG:{CRS_EPSG}) {[round(float(v), 1) for v in b]} -> {nx} x {ny} = {len(tiles)} tiles of {ESRI_TILE_M:.0f} m at {RES_M} m/px")
     if a.dry_run:
         for n, x0, y0, x1, y1 in tiles:

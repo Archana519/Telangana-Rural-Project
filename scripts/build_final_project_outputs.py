@@ -50,10 +50,10 @@ def seg_values(d: Path, area_text: str, open_run: bool = False) -> dict:
     """Master-table column for one village's footprint run (segmentation or open), read from its result files."""
     s = pd.read_csv(d / "routing_strategy_comparison.csv").set_index("strategy")
     sj = json.loads((d / "metrics_summary.json").read_text())
-    ps = pd.read_csv(d / "penalty_sensitivity.csv")
-    og = pd.read_csv(d / "omission_summary.csv").set_index("group")
+    ps = pd.read_csv(d / "penalty_sensitivity.csv") if (d / "penalty_sensitivity.csv").exists() else None          # absent when the run was --quick (main comparison only)
+    og = pd.read_csv(d / "omission_summary.csv").set_index("group") if (d / "omission_summary.csv").exists() else None
     two, ind = s.loc["Two-stage shared plan"], s.loc["Independent least-cost routes"]
-    pc = ps[ps.penalty_mode == "centre-in-footprint"].set_index("mu")
+    pc = ps[ps.penalty_mode == "centre-in-footprint"].set_index("mu") if ps is not None else None
     n = sj["gap_targets"]
     seg = {
         "Study area (km2)": area_text,
@@ -71,13 +71,15 @@ def seg_values(d: Path, area_text: str, open_run: bool = False) -> dict:
         "Unique length per routed house (m)": f"{two.unique_len_m / two.targets_routed:.1f}",
         "Routes crossing other footprints (two-stage)": f"{int(two.routes_crossing_other_footprints)} of {int(two.targets_total)} ({100 * two.routes_crossing_other_footprints / two.targets_total:.0f}%)",
         "Length inside other footprints (m)": fmt(two.length_inside_other_footprints_m),
-        "mu = 1 -> 4: unique length change (%)": f"{pc.loc[4.0, 'length_change_vs_mu1_pct']:+.1f}",
-        "mu = 1 -> 4: routes crossing (n)": f"{int(pc.loc[1.0, 'routes_crossing'])} -> {int(pc.loc[4.0, 'routes_crossing'])}",
         "Facilities planned": f"{sj['facilities_verified']} verified (facility-phase length not reported for this run)",
     }
+    if pc is not None:
+        seg["mu = 1 -> 4: unique length change (%)"] = f"{pc.loc[4.0, 'length_change_vs_mu1_pct']:+.1f}"
+        seg["mu = 1 -> 4: routes crossing (n)"] = f"{int(pc.loc[1.0, 'routes_crossing'])} -> {int(pc.loc[4.0, 'routes_crossing'])}"
     for g, lab in (("omit 10% (random)", "10% random omission: length change (%) / households unserved"), ("omit 20% (random)", "20% random omission: length change (%) / households unserved"),
                    ("omit smallest 10%", "smallest-10% omission: length change (%) / households unserved"), ("omit smallest 25%", "smallest-25% omission: length change (%) / households unserved")):
-        seg[lab] = f"{og.loc[g, 'delta_len_pct']:+.1f} / {int(round(og.loc[g, 'unserved']))} of {n}"
+        if og is not None:
+            seg[lab] = f"{og.loc[g, 'delta_len_pct']:+.1f} / {int(round(og.loc[g, 'unserved']))} of {n}"
     return seg
 
 
@@ -157,60 +159,70 @@ def main():
     files.append(("03_COMPARISON/master_comparison_three_settings.csv", "Damarakunta vs Adilabad (StrongDINOv2Seg footprints) vs Adilabad (open Overture footprints): every shared metric"))
     put(OPEN / "comparison_vs_damarakunta.md", "03_COMPARISON/comparison_vs_damarakunta_open_footprints.md", "narrative comparison, open-footprint run")
 
-    # ------------------------------------------------------------------ 5 third settlement (Aswaraopeta), only once its results are committed
-    ASW_SEG, ASW_OPEN = C3 / "02_ASWARAOPETA_SEGMENTATION", C3 / "02_ASWARAOPETA"
-    asw = (ASW_SEG / "metrics_summary.json").exists()
+    # ------------------------------------------------------------------ 5 further settlements (updated Adilabad boundary, Aswaraopeta), each once its results are committed
+    VILLAGES = [dict(id="adilabad_urban_updated", seg=C3 / "01_ADILABAD_UPDATED_SEGMENTATION", open=C3 / "01_ADILABAD_UPDATED", bundle="02_ADILABAD_URBAN_UPDATED", label="Adilabad Urban (Adilabad Town), updated boundary",
+                      col="adilabad_updated", prov="adilabad_urban_updated_boundary", slug="adilabad_updated"),
+                 dict(id="aswaraopeta", seg=C3 / "02_ASWARAOPETA_SEGMENTATION", open=C3 / "02_ASWARAOPETA", bundle="03_ASWARAOPETA_SEMI_URBAN", label="Aswaraopeta (Ashwaraopet town)", col="aswaraopeta",
+                      prov="aswaraopeta_boundary", slug="aswaraopeta")]
     asw_lines = []
-    if asw:
-        B = "03_ASWARAOPETA_SEMI_URBAN"
-        pf = REPO / "configs/multivillage/villages/aswaraopeta_boundary.provenance.json"
+    for V in VILLAGES:
+        have_seg, have_open = (V["seg"] / "metrics_summary.json").exists(), (V["open"] / "metrics_summary.json").exists()
+        if not (have_seg or have_open):
+            continue
+        B = V["bundle"]
+        pf = REPO / "configs/multivillage/villages" / (V["prov"] + ".provenance.json")
         prov = json.loads(pf.read_text(encoding="utf-8")) if pf.exists() else {}
-        area_text = f"{prov['area_km2']:.2f} ({prov.get('source', 'polygon file')} village / town polygon)" if "area_km2" in prov else "village / town polygon"
-        aseg = seg_values(ASW_SEG, area_text)
-        aopen = seg_values(ASW_OPEN, area_text, open_run=True) if (ASW_OPEN / "metrics_summary.json").exists() else None
-        master["aswaraopeta_semi_urban_segmentation"] = master.metric.map(aseg).fillna("n/a")
-        extra = [m for m in aseg if m not in set(master.metric)]
-        if extra:
-            master = pd.concat([master, pd.DataFrame([dict(metric=m, aswaraopeta_semi_urban_segmentation=aseg[m]) for m in extra]).fillna("n/a")], ignore_index=True).fillna("n/a")
-        if aopen:
-            master["aswaraopeta_semi_urban_open_footprints"] = master.metric.map(aopen).fillna("n/a")
+        name = prov.get("study_area_name", V["label"])
+        area_text = f"{prov['area_km2']:.2f} ({prov.get('boundary_type', 'polygon file')})" if "area_km2" in prov else "polygon file"
+        seg_v = seg_values(V["seg"], area_text) if have_seg else None
+        open_v = seg_values(V["open"], area_text, open_run=True) if have_open else None
+        for col_name, vals in ((f"{V['col']}_segmentation", seg_v), (f"{V['col']}_open_footprints", open_v)):
+            if vals is None:
+                continue
+            master[col_name] = master.metric.map(vals).fillna("n/a")
+            extra = [m for m in vals if m not in set(master.metric)]
+            if extra:
+                master = pd.concat([master, pd.DataFrame([{"metric": m, col_name: vals[m]} for m in extra])], ignore_index=True).fillna("n/a")
         master.to_csv(OUT / "03_COMPARISON/master_comparison_three_settings.csv", index=False, lineterminator="\n")
-        ser = ASW_SEG / "final_maps_1_to_5"
-        for m in MAPS:
-            if (ser / f"{m}.png").exists():
-                put(ser / f"{m}.png", f"{B}/maps/{m}.png", f"Aswaraopeta {m[:4]} (StrongDINOv2Seg footprints; Esri imagery where shown; credit: {CREDIT})")
-        for extra_png in ser.glob("*_fac_route_2panel.png") if ser.exists() else []:
-            put(extra_png, f"{B}/maps/{extra_png.name}", "compact 2-panel figure: verified facilities and final shared network")
-        for n_ in ("sat_map1_a", "sat_map1_b", "sat_map2_independent_window", "sat_map2_two_stage_window", "sat_map2_independent_zoom", "sat_map2_two_stage_zoom"):
-            if (ASW_SEG / "figures" / f"{n_}.png").exists():
-                jpg(ASW_SEG / "figures" / f"{n_}.png", f"{B}/satellite_overlays/{n_}.jpg", f"Aswaraopeta satellite overlay {n_} (JPEG copy; {CREDIT})")
-        for n_, d_ in (("routing_strategy_comparison.csv", "routing strategies"), ("penalty_sensitivity.csv", "penalty sweep"), ("omission_summary.csv", "omission scenarios"), ("omission_runs.csv", "omission runs"),
-                       ("target_definition_sensitivity.csv", "road-gap threshold sweep"), ("building_extraction_summary.csv", "instances by quality class"), ("metrics_summary.json", "headline metrics"),
-                       ("run_log_full.json", "inference run log"), ("verified_facilities.csv", "facility candidates with status and lat/lon"), ("comparison_open_vs_segmentation.csv", "open vs segmentation")):
-            if (ASW_SEG / n_).exists():
-                put(ASW_SEG / n_, f"{B}/tables_segmentation_run/{n_}", f"Aswaraopeta segmentation run: {d_}")
-        if aopen:
-            for n_ in ("routing_strategy_comparison.csv", "penalty_sensitivity.csv", "omission_summary.csv", "target_definition_sensitivity.csv", "building_extraction_summary.csv", "verified_facilities.csv", "metrics_summary.json"):
-                if (ASW_OPEN / n_).exists():
-                    put(ASW_OPEN / n_, f"{B}/tables_open_footprint_run/{n_}", f"Aswaraopeta open-footprint run: {n_}")
-        for n_ in (pf, pf.with_name("aswaraopeta_boundary.geojson")):
+        for tag, d_, on in (("segmentation", V["seg"], have_seg), ("open_footprint", V["open"], have_open)):
+            if not on:
+                continue
+            ser = d_ / "final_maps_1_to_5"
+            for m in MAPS:
+                if (ser / f"{m}.png").exists():
+                    put(ser / f"{m}.png", f"{B}/maps/{m}.png", f"{name} {m[:4]} ({tag} footprints; Esri imagery where shown; credit: {CREDIT})")
+            for extra_png in (ser.glob("*_fac_route_2panel.png") if ser.exists() else []):
+                put(extra_png, f"{B}/maps/{extra_png.name}", "compact 2-panel figure: verified facilities and final shared network")
+            for n_ in ("sat_map1_a", "sat_map1_b", "sat_map2_independent_window", "sat_map2_two_stage_window", "sat_map2_independent_zoom", "sat_map2_two_stage_zoom"):
+                if (d_ / "figures" / f"{n_}.png").exists():
+                    jpg(d_ / "figures" / f"{n_}.png", f"{B}/satellite_overlays/{n_}.jpg", f"{name} satellite overlay {n_} (JPEG copy; {CREDIT})")
+            for n_ in ("routing_strategy_comparison.csv", "penalty_sensitivity.csv", "omission_summary.csv", "omission_runs.csv", "target_definition_sensitivity.csv", "building_extraction_summary.csv", "metrics_summary.json",
+                       "study_area.csv", "run_log_full.json", "verified_facilities.csv", "comparison_open_vs_segmentation.csv"):
+                if (d_ / n_).exists():
+                    put(d_ / n_, f"{B}/tables_{tag}_run/{n_}", f"{name}, {tag} run: {n_}")
+        for n_ in (pf, pf.with_name(V["prov"] + ".geojson")):
             if n_.exists():
-                put(n_, f"{B}/boundary/{n_.name}", "the study-area polygon (true village / town boundary) and its provenance")
-        fv_ = pd.read_csv(ASW_SEG / "verified_facilities.csv")
+                put(n_, f"{B}/boundary/{n_.name}", "the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities)")
+        fsrc = V["seg"] if have_seg else V["open"]
+        fv_ = pd.read_csv(fsrc / "verified_facilities.csv")
         v_ = fv_[fv_.status == "VERIFIED_USED"]
-        add = [dict(settlement="Aswaraopeta", run="segmentation run", name=r["name"], facility_type=r.facility_type, taxonomy=r.taxonomy_primary, lat=r.lat, lon=r.lon,
+        add = [dict(settlement=name, run=("segmentation run" if have_seg else "open-footprint run"), name=r["name"], facility_type=r.facility_type, taxonomy=r.taxonomy_primary, lat=r.lat, lon=r.lon,
                     records_at_same_coordinate=int(((v_.lon == r.lon) & (v_.lat == r.lat)).sum()), dist_to_nearest_footprint_m=r.dist_to_nearest_footprint_m) for _, r in v_.iterrows()]
         fac = pd.concat([fac, pd.DataFrame(add)], ignore_index=True)
         fac.to_csv(OUT / "03_COMPARISON/facility_coordinates_all_settlements.csv", index=False, lineterminator="\n")
-        aj = json.loads((ASW_SEG / "metrics_summary.json").read_text())
-        aq = aj["quality_classes"]
-        asw_lines = ["", "## Aswaraopeta (semi-urban, Tier 2)", "",
-                     f"Study area: {area_text} km². Footprints: {aj['footprints_total']:,} StrongDINOv2Seg instances ({aq.get('PLAUSIBLE', 0):,} plausible, {aq.get('REVIEW', 0):,} review, {aq.get('UNRESOLVED_MERGE', 0):,} unresolved merge); "
-                     f"{aj['gap_targets']} road-gap targets; {aj['facilities_verified']} verified facilities.", "",
-                     "| metric | Aswaraopeta segmentation | Aswaraopeta open footprints |", "|---|---|---|"]
+        sa = (seg_v or open_v)
+        main_d = json.loads(((V["seg"] if have_seg else V["open"]) / "metrics_summary.json").read_text())
+        q_ = main_d["quality_classes"]
+        cov = prov.get("covers", {})
+        asw_lines += ["", f"## {name}", "",
+                      f"**Study area:** {name}; {prov.get('boundary_type', '')}; {prov.get('area_km2', '?')} km². Mandals covered (2018 layer): "
+                      + ", ".join(f"{m['mandal']} {m['area_km2']} km² ({m['share_of_polygon_pct']}%)" for m in cov.get("mandals_2018", [])) + ". Localities inside: " + ", ".join(cov.get("localities", [])) + ".",
+                      "", f"Footprints: {main_d['footprints_total']:,} ({', '.join(f'{k} {v}' for k, v in q_.items())}); {main_d['gap_targets']} road-gap targets; {main_d['facilities_verified']} verified facilities. "
+                      f"Run(s): {'segmentation ' if have_seg else ''}{'open-footprint' if have_open else ''}.", "",
+                      "| metric | segmentation | open footprints |", "|---|---|---|"]
         for m in ("Independent routes: total / unique (m)", "Two-stage shared plan: unique (m)", "Saving vs independent (%)", "Roads-only shared saving (%)", "Routes crossing other footprints (two-stage)",
                   "Length inside other footprints (m)", "mu = 1 -> 4: unique length change (%)", "10% random omission: length change (%) / households unserved"):
-            asw_lines.append(f"| {m} | {aseg.get(m, 'n/a')} | {(aopen or {}).get(m, 'n/a')} |")
+            asw_lines.append(f"| {m} | {(seg_v or {}).get(m, 'n/a')} | {(open_v or {}).get(m, 'n/a')} |")
 
     # ------------------------------------------------------------------ INDEX.md
     q = sj["quality_classes"]

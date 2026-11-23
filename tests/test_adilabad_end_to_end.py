@@ -54,5 +54,6 @@ def test_esri_response_check_accepts_octet_stream_tiff():
     assert E.is_tiff_or_image(R("application/octet-stream", b"II*\x00rest"))
     assert E.is_tiff_or_image(R("application/octet-stream", b"MM\x00*rest"))
     assert E.is_tiff_or_image(R("image/tiff", b"whatever"))
+    assert E.is_tiff_or_image(R("", b"\x89PNG\r\n\x1a\n....")) and E.is_tiff_or_image(R("application/octet-stream", b"\xff\xd8\xff\xe0"))
     assert not E.is_tiff_or_image(R("application/json", b'{"error":{"code":400}}'))
     assert not E.is_tiff_or_image(R("application/octet-stream", b"<html>"))

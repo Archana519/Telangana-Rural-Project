@@ -1,0 +1,2 @@
+village_id,study_area_name,study_area_type,mandal,district,boundary_method,boundary_type,boundary_area_km2,boundary_source,mandals_covered,localities_covered,edge_both_pct,edge_outside_pct
+aswaraopeta,Aswaraopeta (Ashwaraopet town),"derived built-up settlement extent of Aswaraopeta (Ashwaraopet) town, Aswaraopeta mandal, Bhadradri Kothagudem district",Aswaraopeta,Bhadradri,polygon_file,DERIVED built-up settlement extent (NOT an administrative boundary),2.82,worldcover_builtup,"Aswaraopeta (2.82 km2, 100.0%)",Ashwaraopet,1.2,8.4

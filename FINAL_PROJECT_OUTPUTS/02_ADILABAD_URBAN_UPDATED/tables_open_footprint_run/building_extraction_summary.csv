@@ -1,0 +1,9 @@
+dataset,quality_class,polygons,median_area_m2
+Google Open Buildings,LARGE_POSSIBLE_MERGE,420,497.0
+Google Open Buildings,LOWCONF_EXCLUDED,884,43.9
+Google Open Buildings,PLAUSIBLE,6744,65.9
+Google Open Buildings,REVIEW,1285,48.1
+Google Open Buildings,SMALL_EXCLUDED,4798,19.9
+OpenStreetMap,LARGE_POSSIBLE_MERGE,599,452.2
+OpenStreetMap,PLAUSIBLE,18683,68.4
+OpenStreetMap,SMALL_EXCLUDED,4896,21.8

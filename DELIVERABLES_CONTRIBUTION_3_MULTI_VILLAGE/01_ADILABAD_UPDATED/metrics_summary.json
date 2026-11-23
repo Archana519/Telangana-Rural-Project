@@ -1,0 +1,45 @@
+{
+  "footprints_total": 38309,
+  "footprints_used_for_penalty": 27731,
+  "gap_targets": 1419,
+  "facilities_verified": 88,
+  "unique_len_two_stage_m": 54254.5,
+  "unique_len_independent_m": 72802.8,
+  "saving_vs_independent_pct": 25.5,
+  "routed": 1401,
+  "targets": 1419,
+  "routes_crossing": 511,
+  "length_inside_other_footprints_m": 3047.2,
+  "quality_classes": {
+    "PLAUSIBLE": 25427,
+    "SMALL_EXCLUDED": 9694,
+    "REVIEW": 1285,
+    "LARGE_POSSIBLE_MERGE": 1019,
+    "LOWCONF_EXCLUDED": 884
+  },
+  "study_area": {
+    "village_id": "adilabad_urban_updated",
+    "study_area_name": "Adilabad Urban (Adilabad Town)",
+    "study_area_type": "derived built-up settlement extent of Adilabad Town (the urban area of Adilabad Urban mandal and its adjoining built-up localities); the district of Adilabad is NOT the study area",
+    "mandal": "Adilabad Urban",
+    "district": "Adilabad",
+    "boundary_method": "polygon_file",
+    "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+    "boundary_area_km2": 18.59,
+    "boundary_source": "worldcover_builtup",
+    "mandals_covered": [
+      "Adilabad Urban (9.38 km2, 50.5%)",
+      "Mavala (5.98 km2, 32.2%)",
+      "Aidilabad Rural (3.23 km2, 17.4%)"
+    ],
+    "localities_covered": [
+      "Adilabad",
+      "Anukunta",
+      "Kurshid Nagar",
+      "Mavala",
+      "Vidya Nagar"
+    ],
+    "edge_both_pct": 0.1,
+    "edge_outside_pct": 1.5
+  }
+}
