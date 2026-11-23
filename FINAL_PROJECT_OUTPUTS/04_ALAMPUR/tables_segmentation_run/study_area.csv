@@ -1,0 +1,2 @@
+village_id,study_area_name,study_area_type,mandal,district,boundary_method,boundary_type,boundary_area_km2,boundary_source,mandals_covered,localities_covered,edge_both_pct,edge_outside_pct
+alampur,Alampur (Alampur town),"derived built-up settlement extent of Alampur town (Overture building footprints around the OSM place node; not an administrative boundary), Alampur mandal, Jogulamba Gadwal district",Alampur,Jogulamba,polygon_file,DERIVED built-up settlement extent (NOT an administrative boundary),1.65,overture_buildings_extent,"Alampur (1.65 km2, 100.0%)",Alampur,0.7,9.1

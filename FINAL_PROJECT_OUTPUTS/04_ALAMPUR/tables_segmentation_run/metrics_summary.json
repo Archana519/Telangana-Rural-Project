@@ -1,0 +1,38 @@
+{
+  "footprints_total": 430,
+  "footprints_used_for_penalty": 397,
+  "gap_targets": 59,
+  "facilities_verified": 1,
+  "unique_len_two_stage_m": 3334.6,
+  "unique_len_independent_m": 4056.9,
+  "saving_vs_independent_pct": 17.8,
+  "routed": 58,
+  "targets": 59,
+  "routes_crossing": 5,
+  "length_inside_other_footprints_m": 32.9,
+  "quality_classes": {
+    "PLAUSIBLE": 208,
+    "UNRESOLVED_MERGE": 163,
+    "SMALL_EXCLUDED": 33,
+    "REVIEW": 26
+  },
+  "study_area": {
+    "village_id": "alampur",
+    "study_area_name": "Alampur (Alampur town)",
+    "study_area_type": "derived built-up settlement extent of Alampur town (Overture building footprints around the OSM place node; not an administrative boundary), Alampur mandal, Jogulamba Gadwal district",
+    "mandal": "Alampur",
+    "district": "Jogulamba",
+    "boundary_method": "polygon_file",
+    "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+    "boundary_area_km2": 1.65,
+    "boundary_source": "overture_buildings_extent",
+    "mandals_covered": [
+      "Alampur (1.65 km2, 100.0%)"
+    ],
+    "localities_covered": [
+      "Alampur"
+    ],
+    "edge_both_pct": 0.7,
+    "edge_outside_pct": 9.1
+  }
+}
