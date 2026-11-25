@@ -67,7 +67,7 @@ def make_targets(houses: gpd.GeoDataFrame, facilities: gpd.DataFrame | None = No
         pt = r.geometry.representative_point()
         t.append(dict(id=f"H{int(r.hid):04d}", kind="HOUSE", name="", ftype="", pt=pt, weight=1.0, n_buildings=1, n_unresolved=0, weight_rule="house"))
     if facilities is not None and len(facilities):
-        w = weights or pn().DEFAULT_WEIGHTS
+        w = weights or {**pn().DEFAULT_WEIGHTS, "college": 3.0, "university": 3.0, "polytechnic": 3.0}      # colleges weigh like schools (the planner's default table has no college key)
         for r in facilities.itertuples():
             wt, key = pn().priority_weight(dict(facility_type=r.facility_type, priority_group="", facility_name=r.name), w)
             t.append(dict(id="F:" + str(r.fid), kind="FACILITY", name=r.name, ftype=r.facility_type, pt=r.geometry, weight=wt, weight_rule=key,

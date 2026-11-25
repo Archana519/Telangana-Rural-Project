@@ -1,0 +1,858 @@
+source,source_id,name,tags,taxonomy,lon,lat,confidence,status,is_area
+OSM,way/264584695,St Josheph's Convent High School,"{""amenity"": ""school"", ""name"": ""St Josheph's Convent High School""}",school,78.5309603,19.6649014,,open,True
+OSM,way/265612432,Government Hindi High School,"{""amenity"": ""school"", ""name"": ""Government Hindi High School""}",school,78.5388563,19.6799617,,open,True
+OSM,node/2710980195,Vaishnavi Model School,"{""amenity"": ""school"", ""name"": ""Vaishnavi Model School""}",school,78.5188918,19.6660184,,open,False
+OSM,node/2712522320,Vishwa Shanti High School,"{""amenity"": ""school"", ""name"": ""Vishwa Shanti High School""}",school,78.5190548,19.6700628,,open,False
+OSM,node/2710942643,Government Girls School,"{""amenity"": ""school"", ""name"": ""Government Girls School""}",school,78.5287624,19.6720801,,open,False
+OSM,node/2712457116,Little Star School,"{""amenity"": ""school"", ""name"": ""Little Star School""}",school,78.5364889,19.6685788,,open,False
+OSM,way/602493522,Goutam Model school,"{""building"": ""yes"", ""name"": ""Goutam Model school""}",,78.5360986,19.6691673,,open,True
+OSM,node/2710961603,Central Public School &Residential High School,"{""amenity"": ""school"", ""name"": ""Central Public School &Residential High School""}",school,78.5210376,19.6613306,,open,False
+OSM,node/2710944267,Government High School,"{""amenity"": ""school"", ""name"": ""Government High School""}",school,78.5269385,19.6716962,,open,False
+OSM,node/6837577252,Little Flower English High School,"{""amenity"": ""school"", ""name"": ""Little Flower English High School""}",school,78.537847,19.668916,,open,False
+OSM,node/6853050114,Aditya Junior College,"{""amenity"": ""college"", ""name"": ""Aditya Junior College""}",college,78.526356,19.669988,,open,False
+OSM,way/265610509,Government Arts College,"{""amenity"": ""college"", ""name"": ""Government Arts College""}",college,78.5376464,19.6636205,,open,True
+OSM,way/369851045,Government Womens College,"{""amenity"": ""college"", ""name"": ""Government Womens College""}",college,78.5364496,19.6716431,,open,True
+OSM,node/6853050131,Govt.Degree College for Men,"{""amenity"": ""college"", ""name"": ""Govt.Degree College for Men""}",college,78.537157,19.663539,,open,False
+OSM,node/2710957801,RIMS Medical College Hospital,"{""amenity"": ""hospital"", ""name"": ""RIMS Medical College Hospital""}",hospital,78.5267074,19.6621619,,open,False
+OSM,node/2710965445,Government Residential College,"{""amenity"": ""college"", ""name"": ""Government Residential College""}",college,78.5362296,19.6577742,,open,False
+OSM,node/2710957270,RIMS Medical College Hospital,"{""amenity"": ""hospital"", ""name"": ""RIMS Medical College Hospital""}",hospital,78.5256939,19.6627652,,open,False
+OSM,way/265428174,Sanjay Gandhi Polytechnic College,"{""amenity"": ""college"", ""name"": ""Sanjay Gandhi Polytechnic College""}",college,78.5324092,19.6532882,,open,True
+OSM,node/6830806722,Madhava Hospital,"{""amenity"": ""hospital"", ""name"": ""Madhava Hospital""}",hospital,78.5308303,19.6705156,,open,False
+OSM,node/6853249018,Dr. Narotham reddy childrens hospital,"{""amenity"": ""hospital"", ""name"": ""Dr. Narotham reddy childrens hospital""}",hospital,78.5329057,19.6720314,,open,False
+OSM,node/6830806555,Akbani Eye Hospital,"{""amenity"": ""hospital"", ""name"": ""Akbani Eye Hospital""}",hospital,78.5286611,19.6743851,,open,False
+OSM,node/6830806584,Sheshanna Chennawar Eye Hospital,"{""amenity"": ""hospital"", ""name"": ""Sheshanna Chennawar Eye Hospital""}",hospital,78.51226,19.64327,,open,False
+OSM,node/6853249011,nakshatra hospital,"{""amenity"": ""hospital"", ""name"": ""nakshatra hospital""}",hospital,78.5362948,19.6783627,,open,False
+OSM,node/6830806781,Harsha Hospital,"{""amenity"": ""hospital"", ""name"": ""Harsha Hospital""}",hospital,78.5295162,19.6685197,,open,False
+OSM,node/6853249014,Sri vijaya sai dental hospital,"{""amenity"": ""hospital"", ""name"": ""Sri vijaya sai dental hospital""}",hospital,78.5365932,19.6787453,,open,False
+OSM,node/6830806751,KBR Hospital,"{""amenity"": ""hospital"", ""name"": ""KBR Hospital""}",hospital,78.5343469,19.6719689,,open,False
+OSM,node/6830806698,Balaji Hospital,"{""amenity"": ""hospital"", ""name"": ""Balaji Hospital""}",hospital,78.5283119,19.6687785,,open,False
+OSM,node/6830806627,Matruchaya Hospital,"{""amenity"": ""hospital"", ""name"": ""Matruchaya Hospital""}",hospital,78.5253131,19.6593956,,open,False
+OSM,node/6830806632,Care Hospital,"{""amenity"": ""hospital"", ""name"": ""Care Hospital""}",hospital,78.5347572,19.6707989,,open,False
+OSM,node/6830806580,Kartikeya Hospital,"{""amenity"": ""hospital"", ""name"": ""Kartikeya Hospital""}",hospital,78.531997,19.6692546,,open,False
+OSM,node/6853249012,laxmi narsimha hospital,"{""amenity"": ""hospital"", ""name"": ""laxmi narsimha hospital""}",hospital,78.5362492,19.6787004,,open,False
+OSM,node/6830806769,Sai Eye Hospital,"{""amenity"": ""hospital"", ""name"": ""Sai Eye Hospital""}",hospital,78.512941,19.653891,,open,False
+OSM,node/6830806696,Vaibhavi Hospital,"{""amenity"": ""hospital"", ""name"": ""Vaibhavi Hospital""}",hospital,78.5282541,19.668241,,open,False
+OSM,node/6830806747,Saketh Hospital,"{""amenity"": ""hospital"", ""name"": ""Saketh Hospital""}",hospital,78.5301781,19.6672162,,open,False
+OSM,node/6830806563,Sri Venkateshwara Children's Hospital,"{""amenity"": ""hospital"", ""name"": ""Sri Venkateshwara Children's Hospital""}",hospital,78.5304817,19.6667104,,open,False
+OSM,node/6853249010,Jeevana jyothi hospital,"{""amenity"": ""hospital"", ""name"": ""Jeevana jyothi hospital""}",hospital,78.5279025,19.6701836,,open,False
+OSM,node/6830806685,Laxmi cardiac hospital and 2d echo Centre,"{""amenity"": ""hospital"", ""name"": ""Laxmi cardiac hospital and 2d echo Centre""}",hospital,78.5353897,19.6779985,,open,False
+OSM,node/6853249020,Ayyappa Orthopaedic and Childrens Hospital,"{""amenity"": ""hospital"", ""name"": ""Ayyappa Orthopaedic and Childrens Hospital""}",hospital,78.5327928,19.670061,,open,False
+OSM,node/12595817020,Venkateshwara eye hospital,"{""amenity"": ""hospital"", ""name"": ""Venkateshwara eye hospital""}",hospital,78.5336718,19.6708985,,open,False
+OSM,node/6830806681,Sandeep Pawar hospital,"{""amenity"": ""hospital"", ""name"": ""Sandeep Pawar hospital""}",hospital,78.5308427,19.6680219,,open,False
+OSM,node/6853249016,Dr.Narayanareddy memorial eye hospital,"{""amenity"": ""hospital"", ""name"": ""Dr.Narayanareddy memorial eye hospital""}",hospital,78.5331732,19.6720517,,open,False
+OSM,node/6853249015,seva hospital,"{""amenity"": ""hospital"", ""name"": ""seva hospital""}",hospital,78.5366469,19.6788092,,open,False
+OSM,node/6853249022,Siri skin ENT hospital,"{""amenity"": ""hospital"", ""name"": ""Siri skin ENT hospital""}",hospital,78.5326318,19.6694388,,open,False
+OSM,node/6830806522,SRI SANJEEVANI CRITICAL CARE HOSPITAL,"{""amenity"": ""hospital"", ""name"": ""SRI SANJEEVANI CRITICAL CARE HOSPITAL""}",hospital,78.532014,19.6641405,,open,False
+OSM,node/6830806600,Suraksha children's Hospital,"{""amenity"": ""hospital"", ""name"": ""Suraksha children's Hospital""}",hospital,78.5304832,19.6720762,,open,False
+OSM,node/6853249017,Dr.Agarwal hospital,"{""amenity"": ""hospital"", ""name"": ""Dr.Agarwal hospital""}",hospital,78.5330507,19.672314,,open,False
+OSM,node/6830806794,chrome hospital,"{""amenity"": ""hospital"", ""name"": ""chrome hospital""}",hospital,78.5303204,19.6764732,,open,False
+OSM,node/6830806706,WALGOTE BONES HOSPITAL(Dr.Moin),"{""amenity"": ""hospital"", ""name"": ""WALGOTE BONES HOSPITAL(Dr.Moin)""}",hospital,78.5334072,19.670668,,open,False
+OSM,node/6853249013,Thirumala multi speciality dental clinic,"{""amenity"": ""clinic"", ""name"": ""Thirumala multi speciality dental clinic""}",clinic,78.5362886,19.6787405,,open,False
+OSM,node/6853249021,shifa clinic,"{""amenity"": ""clinic"", ""name"": ""shifa clinic""}",clinic,78.5326961,19.6690759,,open,False
+OSM,node/6830806592,Arogya Homeopathy Clinic,"{""amenity"": ""clinic"", ""name"": ""Arogya Homeopathy Clinic""}",clinic,78.5344785,19.6708609,,open,False
+OSM,node/6830806702,Sai Ram Clinic,"{""amenity"": ""clinic"", ""name"": ""Sai Ram Clinic""}",clinic,78.5243454,19.6568995,,open,False
+OSM,node/6853249024,mary sudha clinic,"{""amenity"": ""clinic"", ""name"": ""mary sudha clinic""}",clinic,78.5363168,19.6647975,,open,False
+OSM,node/6830806793,Sri Venkateshwara Dental Clinic Dr L Pramod Reddy MDS,"{""amenity"": ""doctors"", ""name"": ""Sri Venkateshwara Dental Clinic Dr L Pramod Reddy MDS""}",doctors,78.5276872,19.6663453,,open,False
+OSM,node/11938975134,"Government Ayurvedic Dispensary, Adilabad (HQ) (Regular)","{""amenity"": ""doctors"", ""name"": ""Government Ayurvedic Dispensary, Adilabad (HQ) (Regular)""}",doctors,78.5261321,19.6640329,,open,False
+OSM,node/2710951599,Collector Office,"{""amenity"": ""public_building"", ""name"": ""Collector Office""}",public_building,78.5261016,19.6659174,,open,False
+OSM,way/347029046,rm office,"{""building"": ""residential"", ""name"": ""rm office""}",,78.528089,19.6690699,,open,True
+OSM,node/6847212548,Post Office Netaji Chowk,"{""amenity"": ""post_office"", ""name"": ""Post Office Netaji Chowk""}",post_office,78.533696,19.670495,,open,False
+OSM,node/12595059687,Panchavati,"{""amenity"": ""restaurant"", ""name"": ""Panchavati""}",restaurant,78.5339045,19.6731192,,open,False
+OSM,way/1360555912,Panchavati hotel,"{""building"": ""apartments"", ""name"": ""Panchavati hotel""}",,78.5339135,19.6731335,,open,True
+OSM,way/264585592,II Town Police Station,"{""amenity"": ""police"", ""name"": ""II Town Police Station""}",police,78.5284941,19.664252,,open,True
+OSM,node/6830806533,EHS & JHS Wellness Centre,"{""amenity"": ""clinic"", ""name"": ""EHS & JHS Wellness Centre""}",clinic,78.5281202,19.6622718,,open,False
+OSM,node/6552134454,"Sub Centre, Ramnagar","{""amenity"": ""clinic"", ""name"": ""Sub Centre, Ramnagar""}",clinic,78.5200448,19.653788,,open,False
+OSM,node/11931088144,"Urban Primary Health Centre, Kurshidnagar","{""amenity"": ""clinic"", ""name"": ""Urban Primary Health Centre, Kurshidnagar""}",clinic,78.5161965,19.6789531,,open,False
+OSM,node/6830806596,New Hope Laparoscopy Centre,"{""amenity"": ""clinic"", ""name"": ""New Hope Laparoscopy Centre""}",clinic,78.5233022,19.6521713,,open,False
+OSM,node/11935709492,"Urban Primary Health Centre, Putilibowli","{""amenity"": ""clinic"", ""name"": ""Urban Primary Health Centre, Putilibowli""}",clinic,78.5397121,19.6692637,,open,False
+OSM,node/6830806591,Sri Sairam Multispeciality Dental Care- Laser & Implant Centre,"{""amenity"": ""hospital"", ""name"": ""Sri Sairam Multispeciality Dental Care- Laser & Implant Centre""}",hospital,78.5328554,19.6709413,,open,False
+OSM,way/601906098,Fast food centre,"{""building"": ""yes"", ""name"": ""Fast food centre""}",,78.5363231,19.6778567,,open,True
+OSM,node/6830806631,Sri Test Tube Baby Centre,"{""amenity"": ""hospital"", ""name"": ""Sri Test Tube Baby Centre""}",hospital,78.5323093,19.6722921,,open,False
+OSM,node/6840391541,"Urban primary health centre, Shantinagar","{""healthcare"": ""centre"", ""name"": ""Urban primary health centre, Shantinagar""}",,78.539259,19.663684,,open,False
+OSM,node/6547696446,"Urban Health Centre, Chilukuribalaginagar","{""healthcare"": ""centre"", ""name"": ""Urban Health Centre, Chilukuribalaginagar""}",,78.5426398,19.6914347,,open,False
+OSM,node/11940007814,"Urban Primary Health Centre, Shantinagar","{""amenity"": ""clinic"", ""name"": ""Urban Primary Health Centre, Shantinagar""}",clinic,78.540591,19.6665449,,open,False
+OSM,node/12595679903,Gokul Tiffin Centre,"{""amenity"": ""restaurant"", ""name"": ""Gokul Tiffin Centre""}",restaurant,78.5332724,19.6722383,,open,False
+OSM,node/6825138440,"Urban Primary Health Centre, Putilibowli","{""healthcare"": ""centre"", ""name"": ""Urban Primary Health Centre, Putilibowli""}",,78.539429,19.668859,,open,False
+OSM,node/6544552452,"Urban Health Centre, Shantinagar","{""healthcare"": ""centre"", ""name"": ""Urban Health Centre, Shantinagar""}",,78.5394141,19.6688401,,open,False
+OSM,node/6825138441,"Urban Primary Health Centre, Kurshidnagar","{""healthcare"": ""centre"", ""name"": ""Urban Primary Health Centre, Kurshidnagar""}",,78.520427,19.678758,,open,False
+OSM,way/602365016,Meseva centre,"{""building"": ""yes"", ""name"": ""Meseva centre""}",,78.5361166,19.6679016,,open,True
+OSM,node/6830806572,"Vaidya Ayurvedic Research Centre,Mahalaxmiwada","{""amenity"": ""hospital"", ""name"": ""Vaidya Ayurvedic Research Centre,Mahalaxmiwada""}",hospital,78.5377822,19.6739042,,open,False
+OSM,node/11935684437,"Urban Primary Health Centre, Chilukuri Laxmi Nagar","{""amenity"": ""clinic"", ""name"": ""Urban Primary Health Centre, Chilukuri Laxmi Nagar""}",clinic,78.5417309,19.6908317,,open,False
+OSM,node/6853050129,Sri Krishna Diagnostic Centre,"{""healthcare"": ""laboratory"", ""name"": ""Sri Krishna Diagnostic Centre""}",,78.5324384,19.669114,,open,False
+OSM,node/12595819581,Fast Food Centre,"{""amenity"": ""fast_food"", ""name"": ""Fast Food Centre""}",fast_food,78.5339665,19.6709975,,open,False
+OSM,node/11021371314,"SubCentre, Dasnapur","{""amenity"": ""health_post"", ""name"": ""SubCentre, Dasnapur""}",health_post,78.5276355,19.6565438,,open,False
+OSM,node/6553472024,"SubCentre, Chanda","{""amenity"": ""health_post"", ""name"": ""SubCentre, Chanda""}",health_post,78.5483897,19.7112897,,open,False
+OSM,node/2710960040,Meeseva Center,"{""office"": ""government"", ""name"": ""Meeseva Center""}",,78.524149,19.6598959,,open,False
+OSM,node/6830806762,"Urban Primary Health Center, Hamaliwada","{""healthcare"": ""centre"", ""name"": ""Urban Primary Health Center, Hamaliwada""}",,78.529267,19.6819335,,open,False
+OSM,node/6830806564,CCI Health Center,"{""healthcare"": ""centre"", ""name"": ""CCI Health Center""}",,78.5511985,19.6891662,,open,False
+OSM,node/2710950647,District Court,"{""amenity"": ""courthouse"", ""name"": ""District Court""}",courthouse,78.5231834,19.667938,,open,False
+OSM,node/12595734220,Municipal council,"{""office"": ""government"", ""name"": ""Municipal council""}",,78.5359548,19.6710118,,open,False
+OSM,node/11010903714,Vidyanagar-4,"{""amenity"": ""childcare"", ""name"": ""Vidyanagar-4""}",childcare,78.5336079,19.6840011,,open,False
+OSM,node/11079016619,Vidyanagar-3,"{""amenity"": ""childcare"", ""name"": ""Vidyanagar-3""}",childcare,78.5274013,19.6776,,open,False
+OSM,node/10925732872,Vidyanagar-6,"{""amenity"": ""childcare"", ""name"": ""Vidyanagar-6""}",childcare,78.5284529,19.66559,,open,False
+OSM,node/11054699356,Vidyanagar-5,"{""amenity"": ""childcare"", ""name"": ""Vidyanagar-5""}",childcare,78.5238014,19.6682978,,open,False
+OSM,node/6520755187,Srinivasa Nursing Home,"{""amenity"": ""hospital"", ""name"": ""Srinivasa Nursing Home""}",hospital,78.5326747,19.6698522,,open,False
+OSM,node/6830806622,Sneha Nursing Home,"{""amenity"": ""hospital"", ""name"": ""Sneha Nursing Home""}",hospital,78.5306213,19.6713158,,open,False
+OSM,node/6830806785,Sri Rama Nursing Home,"{""amenity"": ""hospital"", ""name"": ""Sri Rama Nursing Home""}",hospital,78.53228,19.67232,,open,False
+OSM,node/6853249023,Dr.sujataha maternity and syurgical nursing home,"{""amenity"": ""hospital"", ""name"": ""Dr.sujataha maternity and syurgical nursing home""}",hospital,78.5400637,19.6740838,,open,False
+OSM,node/2710970233,Peoples Nursing Home,"{""amenity"": ""hospital"", ""name"": ""Peoples Nursing Home""}",hospital,78.5233523,19.6522435,,open,False
+Overture,99e1d866-5164-4e57-9270-d375527156fe,Shrinath Punjabi Dhaba,,indian_restaurant,78.49922196,19.68827105,0.41522741317749023,nan,False
+Overture,d2e8af4c-933f-46f9-93d2-a414a0fd2530,Police Station-Adilabad,,police_station,78.5115132,19.6833243,0.6857489943504333,nan,False
+Overture,815fe819-8034-497d-9426-e4def7231fb4,Hindustan Petroleum,,gas_station,78.51119008,19.683409830000002,0.954,nan,False
+Overture,a7add331-ac6e-44a1-bf14-cc2d11135c86,Sardar Ajith Singh Saw Mill,,party_and_event_planning,78.51550352,19.682723679999995,0.1855258196592331,nan,False
+Overture,be61f3a6-4f74-48c5-8b03-9ce00f35041c,District Jail,,jail_or_prison,78.51581821,19.67608059,0.6772196888923645,nan,False
+Overture,34546acd-9dd1-494b-97a0-ad6bd4ca4929,Dharma Vidyalay,,school,78.508545,19.668084999999998,0.852699875831604,nan,False
+Overture,f84a314d-9351-45ab-b8a4-376542c21641,Central Ware House,,storage_facility,78.51635021,19.67277804,0.34786054491996765,nan,False
+Overture,a06b4e1e-90cb-496b-aa87-9a04ea085013,Sree Asta Laxmi Spinning Mills,,manufacturer,78.51721831,19.673009939999993,0.4801868498325348,nan,False
+Overture,af068f95-3187-4e23-8b40-b2795d937852,Su Sri Niloma Adaneshwar Sevashram,,hindu_place_of_worship,78.51807662,19.66467927,0.8681504726409912,nan,False
+Overture,61c05c4a-d23d-4be2-a601-430638a40f5b,Chavara Academy CBSE Mavala,,school,78.5068817,19.665010499999998,0.8630509972572327,nan,False
+Overture,e576ffb9-b697-4b7f-b08e-9d422678b813,Bajaj Auto Credit | Srr Motors Adilabad | Two Wheeler Loan,,motorcycle_dealer,78.5094038,19.665059400000004,0.85,nan,False
+Overture,f90c0981-3528-44b0-8e30-d40c5c6fb528,Exide Care - Laxmi Auto Agencies,,electronics_store,78.507133,19.662484,0.77,nan,False
+Overture,b3d2e591-2505-45ad-b052-fe1eb381e6bb,Chandra Motors - Hero MotoCorp,,motorcycle_dealer,78.5138126,19.656689,0.9655,nan,False
+Overture,af7bae05-ff5d-4142-b432-444af5ff8716,Hero MotoCorp,,bike_store,78.5138126,19.656689,0.5888992547988892,nan,False
+Overture,95c5abf8-d807-438e-bf79-7e8432cfa846,NEXA,,auto_dealer,78.51167,19.65827,0.40073713660240173,nan,False
+Overture,da0fb507-dc9f-4df3-a97d-8740f467030e,Sri Narayana Enterprise Solar Energies,,b2b_energy_and_utility_service,78.51167,19.65827,0.2749473452568054,nan,False
+Overture,7f39395d-282e-4942-9537-50ab52d6ba6e,Resonance World School,,school,78.51005,19.650219999999994,0.6394288539886475,nan,False
+Overture,736852b4-5fb6-4be2-aed1-1cafea4ae115,Ayati Global School,,education,78.51005,19.650219999999994,0.3033709228038788,nan,False
+Overture,e991675b-978e-4225-854f-bee1cad7c224,Padmavati Super Market,,grocery_store,78.511726,19.6514477,0.5397950410842896,nan,False
+Overture,529931bf-1c71-453c-9186-788cc0fcbb84,LG India,,electronics_store,78.511726,19.6514477,0.6002546548843384,nan,False
+Overture,30ba9b61-3954-463a-94ee-e4f826a312d9,Motilal Oswal Financial Services Limited,,stock_and_bond_broker,78.5144061,19.651907599999998,0.85,nan,False
+Overture,1fe7acf7-b694-458b-b8fd-6b7e542069ae,Kcb Gardens,,shopping,78.51509089,19.650519260000003,0.554384171962738,nan,False
+Overture,ab7c8469-ca1e-4869-9516-4d46d07cd13d,Hariyali Gardens and Nursery,,shopping,78.51504608,19.65055318,0.5272259712219238,nan,False
+Overture,68eb3850-8e90-46b4-99dd-74cf9c277bda,Mahadev UPVC Home Interior & Steel Railing,,interior_design,78.51764664,19.649344399999997,0.24555622041225433,nan,False
+Overture,8fc5d28d-56eb-4556-929e-ffab786c9191,Ashapuri Granites,,,78.5159962,19.6471543,0.85,nan,False
+Overture,f906e786-9fb5-43c7-a823-41bb5c4d247a,Indianoil,,gas_station,78.515588,19.646786,0.9155516639351845,nan,False
+Overture,5502ac0a-9a15-45a8-a6f8-31919b1063e3,Birla Opus Paint Gallery - Sri Durga Traders,,freight_forwarding_agency,78.515173,19.646281000000002,0.85,nan,False
+Overture,0dd97230-6744-4111-9d93-f331d9e4f9d8,GSR Motors,,auto_dealer,78.51507141,19.645388479999998,0.8596068024635315,nan,False
+Overture,d98d9506-103e-4e88-a158-9488680a800d,Nalanda Degree College,,college_university,78.51216743,19.64486462,0.5286707282066345,nan,False
+Overture,54f92861-bb49-4973-9cbe-0ee01cd369bc,Seshanna Chennawar Eye Centre,,hospital,78.51226751,19.64323184,0.6214326024055481,nan,False
+Overture,3b6479d9-738c-47ed-9f6e-83b96971af89,Hindustan Petroleum,,gas_station,78.509912,19.639182,0.954,nan,False
+Overture,d6782120-edb3-4281-8222-72bcd77f4532,Sumangali - NGO,,non_governmental_association,78.51083278656,19.640202853814,0.5236707329750061,nan,False
+Overture,dcdeb530-5920-4619-b1b2-cfe28d4ebd73,"Tata Motors Cars Showroom - Sree Venkateswara Motors (India) Private Limited, Dasnapur",,automotive_service,78.51024100000001,19.639800999999995,0.9655,nan,False
+Overture,f9e41dbc-63e0-417b-a89f-460444160045,Ratna Garden Function Hall,,party_and_event_planning,78.51062376,19.640734729999995,0.5649694204330444,nan,False
+Overture,748d3d63-fbb8-4896-86bc-0be6f18d54f3,Ratna Gardens,,park,78.5104,19.640400000000003,0.6807122230529785,nan,False
+Overture,e00a393d-064c-4f24-835e-520552f023ec,Renault,,automotive_service,78.5075445,19.630533999999997,0.9231839835643768,nan,False
+Overture,cdb6c73b-6d96-46d2-80ca-ada50eafd27c,Maruti Suzuki Arena,,auto_dealer,78.50794931,19.630267819999993,0.9897593528032302,nan,False
+Overture,37b43c36-3a57-4b0c-aa14-9aa899d159c0,HDFC Bank ATM,,bank_or_credit_union,78.5085778,19.635437599999996,0.97,nan,False
+Overture,8b731d08-85bb-4605-afd5-98ae135108e0,IndusInd Bank,,bank,78.5086,19.635399999999997,0.8,nan,False
+Overture,d10599a0-65ef-49d4-a0e5-c3615a90ee67,Mavala Grama Panchayat Karyalayam,,senior_citizen_service,78.51003,19.634779999999996,0.5321490168571472,nan,False
+Overture,e7dc9837-d232-4269-8da6-a3721a5e4a11,Adilabad Haritha Vanam - ఆదిలాబాద్ హరితవనం,,community_and_government,78.53818000000001,19.642239999999994,0.7731197476387024,nan,False
+Overture,6d3c8038-d059-463c-b3be-98f0a2bb32cb,Nalanda Degree College,,college_university,78.53818000000001,19.642239999999994,0.5945261120796204,nan,False
+Overture,e8ac2e38-60c2-49c3-b9bc-57f6dfccaa35,Tirumala Classic Gardens,,music_venue,78.53818000000001,19.642239999999994,0.6709040999412537,nan,False
+Overture,b9d6a66b-3529-43da-a79f-008b36e590b3,Axis Bank ATM,,atm,78.53817749,19.64222908,0.85,nan,False
+Overture,3566149f-910f-4853-959f-a9d50f92ed95,Stylish Spa,,day_spa,78.54017000000002,19.64441,0.16743311285972595,nan,False
+Overture,2e976936-840b-49cd-a293-9828785fdde4,Caring Spa & Salon,,day_spa,78.54017000000002,19.64441,0.12421509623527527,nan,False
+Overture,2eb56a15-2d53-4f6f-8629-3ed1ad43534a,Creative Zone,,mobile_phone_store,78.53927567,19.64424905,0.2558365762233734,nan,False
+Overture,2a656038-6aee-4329-ab27-a1045dc85860,Srimadhu Creations,,shopping,78.53773867,19.64396928,0.3545528054237366,nan,False
+Overture,7edb38e3-576a-40a0-ba0a-f35fd9320485,Adilabd Private Industrial Training Institute,,vocational_and_technical_school,78.52560714,19.650923049999996,0.47098276019096375,nan,False
+Overture,b9f29a46-182a-4498-a88a-a37d34898091,Sumangali - NGO,,non_governmental_association,78.53014,19.65249,0.5236707329750061,nan,False
+Overture,9be1ecd1-c438-4aea-bc4e-79f1fb156248,Sri Nirvigna Soap Works,,shopping,78.52935838,19.653836309999992,0.2652609348297119,nan,False
+Overture,da193963-ef69-46b4-befc-baecb0e47bbc,honey happy kitchen tips,,,78.53003,19.65457,0.12916016578674316,nan,False
+Overture,d58de362-e378-45e4-83a7-efd79fc7a196,Anwar steel frnture iron cooler mnuftrng adilabad cntct: 9849280351,,,78.52627,19.65454,0.5200098752975464,nan,False
+Overture,cea1939d-0886-49c9-943d-03500ac85f7f,Ek Minar Masjid,,muslim_place_of_worship,78.5261832,19.654441400000003,0.5514991283416748,nan,False
+Overture,bd918e2e-bd59-46e5-9cda-b4280f0bac80,Royal Enfield Showroom - Ashwik Motors,,motorcycle_dealer,78.52222172,19.654412469999993,0.8909820914268494,nan,False
+Overture,79aa440f-7ce4-48f6-9851-22cb18ccc3ab,Royal Enfield Showroom - Ashwik Motors,,motorcycle_dealer,78.52223,19.654450999999998,0.85,nan,False
+Overture,98b842da-626d-44f2-afb8-8881e593cc4b,Dashavatar Mandir Temple,,hindu_place_of_worship,78.52169,19.654670000000003,0.5858842730522156,nan,False
+Overture,47a4e990-5ff8-4e52-b3cc-44164ace0cb8,TVS - Vijay Motors,,motorcycle_dealer,78.522163,19.65416099999999,0.85,nan,False
+Overture,23331b9b-7808-43ab-a5c0-1249e4d44e7d,Cholamandalam Investment and Finance Company Limited,,credit_union,78.5218422,19.6540962,0.85,nan,False
+Overture,359597b9-f9a8-490f-b296-7b5a5e3e6d48,Telangana SC Study Circle,,education,78.52228419,19.653859179999998,0.4957438111305237,nan,False
+Overture,2641fb1c-e7d7-4186-8a5e-38b8e2d725d9,Kakatiya High School,,high_school,78.52157312,19.653282079999997,0.8220154047012329,nan,False
+Overture,b8481ac0-6098-47a0-934a-3f8f34a903f6,Moriah Church Adilabad,,christian_place_of_worship,78.52391549,19.651893110000003,0.9559853672981262,nan,False
+Overture,1c0d08e0-8fda-41f6-b38d-a9414ac88a47,Ira Saree House,,womens_clothing_store,78.52143,19.651649999999997,0.2402876764535904,nan,False
+Overture,21b7b785-f353-483c-b0f3-9a764d96450d,Waaree Solar Power Center – Zenco Solar Energies,,b2b_energy_and_utility_service,78.52039013,19.6518951,0.24040302634239197,nan,False
+Overture,f26bb2a6-bb71-46d6-b2a4-dac5174d1030,Mahindra Automotive Manufacturers - SUV & Commercial Vehicle Showroom,,motorsport_vehicle_dealer,78.5198925,19.6516527,0.9782332211732865,nan,False
+Overture,92efa9bb-f06f-457d-ae64-07f7abc4cd20,Prathibha High School,,high_school,78.5185173,19.653280559999995,0.6638577580451965,nan,False
+Overture,9c693eb2-4a88-4502-b119-f446e85cc36a,Adilabad Mavala Park,,park,78.52318259,19.654836489999997,0.7509772777557373,nan,False
+Overture,c0baf02a-c546-4113-bf98-416c88c52886,Honda Sree Mahalakshmi Honda Two Wheeler,,auto_dealer,78.52256562,19.656737070000002,0.5333206653594971,nan,False
+Overture,22ac10d4-f636-4a0d-aa80-74a396e6e82e,Sree Mahalakshmi Honda,,motorcycle_dealer,78.52278861,19.65665108,0.8192884922027588,nan,False
+Overture,163c6dcf-74b0-448d-96e8-48c2849b45b1,Naturals Hair and Beauty Salon,,hair_salon,78.52302874,19.65646043,0.77,nan,False
+Overture,b4206f08-48bb-4b6a-bedb-bbe5b45b4717,"SRR Motors, Adilabad",,motorcycle_dealer,78.52327330574975,19.656835608766503,0.9277957677841187,nan,False
+Overture,a34092c4-5fe5-404b-9ad7-e1e6f0218460,TVS iQube - Vinay Autotech Private Limited,,motorcycle_dealer,78.5199737,19.6563951,0.77,nan,False
+Overture,4f8bbc98-d5b0-40b2-9833-832ea4bcc83a,Tata Capital Limited,,financial_service,78.522599,19.660498099999998,0.77,nan,False
+Overture,1ca0e35e-3fd0-488f-be8c-d054b38a866b,Teachers Colony Residential Area,,historic_site,78.5227897,19.660436399999995,0.4357694387435913,nan,False
+Overture,7b22d118-1cbc-4f38-8ddc-ca71b24334f3,Krishnaveni Talent School,,school,78.52353352,19.659067279999995,0.33759021759033203,nan,False
+Overture,0587a3e5-8725-4076-98e5-083f19084b6c,SR Digi School,,elementary_school,78.5225429,19.659249999999997,0.607041597366333,nan,False
+Overture,b9f8a0de-6ac8-4059-ab59-a3f5ec92d5ac,Reliance Digital,,electronics_store,78.523941,19.658550999999996,0.9735391497611999,nan,False
+Overture,13d6ae5b-f424-425a-9b75-cfe3751f2862,Ravi Bar and Restaurant,,bar,78.52374823,19.65811873,0.44111546874046326,nan,False
+Overture,e751403b-001a-4b03-89be-759a3ad40521,Mahindra Tractors - Vinay Auto Tech Private Limited,,tractor_dealer,78.52491840000002,19.659046300000004,0.9450253635644913,nan,False
+Overture,9b10e1ad-1ce8-401f-a0e8-851e01503d86,Telangana Restaurant,,restaurant,78.5248948,19.659030799999996,0.6063534021377563,nan,False
+Overture,7a0a6dc3-4a7f-4af6-b6ef-8fbf83c92147,The BLUEZ fitness pro,,gym,78.52566493,19.65974502,0.7143487930297852,nan,False
+Overture,bd4f79ec-de49-4eee-a72c-40736195a150,Sri Krishna Steels,,shopping,78.52561328,19.659688979999995,0.3396974205970764,nan,False
+Overture,8dc4365e-52d8-4c31-8fc4-957dd7c8e752,Vani Medical and General Stores,,pharmacy,78.52544000000002,19.65988,0.6117100715637207,nan,False
+Overture,ea845b22-8320-416e-802f-475b33f55f0a,HDFC ERGO Insurance Agent: Poreddy Srinivas,,financial_service,78.5253017,19.660098899999998,0.77,nan,False
+Overture,2fb83df3-48f8-4f86-80b2-8ae2666b1cbe,ICICI Bank,,bank,78.525572,19.660457999999995,0.8,nan,False
+Overture,9745ec5a-8d7e-40ec-89ea-95863aa22b78,Iris Florets Adilabad ,,school,78.52632,19.661,0.6681508421897888,nan,False
+Overture,8267c4e3-5df0-471a-9685-a6b546859564,Orientbell Tiles Boutique - Godhavari Enterprises,,financial_service,78.530001,19.660000999999998,0.77,nan,False
+Overture,268e058d-a122-40e7-96e9-91c403de7b77,Grow Bags Desi Seeds and All Organic Fertilizers – Hyderabad’s Best Gardening Store,,shopping,78.52858175,19.659260199999995,0.85,nan,False
+Overture,901c33da-b349-459e-b4f3-d34a0d66d05f,Samsung SmartPlaza - Lavya Industries,,furniture_accessory_store,78.5280000011,19.658110999999998,0.9864289354085922,nan,False
+Overture,6c063060-7253-4d77-bf0a-558615294abb,HDFC ERGO Insurance Agent: Koduri Bharath Chandra Goud,,financial_service,78.5277506,19.656458999999998,0.77,nan,False
+Overture,aebaf016-3a84-407c-af9c-ce11dc3af4a6,Tata Capital Limited,,financial_service,78.5277506,19.656458999999998,0.77,nan,False
+Overture,014c27e8-cf81-4cc7-a51a-9f6ec0d032c7,Aksa Baking System,,dental_supply_store,78.5277506,19.656458999999998,0.85,nan,False
+Overture,0711d1bd-c7e9-4292-8eac-e9a32717f884,Life Insurance Corporation Mini Office,,insurance_agency,78.5277776,19.65743087,0.2649260461330414,nan,False
+Overture,014b25b5-d016-47da-9a6e-5105cedba779,Sparsh Furniture World,,furniture_store,78.52767194,19.6575764,0.5116403698921204,nan,False
+Overture,0cc44882-db05-40c4-aa5a-104ede985e3a,Super T-20 Stadium,,cricket_ground,78.52533392,19.657562469999995,0.3441149890422821,nan,False
+Overture,8a06d316-721f-4b42-b2c4-282aba9f5ffc,Angel One Ltd. - Mohan Daratla,,financial_service,78.52497105000002,19.65746182,0.77,nan,False
+Overture,495d5feb-24b7-49f0-9aa9-66aa446b2cca,HDFC ERGO Insurance Agent: M Gopi,,financial_service,78.5245853,19.657419800000003,0.77,nan,False
+Overture,58cf7ad3-3a2a-48c1-99f6-ab71709fd9f1,HDFC ERGO Insurance Agent: Tabrez Mohiuddin,,financial_service,78.5245947,19.657405399999995,0.77,nan,False
+Overture,d0a30d91-701f-4dc6-8b97-2d6f7268733b,HDFC ERGO Insurance Agent: Imrana Jabeen,,financial_service,78.5246296,19.6573714,0.77,nan,False
+Overture,d1f51da9-a5db-4c6c-81e1-96fb2426ca6c,HDFC Bank,,bank_or_credit_union,78.5257034,19.6573851,0.97,nan,False
+Overture,2f38204e-052f-4058-84f5-fbd5ac35b42c,Ayyappa Furniture and Enterprises,,furniture_store,78.52593324,19.65723536,0.7684609889984131,nan,False
+Overture,ec9c6dcc-2469-442b-a5dd-5cc9746a6253,Srinivasa Tiles and Sanitary,,home_improvement_store,78.52612307,19.656666739999995,0.47964614629745483,nan,False
+Overture,b44e2230-b960-4859-8785-255d9e4dfce3,"Tata Motors Cars Showroom - Sree Venkateswara Motors, Dasnapoor",,automotive_service,78.52681801,19.656281999999997,0.9655,nan,False
+Overture,abcf13e6-daa1-4ec1-9071-a85517fdcb8d,Tata Motors Ganesh Motors Service Centre,,automotive_repair,78.52564341,19.656001189999998,0.2959079146385193,nan,False
+Overture,23db5815-7632-4441-927f-1a5f8fbf78a0,"Tata Motors Cars Service Centre - Sree Venkateswara Motors, Dasnapur",,automotive_service,78.529404,19.655878,0.989073877364397,nan,False
+Overture,9deec010-406b-4123-b3b0-c5902ba96618,Government Polytechnic,,vocational_and_technical_school,78.53536384,19.657142589999992,0.30864644050598145,nan,False
+Overture,5520c1fb-bf61-4700-b1c7-751e1d4e021c,District Sports Stadium Authority,,stadium_arena,78.5332225,19.658227300000004,0.5921716094017029,nan,False
+Overture,f562acee-7c38-4eb5-bb46-43e51eddb066,Collectorate Bungalow,,historic_site,78.53728285,19.66038108,0.25447267293930054,nan,False
+Overture,53205bc3-518d-43db-9ad6-ad8af6141584,Yedulapuram's Biryani Adda,,indian_restaurant,78.53786654000001,19.660920329999996,0.43726789951324463,nan,False
+Overture,168e5662-70b2-4dbe-b114-e7e1b93424ef,Kuchulapur,,historic_site,78.5409326325376,19.6595229002783,0.7105279564857483,nan,False
+Overture,7fb83870-606b-4cdd-8d65-c6ebb712a466,IndianOil,,gas_station,78.54223924,19.65922728,0.5490910410881042,nan,False
+Overture,7fe14bac-33d0-4cd5-98d6-1e501c03b324,Sri Raja Rajeshwara Swamy Temple,,hindu_place_of_worship,78.54068167,19.659401979999995,0.5201492309570312,nan,False
+Overture,77d2f30b-f07b-4e1d-b6f1-f09f8aa0ccd2,Sanjay Gandhi Government Polytechnic College,,college_university,78.53269777,19.6529589,0.8646085858345032,nan,False
+Overture,33df323c-dbe4-4391-b124-b964f20a0df9,KV Adilabad ,,school,78.53271,19.653039999999997,0.8074942231178284,nan,False
+Overture,b3b8d9c8-429c-40f5-b222-5a543648aad6,Vamshi Country Chicken Farm,,poultry_farm,78.5453861,19.652080669999993,0.4997898042201996,nan,False
+Overture,da2a30a9-4424-480f-9b75-2d3258d13b4f,RMT Water Plant,,restaurant,78.54443648,19.65391908,0.42960789799690247,nan,False
+Overture,4494c2d5-6dd9-411f-867f-b420bfdbd902,MSM Traders,,hardware_store,78.57826905,19.66545987,0.5737607479095459,nan,False
+Overture,5ca824b0-8aaf-4538-9a35-d2114d8a1dd8,Indianoil,,gas_station,78.5690694,19.666203299999996,0.9466194093227387,nan,False
+Overture,da1bb221-399f-4d40-b91d-0a5854c66b5e,Khan Transport Company,,travel_and_transportation,78.54609279,19.68543284,0.482748806476593,nan,False
+Overture,1539de38-5f88-423e-a3fa-79486e6cfec2,BGR Gardens,,community_center,78.543842,19.6848644,0.6257392764091492,nan,False
+Overture,22c04bb4-fdc7-49e1-98db-1923b5d269a3,Bank of Maharashtra ATM,,bank_or_credit_union,78.543271,19.684717000000003,0.85,nan,False
+Overture,bbe38f21-c4ef-4252-9ac3-d664cf7658b9,Ss conventionhall,,music_venue,78.56374,19.673079999999995,0.7676293849945068,nan,False
+Overture,ae0b8c99-f49b-4b0e-9add-83e69fccfe97,Arshad Saleem Homeopathic Clinic jaranwala,,health_care,78.54509,19.66884999999999,0.8162898421287537,nan,False
+Overture,6116e359-7746-4ef5-a947-056265461ea7,Masjid-E-Aqsa,,muslim_place_of_worship,78.54488085,19.671801629999997,0.5920156240463257,nan,False
+Overture,91aa5284-cc4e-4030-8455-7b531b8baeca,Apollo Pharmacy,,pharmacy,78.539423,19.6713812,0.9655,nan,False
+Overture,11056b69-bc1a-4d0b-bfdc-fdcb1a0b3bd4,Arfa Garden,,park,78.53982551,19.67120474999999,0.46796929836273193,nan,False
+Overture,0f1330a5-abe0-4d32-a4b8-a8ba80af3c3d,Mothers Care High School,,high_school,78.5383506,19.671134589999994,0.6650089621543884,nan,False
+Overture,dfc59f7e-2777-4636-b06c-d5cf76dd3c75,Shreyas IMC Ayurvedic Herbal Store,,naturopathic_medicine,78.5376882,19.671106759999997,0.24205754697322845,nan,False
+Overture,3a8e38dc-8887-4c12-a27b-4b14b9bc7f5e,Post Office Passport Seva Kendra,,government_office,78.53713722000002,19.671538849999997,0.5718134045600891,nan,False
+Overture,89fb5aeb-64a5-4b16-9887-98e31ba690a4,1-Town Police Station-Adilabad,,police_station,78.53695,19.671619999999997,0.5490245223045349,nan,False
+Overture,f0010fb4-7974-43b6-bff7-14a5c68baee3,SRR Medical and Poly Clinic,,health_care,78.53701,19.671749999999992,0.6567047238349915,nan,False
+Overture,043f0dc7-e26c-46c1-b19b-5608b80d485e,head post office,,post_office,78.53715605000001,19.67163049,0.6987747550010681,nan,False
+Overture,fb5ac90f-80ec-4e7f-afe8-3badf35cdb25,Muthoot FinCorp Ltd.,,financial_service,78.5370715,19.671887899999998,0.77,nan,False
+Overture,f9a02059-691d-44f3-94d7-5aba663eb487,Muthoot FinCorp Gold Loan,,credit_union,78.5370715,19.671887899999998,0.85,nan,False
+Overture,825534f8-6b71-4310-b306-596847ceb5ee,FATAY,,professional_service,78.537,19.6719,0.6649244427680969,nan,False
+Overture,e04c99b5-72ab-4fec-a1e7-237bfb4bce2a,Minar Air Cooler & Electrical Goods,,electronics_store,78.53744,19.67234,0.5349531173706055,nan,False
+Overture,c2ff976a-28ad-4eaf-bc23-589b95bf2204,Masjid-E-Ayesha,,muslim_place_of_worship,78.53959584,19.6724752,0.577228844165802,nan,False
+Overture,c7165672-e252-425e-8e1a-6034c61c67e2,Royal Enfield Showroom - Ashwik Motors,,motorcycle_dealer,78.538366,19.672739400000005,0.85,nan,False
+Overture,d84a5e28-fb2a-4e5a-b3e6-f67fba80d4c6,Tectonixindia,,web_designer,78.53806355,19.673822429999994,0.43874940276145935,nan,False
+Overture,6ab8c442-81ed-4a4e-98cb-e32b061601ea,Company Power Gym,,gym,78.53798907,19.673348609999998,0.615283191204071,nan,False
+Overture,716b7297-834e-4fbb-a36f-3b57ce0cad71,Laxmi Gift Gallary,,flowers_and_gifts_store,78.53660112000001,19.673611109999996,0.5933398604393005,nan,False
+Overture,0fcc831c-ff81-4916-9b65-6293ff4ac9db,ASR Convention & Hotel Rooms,,party_and_event_planning,78.536270856857,19.673676074571002,0.824846088886261,nan,False
+Overture,dce12109-3279-4b57-8081-8291b771cdf1,Apollo Pharmacy Asifabad,,pharmacy,78.53649082,19.67282622,0.85,nan,False
+Overture,5fca4317-6594-49a0-ad6e-a78da3a8352b,Raviteja Hotels,,resort,78.53649082,19.67282622,0.85,nan,False
+Overture,0a481174-6a1d-4946-a2ed-25a0d2468487,Smartcare Electronic,,professional_service,78.5364939,19.67260094,0.37066397070884705,nan,False
+Overture,e6d02f1f-92aa-4849-8500-c4e2e0735728,Mr. Tattoo | Tattoo studio in Adilabad,,tattoo_and_piercing,78.53462914,19.673015609999993,0.4904671609401703,nan,False
+Overture,c54eb80d-a52d-4486-b0e0-1943e23c868f,MS Bakery,,bakery,78.53420024,19.672930979999997,0.7381100058555603,nan,False
+Overture,4af42807-817d-4925-ad3b-e6962456c530,Hotel Sai Panchvati,,hotel,78.53444643,19.67313217,0.9701236486434937,nan,False
+Overture,2bbb76a4-0983-49ea-b47f-7dd47f23374f,Killer exclusive Store Adilabad,,,78.534049987793,19.673827612654996,0.6017802953720093,nan,False
+Overture,3a293cb9-d2f9-4e99-828e-d8179ed50dea,Gandhi Printing Press,,printing_service,78.53342866,19.67375866,0.48385053873062134,nan,False
+Overture,c45f489e-db10-48f5-bae6-9d2e6b734667,HDFC Bank,,bank_or_credit_union,78.5334909,19.673751109999998,0.9931,nan,False
+Overture,de0bf506-024c-4f8c-9bc4-d84ad542a1c7,Geojit Financial Services Ltd,,financial_service,78.5334909,19.673749700000002,0.77,nan,False
+Overture,2bad1781-b1a6-488e-8f43-14a1ca55a940,Sun N Shine NX Mens Wear,,shopping,78.53341422,19.673636699999996,0.22197496891021729,nan,False
+Overture,15427638-6598-43bf-af7b-6167e7b63477,MI STORE - Adilabad,,mobile_phone_store,78.53351,19.673679999999997,0.7440592050552368,nan,False
+Overture,2c54ffde-3974-4741-9691-ffaf58c73085,Hyderabad shopping mall,,shopping_mall,78.53359,19.67366,0.705836832523346,nan,False
+Overture,4b5ad022-7b3a-4f1e-aca2-25f4acaa70f2,ATR Constructions,,building_or_construction_service,78.53359,19.67366,0.6218981146812439,nan,False
+Overture,ae467b91-376d-4c64-a5b8-c6c21b3f99dc,Peter England Menswear Exclusive Showroom,,mens_clothing_store,78.5335399,19.6734701,0.43737009167671204,nan,False
+Overture,1264663e-fe26-4598-b4f3-3da70da8ba6f,Sonakshi Kids Gallery,,flowers_and_gifts_store,78.5336423,19.67317086,0.5775272846221924,nan,False
+Overture,ed65849c-bbfd-4a26-a62a-4be09d36a3ad,City Style Mens Wear,,mens_clothing_store,78.53350831,19.67326449,0.39526888728141785,nan,False
+Overture,28892549-ee86-4d81-9109-0e0cb4cece6f,Muthoot Finance Gold Loan,,credit_union,78.5323156,19.6732186,0.85,nan,False
+Overture,4656a440-2e16-4400-bfbe-1cda6fe7fdf3,Tanishq Family Restaurant,,restaurant,78.53218179,19.6732357,0.9248867630958557,nan,False
+Overture,3ff6cefc-6328-48ce-9096-cab52bc4ebd4,"Sansa Gastro,Liver & Skin Hospital - Endoscopy & Cosmotology Centre",,hospital,78.53178,19.673519999999996,0.8171215057373047,nan,False
+Overture,352cf10c-8abf-40e4-b579-7806be0f7d34,Lakshmi Medicals,,outpatient_care_facility,78.53127323,19.673522500000004,0.27121275663375854,nan,False
+Overture,267ac12e-dcf6-486a-aa16-56549baf0589,Just Luxury,,interior_design,78.53180381886408,19.672723223855275,0.6173761487007141,nan,False
+Overture,2891fe46-488b-4345-90a7-4efdcb3fa650,O2 Gym,,gym,78.53143521,19.67281774,0.7951816320419312,nan,False
+Overture,535f9a0c-f1c6-4c4a-9b40-ebf671f5279f,Prime Neuro and General hospital,,hospital,78.53093,19.672399999999993,0.5307402014732361,nan,False
+Overture,0498360e-06da-4e79-89ea-d2d351a4ac03,Kallem Bhooma Reddy Multispeciality Hospital,,hospital,78.53090335,19.672318080000004,0.7598816752433777,nan,False
+Overture,7a6d8b38-7402-44ec-9c43-52dfc096fe2e,Mufti,,mens_clothing_store,78.53325957,19.672824659999996,0.8346594169735908,nan,False
+Overture,c29bfe72-bc67-48c8-9a95-657ce7d6cd8a,Shri Varasiddhi Shopping Mall,,shopping,78.53313131,19.672931739999992,0.7146874666213989,nan,False
+Overture,1b444682-b805-4b50-8fd0-b0a8c7ae6c54,Bambooz Cafe,,cafe,78.53345607,19.67298203,0.8079926371574402,nan,False
+Overture,f78caf83-8aff-4ef2-8dbe-b138caeff1b5,Sangeetha Gadgets - Adilabad (Cinema Road),,mobile_phone_store,78.5332231,19.6726403,0.9655,nan,False
+Overture,5aa9eb80-0ddc-4138-ade6-fa4cc2a65cd1,DB Jewellers,,jewelry_store,78.5331166,19.67266125,0.9128373265266418,nan,False
+Overture,d31bd7c5-47b9-4457-b50b-0a35fe1cf15b,Meenakshi Petroleum Agency,,gas_station,78.53330019979708,19.672356333401027,0.7510117888450623,nan,False
+Overture,9b9c2061-256b-419b-b265-96ca7e61da86,Surabhi Grand,,indian_restaurant,78.53357043,19.67220625,0.7780487537384033,nan,False
+Overture,170b921c-59ab-43bf-8920-b7af5b2f49f8,Mangalamurthy Hotels,,hotel,78.53358588,19.672155579999995,0.8649588823318481,nan,False
+Overture,80c5fd02-f4e6-416c-8510-d77509e24f10,Pandharpuri chai - Best tea in Adilabad AVS CAFE Sugar Cane is best in Adilabad,,cafe,78.53334555,19.67208448,0.22511234879493713,nan,False
+Overture,609c49a1-1290-4590-856f-6ade4add23b0,HDFC Securities - Adilabad,,financial_service,78.5333601,19.672088,0.77,nan,False
+Overture,7a33e2fd-4065-4e45-8ff5-d6881cff4f39,HDFC Bank ATM,,atm,78.533334,19.672111,0.9931,nan,False
+Overture,bf1816bd-3436-4267-a067-bfd4cb3de54a,Loft and Lotus,,beauty_salon,78.53336761,19.67212106,0.9863133579492569,nan,False
+Overture,b4217ce2-0f5d-4c6d-a4e8-9a372354ce39,Gandhi eye hospital,,vision_or_eye_care_clinic,78.5332976,19.6722604,0.85,nan,False
+Overture,9c1bb3ba-f03a-4b18-b981-b884cdbe6e37,White Way Foot Ware,,shopping,78.53296776,19.67222535,0.42667362093925476,nan,False
+Overture,10322e49-39ca-466f-823d-a8c6612cb6f9,Yash Collection,,shopping,78.53296832,19.672108159999997,0.2638291120529175,nan,False
+Overture,e2bd7217-7aae-412f-938a-57ee1725433b,ankath art  photography,,professional_service,78.53323876,19.67214969,0.3150870203971863,nan,False
+Overture,b74d9beb-b375-4e8a-87ae-1997db2d2918,Dew Solutions,,shopping,78.53336104,19.672075469999992,0.38284462690353394,nan,False
+Overture,603cbd6c-34dc-4c41-9034-4043cbe9ca43,Telangana - Adilabad,,clothing_store,78.53308142633328,19.67152976148801,0.8,nan,False
+Overture,a8fe8678-88de-4596-8e93-f27be81c8d1a,Ahuja Digital Colour Lab and Studio,,professional_service,78.53300958,19.67154291,0.4825507402420044,nan,False
+Overture,7f895af6-1807-4a4d-a91d-7d0a81b2d09f,Nagarjuna Medical and Opticals,,eyewear_store,78.53303177,19.67166092,0.37614765763282776,nan,False
+Overture,ea249ea3-820a-409c-a46d-fae5b90e76bf,Sangeetha Gadgets - Adilabad-3 (WIPL),,mobile_phone_store,78.533046,19.671722999999997,0.77,nan,False
+Overture,84cd38d6-dd4e-481f-bc39-e07955fc97c4,Western Union,,money_transfer_service,78.53275,19.67155,0.85,nan,False
+Overture,4e536ab2-4111-49b7-9cc0-cd7aecb8079b,Ganpati Diagnostic Centre .,,doctors_office,78.53270621,19.67211307,0.7510979771614075,nan,False
+Overture,0bea9710-9f8f-4cef-b9c9-1576539084d2,Ganpati Diagnostic Centre,,doctors_office,78.53282002,19.67216584,0.7427611351013184,nan,False
+Overture,68d0893c-4c26-4721-a24a-8f431b377e0c,A1 Glass Aluminium UPVC,,windows_installation,78.53072519000001,19.672142409999996,0.5213489532470703,nan,False
+Overture,a6cde017-855a-413d-910d-7cd58d29f602,Lot Mobiles,,industrial_equipment_manufacturer,78.5308334,19.6719261,0.970646807551384,nan,False
+Overture,d6682b85-ec6b-4e49-b808-80609ae3f645,Aslam Mechanic,,automotive_repair,78.53088729,19.67184092999999,0.3151407539844513,nan,False
+Overture,3bfcdd7a-27d2-42cd-8d10-4200d74dcf98,Sindh Boot House,,shopping,78.53085022,19.67187618999999,0.08465533703565598,nan,False
+Overture,aaf4f006-2ba3-4223-9b17-2699633c8a26,Garuda Mens Wear,,grocery_store,78.53077,19.67183,0.5205693244934082,nan,False
+Overture,17a23b3f-288a-4063-bca2-99ed32675562,Theweddingcamera,,professional_service,78.53078,19.67181,0.2758229672908783,nan,False
+Overture,93cde7d0-e05c-46b4-8172-17f577529915,Zeeshan Enterprises,,warehouse_club_store,78.53150916,19.671745109999996,0.2811278998851776,nan,False
+Overture,72743bd3-b90d-4d78-be9a-eaa17eb15f4f,Sunshine Technologies,,camera_and_photography_store,78.53204241,19.671795780000004,0.37394922971725464,nan,False
+Overture,71826293-6d38-462c-8d95-995667ceca79,My Jio Store,,mobile_phone_store,78.5319239,19.6712728,0.77,nan,False
+Overture,6913036f-b523-4900-aefd-285e9b2ab7d1,HDFC ERGO Insurance Agent: Sama Lasya Reddy,,financial_service,78.5313819,19.6707023,0.77,nan,False
+Overture,d3fade08-cf40-4b01-b234-2ebf7b0cb91f,The Raymond shop,,clothing_store,78.53161850000001,19.6708928,0.85,nan,False
+Overture,9b8615c4-114d-4a0f-bbf8-3365125210a1,City Union Bank Adilabad,,bank_or_credit_union,78.5319265,19.67105549999999,0.85,nan,False
+Overture,9e6c3cac-73f6-4ef5-afed-93fb27f76b2e,Sri Vishnu Printing Press,,printing_service,78.53216454,19.670981680000004,0.518797755241394,nan,False
+Overture,e35ef8d3-a8be-40f4-a074-9f3dc6423091,Gsr Tours and Travels,,travel_service,78.53183487,19.67068213,0.3750975430011749,nan,False
+Overture,d76bb70f-64ff-4d3a-9e84-f04bede5514e,"Tirumala Dental, Face Surgery, Hair Transplant Clinic",,general_dentistry,78.53234833,19.67070129,0.23177997767925262,nan,False
+Overture,5a147101-8ccb-4de6-a76f-42b5e32705fa,Surya Paints,,home_improvement_store,78.53245711,19.67081265,0.7977595925331116,nan,False
+Overture,a84a7cb4-e280-4f54-bf8e-2655400449ab,Srinivasa piles clinic,,doctors_office,78.5328389,19.670855459999995,0.5185633897781372,nan,False
+Overture,48884f3e-44b5-436f-bcfa-14461194f701,Muthoot FinCorp Gold Loan,,credit_union,78.532803,19.6708492,0.85,nan,False
+Overture,adeba394-cc97-4ffc-996d-85d90f7824e9,Raju Tea Point,,tea_room,78.53268747,19.67094505,0.5745823383331299,nan,False
+Overture,9f837516-0c45-4250-aeb7-54c38d024b21,Sri Sairam Multispeciality Dental Care Laser and Implant Centre,,dental_clinic,78.53279712,19.67089807,0.9634020924568176,nan,False
+Overture,4bcd1918-8330-4e5d-9116-0474a017ffbb,Manappuram Finance Limited,,credit_union,78.5328981,19.6708992,0.85,nan,False
+Overture,83d041d3-fd87-4e47-b77e-efd82cf756b3,Shriram Finance Limited,,credit_union,78.532681,19.671041,0.85,nan,False
+Overture,8c7e806d-3bdb-4c29-ba30-e7c524b524a8,Authorised Samsung Service Center - S S Cell Point,,industrial_equipment_manufacturer,78.532285,19.670999,0.85,nan,False
+Overture,1675937b-a86e-4bdb-a484-a4b6bc6f4777,Unimoni Financial Services,,financial_service,78.53275466,19.671443369999995,0.5773611068725586,nan,False
+Overture,0eb17bd2-68ab-45fb-922b-4bdbd60b49bb,MoneyGram,,money_transfer_service,78.53275159,19.67144958,0.95,open,False
+Overture,0a7d9eae-6659-4dbd-b7c4-3def86112dec,"Unimoni Financial Services Limited, Adilabad",,currency_exchange,78.5327459,19.671434699999995,0.97,nan,False
+Overture,b1876ef9-8b27-4ab1-9490-60a997c8509a,Netaji Chowk,,historic_site,78.5327484,19.6712184,0.5595443844795227,nan,False
+Overture,eb0176a7-bb3b-4cb2-9abd-314f346e6cd1,"ICICI Bank Cinema Road, Adilabad-Branch & ATM",,bank_or_credit_union,78.532663,19.671182999999992,0.97,nan,False
+Overture,a9779371-a964-4ed2-95db-89656806f50b,Ruchi Bangalore Bakery,,bakery,78.53270481,19.671221579999997,0.4124184250831604,nan,False
+Overture,7fa348b3-7097-4fe7-af6e-24d1a6bb75fc,Champion Tent & Lighting Decorators,,hardware_home_and_garden_store,78.5329288,19.671128299999996,0.5216838717460632,nan,False
+Overture,bae1ee54-2242-4c02-963c-f0ceaf47f8a5,Sharma Opticals,,shopping,78.5329288,19.671128299999996,0.596294105052948,nan,False
+Overture,39755e88-395d-442c-b7d9-1ca309fea35f,Muthoot FinCorp Ltd.,,financial_service,78.5329284,19.671125799999995,0.77,nan,False
+Overture,1da24e6f-3857-4a1c-827e-d23eb4b9ea7e,Andeywala,,fast_food_restaurant,78.5329288,19.671128299999996,0.6363444924354553,nan,False
+Overture,97110c12-b3de-4edc-ab7b-05851ec4358d,Apex Men's Designer,,mens_clothing_store,78.53396872,19.67081423,0.9382567405700684,nan,False
+Overture,e43fcb58-6758-4ff8-be72-e539b0eca23f,anjum hospital,,obstetrics_and_gynecology,78.53485299,19.67084775,0.5534386038780212,nan,False
+Overture,522e02b0-a913-4bf2-9864-212efab140ff,Asian Paints Beautiful Homes Painting Service,,paint_store,78.53399,19.671189999999992,0.9655,nan,False
+Overture,33bd3c46-03e6-468e-ac44-909e90fa872c,Maheshwari Theatre,,movie_theater,78.53429662,19.671647179999997,0.8564533591270447,nan,False
+Overture,eb07425f-25e6-45a2-816d-92345e6b44a3,Hocco Icecreams Adilabad,,cafe,78.53431,19.67167,0.20779648423194885,nan,False
+Overture,09e62962-a3e0-4d41-b6df-d331b890c6e9,Kalavathi voluntary blood bank,,social_or_community_service,78.53428,19.67176,0.7764201164245605,nan,False
+Overture,d973d968-2279-4b02-a42d-3ac9c3d77a7f,Vijay Enterprises,,shopping,78.53420565,19.67183409,0.4636792242527008,nan,False
+Overture,6d6d14b9-0c11-4e6a-a7b3-deaf8f2aed6a,Manappuram Finance,,credit_union,78.5337615,19.6720751,0.85,nan,False
+Overture,5e698ea1-800c-4079-84f2-9f4c14504806,Shri Varasiddi Shoppin,,convenience_store,78.5337381,19.672153100000003,0.7105869054794312,nan,False
+Overture,95aad740-2d85-45ce-8645-40a63fc20a7d,Aaradhya Fiber Home Networks,,telecommunications_company,78.53426149,19.672031179999998,0.3700507581233978,nan,False
+Overture,f04aa9af-e32f-47c1-ba3a-118fb6f125e1,Bajaj Finance Branch,,credit_union,78.5341364,19.6719386,0.85,nan,False
+Overture,59e7ea25-08be-442d-b6f2-95d648281c94,Murali Krishna Temple,,hindu_place_of_worship,78.535192,19.671882999999998,0.5900266766548157,nan,False
+Overture,217c68b0-9aff-46b8-bece-49c110d67387,Sri sai Cnc designs,,machine_shop,78.53508526,19.671579239999996,0.13732023537158966,nan,False
+Overture,d01dd77f-da15-4aa9-9a83-ff50b599a00e,vaibhav home appliances,,appliance_store,78.53543637,19.67176482,0.28405338525772095,nan,False
+Overture,20c1da7d-38e7-4c18-a4b9-82bd49d034dc,Merina Electronics DJ Equipments Sales,,shopping,78.53590443,19.67210409,0.24934232234954834,nan,False
+Overture,97d205bf-772f-4088-acd5-7f899092356f,Shiva Temple,,hindu_place_of_worship,78.53641909,19.672280919999995,0.5803422331809998,nan,False
+Overture,4679974c-cd6c-4c80-b8f9-c3d4edb5e6f7,Vaze Diagnostics,,doctors_office,78.53656438,19.672269359999998,0.6008756756782532,nan,False
+Overture,66b67aaa-a22f-4271-8894-388402e8c324,Dr. Vaze's Dental Care,,general_dentistry,78.53660325,19.672229729999994,0.9818998575210571,nan,False
+Overture,c4883066-68ab-4490-8144-1b1187e40898,"Govt. Municipal Graduate College, Faisalabad",,government_office,78.53616,19.6707,0.8113849759101868,nan,False
+Overture,47ced2b8-53fe-4fb3-8f08-cb9f1e5c23cc,Gandewar Jewellers,,,78.5363,19.67084,0.5348700881004333,nan,False
+Overture,3b9089a3-d3f7-477f-b6cf-d11ac812b87b,New Google Computers,,computer_store,78.53572365077831,19.67052092818405,0.6062489748001099,nan,False
+Overture,81a837c8-5d72-4201-84ba-2928b7ba926d,Shyam plywood and hardware,,hardware_store,78.53528918,19.67061182999999,0.503594160079956,nan,False
+Overture,b663ea21-e9f0-4ec0-8f1d-36de5422d642,Friends Mobiles,,mobile_phone_store,78.53524238,19.67062015999999,0.5836426019668579,nan,False
+Overture,9a9ea8dc-0ade-405f-8cb6-ef9948a7c9c1,Delhi Mithaiwala,,candy_store,78.53526169,19.670484509999998,0.4550482928752899,nan,False
+Overture,f1f060fd-a2a6-4411-8af1-3ae6132ccafd,New Adilabad Medicals,,pharmacy,78.5353149,19.670492299999996,0.6186398863792419,nan,False
+Overture,f9c58341-656c-476d-9ab9-2a01cdd82079,Shambhavi medical,,medical_supply_store,78.53549797,19.67056598,0.5808387398719788,nan,False
+Overture,205f0f06-3982-4abe-9587-58aa4cdc16b5,L.N Super Market,,grocery_store,78.53524335,19.67047517,0.4902648329734802,nan,False
+Overture,6e3ef3b8-aa68-471a-9e3a-553c56ac558d,Finvora Financial Solutions ,,installment_loans,78.53591,19.670430000000003,0.2697737514972687,nan,False
+Overture,04ec9c1f-2b44-43ea-bc49-c1f36f075fbc,Vinayak Chowk Adilabad,,historic_site,78.53584164,19.67033446,0.6623234152793884,nan,False
+Overture,9acccd98-b783-4b3e-bfab-843d2ea7b107,Jattu Tea Hotel,,hotel,78.53575,19.670069999999996,0.5487755537033081,nan,False
+Overture,f2e9d4e6-dc14-4836-9f09-da053f99b45f,Aarogyam Homoeo Care,,health_care,78.536029,19.670216499999995,0.8726325631141663,nan,False
+Overture,52a54b43-93e6-4d91-801c-3291353743d4,Vaidya Ayurvedic Research Centre,,naturopathic_medicine,78.53640119,19.67015801999999,0.22703954577445984,nan,False
+Overture,a3245955-f53c-4c38-a43e-ca8dc7082042,Venkateshwara Collections,,clothing_store,78.53641213,19.67017181,0.3825797140598297,nan,False
+Overture,dc1a8435-7035-41e3-b680-5a49a1effaca,Miracle Computer Solutions,,shopping,78.53609088,19.669197599999997,0.5528043508529663,nan,False
+Overture,2878a4f4-3487-4897-8d4e-dd38fda3193f,Sri Gopala Krishna Vidyamandir,,school,78.53547953,19.66914342999999,0.5425476431846619,nan,False
+Overture,157899ce-7b82-4f1c-a547-219f72d95888,Sri Ram Chandra Gopal Krishna Mutt,,hindu_place_of_worship,78.53538164,19.669170429999998,0.5081552267074585,nan,False
+Overture,298d2db9-45ae-4ffd-a892-0bccf3fa2ee2,Shaja Yoga Adilabad,,yoga_studio,78.53523,19.669520220876,0.6169151663780212,nan,False
+Overture,ed7bf6c3-319f-4cba-b2cd-b84bd0893d72,Y S R Real Estate Consultancy,,real_estate_service,78.53482308189908,19.669113005853195,0.5267307758331299,nan,False
+Overture,22e6fd65-b5ad-4b5f-8343-36d4c670cd53,Sagar Supar Market,,grocery_store,78.53484265,19.669095020000004,0.5272752046585083,nan,False
+Overture,dbbb49b2-b5b0-496f-a147-b004da1c6ee6,"Mahalaxmi Devi Temple , Mahalaxmiwada, Adilabad",,hindu_place_of_worship,78.53442679998854,19.669218400021812,0.7705535888671875,nan,False
+Overture,fe42a8b4-068d-4b30-8863-3998e8a2ad59,Rajdani Sweets,,bakery,78.53512309000001,19.67038118,0.5294500589370728,nan,False
+Overture,86d0f1f1-7d64-454e-ba35-70a3f87b4299,Karanji-T,,historic_site,78.53517,19.67042,0.4613814651966095,nan,False
+Overture,7744f269-084c-488d-9ba8-e36fccba74d2,Polawar Complex,,party_and_event_planning,78.53519253,19.670621829999998,0.6375791430473328,nan,False
+Overture,2a985bc4-b501-4480-86dc-8732271da3f7,DB Wholesale Mart,,wholesale_grocer,78.53458391,19.67063984,0.7780095338821411,nan,False
+Overture,fa08eaf1-3e54-44d9-9b99-1c3305281e33,Trends Footwear,,shoe_store,78.532519,19.670093000000005,0.77,nan,False
+Overture,eb37ed3b-f25d-4ba8-a7b4-ea49fa8e30b7,Paragon Footwear,,shoe_store,78.5327357,19.670423500000002,0.77,nan,False
+Overture,a6a540b1-f3ce-4ecb-9b4d-623fd5d5d655,Karthik Mobile,,mobile_phone_store,78.5325999,19.670602199999994,0.5556837916374207,nan,False
+Overture,0b2ab13c-2403-49d0-9cf5-413e8ad7eab5,BC Study Circle,,vocational_and_technical_school,78.53196828,19.670497609999998,0.4761311411857605,nan,False
+Overture,ef710625-da77-4a59-bc05-2762470f7524,Hotel Dwaraka,,hotel,78.53150093,19.670511100000002,0.9137807488441467,nan,False
+Overture,aa4aa1c1-469e-46ad-bb76-6f0699ff7ab8,Bajaj Finserv Gold Loan,,womens_clothing_store,78.531202,19.670519,0.9655,nan,False
+Overture,dd216809-0628-437c-b4d8-3d76ce0c11c4,Sri Sai Super Market,,grocery_store,78.53080352,19.670548869999998,0.6547101736068726,nan,False
+Overture,f3c9332b-44b5-4127-a585-0721367a3374,Metro Tours and Travels,,travel_and_transportation,78.53096953,19.67028793,0.5904150605201721,nan,False
+Overture,fbafdd08-8225-434a-9f4c-8923dd0f4ecd,Vandana Diagnostic center,,hospital,78.53095543,19.670144409999995,0.4203855097293854,nan,False
+Overture,ef1d417f-cf50-486d-91b3-58ff0e92e304,Om Sai Mobiles,,shopping,78.53115077,19.67002201,0.1028105765581131,nan,False
+Overture,f8b7427a-0b3b-4534-9a95-1939e34648e4,Angel One Ltd. - Gundawar Sai Krishna,,financial_service,78.53127342,19.66983078,0.77,nan,False
+Overture,6b74cfd9-bed3-47e9-ae1f-8b4c2ec57171,Laxmi Modular Kitchens & Furniture,,furniture_store,78.53130149389283,19.669651912050544,0.5462850332260132,nan,False
+Overture,9e414743-4f86-4e9c-84c3-7e76d3985473,Motilal Oswal Financial Services Limited,,broker,78.53136806,19.669229729999998,0.8472436630725861,nan,False
+Overture,6b61f410-9bec-44a3-92b3-0c22de17ce79,Tata Capital Limited,,financial_service,78.5313007,19.6691474,0.77,nan,False
+Overture,f1e6054b-e414-4557-b89d-71159cc20ef6,Lapcare,,computer_store,78.532298,19.669142,0.85,nan,False
+Overture,f14484eb-3557-4e88-8b84-8ac2e774feb0,One Stop It Solutions,,shopping,78.53231671,19.669136290000004,0.3539074659347534,nan,False
+Overture,7da7d60b-d7ec-4a2a-b6e3-b1478dbeae81,Apollo Diagnostics,,laboratory_testing,78.53237173,19.66918007,0.32690706849098206,nan,False
+Overture,18a5dd71-6ac1-4d3e-a298-40c0b0d9f147,Bata,,shoe_store,78.5323024,19.669514,0.8,nan,False
+Overture,0e2aa99f-5723-4c29-8313-f704603f7091,Jai Hanuman Tiles and Sanitary,,shopping,78.53240738,19.669521649999997,0.568906307220459,nan,False
+Overture,cd8c7242-b0a4-4aea-8a1f-86842bfafde1,Fruitasty,,smoothie_juice_bar,78.5324365,19.6696008,0.7888405323028564,nan,False
+Overture,b7cf10f7-79f7-4c0d-a67c-e61ec07a9fe2,Laxmi Automotives,,automotive_repair,78.5324098,19.669850899999997,0.4193217158317566,nan,False
+Overture,20751d35-9c7a-4910-a1d0-c1288afc0dbf,TotalEnergies Quartz Auto Services - Laxmi Automotives,,farm_equipment_and_supply,78.5326054,19.669670900000003,0.85,nan,False
+Overture,48fad5ec-c66b-4328-b5f9-da4371c1912f,J.M.D Printer's,,printing_service,78.53246000000001,19.668359999999996,0.5239632725715637,nan,False
+Overture,e3ab8824-0ffb-4567-8145-163d3c1e8f62,HealthAssure - Alana Rehabilitation And Diagnostic Center - Adilabad | Blood Tests - Home Collection & Full Body Checkups,,doctors_office,78.53071986,19.667683849999996,0.24569422006607056,nan,False
+Overture,9ec89943-d979-448f-84f2-32e424eae424,Sri laxmi prasad traders,,hardware_store,78.53143922,19.667819150000003,0.6214483380317688,nan,False
+Overture,5b56d083-20ef-4386-9fae-3fec60293d5e,Shri Varasiddi Shoppin,,convenience_store,78.5325859,19.667488399999996,0.7105869054794312,nan,False
+Overture,61d5e987-994f-4218-83d0-e4fe5ae74100,Somnath Shoes,,shoe_store,78.5325859,19.667488399999996,0.5819809436798096,nan,False
+Overture,3dddf4de-3c0b-43f5-848b-9b45825bb8c3,Central Garden TNGOs Function Hall,,party_and_event_planning,78.53249336000002,19.668274069999995,0.6823887228965759,nan,False
+Overture,496868f2-62ff-492d-bd51-3c413cb5ae24,Axis Bank ATM,,atm,78.5346486,19.6690416,0.85,nan,False
+Overture,6adefb69-764f-40ba-b152-fcfbdea4904c,Crescent Junior College,,college_university,78.53463105,19.66898321,0.6894593238830566,nan,False
+Overture,cd49b62b-2398-49cf-84b3-b139484db77d,Gowtham Model School,,private_school,78.53618587,19.668920159999995,0.22319117188453674,nan,False
+Overture,aaa337d2-ba0d-4219-9371-2eb6241e69b6,Little Star High School,,high_school,78.53626202,19.668181309999998,0.9958996266126633,nan,False
+Overture,b06bb831-e52d-44f3-80a8-777a3f164270,Angel One Ltd. - Chintalpelly Kishore Reddy,,financial_service,78.53581785,19.66800295,0.77,nan,False
+Overture,fff9c644-57f8-4fb4-8d93-e7cea14bb6a6,Krishna Play School,,elementary_school,78.538635,19.667501699999992,0.5694855451583862,nan,False
+Overture,a8777914-ca7d-4993-ab05-e44d80323eae,Little flower english high school,,high_school,78.53823304000001,19.66887001,0.8138746023178101,nan,False
+Overture,d6576c09-e0bd-46d8-9de9-46a7888abc98,Chaman Wale Baba Dargah,,christian_place_of_worship,78.5368857,19.670165240000003,0.6627960205078125,nan,False
+Overture,aa50aca4-b61e-47ea-bea7-9619ed32fef4,Dist Medical & Health Office Government,,hospital,78.5369379,19.670206099999998,0.6275146007537842,nan,False
+Overture,5ca58009-767c-4753-b1e7-a90242db7201,Government Junior College for Boys Adilabad,,college_university,78.53757573,19.670029979999995,0.5377697944641113,nan,False
+Overture,72eb4883-4205-4915-b6c0-8f6ebf042a51,Best Friends Help Welfare Society,,social_or_community_service,78.53821588,19.670073609999996,0.3566085994243622,nan,False
+Overture,28305dba-2912-4919-9747-531e8e2a2259,Masood Chowk,,funeral_service,78.53826883,19.669982200000003,0.5385717153549194,nan,False
+Overture,263300cd-0649-4238-a00e-accf8cf02ffa,ZOOM Studio ADB.,,professional_service,78.5390248,19.670236099999997,0.5497204065322876,nan,False
+Overture,92f1c4b5-572c-45ee-8061-09fba1ffeaa2,Radiance School English Medium,,school,78.53892699,19.669834639999998,0.8784701228141785,nan,False
+Overture,acca1cd5-c897-40fe-9343-2aea1bcb2de5,Urdu Ghar Function Hall,,party_and_event_planning,78.5396656,19.669202739999992,0.37292322516441345,nan,False
+Overture,ff56a519-e8fb-4828-9b1c-b1ade189caab,LB Mart,,grocery_store,78.54169815,19.670350529999993,0.18387649953365326,nan,False
+Overture,4911f434-13c6-4896-8dc2-e40a57139384,Arfan Function Hall,,community_center,78.5425496,19.6699846,0.6391539573669434,nan,False
+Overture,ded582b2-e2c8-4936-92b1-682148ca5687,Telangana,,b2b_advertising_and_marketing_service,78.54027,19.66589,0.17432670295238495,nan,False
+Overture,b51ca349-0915-4650-b376-5c9af5e92db0,Telangana Grameena Bank Shanthinagar Branch,,bank_or_credit_union,78.53845743,19.667197100000006,0.655348539352417,nan,False
+Overture,7369fbda-e353-4076-b987-ac1c1335814f,Anjum Hospital,,hospital,78.53804,19.66651,0.6438755393028259,nan,False
+Overture,93c50dac-d61e-416f-ae43-cf03a799da1d,WISDOM The School Of Excellence,,,78.53944831,19.666655079999998,0.3429635465145111,nan,False
+Overture,32df6951-c874-405c-9236-05df609cf7c1,Masjid-E-Kausar,,muslim_place_of_worship,78.53919351000002,19.665537629999996,0.7955971956253052,nan,False
+Overture,1c9dbb49-4414-434a-bcc1-a718a4d301eb,Indian Red Cross Society,,social_or_community_service,78.5386160815032,19.665788985950154,0.8005252480506897,nan,False
+Overture,554ce84c-6909-49de-856d-ab1ffe99c98e,Hyderabad Structural Beam Fabrication Sheds and Structures,,metal_fabricator,78.53847162,19.66437791,0.5217325091362,nan,False
+Overture,07b5e24e-6193-495c-bb0b-400acba65b61,Urdu Mahel,,historic_site,78.53971975,19.664684579999996,0.15355457365512848,nan,False
+Overture,f13f9396-f943-4910-a46a-741eee6366ac,Madina Medical Hall,,pharmacy,78.54103232,19.66466896,0.5604653358459473,nan,False
+Overture,e60a5f11-7ade-4f28-82fb-1bd92077d3ac,Motilal Oswal Financial Services Limited,,financial_service,78.5401831,19.6653309,0.77,nan,False
+Overture,d44a3325-63b6-486b-a8d1-1a9162efb626,Masjid E Abubaker,,muslim_place_of_worship,78.54279978,19.665470549999995,0.4640754759311676,nan,False
+Overture,ec89cf24-1302-4da6-8ed4-2ab146f34379,Shanti NAGAR,,education,78.54000258910885,19.662227039286254,0.5110363960266113,nan,False
+Overture,faadb279-5e22-4477-8519-8ab3ff98d07d,Government Degree College Mens,,education,78.53802274,19.663174810000005,0.636462926864624,nan,False
+Overture,dd6ba197-bf8a-4568-a055-b17695130414,Hydrogrip,,,78.53807,19.662990000000004,0.14500269293785095,nan,False
+Overture,5c984d97-8ba3-494f-8749-985f7a4e8862,Dream College of Nursing,,nursing_school,78.53807,19.662990000000004,0.7087569832801819,nan,False
+Overture,564dd705-b34e-40e4-8249-b214b31b3f19,"Morale School of Digital Era, Umerkot",,school,78.53807,19.662990000000004,0.8472864031791687,nan,False
+Overture,f35830fb-7bba-438e-b3d7-1cb796a62964,Medics College of Pharmacy Dunyapur,,pharmacy,78.53807,19.662990000000004,0.2636072337627411,nan,False
+Overture,c10d9788-50f7-4c48-a042-793885a74e82,Toki Lifestyle,,shopping,78.53807,19.662990000000004,0.2314659059047699,nan,False
+Overture,db60fc09-66c3-43a0-9516-22b80e8a1d94,دلاسہ,,writing_service,78.53807,19.662990000000004,0.2996438443660736,nan,False
+Overture,5141b713-7139-4b5c-8bb5-edd5317c584b,Dr. BR Ambedkar Open University Regional Study Center,,education,78.5386647,19.66386706999999,0.7094144225120544,nan,False
+Overture,b0110c3c-ab3a-4bd0-8ad4-97ceaf403f84,University Of Mirpurkhas ,,college_university,78.5386647,19.66386706999999,0.713330090045929,nan,False
+Overture,54b68979-d98e-470e-8aec-4141f66c0d3f,"S.G.Govt., Polytechnic Adilabad",,college_university,78.5375179,19.663850099999998,0.5758917927742004,nan,False
+Overture,da0dfd2d-b9da-44b1-aed9-fc8556e4198e,Government Degree College for Men,,college_university,78.53724435,19.66364617,0.7569718956947327,nan,False
+Overture,b53374d7-ebf0-46f9-a4cf-914a642893d5,Sri Ram Temple,,hindu_place_of_worship,78.534095,19.664202,0.5324495434761047,nan,False
+Overture,09d842d0-9498-4254-bd09-5b4ea3dcbf56,Beauty secrets ,,b2b_advertising_and_marketing_service,78.53543,19.663439999999998,0.28794363141059875,nan,False
+Overture,b87680ed-2409-46b5-a52b-e8154ce8040e,Care secret ,,b2b_advertising_and_marketing_service,78.53546978372681,19.663409346964595,0.23478256165981293,nan,False
+Overture,7b13d8cb-60b5-4edc-8e72-db7f11a23ed3,Indira Priyadarshini Stadium,,stadium_arena,78.53587677,19.662109800000003,0.6028831005096436,nan,False
+Overture,a0165a1d-a4a4-4bb5-89ce-06f06b1133ca,Gandhi Park,,park,78.53429609,19.66138773,0.6499025225639343,nan,False
+Overture,2c89f4dd-8c27-4f5b-bd37-63f08113a8a5,Rural Development Agency,,government_office,78.53399017,19.66181655999999,0.46617627143859863,nan,False
+Overture,ec705177-1003-4a54-9ab9-a718cba773b5,Deccan Gramin Bank Zonal Office,,bank_or_credit_union,78.53266937,19.662196209999998,0.28666970133781433,nan,False
+Overture,974bb37e-20bd-4377-9257-bad5d48d59ab,Metro Tailor,,shopping,78.53306644,19.66172056,0.23389028012752533,nan,False
+Overture,166293aa-96ce-482b-b50e-6292688238ef,Ganesh Canvassing Company,,shopping,78.532049,19.664096999999998,0.5761756300926208,nan,False
+Overture,63e45319-3058-4fad-bcb1-66a278222f30,ARC Parcel Services Pvt. Ltd.,,shopping,78.532049,19.664096999999998,0.30808740854263306,nan,False
+Overture,492afc2c-aa9f-40d0-ade5-68ec51b8042e,Sri Sai Maternity Hospital Sri Lakshmi Blood Bank,,hospital,78.53202674930186,19.66407168217757,0.5768341422080994,nan,False
+Overture,7feb7a32-dbde-478a-8629-6ac79d623bb5,Exide Care - Bharath Batteries,,electronics_store,78.5320107,19.6640624,0.77,nan,False
+Overture,2ebd3c32-c299-4e38-b55a-0d18e2cad585,Axis Bank ATM,,atm,78.53201,19.664061999999998,1.0,nan,False
+Overture,85bb224f-3eb8-4cee-8f55-5e0acb1ad955,Motilal Oswal Financial Services Limited,,stock_and_bond_broker,78.5320107,19.6640624,0.85,nan,False
+Overture,c7067a3b-d289-40bf-b5fd-a0fabaac6dc5,St. Joseph's Convent High School,,high_school,78.53195759,19.664848969999998,0.5425258278846741,nan,False
+Overture,c92624c1-8422-47d7-9fe8-abf172636560,Navata Road Transport,,travel_and_transportation,78.53242376,19.664476989999997,0.2227676510810852,nan,False
+Overture,494f213e-6465-4377-8348-4a209e02d636,Minerva Ice Cream,,ice_cream_shop,78.5345847,19.66436309999999,0.5527414083480835,nan,False
+Overture,76166e24-10b8-4290-b84c-7b00983d6296,Gvot Degree collage Adilabad,,school,78.53579036533509,19.66518435424387,0.6640477180480957,nan,False
+Overture,497b2e7f-a852-420c-92e1-79e22705e48d,Sunrise Educational Hub,,educational_service,78.53579,19.66518,0.848128616809845,nan,False
+Overture,3b52c802-1d14-4cb3-950b-af62c27e29a7,Rahul MEDICAL & GENERAL STORE,,pharmacy,78.53539469,19.666579080000005,0.4789770245552063,nan,False
+Overture,81b527cc-f32c-4c70-941f-a25db64d80e2,C.S.I. St. Peter's Church,,christian_place_of_worship,78.53536747,19.667161219999997,0.556625247001648,nan,False
+Overture,fa524e6a-25cb-4f3b-a31b-90361aca5ec8,Vidyarthi College,,college_university,78.53559697,19.66741052,0.6749105453491211,nan,False
+Overture,e1fcc930-a8c5-4640-bc35-7675c7d957e2,multi purpose ground,,cricket_ground,78.53343338,19.66721537,0.5229650735855103,nan,False
+Overture,a4fee681-a3e5-4b66-83de-aa16789bb6de,HDFC ERGO Insurance Agent: Kekkerla Krishna,,financial_service,78.533331,19.666671,0.77,nan,False
+Overture,a156305e-ad34-4763-93db-e314cd37bb35,Khankha Masjid,,religious_organization,78.53325554,19.666671279999996,0.6109689474105835,nan,False
+Overture,6da727e9-183f-407d-867c-25b015197f18,Bhavitha Centre,,vocational_and_technical_school,78.53178681,19.6666726,0.3087676167488098,nan,False
+Overture,45a148c2-bbed-472f-b1f8-238a3c752180,New company Gym,,sports_and_recreation,78.53122,19.666489999999996,0.5489777326583862,nan,False
+Overture,e0d4982e-53c6-4310-a5ec-b005f5707c0d,Sri Venkateshwara Children's Hospital,,hospital,78.53097062,19.666670710000005,0.7466960549354553,nan,False
+Overture,57020dbf-69b3-46a8-bd9a-abb12a8e45af,Friends Radiums,,graphic_designer,78.53018394,19.667046269999997,0.4714433252811432,nan,False
+Overture,c1295a73-a70a-477e-a8b6-4364b775000d,A 1 Lodge,,lodge,78.53025479,19.66694101,0.21844296157360077,nan,False
+Overture,9a8a0f6d-dacd-411d-bade-ded8987f6222,KAKAKU The Guest House,,hotel,78.53031713,19.66683023,0.9795116186141968,nan,False
+Overture,0cb24eb8-8e28-4362-924a-ccbc105dd35c,SREE Ram cycle Store agency Adilabad,,automotive_service,78.53039,19.66621,0.5461704730987549,nan,False
+Overture,8556eb81-86bd-47a7-ab38-29840ffbf674,NTR Chowk,,social_or_community_service,78.53046800000001,19.666148000000003,0.5348219871520996,nan,False
+Overture,7bfad10c-a11b-4027-9b44-ad97ed2a7ebf,Pick and Pack,,shoe_store,78.530436,19.665939199999997,0.6985986828804016,nan,False
+Overture,458ee61a-c8c7-44d1-a9e8-53b15729f716,Telangana Chowk,,funeral_service,78.53035385,19.66604688,0.5523996949195862,nan,False
+Overture,293f5342-5bdc-4f5a-a97b-8cb20af320c7,Blue Dart DHL Courier,,shopping,78.52798216,19.666252109999995,0.4957161545753479,nan,False
+Overture,ed213139-d629-4b7d-8cbc-ad7c1610a335,Vrindawan apartment,,historic_site,78.52770564000001,19.667292059999998,0.5295282006263733,nan,False
+Overture,4e38f1a3-adef-47bd-8391-893633f65438,District Collector Office,,government_office,78.52525,19.66622,0.542333722114563,nan,False
+Overture,0999b125-a03b-4bb4-8c24-c892cbff84ee,Adilabad district,,government_office,78.525124,19.66522,0.8234355449676514,nan,False
+Overture,2caaef13-6b0e-4d74-a637-1df115ee6388,Swaraj Medical Stores,,pharmacy,78.5289,19.66447,0.5434167385101318,nan,False
+Overture,550eaf27-178b-4091-982e-a4eebe2c16af,"Elite Associates Consulting Engineers, Architects and Interior Designers",,professional_service,78.52845128,19.66495686,0.28835272789001465,nan,False
+Overture,8e841fc4-05cd-4512-842a-4405b48f84d2,Genivis Franchise,,health_care,78.528358,19.665016500000004,0.21204328536987305,nan,False
+Overture,23871ea1-dbe6-41c0-a923-c22f50ffc17d,"Aditya Junior College,Adilabad.",,college_university,78.528358,19.665016500000004,0.30657678842544556,nan,False
+Overture,a3cd9741-eb9b-49c4-8493-55a610f6c58a,SVM Financial Services,,installment_loans,78.528358,19.665016500000004,0.19156281650066376,nan,False
+Overture,7d98e485-653c-4057-b01f-225c185453fc,RIMS Adilabad,,college_university,78.52830217166957,19.66505870243283,0.85552978515625,nan,False
+Overture,1dec2ccc-4b87-433e-b119-2f369ce2704c,One Stop IT Solutions,,it_service_and_computer_repair,78.52788589,19.665102149999996,0.5190350413322449,nan,False
+Overture,b46612ac-76fe-4f61-aee5-763dfe375dde,Vijetha Junior College,,school,78.52879340012396,19.66571825004877,0.6305753588676453,nan,False
+Overture,b06cf1d3-bfce-4e0c-9dba-ed27a6575db3,Collector Chowk,,government_office,78.52920983,19.66438312,0.5437498688697815,nan,False
+Overture,65f059cf-ccea-404f-add8-0a3952691ed8,Revenue Garden,,arts_and_entertainment,78.52994948,19.66363454,0.5496215224266052,nan,False
+Overture,765a6e71-b941-4a09-8246-4d9673e015fc,Samruddhi Associates,,property_management,78.52952971,19.66383113,0.253143310546875,nan,False
+Overture,c3bbedcd-e549-4594-8260-599ec15f12bb,Bgmi.Uc.seller,,grocery_store,78.52903,19.664269999999995,0.19042105972766876,nan,False
+Overture,19042db2-8f90-46df-ba2b-5e845be0c746,Telangana Grameena Bank Collectorate Branch,,bank_or_credit_union,78.52876522,19.66422699,0.6680311560630798,nan,False
+Overture,e770292f-e0aa-4738-9b5a-d5ac8516de72,Bgr Tents,,shopping,78.52859471,19.66391965,0.20761434733867645,nan,False
+Overture,ebe454d9-d6e2-450f-858d-e62328f63203,Vijay TVS,,motorcycle_dealer,78.5278843,19.663709599999997,0.8587720990180969,nan,False
+Overture,64753db9-6d32-4d68-ba35-be9c67ada0ac,Jan Aushadhi Medical Store,,pharmacy,78.52872788,19.66343192,0.8657404780387878,nan,False
+Overture,c157acba-8927-410d-a577-002befeca132,Radhakrishna Home Art,,interior_design,78.52853113,19.663166360000005,0.24056695401668549,nan,False
+Overture,0e9b28a3-73fc-401e-a34b-e6f27480811c,Synosoft Computer Solutions,,shopping,78.52814846,19.662919129999995,0.28994691371917725,nan,False
+Overture,0553c1fe-1955-4db1-8976-83f6368a90f8,Apollo Pharmacy,,pharmacy,78.52788,19.663029999999996,0.9655,nan,False
+Overture,7e353fee-ba66-49c4-a508-342f278a618b,Maharaja Family Restaurant And Mandi,,indian_restaurant,78.52762,19.662919999999993,0.6867803931236267,nan,False
+Overture,9b7343b9-5eb3-4d88-87df-db8e160168e5,Mahadev Interiors,,interior_design,78.52806,19.66268000000001,0.2667244076728821,nan,False
+Overture,a8231dd0-bfc4-414c-b826-235b5887b4a8,District Employment Exchange Office,,government_office,78.528184,19.6627397,0.6104413270950317,nan,False
+Overture,8f1f4b1b-a520-403d-9d7e-2911e911227f,RS Garden,,park,78.52887512,19.66276626,0.46325981616973877,nan,False
+Overture,b02b6f10-026a-4308-9252-5221a2513a4c,Rims Quarters,,real_estate_service,78.52784222,19.66182666,0.4026999771595001,nan,False
+Overture,56271782-feb4-412e-8bed-faca5a0e9a47,Rims Drug Storage,,medical_supply_store,78.52831122,19.662325899999995,0.1978805810213089,nan,False
+Overture,dd8d3283-66eb-4e9a-a5f6-af6ee4c7ca14,Meghraj Omprakash / Sri Durga Traders,,,78.52721,19.6625,0.557519793510437,nan,False
+Overture,12d35670-aea2-4ae0-b555-87603e360957,KFC,,fast_food_restaurant,78.52748577,19.662554660000005,0.8,nan,False
+Overture,291effb9-97ad-4b74-909c-2943357e163e,"Rajiv Gandhi Institute of Medical Sciences (RIMS), Adilabad",,college_university,78.52718075980276,19.661807888190577,0.8829798698425293,nan,False
+Overture,a7460fe6-0cca-4402-99ff-05c5a88bdab2,Axis Bank ATM,,atm,78.52653,19.661110000000004,0.85,nan,False
+Overture,26015563-70d3-4eb0-8f40-cd156a68d146,Government Hospital,,hospital,78.52650269,19.66169112,0.4667232930660248,nan,False
+Overture,407738e2-e78b-4d0a-9976-54dcd91319ca,Rajiv Gandhi Institute of Medical Sciences and Hospital,,hospital,78.52584998,19.66262231,0.6406580209732056,nan,False
+Overture,77265878-cc14-4b92-8082-db6d158498f6,IndusInd Finance and Marketing Services,,financial_service,78.52753458,19.662816749999998,0.2946877181529999,nan,False
+Overture,39d4569d-414a-47d5-8211-0b808130a218,Vyas Academy of Vedic Maths,,education,78.52096,19.663339999999994,0.27818796038627625,nan,False
+Overture,10b3a0d6-b0cc-49c7-8501-ac9820e61154,Global Techno School,,elementary_school,78.5202528,19.6632698,0.6310232281684875,nan,False
+Overture,f9116416-e66d-46cb-ac87-33b58e199a18,Zilla Parishad Office,,government_office,78.52364724,19.66687122,0.5638095140457153,nan,False
+Overture,34828c38-84fd-4e85-98e5-1227e91106af,Health Care Medical and General Stores,,pharmacy,78.5200244,19.67046451,0.3581847846508026,nan,False
+Overture,1d4fd833-39c0-4f94-8f7a-9f37a5ee002a,Police Station-Sanjay Nagar,,police_station,78.52080268128819,19.67040425296171,0.6132432222366333,nan,False
+Overture,2647ac68-2105-4df1-ad36-e8d2a862645e,Vishwa Shanthi HIGH School,,school,78.52074,19.67,0.6304419040679932,nan,False
+Overture,f350de74-a99d-4ce2-96ca-f3677371c775,Jagana Kirana Shop,,shopping,78.52078576,19.669416469999998,0.24267643690109253,nan,False
+Overture,2645da62-339f-4f13-9877-58b4633e41b4,All India Radio 100.2 FM,,broadcasting_media_production,78.52283596000001,19.669598149999995,0.3917275071144104,nan,False
+Overture,103aed5e-7191-4b28-8d84-8858873d781c,Indianoil,,gas_station,78.521943,19.669735999999997,0.85,nan,False
+Overture,11493788-031a-4e7b-8250-26c5f47ba99a,Indane - Superintendent Of Police,,chemical_plant,78.52153152,19.67013021,0.8336653724312783,nan,False
+Overture,206543ab-8f39-4b1a-9698-f494b458093c,SC Welfare Office and BC Welfare Office,,government_office,78.52433734,19.66841684,0.48808836936950684,nan,False
+Overture,3dd57bcb-f8b1-4e00-b49c-47930034e0d1,District Police Headquarters - Adilabad,,police_station,78.52194008,19.667689949999996,0.6418225765228271,nan,False
+Overture,87fdf5b7-175f-403c-ae85-052885e021d8,District Court,,courthouse,78.52320193,19.667963019999995,0.6478844285011292,nan,False
+Overture,f2044959-538a-4b3b-af15-9c90a1beae10,Raja rajeshwara physiotherapy clinic,,physical_therapy,78.52869627,19.668146649999994,0.3867292106151581,nan,False
+Overture,554e0f78-9b0a-4159-a051-c1bf2cbe1d3d,Royal Tours and Travels,,travel_service,78.52882028,19.668214089999996,0.24788670241832733,nan,False
+Overture,e2f50b0e-18a7-40b3-a229-538d5938326a,Raviteja Restaurant,,restaurant,78.52896,19.66768,0.5605557560920715,nan,False
+Overture,150da581-6883-4a5c-b98f-17da00d46cb6,Kakathiya Bar and Restaurant,,restaurant,78.52840672,19.66769019,0.5122168064117432,nan,False
+Overture,53bfecae-874f-4b21-82c9-b07c2f96d1a8,Hotel Ravi Teja,,hotel,78.5289973,19.667536739999996,0.99624784886837,nan,False
+Overture,559be5f0-52ba-45ae-881f-377b31a62b85,Thyrocare Lab,,medical_supply_store,78.53056805,19.667545940000004,0.2270389050245285,nan,False
+Overture,28e1389c-c429-451d-b3d3-ed9ae160b7ef,SBI Life Insurance Co Ltd,,financial_service,78.530404,19.668265999999996,0.77,nan,False
+Overture,f4c0e71c-7772-4edb-834f-b62c83087ab9,Tumbledry Dry Clean & Laundry Service,,dry_cleaning,78.5295592,19.6681255,0.85,nan,False
+Overture,976d6736-f7fd-4693-bf8e-35f2bb7015df,Apollo Pharmacy Adilabad Opp Bus Stand,,pharmacy,78.5295815,19.668103099999996,0.85,nan,False
+Overture,67c2a7d3-031a-44ca-bdf1-7ab322f1865a,Devi Bar and Restaurant,,bar,78.52959104,19.66812755,0.6460606455802917,nan,False
+Overture,563517c4-7bdb-476e-bc58-37e613e04909,Hotel Laxmi Residency,,lodge,78.52948927,19.668651289999996,0.6828997731208801,nan,False
+Overture,ffc9ab88-aefb-46aa-a66c-6e620bed6017,Praveen Radiums and Flex,,shopping,78.52932367,19.66885887,0.434043824672699,nan,False
+Overture,41d41d56-2e6d-4388-9c3f-2f29dde75ed8,Dr Rahul pushkar,,beauty_salon,78.529005660239,19.668937286278997,0.5585036277770996,nan,False
+Overture,9915617c-d159-4014-8799-003b11950ce4,Mayuri Restaurant,,restaurant,78.52839278,19.668961509999995,0.6061578989028931,nan,False
+Overture,f4c78481-9908-4f60-b545-b1e86a8270fb,Sri Gajanan Enterprises,,shopping,78.52885657000002,19.668316649999998,0.5911156535148621,nan,False
+Overture,fec555bf-9848-420f-9ee8-0ee038173f25,Maharshi Dayanand High School,,school,78.52849,19.668449999999996,0.5537420511245728,nan,False
+Overture,8318f2f5-05c3-45b9-b830-3b44e5a5f3e1,Muthoot FinCorp Ltd.,,financial_service,78.5275731,19.6694574,0.77,nan,False
+Overture,bc993de0-6657-424e-b285-d5a1bb5c07cb,ComputerGarage,,it_service_and_computer_repair,78.528306657143,19.6697548339,0.5462682843208313,nan,False
+Overture,575465b3-7c90-4298-a67e-b47f22e53639,Adilabad Bus Stand,,bus_station,78.52804092179927,19.669603598457222,0.7502270936965942,nan,False
+Overture,f1279be6-3cdb-4a5b-97c0-1e68f2d24edd,EPSON AUTHORISED SERVICE CENTRE - Sri Kala Computers,,childrens_clothing_store,78.5287858,19.669099399999997,0.85,nan,False
+Overture,28bb5cac-d6c1-4b7e-ac05-f45250f9ad57,Global Net Services,,computer_store,78.52911443,19.669113349999996,0.5937372446060181,nan,False
+Overture,8966dcff-37b2-4cd0-805d-133a226421b9,Ramdev Automobiles,,auto_parts_store,78.52914777,19.669221389999997,0.44268181920051575,nan,False
+Overture,20fa2eb9-7938-41a0-beb7-5147eaf2799f,Lapcare,,computer_store,78.529117,19.669239,0.85,nan,False
+Overture,8ac20237-1301-4763-8da8-b000e59e6245,Geojit BNP Paribas,,insurance_agency,78.53006959,19.669868779999995,0.3690797984600067,nan,False
+Overture,3c16e2a8-1b53-47de-a80b-af79cee173ce,Jai matadi travels adilabad,,travel_service,78.52966,19.669729999999998,0.6094869375228882,nan,False
+Overture,cf690100-1896-4299-ade3-747d94f382f0,General Insurance,,insurance_agency,78.52923659,19.669568619999993,0.20097555220127106,nan,False
+Overture,72b44d40-7d31-4f28-94f2-9a087e547ca5,IIFL Business Loan,,financial_service,78.5293114,19.669797199999994,0.77,nan,False
+Overture,740212bc-fd50-4bd9-9bd7-dd0a5fe541d6,Aira dental care adilabad,,general_dentistry,78.52937016,19.66983801,0.9459279179573059,nan,False
+Overture,fd34a478-64ab-45d0-ba49-05f604ab872a,ARROW Computers,,computer_store,78.5300441,19.6700397,0.6134500503540039,nan,False
+Overture,a7e9eecf-994a-420d-86ca-fd8d03882ae1,Vamshi Paints,,hardware_store,78.5300441,19.6700397,0.7825769782066345,nan,False
+Overture,558e94c6-18b1-4fb1-b4ce-d81d4c0e320e,Kuntala waterfall,,waterfall,78.5300441,19.6700397,0.6692942380905151,nan,False
+Overture,f9f5da8c-c38e-4bc1-a57e-4c0252f2c7c0,"DIET , Adilabad",,college_university,78.5300441,19.6700397,0.4123205244541168,nan,False
+Overture,5ece0e11-2e9e-4160-9489-bc9939a8575f,Nirmal,,historic_site,78.5300441,19.6700397,0.6106681823730469,nan,False
+Overture,2c296539-5299-4d2f-a2c2-32ca193c45bf,Mastermobiles&computers,,it_service_and_computer_repair,78.5300441,19.6700397,0.533380389213562,nan,False
+Overture,c0918de7-6709-4b90-950f-6ea1c79cdbbf,Star glow international kids,,school,78.5300441,19.6700397,0.5558763742446899,nan,False
+Overture,6462c935-4376-43a6-9d45-f64772947213,Khandala Adilabad,,mountain,78.5300441,19.6700397,0.8503109216690063,nan,False
+Overture,dfcfeb3b-56ec-4750-8378-c103d7626de9,Adilabad District,,social_or_community_service,78.5300441,19.6700397,0.38455909490585327,nan,False
+Overture,72863932-cfdc-4b26-8378-902b2972c9ea,Jai Bhavani motors adilabad,,automotive_repair,78.5300441,19.6700397,0.5360919237136841,nan,False
+Overture,7ffb0b7a-7db1-4a06-bf6e-9b435196acc5,OMSAI Traders,,solar_installation,78.5300441,19.6700397,0.5258058309555054,nan,False
+Overture,d3e15659-3470-4236-86db-b93079ca6405,Radhe Gift Gallery,,jewelry_store,78.5300441,19.6700397,0.5432208776473999,nan,False
+Overture,a96216f8-fd50-41ee-90fb-4ba88e9b7360,Adilabad Uae Exchange and Fs Ltd,,financial_service,78.5300441,19.6700397,0.6081756353378296,nan,False
+Overture,1b5462d6-f8fd-4062-83b0-8d5ecc402d47,Sketch Computer & Digital Graphics,,computer_store,78.5300441,19.6700397,0.5844953060150146,nan,False
+Overture,7c3add06-bd7f-4f5c-bc72-65dbc970449e,Parvathi Book Centre,,library,78.5300441,19.6700397,0.5204033255577087,nan,False
+Overture,b1a2ae61-633e-4ee0-a290-f30bc54ac149,R K Enterprises. - Hero MotoCorp,,automotive_service,78.53,19.67,0.9655,nan,False
+Overture,b5518ace-ab40-4019-9e79-88a6d9896b17,Rasheed's Digital Hub,,professional_service,78.53,19.67,0.19908507168293,nan,False
+Overture,8c97b703-2f2c-43f9-8e79-5d8afd0b64a2,Bank of Maharashtra ATM,,bank_or_credit_union,78.530001,19.6700001,0.9655,nan,False
+Overture,dce689a9-3d13-48ed-8ac6-5530ef5538af,Alankit,,bank_or_credit_union,78.53,19.67,0.85,nan,False
+Overture,b381c304-7c70-423c-8453-8777490ec6d2,Krishna Lodge,,hotel,78.53022949,19.67003746,0.28523141145706177,nan,False
+Overture,99748406-c9be-4de5-ba03-47b0c3dec8a4,Vamshi Travels,,travel_service,78.53019743,19.66990844,0.5114092230796814,nan,False
+Overture,75746de4-be77-4260-b0ca-886d86a33c95,Muthoot FinCorp Gold Loan,,credit_union,78.5303555,19.6701671,0.85,nan,False
+Overture,ec3e6984-acb4-45de-b5f0-7e3950dce281,"New royal bakery, adilabad",,bakery,78.53036,19.670089999999995,0.6620510816574097,nan,False
+Overture,69c3af84-849c-4586-9756-8477647e9108,Kakatiya Shopping Mall,,,78.53037,19.67009999999999,0.4638589918613434,nan,False
+Overture,79dd5a2b-ac39-4a25-9eb1-dcc24e612389,Arfa Hotel,,hotel,78.5303588,19.670093000000005,0.6876232028007507,nan,False
+Overture,49c4b075-b31b-4d28-a906-b6a2809bc6a4,Hotel Krishna,,hotel,78.53063,19.67017,0.5619628429412842,nan,False
+Overture,8b2f7704-02c9-43f0-b9af-7fac67978801,Apsara Lodge,,hotel,78.5302637,19.670233550000003,0.4503016471862793,nan,False
+Overture,b58b7e05-6d6d-4120-bf05-9b645d3860e7,Axis Bank,,atm,78.53018,19.670116999999998,1.0,nan,False
+Overture,194d991c-933a-4f51-84ec-ff798b4d9db9,Aryabhatta International School,,school,78.52883123000001,19.670288230000004,0.8720918893814087,nan,False
+Overture,644bdd9c-7850-4fe7-9a7e-e29b79e0a487,Sangeetha Gadgets - Adilabad (Bus Stand),,mobile_phone_store,78.5288839,19.669972499999997,0.77,nan,False
+Overture,9a53d925-c4ae-461e-aa25-bc17f915abb7,Annapurna Restaurant,,restaurant,78.52804929,19.670021910000003,0.5008835196495056,nan,False
+Overture,0a9b23d4-6772-4876-a531-feac8bb2ec8b,Telangana Grameena Bank,,bank,78.52794389,19.670157969999995,0.4574165940284729,nan,False
+Overture,a189f277-c052-401d-bf36-fd1a11ef3682,Adilabad Lodge,,hotel,78.52827292,19.6702842,0.3407624661922455,nan,False
+Overture,859e573d-1e19-4203-b0e8-750f6a892ce7,SkyFitness,,gym,78.52646,19.670459999999995,0.6653950810432434,nan,False
+Overture,5b264fe1-d5c5-4e5d-8665-96b7e14c7009,Krishnaveni Degree College,,education,78.52651967,19.66996231,0.6662197709083557,nan,False
+Overture,9870d89c-4eed-4094-be8f-39aed10c726a,Vasavi Digitals,,printing_service,78.52678,19.669239899999997,0.5976740121841431,nan,False
+Overture,33e711db-b971-4c91-b832-cfe5580650ba,Al-falah associates,,accountant,78.52678,19.669239899999997,0.781334400177002,nan,False
+Overture,c7cf5577-ccf8-4689-97ba-2fc6be0e70d0,"Aditya Junior College,adilabad",,college_university,78.52678,19.669239899999997,0.5969071388244629,nan,False
+Overture,de8a2527-7955-4268-9fcb-2434fcab6862,Tharangini Function Hall,,town_hall,78.52491,19.670889999999996,0.6323511004447937,nan,False
+Overture,92eff067-9916-4c2f-8697-5f76e18d5566,HDFC Bank ATM,,atm,78.5249104,19.6709352,0.9931,nan,False
+Overture,57ab98fc-933a-443c-b10b-9b774a73fd6c,Ayyappa Temple,,hindu_place_of_worship,78.5256075,19.6719449,0.6087499856948853,nan,False
+Overture,cdcfdeaa-18ba-47fc-9206-5c3cd5bd7687,Narotham Reddy Photography,,professional_service,78.526362546623,19.672228803331,0.504618227481842,nan,False
+Overture,5afc0bdb-4bc2-4156-8eab-9bfd9eb5f4e7,Spoorthi Junior College,,college_university,78.526401,19.671178000000005,0.6371943950653076,nan,False
+Overture,710be093-24e0-4072-b9ee-e96666dbb6a2,Punjab National Bank - ATM,,bank,78.5279555,19.671035599999993,0.77,nan,False
+Overture,a99d1ec4-ce75-4ade-bb6d-e876ef6be803,Punjab National Bank,,bank,78.5279555,19.671035599999993,0.954,nan,False
+Overture,fc6ae8a6-b3f7-4e8e-b19d-f95fff6ed3ec,Vivekananda High School,,education,78.52841164,19.67146161,0.4937499463558197,nan,False
+Overture,d2797180-8bfd-4570-8d7b-ae020a1a778c,Hyundai Prakash Hyundai Service Centre,,auto_dealer,78.52864094,19.67147025,0.5316193103790283,nan,False
+Overture,8b98ef24-70d0-4da4-acec-91db1a26566d,State Bank of India ATM,,atm,78.52887218,19.67099301,0.5755306482315063,nan,False
+Overture,0944a8e0-46c3-4f03-8460-cdf638f73be3,Samskaar Dreams School,,education,78.52903961,19.670799959999997,0.5481812357902527,nan,False
+Overture,cd0c1ec4-58fd-4824-8cdd-b1d08b1541bb,Sneha Nursing Home,,retirement_home,78.53059267,19.671293629999997,0.4418739676475525,nan,False
+Overture,57d90c62-90de-4b07-844f-fa00671d3f7c,Apollo Pharmacy Adilabad Opp Bus Stand,,pharmacy,78.53031210000002,19.6715187,0.85,nan,False
+Overture,d6b0f0b9-6dba-4836-85e5-88b294af95f5,Bank of Baroda,,bank,78.530282,19.672086,0.8,nan,False
+Overture,442c6597-726b-402b-a8ac-d60e4e766404,Shriram Finance Limited,,credit_union,78.5305192,19.672089099999997,0.85,nan,False
+Overture,c8327ff4-26a3-41c4-a77d-ce6987fff056,Al Falah Islamic School,,education,78.53060556,19.67208115,0.3941079378128052,nan,False
+Overture,98947642-989b-439c-b40e-189521f659cc,Government Girls High School,,high_school,78.5286194,19.67207664,0.6197367310523987,nan,False
+Overture,b2ba9ea6-a500-44ff-baa8-373d255f7ee7,Bridgestone Select - Srinivasa Tyres,,,78.5286,19.671599999999998,0.9205750972032547,nan,False
+Overture,69ea03ad-4260-4493-926b-8b49c4e10e82,MRF Tyres Exclusive - Annapurna Tyres,,,78.52858797,19.671508459999995,0.9655,nan,False
+Overture,6ba79db7-cc82-4053-bc57-6623a489d70e,UPO Constructions,,building_or_construction_service,78.52782056000001,19.671611269999996,0.41501858830451965,nan,False
+Overture,6abe677e-677f-4851-8055-14e54957b038,Kartikeya Hospital,,hospital,78.52771225,19.671964479999996,0.23871545493602753,nan,False
+Overture,454edd5a-497c-4274-8771-69333957b70d,Sri Venkateshwara Vidhya Mandhir School,,elementary_school,78.53011022,19.673064920000005,0.46237292885780334,nan,False
+Overture,181d7e07-4875-44e8-8526-9c4c33b499ef,Ajwa Hotel,,hotel,78.52865,19.673379999999998,0.5421497225761414,nan,False
+Overture,cc1bb78d-63b0-4845-937d-7ba46d75fef0,DataScience Masters,,student_union,78.52674150470193,19.67306385926918,0.77,nan,False
+Overture,c6cf9ea5-dbca-4fb3-94d4-4c91379ba34c,Aksa Baking System,,professional_service,78.5209,19.679599999999997,0.41666078567504883,nan,False
+Overture,7335dd82-d950-4c53-aaaf-4e90868540c1,Junaid Feroz Xerox Centre,,shopping,78.52047336,19.679050740000005,0.5399201512336731,nan,False
+Overture,8da1699b-1c92-4a61-bfd2-b6cf11dbbe7b,Indianoil,,gas_station,78.523173,19.678701,0.85,nan,False
+Overture,e3b3bff2-bbd3-4dcd-ae72-d4ec6bdb2257,Adilabad Cotton Market,,grocery_store,78.52846669,19.67927215,0.5853680372238159,nan,False
+Overture,4ed8b3f5-282e-4ff2-a09d-661a53f77ee1,Mana Adb,,travel_service,78.529758453369,19.677888779913,0.8017845749855042,nan,False
+Overture,1bd471af-a8fa-4079-bf7e-ed25aee04d60,SK. Jabbar Tyres,,tire_dealer_and_repair,78.52836,19.677540000000004,0.5794255137443542,nan,False
+Overture,a4e3baf6-5537-4f28-a5c6-5b3130171a6d,Bramham Temple,,hindu_place_of_worship,78.52809165700266,19.677717759820517,0.5828722715377808,nan,False
+Overture,3e0b28f9-39ce-493b-a646-72480c0515e5,"Thirumala institute of medical sciences,adilabad",,historic_site,78.52905470000002,19.677220600000002,0.5275209546089172,nan,False
+Overture,265169d9-3ed4-438f-ac47-4a488a0f6fa5,Thamshi Bus Stop,,bus_station,78.530545,19.676832,0.6540737152099609,nan,False
+Overture,9388d7fb-62ad-435f-b3e2-1e2315834b9f,Tamsi busstop adilabad,,travel_and_transportation,78.53016619,19.67691039,0.36205995082855225,nan,False
+Overture,2c4311f6-a0a6-4486-ad76-f4bcd5bebf19,Ashok Batteries,,shopping,78.53054504,19.675868170000005,0.5576103329658508,nan,False
+Overture,2c39919f-eeb3-4fba-b98d-0800839ae1cf,Shri Gajanan Multispecialty Hospital,,hospital,78.53037455,19.675857719999993,0.45992282032966614,nan,False
+Overture,75b305df-64d3-4abf-bf16-c969805fef36,Ram Bar and Restaurant,,bar,78.53043228,19.67565747,0.44825315475463867,nan,False
+Overture,3cf1a4dc-a926-4c82-bcc9-ae0e39841569,Sony Batteries,,shopping,78.53026381,19.67564111,0.26652032136917114,nan,False
+Overture,d9d48862-95a0-484a-8131-a7fe80452b46,Mohammadia Masjid home,,muslim_place_of_worship,78.52832033,19.67422735,0.6811777353286743,nan,False
+Overture,20145ea3-49c2-4ac6-a5b5-0059a0031f8a,Alhamdulillah Hotel,,indian_restaurant,78.52887828000001,19.67418616,0.6108383536338806,nan,False
+Overture,48bc5764-0831-460d-84fd-1b87a9c40602,Muthoot FinCorp Gold Loan,,credit_union,78.5288842,19.675244499999998,0.85,nan,False
+Overture,b156e22a-0be6-4a74-82e0-3538e687f501,MRF Tyres Exclusive - Sree Rama Tyre World,,shopping,78.5296709,19.6746846,0.9655,nan,False
+Overture,73f8e62a-c1a9-4570-8e4c-e057353f8c93,Zabir Restaurant,,restaurant,78.52989,19.6754,0.5257342457771301,nan,False
+Overture,7107ec17-f8f3-4451-9ffb-0dea500b27e1,Shama Urdu High School,,high_school,78.52984211,19.674273600000003,0.43840840458869934,nan,False
+Overture,826d0d70-32ef-44aa-b56e-1f81ec902eec,Sun Opticals,,eyewear_store,78.52993389,19.67402747,0.9436362981796265,nan,False
+Overture,ee3ce346-e076-4151-8e1e-bc9cd6330fdb,Adilabad Zone,,campus_building,78.529905431651,19.67415535474356,0.6341912746429443,nan,False
+Overture,b7285d63-fc0d-42d6-96b7-b862309a0e12,Samsung SmartCafé (Apex Electronics Communication- Ses),,electronics_store,78.53353111,19.67396111,0.85,nan,False
+Overture,937678c0-3901-49f5-bfbc-40a8cf54ea38,Chamunda Mobile Accessories,,mobile_phone_store,78.53321938,19.674457849999996,0.522315263748169,nan,False
+Overture,da48558e-1ec6-457f-93bb-04387c5f2a00,Muskaan Mobile,,mobile_phone_store,78.53338434,19.67457529,0.4122053384780884,nan,False
+Overture,6598dafe-bfcc-4151-bfc8-4d132c3aad9e,HBN Dairies & Allied,,party_and_event_planning,78.53262,19.674599999999998,0.5214217901229858,nan,False
+Overture,f0c5b54e-9d95-415e-b36b-509994aaad24,SEASONS,,clothing_store,78.5328601,19.674690430000002,0.14615654945373535,nan,False
+Overture,0cbacf89-5e7f-4f82-834a-2dc04ba66190,Sri Ganesh Temple,,religious_organization,78.5335112,19.6748763,0.7518334984779358,nan,False
+Overture,03a1a0ac-7103-4871-bf58-c523d681a00a,HDFC ERGO Insurance Agent: Sateesh Yerravar,,financial_service,78.533151,19.675165499999995,0.77,nan,False
+Overture,f7bb23e7-aa08-437b-bd1c-42c053de34dc,Star Dresses,,womens_clothing_store,78.53362294,19.6753668,0.3330794870853424,nan,False
+Overture,7ce1f8d4-5bb6-40e8-803e-a02f4110bb7b,Amrutha Tiffins and Meals,,restaurant,78.53290087,19.675198129999995,0.7275812029838562,nan,False
+Overture,d7143fba-2862-4664-9209-8ba7eee3c796,Gurukrupa sanjeevani ayurvedahop,,hospital,78.5322062680024,19.67515591717082,0.43856310844421387,nan,False
+Overture,9962bd58-c555-48fc-93c0-5b405f8b6a14,Asian Natraj 70MM,,movie_theater,78.53198269,19.6751831,0.7478587031364441,nan,False
+Overture,a4237a57-9f06-4a89-8ca0-f42bdb5282e1,Asian Nataraj Theatre,,movie_theater,78.53189252,19.67504819,0.8233047723770142,nan,False
+Overture,5d24c885-a883-4716-8ac5-27332536645c,Koratikal,,historic_site,78.5318,19.67478,0.3853169083595276,nan,False
+Overture,fde27486-86a6-422f-958a-8e12782bd554,Koratikal,,historic_site,78.5318,19.67478,0.36893904209136963,nan,False
+Overture,522fe8b0-a391-4c8f-bcf4-88bccf27764d,Natraj Deluxe Theatre,,movie_theater,78.53149759,19.675036429999995,0.764975368976593,nan,False
+Overture,89bdc7f9-160b-4ed1-a099-07ddc2429991,Taro Pumps - Sri Thirumala Motors,,,78.53074550628702,19.675565239105,0.9290139675140381,nan,False
+Overture,3d9d602d-9f75-4a2a-a462-2433ecef46cb,Royal Diesel Service,,automotive_repair,78.53117457,19.675772349999995,0.6066511273384094,nan,False
+Overture,dc97aa60-37a9-4ee2-804d-bbaac0ca1d2b,Munna mobiles,,mobile_phone_store,78.53140914000001,19.67584933,0.5635300874710083,nan,False
+Overture,947abc7b-914f-4c6b-b664-288ed8565abc,Ajit Automobiles Shop,,shopping,78.53129942,19.67578019999999,0.2976321578025818,nan,False
+Overture,e9b785dc-5e69-4b60-bba9-24e79a6f7800,Diamond Plywood and Glass Mart,,lumber_store,78.53194444000002,19.675514930000002,0.4176803231239319,nan,False
+Overture,1fa44917-9a78-4c40-9436-ce4a3c909689,VRL Logistics Limited,,medical_transportation,78.5318667,19.6755883,0.85,nan,False
+Overture,875afb0b-c607-4dd0-8c94-8cf65573966d,Jagannath Builders Depot,,shopping,78.53161963,19.67589986,0.5875168442726135,nan,False
+Overture,d46f4e14-333b-4880-9bc2-f9b95c236b3d,SONY Gym,,gym,78.5308338,19.675983200000005,0.6608423590660095,nan,False
+Overture,58c2bfa4-a784-4c86-870e-826e1d09b6e7,Shadab Biryani Hotel,,hotel,78.5314069,19.676335299999998,0.6133371591567993,nan,False
+Overture,79b5e9a0-62e5-402a-a896-55b0d11945fb,Kapparla Bus Stand,,bus_station,78.530861,19.676485000000003,0.5400726795196533,nan,False
+Overture,b3739c19-03c1-4765-b0b9-a739464c7c07,Apollo Pharmacy Adilabad Tamsi Bus Stand,,pharmacy,78.5308023,19.676841299999996,0.85,nan,False
+Overture,c0f5e961-ac73-4aa9-9df9-e833ffb079da,Nikhil Fertilizers,,landscaping,78.53131658,19.676814550000007,0.6344079971313477,nan,False
+Overture,d4cd4177-a0b8-45cd-a090-a3cd60fb5e68,Gayathri Seeds & Pesticides Gunj Road Adilabad,,agricultural_service,78.53113392798684,19.676859454687456,0.6092525124549866,nan,False
+Overture,39d668b8-68fa-496b-a65a-b00811dd9bdb,Tulsi Restaurant,,restaurant,78.53140474,19.67683223,0.3818947970867157,nan,False
+Overture,5041bfb0-9355-4a65-a834-56dbc1989448,Allahabad Bank-Adilabad,,bank_or_credit_union,78.5315554,19.676971599999998,0.6345323920249939,nan,False
+Overture,bf071425-560e-4fd5-9735-a2d31bd2666f,Indane - Rishi Shankar,,b2b_oil_and_gas,78.53191917,19.67692042,0.9655,nan,False
+Overture,fe5194b4-15f8-4152-94eb-0966b04f4658,Exide Care - Rk Enterprises,,electronics_store,78.532101,19.676600999999994,0.77,nan,False
+Overture,39a240ce-4796-4e24-a0cc-caead523f0b1,HDFC ERGO Insurance Agent: Darmod Mamatha,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,704d43d5-aa2b-427d-b47b-83a1cc8ed930,HDFC ERGO Insurance Agent: Kamera Mallesh,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,419df666-ac62-4edb-9a87-c04005fab28c,HDFC ERGO Insurance Agent: Padamatinti Nikhil,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,32a97e17-055f-4cd2-aca5-ebfb188cf266,HDFC ERGO Insurance Agent: Bolishetty Bharath,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,0b7bc7e3-f2c2-45d5-8ce1-f05da2d17d04,HDFC ERGO Insurance Agent: B Shankar Rao,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,c77d0f07-65cc-4f9d-85b4-c69ba987228b,HDFC ERGO Insurance Agent: Masoom Sanghi,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,b44f9f3f-160e-45f3-82ed-47df6b86882e,HDFC ERGO Insurance Agent: Pale Sugunakar,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,f991411f-a438-436f-89e1-be75d8a36d20,HDFC ERGO Insurance Agent: Jadi Thirupathi,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,a2772a73-8685-4c69-acd3-95987478dd77,Motilal Oswal Financial Services Limited,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,47ed421a-7dba-479d-a141-a779eecc4970,Shriram Finance Limited,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,e9d6cf3b-fcea-459e-b204-ce86488432bb,HDFC ERGO Insurance Agent: Ajay Kumar,,financial_service,78.5320841,19.6765668,0.77,nan,False
+Overture,09944498-95ea-437d-913f-5ab346383961,Bug.private,,party_and_event_planning,78.53218,19.676339999999996,0.25063005089759827,nan,False
+Overture,1e384397-903f-4eee-a311-6cf8846133e6,SA Elite Sports,,sportswear_store,78.53218,19.676339999999996,0.17364728450775146,nan,False
+Overture,ec852834-fa1e-4b71-92c7-9cf9bcaa8d20,Aiza Store.pk,,childrens_clothing_store,78.53218,19.676339999999996,0.1954733282327652,nan,False
+Overture,36d39691-86e8-45e9-bf3b-5e9a943ee882,Wahab Fabrics,,,78.53218,19.676339999999996,0.17501957714557648,nan,False
+Overture,69fcea28-633c-4f57-98a2-0deea34e4eae,ZYAN Sports,,marketing_agency,78.53218,19.676339999999996,0.18086084723472595,nan,False
+Overture,66cf9351-8460-4dd0-a8e7-bdad98b6ded0,HA Sports,,sports_and_recreation,78.53218,19.676339999999996,0.7000266313552856,nan,False
+Overture,9b55c2d9-681d-4748-9a03-a597d2dfb569,Tech Souls,,marketing_agency,78.53218,19.676339999999996,0.2668479084968567,nan,False
+Overture,bbd093de-8e06-4a3b-977b-4c1274970f07,New Punjab Hindu Restaurant,,restaurant,78.53217412,19.676345000000005,0.7627730369567871,nan,False
+Overture,070c213d-9269-4169-9447-1df0dbb0753a,FEMME WEAR,,lingerie_store,78.53218,19.676339999999996,0.16709108650684357,nan,False
+Overture,97cba629-5ae1-4da1-a5bf-bf4a854e0576,Apexora 360,,marketing_agency,78.53218,19.676339999999996,0.23906926810741425,nan,False
+Overture,e7498a47-4bb2-4009-907d-acd96bb1a7e3,Sathnala Dam,,park,78.5322361,19.67663539999999,0.6989368796348572,nan,False
+Overture,0b25aa4d-5269-466b-b7e4-528acdb0e536,SD Babu Engineering Works,,hardware_store,78.53248919,19.67696754,0.19913694262504578,nan,False
+Overture,bb2593cc-e331-4718-84e4-01aad88df3bb,C.Ram Reddy M School  Adilabad,,school,78.5331977,19.6769202,0.5217466354370117,nan,False
+Overture,ba81e9de-b4a7-4b7d-99e3-0fceeb19dc84,New Era Academy,,education,78.5331977,19.6769202,0.6037402153015137,nan,False
+Overture,e58377fb-58d3-4141-8e18-e67fd339d843,World Wander Kuntala Waterfall,,,78.5331977,19.6769202,0.5328767895698547,nan,False
+Overture,e4796c81-e33b-422f-a82c-b12cc5408676,Amma Hospitals,,hospital,78.5331977,19.6769202,0.6457173824310303,nan,False
+Overture,9fd66eb2-1e54-4e93-8c33-65c67d0f4614,"Brilliant Grammar High School,Adilabad",,school,78.5331977,19.6769202,0.5433642864227295,nan,False
+Overture,74343e20-f904-4ad7-b13c-7f235b16e8d6,Extreme Fitness & Gym - Adilabad,,gym,78.5331977,19.6769202,0.7617344260215759,nan,False
+Overture,11d43bf2-4a87-4415-9ea4-16308dfda29f,Vamshi Paints,,hardware_store,78.5331977,19.6769202,0.7846867442131042,nan,False
+Overture,26077b8c-e170-47b5-ad8b-e3138abd2941,its__me___kalyan,,professional_service,78.5331977,19.6769202,0.2996438443660736,nan,False
+Overture,5b97bf4d-f3c2-426e-92f8-979c05f768aa,"STAR Health Insurance Adilabad,Nirmal,Asifabad",,school,78.5331977,19.6769202,0.5793012976646423,nan,False
+Overture,d011bf45-ed12-4ce0-997e-a15a77183377,Bheempur Mandal,,historic_site,78.5331977,19.6769202,0.745451033115387,nan,False
+Overture,1feb56d2-81be-4a5f-9923-277af6c086bc,Mujgi,,historic_site,78.5331977,19.6769202,0.41845330595970154,nan,False
+Overture,c34f6c8e-a572-44ac-9889-778918989e89,"S.G.Govt., Polytechnic Adilabad",,college_university,78.5331977,19.6769202,0.5758917927742004,nan,False
+Overture,fc59bc1d-0348-4562-9a58-b25f362735cf,Al- Madina School Ichoda E/m & U/m,,school,78.5331977,19.6769202,0.8529922962188721,nan,False
+Overture,6899b5f1-829e-4319-b869-9c5da8bc603e,"Med plus pharmacy""Adilabad",,pharmacy,78.5331977,19.6769202,0.6245191097259521,nan,False
+Overture,9e85c69e-f4b6-4c13-bdf2-1f6e527d08d9,Raghavendra Automobiles,,automotive_service,78.53317971384354,19.676909135755817,0.5281404256820679,nan,False
+Overture,a4dfc92e-4fdc-4f06-8a70-616cd951c760,Royal adilabadi,,music_venue,78.53317971384354,19.676909135755817,0.5423086881637573,nan,False
+Overture,7e111e60-d825-4be6-b357-e2887d521e54,Alana Rehabilitation,,health_care,78.53317971384354,19.676909135755817,0.711644172668457,nan,False
+Overture,a57c15d9-fbe3-4da3-b965-6ed1dcfa8e95,Khizra Cap Mart,,laundromat,78.53317971384354,19.676909135755817,0.5701639652252197,nan,False
+Overture,bd701d9c-718f-4663-a735-e74954baf986,Calvary blood of christ ministries,,religious_organization,78.53317971384354,19.676909135755817,0.5579625964164734,nan,False
+Overture,b333f775-3902-4e64-a262-fb52f01ecf7e,TCS Computers Adilabad,,engineering_service,78.53317971384354,19.676909135755817,0.5327196717262268,nan,False
+Overture,0b3d7041-8ce6-438b-bfd6-c6e9124cb800,Lotus Family Restaurant,,restaurant,78.53317971384354,19.676909135755817,0.6546167135238647,nan,False
+Overture,3dfdc667-215b-4fea-9e20-6099da0a73eb,Mahajan Coconut,,shopping,78.53347602,19.67655724,0.3171006739139557,nan,False
+Overture,57cd6ffd-07e3-4caa-a668-a1a3c97dd2f7,Green Footwear,,shoe_store,78.53341985,19.676304039999998,0.5553457736968994,nan,False
+Overture,4ebda1b7-99be-4207-a1c7-55e608f73ef8,Imran NX,,mens_clothing_store,78.53336526,19.676106400000002,0.9613869786262512,nan,False
+Overture,3a7ef502-ca90-4327-94f0-bafbaab8d662,Mayur Seeds and Pesticides,,nursery_and_gardening_store,78.53298756,19.676270409999997,0.3863317370414734,nan,False
+Overture,b1dd4191-fafb-40f1-9444-de41b392001a,Khushi Bar & Restaurant,,bar,78.53289908,19.676259849999997,0.5191740393638611,nan,False
+Overture,1c0a95d8-d850-477f-b256-61df0b045621,TRENDS,,jewelry_store,78.5322557,19.676203299999997,0.9073119312524796,nan,False
+Overture,b8efe28d-c729-4a91-b679-99831ce954da,Prince Traders,,warehouse_club_store,78.53292072,19.67591415,0.30945122241973877,nan,False
+Overture,d638db8f-aedc-47c9-85ae-b7695fbd7f6e,Sri Mahalaxmi Watch and Gift Gallery,,jewelry_store,78.53353881,19.6756615,0.5432208776473999,nan,False
+Overture,76350744-137d-4d00-8f0d-b72cc4c8a0ba,BigC Mobiles Addilabad,,mobile_phone_store,78.5343999,19.675785199999993,0.8133578300476074,nan,False
+Overture,80cc55c2-f122-40c7-adbc-4daf0337a00d,Kumar shoes,,shoe_store,78.53419314,19.675527959999997,0.609933078289032,nan,False
+Overture,1ec4b77b-56b1-4e36-af64-2941d343f05e,Chennawar Textile Complex,,clothing_store,78.5344723,19.675804770000003,0.35262686014175415,nan,False
+Overture,f47cd37d-1f3a-44c1-a769-130c994fda64,Union Bank of India,,bank,78.53487,19.675910000000002,0.8406789302825928,nan,False
+Overture,87604015-494d-4ceb-9984-c730a0fe428c,Dharamashala,,religious_organization,78.5343605,19.6762023,0.5356637835502625,nan,False
+Overture,ff4957f9-320c-4147-a702-659f64ef9554,Jockey Exclusive Store,,clothing_store,78.5338906,19.675988299999997,0.9985772294342518,nan,False
+Overture,21142c41-5c6a-4e5d-999d-9dbefcee16e2,Shri Guru Kripa Mithai Bhandar,,dessert_shop,78.53445401,19.676344999999998,0.8483514189720154,nan,False
+Overture,636cb981-2745-48f0-a749-58605f9c5ce1,Ambedkar Chowk,,historic_site,78.53442181439986,19.676402110067173,0.7552013397216797,nan,False
+Overture,983e13c4-f999-4937-912f-c8b3e6d160c1,Laxmi Prasanna Provisions,,shopping,78.53489089,19.676891309999995,0.36294296383857727,nan,False
+Overture,33d13524-d26d-44e9-975e-3a63800077d3,Gayatri Agencies,,professional_service,78.53457248989093,19.676560581898528,0.6268541216850281,nan,False
+Overture,5741c5b4-1ad0-4600-b6c1-5e04896d5ce7,Sri Sai Collections,,clothing_store,78.53465691,19.676381019999997,0.06282290071249008,nan,False
+Overture,33d2d6f5-d7a4-4a66-b87e-779f6d05bc7e,Apna Super Bazaar,,grocery_store,78.53577164,19.676930999999996,0.47085505723953247,nan,False
+Overture,0f0de002-42cc-4ffb-8e50-a3e6efe13f5d,Taha Collection,,clothing_store,78.53589216,19.67569028999999,0.365919828414917,nan,False
+Overture,7f6e3902-ddcc-49b4-915a-0a0d7053e99e,Patanjali Arogya Kendra,,indian_grocery_store,78.535346,19.675805999999998,0.85,nan,False
+Overture,96110164-9503-41d4-9eac-393319dba8a6,Srinivasa Fertilizers,,shopping,78.53553045,19.67553541,0.7687885165214539,nan,False
+Overture,a1f505ed-a014-409c-91ca-371fb96127ff,HDFC ERGO Insurance Agent: Utla Hanmandlu,,financial_service,78.5363244,19.675628299999996,0.77,nan,False
+Overture,9e4b7ee6-f915-43ea-a7d4-d82010d54885,Bhavani Bag Centre,,luggage_store,78.53604938,19.675690009999997,0.5371488332748413,nan,False
+Overture,221acaba-b1fa-4c06-b048-b18381b78895,Ajmer Saree Sale,,womens_clothing_store,78.53610073,19.675816529999995,0.2814454138278961,nan,False
+Overture,e31705dc-6d0b-40f9-8bf1-b840acfd2c3f,Gandhi Chowk,,clothing_store,78.53640428,19.67560113,0.5964527726173401,nan,False
+Overture,4c937cf8-9eb1-4313-8182-efa754c30ece,Sonali Beauty Parlour,,shopping,78.53677084,19.674738930000007,0.24235375225543976,nan,False
+Overture,6198f126-611f-4c04-bbe7-440d7c537146,Manish Dresses,,clothing_store,78.53416414,19.67533999,0.328470379114151,nan,False
+Overture,0a04cf94-15f5-4929-9b11-a2921b76fe66,Imran Collections,,clothing_store,78.533979,19.675451049999992,0.5642483234405518,nan,False
+Overture,68825a52-8ead-4a77-80bd-9339f5dd6af6,Manipuram Gold Loans,,party_and_event_planning,78.53386,19.67523,0.5256220698356628,nan,False
+Overture,50cb7014-36ca-43a4-87a7-aa7bfcc85a1b,Maheswara Selections,,clothing_store,78.533926807755,19.67512045491836,0.5504211187362671,nan,False
+Overture,154058a9-4910-4518-a08c-b4249595f605,Nouman Kids Wear,,clothing_store,78.53408276,19.675133309999996,0.2842263877391815,nan,False
+Overture,8202a0e4-8fb8-40c0-88de-2675b349290d,Big Bawarchi,,restaurant,78.53415711,19.67515679,0.5280317664146423,nan,False
+Overture,1ab259ab-6882-481f-8b6f-e13ad6672967,Apple Mobile and Electronic,,electronics_store,78.533814,19.67486904,0.5240671038627625,nan,False
+Overture,35213c0c-b00e-4d63-95f4-0c4dac68b018,Adilabad Ganesh Theater Complex,,movie_theater,78.53373777003114,19.67469321525679,0.7698562145233154,nan,False
+Overture,33c4bbfb-330e-41c2-b30e-b694cc5b4846,Bank of Maharashtra - Adilabad Branch,,bank_or_credit_union,78.5343154,19.674695699999997,0.85,nan,False
+Overture,38d846fd-895c-4b16-88c8-d70cc9c68c9f,BNew Mobiles,,mobile_phone_store,78.53375298,19.67402480999999,0.8164769411087036,nan,False
+Overture,e5e4abf0-7dac-434c-980b-654da2257031,Just For U,,childrens_clothing_store,78.533714255013,19.673995300001,0.7442857623100281,nan,False
+Overture,30bf55f8-c188-4669-876a-6a08345a5a81,Rockstar Men Wear,,shopping,78.53383787,19.673963370000003,0.5919917821884155,nan,False
+Overture,23a1dec8-311e-4f5c-b7d4-d9829ff9856c,Apollo Pharmacy Adilabad 1,,pharmacy,78.5352516,19.674191199999996,0.9655,nan,False
+Overture,99a7c3ec-083d-4aa1-9f14-a1ec43be91ca,Madem's Beauty Salon Professional,,beauty_salon,78.53656486,19.674632289999998,0.6145250201225281,nan,False
+Overture,694d1148-d552-4048-9004-4c2333d63343,Nayak Gas Services,,gas_station,78.536505,19.674244999999996,0.5545170307159424,nan,False
+Overture,ef2f47b1-66aa-456c-8705-aa893824ad65,Ayurvedic Clinic,,naturopathic_medicine,78.53782357000001,19.673885,0.8720097541809082,nan,False
+Overture,5c5e4f1f-75b3-4aeb-abdb-6b85a5d34792,Taj Flower Marchant,,flowers_and_gifts_store,78.53792792,19.673955709999998,0.5828537940979004,nan,False
+Overture,e65e7166-bc8d-4198-a8ed-eb6c31ffcd8f,Sri Ganesh Jewellery,,jewelry_store,78.53811034,19.67427221,0.884716808795929,nan,False
+Overture,0a302c17-1463-4f1b-a0e5-63ff5c7568d0,HDFC ERGO Insurance Agent: Nitesh Sharma,,financial_service,78.537851,19.674470999999997,0.77,nan,False
+Overture,2a8069ec-55b7-47f8-ae02-132c00a1c3a2,Vaidya Ayurvedic Research Center,,doctors_office,78.53803,19.674299999999995,0.8679834008216858,nan,False
+Overture,5d8d594f-89af-4a1f-9d76-964bfda5011a,Ramavatar Rajesh General Store,,ice_cream_shop,78.53814236,19.67445797,0.5884076952934265,nan,False
+Overture,423b453a-c383-4e3e-a9f6-6cdc8f8f1252,MS Florist,,flowers_and_gifts_store,78.53810458,19.67466871,0.5534123778343201,nan,False
+Overture,2c15b209-0f7c-44ad-88fc-5ecde0051079,New Maruti Sweets,,candy_store,78.53691003,19.67524333,0.505387544631958,nan,False
+Overture,5e666d27-5335-4532-9846-6bb9e30adf8b,Chintawar Jewellers,,jewelry_store,78.53791325,19.67497375,0.7369009852409363,nan,False
+Overture,70e46614-c691-47eb-93ad-b4c73a30d984,Venkata Swarna Sri Jewellers,,jewelry_store,78.53820054,19.674695100000005,0.902730405330658,nan,False
+Overture,1c6e967d-6020-46a5-8be7-567b3feb582c,GYR Play School,,preschool,78.53880418,19.6751992,0.6316136717796326,nan,False
+Overture,c314aa4e-a39a-4cd0-8447-3b8eb28c4f3a,Devi Pooja and General Kirana,,grocery_store,78.53884695,19.67631612,0.416681706905365,nan,False
+Overture,d959c1f8-f8e2-47a3-ae92-f18a788bcaff,Kanyaka Parameshwari Temple,,hindu_place_of_worship,78.53881726,19.67631861,0.5832470059394836,nan,False
+Overture,932d3a61-eb88-4b0e-89d6-d3f72d90450e,Good Luck Tech Solutions,,marketing_agency,78.53846459825834,19.675531421480404,0.29713985323905945,nan,False
+Overture,c6dc90d9-2eca-44e3-b631-14c97bdb0c6d,Padmawar Complex,,party_and_event_planning,78.53851898,19.67572681,0.49458611011505127,nan,False
+Overture,3ead6273-60ae-4231-b673-93bb22c49f99,Pochamma Mandir,,hindu_place_of_worship,78.53874119,19.67598061,0.6373956799507141,nan,False
+Overture,4600f900-afec-45bf-bf6a-144adb6fd116,Zam Zam Perfumes & Books,,bookstore,78.53787740000001,19.676161760000003,0.42019131779670715,nan,False
+Overture,11268719-ce58-4356-9562-875fa26aecbc,Dream Fashion Adilabad,,clothing_store,78.53709508,19.67553691,0.24248874187469482,nan,False
+Overture,94f1ec63-d15c-431e-a6ba-21a21b5fb557,China Boot House,,shopping_mall,78.53704638,19.67551998,0.4139244556427002,nan,False
+Overture,b5475a16-b47f-4116-89ee-5d8f4e0496d7,Gandhichowk T Sub Post Office,,post_office,78.536907,19.675681,0.5479221940040588,nan,False
+Overture,5b26a43b-e0df-4057-a203-72d6185b6777,Bojjawar temple,,hindu_place_of_worship,78.53832161,19.67720653,0.5734138488769531,nan,False
+Overture,e24e01f7-3a83-417b-b09d-84b3ecf0c3b3,Just Wow Collection's,,clothing_store,78.53839045,19.67715747,0.10811308771371841,nan,False
+Overture,53e57aba-1ceb-4c20-884c-70fcf8435a9a,Khanapur Lake,,lake,78.54266333,19.677209079999997,0.6185930371284485,nan,False
+Overture,76a437cf-9998-4d36-9f23-03c7e9d47cae,Ram Mandir,,,78.5398,19.680189999999996,0.5925291180610657,nan,False
+Overture,58ecb6b4-ad41-44fb-8821-5e6cfa20b738,Govt Hindi High School,,high_school,78.53882973,19.67986964,0.40799081325531006,nan,False
+Overture,825a4bbe-85f5-4230-b0d2-a53b4b16ae12,Nikhil Multi Speciality Dental Care,,outpatient_care_facility,78.53671062,19.67897048,0.9611302018165588,nan,False
+Overture,325c481a-ff13-44e4-a282-aeee4899ab2d,Rani Bike Servicing Centre,,auto_parts_store,78.53609311,19.678951319999996,0.3004896640777588,nan,False
+Overture,f157181f-08cf-4caf-afc0-9a2a4db91e5a,Railway Station Bus Stop,,train_station,78.5362983,19.678936700000005,0.5443752408027649,nan,False
+Overture,6e19bcf0-ab70-466e-b67a-cef529071b7f,Company Tea point,,tea_room,78.53624713,19.67876765,0.4779961109161377,nan,False
+Overture,ee270b92-741f-4691-a16d-7e74b59a9ee9,Minar Hotel,,hotel,78.53604483,19.678613279999993,0.5713958740234375,nan,False
+Overture,72b60416-4989-4739-9eec-813e903f00da,Apollo Pharmacy Adilabad 1,,pharmacy,78.5357774,19.6780891,0.85,nan,False
+Overture,46078e5b-c5ed-4079-86dc-7739e9948d5f,Sri ganesh lodge,,lodge,78.53528404,19.67819624,0.6581977009773254,nan,False
+Overture,83aaecf7-36f4-4a2b-aca5-f6424cd9cc83,Mathura Lodge,,hotel,78.53530569,19.67820779,0.5353986024856567,nan,False
+Overture,4fb8b7c8-949f-4517-ae09-706045dcb6fa,Sk Zameer Auto Electricals,,shopping,78.53541385,19.678229429999995,0.6850895881652832,nan,False
+Overture,8821f4e3-69a2-4dee-958b-9d8ef3274f00,Maitri Digital Studio,,,78.53572733823533,19.67791887143058,0.5759024620056152,nan,False
+Overture,9d4b47e3-f25a-4de5-880e-b7abe111745a,Nakshatra Hospital,,hospital,78.53577128291592,19.677984147688427,0.7636910676956177,nan,False
+Overture,584b323a-a2bf-4845-a71c-b0444f03c0da,Vinayaka Mobile,,mobile_phone_store,78.53574991,19.678084639999998,0.3764021396636963,nan,False
+Overture,42dde0a0-5bae-4967-addf-6481cc6751bb,Pragathi Uro & Kidney care Hospital,,hospital,78.53580139947836,19.678026164614398,0.6854861974716187,nan,False
+Overture,1e99b9e0-9539-4f25-a4b8-9f2c6be0627d,Shree Gajanan Hospital,,hospital,78.53577764,19.678000749999992,0.6408200860023499,nan,False
+Overture,cd885cad-e55e-462f-8ef7-ae0167b83cea,Heena Electronics,,shopping,78.53564123,19.67742828,0.3759332597255707,nan,False
+Overture,50798501-9925-4bea-840b-333b3060807e,Akbani Dental Clinic Adilabad,,general_dentistry,78.5359409,19.67724202999999,0.9164044857025146,nan,False
+Overture,560fd182-6747-4339-b468-fc8b41ba5f27,Agastya seeds and pesticides,,nursery_and_gardening_store,78.53594604,19.677284,0.44140756130218506,nan,False
+Overture,81df0f38-7b0f-439e-b8c3-94d143fa4268,Akbani bags,,packing_supply_store,78.53559587,19.67727167,0.2640701234340668,nan,False
+Overture,00dcfe8d-8c00-43f3-a431-7dc9fead044e,Shree Vishnu Neuro,,health_care,78.53538,19.677289999999996,0.31287020444869995,nan,False
+Overture,d981f89e-173a-4a55-b64b-a56a940164f3,Shivaji Chowk,,historic_site,78.53551467,19.677499969999996,0.7014898061752319,nan,False
+Overture,6a114cc7-0822-4f02-9387-39363accdf29,Shriram Finance Limited,,financial_service,78.5356279,19.677496499999993,0.77,nan,False
+Overture,4d8d2338-30a5-4e39-a34d-5db75a9405c4,Kotak Securities,,stock_and_bond_broker,78.535244,19.677864,1.0,nan,False
+Overture,5dfbe5a2-a186-4a86-b477-dae31c26afb7,Pallavi Roadways,,travel_and_transportation,78.53412896,19.677461609999998,0.6623738408088684,nan,False
+Overture,c7d6138b-5ee6-4f4d-9811-be93d281fb97,Dynamo Detailing ,,car_wash,78.53342,19.677360000000004,0.2673183083534241,nan,False
+Overture,ddc2709e-6e38-4fba-becb-3094736e76b3,skillsidehastle,,,78.53342,19.677360000000004,0.2035384178161621,nan,False
+Overture,25beb51a-f6b7-4459-a52b-3bdd27bba993,Indianoil,,gas_station,78.533638,19.677174,0.85,nan,False
+Overture,cafaa2f2-f2d4-48dd-8224-324fae0ded64,Dr Vijayalakshmi Gynecologist,,obstetrics_and_gynecology,78.53354197385796,19.677154179897386,0.2781943082809448,nan,False
+Overture,0dd96b57-ee2f-476c-a291-ae03f79d1d60,Peoples Cooperative Bank,,bank_or_credit_union,78.53358309,19.677154009999995,0.5437077283859253,nan,False
+Overture,08625812-540a-498b-be2e-01e5af0b9afe,Mana Gromor Adilabad,,landscaping,78.53168529,19.677113010000003,0.2923479676246643,nan,False
+Overture,de591b24-2ba8-4c4a-91a6-8edffe87c2e0,Kps Enterprises,,electronics_store,78.5328326,19.68104322,0.22619543969631195,nan,False
+Overture,1d9c5381-934f-4c5d-97d0-31a38c7e2f50,Bhagyanagar Post Office,,post_office,78.53305328,19.6812276,0.591611921787262,nan,False
+Overture,bb18d581-32d2-4c70-b4bf-7be2e9347f19,Al- Madina Urdu School Ichoda,,school,78.53389360035797,19.68220960022523,0.8513650298118591,nan,False
+Overture,75fc801a-7b71-4150-a442-768a23d02e1d,HDFC Bank,,bank_or_credit_union,78.5358298,19.683071399999996,0.85,nan,False
+Overture,e96a006d-834d-4c2d-b2e2-25c25a54e6bd,Adilabad Railway Station,,train_station,78.53627859,19.68043163,0.505411684513092,nan,False
+Overture,53c71a36-13ee-41b3-a66a-f080a1576206,Hyderabad Heavy Auto Garage,,auto_parts_store,78.53972476,19.681279270000005,0.2944656014442444,nan,False
+Overture,bc952540-3e50-47ac-863c-2d1401bdc770,Hindustan Petroleum,,gas_station,78.542091,19.682900999999994,0.954,nan,False
+Overture,f69c05a2-0682-4fbe-ae4d-0cf6036be4a0,New Arunodhaya High School,,elementary_school,78.5385777405782,19.68470952975354,0.6568977236747742,nan,False
+Overture,45544161-65e4-4379-b5a0-dfca8ef43b8d,Mahalakshmi Medicals,,pharmacy,78.53701015818737,19.685350536340515,0.6447370648384094,nan,False
+Overture,315db0f5-3f03-4705-aab7-46593dd688d3,Kranthi Nagar Sai Baba Temple,,hindu_place_of_worship,78.53329755,19.684256129999998,0.581047773361206,nan,False
+Overture,827c3f6d-e9f8-4e96-8f01-9487516d9234,Panchamukhi Hanuman Temple,,hindu_place_of_worship,78.53170386,19.68408464,0.6375938653945923,nan,False
+Overture,fd7f4392-cec2-40a2-b92a-3691189fe304,Hanfiya Masjid,,muslim_place_of_worship,78.53343,19.68519999999999,0.5290048122406006,nan,False
+Overture,e6c4eae4-767a-4767-bb64-6219d7e01c04,Krantinagar Residential Area,,lodging,78.53233143832738,19.685738160882817,0.5236788392066956,nan,False
+Overture,f7b32ec8-cb19-4604-b13c-13794885bd6a,Ilahiya Masjid,,muslim_place_of_worship,78.5282067,19.683467849999996,0.3717271685600281,nan,False
+Overture,cc0bdee3-5e39-4a54-8c59-c74087eb26cc,HDFC ERGO Insurance Agent: Kasarla Kranthi Kumar,,financial_service,78.5417339,19.691392599999997,0.77,nan,False
+Overture,c106b9ac-772d-4def-8730-9adb30791890,Shree Siddi Vinayaka Temple,,hindu_place_of_worship,78.5441518339364,19.689661189490057,0.525158703327179,nan,False
+Overture,e4766fad-1bdd-4621-860b-b228e28fe31a,GS Estates Residential Area,,historic_site,78.54435,19.69159,0.5551843643188477,nan,False
+Overture,61f14fd8-c126-4509-b510-1dbcce23be08,HDFC ERGO Insurance Agent: Lala Shiva Kumar,,financial_service,78.54762960000001,19.6899878,0.77,nan,False
+Overture,4293b977-5f2b-4e36-8028-1ba512b76f31,Indane - Naik Gas Service,,b2b_oil_and_gas_extraction,78.5498447,19.688945199999992,0.85,nan,False
+Overture,58ec327e-c0c9-4441-960f-74410065b1b1,Hindustan Petroleum,,gas_station,78.545281,19.698488,0.954,nan,False
+Overture,c1b77263-74d6-4476-be47-6400a55cdff0,Gayathri Garden,,party_and_event_planning,78.54447103000001,19.699911569999994,0.6191287040710449,nan,False
+Overture,342b0639-0cc5-45ce-85fe-1d99ab8c07ad,Sonalika-Sai Ram Motors,,,78.5453301,19.701857,0.85,nan,False
+Overture,0698dd09-e4b6-4403-9dd1-7ecebf9d75ab,Oakley International School,,school,78.54441,19.70276,0.9552452796697617,nan,False
+Overture,9dea07ff-ae3d-49d8-8fe7-749c6c066a75,The Holy Mountain Ministries,,christian_place_of_worship,78.54686355,19.702911139999998,0.6031715869903564,nan,False
+Overture,420a924c-77b9-4787-b6c4-af52de1c40e1,Oakley International School,,school,78.53856011,19.71173452,0.9240407943725586,nan,False
+Overture,23e521c5-91a0-4b9b-adc4-97bdbd1b170a,Oakley International School Adilabad,,education,78.5390293,19.717482000000004,0.6373117566108704,nan,False
+Overture,1733cbf4-e610-42e1-9920-e721837788fb,Reliance Petroleum,,gas_station,78.54053082,19.72176405,0.85,nan,False
+Wikidata,Q15211,Adilabad district,,district of india,78.53548,19.669,,open,False
+Wikidata,Q494281,Adilabad,,human settlement town in india,78.53548,19.669,,open,False
+Wikidata,Q866763,Syro-Malabar Catholic Eparchy of Adilabad,,catholic eparchy,78.530075,19.66525,,open,False
+Wikidata,Q1125229,Teegalapahad,,village in india,78.5333,19.6667,,open,False
+Wikidata,Q1193652,Dasnapur,,census town of india,78.511388888,19.653611111,,open,False
+Wikidata,Q3630014,Adilabad Lok Sabha constituency,,lok sabha constituency,78.5,19.7,,open,False
+Wikidata,Q7589155,"St. Joseph's Convent High School, Adilabad",,high school,78.5300541,19.664735,,open,False
+Wikidata,Q12414969,Adilabad railway station,,railway station station located on surface,78.536025,19.680509,,open,False
+Wikidata,Q56293154,Adilabad district,,district of india,78.535480555,19.669,,open,False
+Wikidata,Q66637973,HDFC Bank Adilabad branch,,hdfc bank branch,78.5333601,19.672088,,open,False
+Wikidata,Q131958115,Indian Oil Fuel Filling Station Rampur Road (Gn Rao & Sons),,gas station,78.523173,19.678701,,open,False
+Wikidata,Q131958116,Indian Oil Fuel Filling Station NH-44 (Jai Jalaram Ios),,gas station,78.533638,19.677174,,open,False
+Wikidata,Q131958117,Indian Oil Fuel Filling Station Bangariguda Road (Riddhi Fuels),,gas station,78.5690694,19.6662033,,open,False
+Wikidata,Q131958119,Indian Oil Fuel Filling Station Batti Savargaon Road (Police Petrol Pump),,gas station,78.521943,19.669736,,open,False
+Wikidata,Q131958124,Indian Oil Fuel Filling Station Hydrabad Road (Sri Sainath Filling Station),,gas station,78.515588,19.646786,,open,False
+Wikidata,Q131958189,Indian Oil Fuel Filling Station Ankoli Thantholi Road (Sai Teja Petro Needs),,gas station,78.542221,19.659239,,open,False
+Wikidata,Q132123210,Jio-bp Fuel Filling Station Adilabad,,gas station,78.54053082,19.72176405,,open,False
+Wikidata,Q132161839,HDFC Bank Industrial Road Adilabad branch,,hdfc bank branch,78.5256823,19.657723,,open,False
+Wikidata,Q134328565,Bharat Petroleum Fuel Filling Station Adilabad (Shri Vinayaka Filling Station),,gas station,78.513733,19.643576,,open,False
+Wikidata,Q134328574,Bharat Petroleum Fuel Filling Station Adilabad (Tirumala Filling Station),,gas station,78.524255,19.659197,,open,False
+Wikidata,Q134328578,Bharat Petroleum Fuel Filling Station Adilabad (Tsp Welfare Society),,gas station,78.537808,19.670504,,open,False
+Wikidata,Q134328581,Bharat Petroleum Fuel Filling Station Adilabad (Srinivasa Fuel Station),,gas station,78.527794,19.672283,,open,False
+Wikidata,Q134328583,Bharat Petroleum Fuel Filling Station Adilabad (Arun & Co.),,gas station,78.555077,19.67511,,open,False
+Wikidata,Q134328584,Bharat Petroleum Fuel Filling Station Adilabad (My Nation Fuel Outlet),,gas station,78.51581,19.67629,,open,False
+Wikidata,Q134328585,Bharat Petroleum Fuel Filling Station Ponnari (Bsr Filling Station),,gas station,78.482361,19.677513,,open,False
+Wikidata,Q134328589,Bharat Petroleum Fuel Filling Station Adilabad (Sri Hari Hara Sai Filling Stat),,gas station,78.518091,19.681264,,open,False
+Wikidata,Q134328591,Bharat Petroleum Fuel Filling Station Adilabad (Svr Filling Station),,gas station,78.5438,19.685198,,open,False
+Wikidata,Q134501235,Cathedral of the Holy Family,,catholic cathedral,78.53006,19.66531,,open,False

@@ -107,7 +107,7 @@ def sources_folder():
                           "ESA WorldCover v200 tile page and Copernicus DEM GLO-30 tile page for the tiles listed in `alampur_acquired_data_manifest.csv`",
                           "Esri World Imagery terms page and a screenshot of one exported tile request (extent, size, date)",
                           "geoBoundaries gbOpen IND ADM3 / ADM2 metadata JSON (licence ODbL 1.0, build date) used as the 2018 reference layer",
-                          "Facility exclusion decisions (alampur_facility_exclusions.csv): the evidence for every excluded record",
+                          "Facility audit: Google Maps / on-site check of every facility in alampur_verified_facilities.csv (and of the use_in_analysis = False rows), plus the evidence for every row of alampur_facility_exclusions.csv",
                           "Any official polygon you hold (LGD / Census / municipal) if you decide to replace the derived boundary: pass it with `propose_aoi.py --use-file` and keep the file here"]}
     for v, items in proofs.items():
         (S / "proofs" / v).mkdir(parents=True, exist_ok=True)
@@ -119,6 +119,9 @@ def sources_folder():
             ("ESA WorldCover 10 m", WC.format(tile="<tile>"), "v200 (2021)", "CC BY 4.0 (doi:10.5281/zenodo.7254221)", "all four (Damarakunta via aligned_open)"),
             ("Copernicus DEM GLO-30", COP.format(name="<tile name>"), "GLO-30 (DGED COG)", "Copernicus DEM licence (free, attribution; doi:10.5270/ESA-c5d3d65)", "all four"),
             ("OpenStreetMap through Overpass / Nominatim (boundary candidates)", "https://overpass-api.de/api/interpreter ; https://nominatim.openstreetmap.org/search", "live; retrieval date in the provenance file", "ODbL 1.0 (https://www.openstreetmap.org/copyright)", "adilabad_urban_updated, aswaraopeta, alampur"),
+            ("OpenStreetMap facility objects through Overpass (mirrors: maps.mail.ru, overpass-api.de) and the Photon geocoder", "https://maps.mail.ru/osm/tools/overpass/api/interpreter ; https://photon.komoot.io/api/", "live; query date in facility_audit/<area>/sources_checked.json", "ODbL 1.0 (https://www.openstreetmap.org/copyright)", "all four (facility audit)"),
+            ("Wikidata SPARQL (items with coordinates in the window) and Wikipedia geosearch", "https://query.wikidata.org/sparql ; https://en.wikipedia.org/w/api.php?action=query&list=geosearch", "live; query date in sources_checked.json", "CC0 (Wikidata); CC BY-SA 4.0 (Wikipedia)", "all four (facility audit)"),
+            ("LGD / UDISE+ / Telangana health and anganwadi directories", "https://lgdirectory.gov.in ; https://udiseplus.gov.in", "no open query API: not used unless a file is supplied (audit_facilities.py --extra-csv)", "OWNER TO CHECK", "facility audit (not used)"),
             ("geoBoundaries gbOpen IND ADM2 / ADM3 (2018 mandal layer; consistency reference and frozen Adilabad run)", GB.format(lvl="ADM3"), "buildDate Dec 12, 2023; boundaryYear 2018 (source lgdirectory.gov.in via Pathways Data)", "ODbL 1.0 per the geoBoundaries metadata JSON", "adilabad_urban (frozen), reference row elsewhere"),
             ("TGRAC village polygon, road network, facilities (Damarakunta)", "", "OWNER TO FILL", "OWNER TO FILL", "damarakunta"),
             ("PMGSY rate Rs 75 lakh/km (60-90)", "", "OWNER-SUPPLIED", "UNVERIFIED: attach the circular or schedule of rates", "all four (illustrative only)")]
@@ -267,6 +270,14 @@ def main():
         for n_ in (pf, pf.with_name(V["prov"] + ".geojson")):
             if n_.exists():
                 put(n_, f"{B}/boundary/{n_.name}", "the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities)")
+        ad = C3 / "facility_audit" / V["id"]
+        for f_ in sorted(ad.glob("*")) if ad.exists() else []:
+            if f_.is_file():
+                put(f_, f"{B}/facility_audit/{f_.name}", "facility audit (pass tables, exclusions, contact sheets)" if f_.suffix != ".jpg" else "facility audit contact sheet (Esri imagery, source point vs snapped marker)")
+        for nm_ in ("verified_facilities", "facility_exclusions"):
+            cf_ = pf.with_name(f"{V['id']}_{nm_}.csv")
+            if cf_.exists():
+                put(cf_, f"{B}/facility_audit/{cf_.name}", f"audited facility list ({nm_.replace('_', ' ')}) read by the pipeline")
         fsrc = V["seg"] if have_seg else V["open"]
         fv_ = pd.read_csv(fsrc / "verified_facilities.csv")
         v_ = fv_[fv_.status == "VERIFIED_USED"]
@@ -293,6 +304,14 @@ def main():
                    ("map_facility_key.csv", "Damarakunta facility key"), ("RUN_STATUS.md", "how the Damarakunta master map was produced (cost surface, imagery, comparison with the frozen Stage B plan)")):
         if (DKM / n_).exists():
             put(DKM / n_, f"01_DAMARAKUNTA_RURAL/maps/{n_}" if n_.endswith(".png") else f"01_DAMARAKUNTA_RURAL/tables/damarakunta_master_{n_}", d_)
+    ad = C3 / "facility_audit" / "damarakunta"
+    for f_ in sorted(ad.glob("*")) if ad.exists() else []:
+        if f_.is_file():
+            put(f_, f"01_DAMARAKUNTA_RURAL/facility_audit/{f_.name}", "Damarakunta facility audit (pass tables, exclusions, contact sheets); the frozen Stage B facility tables are unchanged")
+    for nm_ in ("verified_facilities", "facility_exclusions"):
+        cf_ = REPO / "configs/multivillage/villages" / f"damarakunta_{nm_}.csv"
+        if cf_.exists():
+            put(cf_, f"01_DAMARAKUNTA_RURAL/facility_audit/{cf_.name}", f"Damarakunta audited facility list ({nm_.replace('_', ' ')})")
     sources_folder()
     # ------------------------------------------------------------------ INDEX.md
     q = sj["quality_classes"]

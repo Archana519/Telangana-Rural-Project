@@ -1,1 +1,60 @@
-id,name,reason
+id,name,reason,category,source,lat,lon,dist_outside_m
+node/7274028601,cvv,unclear record: name 'cvv' carries no facility word (cannot be verified),,OSM,17.245844,81.107126,0.0
+node/11974557974,Gurralacheruvu,outside the study polygon (1373 m),Anganwadi,OSM,17.263329,81.110289,1373.3
+02574760-c630-4c46-b091-74ae2498842b,St.Paul's CSI Town Church Aswaraopeta,religious / heritage site (not one of the five categories),,Overture,17.24491,81.12835,0.0
+e50c8a63-7cbd-487d-8831-f3dee764cd71,Bajaj Finserv Group Lending Loan,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category financial_service),,Overture,17.244858,81.128838,0.0
+a0304184-d0e4-4995-8f17-4b13af686fa4,Sai Suman Hall,religious / heritage site (not one of the five categories),,Overture,17.244717,81.131447,0.0
+ca995c31-0ff0-43c5-85ac-3ca255fa19d2,Bajaj Finance Branch,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category credit_union),,Overture,17.244601,81.131401,0.0
+2367fc63-efa7-47d0-9884-8ff912e50a86,Praveen Mobiles,not one of the five categories,,Overture,17.244907,81.132121,0.0
+9765e9a1-3cae-4898-9ccc-2a589d1934c2,TRENDS,not one of the five categories,,Overture,17.244982,81.130921,0.0
+ccb17b04-a73f-4591-bf65-22c60fd71a2d,Motilal Oswal Financial Services Limited,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category financial_service),,Overture,17.245013,81.131133,0.0
+ba94faaf-bad1-4ced-ab54-8cd46b84eed0,ICICI Bank,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bank),,Overture,17.245013,81.131125,0.0
+f82c0c38-0e0a-4444-87d1-9191d044f373,AU Small Finance Bank,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bank),,Overture,17.245013,81.131133,0.0
+73e5c5e1-24de-42d4-a72b-6dffec13ae0d,Pavan Digitals Photography,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category professional_service),,Overture,17.246028,81.128415,0.0
+b0d7ff0b-66d4-431c-a362-1c4c94c73c9e,Sri Meenakshi Amman Temple,religious / heritage site (not one of the five categories),,Overture,17.245826,81.131089,0.0
+4d2d2fb0-f8ac-44d1-bfa3-9b29faa9c989,Muthoot Finance Gold Loan,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category credit_union),,Overture,17.24595,81.13114,0.0
+66aaca32-497c-40c6-a9fa-29735d177929,Manappuram Finance,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category credit_union),,Overture,17.246131,81.131165,0.0
+7676afa8-49dd-41c2-9a75-6b7f82dd831a,Surya Lab,commercial: diagnostic laboratory (not a care facility),,Overture,17.245684,81.130655,0.0
+763a6007-601f-413f-a15f-6874c7736dc9,Muthoot FinCorp Gold Loan,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category credit_union),,Overture,17.246884,81.131319,0.0
+2524bb8f-0ed8-4c6c-9e75-0fb5a5588da4,Shriram Finance Limited,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category credit_union),,Overture,17.2465,81.1315,0.0
+20260eda-dd0d-496f-bf67-9fdca5d0a67a,ICICI Bank,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bank),,Overture,17.248353,81.131413,0.0
+44715560-b025-442b-ab64-fa3291aa4a11,Chandra Motors,commercial / transport / leisure (not one of the five categories),,Overture,17.24911,81.131478,0.0
+6863215e-b9f6-4026-9396-2f94b95555f9,Kaveri Borewells,not one of the five categories,,Overture,17.249232,81.131448,0.0
+00567b91-d9f9-49e5-b5b1-2bf969991e49,Venkata Durga Theater,commercial / transport / leisure (not one of the five categories),,Overture,17.250035,81.13224,0.0
+20eeca0b-cfdc-4510-8e2b-621bfa1f741c,Hindustan Petroleum,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category gas_station),,Overture,17.257184,81.131007,0.0
+548e2917-40d9-425b-95bb-c7147fdc3d7d,Shekar Kirana and General Store,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category shopping),,Overture,17.234542,81.126683,0.0
+b53c3527-861d-486c-9ccf-91d6c9e99dff,Indian Oil Petrol Pump,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category gas_station),,Overture,17.235375,81.126277,0.0
+70ec48ae-2421-4dc9-9545-d7c00cde698e,Sri Venkateswara Electric Vehicles,not one of the five categories,,Overture,17.236742,81.127131,0.0
+b04fac2b-f310-4749-82fc-c38f26e9eb4e,Kanaka Durgamma Temple,religious / heritage site (not one of the five categories),,Overture,17.236675,81.127046,0.0
+093ee088-ea98-46dd-80ed-12b5bdeaa0f8,Sai Teja Medical,commercial: pharmacy / medical shop (not a care facility),,Overture,17.240114,81.12824,0.0
+2c88d737-4512-4598-a940-05cac0fd92f7,Sai Raghava Automobiles,not one of the five categories,,Overture,17.240024,81.128165,0.0
+e1fecbea-5319-4030-aba7-f3c8b256ee2b,Bhasker Traders,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category shopping),,Overture,17.239871,81.128065,0.0
+73d801e9-1449-443d-ac30-1f3b4fe67851,Venkat Sai Kirana and General Store,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category shopping),,Overture,17.239489,81.127793,0.0
+e59bab18-a705-42a4-af62-887341ae8646,Durga Super Mini Market,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category shopping),,Overture,17.240299,81.128408,0.0
+a9a4736c-7f64-49ed-b609-1e20f0b07648,Venkatswar Motors,commercial / transport / leisure (not one of the five categories),,Overture,17.240928,81.128667,0.0
+4cb08c15-0486-4816-990e-0d1a55d011ad,Prem Kumar Hotel,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category hotel),,Overture,17.241326,81.129114,0.0
+8938efa4-404f-4bd3-8348-0a397623160a,Haribabu Kirana and General Store,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category shopping),,Overture,17.24147,81.129214,0.0
+5b15e00b-0669-447b-8748-28842db191f5,Mohini Tyres,not one of the five categories,,Overture,17.241562,81.129118,0.0
+73d1e879-5506-402f-ab78-21d24ba9e646,Satharu Mogal Biryani,not one of the five categories,,Overture,17.241668,81.129493,0.0
+9c89c10f-58d3-43ce-aee7-651ff0a138e8,CSB BANK LTD,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bank),,Overture,17.241798,81.129629,0.0
+ad6df10c-ce8e-4256-ac81-a090e085bfc7,CSB BANK LTD ATM,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bank),,Overture,17.241793,81.129627,0.0
+ae94d066-2401-48bd-bd3f-485942c5942c,Trinetra Family Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,17.242911,81.128459,0.0
+887ae411-d37c-4a37-ac98-a4498a96103e,"Ratna iron, Aswaraopeta",carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category shopping),,Overture,17.24295,81.13069,0.0
+86f68d41-6f3a-4aba-aa35-abccdf37bdb6,Haima automobiles,not one of the five categories,,Overture,17.24296,81.13127,0.0
+473f2053-d595-4f4d-b986-4102f9a4af91,TVS - Poorna Auto Agencies,not one of the five categories,,Overture,17.243314,81.128752,0.0
+b434bc66-dbfc-43a0-abb9-b98312590a2e,Swasthik Dry Fruits and Spices,not one of the five categories,,Overture,17.244034,81.131854,0.0
+a2e5ac92-cb0b-4ef7-88b3-6d22d4f81c75,Aswaraopeta Bus Stop,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bus_station),,Overture,17.244106,81.132229,0.0
+a91d0eb5-dd26-4181-a838-10384328ed1f,Apollo Pharmacy Aswarao Peta,commercial: pharmacy / medical shop (not a care facility),,Overture,17.244107,81.131081,0.0
+f22b3c54-6b8f-4e3f-8616-6fa947df0112,Aswharpet Bus Station,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category bus_station),,Overture,17.244245,81.130898,0.0
+735fa17a-da16-4915-84c8-b38ce55ba569,Vijaya Sai Cell World,not one of the five categories,,Overture,17.244271,81.131062,0.0
+de154451-e266-4897-b7ab-91ae8fabf50b,Shriram Finance Limited,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category credit_union),,Overture,17.244484,81.131311,0.0
+4ab381a6-a0b9-47a8-8f42-25a3bed9b432,Lucky Homes Apartments,religious / heritage site (not one of the five categories),,Overture,17.243919,81.127956,0.0
+03cbc00f-c8c0-49a5-a4e2-33083ffd41a0,Primary Agricultural Cooperative Credit Society,carried over from the earlier exclusion list: carried over from the earlier exclusion list: financial institution / cooperative society (not a public office),,Overture,17.243422,81.1199,0.0
+671cd6d6-5b07-4699-af09-f8bcf49e2671,St. John's College of Education,outside the study polygon (11 m) - bordering,College,Overture,17.2431,81.105868,11.0
+0b76f21d-f1d6-4004-a831-7ad8aac4c5f3,Rural Vocational Industrial Training Institute,commercial: coaching / tuition centre (not a school),,Overture,17.244467,81.105217,71.6
+9ff24bb1-3dde-4466-9195-9a58e17174b7,Hindustan Petroleum,carried over from the earlier exclusion list: carried over from the earlier exclusion list: not a public facility (Overture category gas_station),,Overture,17.231161,81.12626,167.7
+4cbd653e-20aa-4e76-9f4e-1ab841326668,Lakshmi Tulasi Agro Paper Mill,not one of the five categories,,Overture,17.23095,81.128572,263.3
+node/6546997732,"Community Health Centre, Aswaraopeta","duplicate of 'Community Health Centre, Aswaraopeta' (OSM:node/11941179597): same campus / facility across sources",Hospital,OSM,17.242445,81.130173,0.0
+node/11932478945,"SubCentre, Ashwaraopeta","duplicate of 'SubCentre, Aswaraopeta-II' (OSM:node/6554337403): same campus / facility across sources",Hospital,OSM,17.244486,81.131327,0.0
+Overture:7a756877-a09b-4a67-9337-25a5810b45c1,Police Station Keelaselvaur,manual review: Keelaselvaur is a Tamil Nadu place name: the Overture police-station record is mis-geocoded into Aswaraopeta,Government Office,Overture,17.2435,81.120096,0.0
+Overture:20a6c1ed-a37b-4e83-96e5-5ae491876a42,Forest Check Post,no building within 35 m of the point (field / road / wrong pin): needs an on-site check,Government Office,merged,17.242811,81.129932,0.0

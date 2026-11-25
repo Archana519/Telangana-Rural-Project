@@ -40,8 +40,8 @@ CREDIT = SV.CREDIT
 TO_WGS = Transformer.from_crs(CRS, "EPSG:4326", always_xy=True)
 FROM_WGS = Transformer.from_crs("EPSG:4326", CRS, always_xy=True)
 C_ROAD, C_SHARED, C_FAC, C_INDEP, C_BOUND, C_GAP = "#00e5ff", "#2f5bff", "#e00000", "#ffffff", "#ffeb3b", "#ff7f0e"
-FSTYLE = {"school": ("*", "#1f78b4", "School"), "health": ("P", "#e31a1c", "Health (hospital / PHC / sub-centre)"), "government": ("s", "#6a3d9a", "Government office"),
-          "anganwadi": ("^", "#ff69b4", "Anganwadi"), "other": ("D", "#00897b", "Other public facility")}
+FSTYLE = {"school": ("*", "#1f78b4", "School"), "college": ("h", "#00acc1", "College / higher education"), "health": ("P", "#e31a1c", "Hospital / health centre"), "government": ("s", "#6a3d9a", "Government / civic office"),
+          "anganwadi": ("^", "#ff69b4", "Anganwadi / welfare centre"), "other": ("D", "#00897b", "Other public facility")}
 NOTE = ("Footprints are automatic detections (unvalidated; merged roofs are flagged), not a census. Routes are planning alternatives, not engineered roads. "
         "EPSG:32644 (UTM 44N).")
 
@@ -233,7 +233,7 @@ def summary_lines(sc: Scene, routes=True, fac_key=False) -> list:
     if fac_key and len(sc.fac):
         f = sc.fac.copy()
         f["t"] = f.facility_type.map(ftype)
-        f["o"] = f.t.map({"health": 0, "government": 1, "school": 2, "anganwadi": 3, "other": 4})
+        f["o"] = f.t.map({"health": 0, "government": 1, "school": 2, "college": 2, "anganwadi": 3, "other": 4})
         f = f.sort_values(["o", "fid"])
         items = [f"F{int(r.fid)} {r.t} {(r['name'] if isinstance(r['name'], str) else 'unnamed')[:40]}" for _, r in f.head(14).iterrows()]
         L.append("Facility key: " + "; ".join(items) + (f"; ... + {len(f) - 14} more (map_facility_key.csv)." if len(f) > 14 else "."))
@@ -258,7 +258,7 @@ def facility_key(sc: Scene, ax, max_rows=26):
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
     f = sc.fac.copy()
     f["t"] = f.facility_type.map(ftype)
-    f["o"] = f.t.map({"health": 0, "government": 1, "school": 2, "anganwadi": 3, "other": 4})
+    f["o"] = f.t.map({"health": 0, "government": 1, "school": 2, "college": 2, "anganwadi": 3, "other": 4})
     f = f.sort_values(["o", "fid"])
     ax.text(0.0, 1.0, f"Public facility key ({len(f)} verified)", fontsize=8, fontweight="bold", va="top")
     n = min(len(f), max_rows)

@@ -1,0 +1,29 @@
+source,source_id,name,tags,taxonomy,lon,lat,confidence,status,is_area
+OSM,node/6555382988,"SubCentre, Alampur","{""addr:district"": ""Jogulamba Gadwal"", ""addr:place"": ""Alampur"", ""addr:state"": ""Telangana"", ""addr:street"": ""Post office"", ""addr:subdistrict"": ""Alampur"", ""amenity"": ""health_post"", ""healthcare"": ""yes"", ""name"": ""SubCentre, Alampur"", ""operational_status"": ""operational"", ""operator:type"": ""private"", ""source"": ""OpenDataTelangana""}",health_post,78.1342178,15.876781,,open,False
+OSM,node/6830806720,"Govt Hospital,Alampur","{""addr:district"": ""Jogulamba Gadwal"", ""addr:full"": ""Haritha hotel,Alampur"", ""addr:postcode"": ""509125"", ""addr:state"": ""Telangana"", ""amenity"": ""hospital"", ""name"": ""Govt Hospital,Alampur"", ""source"": ""OpenGovernmentData""}",hospital,78.129491,15.8809042,,open,False
+OSM,node/14389508676,Government  degree college,"{""name"": ""Government  degree college"", ""office"": ""educational_institution""}",,78.1310125,15.8787805,,open,False
+OSM,node/11955747182,alampur-IX,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""alampur-IX"", ""source"": ""OpenDataTelangana""}",childcare,78.1334272,15.8795721,,open,False
+OSM,node/11961497629,Alampur-VI,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""Alampur-VI"", ""source"": ""OpenDataTelangana""}",childcare,78.1306002,15.8822358,,open,False
+OSM,node/11964628169,Alampur-III,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""Alampur-III"", ""source"": ""OpenDataTelangana""}",childcare,78.1334044,15.8795424,,open,False
+OSM,node/11982132581,Linganvai-III,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""Linganvai-III"", ""source"": ""OpenDataTelangana""}",childcare,78.1124081,15.8877269,,open,False
+OSM,node/11989694613,Alampur-IV,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""Alampur-IV"", ""source"": ""OpenDataTelangana""}",childcare,78.1094853,15.8871856,,open,False
+OSM,node/11991338683,Alampur-V,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""Alampur-V"", ""source"": ""OpenDataTelangana""}",childcare,78.1344117,15.8783944,,open,False
+OSM,node/11992010911,Alampur-II,"{""addr:district"": ""Jogulamba-Gadwal"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Manopadu"", ""amenity"": ""childcare"", ""name"": ""Alampur-II"", ""source"": ""OpenDataTelangana""}",childcare,78.1095131,15.8872171,,open,False
+OSM,node/6545241367,"Community Health Centre, Alampur","{""addr:block"": ""Allampur"", ""addr:district"": ""Mahbubnagar"", ""addr:full"": ""Alampur"", ""addr:postcode"": ""509152"", ""addr:state"": ""Telangana"", ""addr:street"": ""Near Court"", ""addr:subdistrict"": ""Alampur"", ""contact:phone"": ""8502241300"", ""healthcare"": ""centre"", ""name"": ""Community Health Centre, Alampur"", ""source"": ""OpenGovernmentData""}",,78.1296017,15.8809957,,open,False
+Overture,e785fc10-8991-40fa-bdfb-90e06d869743,Montessori School,,preschool,78.1123653,15.888524549999998,0.9586296081542969,open,False
+Overture,35064e54-3ab5-4645-8697-bb8eace15923,Papanaasni Temple,,hindu_place_of_worship,78.12241391000002,15.871614279999998,0.5408861637115479,open,False
+Overture,026a7784-0fc4-436a-84a0-8b24d49786cb,Haritha Hotel Alampur,,hotel,78.12703909,15.879845659999999,0.6212543249130249,open,False
+Overture,c36c88f4-32c1-4a6a-ba50-7f7fdc6a03ea,Sangameshwara Temple,,religious_organization,78.1288622,15.8777466,0.7659802436828613,open,False
+Overture,fcfd1180-24e7-4ab2-baf4-c955da76ab5f,Alampur Navabrahma Temples,,religious_organization,78.135645817,15.877439693000003,0.7093791365623474,open,False
+Overture,806e5f47-7212-469e-832e-2fdf29ce0391,Pedda Dargah,,christian_place_of_worship,78.13518261,15.877298819999998,0.6369301080703735,open,False
+Overture,a63109df-cea6-482d-b7dd-d8ba8b3171f1,Sri Jogulamba Bala Bramareshwara Swamy Temple Alampur,,hindu_place_of_worship,78.13526369712312,15.877176636932733,0.9662349224090576,open,False
+Overture,bc235c65-0c3b-439d-bcaf-32f64c121e31,HDFC Bank,,bank_or_credit_union,78.131784,15.879361,0.9931,open,False
+Overture,900a6cdb-3112-4322-9466-571f643a2f22,Sri Vasavi Kanyaka Parameshwari Temple,,hindu_place_of_worship,78.13453141000001,15.879983260000003,0.5733065605163574,open,False
+Wikidata,Q4706008,Alampur Assembly constituency,,constituency of the telangana legislative assembly,78.13,15.88,,open,False
+Wikidata,Q4706010,Alampur Navabrahma Temples,,hindu temple,78.135645817,15.877439693,,open,False
+Wikidata,Q14201843,Alampur,,town human settlement,78.13352,15.87987,,open,False
+Wikidata,Q19456747,Alampur Museum,,museum,78.134898,15.8776398,,open,False
+Wikidata,Q48730192,Alampur Papanasi Temples,,hindu temple,78.12238776,15.87157519,,open,False
+Wikidata,Q101314175,Alampur Jogulamba Temple,,hindu temple,78.132,15.877,,open,False
+Wikidata,Q130741858,Alampur Jogulamba Devi,,shakti pitha,78.134836111,15.877202777,,open,False
+Wikidata,Q134324280,Bharat Petroleum Fuel Filling Station Alampur (Sri Jogulamba Devi Filling Sta),,gas station,78.118559,15.886458,,open,False

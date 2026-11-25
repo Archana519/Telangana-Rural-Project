@@ -87,11 +87,23 @@ def main():
     gap = b[b.bld_id.isin(set(tgt.bld_id))].copy()
     roads = gpd.read_file(ROOT / "reference/tgrac_road_network.gpkg").to_crs(CRS).geometry.intersection(cell)
     roads = roads[~roads.is_empty]
-    f = gpd.read_file(ROOT / "reference/derived/damarakunta_priority_facilities_final_5.gpkg").to_crs(CRS)
-    def kind(t):
-        t = str(t).lower()
-        return "school" if "school" in t else ("health" if ("health" in t or "phc" in t or "hospital" in t or "sub" in t) else ("anganwadi" if "anganwadi" in t else "government"))
-    fac = gpd.GeoDataFrame(dict(fid=np.arange(1, len(f) + 1), name=f.facility_name.values, facility_type=[kind(t) for t in f.facility_type]), geometry=f.geometry.values, crs=CRS)
+    vf = REPO / "configs/multivillage/villages/damarakunta_verified_facilities.csv"
+    if vf.exists():                                                      # audited facilities (scripts/audit_facilities.py --village damarakunta): schools, colleges, hospitals, offices, anganwadis on real buildings
+        t = pd.read_csv(vf)
+        ft = {"School": "school", "College": "college", "Hospital": "health", "Government Office": "government", "Anganwadi": "anganwadi"}
+        from pyproj import Transformer
+        xy = Transformer.from_crs(4326, CRS, always_xy=True).transform(t.lon.values, t.lat.values)
+        from shapely.geometry import Point
+        fac = gpd.GeoDataFrame(dict(fid=np.arange(1, len(t) + 1), name=t["name"].values, facility_type=t.category.map(ft).values), geometry=[Point(x, y) for x, y in zip(*xy)], crs=CRS)
+        fac = fac[fac.geometry.within(cell)].reset_index(drop=True)
+        fac["fid"] = np.arange(1, len(fac) + 1)
+    else:
+        f = gpd.read_file(ROOT / "reference/derived/damarakunta_priority_facilities_final_5.gpkg").to_crs(CRS)
+
+        def kind(t):
+            t = str(t).lower()
+            return "school" if "school" in t else ("health" if ("health" in t or "phc" in t or "hospital" in t or "sub" in t) else ("anganwadi" if "anganwadi" in t else "government"))
+        fac = gpd.GeoDataFrame(dict(fid=np.arange(1, len(f) + 1), name=f.facility_name.values, facility_type=[kind(t) for t in f.facility_type]), geometry=f.geometry.values, crs=CRS)
     stage_b_cost = (ROOT / "aligned" / "damarakunta_cost_surface_10m.tif").exists()
     cost, T, shape = cost_from_stage_b(ROOT / "aligned") if stage_b_cost else cost_rebuilt(cfg, cell)
     print("cost surface:", "Stage B aligned cost surface" if stage_b_cost else "REBUILT from aligned_open (WorldCover + DEM, common recipe): approximates Stage B", "|", len(gap), "road-gap houses,", len(fac), "facilities")

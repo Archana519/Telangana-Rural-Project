@@ -222,7 +222,11 @@ def main(argv=None):
         if a.limit_targets:
             gap = gap.iloc[: a.limit_targets].copy()
         excl = pd.read_csv(REPO / f"configs/multivillage/villages/{v['id']}_facility_exclusions.csv")
-        fac_all = FAC.candidates(L["places_4km"], cell, b, excl)
+        fac_all = FAC.curated(v["id"], cell, b)
+        if fac_all is None:
+            fac_all = FAC.candidates(L["places_4km"], cell, b, excl)
+        else:
+            print(f"facilities: audited table configs/multivillage/villages/{v['id']}_verified_facilities.csv ({len(fac_all)} records)")
         fac = fac_all[fac_all.status == "VERIFIED_USED"].reset_index(drop=True)
         fac = fac.assign(fid=range(1, len(fac) + 1), facility_type=fac.facility_type)
         lc = prep["landcover"]

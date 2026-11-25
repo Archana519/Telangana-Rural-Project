@@ -1,0 +1,690 @@
+id,name,reason,category,source,lat,lon,dist_outside_m
+node/2710965445,Government Residential College,outside the study polygon (4 m) - bordering,College,OSM,19.657774,78.53623,4.1
+way/347029046,rm office,not one of the five categories,,OSM,19.66907,78.528089,0.0
+node/12595059687,Panchavati,not one of the five categories,,OSM,19.673119,78.533905,0.0
+way/1360555912,Panchavati hotel,commercial / transport / leisure (not one of the five categories),,OSM,19.673133,78.533913,0.0
+node/11931088144,"Urban Primary Health Centre, Kurshidnagar",outside the study polygon (12 m) - bordering,School,OSM,19.678953,78.516197,12.0
+way/601906098,Fast food centre,not one of the five categories,,OSM,19.677857,78.536323,0.0
+node/12595679903,Gokul Tiffin Centre,not one of the five categories,,OSM,19.672238,78.533272,0.0
+node/6853050129,Sri Krishna Diagnostic Centre,commercial: diagnostic laboratory (not a care facility),,OSM,19.669114,78.532438,0.0
+node/12595819581,Fast Food Centre,not one of the five categories,,OSM,19.670997,78.533967,0.0
+node/6553472024,"SubCentre, Chanda",outside the study polygon (805 m),Hospital,OSM,19.71129,78.54839,804.8
+node/6830806564,CCI Health Center,outside the study polygon (255 m),Hospital,OSM,19.689166,78.551198,255.0
+99e1d866-5164-4e57-9270-d375527156fe,Shrinath Punjabi Dhaba,not one of the five categories,,Overture,19.688271,78.499222,0.0
+815fe819-8034-497d-9426-e4def7231fb4,Hindustan Petroleum,not a public facility (Overture category gas_station),,Overture,19.68341,78.51119,0.0
+a7add331-ac6e-44a1-bf14-cc2d11135c86,Sardar Ajith Singh Saw Mill,not one of the five categories,,Overture,19.682724,78.515504,0.0
+be61f3a6-4f74-48c5-8b03-9ce00f35041c,District Jail,not one of the five categories,,Overture,19.676081,78.515818,0.0
+f84a314d-9351-45ab-b8a4-376542c21641,Central Ware House,not one of the five categories,,Overture,19.672778,78.51635,0.0
+a06b4e1e-90cb-496b-aa87-9a04ea085013,Sree Asta Laxmi Spinning Mills,not one of the five categories,,Overture,19.67301,78.517218,0.0
+af068f95-3187-4e23-8b40-b2795d937852,Su Sri Niloma Adaneshwar Sevashram,religious / heritage site (not one of the five categories),,Overture,19.664679,78.518077,0.0
+e576ffb9-b697-4b7f-b08e-9d422678b813,Bajaj Auto Credit | Srr Motors Adilabad | Two Wheeler Loan,commercial / transport / leisure (not one of the five categories),,Overture,19.665059,78.509404,99.0
+f90c0981-3528-44b0-8e30-d40c5c6fb528,Exide Care - Laxmi Auto Agencies,not one of the five categories,,Overture,19.662484,78.507133,0.0
+b3d2e591-2505-45ad-b052-fe1eb381e6bb,Chandra Motors - Hero MotoCorp,commercial / transport / leisure (not one of the five categories),,Overture,19.656689,78.513813,0.0
+af7bae05-ff5d-4142-b432-444af5ff8716,Hero MotoCorp,not one of the five categories,,Overture,19.656689,78.513813,0.0
+95c5abf8-d807-438e-bf79-7e8432cfa846,NEXA,not one of the five categories,,Overture,19.65827,78.51167,0.0
+da0fb507-dc9f-4df3-a97d-8740f467030e,Sri Narayana Enterprise Solar Energies,not one of the five categories,,Overture,19.65827,78.51167,0.0
+7f39395d-282e-4942-9537-50ab52d6ba6e,Resonance World School,outside the study polygon (3 m) - bordering,School,Overture,19.65022,78.51005,3.4
+736852b4-5fb6-4be2-aed1-1cafea4ae115,Ayati Global School,outside the study polygon (3 m) - bordering,School,Overture,19.65022,78.51005,3.4
+e991675b-978e-4225-854f-bee1cad7c224,Padmavati Super Market,not one of the five categories,,Overture,19.651448,78.511726,0.0
+529931bf-1c71-453c-9186-788cc0fcbb84,LG India,not one of the five categories,,Overture,19.651448,78.511726,0.0
+30ba9b61-3954-463a-94ee-e4f826a312d9,Motilal Oswal Financial Services Limited,not one of the five categories,,Overture,19.651908,78.514406,0.0
+1fe7acf7-b694-458b-b8fd-6b7e542069ae,Kcb Gardens,not a public facility (Overture category shopping),,Overture,19.650519,78.515091,0.0
+ab7c8469-ca1e-4869-9516-4d46d07cd13d,Hariyali Gardens and Nursery,not a public facility (Overture category shopping),,Overture,19.650553,78.515046,0.0
+68eb3850-8e90-46b4-99dd-74cf9c277bda,Mahadev UPVC Home Interior & Steel Railing,not one of the five categories,,Overture,19.649344,78.517647,0.0
+8fc5d28d-56eb-4556-929e-ffab786c9191,Ashapuri Granites,not one of the five categories,,Overture,19.647154,78.515996,0.0
+f906e786-9fb5-43c7-a823-41bb5c4d247a,Indianoil,not a public facility (Overture category gas_station),,Overture,19.646786,78.515588,0.0
+5502ac0a-9a15-45a8-a6f8-31919b1063e3,Birla Opus Paint Gallery - Sri Durga Traders,not one of the five categories,,Overture,19.646281,78.515173,0.0
+0dd97230-6744-4111-9d93-f331d9e4f9d8,GSR Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.645388,78.515071,0.0
+3b6479d9-738c-47ed-9f6e-83b96971af89,Hindustan Petroleum,not a public facility (Overture category gas_station),,Overture,19.639182,78.509912,0.0
+d6782120-edb3-4281-8222-72bcd77f4532,Sumangali - NGO,not one of the five categories,,Overture,19.640203,78.510833,0.0
+dcdeb530-5920-4619-b1b2-cfe28d4ebd73,"Tata Motors Cars Showroom - Sree Venkateswara Motors (India) Private Limited, Dasnapur",commercial / transport / leisure (not one of the five categories),,Overture,19.639801,78.510241,0.0
+f9e41dbc-63e0-417b-a89f-460444160045,Ratna Garden Function Hall,commercial / transport / leisure (not one of the five categories),,Overture,19.640735,78.510624,0.0
+748d3d63-fbb8-4896-86bc-0be6f18d54f3,Ratna Gardens,commercial / transport / leisure (not one of the five categories),,Overture,19.6404,78.5104,0.0
+e00a393d-064c-4f24-835e-520552f023ec,Renault,not one of the five categories,,Overture,19.630534,78.507544,2.5
+cdb6c73b-6d96-46d2-80ca-ada50eafd27c,Maruti Suzuki Arena,not one of the five categories,,Overture,19.630268,78.507949,33.1
+37b43c36-3a57-4b0c-aa14-9aa899d159c0,HDFC Bank ATM,not a public facility (Overture category bank_or_credit_union),,Overture,19.635438,78.508578,0.0
+8b731d08-85bb-4605-afd5-98ae135108e0,IndusInd Bank,not a public facility (Overture category bank),,Overture,19.6354,78.5086,0.0
+e8ac2e38-60c2-49c3-b9bc-57f6dfccaa35,Tirumala Classic Gardens,commercial / transport / leisure (not one of the five categories),,Overture,19.64224,78.53818,0.0
+b9d6a66b-3529-43da-a79f-008b36e590b3,Axis Bank ATM,not a public facility (Overture category atm),,Overture,19.642229,78.538177,0.0
+3566149f-910f-4853-959f-a9d50f92ed95,Stylish Spa,not one of the five categories,,Overture,19.64441,78.54017,0.0
+2e976936-840b-49cd-a293-9828785fdde4,Caring Spa & Salon,not one of the five categories,,Overture,19.64441,78.54017,0.0
+2eb56a15-2d53-4f6f-8629-3ed1ad43534a,Creative Zone,not one of the five categories,,Overture,19.644249,78.539276,0.0
+2a656038-6aee-4329-ab27-a1045dc85860,Srimadhu Creations,not a public facility (Overture category shopping),,Overture,19.643969,78.537739,0.0
+7edb38e3-576a-40a0-ba0a-f35fd9320485,Adilabd Private Industrial Training Institute,commercial: coaching / tuition centre (not a school),,Overture,19.650923,78.525607,0.0
+b9f29a46-182a-4498-a88a-a37d34898091,Sumangali - NGO,not one of the five categories,,Overture,19.65249,78.53014,0.0
+9be1ecd1-c438-4aea-bc4e-79f1fb156248,Sri Nirvigna Soap Works,not a public facility (Overture category shopping),,Overture,19.653836,78.529358,0.0
+da193963-ef69-46b4-befc-baecb0e47bbc,honey happy kitchen tips,not one of the five categories,,Overture,19.65457,78.53003,0.0
+d58de362-e378-45e4-83a7-efd79fc7a196,Anwar steel frnture iron cooler mnuftrng adilabad cntct: 9849280351,not one of the five categories,,Overture,19.65454,78.52627,0.0
+cea1939d-0886-49c9-943d-03500ac85f7f,Ek Minar Masjid,religious / heritage site (not one of the five categories),,Overture,19.654441,78.526183,0.0
+bd918e2e-bd59-46e5-9cda-b4280f0bac80,Royal Enfield Showroom - Ashwik Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.654412,78.522222,0.0
+79aa440f-7ce4-48f6-9851-22cb18ccc3ab,Royal Enfield Showroom - Ashwik Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.654451,78.52223,0.0
+98b842da-626d-44f2-afb8-8881e593cc4b,Dashavatar Mandir Temple,religious / heritage site (not one of the five categories),,Overture,19.65467,78.52169,0.0
+47a4e990-5ff8-4e52-b3cc-44164ace0cb8,TVS - Vijay Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.654161,78.522163,0.0
+23331b9b-7808-43ab-a5c0-1249e4d44e7d,Cholamandalam Investment and Finance Company Limited,not a public facility (Overture category credit_union),,Overture,19.654096,78.521842,0.0
+359597b9-f9a8-490f-b296-7b5a5e3e6d48,Telangana SC Study Circle,generic education record without a school / college name (not classifiable),,Overture,19.653859,78.522284,0.0
+b8481ac0-6098-47a0-934a-3f8f34a903f6,Moriah Church Adilabad,religious / heritage site (not one of the five categories),,Overture,19.651893,78.523915,0.0
+1c0d08e0-8fda-41f6-b38d-a9414ac88a47,Ira Saree House,not one of the five categories,,Overture,19.65165,78.52143,0.0
+21b7b785-f353-483c-b0f3-9a764d96450d,Waaree Solar Power Center – Zenco Solar Energies,not one of the five categories,,Overture,19.651895,78.52039,0.0
+f26bb2a6-bb71-46d6-b2a4-dac5174d1030,Mahindra Automotive Manufacturers - SUV & Commercial Vehicle Showroom,commercial / transport / leisure (not one of the five categories),,Overture,19.651653,78.519892,0.0
+9c693eb2-4a88-4502-b119-f446e85cc36a,Adilabad Mavala Park,commercial / transport / leisure (not one of the five categories),,Overture,19.654836,78.523183,0.0
+c0baf02a-c546-4113-bf98-416c88c52886,Honda Sree Mahalakshmi Honda Two Wheeler,not one of the five categories,,Overture,19.656737,78.522566,0.0
+22ac10d4-f636-4a0d-aa80-74a396e6e82e,Sree Mahalakshmi Honda,not one of the five categories,,Overture,19.656651,78.522789,0.0
+163c6dcf-74b0-448d-96e8-48c2849b45b1,Naturals Hair and Beauty Salon,not one of the five categories,,Overture,19.65646,78.523029,0.0
+b4206f08-48bb-4b6a-bedb-bbe5b45b4717,"SRR Motors, Adilabad",commercial / transport / leisure (not one of the five categories),,Overture,19.656836,78.523273,0.0
+a34092c4-5fe5-404b-9ad7-e1e6f0218460,TVS iQube - Vinay Autotech Private Limited,not one of the five categories,,Overture,19.656395,78.519974,0.0
+4f8bbc98-d5b0-40b2-9833-832ea4bcc83a,Tata Capital Limited,not a public facility (Overture category financial_service),,Overture,19.660498,78.522599,0.0
+1ca0e35e-3fd0-488f-be8c-d054b38a866b,Teachers Colony Residential Area,religious / heritage site (not one of the five categories),,Overture,19.660436,78.52279,0.0
+b9f8a0de-6ac8-4059-ab59-a3f5ec92d5ac,Reliance Digital,not one of the five categories,,Overture,19.658551,78.523941,0.0
+13d6ae5b-f424-425a-9b75-cfe3751f2862,Ravi Bar and Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.658119,78.523748,0.0
+e751403b-001a-4b03-89be-759a3ad40521,Mahindra Tractors - Vinay Auto Tech Private Limited,not one of the five categories,,Overture,19.659046,78.524918,0.0
+9b10e1ad-1ce8-401f-a0e8-851e01503d86,Telangana Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.659031,78.524895,0.0
+7a0a6dc3-4a7f-4af6-b6ef-8fbf83c92147,The BLUEZ fitness pro,not one of the five categories,,Overture,19.659745,78.525665,0.0
+bd4f79ec-de49-4eee-a72c-40736195a150,Sri Krishna Steels,not a public facility (Overture category shopping),,Overture,19.659689,78.525613,0.0
+8dc4365e-52d8-4c31-8fc4-957dd7c8e752,Vani Medical and General Stores,commercial: pharmacy / medical shop (not a care facility),,Overture,19.65988,78.52544,0.0
+ea845b22-8320-416e-802f-475b33f55f0a,HDFC ERGO Insurance Agent: Poreddy Srinivas,not a public facility (Overture category financial_service),,Overture,19.660099,78.525302,0.0
+2fb83df3-48f8-4f86-80b2-8ae2666b1cbe,ICICI Bank,not a public facility (Overture category bank),,Overture,19.660458,78.525572,0.0
+8267c4e3-5df0-471a-9685-a6b546859564,Orientbell Tiles Boutique - Godhavari Enterprises,not a public facility (Overture category financial_service),,Overture,19.660001,78.530001,0.0
+268e058d-a122-40e7-96e9-91c403de7b77,Grow Bags Desi Seeds and All Organic Fertilizers – Hyderabad’s Best Gardening Store,not a public facility (Overture category shopping),,Overture,19.65926,78.528582,0.0
+901c33da-b349-459e-b4f3-d34a0d66d05f,Samsung SmartPlaza - Lavya Industries,not one of the five categories,,Overture,19.658111,78.528,0.0
+6c063060-7253-4d77-bf0a-558615294abb,HDFC ERGO Insurance Agent: Koduri Bharath Chandra Goud,not a public facility (Overture category financial_service),,Overture,19.656459,78.527751,0.0
+aebaf016-3a84-407c-af9c-ce11dc3af4a6,Tata Capital Limited,not a public facility (Overture category financial_service),,Overture,19.656459,78.527751,0.0
+014c27e8-cf81-4cc7-a51a-9f6ec0d032c7,Aksa Baking System,not one of the five categories,,Overture,19.656459,78.527751,0.0
+0711d1bd-c7e9-4292-8eac-e9a32717f884,Life Insurance Corporation Mini Office,financial institution / cooperative society (not a public office),,Overture,19.657431,78.527778,0.0
+014b25b5-d016-47da-9a6e-5105cedba779,Sparsh Furniture World,not one of the five categories,,Overture,19.657576,78.527672,0.0
+0cc44882-db05-40c4-aa5a-104ede985e3a,Super T-20 Stadium,not one of the five categories,,Overture,19.657562,78.525334,0.0
+8a06d316-721f-4b42-b2c4-282aba9f5ffc,Angel One Ltd. - Mohan Daratla,not a public facility (Overture category financial_service),,Overture,19.657462,78.524971,0.0
+495d5feb-24b7-49f0-9aa9-66aa446b2cca,HDFC ERGO Insurance Agent: M Gopi,not a public facility (Overture category financial_service),,Overture,19.65742,78.524585,0.0
+58cf7ad3-3a2a-48c1-99f6-ab71709fd9f1,HDFC ERGO Insurance Agent: Tabrez Mohiuddin,not a public facility (Overture category financial_service),,Overture,19.657405,78.524595,0.0
+d0a30d91-701f-4dc6-8b97-2d6f7268733b,HDFC ERGO Insurance Agent: Imrana Jabeen,not a public facility (Overture category financial_service),,Overture,19.657371,78.52463,0.0
+d1f51da9-a5db-4c6c-81e1-96fb2426ca6c,HDFC Bank,not a public facility (Overture category bank_or_credit_union),,Overture,19.657385,78.525703,0.0
+2f38204e-052f-4058-84f5-fbd5ac35b42c,Ayyappa Furniture and Enterprises,not one of the five categories,,Overture,19.657235,78.525933,0.0
+ec9c6dcc-2469-442b-a5dd-5cc9746a6253,Srinivasa Tiles and Sanitary,not one of the five categories,,Overture,19.656667,78.526123,0.0
+b44e2230-b960-4859-8785-255d9e4dfce3,"Tata Motors Cars Showroom - Sree Venkateswara Motors, Dasnapoor",commercial / transport / leisure (not one of the five categories),,Overture,19.656282,78.526818,0.0
+abcf13e6-daa1-4ec1-9071-a85517fdcb8d,Tata Motors Ganesh Motors Service Centre,commercial / transport / leisure (not one of the five categories),,Overture,19.656001,78.525643,0.0
+23db5815-7632-4441-927f-1a5f8fbf78a0,"Tata Motors Cars Service Centre - Sree Venkateswara Motors, Dasnapur",commercial / transport / leisure (not one of the five categories),,Overture,19.655878,78.529404,0.0
+9deec010-406b-4123-b3b0-c5902ba96618,Government Polytechnic,"carried over from the earlier exclusion list: vocational institute, outside the school/health/government classes",College,Overture,19.657143,78.535364,0.0
+5520c1fb-bf61-4700-b1c7-751e1d4e021c,District Sports Stadium Authority,not one of the five categories,,Overture,19.658227,78.533222,0.0
+f562acee-7c38-4eb5-bb46-43e51eddb066,Collectorate Bungalow,religious / heritage site (not one of the five categories),,Overture,19.660381,78.537283,0.0
+53205bc3-518d-43db-9ad6-ad8af6141584,Yedulapuram's Biryani Adda,not one of the five categories,,Overture,19.66092,78.537867,0.0
+168e5662-70b2-4dbe-b114-e7e1b93424ef,Kuchulapur,religious / heritage site (not one of the five categories),,Overture,19.659523,78.540933,0.0
+7fb83870-606b-4cdd-8d65-c6ebb712a466,IndianOil,not a public facility (Overture category gas_station),,Overture,19.659227,78.542239,0.0
+7fe14bac-33d0-4cd5-98d6-1e501c03b324,Sri Raja Rajeshwara Swamy Temple,religious / heritage site (not one of the five categories),,Overture,19.659402,78.540682,0.0
+b3b8d9c8-429c-40f5-b222-5a543648aad6,Vamshi Country Chicken Farm,not one of the five categories,,Overture,19.652081,78.545386,72.3
+da2a30a9-4424-480f-9b75-2d3258d13b4f,RMT Water Plant,not one of the five categories,,Overture,19.653919,78.544436,0.0
+4494c2d5-6dd9-411f-867f-b420bfdbd902,MSM Traders,not one of the five categories,,Overture,19.66546,78.578269,0.0
+5ca824b0-8aaf-4538-9a35-d2114d8a1dd8,Indianoil,not a public facility (Overture category gas_station),,Overture,19.666203,78.569069,3.2
+da1bb221-399f-4d40-b91d-0a5854c66b5e,Khan Transport Company,not one of the five categories,,Overture,19.685433,78.546093,0.0
+1539de38-5f88-423e-a3fa-79486e6cfec2,BGR Gardens,commercial / transport / leisure (not one of the five categories),,Overture,19.684864,78.543842,0.0
+22c04bb4-fdc7-49e1-98db-1923b5d269a3,Bank of Maharashtra ATM,not a public facility (Overture category bank_or_credit_union),,Overture,19.684717,78.543271,0.0
+bbe38f21-c4ef-4252-9ac3-d664cf7658b9,Ss conventionhall,outside the study polygon (8 m) - bordering,School,Overture,19.67308,78.56374,8.3
+ae0b8c99-f49b-4b0e-9add-83e69fccfe97,Arshad Saleem Homeopathic Clinic jaranwala,carried over from the earlier exclusion list: misgeocoded: Jaranwala is a city in Pakistan,,Overture,19.66885,78.54509,0.0
+6116e359-7746-4ef5-a947-056265461ea7,Masjid-E-Aqsa,religious / heritage site (not one of the five categories),,Overture,19.671802,78.544881,0.0
+91aa5284-cc4e-4030-8455-7b531b8baeca,Apollo Pharmacy,commercial: pharmacy / medical shop (not a care facility),,Overture,19.671381,78.539423,0.0
+11056b69-bc1a-4d0b-bfdc-fdcb1a0b3bd4,Arfa Garden,commercial / transport / leisure (not one of the five categories),,Overture,19.671205,78.539826,0.0
+dfc59f7e-2777-4636-b06c-d5cf76dd3c75,Shreyas IMC Ayurvedic Herbal Store,commercial / transport / leisure (not one of the five categories),,Overture,19.671107,78.537688,0.0
+f0010fb4-7974-43b6-bff7-14a5c68baee3,SRR Medical and Poly Clinic,commercial: pharmacy / medical shop (not a care facility),,Overture,19.67175,78.53701,0.0
+fb5ac90f-80ec-4e7f-afe8-3badf35cdb25,Muthoot FinCorp Ltd.,not a public facility (Overture category financial_service),,Overture,19.671888,78.537071,0.0
+f9a02059-691d-44f3-94d7-5aba663eb487,Muthoot FinCorp Gold Loan,not a public facility (Overture category credit_union),,Overture,19.671888,78.537071,0.0
+825534f8-6b71-4310-b306-596847ceb5ee,FATAY,not a public facility (Overture category professional_service),,Overture,19.6719,78.537,0.0
+c2ff976a-28ad-4eaf-bc23-589b95bf2204,Masjid-E-Ayesha,religious / heritage site (not one of the five categories),,Overture,19.672475,78.539596,0.0
+c7165672-e252-425e-8e1a-6034c61c67e2,Royal Enfield Showroom - Ashwik Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.672739,78.538366,0.0
+d84a5e28-fb2a-4e5a-b3e6-f67fba80d4c6,Tectonixindia,not one of the five categories,,Overture,19.673822,78.538064,0.0
+6ab8c442-81ed-4a4e-98cb-e32b061601ea,Company Power Gym,not one of the five categories,,Overture,19.673349,78.537989,0.0
+716b7297-834e-4fbb-a36f-3b57ce0cad71,Laxmi Gift Gallary,not one of the five categories,,Overture,19.673611,78.536601,0.0
+0fcc831c-ff81-4916-9b65-6293ff4ac9db,ASR Convention & Hotel Rooms,commercial / transport / leisure (not one of the five categories),,Overture,19.673676,78.536271,0.0
+dce12109-3279-4b57-8081-8291b771cdf1,Apollo Pharmacy Asifabad,commercial: pharmacy / medical shop (not a care facility),,Overture,19.672826,78.536491,0.0
+5fca4317-6594-49a0-ad6e-a78da3a8352b,Raviteja Hotels,commercial / transport / leisure (not one of the five categories),,Overture,19.672826,78.536491,0.0
+0a481174-6a1d-4946-a2ed-25a0d2468487,Smartcare Electronic,not a public facility (Overture category professional_service),,Overture,19.672601,78.536494,0.0
+e6d02f1f-92aa-4849-8500-c4e2e0735728,Mr. Tattoo | Tattoo studio in Adilabad,not one of the five categories,,Overture,19.673016,78.534629,0.0
+c54eb80d-a52d-4486-b0e0-1943e23c868f,MS Bakery,not one of the five categories,,Overture,19.672931,78.5342,0.0
+4af42807-817d-4925-ad3b-e6962456c530,Hotel Sai Panchvati,not a public facility (Overture category hotel),,Overture,19.673132,78.534446,0.0
+2bbb76a4-0983-49ea-b47f-7dd47f23374f,Killer exclusive Store Adilabad,commercial / transport / leisure (not one of the five categories),,Overture,19.673828,78.53405,0.0
+3a293cb9-d2f9-4e99-828e-d8179ed50dea,Gandhi Printing Press,not one of the five categories,,Overture,19.673759,78.533429,0.0
+c45f489e-db10-48f5-bae6-9d2e6b734667,HDFC Bank,not a public facility (Overture category bank_or_credit_union),,Overture,19.673751,78.533491,0.0
+de0bf506-024c-4f8c-9bc4-d84ad542a1c7,Geojit Financial Services Ltd,not a public facility (Overture category financial_service),,Overture,19.67375,78.533491,0.0
+2bad1781-b1a6-488e-8f43-14a1ca55a940,Sun N Shine NX Mens Wear,not a public facility (Overture category shopping),,Overture,19.673637,78.533414,0.0
+15427638-6598-43bf-af7b-6167e7b63477,MI STORE - Adilabad,commercial / transport / leisure (not one of the five categories),,Overture,19.67368,78.53351,0.0
+2c54ffde-3974-4741-9691-ffaf58c73085,Hyderabad shopping mall,commercial / transport / leisure (not one of the five categories),,Overture,19.67366,78.53359,0.0
+4b5ad022-7b3a-4f1e-aca2-25f4acaa70f2,ATR Constructions,not one of the five categories,,Overture,19.67366,78.53359,0.0
+ae467b91-376d-4c64-a5b8-c6c21b3f99dc,Peter England Menswear Exclusive Showroom,commercial / transport / leisure (not one of the five categories),,Overture,19.67347,78.53354,0.0
+ed65849c-bbfd-4a26-a62a-4be09d36a3ad,City Style Mens Wear,not one of the five categories,,Overture,19.673264,78.533508,0.0
+28892549-ee86-4d81-9109-0e0cb4cece6f,Muthoot Finance Gold Loan,not a public facility (Overture category credit_union),,Overture,19.673219,78.532316,0.0
+4656a440-2e16-4400-bfbe-1cda6fe7fdf3,Tanishq Family Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.673236,78.532182,0.0
+352cf10c-8abf-40e4-b579-7806be0f7d34,Lakshmi Medicals,commercial: pharmacy / medical shop (not a care facility),,Overture,19.673523,78.531273,0.0
+267ac12e-dcf6-486a-aa16-56549baf0589,Just Luxury,not one of the five categories,,Overture,19.672723,78.531804,0.0
+2891fe46-488b-4345-90a7-4efdcb3fa650,O2 Gym,not one of the five categories,,Overture,19.672818,78.531435,0.0
+7a6d8b38-7402-44ec-9c43-52dfc096fe2e,Mufti,not one of the five categories,,Overture,19.672825,78.53326,0.0
+c29bfe72-bc67-48c8-9a95-657ce7d6cd8a,Shri Varasiddhi Shopping Mall,not a public facility (Overture category shopping),,Overture,19.672932,78.533131,0.0
+1b444682-b805-4b50-8fd0-b0a8c7ae6c54,Bambooz Cafe,not one of the five categories,,Overture,19.672982,78.533456,0.0
+f78caf83-8aff-4ef2-8dbe-b138caeff1b5,Sangeetha Gadgets - Adilabad (Cinema Road),commercial / transport / leisure (not one of the five categories),,Overture,19.67264,78.533223,0.0
+5aa9eb80-0ddc-4138-ade6-fa4cc2a65cd1,DB Jewellers,not one of the five categories,,Overture,19.672661,78.533117,0.0
+d31bd7c5-47b9-4457-b50b-0a35fe1cf15b,Meenakshi Petroleum Agency,not a public facility (Overture category gas_station),,Overture,19.672356,78.5333,0.0
+9b9c2061-256b-419b-b265-96ca7e61da86,Surabhi Grand,not one of the five categories,,Overture,19.672206,78.53357,0.0
+170b921c-59ab-43bf-8920-b7af5b2f49f8,Mangalamurthy Hotels,not a public facility (Overture category hotel),,Overture,19.672156,78.533586,0.0
+80c5fd02-f4e6-416c-8510-d77509e24f10,Pandharpuri chai - Best tea in Adilabad AVS CAFE Sugar Cane is best in Adilabad,not one of the five categories,,Overture,19.672084,78.533346,0.0
+609c49a1-1290-4590-856f-6ade4add23b0,HDFC Securities - Adilabad,not a public facility (Overture category financial_service),,Overture,19.672088,78.53336,0.0
+7a33e2fd-4065-4e45-8ff5-d6881cff4f39,HDFC Bank ATM,not a public facility (Overture category atm),,Overture,19.672111,78.533334,0.0
+bf1816bd-3436-4267-a067-bfd4cb3de54a,Loft and Lotus,not one of the five categories,,Overture,19.672121,78.533368,0.0
+9c1bb3ba-f03a-4b18-b981-b884cdbe6e37,White Way Foot Ware,not a public facility (Overture category shopping),,Overture,19.672225,78.532968,0.0
+10322e49-39ca-466f-823d-a8c6612cb6f9,Yash Collection,not a public facility (Overture category shopping),,Overture,19.672108,78.532968,0.0
+e2bd7217-7aae-412f-938a-57ee1725433b,ankath art  photography,not a public facility (Overture category professional_service),,Overture,19.67215,78.533239,0.0
+b74d9beb-b375-4e8a-87ae-1997db2d2918,Dew Solutions,not a public facility (Overture category shopping),,Overture,19.672075,78.533361,0.0
+603cbd6c-34dc-4c41-9034-4043cbe9ca43,Telangana - Adilabad,not one of the five categories,,Overture,19.67153,78.533081,0.0
+a8fe8678-88de-4596-8e93-f27be81c8d1a,Ahuja Digital Colour Lab and Studio,not a public facility (Overture category professional_service),,Overture,19.671543,78.53301,0.0
+7f895af6-1807-4a4d-a91d-7d0a81b2d09f,Nagarjuna Medical and Opticals,commercial: pharmacy / medical shop (not a care facility),,Overture,19.671661,78.533032,0.0
+ea249ea3-820a-409c-a46d-fae5b90e76bf,Sangeetha Gadgets - Adilabad-3 (WIPL),not one of the five categories,,Overture,19.671723,78.533046,0.0
+84cd38d6-dd4e-481f-bc39-e07955fc97c4,Western Union,not one of the five categories,,Overture,19.67155,78.53275,0.0
+4e536ab2-4111-49b7-9cc0-cd7aecb8079b,Ganpati Diagnostic Centre .,commercial: diagnostic laboratory (not a care facility),,Overture,19.672113,78.532706,0.0
+0bea9710-9f8f-4cef-b9c9-1576539084d2,Ganpati Diagnostic Centre,commercial: diagnostic laboratory (not a care facility),,Overture,19.672166,78.53282,0.0
+68d0893c-4c26-4721-a24a-8f431b377e0c,A1 Glass Aluminium UPVC,not one of the five categories,,Overture,19.672142,78.530725,0.0
+a6cde017-855a-413d-910d-7cd58d29f602,Lot Mobiles,not one of the five categories,,Overture,19.671926,78.530833,0.0
+d6682b85-ec6b-4e49-b808-80609ae3f645,Aslam Mechanic,not one of the five categories,,Overture,19.671841,78.530887,0.0
+3bfcdd7a-27d2-42cd-8d10-4200d74dcf98,Sindh Boot House,foreign place name (mis-geocoded record from another country),,Overture,19.671876,78.53085,0.0
+aaf4f006-2ba3-4223-9b17-2699633c8a26,Garuda Mens Wear,not one of the five categories,,Overture,19.67183,78.53077,0.0
+17a23b3f-288a-4063-bca2-99ed32675562,Theweddingcamera,not a public facility (Overture category professional_service),,Overture,19.67181,78.53078,0.0
+93cde7d0-e05c-46b4-8172-17f577529915,Zeeshan Enterprises,not one of the five categories,,Overture,19.671745,78.531509,0.0
+72743bd3-b90d-4d78-be9a-eaa17eb15f4f,Sunshine Technologies,not one of the five categories,,Overture,19.671796,78.532042,0.0
+71826293-6d38-462c-8d95-995667ceca79,My Jio Store,commercial / transport / leisure (not one of the five categories),,Overture,19.671273,78.531924,0.0
+6913036f-b523-4900-aefd-285e9b2ab7d1,HDFC ERGO Insurance Agent: Sama Lasya Reddy,not a public facility (Overture category financial_service),,Overture,19.670702,78.531382,0.0
+d3fade08-cf40-4b01-b234-2ebf7b0cb91f,The Raymond shop,commercial / transport / leisure (not one of the five categories),,Overture,19.670893,78.531619,0.0
+9b8615c4-114d-4a0f-bbf8-3365125210a1,City Union Bank Adilabad,not a public facility (Overture category bank_or_credit_union),,Overture,19.671055,78.531926,0.0
+9e6c3cac-73f6-4ef5-afed-93fb27f76b2e,Sri Vishnu Printing Press,not one of the five categories,,Overture,19.670982,78.532165,0.0
+e35ef8d3-a8be-40f4-a074-9f3dc6423091,Gsr Tours and Travels,not one of the five categories,,Overture,19.670682,78.531835,0.0
+5a147101-8ccb-4de6-a76f-42b5e32705fa,Surya Paints,not one of the five categories,,Overture,19.670813,78.532457,0.0
+48884f3e-44b5-436f-bcfa-14461194f701,Muthoot FinCorp Gold Loan,not a public facility (Overture category credit_union),,Overture,19.670849,78.532803,0.0
+adeba394-cc97-4ffc-996d-85d90f7824e9,Raju Tea Point,not one of the five categories,,Overture,19.670945,78.532687,0.0
+4bcd1918-8330-4e5d-9116-0474a017ffbb,Manappuram Finance Limited,not a public facility (Overture category credit_union),,Overture,19.670899,78.532898,0.0
+83d041d3-fd87-4e47-b77e-efd82cf756b3,Shriram Finance Limited,not a public facility (Overture category credit_union),,Overture,19.671041,78.532681,0.0
+8c7e806d-3bdb-4c29-ba30-e7c524b524a8,Authorised Samsung Service Center - S S Cell Point,not one of the five categories,,Overture,19.670999,78.532285,0.0
+1675937b-a86e-4bdb-a484-a4b6bc6f4777,Unimoni Financial Services,not a public facility (Overture category financial_service),,Overture,19.671443,78.532755,0.0
+0eb17bd2-68ab-45fb-922b-4bdbd60b49bb,MoneyGram,not one of the five categories,,Overture,19.67145,78.532752,0.0
+0a7d9eae-6659-4dbd-b7c4-3def86112dec,"Unimoni Financial Services Limited, Adilabad",not one of the five categories,,Overture,19.671435,78.532746,0.0
+b1876ef9-8b27-4ab1-9490-60a997c8509a,Netaji Chowk,religious / heritage site (not one of the five categories),,Overture,19.671218,78.532748,0.0
+eb0176a7-bb3b-4cb2-9abd-314f346e6cd1,"ICICI Bank Cinema Road, Adilabad-Branch & ATM",not a public facility (Overture category bank_or_credit_union),,Overture,19.671183,78.532663,0.0
+a9779371-a964-4ed2-95db-89656806f50b,Ruchi Bangalore Bakery,not one of the five categories,,Overture,19.671222,78.532705,0.0
+7fa348b3-7097-4fe7-af6e-24d1a6bb75fc,Champion Tent & Lighting Decorators,not one of the five categories,,Overture,19.671128,78.532929,0.0
+bae1ee54-2242-4c02-963c-f0ceaf47f8a5,Sharma Opticals,not a public facility (Overture category shopping),,Overture,19.671128,78.532929,0.0
+39755e88-395d-442c-b7d9-1ca309fea35f,Muthoot FinCorp Ltd.,not a public facility (Overture category financial_service),,Overture,19.671126,78.532928,0.0
+1da24e6f-3857-4a1c-827e-d23eb4b9ea7e,Andeywala,not one of the five categories,,Overture,19.671128,78.532929,0.0
+97110c12-b3de-4edc-ab7b-05851ec4358d,Apex Men's Designer,not one of the five categories,,Overture,19.670814,78.533969,0.0
+522e02b0-a913-4bf2-9864-212efab140ff,Asian Paints Beautiful Homes Painting Service,not one of the five categories,,Overture,19.67119,78.53399,0.0
+33bd3c46-03e6-468e-ac44-909e90fa872c,Maheshwari Theatre,commercial / transport / leisure (not one of the five categories),,Overture,19.671647,78.534297,0.0
+eb07425f-25e6-45a2-816d-92345e6b44a3,Hocco Icecreams Adilabad,not one of the five categories,,Overture,19.67167,78.53431,0.0
+09e62962-a3e0-4d41-b6df-d331b890c6e9,Kalavathi voluntary blood bank,financial institution / cooperative society (not a public office),,Overture,19.67176,78.53428,0.0
+d973d968-2279-4b02-a42d-3ac9c3d77a7f,Vijay Enterprises,not a public facility (Overture category shopping),,Overture,19.671834,78.534206,0.0
+6d6d14b9-0c11-4e6a-a7b3-deaf8f2aed6a,Manappuram Finance,not a public facility (Overture category credit_union),,Overture,19.672075,78.533761,0.0
+5e698ea1-800c-4079-84f2-9f4c14504806,Shri Varasiddi Shoppin,commercial / transport / leisure (not one of the five categories),,Overture,19.672153,78.533738,0.0
+95aad740-2d85-45ce-8645-40a63fc20a7d,Aaradhya Fiber Home Networks,not one of the five categories,,Overture,19.672031,78.534261,0.0
+f04aa9af-e32f-47c1-ba3a-118fb6f125e1,Bajaj Finance Branch,not a public facility (Overture category credit_union),,Overture,19.671939,78.534136,0.0
+59e7ea25-08be-442d-b6f2-95d648281c94,Murali Krishna Temple,religious / heritage site (not one of the five categories),,Overture,19.671883,78.535192,0.0
+217c68b0-9aff-46b8-bece-49c110d67387,Sri sai Cnc designs,not one of the five categories,,Overture,19.671579,78.535085,0.0
+d01dd77f-da15-4aa9-9a83-ff50b599a00e,vaibhav home appliances,not one of the five categories,,Overture,19.671765,78.535436,0.0
+20c1da7d-38e7-4c18-a4b9-82bd49d034dc,Merina Electronics DJ Equipments Sales,not a public facility (Overture category shopping),,Overture,19.672104,78.535904,0.0
+97d205bf-772f-4088-acd5-7f899092356f,Shiva Temple,religious / heritage site (not one of the five categories),,Overture,19.672281,78.536419,0.0
+4679974c-cd6c-4c80-b8f9-c3d4edb5e6f7,Vaze Diagnostics,commercial: diagnostic laboratory (not a care facility),,Overture,19.672269,78.536564,0.0
+c4883066-68ab-4490-8144-1b1187e40898,"Govt. Municipal Graduate College, Faisalabad",carried over from the earlier exclusion list: misgeocoded: Faisalabad is a city in Pakistan,,Overture,19.6707,78.53616,0.0
+47ced2b8-53fe-4fb3-8f08-cb9f1e5c23cc,Gandewar Jewellers,not one of the five categories,,Overture,19.67084,78.5363,0.0
+3b9089a3-d3f7-477f-b6cf-d11ac812b87b,New Google Computers,not one of the five categories,,Overture,19.670521,78.535724,0.0
+81a837c8-5d72-4201-84ba-2928b7ba926d,Shyam plywood and hardware,not one of the five categories,,Overture,19.670612,78.535289,0.0
+b663ea21-e9f0-4ec0-8f1d-36de5422d642,Friends Mobiles,not one of the five categories,,Overture,19.67062,78.535242,0.0
+9a9ea8dc-0ade-405f-8cb6-ef9948a7c9c1,Delhi Mithaiwala,not one of the five categories,,Overture,19.670485,78.535262,0.0
+f1f060fd-a2a6-4411-8af1-3ae6132ccafd,New Adilabad Medicals,commercial: pharmacy / medical shop (not a care facility),,Overture,19.670492,78.535315,0.0
+f9c58341-656c-476d-9ab9-2a01cdd82079,Shambhavi medical,commercial: pharmacy / medical shop (not a care facility),,Overture,19.670566,78.535498,0.0
+205f0f06-3982-4abe-9587-58aa4cdc16b5,L.N Super Market,not one of the five categories,,Overture,19.670475,78.535243,0.0
+6e3ef3b8-aa68-471a-9e3a-553c56ac558d,Finvora Financial Solutions ,not one of the five categories,,Overture,19.67043,78.53591,0.0
+04ec9c1f-2b44-43ea-bc49-c1f36f075fbc,Vinayak Chowk Adilabad,religious / heritage site (not one of the five categories),,Overture,19.670334,78.535842,0.0
+9acccd98-b783-4b3e-bfab-843d2ea7b107,Jattu Tea Hotel,not a public facility (Overture category hotel),,Overture,19.67007,78.53575,0.0
+52a54b43-93e6-4d91-801c-3291353743d4,Vaidya Ayurvedic Research Centre,not one of the five categories,,Overture,19.670158,78.536401,0.0
+a3245955-f53c-4c38-a43e-ca8dc7082042,Venkateshwara Collections,not one of the five categories,,Overture,19.670172,78.536412,0.0
+dc1a8435-7035-41e3-b680-5a49a1effaca,Miracle Computer Solutions,not a public facility (Overture category shopping),,Overture,19.669198,78.536091,0.0
+2878a4f4-3487-4897-8d4e-dd38fda3193f,Sri Gopala Krishna Vidyamandir,religious / heritage site (not one of the five categories),,Overture,19.669143,78.53548,0.0
+157899ce-7b82-4f1c-a547-219f72d95888,Sri Ram Chandra Gopal Krishna Mutt,religious / heritage site (not one of the five categories),,Overture,19.66917,78.535382,0.0
+298d2db9-45ae-4ffd-a892-0bccf3fa2ee2,Shaja Yoga Adilabad,not one of the five categories,,Overture,19.66952,78.53523,0.0
+ed7bf6c3-319f-4cba-b2cd-b84bd0893d72,Y S R Real Estate Consultancy,not a public facility (Overture category real_estate_service),,Overture,19.669113,78.534823,0.0
+22e6fd65-b5ad-4b5f-8343-36d4c670cd53,Sagar Supar Market,not one of the five categories,,Overture,19.669095,78.534843,0.0
+dbbb49b2-b5b0-496f-a147-b004da1c6ee6,"Mahalaxmi Devi Temple , Mahalaxmiwada, Adilabad",religious / heritage site (not one of the five categories),,Overture,19.669218,78.534427,0.0
+fe42a8b4-068d-4b30-8863-3998e8a2ad59,Rajdani Sweets,not one of the five categories,,Overture,19.670381,78.535123,0.0
+86d0f1f1-7d64-454e-ba35-70a3f87b4299,Karanji-T,religious / heritage site (not one of the five categories),,Overture,19.67042,78.53517,0.0
+7744f269-084c-488d-9ba8-e36fccba74d2,Polawar Complex,not one of the five categories,,Overture,19.670622,78.535193,0.0
+2a985bc4-b501-4480-86dc-8732271da3f7,DB Wholesale Mart,commercial / transport / leisure (not one of the five categories),,Overture,19.67064,78.534584,0.0
+fa08eaf1-3e54-44d9-9b99-1c3305281e33,Trends Footwear,not one of the five categories,,Overture,19.670093,78.532519,0.0
+eb37ed3b-f25d-4ba8-a7b4-ea49fa8e30b7,Paragon Footwear,not one of the five categories,,Overture,19.670424,78.532736,0.0
+a6a540b1-f3ce-4ecb-9b4d-623fd5d5d655,Karthik Mobile,not one of the five categories,,Overture,19.670602,78.5326,0.0
+0b2ab13c-2403-49d0-9cf5-413e8ad7eab5,BC Study Circle,"carried over from the earlier exclusion list: a coaching centre, not a school",School,Overture,19.670498,78.531968,0.0
+ef710625-da77-4a59-bc05-2762470f7524,Hotel Dwaraka,not a public facility (Overture category hotel),,Overture,19.670511,78.531501,0.0
+aa4aa1c1-469e-46ad-bb76-6f0699ff7ab8,Bajaj Finserv Gold Loan,not one of the five categories,,Overture,19.670519,78.531202,0.0
+dd216809-0628-437c-b4d8-3d76ce0c11c4,Sri Sai Super Market,not one of the five categories,,Overture,19.670549,78.530804,0.0
+f3c9332b-44b5-4127-a585-0721367a3374,Metro Tours and Travels,not one of the five categories,,Overture,19.670288,78.53097,0.0
+fbafdd08-8225-434a-9f4c-8923dd0f4ecd,Vandana Diagnostic center,commercial: diagnostic laboratory (not a care facility),,Overture,19.670144,78.530955,0.0
+ef1d417f-cf50-486d-91b3-58ff0e92e304,Om Sai Mobiles,not a public facility (Overture category shopping),,Overture,19.670022,78.531151,0.0
+f8b7427a-0b3b-4534-9a95-1939e34648e4,Angel One Ltd. - Gundawar Sai Krishna,not a public facility (Overture category financial_service),,Overture,19.669831,78.531273,0.0
+6b74cfd9-bed3-47e9-ae1f-8b4c2ec57171,Laxmi Modular Kitchens & Furniture,not one of the five categories,,Overture,19.669652,78.531301,0.0
+9e414743-4f86-4e9c-84c3-7e76d3985473,Motilal Oswal Financial Services Limited,not one of the five categories,,Overture,19.66923,78.531368,0.0
+6b61f410-9bec-44a3-92b3-0c22de17ce79,Tata Capital Limited,not a public facility (Overture category financial_service),,Overture,19.669147,78.531301,0.0
+f1e6054b-e414-4557-b89d-71159cc20ef6,Lapcare,not one of the five categories,,Overture,19.669142,78.532298,0.0
+f14484eb-3557-4e88-8b84-8ac2e774feb0,One Stop It Solutions,not a public facility (Overture category shopping),,Overture,19.669136,78.532317,0.0
+7da7d60b-d7ec-4a2a-b6e3-b1478dbeae81,Apollo Diagnostics,commercial: diagnostic laboratory (not a care facility),,Overture,19.66918,78.532372,0.0
+18a5dd71-6ac1-4d3e-a298-40c0b0d9f147,Bata,not one of the five categories,,Overture,19.669514,78.532302,0.0
+0e2aa99f-5723-4c29-8313-f704603f7091,Jai Hanuman Tiles and Sanitary,not a public facility (Overture category shopping),,Overture,19.669522,78.532407,0.0
+cd8c7242-b0a4-4aea-8a1f-86842bfafde1,Fruitasty,not one of the five categories,,Overture,19.669601,78.532437,0.0
+b7cf10f7-79f7-4c0d-a67c-e61ec07a9fe2,Laxmi Automotives,not one of the five categories,,Overture,19.669851,78.53241,0.0
+20751d35-9c7a-4910-a1d0-c1288afc0dbf,TotalEnergies Quartz Auto Services - Laxmi Automotives,not one of the five categories,,Overture,19.669671,78.532605,0.0
+48fad5ec-c66b-4328-b5f9-da4371c1912f,J.M.D Printer's,not one of the five categories,,Overture,19.66836,78.53246,0.0
+e3ab8824-0ffb-4567-8145-163d3c1e8f62,HealthAssure - Alana Rehabilitation And Diagnostic Center - Adilabad | Blood Tests - Home Collection & Full Body Checkups,commercial: diagnostic laboratory (not a care facility),,Overture,19.667684,78.53072,0.0
+9ec89943-d979-448f-84f2-32e424eae424,Sri laxmi prasad traders,not one of the five categories,,Overture,19.667819,78.531439,0.0
+5b56d083-20ef-4386-9fae-3fec60293d5e,Shri Varasiddi Shoppin,commercial / transport / leisure (not one of the five categories),,Overture,19.667488,78.532586,0.0
+61d5e987-994f-4218-83d0-e4fe5ae74100,Somnath Shoes,not one of the five categories,,Overture,19.667488,78.532586,0.0
+3dddf4de-3c0b-43f5-848b-9b45825bb8c3,Central Garden TNGOs Function Hall,commercial / transport / leisure (not one of the five categories),,Overture,19.668274,78.532493,0.0
+496868f2-62ff-492d-bd51-3c413cb5ae24,Axis Bank ATM,not a public facility (Overture category atm),,Overture,19.669042,78.534649,0.0
+b06bb831-e52d-44f3-80a8-777a3f164270,Angel One Ltd. - Chintalpelly Kishore Reddy,not a public facility (Overture category financial_service),,Overture,19.668003,78.535818,0.0
+d6576c09-e0bd-46d8-9de9-46a7888abc98,Chaman Wale Baba Dargah,religious / heritage site (not one of the five categories),,Overture,19.670165,78.536886,0.0
+aa50aca4-b61e-47ea-bea7-9619ed32fef4,Dist Medical & Health Office Government,commercial: pharmacy / medical shop (not a care facility),,Overture,19.670206,78.536938,0.0
+72eb4883-4205-4915-b6c0-8f6ebf042a51,Best Friends Help Welfare Society,not one of the five categories,,Overture,19.670074,78.538216,0.0
+28305dba-2912-4919-9747-531e8e2a2259,Masood Chowk,not one of the five categories,,Overture,19.669982,78.538269,0.0
+263300cd-0649-4238-a00e-accf8cf02ffa,ZOOM Studio ADB.,not a public facility (Overture category professional_service),,Overture,19.670236,78.539025,0.0
+acca1cd5-c897-40fe-9343-2aea1bcb2de5,Urdu Ghar Function Hall,commercial / transport / leisure (not one of the five categories),,Overture,19.669203,78.539666,0.0
+ff56a519-e8fb-4828-9b1c-b1ade189caab,LB Mart,commercial / transport / leisure (not one of the five categories),,Overture,19.670351,78.541698,0.0
+4911f434-13c6-4896-8dc2-e40a57139384,Arfan Function Hall,commercial / transport / leisure (not one of the five categories),,Overture,19.669985,78.54255,0.0
+ded582b2-e2c8-4936-92b1-682148ca5687,Telangana,not one of the five categories,,Overture,19.66589,78.54027,0.0
+b51ca349-0915-4650-b376-5c9af5e92db0,Telangana Grameena Bank Shanthinagar Branch,not a public facility (Overture category bank_or_credit_union),,Overture,19.667197,78.538457,0.0
+32df6951-c874-405c-9236-05df609cf7c1,Masjid-E-Kausar,religious / heritage site (not one of the five categories),,Overture,19.665538,78.539194,0.0
+1c9dbb49-4414-434a-bcc1-a718a4d301eb,Indian Red Cross Society,not one of the five categories,,Overture,19.665789,78.538616,0.0
+554ce84c-6909-49de-856d-ab1ffe99c98e,Hyderabad Structural Beam Fabrication Sheds and Structures,not one of the five categories,,Overture,19.664378,78.538472,0.0
+07b5e24e-6193-495c-bb0b-400acba65b61,Urdu Mahel,religious / heritage site (not one of the five categories),,Overture,19.664685,78.53972,0.0
+f13f9396-f943-4910-a46a-741eee6366ac,Madina Medical Hall,commercial: pharmacy / medical shop (not a care facility),,Overture,19.664669,78.541032,0.0
+e60a5f11-7ade-4f28-82fb-1bd92077d3ac,Motilal Oswal Financial Services Limited,not a public facility (Overture category financial_service),,Overture,19.665331,78.540183,0.0
+d44a3325-63b6-486b-a8d1-1a9162efb626,Masjid E Abubaker,religious / heritage site (not one of the five categories),,Overture,19.665471,78.5428,0.0
+ec89cf24-1302-4da6-8ed4-2ab146f34379,Shanti NAGAR,"carried over from the earlier exclusion list: a locality name, not a facility",,Overture,19.662227,78.540003,0.0
+dd6ba197-bf8a-4568-a055-b17695130414,Hydrogrip,not one of the five categories,,Overture,19.66299,78.53807,0.0
+564dd705-b34e-40e4-8249-b214b31b3f19,"Morale School of Digital Era, Umerkot",carried over from the earlier exclusion list: misgeocoded: Umerkot is a city in Pakistan,,Overture,19.66299,78.53807,0.0
+f35830fb-7bba-438e-b3d7-1cb796a62964,Medics College of Pharmacy Dunyapur,commercial: pharmacy / medical shop (not a care facility),,Overture,19.66299,78.53807,0.0
+c10d9788-50f7-4c48-a042-793885a74e82,Toki Lifestyle,not a public facility (Overture category shopping),,Overture,19.66299,78.53807,0.0
+db60fc09-66c3-43a0-9516-22b80e8a1d94,دلاسہ,not one of the five categories,,Overture,19.66299,78.53807,0.0
+b0110c3c-ab3a-4bd0-8ad4-97ceaf403f84,University Of Mirpurkhas ,carried over from the earlier exclusion list: misgeocoded: Mirpurkhas is a city in Pakistan; same point as Dr. BR Ambedkar Open University Regional centre (duplicate record),,Overture,19.663867,78.538665,0.0
+b53374d7-ebf0-46f9-a4cf-914a642893d5,Sri Ram Temple,religious / heritage site (not one of the five categories),,Overture,19.664202,78.534095,0.0
+09d842d0-9498-4254-bd09-5b4ea3dcbf56,Beauty secrets ,not one of the five categories,,Overture,19.66344,78.53543,0.0
+b87680ed-2409-46b5-a52b-e8154ce8040e,Care secret ,not one of the five categories,,Overture,19.663409,78.53547,0.0
+7b13d8cb-60b5-4edc-8e72-db7f11a23ed3,Indira Priyadarshini Stadium,not one of the five categories,,Overture,19.66211,78.535877,0.0
+a0165a1d-a4a4-4bb5-89ce-06f06b1133ca,Gandhi Park,commercial / transport / leisure (not one of the five categories),,Overture,19.661388,78.534296,0.0
+ec705177-1003-4a54-9ab9-a718cba773b5,Deccan Gramin Bank Zonal Office,not a public facility (Overture category bank_or_credit_union),,Overture,19.662196,78.532669,0.0
+974bb37e-20bd-4377-9257-bad5d48d59ab,Metro Tailor,not a public facility (Overture category shopping),,Overture,19.661721,78.533066,0.0
+166293aa-96ce-482b-b50e-6292688238ef,Ganesh Canvassing Company,not a public facility (Overture category shopping),,Overture,19.664097,78.532049,0.0
+63e45319-3058-4fad-bcb1-66a278222f30,ARC Parcel Services Pvt. Ltd.,not a public facility (Overture category shopping),,Overture,19.664097,78.532049,0.0
+492afc2c-aa9f-40d0-ade5-68ec51b8042e,Sri Sai Maternity Hospital Sri Lakshmi Blood Bank,financial institution / cooperative society (not a public office),,Overture,19.664072,78.532027,0.0
+7feb7a32-dbde-478a-8629-6ac79d623bb5,Exide Care - Bharath Batteries,not one of the five categories,,Overture,19.664062,78.532011,0.0
+2ebd3c32-c299-4e38-b55a-0d18e2cad585,Axis Bank ATM,not a public facility (Overture category atm),,Overture,19.664062,78.53201,0.0
+85bb224f-3eb8-4cee-8f55-5e0acb1ad955,Motilal Oswal Financial Services Limited,not one of the five categories,,Overture,19.664062,78.532011,0.0
+c92624c1-8422-47d7-9fe8-abf172636560,Navata Road Transport,not one of the five categories,,Overture,19.664477,78.532424,0.0
+494f213e-6465-4377-8348-4a209e02d636,Minerva Ice Cream,not one of the five categories,,Overture,19.664363,78.534585,0.0
+497b2e7f-a852-420c-92e1-79e22705e48d,Sunrise Educational Hub,not one of the five categories,,Overture,19.66518,78.53579,0.0
+3b52c802-1d14-4cb3-950b-af62c27e29a7,Rahul MEDICAL & GENERAL STORE,commercial: pharmacy / medical shop (not a care facility),,Overture,19.666579,78.535395,0.0
+81b527cc-f32c-4c70-941f-a25db64d80e2,C.S.I. St. Peter's Church,religious / heritage site (not one of the five categories),,Overture,19.667161,78.535367,0.0
+e1fcc930-a8c5-4640-bc35-7675c7d957e2,multi purpose ground,not one of the five categories,,Overture,19.667215,78.533433,0.0
+a4fee681-a3e5-4b66-83de-aa16789bb6de,HDFC ERGO Insurance Agent: Kekkerla Krishna,not a public facility (Overture category financial_service),,Overture,19.666671,78.533331,0.0
+a156305e-ad34-4763-93db-e314cd37bb35,Khankha Masjid,religious / heritage site (not one of the five categories),,Overture,19.666671,78.533256,0.0
+6da727e9-183f-407d-867c-25b015197f18,Bhavitha Centre,"carried over from the earlier exclusion list: a coaching centre, not a school",School,Overture,19.666673,78.531787,0.0
+45a148c2-bbed-472f-b1f8-238a3c752180,New company Gym,not one of the five categories,,Overture,19.66649,78.53122,0.0
+57020dbf-69b3-46a8-bd9a-abb12a8e45af,Friends Radiums,not one of the five categories,,Overture,19.667046,78.530184,0.0
+c1295a73-a70a-477e-a8b6-4364b775000d,A 1 Lodge,commercial / transport / leisure (not one of the five categories),,Overture,19.666941,78.530255,0.0
+9a8a0f6d-dacd-411d-bade-ded8987f6222,KAKAKU The Guest House,not a public facility (Overture category hotel),,Overture,19.66683,78.530317,0.0
+0cb24eb8-8e28-4362-924a-ccbc105dd35c,SREE Ram cycle Store agency Adilabad,commercial / transport / leisure (not one of the five categories),,Overture,19.66621,78.53039,0.0
+8556eb81-86bd-47a7-ab38-29840ffbf674,NTR Chowk,not one of the five categories,,Overture,19.666148,78.530468,0.0
+7bfad10c-a11b-4027-9b44-ad97ed2a7ebf,Pick and Pack,not one of the five categories,,Overture,19.665939,78.530436,0.0
+458ee61a-c8c7-44d1-a9e8-53b15729f716,Telangana Chowk,not one of the five categories,,Overture,19.666047,78.530354,0.0
+293f5342-5bdc-4f5a-a97b-8cb20af320c7,Blue Dart DHL Courier,not a public facility (Overture category shopping),,Overture,19.666252,78.527982,0.0
+ed213139-d629-4b7d-8cbc-ad7c1610a335,Vrindawan apartment,religious / heritage site (not one of the five categories),,Overture,19.667292,78.527706,0.0
+2caaef13-6b0e-4d74-a637-1df115ee6388,Swaraj Medical Stores,commercial: pharmacy / medical shop (not a care facility),,Overture,19.66447,78.5289,0.0
+550eaf27-178b-4091-982e-a4eebe2c16af,"Elite Associates Consulting Engineers, Architects and Interior Designers",not a public facility (Overture category professional_service),,Overture,19.664957,78.528451,0.0
+8e841fc4-05cd-4512-842a-4405b48f84d2,Genivis Franchise,"carried over from the earlier exclusion list: a business franchise, not a public health facility",Hospital,Overture,19.665017,78.528358,0.0
+a3cd9741-eb9b-49c4-8493-55a610f6c58a,SVM Financial Services,not one of the five categories,,Overture,19.665017,78.528358,0.0
+1dec2ccc-4b87-433e-b119-2f369ce2704c,One Stop IT Solutions,not one of the five categories,,Overture,19.665102,78.527886,0.0
+b06cf1d3-bfce-4e0c-9dba-ed27a6575db3,Collector Chowk,"carried over from the earlier exclusion list: a road junction name, not a facility",Government Office,Overture,19.664383,78.52921,0.0
+65f059cf-ccea-404f-add8-0a3952691ed8,Revenue Garden,commercial / transport / leisure (not one of the five categories),,Overture,19.663635,78.529949,0.0
+765a6e71-b941-4a09-8246-4d9673e015fc,Samruddhi Associates,not one of the five categories,,Overture,19.663831,78.52953,0.0
+c3bbedcd-e549-4594-8260-599ec15f12bb,Bgmi.Uc.seller,not one of the five categories,,Overture,19.66427,78.52903,0.0
+19042db2-8f90-46df-ba2b-5e845be0c746,Telangana Grameena Bank Collectorate Branch,not a public facility (Overture category bank_or_credit_union),,Overture,19.664227,78.528765,0.0
+e770292f-e0aa-4738-9b5a-d5ac8516de72,Bgr Tents,not a public facility (Overture category shopping),,Overture,19.66392,78.528595,0.0
+ebe454d9-d6e2-450f-858d-e62328f63203,Vijay TVS,not one of the five categories,,Overture,19.66371,78.527884,0.0
+64753db9-6d32-4d68-ba35-be9c67ada0ac,Jan Aushadhi Medical Store,commercial: pharmacy / medical shop (not a care facility),,Overture,19.663432,78.528728,0.0
+c157acba-8927-410d-a577-002befeca132,Radhakrishna Home Art,not one of the five categories,,Overture,19.663166,78.528531,0.0
+0e9b28a3-73fc-401e-a34b-e6f27480811c,Synosoft Computer Solutions,not a public facility (Overture category shopping),,Overture,19.662919,78.528148,0.0
+0553c1fe-1955-4db1-8976-83f6368a90f8,Apollo Pharmacy,commercial: pharmacy / medical shop (not a care facility),,Overture,19.66303,78.52788,0.0
+7e353fee-ba66-49c4-a508-342f278a618b,Maharaja Family Restaurant And Mandi,commercial / transport / leisure (not one of the five categories),,Overture,19.66292,78.52762,0.0
+9b7343b9-5eb3-4d88-87df-db8e160168e5,Mahadev Interiors,not one of the five categories,,Overture,19.66268,78.52806,0.0
+8f1f4b1b-a520-403d-9d7e-2911e911227f,RS Garden,commercial / transport / leisure (not one of the five categories),,Overture,19.662766,78.528875,0.0
+b02b6f10-026a-4308-9252-5221a2513a4c,Rims Quarters,not a public facility (Overture category real_estate_service),,Overture,19.661827,78.527842,0.0
+56271782-feb4-412e-8bed-faca5a0e9a47,Rims Drug Storage,commercial: pharmacy / medical shop (not a care facility),,Overture,19.662326,78.528311,0.0
+dd8d3283-66eb-4e9a-a5f6-af6ee4c7ca14,Meghraj Omprakash / Sri Durga Traders,not one of the five categories,,Overture,19.6625,78.52721,0.0
+12d35670-aea2-4ae0-b555-87603e360957,KFC,not one of the five categories,,Overture,19.662555,78.527486,0.0
+291effb9-97ad-4b74-909c-2943357e163e,"Rajiv Gandhi Institute of Medical Sciences (RIMS), Adilabad",commercial: pharmacy / medical shop (not a care facility),,Overture,19.661808,78.527181,0.0
+a7460fe6-0cca-4402-99ff-05c5a88bdab2,Axis Bank ATM,not a public facility (Overture category atm),,Overture,19.66111,78.52653,0.0
+407738e2-e78b-4d0a-9976-54dcd91319ca,Rajiv Gandhi Institute of Medical Sciences and Hospital,commercial: pharmacy / medical shop (not a care facility),,Overture,19.662622,78.52585,0.0
+77265878-cc14-4b92-8082-db6d158498f6,IndusInd Finance and Marketing Services,not a public facility (Overture category financial_service),,Overture,19.662817,78.527535,0.0
+39d4569d-414a-47d5-8211-0b808130a218,Vyas Academy of Vedic Maths,commercial: coaching / tuition centre (not a school),,Overture,19.66334,78.52096,0.0
+34828c38-84fd-4e85-98e5-1227e91106af,Health Care Medical and General Stores,commercial: pharmacy / medical shop (not a care facility),,Overture,19.670465,78.520024,0.0
+f350de74-a99d-4ce2-96ca-f3677371c775,Jagana Kirana Shop,not a public facility (Overture category shopping),,Overture,19.669416,78.520786,0.0
+2645da62-339f-4f13-9877-58b4633e41b4,All India Radio 100.2 FM,not one of the five categories,,Overture,19.669598,78.522836,0.0
+103aed5e-7191-4b28-8d84-8858873d781c,Indianoil,not a public facility (Overture category gas_station),,Overture,19.669736,78.521943,0.0
+554e0f78-9b0a-4159-a051-c1bf2cbe1d3d,Royal Tours and Travels,not one of the five categories,,Overture,19.668214,78.52882,0.0
+e2f50b0e-18a7-40b3-a229-538d5938326a,Raviteja Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.66768,78.52896,0.0
+150da581-6883-4a5c-b98f-17da00d46cb6,Kakathiya Bar and Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.66769,78.528407,0.0
+53bfecae-874f-4b21-82c9-b07c2f96d1a8,Hotel Ravi Teja,not a public facility (Overture category hotel),,Overture,19.667537,78.528997,0.0
+559be5f0-52ba-45ae-881f-377b31a62b85,Thyrocare Lab,commercial: pharmacy / medical shop (not a care facility),,Overture,19.667546,78.530568,0.0
+28e1389c-c429-451d-b3d3-ed9ae160b7ef,SBI Life Insurance Co Ltd,not a public facility (Overture category financial_service),,Overture,19.668266,78.530404,0.0
+f4c0e71c-7772-4edb-834f-b62c83087ab9,Tumbledry Dry Clean & Laundry Service,not one of the five categories,,Overture,19.668125,78.529559,0.0
+976d6736-f7fd-4693-bf8e-35f2bb7015df,Apollo Pharmacy Adilabad Opp Bus Stand,commercial: pharmacy / medical shop (not a care facility),,Overture,19.668103,78.529582,0.0
+67c2a7d3-031a-44ca-bdf1-7ab322f1865a,Devi Bar and Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.668128,78.529591,0.0
+563517c4-7bdb-476e-bc58-37e613e04909,Hotel Laxmi Residency,commercial / transport / leisure (not one of the five categories),,Overture,19.668651,78.529489,0.0
+ffc9ab88-aefb-46aa-a66c-6e620bed6017,Praveen Radiums and Flex,not a public facility (Overture category shopping),,Overture,19.668859,78.529324,0.0
+41d41d56-2e6d-4388-9c3f-2f29dde75ed8,Dr Rahul pushkar,not one of the five categories,,Overture,19.668937,78.529006,0.0
+9915617c-d159-4014-8799-003b11950ce4,Mayuri Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.668962,78.528393,0.0
+f4c78481-9908-4f60-b545-b1e86a8270fb,Sri Gajanan Enterprises,not a public facility (Overture category shopping),,Overture,19.668317,78.528857,0.0
+8318f2f5-05c3-45b9-b830-3b44e5a5f3e1,Muthoot FinCorp Ltd.,not a public facility (Overture category financial_service),,Overture,19.669457,78.527573,0.0
+bc993de0-6657-424e-b285-d5a1bb5c07cb,ComputerGarage,not one of the five categories,,Overture,19.669755,78.528307,0.0
+575465b3-7c90-4298-a67e-b47f22e53639,Adilabad Bus Stand,not a public facility (Overture category bus_station),,Overture,19.669604,78.528041,0.0
+f1279be6-3cdb-4a5b-97c0-1e68f2d24edd,EPSON AUTHORISED SERVICE CENTRE - Sri Kala Computers,not one of the five categories,,Overture,19.669099,78.528786,0.0
+28bb5cac-d6c1-4b7e-ac05-f45250f9ad57,Global Net Services,not one of the five categories,,Overture,19.669113,78.529114,0.0
+8966dcff-37b2-4cd0-805d-133a226421b9,Ramdev Automobiles,not one of the five categories,,Overture,19.669221,78.529148,0.0
+20fa2eb9-7938-41a0-beb7-5147eaf2799f,Lapcare,not one of the five categories,,Overture,19.669239,78.529117,0.0
+8ac20237-1301-4763-8da8-b000e59e6245,Geojit BNP Paribas,not one of the five categories,,Overture,19.669869,78.53007,0.0
+3c16e2a8-1b53-47de-a80b-af79cee173ce,Jai matadi travels adilabad,not one of the five categories,,Overture,19.66973,78.52966,0.0
+cf690100-1896-4299-ade3-747d94f382f0,General Insurance,financial institution / cooperative society (not a public office),,Overture,19.669569,78.529237,0.0
+72b44d40-7d31-4f28-94f2-9a087e547ca5,IIFL Business Loan,not a public facility (Overture category financial_service),,Overture,19.669797,78.529311,0.0
+fd34a478-64ab-45d0-ba49-05f604ab872a,ARROW Computers,not one of the five categories,,Overture,19.67004,78.530044,0.0
+a7e9eecf-994a-420d-86ca-fd8d03882ae1,Vamshi Paints,not one of the five categories,,Overture,19.67004,78.530044,0.0
+558e94c6-18b1-4fb1-b4ce-d81d4c0e320e,Kuntala waterfall,not one of the five categories,,Overture,19.67004,78.530044,0.0
+5ece0e11-2e9e-4160-9489-bc9939a8575f,Nirmal,religious / heritage site (not one of the five categories),,Overture,19.67004,78.530044,0.0
+2c296539-5299-4d2f-a2c2-32ca193c45bf,Mastermobiles&computers,not one of the five categories,,Overture,19.67004,78.530044,0.0
+6462c935-4376-43a6-9d45-f64772947213,Khandala Adilabad,not one of the five categories,,Overture,19.67004,78.530044,0.0
+dfcfeb3b-56ec-4750-8378-c103d7626de9,Adilabad District,not one of the five categories,,Overture,19.67004,78.530044,0.0
+72863932-cfdc-4b26-8378-902b2972c9ea,Jai Bhavani motors adilabad,commercial / transport / leisure (not one of the five categories),,Overture,19.67004,78.530044,0.0
+7ffb0b7a-7db1-4a06-bf6e-9b435196acc5,OMSAI Traders,not one of the five categories,,Overture,19.67004,78.530044,0.0
+d3e15659-3470-4236-86db-b93079ca6405,Radhe Gift Gallery,not one of the five categories,,Overture,19.67004,78.530044,0.0
+a96216f8-fd50-41ee-90fb-4ba88e9b7360,Adilabad Uae Exchange and Fs Ltd,not a public facility (Overture category financial_service),,Overture,19.67004,78.530044,0.0
+1b5462d6-f8fd-4062-83b0-8d5ecc402d47,Sketch Computer & Digital Graphics,not one of the five categories,,Overture,19.67004,78.530044,0.0
+7c3add06-bd7f-4f5c-bc72-65dbc970449e,Parvathi Book Centre,not one of the five categories,,Overture,19.67004,78.530044,0.0
+b1a2ae61-633e-4ee0-a290-f30bc54ac149,R K Enterprises. - Hero MotoCorp,not one of the five categories,,Overture,19.67,78.53,0.0
+b5518ace-ab40-4019-9e79-88a6d9896b17,Rasheed's Digital Hub,not a public facility (Overture category professional_service),,Overture,19.67,78.53,0.0
+8c97b703-2f2c-43f9-8e79-5d8afd0b64a2,Bank of Maharashtra ATM,not a public facility (Overture category bank_or_credit_union),,Overture,19.67,78.530001,0.0
+dce689a9-3d13-48ed-8ac6-5530ef5538af,Alankit,not a public facility (Overture category bank_or_credit_union),,Overture,19.67,78.53,0.0
+b381c304-7c70-423c-8453-8777490ec6d2,Krishna Lodge,not a public facility (Overture category hotel),,Overture,19.670037,78.530229,0.0
+99748406-c9be-4de5-ba03-47b0c3dec8a4,Vamshi Travels,not one of the five categories,,Overture,19.669908,78.530197,0.0
+75746de4-be77-4260-b0ca-886d86a33c95,Muthoot FinCorp Gold Loan,not a public facility (Overture category credit_union),,Overture,19.670167,78.530355,0.0
+ec3e6984-acb4-45de-b5f0-7e3950dce281,"New royal bakery, adilabad",not one of the five categories,,Overture,19.67009,78.53036,0.0
+69c3af84-849c-4586-9756-8477647e9108,Kakatiya Shopping Mall,commercial / transport / leisure (not one of the five categories),,Overture,19.6701,78.53037,0.0
+79dd5a2b-ac39-4a25-9eb1-dcc24e612389,Arfa Hotel,not a public facility (Overture category hotel),,Overture,19.670093,78.530359,0.0
+49c4b075-b31b-4d28-a906-b6a2809bc6a4,Hotel Krishna,not a public facility (Overture category hotel),,Overture,19.67017,78.53063,0.0
+8b2f7704-02c9-43f0-b9af-7fac67978801,Apsara Lodge,not a public facility (Overture category hotel),,Overture,19.670234,78.530264,0.0
+b58b7e05-6d6d-4120-bf05-9b645d3860e7,Axis Bank,not a public facility (Overture category atm),,Overture,19.670117,78.53018,0.0
+644bdd9c-7850-4fe7-9a7e-e29b79e0a487,Sangeetha Gadgets - Adilabad (Bus Stand),commercial / transport / leisure (not one of the five categories),,Overture,19.669972,78.528884,0.0
+9a53d925-c4ae-461e-aa25-bc17f915abb7,Annapurna Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.670022,78.528049,0.0
+0a9b23d4-6772-4876-a531-feac8bb2ec8b,Telangana Grameena Bank,not a public facility (Overture category bank),,Overture,19.670158,78.527944,0.0
+a189f277-c052-401d-bf36-fd1a11ef3682,Adilabad Lodge,not a public facility (Overture category hotel),,Overture,19.670284,78.528273,0.0
+859e573d-1e19-4203-b0e8-750f6a892ce7,SkyFitness,not one of the five categories,,Overture,19.67046,78.52646,0.0
+9870d89c-4eed-4094-be8f-39aed10c726a,Vasavi Digitals,not one of the five categories,,Overture,19.66924,78.52678,0.0
+33e711db-b971-4c91-b832-cfe5580650ba,Al-falah associates,not one of the five categories,,Overture,19.66924,78.52678,0.0
+de8a2527-7955-4268-9fcb-2434fcab6862,Tharangini Function Hall,"carried over from the earlier exclusion list: a function hall, not a government building",,Overture,19.67089,78.52491,0.0
+92eff067-9916-4c2f-8697-5f76e18d5566,HDFC Bank ATM,not a public facility (Overture category atm),,Overture,19.670935,78.52491,0.0
+57ab98fc-933a-443c-b10b-9b774a73fd6c,Ayyappa Temple,religious / heritage site (not one of the five categories),,Overture,19.671945,78.525608,0.0
+cdcfdeaa-18ba-47fc-9206-5c3cd5bd7687,Narotham Reddy Photography,not a public facility (Overture category professional_service),,Overture,19.672229,78.526363,0.0
+710be093-24e0-4072-b9ee-e96666dbb6a2,Punjab National Bank - ATM,not a public facility (Overture category bank),,Overture,19.671036,78.527956,0.0
+a99d1ec4-ce75-4ade-bb6d-e876ef6be803,Punjab National Bank,not a public facility (Overture category bank),,Overture,19.671036,78.527956,0.0
+d2797180-8bfd-4570-8d7b-ae020a1a778c,Hyundai Prakash Hyundai Service Centre,not one of the five categories,,Overture,19.67147,78.528641,0.0
+8b98ef24-70d0-4da4-acec-91db1a26566d,State Bank of India ATM,not a public facility (Overture category atm),,Overture,19.670993,78.528872,0.0
+57d90c62-90de-4b07-844f-fa00671d3f7c,Apollo Pharmacy Adilabad Opp Bus Stand,commercial: pharmacy / medical shop (not a care facility),,Overture,19.671519,78.530312,0.0
+d6b0f0b9-6dba-4836-85e5-88b294af95f5,Bank of Baroda,not a public facility (Overture category bank),,Overture,19.672086,78.530282,0.0
+442c6597-726b-402b-a8ac-d60e4e766404,Shriram Finance Limited,not a public facility (Overture category credit_union),,Overture,19.672089,78.530519,0.0
+b2ba9ea6-a500-44ff-baa8-373d255f7ee7,Bridgestone Select - Srinivasa Tyres,not one of the five categories,,Overture,19.6716,78.5286,0.0
+69ea03ad-4260-4493-926b-8b49c4e10e82,MRF Tyres Exclusive - Annapurna Tyres,not one of the five categories,,Overture,19.671508,78.528588,0.0
+6ba79db7-cc82-4053-bc57-6623a489d70e,UPO Constructions,not one of the five categories,,Overture,19.671611,78.527821,0.0
+181d7e07-4875-44e8-8526-9c4c33b499ef,Ajwa Hotel,not a public facility (Overture category hotel),,Overture,19.67338,78.52865,0.0
+cc1bb78d-63b0-4845-937d-7ba46d75fef0,DataScience Masters,not one of the five categories,,Overture,19.673064,78.526742,0.0
+c6cf9ea5-dbca-4fb3-94d4-4c91379ba34c,Aksa Baking System,not a public facility (Overture category professional_service),,Overture,19.6796,78.5209,0.0
+7335dd82-d950-4c53-aaaf-4e90868540c1,Junaid Feroz Xerox Centre,not a public facility (Overture category shopping),,Overture,19.679051,78.520473,0.0
+8da1699b-1c92-4a61-bfd2-b6cf11dbbe7b,Indianoil,not a public facility (Overture category gas_station),,Overture,19.678701,78.523173,0.0
+e3b3bff2-bbd3-4dcd-ae72-d4ec6bdb2257,Adilabad Cotton Market,not one of the five categories,,Overture,19.679272,78.528467,0.0
+4ed8b3f5-282e-4ff2-a09d-661a53f77ee1,Mana Adb,not one of the five categories,,Overture,19.677889,78.529758,0.0
+1bd471af-a8fa-4079-bf7e-ed25aee04d60,SK. Jabbar Tyres,commercial / transport / leisure (not one of the five categories),,Overture,19.67754,78.52836,0.0
+a4e3baf6-5537-4f28-a5c6-5b3130171a6d,Bramham Temple,religious / heritage site (not one of the five categories),,Overture,19.677718,78.528092,0.0
+3e0b28f9-39ce-493b-a646-72480c0515e5,"Thirumala institute of medical sciences,adilabad",religious / heritage site (not one of the five categories),,Overture,19.677221,78.529055,0.0
+265169d9-3ed4-438f-ac47-4a488a0f6fa5,Thamshi Bus Stop,not a public facility (Overture category bus_station),,Overture,19.676832,78.530545,0.0
+9388d7fb-62ad-435f-b3e2-1e2315834b9f,Tamsi busstop adilabad,not one of the five categories,,Overture,19.67691,78.530166,0.0
+2c4311f6-a0a6-4486-ad76-f4bcd5bebf19,Ashok Batteries,not a public facility (Overture category shopping),,Overture,19.675868,78.530545,0.0
+75b305df-64d3-4abf-bf16-c969805fef36,Ram Bar and Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.675657,78.530432,0.0
+3cf1a4dc-a926-4c82-bcc9-ae0e39841569,Sony Batteries,not a public facility (Overture category shopping),,Overture,19.675641,78.530264,0.0
+d9d48862-95a0-484a-8131-a7fe80452b46,Mohammadia Masjid home,religious / heritage site (not one of the five categories),,Overture,19.674227,78.52832,0.0
+20145ea3-49c2-4ac6-a5b5-0059a0031f8a,Alhamdulillah Hotel,commercial / transport / leisure (not one of the five categories),,Overture,19.674186,78.528878,0.0
+48bc5764-0831-460d-84fd-1b87a9c40602,Muthoot FinCorp Gold Loan,not a public facility (Overture category credit_union),,Overture,19.675244,78.528884,0.0
+b156e22a-0be6-4a74-82e0-3538e687f501,MRF Tyres Exclusive - Sree Rama Tyre World,not a public facility (Overture category shopping),,Overture,19.674685,78.529671,0.0
+73f8e62a-c1a9-4570-8e4c-e057353f8c93,Zabir Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.6754,78.52989,0.0
+826d0d70-32ef-44aa-b56e-1f81ec902eec,Sun Opticals,commercial: pharmacy / medical shop (not a care facility),,Overture,19.674027,78.529934,0.0
+ee3ce346-e076-4151-8e1e-bc9cd6330fdb,Adilabad Zone,not one of the five categories,,Overture,19.674155,78.529905,0.0
+b7285d63-fc0d-42d6-96b7-b862309a0e12,Samsung SmartCafé (Apex Electronics Communication- Ses),not one of the five categories,,Overture,19.673961,78.533531,0.0
+937678c0-3901-49f5-bfbc-40a8cf54ea38,Chamunda Mobile Accessories,not one of the five categories,,Overture,19.674458,78.533219,0.0
+da48558e-1ec6-457f-93bb-04387c5f2a00,Muskaan Mobile,not one of the five categories,,Overture,19.674575,78.533384,0.0
+6598dafe-bfcc-4151-bfc8-4d132c3aad9e,HBN Dairies & Allied,not one of the five categories,,Overture,19.6746,78.53262,0.0
+f0c5b54e-9d95-415e-b36b-509994aaad24,SEASONS,not one of the five categories,,Overture,19.67469,78.53286,0.0
+0cbacf89-5e7f-4f82-834a-2dc04ba66190,Sri Ganesh Temple,religious / heritage site (not one of the five categories),,Overture,19.674876,78.533511,0.0
+03a1a0ac-7103-4871-bf58-c523d681a00a,HDFC ERGO Insurance Agent: Sateesh Yerravar,not a public facility (Overture category financial_service),,Overture,19.675165,78.533151,0.0
+f7bb23e7-aa08-437b-bd1c-42c053de34dc,Star Dresses,not one of the five categories,,Overture,19.675367,78.533623,0.0
+7ce1f8d4-5bb6-40e8-803e-a02f4110bb7b,Amrutha Tiffins and Meals,not one of the five categories,,Overture,19.675198,78.532901,0.0
+9962bd58-c555-48fc-93c0-5b405f8b6a14,Asian Natraj 70MM,not one of the five categories,,Overture,19.675183,78.531983,0.0
+a4237a57-9f06-4a89-8ca0-f42bdb5282e1,Asian Nataraj Theatre,commercial / transport / leisure (not one of the five categories),,Overture,19.675048,78.531893,0.0
+5d24c885-a883-4716-8ac5-27332536645c,Koratikal,religious / heritage site (not one of the five categories),,Overture,19.67478,78.5318,0.0
+fde27486-86a6-422f-958a-8e12782bd554,Koratikal,religious / heritage site (not one of the five categories),,Overture,19.67478,78.5318,0.0
+522fe8b0-a391-4c8f-bcf4-88bccf27764d,Natraj Deluxe Theatre,commercial / transport / leisure (not one of the five categories),,Overture,19.675036,78.531498,0.0
+89bdc7f9-160b-4ed1-a099-07ddc2429991,Taro Pumps - Sri Thirumala Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.675565,78.530746,0.0
+3d9d602d-9f75-4a2a-a462-2433ecef46cb,Royal Diesel Service,not one of the five categories,,Overture,19.675772,78.531175,0.0
+dc97aa60-37a9-4ee2-804d-bbaac0ca1d2b,Munna mobiles,not one of the five categories,,Overture,19.675849,78.531409,0.0
+947abc7b-914f-4c6b-b664-288ed8565abc,Ajit Automobiles Shop,not a public facility (Overture category shopping),,Overture,19.67578,78.531299,0.0
+e9b785dc-5e69-4b60-bba9-24e79a6f7800,Diamond Plywood and Glass Mart,commercial / transport / leisure (not one of the five categories),,Overture,19.675515,78.531944,0.0
+1fa44917-9a78-4c40-9436-ce4a3c909689,VRL Logistics Limited,not one of the five categories,,Overture,19.675588,78.531867,0.0
+875afb0b-c607-4dd0-8c94-8cf65573966d,Jagannath Builders Depot,not a public facility (Overture category shopping),,Overture,19.6759,78.53162,0.0
+d46f4e14-333b-4880-9bc2-f9b95c236b3d,SONY Gym,not one of the five categories,,Overture,19.675983,78.530834,0.0
+58c2bfa4-a784-4c86-870e-826e1d09b6e7,Shadab Biryani Hotel,not a public facility (Overture category hotel),,Overture,19.676335,78.531407,0.0
+79b5e9a0-62e5-402a-a896-55b0d11945fb,Kapparla Bus Stand,not a public facility (Overture category bus_station),,Overture,19.676485,78.530861,0.0
+b3739c19-03c1-4765-b0b9-a739464c7c07,Apollo Pharmacy Adilabad Tamsi Bus Stand,commercial: pharmacy / medical shop (not a care facility),,Overture,19.676841,78.530802,0.0
+c0f5e961-ac73-4aa9-9df9-e833ffb079da,Nikhil Fertilizers,not one of the five categories,,Overture,19.676815,78.531317,0.0
+d4cd4177-a0b8-45cd-a090-a3cd60fb5e68,Gayathri Seeds & Pesticides Gunj Road Adilabad,not one of the five categories,,Overture,19.676859,78.531134,0.0
+39d668b8-68fa-496b-a65a-b00811dd9bdb,Tulsi Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.676832,78.531405,0.0
+5041bfb0-9355-4a65-a834-56dbc1989448,Allahabad Bank-Adilabad,not a public facility (Overture category bank_or_credit_union),,Overture,19.676972,78.531555,0.0
+bf071425-560e-4fd5-9735-a2d31bd2666f,Indane - Rishi Shankar,not one of the five categories,,Overture,19.67692,78.531919,0.0
+fe5194b4-15f8-4152-94eb-0966b04f4658,Exide Care - Rk Enterprises,not one of the five categories,,Overture,19.676601,78.532101,0.0
+39a240ce-4796-4e24-a0cc-caead523f0b1,HDFC ERGO Insurance Agent: Darmod Mamatha,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+704d43d5-aa2b-427d-b47b-83a1cc8ed930,HDFC ERGO Insurance Agent: Kamera Mallesh,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+419df666-ac62-4edb-9a87-c04005fab28c,HDFC ERGO Insurance Agent: Padamatinti Nikhil,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+32a97e17-055f-4cd2-aca5-ebfb188cf266,HDFC ERGO Insurance Agent: Bolishetty Bharath,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+0b7bc7e3-f2c2-45d5-8ce1-f05da2d17d04,HDFC ERGO Insurance Agent: B Shankar Rao,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+c77d0f07-65cc-4f9d-85b4-c69ba987228b,HDFC ERGO Insurance Agent: Masoom Sanghi,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+b44f9f3f-160e-45f3-82ed-47df6b86882e,HDFC ERGO Insurance Agent: Pale Sugunakar,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+f991411f-a438-436f-89e1-be75d8a36d20,HDFC ERGO Insurance Agent: Jadi Thirupathi,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+a2772a73-8685-4c69-acd3-95987478dd77,Motilal Oswal Financial Services Limited,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+47ed421a-7dba-479d-a141-a779eecc4970,Shriram Finance Limited,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+e9d6cf3b-fcea-459e-b204-ce86488432bb,HDFC ERGO Insurance Agent: Ajay Kumar,not a public facility (Overture category financial_service),,Overture,19.676567,78.532084,0.0
+09944498-95ea-437d-913f-5ab346383961,Bug.private,not one of the five categories,,Overture,19.67634,78.53218,0.0
+1e384397-903f-4eee-a311-6cf8846133e6,SA Elite Sports,not one of the five categories,,Overture,19.67634,78.53218,0.0
+ec852834-fa1e-4b71-92c7-9cf9bcaa8d20,Aiza Store.pk,commercial / transport / leisure (not one of the five categories),,Overture,19.67634,78.53218,0.0
+36d39691-86e8-45e9-bf3b-5e9a943ee882,Wahab Fabrics,not one of the five categories,,Overture,19.67634,78.53218,0.0
+69fcea28-633c-4f57-98a2-0deea34e4eae,ZYAN Sports,not one of the five categories,,Overture,19.67634,78.53218,0.0
+66cf9351-8460-4dd0-a8e7-bdad98b6ded0,HA Sports,not one of the five categories,,Overture,19.67634,78.53218,0.0
+9b55c2d9-681d-4748-9a03-a597d2dfb569,Tech Souls,not one of the five categories,,Overture,19.67634,78.53218,0.0
+bbd093de-8e06-4a3b-977b-4c1274970f07,New Punjab Hindu Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.676345,78.532174,0.0
+070c213d-9269-4169-9447-1df0dbb0753a,FEMME WEAR,not one of the five categories,,Overture,19.67634,78.53218,0.0
+97cba629-5ae1-4da1-a5bf-bf4a854e0576,Apexora 360,not one of the five categories,,Overture,19.67634,78.53218,0.0
+e7498a47-4bb2-4009-907d-acd96bb1a7e3,Sathnala Dam,not one of the five categories,,Overture,19.676635,78.532236,0.0
+ba81e9de-b4a7-4b7d-99e3-0fceeb19dc84,New Era Academy,generic education record without a school / college name (not classifiable),,Overture,19.67692,78.533198,0.0
+e58377fb-58d3-4141-8e18-e67fd339d843,World Wander Kuntala Waterfall,not one of the five categories,,Overture,19.67692,78.533198,0.0
+74343e20-f904-4ad7-b13c-7f235b16e8d6,Extreme Fitness & Gym - Adilabad,not one of the five categories,,Overture,19.67692,78.533198,0.0
+11d43bf2-4a87-4415-9ea4-16308dfda29f,Vamshi Paints,not one of the five categories,,Overture,19.67692,78.533198,0.0
+26077b8c-e170-47b5-ad8b-e3138abd2941,its__me___kalyan,not a public facility (Overture category professional_service),,Overture,19.67692,78.533198,0.0
+5b97bf4d-f3c2-426e-92f8-979c05f768aa,"STAR Health Insurance Adilabad,Nirmal,Asifabad","carried over from the earlier exclusion list: an insurance office, not a school",,Overture,19.67692,78.533198,0.0
+d011bf45-ed12-4ce0-997e-a15a77183377,Bheempur Mandal,religious / heritage site (not one of the five categories),,Overture,19.67692,78.533198,0.0
+1feb56d2-81be-4a5f-9923-277af6c086bc,Mujgi,religious / heritage site (not one of the five categories),,Overture,19.67692,78.533198,0.0
+6899b5f1-829e-4319-b869-9c5da8bc603e,"Med plus pharmacy""Adilabad",commercial: pharmacy / medical shop (not a care facility),,Overture,19.67692,78.533198,0.0
+9e85c69e-f4b6-4c13-bdf2-1f6e527d08d9,Raghavendra Automobiles,not one of the five categories,,Overture,19.676909,78.53318,0.0
+a4dfc92e-4fdc-4f06-8a70-616cd951c760,Royal adilabadi,not one of the five categories,,Overture,19.676909,78.53318,0.0
+a57c15d9-fbe3-4da3-b965-6ed1dcfa8e95,Khizra Cap Mart,commercial / transport / leisure (not one of the five categories),,Overture,19.676909,78.53318,0.0
+bd701d9c-718f-4663-a735-e74954baf986,Calvary blood of christ ministries,religious / heritage site (not one of the five categories),,Overture,19.676909,78.53318,0.0
+b333f775-3902-4e64-a262-fb52f01ecf7e,TCS Computers Adilabad,not one of the five categories,,Overture,19.676909,78.53318,0.0
+0b3d7041-8ce6-438b-bfd6-c6e9124cb800,Lotus Family Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.676909,78.53318,0.0
+3dfdc667-215b-4fea-9e20-6099da0a73eb,Mahajan Coconut,not a public facility (Overture category shopping),,Overture,19.676557,78.533476,0.0
+57cd6ffd-07e3-4caa-a668-a1a3c97dd2f7,Green Footwear,not one of the five categories,,Overture,19.676304,78.53342,0.0
+4ebda1b7-99be-4207-a1c7-55e608f73ef8,Imran NX,not one of the five categories,,Overture,19.676106,78.533365,0.0
+3a7ef502-ca90-4327-94f0-bafbaab8d662,Mayur Seeds and Pesticides,not one of the five categories,,Overture,19.67627,78.532988,0.0
+b1dd4191-fafb-40f1-9444-de41b392001a,Khushi Bar & Restaurant,commercial / transport / leisure (not one of the five categories),,Overture,19.67626,78.532899,0.0
+1c0a95d8-d850-477f-b256-61df0b045621,TRENDS,not one of the five categories,,Overture,19.676203,78.532256,0.0
+b8efe28d-c729-4a91-b679-99831ce954da,Prince Traders,not one of the five categories,,Overture,19.675914,78.532921,0.0
+d638db8f-aedc-47c9-85ae-b7695fbd7f6e,Sri Mahalaxmi Watch and Gift Gallery,not one of the five categories,,Overture,19.675662,78.533539,0.0
+76350744-137d-4d00-8f0d-b72cc4c8a0ba,BigC Mobiles Addilabad,not one of the five categories,,Overture,19.675785,78.5344,0.0
+80cc55c2-f122-40c7-adbc-4daf0337a00d,Kumar shoes,not one of the five categories,,Overture,19.675528,78.534193,0.0
+1ec4b77b-56b1-4e36-af64-2941d343f05e,Chennawar Textile Complex,not one of the five categories,,Overture,19.675805,78.534472,0.0
+f47cd37d-1f3a-44c1-a769-130c994fda64,Union Bank of India,not a public facility (Overture category bank),,Overture,19.67591,78.53487,0.0
+87604015-494d-4ceb-9984-c730a0fe428c,Dharamashala,religious / heritage site (not one of the five categories),,Overture,19.676202,78.534361,0.0
+ff4957f9-320c-4147-a702-659f64ef9554,Jockey Exclusive Store,commercial / transport / leisure (not one of the five categories),,Overture,19.675988,78.533891,0.0
+21142c41-5c6a-4e5d-999d-9dbefcee16e2,Shri Guru Kripa Mithai Bhandar,not one of the five categories,,Overture,19.676345,78.534454,0.0
+636cb981-2745-48f0-a749-58605f9c5ce1,Ambedkar Chowk,religious / heritage site (not one of the five categories),,Overture,19.676402,78.534422,0.0
+983e13c4-f999-4937-912f-c8b3e6d160c1,Laxmi Prasanna Provisions,not a public facility (Overture category shopping),,Overture,19.676891,78.534891,0.0
+33d13524-d26d-44e9-975e-3a63800077d3,Gayatri Agencies,not a public facility (Overture category professional_service),,Overture,19.676561,78.534572,0.0
+5741c5b4-1ad0-4600-b6c1-5e04896d5ce7,Sri Sai Collections,not one of the five categories,,Overture,19.676381,78.534657,0.0
+33d2d6f5-d7a4-4a66-b87e-779f6d05bc7e,Apna Super Bazaar,not one of the five categories,,Overture,19.676931,78.535772,0.0
+0f0de002-42cc-4ffb-8e50-a3e6efe13f5d,Taha Collection,not one of the five categories,,Overture,19.67569,78.535892,0.0
+96110164-9503-41d4-9eac-393319dba8a6,Srinivasa Fertilizers,not a public facility (Overture category shopping),,Overture,19.675535,78.53553,0.0
+a1f505ed-a014-409c-91ca-371fb96127ff,HDFC ERGO Insurance Agent: Utla Hanmandlu,not a public facility (Overture category financial_service),,Overture,19.675628,78.536324,0.0
+9e4b7ee6-f915-43ea-a7d4-d82010d54885,Bhavani Bag Centre,not one of the five categories,,Overture,19.67569,78.536049,0.0
+221acaba-b1fa-4c06-b048-b18381b78895,Ajmer Saree Sale,not one of the five categories,,Overture,19.675817,78.536101,0.0
+e31705dc-6d0b-40f9-8bf1-b840acfd2c3f,Gandhi Chowk,not one of the five categories,,Overture,19.675601,78.536404,0.0
+4c937cf8-9eb1-4313-8182-efa754c30ece,Sonali Beauty Parlour,not a public facility (Overture category shopping),,Overture,19.674739,78.536771,0.0
+6198f126-611f-4c04-bbe7-440d7c537146,Manish Dresses,not one of the five categories,,Overture,19.67534,78.534164,0.0
+0a04cf94-15f5-4929-9b11-a2921b76fe66,Imran Collections,not one of the five categories,,Overture,19.675451,78.533979,0.0
+68825a52-8ead-4a77-80bd-9339f5dd6af6,Manipuram Gold Loans,not one of the five categories,,Overture,19.67523,78.53386,0.0
+50cb7014-36ca-43a4-87a7-aa7bfcc85a1b,Maheswara Selections,not one of the five categories,,Overture,19.67512,78.533927,0.0
+8202a0e4-8fb8-40c0-88de-2675b349290d,Big Bawarchi,not one of the five categories,,Overture,19.675157,78.534157,0.0
+1ab259ab-6882-481f-8b6f-e13ad6672967,Apple Mobile and Electronic,not one of the five categories,,Overture,19.674869,78.533814,0.0
+35213c0c-b00e-4d63-95f4-0c4dac68b018,Adilabad Ganesh Theater Complex,commercial / transport / leisure (not one of the five categories),,Overture,19.674693,78.533738,0.0
+33c4bbfb-330e-41c2-b30e-b694cc5b4846,Bank of Maharashtra - Adilabad Branch,not a public facility (Overture category bank_or_credit_union),,Overture,19.674696,78.534315,0.0
+38d846fd-895c-4b16-88c8-d70cc9c68c9f,BNew Mobiles,not one of the five categories,,Overture,19.674025,78.533753,0.0
+e5e4abf0-7dac-434c-980b-654da2257031,Just For U,not one of the five categories,,Overture,19.673995,78.533714,0.0
+30bf55f8-c188-4669-876a-6a08345a5a81,Rockstar Men Wear,not a public facility (Overture category shopping),,Overture,19.673963,78.533838,0.0
+23a1dec8-311e-4f5c-b7d4-d9829ff9856c,Apollo Pharmacy Adilabad 1,commercial: pharmacy / medical shop (not a care facility),,Overture,19.674191,78.535252,0.0
+99a7c3ec-083d-4aa1-9f14-a1ec43be91ca,Madem's Beauty Salon Professional,not one of the five categories,,Overture,19.674632,78.536565,0.0
+694d1148-d552-4048-9004-4c2333d63343,Nayak Gas Services,not a public facility (Overture category gas_station),,Overture,19.674245,78.536505,0.0
+5c5e4f1f-75b3-4aeb-abdb-6b85a5d34792,Taj Flower Marchant,not one of the five categories,,Overture,19.673956,78.537928,0.0
+e65e7166-bc8d-4198-a8ed-eb6c31ffcd8f,Sri Ganesh Jewellery,not one of the five categories,,Overture,19.674272,78.53811,0.0
+0a302c17-1463-4f1b-a0e5-63ff5c7568d0,HDFC ERGO Insurance Agent: Nitesh Sharma,not a public facility (Overture category financial_service),,Overture,19.674471,78.537851,0.0
+2a8069ec-55b7-47f8-ae02-132c00a1c3a2,Vaidya Ayurvedic Research Center,not one of the five categories,,Overture,19.6743,78.53803,0.0
+5d8d594f-89af-4a1f-9d76-964bfda5011a,Ramavatar Rajesh General Store,commercial / transport / leisure (not one of the five categories),,Overture,19.674458,78.538142,0.0
+423b453a-c383-4e3e-a9f6-6cdc8f8f1252,MS Florist,not one of the five categories,,Overture,19.674669,78.538105,0.0
+2c15b209-0f7c-44ad-88fc-5ecde0051079,New Maruti Sweets,not one of the five categories,,Overture,19.675243,78.53691,0.0
+5e666d27-5335-4532-9846-6bb9e30adf8b,Chintawar Jewellers,not one of the five categories,,Overture,19.674974,78.537913,0.0
+70e46614-c691-47eb-93ad-b4c73a30d984,Venkata Swarna Sri Jewellers,not one of the five categories,,Overture,19.674695,78.538201,0.0
+c314aa4e-a39a-4cd0-8447-3b8eb28c4f3a,Devi Pooja and General Kirana,not one of the five categories,,Overture,19.676316,78.538847,0.0
+d959c1f8-f8e2-47a3-ae92-f18a788bcaff,Kanyaka Parameshwari Temple,religious / heritage site (not one of the five categories),,Overture,19.676319,78.538817,0.0
+932d3a61-eb88-4b0e-89d6-d3f72d90450e,Good Luck Tech Solutions,not one of the five categories,,Overture,19.675531,78.538465,0.0
+c6dc90d9-2eca-44e3-b631-14c97bdb0c6d,Padmawar Complex,not one of the five categories,,Overture,19.675727,78.538519,0.0
+3ead6273-60ae-4231-b673-93bb22c49f99,Pochamma Mandir,religious / heritage site (not one of the five categories),,Overture,19.675981,78.538741,0.0
+4600f900-afec-45bf-bf6a-144adb6fd116,Zam Zam Perfumes & Books,not one of the five categories,,Overture,19.676162,78.537877,0.0
+11268719-ce58-4356-9562-875fa26aecbc,Dream Fashion Adilabad,not one of the five categories,,Overture,19.675537,78.537095,0.0
+94f1ec63-d15c-431e-a6ba-21a21b5fb557,China Boot House,not one of the five categories,,Overture,19.67552,78.537046,0.0
+5b26a43b-e0df-4057-a203-72d6185b6777,Bojjawar temple,religious / heritage site (not one of the five categories),,Overture,19.677207,78.538322,0.0
+e24e01f7-3a83-417b-b09d-84b3ecf0c3b3,Just Wow Collection's,not one of the five categories,,Overture,19.677157,78.53839,0.0
+53e57aba-1ceb-4c20-884c-70fcf8435a9a,Khanapur Lake,not one of the five categories,,Overture,19.677209,78.542663,140.5
+76a437cf-9998-4d36-9f23-03c7e9d47cae,Ram Mandir,religious / heritage site (not one of the five categories),,Overture,19.68019,78.5398,0.0
+325c481a-ff13-44e4-a282-aeee4899ab2d,Rani Bike Servicing Centre,not one of the five categories,,Overture,19.678951,78.536093,0.0
+f157181f-08cf-4caf-afc0-9a2a4db91e5a,Railway Station Bus Stop,not one of the five categories,,Overture,19.678937,78.536298,0.0
+6e19bcf0-ab70-466e-b67a-cef529071b7f,Company Tea point,not one of the five categories,,Overture,19.678768,78.536247,0.0
+ee270b92-741f-4691-a16d-7e74b59a9ee9,Minar Hotel,not a public facility (Overture category hotel),,Overture,19.678613,78.536045,0.0
+72b60416-4989-4739-9eec-813e903f00da,Apollo Pharmacy Adilabad 1,commercial: pharmacy / medical shop (not a care facility),,Overture,19.678089,78.535777,0.0
+46078e5b-c5ed-4079-86dc-7739e9948d5f,Sri ganesh lodge,commercial / transport / leisure (not one of the five categories),,Overture,19.678196,78.535284,0.0
+83aaecf7-36f4-4a2b-aca5-f6424cd9cc83,Mathura Lodge,not a public facility (Overture category hotel),,Overture,19.678208,78.535306,0.0
+4fb8b7c8-949f-4517-ae09-706045dcb6fa,Sk Zameer Auto Electricals,not a public facility (Overture category shopping),,Overture,19.678229,78.535414,0.0
+8821f4e3-69a2-4dee-958b-9d8ef3274f00,Maitri Digital Studio,not one of the five categories,,Overture,19.677919,78.535727,0.0
+584b323a-a2bf-4845-a71c-b0444f03c0da,Vinayaka Mobile,not one of the five categories,,Overture,19.678085,78.53575,0.0
+cd885cad-e55e-462f-8ef7-ae0167b83cea,Heena Electronics,not a public facility (Overture category shopping),,Overture,19.677428,78.535641,0.0
+560fd182-6747-4339-b468-fc8b41ba5f27,Agastya seeds and pesticides,not one of the five categories,,Overture,19.677284,78.535946,0.0
+81df0f38-7b0f-439e-b8c3-94d143fa4268,Akbani bags,not one of the five categories,,Overture,19.677272,78.535596,0.0
+d981f89e-173a-4a55-b64b-a56a940164f3,Shivaji Chowk,religious / heritage site (not one of the five categories),,Overture,19.6775,78.535515,0.0
+6a114cc7-0822-4f02-9387-39363accdf29,Shriram Finance Limited,not a public facility (Overture category financial_service),,Overture,19.677496,78.535628,0.0
+4d8d2338-30a5-4e39-a34d-5db75a9405c4,Kotak Securities,not one of the five categories,,Overture,19.677864,78.535244,0.0
+5dfbe5a2-a186-4a86-b477-dae31c26afb7,Pallavi Roadways,not one of the five categories,,Overture,19.677462,78.534129,0.0
+c7d6138b-5ee6-4f4d-9811-be93d281fb97,Dynamo Detailing ,not one of the five categories,,Overture,19.67736,78.53342,0.0
+ddc2709e-6e38-4fba-becb-3094736e76b3,skillsidehastle,not one of the five categories,,Overture,19.67736,78.53342,0.0
+25beb51a-f6b7-4459-a52b-3bdd27bba993,Indianoil,not a public facility (Overture category gas_station),,Overture,19.677174,78.533638,0.0
+cafaa2f2-f2d4-48dd-8224-324fae0ded64,Dr Vijayalakshmi Gynecologist,not one of the five categories,,Overture,19.677154,78.533542,0.0
+0dd96b57-ee2f-476c-a291-ae03f79d1d60,Peoples Cooperative Bank,not a public facility (Overture category bank_or_credit_union),,Overture,19.677154,78.533583,0.0
+08625812-540a-498b-be2e-01e5af0b9afe,Mana Gromor Adilabad,not one of the five categories,,Overture,19.677113,78.531685,0.0
+de591b24-2ba8-4c4a-91a6-8edffe87c2e0,Kps Enterprises,not one of the five categories,,Overture,19.681043,78.532833,0.0
+75fc801a-7b71-4150-a442-768a23d02e1d,HDFC Bank,not a public facility (Overture category bank_or_credit_union),,Overture,19.683071,78.53583,0.0
+e96a006d-834d-4c2d-b2e2-25c25a54e6bd,Adilabad Railway Station,not one of the five categories,,Overture,19.680432,78.536279,0.0
+53c71a36-13ee-41b3-a66a-f080a1576206,Hyderabad Heavy Auto Garage,not one of the five categories,,Overture,19.681279,78.539725,0.0
+bc952540-3e50-47ac-863c-2d1401bdc770,Hindustan Petroleum,not a public facility (Overture category gas_station),,Overture,19.682901,78.542091,0.0
+45544161-65e4-4379-b5a0-dfca8ef43b8d,Mahalakshmi Medicals,commercial: pharmacy / medical shop (not a care facility),,Overture,19.685351,78.53701,0.0
+315db0f5-3f03-4705-aab7-46593dd688d3,Kranthi Nagar Sai Baba Temple,religious / heritage site (not one of the five categories),,Overture,19.684256,78.533298,0.0
+827c3f6d-e9f8-4e96-8f01-9487516d9234,Panchamukhi Hanuman Temple,religious / heritage site (not one of the five categories),,Overture,19.684085,78.531704,0.0
+fd7f4392-cec2-40a2-b92a-3691189fe304,Hanfiya Masjid,religious / heritage site (not one of the five categories),,Overture,19.6852,78.53343,0.0
+f7b32ec8-cb19-4604-b13c-13794885bd6a,Ilahiya Masjid,religious / heritage site (not one of the five categories),,Overture,19.683468,78.528207,0.0
+cc0bdee3-5e39-4a54-8c59-c74087eb26cc,HDFC ERGO Insurance Agent: Kasarla Kranthi Kumar,not a public facility (Overture category financial_service),,Overture,19.691393,78.541734,0.0
+c106b9ac-772d-4def-8730-9adb30791890,Shree Siddi Vinayaka Temple,religious / heritage site (not one of the five categories),,Overture,19.689661,78.544152,0.0
+e4766fad-1bdd-4621-860b-b228e28fe31a,GS Estates Residential Area,religious / heritage site (not one of the five categories),,Overture,19.69159,78.54435,0.0
+61f14fd8-c126-4509-b510-1dbcce23be08,HDFC ERGO Insurance Agent: Lala Shiva Kumar,not a public facility (Overture category financial_service),,Overture,19.689988,78.54763,27.4
+4293b977-5f2b-4e36-8028-1ba512b76f31,Indane - Naik Gas Service,not one of the five categories,,Overture,19.688945,78.549845,142.1
+58ec327e-c0c9-4441-960f-74410065b1b1,Hindustan Petroleum,not a public facility (Overture category gas_station),,Overture,19.698488,78.545281,0.0
+c1b77263-74d6-4476-be47-6400a55cdff0,Gayathri Garden,commercial / transport / leisure (not one of the five categories),,Overture,19.699912,78.544471,0.0
+342b0639-0cc5-45ce-85fe-1d99ab8c07ad,Sonalika-Sai Ram Motors,commercial / transport / leisure (not one of the five categories),,Overture,19.701857,78.54533,0.0
+9dea07ff-ae3d-49d8-8fe7-749c6c066a75,The Holy Mountain Ministries,religious / heritage site (not one of the five categories),,Overture,19.702911,78.546864,0.0
+420a924c-77b9-4787-b6c4-af52de1c40e1,Oakley International School,outside the study polygon (167 m),School,Overture,19.711735,78.53856,166.9
+1733cbf4-e610-42e1-9920-e721837788fb,Reliance Petroleum,not a public facility (Overture category gas_station),,Overture,19.721764,78.540531,103.5
+e7dc9837-d232-4269-8da6-a3721a5e4a11,Adilabad Haritha Vanam - ఆదిలాబాద్ హరితవనం,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",Government Office,Overture,19.64224,78.53818,0.0
+6d3c8038-d059-463c-b3be-98f0a2bb32cb,Nalanda Degree College,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",College,Overture,19.64224,78.53818,0.0
+f9f5da8c-c38e-4bc1-a57e-4c0252f2c7c0,"DIET , Adilabad","placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",College,Overture,19.67004,78.530044,0.0
+c0918de7-6709-4b90-950f-6ea1c79cdbbf,Star glow international kids,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",School,Overture,19.67004,78.530044,0.0
+bb2593cc-e331-4718-84e4-01aad88df3bb,C.Ram Reddy M School  Adilabad,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",School,Overture,19.67692,78.533198,0.0
+e4796c81-e33b-422f-a82c-b12cc5408676,Amma Hospitals,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",Hospital,Overture,19.67692,78.533198,0.0
+9fd66eb2-1e54-4e93-8c33-65c67d0f4614,"Brilliant Grammar High School,Adilabad","placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",School,Overture,19.67692,78.533198,0.0
+c34f6c8e-a572-44ac-9889-778918989e89,"S.G.Govt., Polytechnic Adilabad","placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",College,Overture,19.67692,78.533198,0.0
+fc59bc1d-0348-4562-9a58-b25f362735cf,Al- Madina School Ichoda E/m & U/m,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",School,Overture,19.67692,78.533198,0.0
+node/2710957270,RIMS Medical College Hospital,duplicate of 'RIMS Medical College Hospital' (OSM:node/2710957801): same campus / facility across sources,Hospital,OSM,19.662765,78.525694,0.0
+node/6830806696,Vaibhavi Hospital,duplicate of 'Balaji Hospital' (OSM:node/6830806698): same campus / facility across sources,Hospital,OSM,19.668241,78.528254,0.0
+node/6830806681,Sandeep Pawar hospital,duplicate of 'Saketh Hospital' (OSM:node/6830806747): same campus / facility across sources,Hospital,OSM,19.668022,78.530843,0.0
+node/6853249016,Dr.Narayanareddy memorial eye hospital,duplicate of 'Dr. Narotham reddy childrens hospital' (OSM:node/6853249018): same campus / facility across sources,Hospital,OSM,19.672052,78.533173,0.0
+node/6825138440,"Urban Primary Health Centre, Putilibowli","duplicate of 'Urban Primary Health Centre, Putilibowli' (OSM:node/11935709492): same campus / facility across sources",School,OSM,19.668859,78.539429,0.0
+node/6830806785,Sri Rama Nursing Home,duplicate of 'Sri Test Tube Baby Centre' (OSM:node/6830806631): same campus / facility across sources,Hospital,OSM,19.67232,78.53228,0.0
+node/2710970233,Peoples Nursing Home,duplicate of 'New Hope Laparoscopy Centre' (OSM:node/6830806596): same campus / facility across sources,Hospital,OSM,19.652244,78.523352,0.0
+54f92861-bb49-4973-9cbe-0ee01cd369bc,Seshanna Chennawar Eye Centre,duplicate of 'Sheshanna Chennawar Eye Hospital' (OSM:node/6830806584): same campus / facility across sources,Hospital,Overture,19.643232,78.512268,0.0
+77d2f30b-f07b-4e1d-b6f1-f09f8aa0ccd2,Sanjay Gandhi Government Polytechnic College,duplicate of 'Sanjay Gandhi Polytechnic College' (OSM:way/265428174): same campus / facility across sources,College,Overture,19.652959,78.532698,0.0
+89fb5aeb-64a5-4b16-9887-98e31ba690a4,1-Town Police Station-Adilabad,duplicate of 'Post Office Passport Seva Kendra' (Overture:3a8e38dc-8887-4c12-a27b-4b14b9bc7f5e): same campus / facility across sources,Government Office,Overture,19.67162,78.53695,0.0
+043f0dc7-e26c-46c1-b19b-5608b80d485e,head post office,duplicate of 'Post Office Passport Seva Kendra' (Overture:3a8e38dc-8887-4c12-a27b-4b14b9bc7f5e): same campus / facility across sources,Government Office,Overture,19.67163,78.537156,0.0
+0498360e-06da-4e79-89ea-d2d351a4ac03,Kallem Bhooma Reddy Multispeciality Hospital,duplicate of 'Prime Neuro and General hospital' (Overture:535f9a0c-f1c6-4c4a-9b40-ebf671f5279f): same campus / facility across sources,Hospital,Overture,19.672318,78.530903,0.0
+a84a7cb4-e280-4f54-bf8e-2655400449ab,Srinivasa piles clinic,duplicate of 'Sri Sairam Multispeciality Dental Care- Laser & Implant Centre' (OSM:node/6830806591): same campus / facility across sources,Hospital,Overture,19.670855,78.532839,0.0
+9f837516-0c45-4250-aeb7-54c38d024b21,Sri Sairam Multispeciality Dental Care Laser and Implant Centre,duplicate of 'Sri Sairam Multispeciality Dental Care- Laser & Implant Centre' (OSM:node/6830806591): same campus / facility across sources,Hospital,Overture,19.670898,78.532797,0.0
+node/12595817020,Venkateshwara eye hospital,duplicate of 'Care Hospital' (OSM:node/6830806632): same campus / facility across sources,Hospital,OSM,19.670898,78.533672,0.0
+e43fcb58-6758-4ff8-be72-e539b0eca23f,anjum hospital,duplicate of 'Care Hospital' (OSM:node/6830806632): same campus / facility across sources,Hospital,Overture,19.670848,78.534853,0.0
+cd49b62b-2398-49cf-84b3-b139484db77d,Gowtham Model School,duplicate of 'Goutam Model school' (OSM:way/602493522): same campus / facility across sources,School,Overture,19.66892,78.536186,0.0
+aaa337d2-ba0d-4219-9371-2eb6241e69b6,Little Star High School,duplicate of 'Little Star School' (OSM:node/2712457116): same campus / facility across sources,School,Overture,19.668181,78.536262,0.0
+a8777914-ca7d-4993-ab05-e44d80323eae,Little flower english high school,duplicate of 'Little Flower English High School' (OSM:node/6837577252): same campus / facility across sources,School,Overture,19.66887,78.538233,0.0
+node/6853050131,Govt.Degree College for Men,duplicate of 'Government Arts College' (OSM:way/265610509): same campus / facility across sources,College,OSM,19.663539,78.537157,0.0
+faadb279-5e22-4477-8519-8ab3ff98d07d,Government Degree College Mens,duplicate of 'Government Arts College' (OSM:way/265610509): same campus / facility across sources,College,Overture,19.663175,78.538023,0.0
+5c984d97-8ba3-494f-8749-985f7a4e8862,Dream College of Nursing,duplicate of 'Government Arts College' (OSM:way/265610509): same campus / facility across sources,College,Overture,19.66299,78.53807,0.0
+da0dfd2d-b9da-44b1-aed9-fc8556e4198e,Government Degree College for Men,duplicate of 'Government Arts College' (OSM:way/265610509): same campus / facility across sources,College,Overture,19.663646,78.537244,0.0
+e0d4982e-53c6-4310-a5ec-b005f5707c0d,Sri Venkateshwara Children's Hospital,duplicate of 'Sri Venkateshwara Children's Hospital' (OSM:node/6830806563): same campus / facility across sources,Hospital,Overture,19.666671,78.530971,0.0
+4e38f1a3-adef-47bd-8391-893633f65438,District Collector Office,duplicate of 'Collector Office' (OSM:node/2710951599): same campus / facility across sources,Government Office,Overture,19.66622,78.52525,0.0
+7d98e485-653c-4057-b01f-225c185453fc,RIMS Adilabad,"duplicate of 'Aditya Junior College,Adilabad.' (Overture:23871ea1-dbe6-41c0-a923-c22f50ffc17d): same campus / facility across sources",College,Overture,19.665059,78.528302,0.0
+b46612ac-76fe-4f61-aee5-763dfe375dde,Vijetha Junior College,"duplicate of 'Aditya Junior College,Adilabad.' (Overture:23871ea1-dbe6-41c0-a923-c22f50ffc17d): same campus / facility across sources",College,Overture,19.665718,78.528793,0.0
+2647ac68-2105-4df1-ad36-e8d2a862645e,Vishwa Shanthi HIGH School,duplicate of 'Vishwa Shanti High School' (OSM:node/2712522320): same campus / facility across sources,School,Overture,19.67,78.52074,0.0
+87fdf5b7-175f-403c-ae85-052885e021d8,District Court,duplicate of 'District Court' (OSM:node/2710950647): same campus / facility across sources,Government Office,Overture,19.667963,78.523202,0.0
+c7cf5577-ccf8-4689-97ba-2fc6be0e70d0,"Aditya Junior College,adilabad",duplicate of 'Aditya Junior College' (OSM:node/6853050114): same campus / facility across sources,College,Overture,19.66924,78.52678,0.0
+cd0c1ec4-58fd-4824-8cdd-b1d08b1541bb,Sneha Nursing Home,duplicate of 'Sneha Nursing Home' (OSM:node/6830806622): same campus / facility across sources,Hospital,Overture,19.671294,78.530593,0.0
+fc6ae8a6-b3f7-4e8e-b19d-f95fff6ed3ec,Vivekananda High School,duplicate of 'Government Girls School' (OSM:node/2710942643): same campus / facility across sources,School,Overture,19.671462,78.528412,0.0
+98947642-989b-439c-b40e-189521f659cc,Government Girls High School,duplicate of 'Government Girls School' (OSM:node/2710942643): same campus / facility across sources,School,Overture,19.672077,78.528619,0.0
+ef2f47b1-66aa-456c-8705-aa893824ad65,Ayurvedic Clinic,"duplicate of 'Vaidya Ayurvedic Research Centre,Mahalaxmiwada' (OSM:node/6830806572): same campus / facility across sources",Hospital,Overture,19.673885,78.537824,0.0
+58ecb6b4-ad41-44fb-8821-5e6cfa20b738,Govt Hindi High School,duplicate of 'Government Hindi High School' (OSM:way/265612432): same campus / facility across sources,School,Overture,19.67987,78.53883,0.0
+node/6853249014,Sri vijaya sai dental hospital,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,OSM,19.678745,78.536593,0.0
+node/6853249012,laxmi narsimha hospital,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,OSM,19.6787,78.536249,0.0
+node/6853249015,seva hospital,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,OSM,19.678809,78.536647,0.0
+node/6853249013,Thirumala multi speciality dental clinic,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,OSM,19.67874,78.536289,0.0
+825a4bbe-85f5-4230-b0d2-a53b4b16ae12,Nikhil Multi Speciality Dental Care,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,Overture,19.67897,78.536711,0.0
+9d4b47e3-f25a-4de5-880e-b7abe111745a,Nakshatra Hospital,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,Overture,19.677984,78.535771,0.0
+42dde0a0-5bae-4967-addf-6481cc6751bb,Pragathi Uro & Kidney care Hospital,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,Overture,19.678026,78.535801,0.0
+1e99b9e0-9539-4f25-a4b8-9f2c6be0627d,Shree Gajanan Hospital,duplicate of 'nakshatra hospital' (OSM:node/6853249011): same campus / facility across sources,Hospital,Overture,19.678001,78.535778,0.0
+Q7589155,"St. Joseph's Convent High School, Adilabad",duplicate of 'St Josheph's Convent High School' (OSM:way/264584695): same campus / facility across sources,School,Wikidata,19.664735,78.530054,0.0
+c7067a3b-d289-40bf-b5fd-a0fabaac6dc5,St. Joseph's Convent High School,duplicate of 'St Josheph's Convent High School' (OSM:way/264584695): same campus / facility across sources,School,Overture,19.664849,78.531958,0.0
+Overture:61c05c4a-d23d-4be2-a601-430638a40f5b,Chavara Academy CBSE Mavala,no building within 35 m of the point (field / road / wrong pin): needs an on-site check,School,merged,19.66501,78.506882,0.0

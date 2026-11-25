@@ -181,7 +181,7 @@ def pick_callouts(ctx, ext, n=7):
     key = f.geometry.apply(lambda g: (round(g.x, 1), round(g.y, 1)))
     f = f[key.map(key.value_counts()) == 1]
     f = f[f.geometry.within(box(*ext))]
-    f["pr"] = f.facility_type.map({"government": 0, "health": 1, "school": 2, "anganwadi": 3}).fillna(4)
+    f["pr"] = f.facility_type.map({"government": 0, "health": 1, "school": 2, "college": 2, "anganwadi": 3}).fillna(4)
     f["hosp"] = f.name.str.contains("hospital|medical|institute|health", case=False, regex=True).astype(int)
     f = f.sort_values(["pr", "hosp"], ascending=[True, False]).head(n)
     return f
@@ -310,7 +310,7 @@ def map2(ctx):
                         Patch(fc="#ff7f0e", alpha=0.55, label="Road-gap house (routing target)"), Line2D([0], [0], color="#00e5ff", lw=1.2, label="Existing roads")],
                loc="lower center", ncol=4, frameon=False, fontsize=7.5, bbox_to_anchor=(0.45, 0.03))
     fig.suptitle(f"Map 2. Detected built-up units (n={int(n.sum()):,} inside the boundary) and verified public facilities ({len(S['fac'])}) with latitude / longitude", fontsize=11, y=0.96)
-    footer(fig, "Facilities: Overture places, verified with the Damarakunta rule (a detected footprint within 20 m); only records with a unique coordinate are labelled. " + NOTE)
+    footer(fig, "Facilities: audited table (OpenStreetMap, Overture Places, Wikidata / Wikipedia, checked against the Esri imagery and snapped onto the building footprint; configs/multivillage/villages/<village>_verified_facilities.csv); only records with a unique coordinate are labelled. " + NOTE)
     save(fig, ctx, "map2_footprints_facilities_latlon")
 
 

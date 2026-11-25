@@ -70,3 +70,41 @@ def candidates(places: gpd.GeoDataFrame, cell, footprints: gpd.GeoDataFrame, exc
     p["lon"], p["lat"] = wgs.geometry.x.round(6), wgs.geometry.y.round(6)
     p["x_epsg32644"], p["y_epsg32644"] = p.geometry.x.round(1), p.geometry.y.round(1)
     return p
+
+
+def curated_path(village_id: str) -> Path:
+    return REPO / "configs" / "multivillage" / "villages" / f"{village_id}_verified_facilities.csv"
+
+
+def curated(village_id: str, cell, footprints: gpd.GeoDataFrame) -> pd.DataFrame | None:
+    """The audited facility table (scripts/audit_facilities.py: OSM + Overture + Wikidata/Wikipedia + imagery, snapped onto footprints) in the frame the pipeline expects.
+    None if the village has no audited table (then the raw Overture places are used, as before). The audit already placed every point on a building, so the 20 m footprint rule is
+    only reported (against whatever footprints this run uses), not applied; the polygon test is still applied."""
+    f = curated_path(village_id)
+    if not f.exists():
+        return None
+    t = pd.read_csv(f)
+    if "use_in_analysis" in t:
+        t = t[t.use_in_analysis.astype(str).str.lower() == "true"].reset_index(drop=True)          # low-confidence pins stay in the audit table but are not analysed
+    ft = {"School": "school", "College": "college", "Hospital": "health", "Government Office": "government", "Anganwadi": "anganwadi"}
+    from shapely.geometry import Point
+    from pyproj import Transformer
+    xy = Transformer.from_crs(4326, "EPSG:32644", always_xy=True).transform(t.lon.values, t.lat.values)
+    p = gpd.GeoDataFrame(dict(id=t.facility_id, name=t["name"], facility_type=t.category.map(ft), taxonomy_primary=t.category.str.lower().str.replace(" ", "_"), category=t.category,
+                              confidence=t.confidence.map({"high": 0.95, "medium": 0.8}).fillna(0.7), confidence_label=t.confidence, verification_sources=t.verification_sources, snapped_to_building=t.snapped_to_building),
+                         geometry=[Point(x, y) for x, y in zip(*xy)], crs="EPSG:32644")
+    p["dataset"], p["addr_locality"] = "facility audit (OSM + Overture + Wikidata + imagery)", ""
+    p["inside_window"] = p.geometry.within(cell)
+    sidx = footprints.sindex
+    dist = []
+    for g in p.geometry:
+        near = list(sidx.query(g.buffer(200)))
+        dist.append(float(footprints.geometry.iloc[near].distance(g).min()) if near else float("inf"))
+    p["dist_to_nearest_footprint_m"] = np.round(dist, 1)
+    p["footprint_within_20m"] = p.dist_to_nearest_footprint_m <= FOOT_TOL_M
+    p["manual_exclusion"] = None
+    p["status"] = np.where(p.inside_window, "VERIFIED_USED", "OUTSIDE_WINDOW_NOT_USED")
+    wgs = p.to_crs(4326)
+    p["lon"], p["lat"] = wgs.geometry.x.round(6), wgs.geometry.y.round(6)
+    p["x_epsg32644"], p["y_epsg32644"] = p.geometry.x.round(1), p.geometry.y.round(1)
+    return p
