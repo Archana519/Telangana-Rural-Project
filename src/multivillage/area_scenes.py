@@ -53,7 +53,7 @@ def damarakunta_scene():
     return sc
 
 
-def village_scene(key: str, source: str = "auto", log=print):
+def village_scene(key: str, source: str = "auto", log=print, limit_targets: int | None = None):
     a = PS.AREAS[key]
     cfg = A.load_cfg(a["config"])
     d = A.data_dir(cfg)
@@ -62,16 +62,16 @@ def village_scene(key: str, source: str = "auto", log=print):
     if source == "segmentation" and not seg.exists():
         raise FileNotFoundError(f"{seg} not found (run the StrongDINOv2Seg stages on the PC first)")
     S = pickle.load(open(seg if use_seg else d / "state.pkl", "rb"))
-    cache = d / ("clearance_network_v1.pkl" if use_seg else "clearance_network_open_preview.pkl")
-    clear = CL.compute_clearance(cfg, S, d, cache_path=cache, log=log)
+    cache = d / ("clearance_network_v1.pkl" if (use_seg and not limit_targets) else f"clearance_network_preview_{limit_targets or 'all'}.pkl")
+    clear = CL.compute_clearance(cfg, S, d, cache_path=cache, log=log, limit_targets=limit_targets)
     info = SV.study_area_info(cfg)
     cell = S["cell"]
     mos = mosaic_path(key)
     sc = MM.scene_from_clearance(info["study_area_name"], info.get("boundary_type") or info["study_area_type"], cell, S["layers"]["roads"].geometry.intersection(cell), S["classified"], S["gap"], S["fac"], clear,
                                  mosaic=mos if mos.exists() else None, footprint_source="StrongDINOv2Seg + OpenCV" if use_seg else "Overture open footprints (PREVIEW)")
-    sc.preview = not use_seg
+    sc.preview = (not use_seg) or bool(limit_targets)
     return sc
 
 
-def scene_for(key: str, source: str = "auto", log=print):
-    return damarakunta_scene() if key == "damarakunta" else village_scene(key, source, log)
+def scene_for(key: str, source: str = "auto", log=print, limit_targets: int | None = None):
+    return damarakunta_scene() if key == "damarakunta" else village_scene(key, source, log, limit_targets)

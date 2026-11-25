@@ -101,7 +101,7 @@ def test_flow_figure_panels_render_without_network(tmp_path):
     ext = F.square_ext(cell)
     img = (np.full((50, 50, 4), 120, dtype="uint8"), (ext[0], ext[2], ext[1], ext[3]))
     fig, axs = plt.subplots(1, 3, figsize=(6, 2.2))
-    for ax, kind in zip(axs, ("input", "extract", "output")):
+    for ax, kind in zip(axs[:2], ("input", "output")):
         F.panel(ax, sc, ext, img, kind, F.nice_scale(ext[2] - ext[0]))
     F.figure_legend(fig)
     p = tmp_path / "t.png"

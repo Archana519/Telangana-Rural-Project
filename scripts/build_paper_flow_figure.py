@@ -1,17 +1,18 @@
 #!/usr/bin/env python
-"""The paper's one visual flow figure: Telangana locator + the input -> extraction -> output strip of each of the four study areas, at 300 dpi.
+"""The paper's one visual flow figure: Telangana locator + an INPUT -> FINAL OUTPUT pair for each of the four study areas, at 300 dpi.
 
-    python scripts/build_paper_flow_figure.py                    # -> paper_eris/figures/fig_flow_study_areas.png (+ a pdf copy)
-    python scripts/build_paper_flow_figure.py --dry-run          # report which inputs are present, render nothing
-    python scripts/build_paper_flow_figure.py --source segmentation   # require the StrongDINOv2Seg state (the paper figure); default auto = segmentation if present, else a PREVIEW from open footprints
+    python scripts/build_paper_flow_figure.py --source segmentation   # -> paper_eris/figures/fig_flow_study_areas.png (+ pdf); needs the StrongDINOv2Seg state of each area (your PC)
+    python scripts/build_paper_flow_figure.py --dry-run               # report which inputs are present, render nothing
+    python scripts/build_paper_flow_figure.py --source open --limit-targets 150 --out some.png   # layout PREVIEW from open footprints (stamped; never for the paper)
 
-Panel 1   Telangana state outline and district boundaries (geoBoundaries gbOpen IND ADM1 / ADM2, ODbL 1.0) with the four study locations and their settlement typologies.
-Rows 2-5  Damarakunta -> Adilabad -> Aswaraopeta -> Alampur, each (a) INPUT: Esri World Imagery 0.6 m + existing road network; (b) EXTRACTION: StrongDINOv2Seg footprints (road-gap target houses in orange)
-          + verified facilities of the five categories (School, College, Hospital, Government Office, Anganwadi); (c) OUTPUT: existing roads, Stage A independent routes (white dashed),
-          Stage B shared network (blue houses, red facilities), zero-crossing 5 m clearance planning, scale bar, north arrow.
+Layout: left column = Telangana state locator (district outlines, the four study locations with their typologies) and the shared legend; right column = four horizontal strips in the order
+Damarakunta -> Adilabad -> Aswaraopeta -> Alampur, each strictly a pair [INPUT] -> [FINAL OUTPUT]:
+  INPUT          Esri World Imagery 0.6 m + study-area boundary + existing road network;
+  FINAL OUTPUT   the same imagery with the extracted building footprints (road-gap target houses in orange), the verified facilities (School, College, Hospital, Government Office, Anganwadi)
+                 and the Stage B shared network of the zero-crossing 5 m clearance plan (blue: houses, red: facilities), scale bar and north arrow.
 Imagery: the local Esri mosaic when present, otherwise the Esri World Imagery export service (same imagery, resampled); every panel and the footer carry the Esri credit.
 Scenes come from src/multivillage/area_scenes.py (state + clearance pickles on your PC; Damarakunta: the committed Stage B layers and clearance network).
-A figure built from open footprints is stamped PREVIEW and is not meant for the paper: re-run on the PC after the segmentation stages.
+A figure built from open footprints or from a limited number of targets is stamped PREVIEW.
 """
 from __future__ import annotations
 
@@ -22,6 +23,7 @@ from pathlib import Path
 
 import geopandas as gpd
 import matplotlib
+import matplotlib.patches
 import numpy as np
 import requests
 from matplotlib.lines import Line2D
@@ -55,18 +57,16 @@ def locator(ax, log=print):
     host.plot(ax=ax, color="#ffe3a3", edgecolor="none", zorder=2)
     d.boundary.plot(ax=ax, color="#9a9a9a", lw=0.35, zorder=3)
     gpd.GeoSeries([tel], crs=4326).boundary.plot(ax=ax, color="k", lw=0.9, zorder=4)
-    off = {"damarakunta": (0.5, 0.35), "adilabad": (-0.15, 0.3), "aswaraopeta": (0.35, -0.05), "alampur": (0.3, -0.3)}
     for i, (k, nm, ty) in enumerate(STATE_ROWS, 1):
         lon, lat = LOC[k]
-        ax.plot(lon, lat, "o", ms=6, mfc="#d62728", mec="k", mew=0.6, zorder=6)
-        dx, dy = off[k]
-        ax.annotate(f"{i}  {nm}\n{ty}", (lon, lat), xytext=(lon + dx, lat + dy), fontsize=6.2, ha="left" if dx > 0 else "right", va="center", zorder=7,
-                    bbox=dict(fc="w", ec="#999999", lw=0.4, pad=1.6, alpha=0.92), arrowprops=dict(arrowstyle="-", lw=0.5, color="k"))
-    ax.set_title("Study locations in Telangana (districts outlined; study districts shaded)", fontsize=7.5, loc="left")
+        ax.plot(lon, lat, "o", ms=9, mfc="#d62728", mec="k", mew=0.7, zorder=6)
+        ax.text(lon, lat, str(i), ha="center", va="center", fontsize=5.6, color="w", fontweight="bold", zorder=7)
+    ax.set_title("Telangana: study locations", fontsize=7.2, loc="left")
+    ax.text(0.0, -0.02, "\n".join(f"{i}  {nm}: {ty}" for i, (k, nm, ty) in enumerate(STATE_ROWS, 1)) + "\n(study districts shaded)", transform=ax.transAxes, ha="left", va="top", fontsize=5.6, linespacing=1.35)
     ax.set_aspect(1.0 / np.cos(np.radians(17.8)))
-    ax.set_xticks([]); ax.set_yticks([])
-    for s in ax.spines.values():
-        s.set_visible(False)
+    ax.set_xticks([]); ax.set_yticks([]); ax.set_xlabel(""); ax.set_ylabel("")
+    for sp in ax.spines.values():
+        sp.set_visible(False)
 
 
 def square_ext(cell, pad=120.0):
@@ -99,18 +99,19 @@ def nice_scale(width_m):
 
 
 def panel(ax, sc, ext, img, kind, scale_m):
+    """kind 'input': imagery + boundary + existing roads; kind 'output': footprints + verified facilities + Stage B shared network (+ scale bar, north arrow)."""
     im, ex = img
+    ax.set_facecolor("#d9d9d9")
     ax.imshow(im, extent=ex, origin="upper", zorder=0)
     ax.set_xlim(ext[0], ext[2]); ax.set_ylim(ext[1], ext[3])
-    gpd.GeoSeries([sc.cell], crs=CRS).boundary.plot(ax=ax, color=MM.C_BOUND, lw=0.7, zorder=3)
-    sc.roads.plot(ax=ax, color="#000000", lw=1.1, alpha=0.4, zorder=3.5)
-    sc.roads.plot(ax=ax, color=MM.C_ROAD, lw=0.5, zorder=4)
-    if kind == "extract":
+    gpd.GeoSeries([sc.cell], crs=CRS).boundary.plot(ax=ax, color=MM.C_BOUND, lw=0.8, zorder=3)
+    dense = sc.stats["roads_km"] / max(sc.stats["area_km2"], 1e-6) > 15                 # a dense road layer would hide the imagery at this scale
+    sc.roads.plot(ax=ax, color="#000000", lw=0.6 if dense else 1.1, alpha=0.35, zorder=3.5)
+    sc.roads.plot(ax=ax, color=MM.C_ROAD, lw=0.25 if dense else 0.55, zorder=4)
+    if kind == "output":
         MM.draw_footprints(sc, ax, ext, False)
-        MM.plot_facilities(sc, ax, ext, 26)
-    elif kind == "output":
-        MM.draw_routes(sc, ax, False)
-        MM.plot_facilities(sc, ax, ext, 20)
+        MM.draw_routes(sc, ax, False, indep=False, shared=True)
+        MM.plot_facilities(sc, ax, ext, 24)
         x0, y0, x1, y1 = ext
         sx, sy = x0 + 0.05 * (x1 - x0), y0 + 0.06 * (y1 - y0)
         ax.plot([sx, sx + scale_m], [sy, sy], color="k", lw=2.2, zorder=30, solid_capstyle="butt")
@@ -118,56 +119,61 @@ def panel(ax, sc, ext, img, kind, scale_m):
         ax.annotate("N", xy=(x1 - 0.07 * (x1 - x0), y1 - 0.04 * (y1 - y0)), xytext=(x1 - 0.07 * (x1 - x0), y1 - 0.2 * (y1 - y0)), ha="center", fontsize=7, fontweight="bold", zorder=31,
                     arrowprops=dict(arrowstyle="-|>", color="k", lw=1.0), bbox=dict(fc="w", ec="none", alpha=0.7, pad=0.8))
     ax.text(0.99, 0.008, CREDIT_SHORT, transform=ax.transAxes, ha="right", va="bottom", fontsize=3.8, color="w", zorder=40, bbox=dict(fc="k", alpha=0.45, ec="none", pad=0.6))
-    ax.set_xticks([]); ax.set_yticks([])
+    ax.set_xticks([]); ax.set_yticks([]); ax.set_xlabel(""); ax.set_ylabel("")
 
 
-def figure_legend(fig):
+def figure_legend(fig, loc="lower left", anchor=(0.0, 0.0), ncol=1, fontsize=5.8):
     h = [Line2D([0], [0], color=MM.C_BOUND, lw=1.6, label="Study-area boundary"), Line2D([0], [0], color=MM.C_ROAD, lw=1.6, label="Existing road"),
-         Patch(fc="#ffffff", ec="#ffffff", alpha=0.45, label="Extracted footprint"), Patch(fc=MM.C_GAP, ec="#7a3a00", alpha=0.85, label="Road-gap target house"),
-         Line2D([0], [0], color=MM.C_INDEP, lw=1.4, linestyle=(0, (4, 3)), label="Stage A: independent route"), Line2D([0], [0], color=MM.C_SHARED, lw=2, label="Stage B: shared network, houses"),
-         Line2D([0], [0], color=MM.C_FAC, lw=2, label="Stage B: facility routes")]
+         Patch(fc="#ffffff", ec="#ffffff", alpha=0.45, label="Extracted building footprint"), Patch(fc=MM.C_GAP, ec="#7a3a00", alpha=0.85, label="Road-gap target house"),
+         Line2D([0], [0], color=MM.C_SHARED, lw=2, label="Stage B shared network: houses"), Line2D([0], [0], color=MM.C_FAC, lw=2, label="Stage B shared network: facilities")]
     for k in ("school", "college", "health", "government", "anganwadi"):
         m, c, lab = MM.FSTYLE[k]
         h.append(Line2D([0], [0], marker=m, color="none", markerfacecolor=c, markeredgecolor="w", markersize=8, label={"school": "School", "college": "College", "health": "Hospital", "government": "Government office", "anganwadi": "Anganwadi"}[k]))
-    MM.legend(fig, h, loc="lower center", ncol=6, fontsize=5.8, bbox_to_anchor=(0.5, 0.005), handlelength=1.8, columnspacing=1.0, borderpad=0.5)
+    return MM.legend(fig, h, loc=loc, ncol=ncol, fontsize=fontsize, bbox_to_anchor=anchor, handlelength=1.8, borderpad=0.6, labelspacing=0.45)
 
 
-def build(source: str, out: Path, dpi: int = 300, log=print) -> Path:
+def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None) -> Path:
     from src.multivillage import area_scenes as AS
     scenes = {}
     for k, nm, ty in STATE_ROWS:
         log(f"scene {k} ...")
-        scenes[k] = AS.scene_for(k, source, log)
+        scenes[k] = AS.scene_for(k, source, log, limit_targets)
     preview = any(getattr(s, "preview", False) for s in scenes.values())
-    fig = plt.figure(figsize=(7.2, 10.6))
-    gs = fig.add_gridspec(5, 3, left=0.045, right=0.995, top=0.985, bottom=0.075, hspace=0.07, wspace=0.025, height_ratios=[1.05, 1, 1, 1, 1])
-    axl = fig.add_subplot(gs[0, :])
+    fig = plt.figure(figsize=(7.2, 9.6))
+    # left column: locator on top, legend below; right column: four INPUT -> OUTPUT strips
+    gl = fig.add_gridspec(2, 1, left=0.015, right=0.305, top=0.945, bottom=0.015, height_ratios=[1.0, 1.25], hspace=0.12)
+    axl = fig.add_subplot(gl[0, 0])
     locator(axl, log)
-    for ri, (k, nm, ty) in enumerate(STATE_ROWS, 1):
+    gr = fig.add_gridspec(4, 2, left=0.335, right=0.995, top=0.93, bottom=0.012, hspace=0.17, wspace=0.075)
+    for ri, (k, nm, ty) in enumerate(STATE_ROWS):
         sc = scenes[k]
         ext = square_ext(sc.cell)
         img = imagery(sc, ext)
         scale = nice_scale(ext[2] - ext[0])
-        for ci, (kind, ttl) in enumerate((("input", "(a) Input: Esri 0.6 m imagery + existing roads"), ("extract", "(b) StrongDINOv2Seg footprints + verified facilities"), ("output", "(c) Output: zero-crossing planned network"))):
-            ax = fig.add_subplot(gs[ri, ci])
+        axs = []
+        for ci, kind in enumerate(("input", "output")):
+            ax = fig.add_subplot(gr[ri, ci])
             panel(ax, sc, ext, img, kind, scale)
-            if ri == 1:
-                ax.set_title(ttl, fontsize=5.6, pad=2)
-            if ci == 0:
-                ax.set_ylabel(f"{ri + 0}. {nm}\n{ty}", fontsize=6.2, labelpad=3)
+            axs.append(ax)
         st = sc.stats
-        fig.text(0.995, gs[ri, 2].get_position(fig).y0 - 0.001, f"{nm}: Stage A {st['indep_m'] / 1000:.2f} km, Stage B {st['shared_m'] / 1000:.2f} km ({100 * (1 - st['shared_m'] / st['indep_m']):.1f}% shorter), "
-                 f"{sum(v['routes_crossing'] for v in st['verify'].values())} building crossings; {st['n_gap']:,} targets, {len(sc.fac)} facilities; {st['area_km2']:.1f} km²", ha="right", va="top", fontsize=4.6)
-    figure_legend(fig)
-    fig.text(0.5, 0.0, f"Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Boundaries: geoBoundaries gbOpen (ODbL). Footprints are automatic detections; routes are planning alternatives; EPSG:32644.",
-             ha="center", va="bottom", fontsize=4.4)
+        axs[0].set_title(f"{ri + 1}. {nm} ({ty}), {st['area_km2']:.1f} km$^2$", fontsize=6.0, loc="left", pad=2.5)
+        axs[1].set_title(f"Stage A {st['indep_m'] / 1000:.2f} km $\\rightarrow$ Stage B {st['shared_m'] / 1000:.2f} km ({100 * (1 - st['shared_m'] / st['indep_m']):.1f}% shorter)\n"
+                         f"{sum(v['routes_crossing'] for v in st['verify'].values())} building crossings; {len(sc.fac)} verified facilities", fontsize=4.8, loc="left", pad=2.5, linespacing=1.25)
+        # the arrow between the two panels of the pair
+        b0, b1 = axs[0].get_position(), axs[1].get_position()
+        fig.patches.append(matplotlib.patches.FancyArrowPatch((b0.x1 + 0.004, (b0.y0 + b0.y1) / 2), (b1.x0 - 0.004, (b0.y0 + b0.y1) / 2), transform=fig.transFigure, arrowstyle="-|>", mutation_scale=8, lw=1.2, color="k", zorder=50))
+        if ri == 0:
+            fig.text((b0.x0 + b0.x1) / 2, 0.972, "INPUT: imagery, boundary, existing roads", ha="center", fontsize=6.4, fontweight="bold")
+            fig.text((b1.x0 + b1.x1) / 2, 0.972, "FINAL OUTPUT: buildings, facilities, Stage B network", ha="center", fontsize=6.4, fontweight="bold")
+    leg = figure_legend(fig, loc="lower left", anchor=(0.015, 0.075), ncol=1, fontsize=5.6)
+    fig.text(0.012, 0.012, "Basemap imagery: Esri, Maxar, Earthstar Geographics,\nand the GIS User Community. Boundaries: geoBoundaries gbOpen (ODbL).\nFootprints are automatic detections; routes are planning\nalternatives, not engineered roads. EPSG:32644.", ha="left", va="bottom", fontsize=4.2, linespacing=1.3)
     if preview:
-        fig.text(0.5, 0.5, "PREVIEW\nopen footprints: re-run on the PC\nafter the StrongDINOv2Seg stages", ha="center", va="center", fontsize=26, color="red", alpha=0.18, rotation=25, zorder=100)
+        fig.text(0.5, 0.5, "PREVIEW\nopen footprints / limited targets: re-run on the PC\nafter the StrongDINOv2Seg stages", ha="center", va="center", fontsize=26, color="red", alpha=0.18, rotation=25, zorder=100)
     out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out, dpi=dpi)
     fig.savefig(out.with_suffix(".pdf"), dpi=dpi)
     plt.close(fig)
-    log(f"wrote {out} ({'PREVIEW from open footprints' if preview else 'StrongDINOv2Seg'})")
+    log(f"wrote {out} ({'PREVIEW' if preview else 'StrongDINOv2Seg'})")
     return out
 
 
@@ -176,6 +182,7 @@ def main():
     ap.add_argument("--source", default="auto", choices=["auto", "segmentation", "open"])
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--dpi", type=int, default=300)
+    ap.add_argument("--limit-targets", type=int, default=None, help="PREVIEW only: plan the clearance network for the first N road-gap targets (stamped PREVIEW)")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
     if a.dry_run:
@@ -190,7 +197,7 @@ def main():
             print(f"{nm}: " + ", ".join(f"{p.name} {'OK' if p.exists() else 'absent'}" for p in need) + f", mosaic {'OK' if AS.mosaic_path(k).exists() else 'absent (Esri export service is used)'}")
         print("locator: geoBoundaries ADM1/ADM2 (downloaded and cached on first use)")
         return
-    build(a.source if a.source != "open" else "open", Path(a.out), a.dpi)
+    build(a.source, Path(a.out), a.dpi, limit_targets=a.limit_targets)
 
 
 if __name__ == "__main__":
