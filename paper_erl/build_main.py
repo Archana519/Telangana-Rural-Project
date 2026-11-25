@@ -47,7 +47,7 @@ abstract = (
 words = len(re.sub(r"\\[A-Za-z]+|[{}$~\\%]", " ", abstract).split())
 
 # ------------------------------------------------------------------------------------------------ front matter
-head = r"""% Environmental Research Letters (IOP Publishing, ISSN 1748-9326): IOP `iopjournal` class, single-column preprint output.
+head = r"""% Environmental Research Letters manuscript: article class, A4, 1 in margins, single column.
 % Written by paper_erl/build_main.py. Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main.
 \documentclass[11pt,a4paper]{article}
 \usepackage[margin=1in]{geometry}
