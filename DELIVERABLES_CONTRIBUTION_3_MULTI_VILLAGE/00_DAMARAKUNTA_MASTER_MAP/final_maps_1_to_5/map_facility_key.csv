@@ -1,0 +1,6 @@
+label,name,facility_type,routed,lat,lon
+F1,Damarakunta Gram Panchayat HQ,government,True,17.706411,78.753034
+F2,Kashireddypally Gram Panchayat HQ (Damarakunta revenue village),government,True,17.699092,78.779906
+F3,"SubCentre, Damarakunta",health,True,17.707184,78.751881
+F4,Mpps Damarakunta,school,True,17.707344,78.75043
+F5,Zphs Damarakunta,school,True,17.707573,78.750411

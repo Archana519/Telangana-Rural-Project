@@ -49,7 +49,7 @@ import matplotlib.pyplot as plt                                    # noqa: E402
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
-from src.multivillage import acquire as A, clearance as CL, master_map as MM, pipeline as PL, prepare as P, segmentation_variant as SVM      # noqa: E402
+from src.multivillage import acquire as A, clearance as CL, master_map as MM, pipeline as PL, pipeline_summary as PS, prepare as P, segmentation_variant as SVM      # noqa: E402
 
 CRS = "EPSG:32644"
 CREDIT = "Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community."
@@ -65,41 +65,68 @@ FROM_WGS = Transformer.from_crs("EPSG:4326", CRS, always_xy=True)
 # ------------------------------------------------------------------------------------------------ helpers
 class Ctx:
     def __init__(self, a):
-        self.cfg = A.load_cfg(a.village)
-        self.name = self.cfg["village"]["short_name"]
-        self.slug = self.cfg["village"]["work_slug"]
-        self.ddir = A.data_dir(self.cfg)
-        sp = Path(a.state) if a.state else self.ddir / "state_segmentation.pkl"
-        if not sp.exists():
-            sys.exit(f"{sp} not found: run scripts/run_village_end_to_end.py --village <id> --stage route first")
-        self.state_path = sp
-        self.S = pickle.load(open(sp, "rb"))
-        self.mosaic = Path(a.mosaic) if a.mosaic else REPO / f"data/villages/{self.slug}_esri/aligned/{self.slug}_esri_highres_mosaic_0p6m.tif"
-        self.imagery = self.mosaic.exists() and not a.no_imagery
-        self.out = Path(a.out_dir) if a.out_dir else REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE" / (self.cfg["village"]["folder"] + "_SEGMENTATION") / "final_maps_1_to_5"
+        self.dk = a.village == "damarakunta"                                           # Damarakunta: frozen Stage B layers, read-only; outputs go to 00_DAMARAKUNTA_MASTER_MAP/final_maps_1_to_5
+        if self.dk:
+            from src.multivillage import area_scenes as AS
+            self.AS = AS
+            self.cfg = A.load_cfg("adilabad_urban")                                    # common planner / cost parameters
+            self.cfg["village"] = dict(self.cfg["village"], id="damarakunta", short_name="Damarakunta", work_slug="damarakunta", folder="00_DAMARAKUNTA_MASTER_MAP", study_area_name="Damarakunta (village)",
+                                       study_area_type="TGRAC village polygon", boundary_label="Study-area boundary (TGRAC village polygon)", boundary_method="polygon_file", mandal="Markook", district="Siddipet")
+            self.name, self.slug, self.ddir = "Damarakunta", "damarakunta", None
+            self.state_path = PS.AREAS["damarakunta"]["maps"] / "clearance_network_v1.pkl"
+            self.S = AS.damarakunta_state()
+            self.mosaic = Path(a.mosaic) if a.mosaic else AS.mosaic_path("damarakunta")
+            self.out = Path(a.out_dir) if a.out_dir else PS.AREAS["damarakunta"]["maps"] / "final_maps_1_to_5"
+            t1 = pd.read_csv(REPO / "FINAL_PROJECT_OUTPUTS" / "01_DAMARAKUNTA_RURAL" / "tables" / "table1_length_reduction.csv")
+            x4 = t1[t1.configuration.str.startswith("x4")]
+            ind, two = x4[x4.method.str.startswith("Independent")].iloc[0], x4[x4.method.str.startswith("Two-stage")].iloc[0]
+            comb = x4[x4.method.str.startswith("Houses + facilities")].iloc[0]
+            self.main = dict(rows=[dict(plan="Independent least-cost routes", unique_len_m=float(ind.unique_len_m), routes_crossing=int(ind.routes_crossing_other_footprints), len_in_footprints_m=float(ind.len_in_other_footprints_m)),
+                                   dict(plan="Two-stage shared plan", unique_len_m=float(two.unique_len_m), routes_crossing=int(two.routes_crossing_other_footprints), len_in_footprints_m=float(two.len_in_other_footprints_m))],
+                             combined_unique_len_m=float(comb.unique_len_m))
+        else:
+            self.cfg = A.load_cfg(a.village)
+            self.name = self.cfg["village"]["short_name"]
+            self.slug = self.cfg["village"]["work_slug"]
+            self.ddir = A.data_dir(self.cfg)
+            sp = Path(a.state) if a.state else self.ddir / "state_segmentation.pkl"
+            if not sp.exists():
+                sys.exit(f"{sp} not found: run scripts/run_village_end_to_end.py --village <id> --stage route first")
+            self.state_path = sp
+            self.S = pickle.load(open(sp, "rb"))
+            self.mosaic = Path(a.mosaic) if a.mosaic else REPO / f"data/villages/{self.slug}_esri/aligned/{self.slug}_esri_highres_mosaic_0p6m.tif"
+            self.out = Path(a.out_dir) if a.out_dir else REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE" / (self.cfg["village"]["folder"] + "_SEGMENTATION") / "final_maps_1_to_5"
+            self.main = next(r for r in self.S["results"] if r["spec"]["kind"] == "main")["out"]
+        self.imagery = (self.mosaic.exists() or getattr(a, "esri_service", False)) and not a.no_imagery
+        self.service = getattr(a, "esri_service", False) and not self.mosaic.exists()
         self.out.mkdir(parents=True, exist_ok=True)
         S = self.S
         self.cell = S["cell"]
         self.roads = S["layers"]["roads"].geometry.intersection(self.cell)
-        self.main = next(r for r in S["results"] if r["spec"]["kind"] == "main")["out"]
         self.dpi = a.dpi
         if not self.imagery:
             print("NOTE: no imagery mosaic -> land-cover background (maps are NOT satellite maps)")
 
     def clear(self):
         """Building-clearance network (footprints hard-blocked; see src/multivillage/clearance.py); planned once and cached next to the state file."""
+        if not hasattr(self, "_clear") and self.dk:
+            import pickle as _pk
+            self._clear = _pk.load(open(self.state_path, "rb"))
         if not hasattr(self, "_clear"):
             self._clear = CL.compute_clearance(self.cfg, self.S, self.ddir, cache_path=self.state_path.with_name("clearance_network_v1.pkl"), log=print)
         return self._clear
 
     def scene(self):
         if not hasattr(self, "_scene"):
-            info = SVM.study_area_info(self.cfg)
+            info = SVM.study_area_info(self.cfg) if not self.dk else dict(study_area_name="Damarakunta (village)", boundary_type="TGRAC village polygon", study_area_type="TGRAC village polygon")
             self._scene = MM.scene_from_clearance(info["study_area_name"], info.get("boundary_type") or info["study_area_type"], self.cell, self.roads, self.S["classified"], self.S["gap"], self.S["fac"],
-                                                  self.clear(), mosaic=self.mosaic if self.imagery else None)
+                                                  self.clear(), mosaic=self.mosaic if self.mosaic.exists() and self.imagery else None, footprint_source="StrongDINOv2Seg + OpenCV" if not self.dk else "StrongDINOv2Seg + OpenCV (v8)")
+            self._scene.allow_service = bool(self.service)
         return self._scene
 
     def prep(self):
+        if not hasattr(self, "_prep") and self.dk:
+            self._prep, self._cost, self._inside = self.AS.damarakunta_prep(self.cfg)
         if not hasattr(self, "_prep"):
             self._prep = P.prepare_rasters(self.cfg, self.cell, self.ddir, log=lambda *a: None)
             self._cost, self._inside = P.cost_surface(self.cfg, self._prep, self.cell)
@@ -140,7 +167,16 @@ def decor(ax, ext, scale_m, north=True):
 
 def background(ctx, ax, ext, alpha=1.0, max_px=2200):
     """Esri imagery window (decimated) or, without a mosaic, the WorldCover land cover."""
-    if ctx.imagery:
+    if ctx.imagery and not ctx.mosaic.exists():                                   # opt-in --esri-service: the same Esri imagery through its export service
+        import io, requests
+        from PIL import Image
+        px = int(min(max_px, 2000))
+        r = requests.get("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export", params=dict(bbox=",".join(map(str, ext)), bboxSR=32644, imageSR=32644, size=f"{px},{px}", format="png", f="image"),
+                         headers={"User-Agent": "map-series/1.0"}, timeout=90)
+        ax.set_facecolor("#ececec")
+        ax.imshow(np.asarray(Image.open(io.BytesIO(r.content)).convert("RGBA")), extent=(ext[0], ext[2], ext[1], ext[3]), origin="upper", zorder=0, alpha=alpha)
+        ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.45, ec="none", pad=1))
+    elif ctx.imagery:
         with rasterio.open(ctx.mosaic) as s:
             win = from_bounds(*ext, transform=s.transform).round_offsets().round_lengths().intersection(rasterio.windows.Window(0, 0, s.width, s.height))
             sc = max(1.0, max(win.width, win.height) / max_px)
@@ -270,7 +306,7 @@ def map1(ctx):
     ctx.roads.plot(ax=ax, color="#00e5ff", lw=0.6, zorder=4)
     decor(ax, ext, 1000); ticks(ax, ext)
     ax.set_title(f"Map 1. {ctx.name}: satellite imagery, study boundary and existing roads", fontsize=10)
-    ax.legend(handles=[Line2D([0], [0], color="#ffeb3b", lw=2, label=f"{ctx.cfg['village']['boundary_label']}, {ctx.cell.area / 1e6:.2f} km²"), Line2D([0], [0], color="#00e5ff", lw=1, label="Existing roads (Overture / OSM)")],
+    ax.legend(handles=[Line2D([0], [0], color="#ffeb3b", lw=2, label=f"{ctx.cfg['village']['boundary_label']}, {ctx.cell.area / 1e6:.2f} km²"), Line2D([0], [0], color="#00e5ff", lw=1, label="Existing roads (TGRAC)" if ctx.dk else "Existing roads (Overture / OSM)")],
               loc="upper left", fontsize=7, framealpha=0.9)
     fig.subplots_adjust(0.07, 0.07, 0.97, 0.95)
     footer(fig, "Existing road layer: Overture Maps transportation segments (ODbL 1.0). " + NOTE)
@@ -339,15 +375,15 @@ def map3(ctx):
         decor(ax, (lim[0], lim[2], lim[1], lim[3]), 1000); ax.tick_params(labelsize=6)
         ax.ticklabel_format(style="plain")
         if title.startswith("Slope"):
-            plt.colorbar(im, ax=ax, fraction=0.04, label="slope (degrees)")
+            plt.colorbar(im, ax=ax, fraction=0.04, pad=0.02, label="slope (degrees)")
         if title.startswith("Cost"):
-            plt.colorbar(im, ax=ax, fraction=0.04, label="ordinal cost per 10 m (land cover + slope)")
+            plt.colorbar(im, ax=ax, fraction=0.04, label="ordinal cost per 10 m", pad=0.02)
         if "Land" in title:
             ax.legend(handles=[Patch(fc=WC[c][0], label=WC[c][1]) for c in codes], loc="lower right", fontsize=6)
     fig.suptitle("Map 3. Terrain, land-cover and constraint rasters used to build the cost surface", fontsize=11)
     footer(fig, "Blue lines: existing roads. Cost = land-cover base cost + slope surcharge (0 to 4 for slopes 0 to 10°); cells steeper than 25° are blocked. Land cover: ESA WorldCover v200 (CC BY 4.0); "
                 "terrain: Copernicus GLO-30. Planning alternatives, not verified roads. EPSG:32644 (UTM 44N).", credit=False)
-    fig.subplots_adjust(0.05, 0.06, 0.97, 0.94, 0.12, 0.14)
+    fig.subplots_adjust(0.05, 0.06, 0.97, 0.94, 0.3, 0.14)
     save(fig, ctx, "map3_terrain_cost_landcover_slope")
 
 
@@ -376,7 +412,7 @@ def map4(ctx):
              ha="center", va="top", fontsize=6.4, wrap=True)
     fig.suptitle("Map 4. Alternative routes versus the proposed shared network (two-stage plan; footprints hard-blocked, routes start at the building edge)", fontsize=11, y=0.985)
     footer(fig, "Stage A keeps K = 3 alternatives per target; only the least-cost first choice (independent route) is drawn as the alternative. Routes end on roads or on other routes; shared length is counted once. "
-                "The footprint-penalty plan used in the tables (mu = 4, soft) is compared in map 5. " + NOTE)
+                "The footprint-penalty plan used in the result tables (mu = 4, soft) is compared in network_length_cost_summary.csv. " + NOTE)
     save(fig, ctx, "map4_alternatives_vs_network")
 
 
@@ -397,47 +433,37 @@ def crossing_segments(routes, houses):
 
 
 def map5(ctx):
-    """Left: the footprint-penalty plan used in the result tables (mu = 4, soft) with the segments that run over another footprint in magenta; right: the building-clearance plan (hard-blocked), verified."""
-    S, sc = ctx.S, ctx.scene()
+    """Two windows of the 5 m zero-crossing plan, styled exactly like the master map: the master's zoom window (densest cluster) and the next densest cluster, Stage B shared network, verified facilities with the same
+    F<id> numbers and markers, and the full facility key. Stage A is shown in map 4 and the master map; the footprint-penalty comparison is in the table network_length_cost_summary.csv."""
+    sc = ctx.scene()
     st = sc.stats
-    zext = MM.pick_zoom(sc, 1400, 1000)
-    tg_ids = set(S["gap"]["hid"])
-    prim = [(t, g) for t, g, _, _ in ctx.main["geoms"]["two"]]
-    pfac = [(t, g) for t, g, _, _ in ctx.main["facility_geoms"]]
-    clr = [(f"H{int(h):04d}", g) for h, g in zip([int(str(r["target"])[1:]) for r in ctx.clear()["houses"]["shared"]], sc.shared_house)]
-    clf = [(None, g) for g in sc.shared_fac]
-    fig = plt.figure(figsize=(17, 8.0))
-    axs = [fig.add_axes([0.03, 0.2, 0.36, 0.62]), fig.add_axes([0.55, 0.2, 0.36, 0.62])]
+    z1 = MM.pick_zoom(sc)                                                 # = the zoom of master_satellite_planning_map.png
+    z2 = MM.pick_zoom(sc, exclude=z1)
     rows = {r["plan"]: r for r in ctx.main["rows"]}
-    two_u = rows["Two-stage shared plan"]["unique_len_m"]
+    soft = rows["Two-stage shared plan"]
     ce = rates()[1]
-    for pi, (ax, house, fac, title) in enumerate(((axs[0], prim, pfac, "Footprint-penalty plan used in the tables (mu = 4, soft penalty)"), (axs[1], clr, clf, "Proposed network with building clearance (footprints hard-blocked)"))):
-        MM.background(sc, ax, zext)
-        ctx.roads.plot(ax=ax, color="#000000", lw=1.8, alpha=0.45, zorder=3.5)
-        ctx.roads.plot(ax=ax, color=MM.C_ROAD, lw=1.0, zorder=4)
-        MM.draw_footprints(sc, ax, zext, True)
-        gpd.GeoSeries([g for _, g in house], crs=CRS).plot(ax=ax, color=MM.C_SHARED, lw=2.0, zorder=7)
-        if fac:
-            gpd.GeoSeries([g for _, g in fac], crs=CRS).plot(ax=ax, color=MM.C_FAC, lw=2.4, zorder=8)
-        segs, n = crossing_segments(house, S["houses_all"])
-        if segs:
-            gpd.GeoSeries(segs, crs=CRS).plot(ax=ax, color="#ff00ff", lw=3.0, zorder=9)
-        MM.plot_facilities(sc, ax, zext, 130, label=True)
-        L = two_u if pi == 0 else st["shared_m"]
-        nin = sum(1 for _, g in house if g.intersects(box(*zext)))
-        ax.set_title(f"{title}\nhouse routes over another footprint: {n} of {len(house)} (whole area), {len(segs)} segments marked magenta\n"
-                     f"unique house-route length {L:,.0f} m ({L / 1000:.2f} km); illustrative cost {lakh(L / 1000, ce)} (Rs {ce:g} lakh/km)", fontsize=8)
-        decor(ax, zext, 200); ticks(ax, zext)
+    fig = plt.figure(figsize=(17, 7.3))
+    axs = [fig.add_axes([0.02, 0.24, 0.37, 0.6]), fig.add_axes([0.405, 0.24, 0.37, 0.6])]
+    axk = fig.add_axes([0.80, 0.26, 0.195, 0.56])
+    for ax, e, ttl in ((axs[0], z1, "Window 1 (same window as the master map)"), (axs[1], z2, "Window 2 (next densest cluster)")):
+        MM.background(sc, ax, e)
+        gpd.GeoSeries([sc.cell], crs=CRS).boundary.plot(ax=ax, color=MM.C_BOUND, lw=1.0, zorder=3)
+        sc.roads.plot(ax=ax, color="#000000", lw=2.2, alpha=0.5, zorder=3.5)
+        sc.roads.plot(ax=ax, color=MM.C_ROAD, lw=1.3, zorder=4)
+        MM.draw_footprints(sc, ax, e, True)
+        MM.draw_routes(sc, ax, True, indep=False, shared=True)
+        MM.plot_facilities(sc, ax, e, 150, label=True)
+        n_in = sum(1 for g in sc.shared_house if g.intersects(box(*e)))
+        ax.set_title(f"{ttl}: {n_in} house routes in the window", fontsize=9)
+        decor(ax, e, 200); ticks(ax, e)
         ax.set_xlabel(""); ax.set_ylabel("")
-    cal = pick_callouts(ctx, zext, 5)
-    callouts(axs[0], cal, zext, col_x=1.02)
-    h = MM.legend_handles(sc, with_indep=False) + [Line2D([0], [0], color="#ff00ff", lw=3, label="Route segment running over another footprint (should be none in the right panel)")]
-    MM.legend(fig, h, loc="lower center", ncol=3, fontsize=7.2, bbox_to_anchor=(0.5, 0.0), title="Legend")
-    fig.text(0.5, 0.925, cost_lines(ctx, "Independent routes", rows["Independent least-cost routes"]["unique_len_m"], "Penalty plan (mu = 4)", two_u) + f" | clearance plan: {st['shared_m']:,.0f} m ({st['shared_m'] / 1000:.2f} km), "
-             f"{st['shared_m'] - two_u:+,.0f} m vs the penalty plan", ha="center", va="top", fontsize=6.2, wrap=True)
-    fig.suptitle("Map 5. Central zone at settlement scale: penalty plan versus building-clearance plan", fontsize=11, y=0.975)
-    footer(fig, "Left: the Stage B planner with a soft penalty (mu = 4) on footprint cells, as in the result tables; its routes can still cross a roof when the detour costs more (magenta). Right: footprints (plus "
-                f"{st['clearance_m']:g} m) are impassable on a {st['grid_m']:g} m routing grid and every route starts at its own building's edge; the drawn routes were intersected with all footprints. " + NOTE)
+    MM.facility_key(sc, axk)
+    MM.legend(fig, MM.legend_handles(sc, with_indep=False), loc="lower center", ncol=3, fontsize=7.4, bbox_to_anchor=(0.5, 0.0), title="Legend (same colours and markers as the master map)")
+    fig.text(0.5, 0.94, f"Stage B shared network, house routes {st['shared_m']:,.0f} m ({st['shared_m'] / 1000:.2f} km) = {lakh(st['shared_m'] / 1000, ce)} (illustrative, Rs {ce:g} lakh/km, unverified); "
+             f"building crossings {sum(v['routes_crossing'] for v in st['verify'].values())} of {sum(v['routes_checked'] for v in st['verify'].values())} routes. The 10 m soft-penalty plan of the result tables ({soft['unique_len_m']:,.0f} m) leaves "
+             f"{soft.get('routes_crossing', 'n/a')} routes inside other footprints.", ha="center", va="top", fontsize=6.4, wrap=True)
+    fig.suptitle("Map 5. Settlement-scale detail of the zero-crossing shared network (5 m grid, 3.6 m footprint clearance)", fontsize=11, y=0.985)
+    footer(fig, "Window 1 is the zoom of the master map, so the facility numbers F<id>, markers and routes are identical in both figures. " + NOTE)
     save(fig, ctx, "map5_village_detail_shared_paths")
 
 
@@ -508,12 +534,13 @@ def save(fig, ctx, name, dpi=None, tight=True):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--village", default="adilabad_urban", choices=sorted(p.stem for p in (REPO / "configs/multivillage/villages").glob("*.yaml")))
+    ap.add_argument("--village", default="adilabad_urban", choices=sorted([p.stem for p in (REPO / "configs/multivillage/villages").glob("*.yaml")] + ["damarakunta"]))
     ap.add_argument("--maps", nargs="+", type=int, default=[1, 2, 3, 4, 5, 6, 7], help="6 = compact 2-panel facilities + routes figure for the papers, 7 = master satellite planning map")
     ap.add_argument("--state", default=None)
     ap.add_argument("--mosaic", default=None)
     ap.add_argument("--out-dir", default=None)
     ap.add_argument("--no-imagery", action="store_true")
+    ap.add_argument("--esri-service", action="store_true", help="no local mosaic: fetch the same Esri World Imagery through its export service (e.g. Damarakunta on a machine without its mosaic)")
     ap.add_argument("--dpi", type=int, default=200)
     a = ap.parse_args()
     global _CTX

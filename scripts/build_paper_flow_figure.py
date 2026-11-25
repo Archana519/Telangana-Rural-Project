@@ -41,6 +41,7 @@ from src.multivillage import master_map as MM, pipeline_summary as PS           
 CRS = "EPSG:32644"
 OUT = REPO / "paper_eris" / "figures" / "fig_flow_study_areas.png"
 CREDIT_SHORT = "© Esri, Maxar, Earthstar Geographics"
+ROAD_GREY = "#e6e6e6"
 STATE_ROWS = [("damarakunta", "Damarakunta", "Rural"), ("adilabad", "Adilabad", "Urban / semi-urban"), ("aswaraopeta", "Aswaraopeta", "Semi-urban / tribal fringe"), ("alampur", "Alampur", "Heritage / semi-urban")]
 LOC = {"damarakunta": (78.7519, 17.7073), "adilabad": (78.5320, 19.6640), "aswaraopeta": (81.1281, 17.2409), "alampur": (78.1351, 15.8800)}     # lon, lat of the study area centres
 HOST_DISTRICTS = {"damarakunta": "Siddipet", "adilabad": "Adilabad", "aswaraopeta": "Bhadradri", "alampur": "Jogulamba"}
@@ -106,12 +107,11 @@ def panel(ax, sc, ext, img, kind, scale_m):
     ax.set_xlim(ext[0], ext[2]); ax.set_ylim(ext[1], ext[3])
     gpd.GeoSeries([sc.cell], crs=CRS).boundary.plot(ax=ax, color=MM.C_BOUND, lw=0.8, zorder=3)
     dense = sc.stats["roads_km"] / max(sc.stats["area_km2"], 1e-6) > 15                 # a dense road layer would hide the imagery at this scale
-    sc.roads.plot(ax=ax, color="#000000", lw=0.6 if dense else 1.1, alpha=0.35, zorder=3.5)
-    sc.roads.plot(ax=ax, color=MM.C_ROAD, lw=0.25 if dense else 0.55, zorder=4)
+    sc.roads.plot(ax=ax, color=ROAD_GREY, lw=0.25 if dense else 0.45, alpha=0.65, zorder=4)        # thin, light grey, no casing: the imagery stays visible
     if kind == "output":
-        MM.draw_footprints(sc, ax, ext, False)
-        MM.draw_routes(sc, ax, False, indep=False, shared=True)
-        MM.plot_facilities(sc, ax, ext, 24)
+        MM.draw_footprints(sc, ax, ext, False, reg_alpha=0.25, gap_alpha=0.75, reg_lw=0.15, gap_lw=0.15)
+        MM.draw_routes(sc, ax, False, indep=False, shared=True, lw_house=0.75, lw_fac=1.1, casing=False)
+        MM.plot_facilities(sc, ax, ext, 40, edge_lw=0.4)
         x0, y0, x1, y1 = ext
         sx, sy = x0 + 0.05 * (x1 - x0), y0 + 0.06 * (y1 - y0)
         ax.plot([sx, sx + scale_m], [sy, sy], color="k", lw=2.2, zorder=30, solid_capstyle="butt")
@@ -123,12 +123,12 @@ def panel(ax, sc, ext, img, kind, scale_m):
 
 
 def figure_legend(fig, loc="lower left", anchor=(0.0, 0.0), ncol=1, fontsize=5.8):
-    h = [Line2D([0], [0], color=MM.C_BOUND, lw=1.6, label="Study-area boundary"), Line2D([0], [0], color=MM.C_ROAD, lw=1.6, label="Existing road"),
+    h = [Line2D([0], [0], color=MM.C_BOUND, lw=1.6, label="Study-area boundary"), Line2D([0], [0], color=ROAD_GREY, lw=1.6, label="Existing road"),
          Patch(fc="#ffffff", ec="#ffffff", alpha=0.45, label="Extracted building footprint"), Patch(fc=MM.C_GAP, ec="#7a3a00", alpha=0.85, label="Road-gap target house"),
          Line2D([0], [0], color=MM.C_SHARED, lw=2, label="Stage B shared network: houses"), Line2D([0], [0], color=MM.C_FAC, lw=2, label="Stage B shared network: facilities")]
     for k in ("school", "college", "health", "government", "anganwadi"):
         m, c, lab = MM.FSTYLE[k]
-        h.append(Line2D([0], [0], marker=m, color="none", markerfacecolor=c, markeredgecolor="w", markersize=8, label={"school": "School", "college": "College", "health": "Hospital", "government": "Government office", "anganwadi": "Anganwadi"}[k]))
+        h.append(Line2D([0], [0], marker=m, color="none", markerfacecolor=c, markeredgecolor="w", markersize=6.5, label={"school": "School", "college": "College", "health": "Hospital", "government": "Government office", "anganwadi": "Anganwadi"}[k]))
     return MM.legend(fig, h, loc=loc, ncol=ncol, fontsize=fontsize, bbox_to_anchor=anchor, handlelength=1.8, borderpad=0.6, labelspacing=0.45)
 
 
@@ -141,10 +141,10 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
     preview = any(getattr(s, "preview", False) for s in scenes.values())
     fig = plt.figure(figsize=(7.2, 9.6))
     # left column: locator on top, legend below; right column: four INPUT -> OUTPUT strips
-    gl = fig.add_gridspec(2, 1, left=0.015, right=0.305, top=0.945, bottom=0.015, height_ratios=[1.0, 1.25], hspace=0.12)
+    gl = fig.add_gridspec(2, 1, left=0.015, right=0.29, top=0.945, bottom=0.015, height_ratios=[1.0, 1.25], hspace=0.12)
     axl = fig.add_subplot(gl[0, 0])
     locator(axl, log)
-    gr = fig.add_gridspec(4, 2, left=0.335, right=0.995, top=0.93, bottom=0.012, hspace=0.17, wspace=0.075)
+    gr = fig.add_gridspec(4, 2, left=0.325, right=0.995, top=0.925, bottom=0.012, hspace=0.34, wspace=0.17)
     for ri, (k, nm, ty) in enumerate(STATE_ROWS):
         sc = scenes[k]
         ext = square_ext(sc.cell)
@@ -161,10 +161,10 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
                          f"{sum(v['routes_crossing'] for v in st['verify'].values())} building crossings; {len(sc.fac)} verified facilities", fontsize=4.8, loc="left", pad=2.5, linespacing=1.25)
         # the arrow between the two panels of the pair
         b0, b1 = axs[0].get_position(), axs[1].get_position()
-        fig.patches.append(matplotlib.patches.FancyArrowPatch((b0.x1 + 0.004, (b0.y0 + b0.y1) / 2), (b1.x0 - 0.004, (b0.y0 + b0.y1) / 2), transform=fig.transFigure, arrowstyle="-|>", mutation_scale=8, lw=1.2, color="k", zorder=50))
+        fig.patches.append(matplotlib.patches.FancyArrowPatch((b0.x1 + 0.012, (b0.y0 + b0.y1) / 2), (b1.x0 - 0.012, (b0.y0 + b0.y1) / 2), transform=fig.transFigure, arrowstyle="-|>", mutation_scale=8, lw=1.2, color="k", zorder=50))
         if ri == 0:
-            fig.text((b0.x0 + b0.x1) / 2, 0.972, "INPUT: imagery, boundary, existing roads", ha="center", fontsize=6.4, fontweight="bold")
-            fig.text((b1.x0 + b1.x1) / 2, 0.972, "FINAL OUTPUT: buildings, facilities, Stage B network", ha="center", fontsize=6.4, fontweight="bold")
+            fig.text((b0.x0 + b0.x1) / 2, 0.972, "INPUT: imagery, boundary, roads", ha="center", fontsize=6.4, fontweight="bold")
+            fig.text((b1.x0 + b1.x1) / 2, 0.972, "FINAL OUTPUT: buildings, facilities, network", ha="center", fontsize=6.4, fontweight="bold")
     leg = figure_legend(fig, loc="lower left", anchor=(0.015, 0.075), ncol=1, fontsize=5.6)
     fig.text(0.012, 0.012, "Basemap imagery: Esri, Maxar, Earthstar Geographics,\nand the GIS User Community. Boundaries: geoBoundaries gbOpen (ODbL).\nFootprints are automatic detections; routes are planning\nalternatives, not engineered roads. EPSG:32644.", ha="left", va="bottom", fontsize=4.2, linespacing=1.3)
     if preview:

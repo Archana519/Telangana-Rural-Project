@@ -108,3 +108,30 @@ def test_flow_figure_panels_render_without_network(tmp_path):
     fig.savefig(p, dpi=60)
     assert p.stat().st_size > 3000
     assert F.nice_scale(5000) == 1000 and F.nice_scale(1200) == 200
+
+
+def test_stage_a_is_drawn_above_the_shared_network_with_a_dashed_underlay():
+    import matplotlib.pyplot as plt
+    from tests.test_clearance import CRS, run, world_data
+    ha, out = run([(300, 100, 30, 340)], [(700, 450, 20, 20), (650, 300, 20, 20)], fac=[(800, 700, 20, 20)])
+    _, gap, f, roads = world_data([(300, 100, 30, 340)], [(700, 450, 20, 20), (650, 300, 20, 20)], fac=[(800, 700, 20, 20)])
+    sc = MM.scene_from_clearance("T", "s", box(500000.0, 1900000.0, 501000.0, 1901000.0), gpd.GeoSeries(roads, crs=CRS), ha, gap, f, out, mosaic=None)
+    fig, ax = plt.subplots()
+    MM.draw_routes(sc, ax, False)
+    z = sorted(c.get_zorder() for c in ax.collections)
+    assert max(z) == 11 and 10.8 in z                                               # white dashed Stage A on top, dark dashed underlay just below
+    lws = [c.get_linewidths()[0] for c in ax.collections if c.get_zorder() == 11]
+    assert lws and 1.0 <= lws[0] <= 1.5
+    plt.close(fig)
+
+
+def test_second_zoom_window_excludes_the_first():
+    import numpy as np
+    from tests.test_clearance import CRS, run, world_data
+    houses = [(100 + 12 * i, 100 + 12 * j, 8, 8) for i in range(8) for j in range(8)] + [(800 + 12 * i, 700 + 12 * j, 8, 8) for i in range(4) for j in range(4)]
+    ha, out = run([], houses)
+    _, gap, f, roads = world_data([], houses)
+    sc = MM.scene_from_clearance("T", "s", box(500000.0, 1900000.0, 501000.0, 1901000.0), gpd.GeoSeries(roads, crs=CRS), ha, gap, f, out, mosaic=None)
+    z1 = MM.pick_zoom(sc, 300, 300)
+    z2 = MM.pick_zoom(sc, 300, 300, exclude=z1)
+    assert z1 != z2 and (z2[0] > z1[2] - 300 or z2[1] > z1[3] - 300)

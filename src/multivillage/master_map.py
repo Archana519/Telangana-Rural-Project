@@ -78,6 +78,7 @@ class Scene:
     routed_fids: set = field(default_factory=set)
     footprint_source: str = "StrongDINOv2Seg + OpenCV"
     routing_note: str = ""
+    allow_service: bool = False
 
 
 def scene_from_clearance(name, boundary_label, cell, roads, footprints, gap, fac, clear: dict, mosaic=None, footprint_source="StrongDINOv2Seg + OpenCV") -> Scene:
@@ -124,6 +125,16 @@ def background(sc: Scene, ax, ext, max_px=2400):
         img, ex = SV._read_rgb(Path(sc.mosaic), ext, max_px=max_px)
         ax.imshow(img, extent=ex, origin="upper", zorder=0)
         ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.5, ec="none", pad=1))
+    elif getattr(sc, "allow_service", False):                            # no local mosaic: the same Esri World Imagery through its export service (opt-in)
+        import io
+
+        import requests
+        from PIL import Image
+        px = int(min(max_px, 2000))
+        r = requests.get("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export", params=dict(bbox=",".join(map(str, ext)), bboxSR=32644, imageSR=32644, size=f"{px},{px}", format="png", f="image"),
+                         headers={"User-Agent": "map-series/1.0"}, timeout=90)
+        ax.imshow(np.asarray(Image.open(io.BytesIO(r.content)).convert("RGBA")), extent=(ext[0], ext[2], ext[1], ext[3]), origin="upper", zorder=0)
+        ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.5, ec="none", pad=1))
     ax.set_xlim(ext[0], ext[2]); ax.set_ylim(ext[1], ext[3])
 
 
@@ -132,9 +143,11 @@ def window_ext(sc: Scene, pad=100):
     return (b[0] - pad, b[1] - pad, b[2] + pad, b[3] + pad)
 
 
-def pick_zoom(sc: Scene, w=1300.0, h=950.0):
+def pick_zoom(sc: Scene, w=1300.0, h=950.0, exclude=None):
     """Densest cluster: window with the most road-gap houses plus 25 per verified facility (so the labelled facilities are in view)."""
     pts = [(p.x, p.y, 1.0) for p in sc.gap.geometry.representative_point()] + [(g.x, g.y, 25.0) for g in sc.fac.geometry]
+    if exclude is not None:                                              # a second window: ignore the points already inside `exclude`
+        pts = [q for q in pts if not (exclude[0] - w / 2 < q[0] < exclude[2] + w / 2 and exclude[1] - h / 2 < q[1] < exclude[3] + h / 2)] or pts
     if not pts:
         return window_ext(sc)
     a = np.array(pts)
@@ -149,7 +162,7 @@ def pick_zoom(sc: Scene, w=1300.0, h=950.0):
     return (cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2)
 
 
-def draw_footprints(sc: Scene, ax, ext, zoom):
+def draw_footprints(sc: Scene, ax, ext, zoom, reg_alpha=0.35, gap_alpha=0.85, reg_lw=None, gap_lw=None):
     fp = sc.footprints
     gids = set(sc.gap["hid"]) if "hid" in sc.gap else set()
     box_ = box(*ext)
@@ -159,31 +172,42 @@ def draw_footprints(sc: Scene, ax, ext, zoom):
     else:
         reg, gp = near, sc.gap[sc.gap.geometry.intersects(box_)]
     if len(reg):
-        reg.plot(ax=ax, fc="#ffffff", ec="#ffffff", alpha=0.35, lw=0.3 if not zoom else 0.6, zorder=5)
+        reg.plot(ax=ax, fc="#ffffff", ec="#ffffff", alpha=reg_alpha, lw=reg_lw if reg_lw is not None else (0.3 if not zoom else 0.6), zorder=5)
     if len(gp):
-        gp.plot(ax=ax, fc=C_GAP, ec="#7a3a00", alpha=0.85, lw=0.2 if not zoom else 0.6, zorder=6)
+        gp.plot(ax=ax, fc=C_GAP, ec="#7a3a00", alpha=gap_alpha, lw=gap_lw if gap_lw is not None else (0.2 if not zoom else 0.6), zorder=6)
 
 
-def draw_routes(sc: Scene, ax, zoom, indep=True, shared=True):
+STAGE_A_DASH = (0, (5, 3))
+
+
+def draw_routes(sc: Scene, ax, zoom, indep=True, shared=True, lw_house=None, lw_fac=None, casing=True):
+    """Stage A (independent alternatives): white dashed on a dark dashed underlay, drawn ABOVE the shared network so both stay visible. Stage B: blue house routes, red facility routes."""
     k = 1.0 if not zoom else 1.8
-    if indep and sc.indep_house:
-        gpd.GeoSeries(sc.indep_house + sc.indep_fac, crs=CRS).plot(ax=ax, color=C_INDEP, lw=0.7 * k, linestyle=(0, (4, 3)), alpha=0.95, zorder=7)
+    lh = lw_house if lw_house is not None else 1.2 * k
+    lf = lw_fac if lw_fac is not None else 1.6 * k
     if shared:
         if sc.shared_house:
-            gpd.GeoSeries(sc.shared_house, crs=CRS).plot(ax=ax, color="#ffffff", lw=1.7 * k, alpha=0.55, zorder=8)       # thin white casing so the blue reads on any imagery
-            gpd.GeoSeries(sc.shared_house, crs=CRS).plot(ax=ax, color=C_SHARED, lw=1.2 * k, zorder=9)
+            if casing:
+                gpd.GeoSeries(sc.shared_house, crs=CRS).plot(ax=ax, color="#ffffff", lw=lh * 1.4, alpha=0.55, zorder=8)       # thin white casing so the blue reads on any imagery
+            gpd.GeoSeries(sc.shared_house, crs=CRS).plot(ax=ax, color=C_SHARED, lw=lh, zorder=9)
         if sc.shared_fac:
-            gpd.GeoSeries(sc.shared_fac, crs=CRS).plot(ax=ax, color="#ffffff", lw=2.2 * k, alpha=0.6, zorder=9)
-            gpd.GeoSeries(sc.shared_fac, crs=CRS).plot(ax=ax, color=C_FAC, lw=1.6 * k, zorder=10)
+            if casing:
+                gpd.GeoSeries(sc.shared_fac, crs=CRS).plot(ax=ax, color="#ffffff", lw=lf * 1.4, alpha=0.6, zorder=9)
+            gpd.GeoSeries(sc.shared_fac, crs=CRS).plot(ax=ax, color=C_FAC, lw=lf, zorder=10)
+    if indep and sc.indep_house:
+        lw = 1.1 if not zoom else 1.4
+        geoms = sc.indep_house + sc.indep_fac
+        gpd.GeoSeries(geoms, crs=CRS).plot(ax=ax, color="#000000", lw=lw + 0.9, linestyle=STAGE_A_DASH, alpha=0.55, zorder=10.8)
+        gpd.GeoSeries(geoms, crs=CRS).plot(ax=ax, color=C_INDEP, lw=lw, linestyle=STAGE_A_DASH, alpha=1.0, zorder=11)
 
 
-def plot_facilities(sc: Scene, ax, ext, size, label=False):
+def plot_facilities(sc: Scene, ax, ext, size, label=False, edge_lw=0.7):
     f = sc.fac
     for k, (m, c, _) in FSTYLE.items():
         g = f[f.facility_type.map(ftype) == k]
         g = g[g.geometry.within(box(*ext))]
         if len(g):
-            ax.scatter(g.geometry.x, g.geometry.y, marker=m, s=size, c=c, edgecolors="w", linewidths=0.7, zorder=20)
+            ax.scatter(g.geometry.x, g.geometry.y, marker=m, s=size, c=c, edgecolors="w", linewidths=edge_lw, zorder=20)
     if label:
         for _, r in f[f.geometry.within(box(*ext))].iterrows():
             ax.annotate(f"F{int(r.fid)}", (r.geometry.x, r.geometry.y), xytext=(5, 5), textcoords="offset points", fontsize=6, fontweight="bold", zorder=45, bbox=dict(fc="w", ec="none", alpha=0.8, pad=0.7))

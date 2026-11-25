@@ -103,6 +103,16 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `01_DAMARAKUNTA_RURAL/maps/map4_alternatives_vs_network.png` | Damarakunta map4: Stage A alternatives versus the final shared network (village + settlement zoom) (unchanged Stage B file) |
 | `01_DAMARAKUNTA_RURAL/maps/map5_village_detail_shared_paths.png` | Damarakunta map5: settlement-scale primary vs building-avoiding shared network, facilities labelled, footprint-crossing segments (unchanged Stage B file) |
 | `01_DAMARAKUNTA_RURAL/maps/master_satellite_planning_map.png` | Damarakunta master satellite planning map with building-clearance routes (new; the frozen Stage B maps are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/clearance_verification.csv` | Damarakunta map series table |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/damarakunta_fac_route_2panel.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/map1_imagery_boundary_roads.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/map2_footprints_facilities_latlon.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/map3_terrain_cost_landcover_slope.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/map4_alternatives_vs_network.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/map5_village_detail_shared_paths.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/map_facility_key.csv` | Damarakunta map series table |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/master_satellite_planning_map.png` | Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged) |
+| `01_DAMARAKUNTA_RURAL/maps_standardized/network_length_cost_summary.csv` | Damarakunta map series table |
 | `01_DAMARAKUNTA_RURAL/tables/building_crossings_summary.csv` | Damarakunta Stage B: route crossings of other buildings |
 | `01_DAMARAKUNTA_RURAL/tables/comparison_report.md` | Damarakunta Stage B comparison report |
 | `01_DAMARAKUNTA_RURAL/tables/damarakunta_master_RUN_STATUS.md` | how the Damarakunta master map was produced (cost surface, imagery, comparison with the frozen Stage B plan) |

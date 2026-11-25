@@ -304,6 +304,10 @@ def main():
                    ("map_facility_key.csv", "Damarakunta facility key"), ("RUN_STATUS.md", "how the Damarakunta master map was produced (cost surface, imagery, comparison with the frozen Stage B plan)")):
         if (DKM / n_).exists():
             put(DKM / n_, f"01_DAMARAKUNTA_RURAL/maps/{n_}" if n_.endswith(".png") else f"01_DAMARAKUNTA_RURAL/tables/damarakunta_master_{n_}", d_)
+    ser = DKM / "final_maps_1_to_5"
+    for f_ in sorted(ser.glob("*")) if ser.exists() else []:
+        if f_.is_file():
+            put(f_, f"01_DAMARAKUNTA_RURAL/maps_standardized/{f_.name}", "Damarakunta standardized map series (same layout as the other areas; zero-crossing 5 m network; the frozen Stage B maps in maps/ are unchanged)" if f_.suffix == ".png" else "Damarakunta map series table")
     ad = C3 / "facility_audit" / "damarakunta"
     for f_ in sorted(ad.glob("*")) if ad.exists() else []:
         if f_.is_file():

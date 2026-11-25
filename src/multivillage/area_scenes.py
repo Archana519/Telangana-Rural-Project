@@ -26,7 +26,8 @@ def mosaic_path(key: str) -> Path:
     return REPO / "data" / "villages" / f"{a['slug']}_esri" / "aligned" / f"{a['slug']}_esri_highres_mosaic_0p6m.tif"
 
 
-def damarakunta_scene():
+def damarakunta_state() -> dict:
+    """State dict (cell, layers, classified, houses_all, gap, fac) of Damarakunta from the committed Stage B layers (read-only), in the shape the map scripts expect."""
     from shapely.geometry import Point
     from pyproj import Transformer
     root = REPO / "Siddipet" / "Damarakunta"
@@ -36,18 +37,44 @@ def damarakunta_scene():
     b["quality_class_model"] = b["quality_class"]
     tgt = gpd.read_file(root / "results/individual_house_network_v1/individual_house_network_v1.gpkg", layer="house_target_status")
     gap = b[b.bld_id.isin(set(tgt.bld_id))].copy()
-    roads = gpd.read_file(root / "reference/tgrac_road_network.gpkg").to_crs(CRS).geometry.intersection(cell)
-    roads = roads[~roads.is_empty]
+    roads = gpd.read_file(root / "reference/tgrac_road_network.gpkg").to_crs(CRS)
     t = pd.read_csv(REPO / "configs/multivillage/villages/damarakunta_verified_facilities.csv")
     t = t[t.use_in_analysis.astype(str).str.lower() == "true"]
     ft = {"School": "school", "College": "college", "Hospital": "health", "Government Office": "government", "Anganwadi": "anganwadi"}
     xy = Transformer.from_crs(4326, CRS, always_xy=True).transform(t.lon.values, t.lat.values)
     fac = gpd.GeoDataFrame(dict(fid=np.arange(1, len(t) + 1), name=t["name"].values, facility_type=t.category.map(ft).values), geometry=[Point(x, y) for x, y in zip(*xy)], crs=CRS)
+    return dict(cell=cell, layers=dict(roads=roads), classified=b, houses_all=b, gap=gap, fac=fac)
+
+
+def damarakunta_prep(cfg):
+    """(prep, cost, inside) for map 3: land cover, slope and the common cost recipe on the committed open WorldCover / DEM (aligned_open); the Stage B aligned cost surface is not needed."""
+    import shutil
+    import tempfile
+    from src.utils import data_downloader_helper as dl
+    from . import prepare as P
+    cell = damarakunta_state()["cell"]
+    tmp = Path(tempfile.mkdtemp(prefix="dk_prep_"))
+    root = REPO / "Siddipet" / "Damarakunta" / "aligned_open"
+    b10, _, _ = P.grid_for_cell(cell, 10.0)
+    dl.warp_to_grid([str(root / "worldcover_10m.tif")], b10, CRS, 10.0, tmp / "worldcover_10m.tif", "nearest", "uint8", 0)
+    b30 = dl.aligned_bounds(b10, 30.0, buffer_m=60.0)
+    dl.warp_to_grid([str(root / "dem_30m.tif")], b30, CRS, 30.0, tmp / "dem_30m.tif", "bilinear", "float32", -9999.0)
+    prep = P.prepare_rasters(cfg, cell, tmp, log=lambda *a: None)
+    cost, inside = P.cost_surface(cfg, prep, cell)
+    shutil.rmtree(tmp, ignore_errors=True)
+    return prep, cost, inside
+
+
+def damarakunta_scene():
+    S = damarakunta_state()
+    cell = S["cell"]
+    roads = S["layers"]["roads"].geometry.intersection(cell)
+    roads = roads[~roads.is_empty]
     cp = PS.AREAS["damarakunta"]["maps"] / "clearance_network_v1.pkl"
     if not cp.exists():
         raise FileNotFoundError(f"{cp} not found: run scripts/make_damarakunta_master_map.py first")
     clear = pickle.load(open(cp, "rb"))
-    sc = MM.scene_from_clearance("Damarakunta (village)", "TGRAC village polygon", cell, roads, b, gap, fac, clear, mosaic=mosaic_path("damarakunta") if mosaic_path("damarakunta").exists() else None,
+    sc = MM.scene_from_clearance("Damarakunta (village)", "TGRAC village polygon", cell, roads, S["classified"], S["gap"], S["fac"], clear, mosaic=mosaic_path("damarakunta") if mosaic_path("damarakunta").exists() else None,
                                  footprint_source="StrongDINOv2Seg + OpenCV (v8)")
     sc.preview = False
     return sc
