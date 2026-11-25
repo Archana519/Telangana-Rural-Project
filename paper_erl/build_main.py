@@ -3,8 +3,7 @@
 
     python paper_erl/build_main.py        # rewrites main.tex, refreshes the figure / table copies, then:  cd paper_erl; pdflatex main; bibtex main; pdflatex main; pdflatex main
 
-The prose is written here; every number that also appears in the pipeline result files is read from them (src/multivillage/pipeline_summary.py), and the detailed robustness tables of the
-four-area strategy table is built from the committed routing-strategy CSVs (the old 17.75 km2 Adilabad mandal run is no longer used in this paper).
+The prose is written here; every number that also appears in the pipeline result files is read from them (src/multivillage/pipeline_summary.py), and the four-area strategy table of the appendix is built from the committed routing-strategy CSVs (the old 17.75 km2 Adilabad mandal run is no longer used in this paper).
 """
 import re
 import shutil
