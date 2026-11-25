@@ -1,0 +1,2 @@
+area,window_km2,roads_km,slope_mean_pct,slope_max_pct,slope_mean_deg,source
+damarakunta,18.466,51.707,3.77,21.11,2.16,"Copernicus GLO-30 DEM, Sobel slope on the 10 m grid, cells inside the study polygon"

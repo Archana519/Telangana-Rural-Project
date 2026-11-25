@@ -1,0 +1,16 @@
+{
+  "_status": "Model-level validation of the StrongDINOv2Seg checkpoint on the LoveDA validation split (source domain). It is NOT accuracy on any of the four study areas; the same checkpoint is used for all of them. Values as reported in paper_eris/main.tex (table 'seg') and paper_ieee/build_ieee_docx.py, recomputed there from the saved confusion matrix.",
+  "checkpoint": "epoch-4 best_model.pth",
+  "checkpoint_sha256": "2e7c4646dc77ceb2a357f44f11cb3f7ff84e636871d70ba4c31e194e5ec00cf3",
+  "validation_images": 1669,
+  "tile_px": 560,
+  "scored_classes": 7,
+  "pixel_accuracy_pct": 71.3,
+  "precision_macro_pct": 72.4,
+  "recall_macro_pct": 66.9,
+  "dice_mean_pct": 68.9,
+  "f1_note": "per-class F1 equals per-class Dice (2TP/(2TP+FP+FN)), so the macro F1 reported here is the mean Dice",
+  "miou_pct": 53.8,
+  "building_class": {"iou_pct": 54.0, "dice_pct": 70.1, "precision_pct": 62.1, "recall_pct": 80.6},
+  "code": "src/modeling/strongdinov2seg_training_updated.py (compute metrics: accuracy_score, macro precision / recall / f1 over classes 1..6 plus per-class IoU and Dice from the confusion matrix)"
+}

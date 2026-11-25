@@ -17,12 +17,18 @@
 \usepackage{array}
 \usepackage{amsmath,amssymb}
 \usepackage{url}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \usepackage[hidelinks]{hyperref}
 \setlength{\emergencystretch}{3em}
 \newif\ifanon
 \ifdefined\ANON\anontrue\fi
 \newcommand{\dinoseg}{StrongDINOv2Seg}
 \newcommand{\Lcost}{L_{\mathrm{cost}}}
+\newcommand{\pending}[1]{\textcolor{red}{\textit{#1}}}% value not yet computed on the machine that generated paper_comparison_table.tex
+\algrenewcommand\algorithmicrequire{\textbf{Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
 
 \begin{document}
 
@@ -76,33 +82,12 @@ Two scope limits apply. Only these two settlements were evaluated; a semi-urban 
 
 \section{Study areas and data}
 \subsection{Damarakunta (rural)}
-Damarakunta is a rural revenue village in Markook mandal, Siddipet district, Telangana ($\approx 17.707^{\circ}$N, $78.753^{\circ}$E). Its boundary, from the Telangana State Remote Sensing Application Centre (TGRAC), encloses 18.47~km$^2$ (UTM zone 44N, EPSG:32644; figure~\ref{fig:area}). Settlement is dispersed, with small house clusters separated by farmland. A 0.6~m, three-band mosaic (11{,}296 $\times$ 7{,}171 px) was assembled from Esri World Imagery exports. Building candidates are model outputs: 278 polygons, 165 inside the boundary, of which 163 are used as routing targets. They carry a quality class: \textsc{Plausible} (71), \textsc{Review} (32) and \textsc{Unresolved\_Merge} (62), the last denoting blobs that merge adjacent roofs and could not be split. Five TGRAC facilities (schools, a health sub-centre and the gram-panchayat headquarters points) are planned in a separate phase. No ground-truth building mask exists for Damarakunta.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig2_study_area.png}
-\caption{Damarakunta. (a)~Boundary, TGRAC roads and detected footprints coloured by quality class, with the five facilities. (b)~Main settlement (box in a). Footprints are automatic detections, not a census. No imagery basemap is shown.}
-\label{fig:area}
-\end{figure}
+Damarakunta is a rural revenue village in Markook mandal, Siddipet district, Telangana ($\approx 17.707^{\circ}$N, $78.753^{\circ}$E). Its boundary, from the Telangana State Remote Sensing Application Centre (TGRAC), encloses 18.47~km$^2$ (UTM zone 44N, EPSG:32644; figure~\ref{fig:flow}). Settlement is dispersed, with small house clusters separated by farmland. A 0.6~m, three-band mosaic (11{,}296 $\times$ 7{,}171 px) was assembled from Esri World Imagery exports. Building candidates are model outputs: 278 polygons, 165 inside the boundary, of which 163 are used as routing targets. They carry a quality class: \textsc{Plausible} (71), \textsc{Review} (32) and \textsc{Unresolved\_Merge} (62), the last denoting blobs that merge adjacent roofs and could not be split. Five TGRAC facilities (schools, a health sub-centre and the gram-panchayat headquarters points) are planned in a separate phase. No ground-truth building mask exists for Damarakunta.
 
 \subsection{Adilabad Urban (urban and peri-urban)}\label{sec:adilabad_data}
 The second window is the Adilabad Urban mandal, Adilabad district (geoBoundaries ADM3 polygon; centroid $19.682^{\circ}$N, $78.528^{\circ}$E), 17.75~km$^2$, close to Damarakunta in area. The 10~m grid has 424 $\times$ 564 cells, 177{,}533 of them inside the polygon, 0.62\% blocked (water or slope $>25^{\circ}$). About 60\% of cells are not WorldCover built-up, so the window holds an urban core and a peri-urban fringe. The boundary layer is the 2018 release and may differ from current municipal limits.
 
-Two sets of building footprints are used. (i)~\emph{Segmentation footprints (primary, end to end).} A 0.6~m Esri World Imagery mosaic of the window (7{,}248 $\times$ 9{,}590~px, EPSG:32644) was exported with the Damarakunta recipe (1{,}800~m tiles). \dinoseg{} was applied to 391 tiles of $560\times560$~px (stride 420~px, margin 70~px, the Damarakunta tiling; Damarakunta: 459 tiles) and the same instance extraction. This yields 2{,}769 instances, of which 2{,}690 have an area of at least 30~m$^2$ and form the penalty layer; their quality classes are \textsc{Plausible} (1{,}033), \textsc{Review} (77) and \textsc{Unresolved\_Merge} (1{,}580), the last with a median area of 1{,}125.5~m$^2$ (\textsc{Plausible}: 207.4~m$^2$). Of 83 Overture place candidates inside the window, 68 are verified with the Damarakunta rule (a detected footprint within 20~m): 44 schools, 20 health and 4 government. (ii)~\emph{Open footprints (independent check).} Overture release 2026-10-21.0 \cite{overture2026} supplies 4{,}850 road segments, 24{,}924 building polygons (18{,}846 from OpenStreetMap, 6{,}078 from Google Open Buildings v3 \cite{sirko2021openbuildings}) and 738 places; footprints with area $\ge 30$~m$^2$ and confidence $\ge 0.7$ (18{,}242 polygons) form the penalty layer, and 71 of the 83 facility candidates are verified (44 schools, 20 health, 7 government) after manual removal of mis-geocoded records. Roads are Overture/OSM segments in both variants (table~\ref{tab:data}). Neither footprint set has been field-verified. Figure~\ref{fig:adilmap1} shows the study window and figure~\ref{fig:adilmap2} the detected built-up units and the verified facilities.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/adilabad_map1.jpg}
-\caption{Adilabad Urban: study boundary (yellow, geoBoundaries ADM3, 17.75~km$^2$) and existing Overture/OSM roads (cyan) on Esri satellite imagery. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
-\label{fig:adilmap1}
-\end{figure}
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/adilabad_map2.jpg}
-\caption{Adilabad Urban: detected built-up units outlined by extraction class and the 68 verified public facilities (schools, health, government) on Esri imagery; left, whole window with the zoom box; right, central urban zone with boxed callouts giving latitude and longitude for facilities with a unique coordinate. The legend counts are the extraction classes before the 30~m$^2$ size rule is applied, so Plausible and Review exceed the counts in Section~\ref{sec:adilabad_data}. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
-\label{fig:adilmap2}
-\end{figure*}
+Two sets of building footprints are used. (i)~\emph{Segmentation footprints (primary, end to end).} A 0.6~m Esri World Imagery mosaic of the window (7{,}248 $\times$ 9{,}590~px, EPSG:32644) was exported with the Damarakunta recipe (1{,}800~m tiles). \dinoseg{} was applied to 391 tiles of $560\times560$~px (stride 420~px, margin 70~px, the Damarakunta tiling; Damarakunta: 459 tiles) and the same instance extraction. This yields 2{,}769 instances, of which 2{,}690 have an area of at least 30~m$^2$ and form the penalty layer; their quality classes are \textsc{Plausible} (1{,}033), \textsc{Review} (77) and \textsc{Unresolved\_Merge} (1{,}580), the last with a median area of 1{,}125.5~m$^2$ (\textsc{Plausible}: 207.4~m$^2$). Of 83 Overture place candidates inside the window, 68 are verified with the Damarakunta rule (a detected footprint within 20~m): 44 schools, 20 health and 4 government. (ii)~\emph{Open footprints (independent check).} Overture release 2026-10-21.0 \cite{overture2026} supplies 4{,}850 road segments, 24{,}924 building polygons (18{,}846 from OpenStreetMap, 6{,}078 from Google Open Buildings v3 \cite{sirko2021openbuildings}) and 738 places; footprints with area $\ge 30$~m$^2$ and confidence $\ge 0.7$ (18{,}242 polygons) form the penalty layer, and 71 of the 83 facility candidates are verified (44 schools, 20 health, 7 government) after manual removal of mis-geocoded records. Roads are Overture/OSM segments in both variants (table~\ref{tab:data}). Neither footprint set has been field-verified. Figure~\ref{fig:flow} shows the study window, the detected footprints and the verified facilities of every study area.
 
 \begin{table}[t]
 \caption{Input data and licence status. ``Not re-verified'' marks Overture licences taken from the provider documentation, which could not be opened from the execution environment.}
@@ -124,12 +109,12 @@ Training benchmark & LoveDA \cite{wang2021loveda} & Source domain only \\
 \end{table}
 
 \section{Methods}\label{sec:methods}
-Figure~\ref{fig:arch} summarises the architecture. The two settlements differ in the perception and target stages and share the cost surface, planner and evaluation stages.
+The framework is a seven-step chain (figure~\ref{fig:arch}): (1)~multi-source open-data ingestion (Esri World Imagery, ESA WorldCover, Copernicus GLO-30, Overture / OSM / TGRAC roads, the study polygon); (2)~\dinoseg{} semantic segmentation in 560~px tiles; (3)~distance-transform extraction of building footprints and road-gap targets; (4)~a four-pass multi-source facility audit that snaps every facility onto a roof; (5)~a multi-criteria cost surface with a 5~m zero-crossing building clearance; (6)~Stage~A and Stage~B Dijkstra shared-network routing; and (7)~connectivity and PMGSY-based cost evaluation. Steps 1 to 7 are identical for all four study areas; the settlements differ only in their inputs. The ten-metre soft-penalty planner of the earlier experiments is kept as a comparison baseline (section~\ref{sec:damar}), and the clearance network is the proposed plan (section~\ref{sec:four}).
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/fig_architecture.png}
-\caption{System architecture. Inputs feed a perception stage (Damarakunta: segmentation and instance extraction; Adilabad: the same chain on Esri imagery, with open footprints entering the target stage directly as an independent check), a shared cost surface, a two-stage shared-network planner and an evaluation stage that includes the cross-settlement transfer.}
+\caption{Seven-step architecture: (1)~multi-source open-data ingestion, (2)~\dinoseg{} semantic segmentation (tile 560, stride 420, margin 70), (3)~distance-transform building footprint extraction (neck ratio 0.65), (4)~four-pass multi-source facility audit and roof snapping (School, College, Hospital, Government Office, Anganwadi), (5)~cost surface with a 5~m zero-crossing clearance (3.6~m), (6)~Stage~A independent and Stage~B shared-network Dijkstra routing, (7)~PMGSY cost and connectivity evaluation.}
 \label{fig:arch}
 \end{figure}
 
@@ -145,14 +130,7 @@ Let $\mathcal{B}$ be blocked cells (water, invalid cells, slope $>25^{\circ}$) a
 c(x)=\bigl[c_{\mathrm{lc}}(\ell(x))+g(s(x))\bigr]\,m(x),\qquad m(x)=\begin{cases}\mu & x\in\mathcal{P}\\ 1 & \text{otherwise,}\end{cases}
 \label{eq:cell}
 \end{equation}
-where $\ell$ is the WorldCover class with resistance $c_{\mathrm{lc}}=8,5,3,6,2,4$ for trees, shrubland, grassland, cropland, built-up and bare/sparse land respectively (classes 10--60 in the order 10, 20, 30, 40, 50, 60), $g(s)=4\,\mathrm{clip}(s,0,10)/10$ with $s$ the slope in degrees, and $\mu=4$ is the footprint penalty. Edge weights are the mean end-cell cost times step length. Costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20~m disc around the health sub-centre,  Figure~\ref{fig:adilcost} shows the land-cover, slope, cost and blocked-cell rasters of the Adilabad window.whose point lies on the edge of its own footprint.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/adilabad_map3.jpg}
-\caption{Adilabad Urban rasters used to build the cost surface: ESA WorldCover v200 land cover, slope from the 30~m Copernicus GLO-30 DEM, composite cost surface C0 (ordinal planning units per 10~m cell, not currency) and blocked cells (water, invalid cells, slope above $25^{\circ}$). Existing roads in blue; axes are UTM 44N metres.}
-\label{fig:adilcost}
-\end{figure}
+where $\ell$ is the WorldCover class with resistance $c_{\mathrm{lc}}=8,5,3,6,2,4$ for trees, shrubland, grassland, cropland, built-up and bare/sparse land respectively (classes 10--60 in the order 10, 20, 30, 40, 50, 60), $g(s)=4\,\mathrm{clip}(s,0,10)/10$ with $s$ the slope in degrees, and $\mu=4$ is the footprint penalty. Edge weights are the mean end-cell cost times step length. Costs are ordinal planning units, not currency. In Damarakunta the penalty is lifted within a 20~m disc around the health sub-centre,  The land-cover, slope, cost and blocked-cell rasters are the inputs of the cost surface of every study area (figure~\ref{fig:flow}).whose point lies on the edge of its own footprint.
 
 \subsection{Shared-network planner}
 For each target, Stage~A computes a least-cost path to the existing road cells with Dijkstra's algorithm \cite{dijkstra1959note,hart1968astar,collischonn2000lcp} and alternatives by inflating costs along earlier paths ($K=3$ alternatives in total). Stage~B greedily selects the (target, alternative) pair with the highest weight per marginal cost
@@ -161,6 +139,121 @@ For each target, Stage~A computes a least-cost path to the existing road cells w
 \label{eq:marginal}
 \end{equation}
 where $E_S$ is the set of already selected edges, so built edges are free and a route may end on another route. This is the shortest-path heuristic for Steiner trees \cite{kou1981steiner,mehlhorn1988steiner} on a penalised, land-cover-weighted graph with the road network as a free sub-tree; it carries no optimality guarantee. Two passes of leaf re-routing follow. Snap distance is 30~m, search limit 1{,}500~m and attachment tolerance 15~m. Facilities are planned in a separate phase.
+
+\subsection{Facility audit and roof snapping}
+Overture Places alone mislocated or missed colleges, hospitals, offices and anganwadis, so the facilities of each area come from a four-pass audit (\texttt{scripts/audit\_facilities.py}). Pass~1 harvests candidates inside and within 500~m of the polygon from OpenStreetMap (Overpass and the Photon geocoder), Overture Places, Wikidata and Wikipedia (and, for Damarakunta, the TGRAC layers); LGD, UDISE+ and the district directories have no open query interface and were not used. Pass~2 assigns one of five categories (School, College, Hospital, Government Office, Anganwadi), removes closed or commercial records (pharmacies, laboratories, coaching centres, banks, cooperative societies), religious sites, foreign place names, placeholder coordinates shared by several differently named records, and merges duplicates of one campus across sources; every removal is logged with its reason. Pass~3 moves each survivor onto the footprint that contains it or, failing that, the nearest footprint of at least 25~m$^2$ within 35~m (a compound building up to 25~m away for a school, college or hospital), and removes facilities with no building in range. Pass~4 writes the verified table with the sources, the snap distance and a confidence label; records with a single source and a snap of more than 12~m are kept with \texttt{use\_in\_analysis}${}=$\,False and are not routed.
+
+\subsection{Zero-crossing building clearance}
+The soft footprint penalty $\mu$ in equation~\ref{eq:cell} lets a route cross a roof when the detour costs more. The proposed plan therefore uses a hard barrier on a finer grid. Each 10~m cost cell is refined to $2\times2$ cells of cell size $\Delta=5$~m with the same cost per metre, and every cell whose centre lies within $r_c=3.6$~m of any footprint is blocked (equation~\ref{eq:bldg}). Because $r_c>\Delta\sqrt2/2=3.54$~m, no step between two free cell centres can touch a footprint: a point of the step lies within $\Delta\sqrt2/2$ of one of its end points, and that end point would then have been blocked. A target sits inside its own building, so each route starts at the edge of that building and reaches the nearest free cell that is connected to the road network by a straight lane of at most the snap distance that touches no other footprint; a target with no such lane (a house enclosed by other buildings) is reported as unrouted, never routed over a roof. Lengths are measured from the building edge. Every drawn route (lane, path and attachment to a road) is finally intersected with all footprints other than its own.
+
+\subsection{Mathematical formulation}
+\paragraph{Segmentation loss.} With logits $\mathbf z$, labels $y$, class probabilities $p_{ic}$ and one-hot targets $t_{ic}$ at pixel $i$ (class 0 is ignored),
+\begin{equation}
+\mathcal L(\mathbf z,y)=0.5\,\mathcal L_{\mathrm{CE}}+0.4\,\mathcal L_{\mathrm{Dice}}+0.1\,\mathcal L_{\mathrm{edge}},\qquad
+\mathcal L_{\mathrm{total}}=\mathcal L(\mathbf z^{\mathrm{main}},y)+0.4\sum_{j=1}^{3}\mathcal L(\mathbf z^{(j)},y),
+\label{eq:loss}
+\end{equation}
+\begin{equation}
+\mathcal L_{\mathrm{Dice}}=\frac1{|\mathcal C|}\sum_{c\in\mathcal C}\Bigl(1-\frac{2\sum_i p_{ic}t_{ic}+\varepsilon}{\sum_i p_{ic}+\sum_i t_{ic}+\varepsilon}\Bigr),\qquad
+\mathcal L_{\mathrm{edge}}=\frac1{|\Omega|}\sum_{i\in\Omega}(1+4e_i)\,\mathrm{CE}_i,\quad e_i=\min\{1,\,|(K_x{*}y)_i|+|(K_y{*}y)_i|\}.
+\label{eq:diceedge}
+\end{equation}
+Here $\mathcal C$ is the set of scored classes, $\varepsilon$ a small smoothing constant, $K_x,K_y$ the Sobel kernels, so that the edge term up-weights the cross-entropy of pixels on label boundaries by up to five; the three auxiliary heads $\mathbf z^{(j)}$ provide deep supervision.
+
+\paragraph{Evaluation metrics.} From the confusion matrix, with $TP_c,FP_c,FN_c$ the true positives, false positives and false negatives of class $c$ and $N$ the number of labelled pixels,
+\begin{equation}
+\mathrm{OA}=\frac{\sum_c TP_c}{N},\quad P_c=\frac{TP_c}{TP_c+FP_c},\quad R_c=\frac{TP_c}{TP_c+FN_c},\quad F_{1,c}=\frac{2P_cR_c}{P_c+R_c}=\frac{2TP_c}{2TP_c+FP_c+FN_c},\quad \mathrm{IoU}_c=\frac{TP_c}{TP_c+FP_c+FN_c},
+\label{eq:metrics}
+\end{equation}
+and $P$, $R$, $F_1$ (the Dice coefficient) and $\mathrm{mIoU}=|\mathcal C|^{-1}\sum_{c\in\mathcal C}\mathrm{IoU}_c$ are the macro averages over the scored classes. Because $F_{1,c}$ equals the per-class Dice score, the reported F1-score is the mean Dice.
+
+\paragraph{Terrain.} Slope is taken from the Copernicus GLO-30 elevation $z$ with the Sobel gradient at the DEM spacing $\Delta_z=30$~m, resampled bilinearly to the planning grid:
+\begin{equation}
+\partial_x z\approx\frac{(K_x{*}z)}{8\Delta_z},\quad \partial_y z\approx-\frac{(K_y{*}z)}{8\Delta_z},\quad S=\arctan\sqrt{(\partial_x z)^2+(\partial_y z)^2},\quad p_S=100\tan S,
+\label{eq:slope}
+\end{equation}
+with $S$ the slope in degrees and $p_S$ the equivalent percentage slope reported in the comparison table. The cost uses the linear ramp $g(S)=w_s\min(S,S_{\mathrm{ref}})/S_{\mathrm{ref}}$ with $w_s=4$ and $S_{\mathrm{ref}}=10^{\circ}$, and cells with $S>S_{\lim}=25^{\circ}$ are blocked; no separate IRC slope-penalty factor is applied.
+
+\paragraph{Composite cost and clearance barrier.} With $c_{\mathrm{lc}}(\ell)$ the WorldCover resistance (equation~\ref{eq:cell}, so the land-cover weight is $w_{\mathrm{lc}}=1$) and $D(x)$ the Euclidean distance from the centre of cell $x$ to the nearest footprint (zero inside a footprint),
+\begin{equation}
+C(x)=c_{\mathrm{lc}}(\ell(x))+g(S(x))+C_{\mathrm{bldg}}(x),\qquad C_{\mathrm{bldg}}(x)=\begin{cases}\infty & D(x)\le r_c\\ 0 & \text{otherwise,}\end{cases}\qquad r_c=3.6\ \mathrm{m},\ \Delta=5\ \mathrm{m}.
+\label{eq:bldg}
+\end{equation}
+The ten-metre comparison baseline instead multiplies the cost of cells whose centre lies in a footprint by $\mu=4$ (equation~\ref{eq:cell}).
+
+\paragraph{Graph and routing objectives.} The graph has the free cells as nodes and 8-neighbour edges, a diagonal step being allowed only if both orthogonal neighbours are free. The weight of an edge $(u,v)$ is
+\begin{equation}
+w(u,v)=d(u,v)\,\frac{C(u)+C(v)}{2},\qquad d(u,v)=\begin{cases}\Delta&\text{cardinal step}\\ \sqrt2\,\Delta&\text{diagonal step.}\end{cases}
+\label{eq:edge}
+\end{equation}
+Stage~A gives every target $t$ the independent least-cost path $\pi_t^{A}=\arg\min_{\pi:\,t\to R}\sum_{e\in\pi}w(e)$ to the existing road cells $R$ (Dijkstra), and two further alternatives that multiply $w(e)$ by $\lambda\in\{3,8\}$ on cells within $20$~m of the earlier paths and overlap them by at most 80\%. Stage~B starts from $E_S=\emptyset$ and repeatedly serves the target and route with the highest weight per marginal cost,
+\begin{equation}
+(t^\star,\pi^\star)=\arg\max_{t\in U,\ \pi\in\Pi_t\cup\{\pi_t^{\mathrm{net}}\}}\frac{\omega_t}{\Delta\Lcost(\pi\mid S)},\qquad
+\Delta\Lcost(\pi\mid S)=\sum_{e\in\pi\setminus E_S}w(e),
+\label{eq:stageb}
+\end{equation}
+where $U$ is the set of unserved targets, $\Pi_t$ the Stage~A alternatives, $\pi_t^{\mathrm{net}}$ the least-cost path to the roads together with the routes already selected, and $\omega_t$ the priority weight ($4$ for hospitals and health centres, $3$ for schools, colleges and anganwadis, $2$ for government offices, $1$ for houses). A built edge $e\in E_S$ thus costs nothing again, which is a discount factor $\alpha=0$ on $E_S$; no intermediate $\alpha\in(0,1)$ is used. With $L(\cdot)$ the total length of the unique edges of a route set (shared edges once),
+\begin{equation}
+\rho=\frac{L_A-L_B}{L_A}\times100\%,\qquad L_A=L\bigl(\{\pi_t^A\}\bigr),\quad L_B=L(E_S),\qquad X=\sum_{r}\Bigl|r\cap\bigcup_{b\ne b_r}b\Bigr|=0,
+\label{eq:saving}
+\end{equation}
+where $X$ is the length of routes inside footprints other than the route's own building $b_r$ (zero by construction under equation~\ref{eq:bldg}).
+
+\paragraph{Illustrative cost.} The capital cost is
+\begin{equation}
+\mathrm{Cost}_{\mathrm{INR\ lakh}}=L_B[\mathrm{km}]\times c_{\mathrm{PMGSY}},\qquad c_{\mathrm{PMGSY}}=75\ \text{lakh/km}\ (\text{range }60\text{--}90),
+\label{eq:cost}
+\end{equation}
+with 1 lakh $=10^{5}$~INR. The rate was supplied by the project owner as PMGSY-based and has not been verified against a PMGSY document or a State Schedule of Rates, so the cost is illustrative and not an engineering estimate.
+
+\subsection{Algorithms}
+\begin{algorithm}[t]
+\caption{Tiled \dinoseg{} inference and distance-transform building extraction (\texttt{run\_tiled\_inference.py}, \texttt{extract\_buildings\_v8.py})}
+\label{alg:extract}
+\begin{algorithmic}[1]
+\Require mosaic $I$ (0.6~m), checkpoint $\theta$, tile $T=560$, stride $s=420$, margin $m=70$, neck ratio $\eta=0.65$, seed height $h=0.3$~m
+\Ensure footprints $\mathcal B$ with quality classes
+\State \textbf{assert} $s\le T-2m$ \Comment{no gaps between tile centres}
+\For{each tile of size $T\times T$ at stride $s$}
+  \State $p\gets\mathrm{softmax}(f_\theta(\text{tile}))$; write class $\arg\max p$ and $p_{\mathrm{bldg}}$ for the tile centre (drop $m$ px at inner edges)
+\EndFor
+\State $M\gets(\text{class}=\text{building})\wedge\lnot\text{no-data}$; drop components smaller than 6~m$^2$
+\For{each connected component $K$ of $M$}
+  \State $D\gets\mathrm{EDT}(K)$ (smoothed, $\sigma=1$ px); markers $\gets$ $h$-maxima of $D$ with height $h$
+  \State pieces $\gets$ marker-controlled flooding of $-D$ (only if area $\ge 40$~m$^2$)
+  \For{each adjacent piece pair $(a,b)$}
+    \State $r_{ab}\gets D_{\mathrm{saddle}}/\min(D_a^{\max},D_b^{\max})$
+    \If{$r_{ab}>\eta$ \textbf{or} a piece is smaller than 12~m$^2$} merge $a,b$ \Comment{no real neck}
+    \EndIf
+  \EndFor
+\EndFor
+\State polygonise; flag \textsc{Unresolved\_Merge} if area $>4\times$ the median compact roof; assign \textsc{Plausible} / \textsc{Review} / \textsc{Small} by confidence and shape
+\State \Return $\mathcal B$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[t]
+\caption{Cost surface with zero-crossing clearance and two-stage routing (\texttt{clearance.py}, \texttt{plan\_network\_v2.py})}
+\label{alg:route}
+\begin{algorithmic}[1]
+\Require land cover $\ell$, DEM $z$, roads $R$, footprints $\mathcal B$, targets $\mathcal T$ (road-gap houses and verified facilities with weights $\omega_t$), $\Delta=5$~m, $r_c=3.6$~m, $K=3$
+\Ensure route sets $\{\pi_t^A\}$, $E_S$ and lengths $L_A$, $L_B$, saving $\rho$, cost
+\State $S\gets$ slope of $z$ (equation~\ref{eq:slope}); $C_0(x)\gets c_{\mathrm{lc}}(\ell(x))+g(S(x))$; block water, invalid cells and $S>25^{\circ}$
+\State refine $C_0$ from 10~m to $\Delta=5$~m (same cost per metre); $D\gets\mathrm{EDT}(\mathcal B)$; $C(x)\gets\infty$ where $D(x)\le r_c$
+\State keep the free cells connected to a road cell; edge weights $w$ by equation~\ref{eq:edge}
+\For{each target $t\in\mathcal T$}
+  \State entrance $e_t\gets$ point of the target's building edge nearest to a free cell $s_t$; require a lane $e_t\to s_t$ of at most 30~m that touches no other footprint, else mark $t$ unrouted
+  \State $\Pi_t\gets K$ Dijkstra alternatives from $s_t$ to $R$ (corridor inflation $\lambda\in\{3,8\}$, 20~m, overlap $\le 80\%$); $\pi_t^A\gets$ first alternative
+\EndFor
+\State $L_A\gets L(\{\pi_t^A\})$; $U\gets$ routed targets; $E_S\gets\emptyset$
+\While{$U\ne\emptyset$}
+  \For{each $t\in U$} add the least-cost path $\pi_t^{\mathrm{net}}$ to $R\cup E_S$ to the candidates $\Pi_t$ \EndFor
+  \State $(t^\star,\pi^\star)\gets\arg\max\ \omega_t/\Delta\Lcost(\pi\mid S)$ (equation~\ref{eq:stageb}); $E_S\gets E_S\cup\pi^\star$; $U\gets U\setminus\{t^\star\}$
+\EndWhile
+\State two leaf re-route passes: replace a route that no other route uses if it has become cheaper given the others
+\State verify $X=0$ (equation~\ref{eq:saving}); $L_B\gets L(E_S)$; $\rho\gets 100(L_A-L_B)/L_A$; cost by equation~\ref{eq:cost}
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{Baselines, scenarios and metrics}
 Four baselines are compared: straight lines, independent least-cost routes, a length-only control (cost surface replaced by distance) and a roads-only shared reference (routes may share edges only with the existing road network). The saving against independent routing is $\rho=(L_{\mathrm{ind}}-L)/L_{\mathrm{ind}}$, with $L$ the unique network length (shared edges counted once). The exposure metrics are the number of routes crossing another house's footprint and the route length inside other footprints. The footprint penalty is varied ($\mu\in\{1,4,20,100\}$, with a variant in which footprints are buffered by 7.1~m). For omissions, a target set $M$ is removed from the targets and from the penalty layer (a missed detection is absent from both), and the planner is re-run; random draws use seeds 1--5. Coverage, unserved households, change in unique length and length per routed target are reported.
@@ -265,20 +358,13 @@ Add 20\% (random) & 190.6 & --- & --- & 5{,}868.3 & $+15.8$ & 30.8 & 25.4\\
 
 \section{Results: transfer to Adilabad Urban}\label{sec:adilabad}
 \subsection{Road-gap targets and routing}
-\emph{End-to-end run (\dinoseg{} footprints).} Of the 2{,}690 footprints of at least 30~m$^2$, 345 lie more than 30~m from a road and form the targets (Damarakunta: 163). The planner routes all 345. Independent least-cost routes total 23{,}312.5~m (unique 21{,}440.8~m); the two-stage plan needs 18{,}288.7~m, a saving of 14.7\% (table~\ref{tab:adilabad}, figure~\ref{fig:adilmap5}). The roads-only shared reference saves 2.3\% and the length-only control 6.9\%, so almost all of the saving comes from sharing among new routes. Exposure: 54 of 345 routes (15.7\%) cross another footprint (398.0~m), against 28 of 163 (17\%) in Damarakunta.
+\emph{End-to-end run (\dinoseg{} footprints).} Of the 2{,}690 footprints of at least 30~m$^2$, 345 lie more than 30~m from a road and form the targets (Damarakunta: 163). The planner routes all 345. Independent least-cost routes total 23{,}312.5~m (unique 21{,}440.8~m); the two-stage plan needs 18{,}288.7~m, a saving of 14.7\% (table~\ref{tab:adilabad}; the routes are drawn in figure~\ref{fig:flow}). The roads-only shared reference saves 2.3\% and the length-only control 6.9\%, so almost all of the saving comes from sharing among new routes. Exposure: 54 of 345 routes (15.7\%) cross another footprint (398.0~m), against 28 of 163 (17\%) in Damarakunta.
 
 These numbers must be read with the extraction quality in mind. More than half of the instances (1{,}580 of 2{,}769) are \textsc{Unresolved\_Merge} blobs with a median area of 1{,}125.5~m$^2$: in the dense fabric the segmenter merges neighbouring roofs, so the 345 targets are built-up units rather than houses, and the footprint penalty acts on merged blocks. No reference mask exists for Adilabad, so detection accuracy there is not known.
 
 \emph{Open-footprint check.} With 874 road-gap targets (873 routed) among 18{,}242 Overture footprints (median footprint 139.6~m$^2$, median distance to the nearest road 42.3~m), independent routes total 56{,}308.0~m (unique 46{,}419.2~m) and the two-stage plan 34{,}358.8~m, a saving of 26.0\%; the roads-only reference saves 2.9\% and the length-only control 5.7\%; 332 of 873 routes (38\%) cross another footprint (2{,}041.1~m). The facility phase connects 71 verified facilities with 1{,}090.1~m of unique corridor.
 
 Both Adilabad variants agree that sharing helps (14.7\% and 26.0\%) and that a roads-only reference does not (2.3\% and 2.9\%, against 22.6\% in Damarakunta), but they differ in the size of the saving. This is consistent with fewer, more widely spaced targets (345 against 874) offering less opportunity to share, an explanation that was not tested. The comparison is between two footprint sources, not a validation of either.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/adilabad_map5.jpg}
-\caption{Adilabad Urban, central urban zone: (a)~primary shared network (footprint penalty $\mu=4$ on footprint cells), in which 54 of the 345 house routes cross another footprint, and (b)~building-avoiding shared network (footprints buffered by 7.1~m, $\mu=100$), in which 7 of 345 do. House routes in blue, facility routes in red, route segments crossing another footprint in magenta, verified facilities as markers (callouts give latitude and longitude). Planning alternatives, not engineered roads. (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
-\label{fig:adilmap5}
-\end{figure*}
 
 \begin{table}[t]
 \caption{Cross-settlement comparison under the same cost surface and solver. ``Seg.'' = \dinoseg{} footprints on Esri imagery; ``open'' = Overture footprints. Targets are defined by different rules (all candidates in Damarakunta, road-gap houses in Adilabad).}
@@ -368,13 +454,25 @@ Gap $>50$~m & 15{,}880.9 & 29.5 & 126 & 809.9 & 296\\
 \label{fig:adilsens}
 \end{figure}
 
-\IfFileExists{figures/adilabad_fac_route_2panel.png}{%
-\begin{figure}[t]
+\section{Results: four study areas with zero-crossing clearance}\label{sec:four}
+Figure~\ref{fig:flow} follows the chain of figure~\ref{fig:arch} for the four study areas, from the Telangana locator through the input imagery and roads, the extracted footprints and verified facilities, to the planned network. Table~\ref{tab:four} collects every metric of the four areas in one place; it is regenerated by \texttt{scripts/run\_village\_pipeline.py --compare-all}, and a red \pending{value} marks a number not yet computed on the machine that wrote the table. The Adilabad column uses the updated settlement boundary (a derived built-up extent of Adilabad town) and the segmentation footprints of that boundary, so it is not the 2018 mandal experiment of the preceding sections.
+
+On the 5~m clearance grid, Stage~B shortens the unique network relative to the independent Stage~A routes by Damarakunta 21.0\%, Adilabad 12.2\%, Aswaraopeta 25.3\%, Alampur 16.2\%. Building crossings are zero in every area by construction and were verified by intersecting every drawn route with all footprints, whereas the ten-metre soft-penalty plan ($\mu=4$) still leaves routes across other footprints (Damarakunta 28, Adilabad 99, Aswaraopeta 157, Alampur 5 routes, respectively). Targets with no free lane to the road network are reported as unrouted rather than routed over a roof, so the routed counts in table~\ref{tab:four} are below the target counts where buildings enclose a house. The segmentation rows are model-level: they are the LoveDA validation scores of the one checkpoint used for all four areas, not accuracy on any of the four areas, for which no surveyed reference exists. Costs use the owner-supplied, unverified PMGSY-based rate of Rs 75 lakh/km and are illustrative.
+
+\begin{figure*}[p]
 \centering
-\includegraphics[width=0.4\textwidth]{figures/adilabad_fac_route_2panel.png}
-\caption{Adilabad Urban, central zone on Esri imagery: (a)~verified facilities (stars: schools; crosses: health; squares: government) and detected footprints outlined by quality class; (b)~final shared network (red), facility routes (white) and road-gap targets (orange). (Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community).}
-\label{fig:adilfac}
-\end{figure}}{}
+\IfFileExists{figures/fig_flow_study_areas.png}{\includegraphics[width=0.93\textwidth]{figures/fig_flow_study_areas.png}}{\fbox{\parbox{0.8\textwidth}{\centering\pending{Figure not generated yet: run \texttt{python scripts/build\_paper\_flow\_figure.py --source segmentation} on the PC that holds the segmentation results.}}}}
+\caption{Study areas and end-to-end flow. Top: Telangana with district outlines and the four study locations (1~Damarakunta, rural; 2~Adilabad, urban / semi-urban; 3~Aswaraopeta, semi-urban / tribal fringe; 4~Alampur, heritage / semi-urban). Rows 1--4: (a)~input, Esri World Imagery (0.6~m) with the existing road network; (b)~\dinoseg{} footprints (road-gap target houses in orange) with the verified facilities (School, College, Hospital, Government Office, Anganwadi); (c)~output, existing roads, Stage~A independent routes (white dashed) and Stage~B shared network (blue: houses; red: facilities) with the 5~m zero-crossing clearance, scale bar and north arrow. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Footprints are automatic detections and routes are planning alternatives, not engineered roads.}
+\label{fig:flow}
+\end{figure*}
+
+\begin{table*}[t]
+\caption{Four study areas side by side. Segmentation rows: LoveDA validation of the single \dinoseg{} checkpoint (macro averages; F1-score equals the mean Dice). Routing rows: unique lengths on the 5~m zero-crossing grid (Stage~A independent, Stage~B shared network, shared edges once); building crossings are routes inside another building's footprint; the cost is the Stage~B length times Rs 75 lakh per km (range 60--90), an owner-supplied, unverified PMGSY-based rate, so it is illustrative and not an engineering estimate.}
+\label{tab:four}
+\centering
+\scriptsize
+\resizebox{\textwidth}{!}{\input{paper_comparison_table.tex}}
+\end{table*}
 
 \section{Discussion}
 \subsection{What transfers and what does not}

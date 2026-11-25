@@ -1,54 +1,45 @@
-% Technical system architecture, vertical (top-to-bottom) single-column layout (8.6 cm wide). Compiled standalone to fig_architecture.pdf;
-% a 300 dpi PNG is made for the Word builds. Included at \columnwidth (IEEE) or a fixed width (ERIS).
+% Technical system architecture (7 steps), vertical single-column layout (8.6 cm wide). Compiled standalone to fig_architecture.pdf; a 300 dpi PNG is made for the Word builds.
+% Parameters are those of the code: scripts/run_tiled_inference.py (tile 560, stride 420, margin 70), scripts/extract_buildings_v8.py (neck ratio 0.65), scripts/audit_facilities.py (snap 35 m),
+% src/multivillage/clearance.py (5 m grid, 3.6 m clearance), scripts/plan_network_v2.py (K=3, greedy weight / marginal cost).
 \documentclass[tikz,border=2pt]{standalone}
 \usetikzlibrary{positioning,arrows.meta,fit,backgrounds,calc}
 \usepackage{amsmath}
 \begin{document}
 \sffamily
-\begin{tikzpicture}[node distance=0.16cm]
+\begin{tikzpicture}[node distance=0.14cm]
 \tikzset{
-  blk/.style={draw=black!70,rounded corners=1.5pt,align=center,inner sep=2pt,font=\fontsize{6.4}{7.4}\selectfont,text width=7.3cm,minimum height=0.46cm},
-  inp/.style={blk,fill=blue!8},
-  per/.style={blk,fill=orange!14},
-  cst/.style={blk,fill=teal!12},
-  pln/.style={blk,fill=green!14},
-  evl/.style={blk,fill=violet!11},
+  blk/.style={draw=black!70,rounded corners=1.5pt,align=center,inner sep=2pt,font=\fontsize{6.4}{7.4}\selectfont,text width=7.3cm,minimum height=0.44cm},
+  s1/.style={blk,fill=blue!8}, s2/.style={blk,fill=orange!14}, s3/.style={blk,fill=yellow!22}, s4/.style={blk,fill=red!9},
+  s5/.style={blk,fill=teal!12}, s6/.style={blk,fill=green!14}, s7/.style={blk,fill=violet!11},
   arr/.style={-{Stealth[length=1.8mm]},thick,black!75},
   grp/.style={draw=black!45,dashed,rounded corners=2pt,inner sep=3.5pt},
   ttl/.style={font=\fontsize{6.6}{7.6}\selectfont\bfseries,text=black!80,fill=white,inner sep=1pt}
 }
-% --- stage 1: inputs
-\node[inp] (i1) {Satellite imagery (RGB), tiled to $560{\times}560$ px\; $\cdot$\; Existing roads $R$ and study-area boundary (Overture; geoBoundaries ADM3)};
-\node[inp,below=of i1] (i2) {Land cover: ESA WorldCover v200, 10\,m (class $\ell$)\; $\cdot$\; Elevation (DEM; Copernicus GLO-30 in open-data mode) $\rightarrow$ slope $s$};
-\node[inp,below=of i2] (i3) {Open building footprints (Overture Maps), open-data mode\; $\cdot$\; Facilities $F$ (Overture places, manually verified)};
-\begin{scope}[on background layer]\node[grp,fit=(i1)(i3),label={[ttl]above:1\; INPUTS}] (g1) {};\end{scope}
-% --- stage 2: perception
-\node[per,below=0.62cm of i3] (p1) {\textbf{StrongDINOv2Seg}: DINOv2 ViT-B/14, blocks 3/6/9/12 $\rightarrow$ 256-ch FPN fusion $\rightarrow$ ASPP\,\{6,12,18\} $\rightarrow$ 4-stage decoder, deep supervision};
-\node[per,below=of p1] (p2) {Instance extraction (OpenCV/NumPy): distance transform, neck test $0.65$, merge flag};
-\node[per,below=of p2] (p3) {Quality classes (Plausible, Review, Unresolved\_Merge) $\rightarrow$ footprints $\mathcal P$, targets $T$};
-\node[per,below=of p3] (p4) {Open-data mode: road-gap filter, keep houses with $d(t,R)>30$\,m $\rightarrow$ targets $T$};
-\begin{scope}[on background layer]\node[grp,fit=(p1)(p4),label={[ttl]above:2\; PERCEPTION AND TARGETS}] (g2) {};\end{scope}
-% --- stage 3: cost surface
-\node[cst,below=0.62cm of p4] (c1) {10\,m grid, 8-neighbour graph: $c(x)=\bigl[c_{\mathrm{lc}}(\ell)+g(s)\bigr]\,m(x)$};
-\node[cst,below=of c1] (c2) {Hard blocks: water, invalid cells, slope $>25^{\circ}$\; $\cdot$\; footprint penalty $m(x)=\mu$ ($\mu{=}4$) if the cell centre lies in $\mathcal P$};
-\begin{scope}[on background layer]\node[grp,fit=(c1)(c2),label={[ttl]above:3\; MULTI-CRITERIA COST SURFACE}] (g3) {};\end{scope}
-% --- stage 4: planner
-\node[pln,below=0.62cm of c2] (s0) {Facilities planned in a separate phase};
-\node[pln,below=of s0] (s1) {Stage A: $K{=}3$ least-cost alternatives per target (Dijkstra)};
-\node[pln,below=of s1] (s2) {Stage B: greedy selection by weight / marginal cost, shared edges free; 2 leaf re-route passes};
-\node[pln,below=of s2] (s3) {Shared network (unique edges) and connectivity audit};
-\begin{scope}[on background layer]\node[grp,fit=(s0)(s3),label={[ttl]above:4\; TWO-STAGE SHARED-NETWORK PLANNER}] (g4) {};\end{scope}
-% --- stage 5: evaluation
-\node[evl,below=0.62cm of s3] (e1) {Baselines: straight line, independent least-cost, length-only, roads-only shared};
-\node[evl,below=of e1] (e2) {Metrics: unique / total length, saving $\rho$, routes and metres inside other footprints};
-\node[evl,below=of e2] (e3) {Sensitivity: $\mu\in\{1,4,20,100\}$, buffered 7.1\,m, omit/add targets (5 seeds), road-gap 20/30/50\,m};
-\node[evl,below=of e3] (e4) {Transfer: Damarakunta (rural) $\rightarrow$ Adilabad Urban (urban / peri-urban)};
-\begin{scope}[on background layer]\node[grp,fit=(e1)(e4),label={[ttl]above:5\; EVALUATION AND TRANSFER}] (g5) {};\end{scope}
-% --- flows between stages and inside stages
-\draw[arr] (g1.south) -- (g2.north);
-\draw[arr] (g2.south) -- (g3.north);
-\draw[arr] (g3.south) -- (g4.north);
-\draw[arr] (g4.south) -- (g5.north);
-\foreach \a/\b in {p1/p2,p2/p3,p3/p4,s0/s1,s1/s2,s2/s3,e1/e2,e2/e3,e3/e4} \draw[arr] (\a) -- (\b);
+
+\node[s1] (a1) {Esri World Imagery 0.6\,m mosaic (tiled to $560{\times}560$ px)\; $\cdot$\; study polygon};
+\node[s1,below=of a1] (a2) {Existing roads $R$ (Overture / OSM / TGRAC)\; $\cdot$\; ESA WorldCover v200, 10\,m (class $\ell$)};
+\node[s1,below=of a2] (a3) {Copernicus GLO-30 DEM $\rightarrow$ slope $S$\; $\cdot$\; open footprints (independent check only)};
+\begin{scope}[on background layer]\node[grp,fit=(a1)(a3),label={[ttl]above:1\; MULTI-SOURCE OPEN DATA INGESTION}] (g1) {};\end{scope}
+\node[s2,below=0.6cm of a3] (b1) {\textbf{StrongDINOv2Seg}: DINOv2 ViT-B/14, blocks 3/6/9/12 $\rightarrow$ FPN $\rightarrow$ ASPP\,\{6,12,18\} $\rightarrow$ decoder};
+\node[s2,below=of b1] (b2) {Tiled inference: tile 560, stride 420, margin 70 $\rightarrow$ building probability and class rasters};
+\begin{scope}[on background layer]\node[grp,fit=(b1)(b2),label={[ttl]above:2\; SEMANTIC SEGMENTATION}] (g2) {};\end{scope}
+\node[s3,below=0.6cm of b2] (c1) {Distance transform, $h$-maxima markers, marker-controlled flooding, neck test $0.65$};
+\node[s3,below=of c1] (c2) {Quality classes (Plausible, Review, Unresolved\_Merge) $\rightarrow$ footprints $\mathcal B$; road-gap targets $d(t,R)>30$\,m};
+\begin{scope}[on background layer]\node[grp,fit=(c1)(c2),label={[ttl]above:3\; BUILDING FOOTPRINT EXTRACTION}] (g3) {};\end{scope}
+\node[s4,below=0.6cm of c2] (d1) {Pass 1 harvest (OSM, Overture, Wikidata) $\rightarrow$ pass 2 clean and merge duplicates};
+\node[s4,below=of d1] (d2) {Pass 3 snap onto a roof (${\le}35$\,m) $\rightarrow$ pass 4 table: School, College, Hospital, Government Office, Anganwadi};
+\begin{scope}[on background layer]\node[grp,fit=(d1)(d2),label={[ttl]above:4\; FOUR-PASS FACILITY AUDIT AND ROOF SNAPPING}] (g4) {};\end{scope}
+\node[s5,below=0.6cm of d2] (e1) {$C(x)=c_{\mathrm{lc}}(\ell)+g(S)$; hard blocks: water, invalid, $S>25^{\circ}$};
+\node[s5,below=of e1] (e2) {5\,m grid; cells with $D(x)\le 3.6$\,m from any footprint blocked ($C_{\mathrm{bldg}}=\infty$): zero crossings};
+\begin{scope}[on background layer]\node[grp,fit=(e1)(e2),label={[ttl]above:5\; COST SURFACE WITH 5\,m ZERO-CROSSING CLEARANCE}] (g5) {};\end{scope}
+\node[s6,below=0.6cm of e2] (f1) {Stage A: $K{=}3$ least-cost alternatives per target (Dijkstra, 8-neighbour)};
+\node[s6,below=of f1] (f2) {Stage B: greedy weight / marginal cost, built edges free, 2 leaf re-route passes};
+\begin{scope}[on background layer]\node[grp,fit=(f1)(f2),label={[ttl]above:6\; STAGE A AND STAGE B SHARED-NETWORK ROUTING}] (g6) {};\end{scope}
+\node[s7,below=0.6cm of f2] (h1) {Unique length $L_A$, $L_B$, saving $\rho$; building crossings (must be 0); connectivity audit};
+\node[s7,below=of h1] (h2) {Illustrative PMGSY cost $=L_B[\mathrm{km}]\times$ Rs 75 lakh/km (owner-supplied, unverified)};
+\begin{scope}[on background layer]\node[grp,fit=(h1)(h2),label={[ttl]above:7\; PMGSY COST AND CONNECTIVITY EVALUATION}] (g7) {};\end{scope}
+\draw[arr] (g1.south) -- (g2.north);\draw[arr] (g2.south) -- (g3.north);\draw[arr] (g3.south) -- (g4.north);
+\draw[arr] (g4.south) -- (g5.north);\draw[arr] (g5.south) -- (g6.north);\draw[arr] (g6.south) -- (g7.north);
+\foreach \a/\b in {a1/a2,a2/a3,b1/b2,c1/c2,d1/d2,e1/e2,f1/f2,h1/h2} \draw[arr] (\a) -- (\b);
 \end{tikzpicture}
 \end{document}

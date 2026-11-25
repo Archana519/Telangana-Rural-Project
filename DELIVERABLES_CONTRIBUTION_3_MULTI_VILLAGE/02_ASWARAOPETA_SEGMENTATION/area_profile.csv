@@ -1,0 +1,2 @@
+area,window_km2,roads_km,slope_mean_pct,slope_max_pct,slope_mean_deg,source
+aswaraopeta,2.824,28.603,3.14,10.51,1.8,"Copernicus GLO-30 DEM, Sobel slope on the 10 m grid, cells inside the study polygon"
