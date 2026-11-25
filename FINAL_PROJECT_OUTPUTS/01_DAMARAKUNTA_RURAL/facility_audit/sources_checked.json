@@ -1,0 +1,16 @@
+{
+  "village": "damarakunta",
+  "date": "2026-11-25",
+  "sources": {
+    "OpenStreetMap (Overpass)": "Overpass unreachable from this machine (all mirrors failed); only the Photon text search was used for OpenStreetMap; 0 elements via ",
+    "OpenStreetMap (Photon geocoder, text search)": "1 facility-like objects (a second, incomplete view of OSM; Overpass is the complete one)",
+    "Overture Maps Places": "3 places in the window (all categories; release 2026-10-21.0)",
+    "Wikidata (SPARQL box)": "3 items with coordinates, 3 labelled",
+    "Wikipedia geosearch": "0 articles within 4 km",
+    "LGD / Telangana Govt / district directories": "no open API reachable from this sandbox (LGD, UDISE+, Telangana school / PHC / anganwadi directories are portals without a query API): not used unless a file is passed with --extra-csv",
+    "TGRAC layers (Damarakunta, committed)": "anganwadi, health, sub-centre and priority-facility layers in Siddipet/Damarakunta/reference"
+  },
+  "snap_m": 35.0,
+  "border_m": 150.0,
+  "harvest_buffer_m": 500.0
+}

@@ -10,5 +10,5 @@ Items to attach:
 - [ ] ESA WorldCover v200 tile page and Copernicus DEM GLO-30 tile page for the tiles listed in `alampur_acquired_data_manifest.csv`
 - [ ] Esri World Imagery terms page and a screenshot of one exported tile request (extent, size, date)
 - [ ] geoBoundaries gbOpen IND ADM3 / ADM2 metadata JSON (licence ODbL 1.0, build date) used as the 2018 reference layer
-- [ ] Facility exclusion decisions (alampur_facility_exclusions.csv): the evidence for every excluded record
+- [ ] Facility audit: Google Maps / on-site check of every facility in alampur_verified_facilities.csv (and of the use_in_analysis = False rows), plus the evidence for every row of alampur_facility_exclusions.csv
 - [ ] Any official polygon you hold (LGD / Census / municipal) if you decide to replace the derived boundary: pass it with `propose_aoi.py --use-file` and keep the file here

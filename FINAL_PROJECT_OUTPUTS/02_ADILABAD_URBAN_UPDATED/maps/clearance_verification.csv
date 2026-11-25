@@ -1,2 +1,2 @@
 grid_m,clearance_m,house_targets,house_routed,facility_targets,facility_routed,saving_vs_independent_pct,house_indep_routes_checked,house_indep_routes_crossing,house_indep_length_inside_other_footprints_m,house_indep_worst_route_m,house_shared_routes_checked,house_shared_routes_crossing,house_shared_length_inside_other_footprints_m,house_shared_worst_route_m,fac_indep_routes_checked,fac_indep_routes_crossing,fac_indep_length_inside_other_footprints_m,fac_indep_worst_route_m,fac_shared_routes_checked,fac_shared_routes_crossing,fac_shared_length_inside_other_footprints_m,fac_shared_worst_route_m
-5.0,3.6,613,607,86,86,12.2,607,0,0.0,0.0,607,0,0.0,0.0,86,0,0.0,0.0,86,0,0.0,0.0
+5.0,3.6,613,607,132,132,12.2,607,0,0.0,0.0,607,0,0.0,0.0,132,0,0.0,0.0,132,0,0.0,0.0

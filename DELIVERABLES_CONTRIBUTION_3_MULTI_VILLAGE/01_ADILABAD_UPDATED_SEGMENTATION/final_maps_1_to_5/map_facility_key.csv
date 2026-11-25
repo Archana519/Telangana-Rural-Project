@@ -1,87 +1,133 @@
 label,name,facility_type,routed,lat,lon
-F1,Little Star High School,school,True,19.668181,78.536262
-F2,Oakley International School,school,True,19.70276,78.54441
-F3,Radiance School English Medium,school,True,19.669835,78.538927
-F4,Aarogyam Homoeo Care,health,True,19.670216,78.536029
-F5,Aryabhatta International School,school,True,19.670288,78.528831
-F6,Sanjay Gandhi Government Polytechnic College,school,True,19.652959,78.532698
-F7,RIMS Adilabad,school,True,19.665059,78.528302
-F8,Al- Madina School Ichoda E/m & U/m,school,True,19.67692,78.533198
-F9,Dharma Vidyalay,school,True,19.668085,78.508545
-F10,Al- Madina Urdu School Ichoda,school,True,19.68221,78.533894
-F11,Kakatiya High School,school,True,19.653282,78.521573
-F12,"Sansa Gastro,Liver & Skin Hospital - Endoscopy & Cosmotology Centre",health,True,19.67352,78.53178
-F13,Little flower english high school,school,True,19.66887,78.538233
-F14,KV Adilabad ,school,True,19.65304,78.53271
-F15,Adilabad Haritha Vanam - ఆదిలాబాద్ హరితవనం,government,True,19.64224,78.53818
-F16,Nakshatra Hospital,health,True,19.677984,78.535771
-F17,Kallem Bhooma Reddy Multispeciality Hospital,health,True,19.672318,78.530903
-F18,Government Degree College for Men,school,True,19.663646,78.537244
-F19,Sri Venkateshwara Children's Hospital,health,True,19.666671,78.530971
-F20,Alana Rehabilitation,health,True,19.676909,78.53318
-F21,Dr. BR Ambedkar Open University Regional Study Center,school,True,19.663867,78.538665
-F22,Dream College of Nursing,school,True,19.66299,78.53807
-F23,Crescent Junior College,school,True,19.668983,78.534631
-F24,Pragathi Uro & Kidney care Hospital,health,True,19.678026,78.535801
-F25,Vidyarthi College,school,True,19.667411,78.535597
-F26,Iris Florets Adilabad ,school,True,19.661,78.52632
-F27,Krishnaveni Degree College,school,True,19.669962,78.52652
-F28,Mothers Care High School,school,True,19.671135,78.538351
-F29,Gvot Degree collage Adilabad,school,True,19.665184,78.53579
-F30,Prathibha High School,school,True,19.653281,78.518517
-F31,New Arunodhaya High School,school,True,19.68471,78.538578
-F32,SRR Medical and Poly Clinic,health,True,19.67175,78.53701
-F33,Amma Hospitals,health,True,19.67692,78.533198
-F34,Anjum Hospital,health,True,19.66651,78.53804
-F35,Shree Gajanan Hospital,health,True,19.678001,78.535778
-F36,Rajiv Gandhi Institute of Medical Sciences and Hospital,health,True,19.662622,78.52585
-F37,Spoorthi Junior College,school,True,19.671178,78.526401
-F38,Government Degree College Mens,school,True,19.663175,78.538023
-F39,GYR Play School,school,True,19.675199,78.538804
-F40,Global Techno School,school,True,19.66327,78.520253
-F41,Vijetha Junior College,school,True,19.665718,78.528793
-F42,Vishwa Shanthi HIGH School,school,True,19.67,78.52074
-F43,Dist Medical & Health Office Government,health,True,19.670206,78.536938
-F44,Seshanna Chennawar Eye Centre,health,True,19.643232,78.512268
-F45,Government Girls High School,school,True,19.672077,78.528619
-F46,District Employment Exchange Office,government,True,19.66274,78.528184
-F47,SR Digi School,school,True,19.65925,78.522543
-F48,New Era Academy,school,True,19.67692,78.533198
-F49,"Aditya Junior College,adilabad",school,True,19.66924,78.52678
-F50,Nalanda Degree College,school,True,19.64224,78.53818
-F51,Sri Sai Maternity Hospital Sri Lakshmi Blood Bank,health,True,19.664072,78.532027
-F52,"S.G.Govt., Polytechnic Adilabad",school,True,19.66385,78.537518
-F53,"S.G.Govt., Polytechnic Adilabad",school,True,19.67692,78.533198
-F54,Post Office Passport Seva Kendra,government,True,19.671539,78.537137
-F55,Krishna Play School,school,True,19.667502,78.538635
-F56,Zilla Parishad Office,government,True,19.666871,78.523647
-F57,Star glow international kids,school,True,19.67004,78.530044
-F58,Maharshi Dayanand High School,school,True,19.66845,78.52849
-F59,Samskaar Dreams School,school,True,19.6708,78.52904
-F60,"Brilliant Grammar High School,Adilabad",school,True,19.67692,78.533198
-F61,Sri Gopala Krishna Vidyamandir,school,True,19.669143,78.53548
-F62,St. Joseph's Convent High School,school,True,19.664849,78.531958
-F63,District Collector Office,government,True,19.66622,78.52525
-F64,Government Junior College for Boys Adilabad,school,True,19.67003,78.537576
-F65,Mavala Grama Panchayat Karyalayam,government,True,19.63478,78.51003
-F66,Prime Neuro and General hospital,health,True,19.6724,78.53093
-F67,Nalanda Degree College,school,True,19.644865,78.512167
-F68,C.Ram Reddy M School  Adilabad,school,True,19.67692,78.533198
-F69,Telangana SC Study Circle,school,True,19.653859,78.522284
-F70,Vivekananda High School,school,True,19.671462,78.528412
-F71,Adilabd Private Industrial Training Institute,school,True,19.650923,78.525607
-F72,Government Hospital,health,True,19.661691,78.526503
-F73,Sri Venkateshwara Vidhya Mandhir School,school,True,19.673065,78.53011
-F74,Shri Gajanan Multispecialty Hospital,health,True,19.675858,78.530375
-F75,Gurukrupa sanjeevani ayurvedahop,health,True,19.675156,78.532206
-F76,Shama Urdu High School,school,True,19.674274,78.529842
-F77,Vandana Diagnostic center,health,True,19.670144,78.530955
-F78,"DIET , Adilabad",school,True,19.67004,78.530044
-F79,Govt Hindi High School,school,True,19.67987,78.53883
-F80,Al Falah Islamic School,school,True,19.672081,78.530606
-F81,Krishnaveni Talent School,school,True,19.659067,78.523534
-F82,Shree Vishnu Neuro,health,True,19.67729,78.53538
-F83,"Aditya Junior College,Adilabad.",school,True,19.665017,78.528358
-F84,Vyas Academy of Vedic Maths,school,True,19.66334,78.52096
-F85,Kartikeya Hospital,health,True,19.671964,78.527712
-F86,Gowtham Model School,school,True,19.66892,78.536186
+F1,Vidyanagar-3,anganwadi,True,19.6776,78.527401
+F2,Vidyanagar-4,anganwadi,True,19.684001,78.533608
+F3,Vidyanagar-5,anganwadi,True,19.668298,78.523801
+F4,Vidyanagar-6,anganwadi,True,19.66559,78.528453
+F5,Aditya Junior College,college,True,19.669988,78.526356
+F6,"Aditya Junior College,Adilabad.",college,True,19.665017,78.528358
+F7,Crescent Junior College,college,True,19.668958,78.534652
+F8,Dr. BR Ambedkar Open University Regional Study Center,college,True,19.663867,78.538665
+F9,Government Arts College,college,True,19.663727,78.537343
+F10,Government Junior College for Boys Adilabad,college,True,19.669981,78.537717
+F11,Government Womens College,college,True,19.671719,78.536271
+F12,Gvot Degree collage Adilabad,college,True,19.665191,78.535776
+F13,Krishnaveni Degree College,college,True,19.669979,78.526495
+F14,Nalanda Degree College,college,True,19.644831,78.512215
+F15,"S.G.Govt., Polytechnic Adilabad",college,True,19.663843,78.537346
+F16,SD Babu Engineering Works,college,True,19.67696,78.532375
+F17,Sanjay Gandhi Polytechnic College,college,True,19.653188,78.532441
+F18,Spoorthi Junior College,college,True,19.671178,78.526359
+F19,Vidyarthi College,college,True,19.667411,78.535597
+F20,Bhagyanagar Post Office,government,True,19.681228,78.533053
+F21,Collector Office,government,True,19.665691,78.525893
+F22,District Court,government,True,19.667942,78.523104
+F23,District Employment Exchange Office,government,True,19.66274,78.528184
+F24,District Police Headquarters - Adilabad,government,True,19.66769,78.52194
+F25,Gandhichowk T Sub Post Office,government,True,19.675681,78.536907
+F26,II Town Police Station,government,True,19.66422,78.52852
+F27,Mavala Grama Panchayat Karyalayam,government,True,19.634739,78.510019
+F28,Meeseva Center,government,True,19.659896,78.524149
+F29,Meseva centre,government,True,19.667902,78.536117
+F30,Municipal council,government,True,19.671015,78.535971
+F31,Police Station-Adilabad,government,True,19.683233,78.511466
+F32,Post Office Netaji Chowk,government,True,19.670495,78.533696
+F33,Post Office Passport Seva Kendra,government,True,19.671549,78.537149
+F34,Zilla Parishad Office,government,True,19.666871,78.523647
+F35,Aarogyam Homoeo Care,health,True,19.670149,78.536107
+F36,Aira dental care adilabad,health,True,19.669864,78.529348
+F37,Akbani Dental Clinic Adilabad,health,True,19.677242,78.535941
+F38,Akbani Eye Hospital,health,True,19.674385,78.528661
+F39,Alana Rehabilitation,health,True,19.676909,78.53318
+F40,Anjum Hospital,health,True,19.66651,78.53804
+F41,Arogya Homeopathy Clinic,health,True,19.670861,78.534479
+F42,Ayyappa Orthopaedic and Childrens Hospital,health,True,19.670061,78.532793
+F43,Balaji Hospital,health,True,19.668682,78.528363
+F44,Care Hospital,health,True,19.670799,78.534757
+F45,Dr. Narotham reddy childrens hospital,health,True,19.672031,78.532906
+F46,Dr. Vaze's Dental Care,health,True,19.672256,78.536578
+F47,Dr.Agarwal hospital,health,True,19.672328,78.533037
+F48,Dr.sujataha maternity and syurgical nursing home,health,True,19.674084,78.540064
+F49,EHS & JHS Wellness Centre,health,True,19.662272,78.52812
+F50,Gandhi eye hospital,health,True,19.67226,78.533298
+F51,"Government Ayurvedic Dispensary, Adilabad (HQ) (Regular)",health,True,19.664033,78.526132
+F52,Government Hospital,health,True,19.661709,78.526507
+F53,Gurukrupa sanjeevani ayurvedahop,health,True,19.67514,78.532158
+F54,Harsha Hospital,health,True,19.66852,78.529516
+F55,Jeevana jyothi hospital,health,True,19.670184,78.527902
+F56,KBR Hospital,health,True,19.671969,78.534347
+F57,Kartikeya Hospital,health,True,19.669255,78.531997
+F58,Kartikeya Hospital,health,True,19.671964,78.527712
+F59,Laxmi cardiac hospital and 2d echo Centre,health,True,19.677999,78.53539
+F60,Madhava Hospital,health,True,19.670516,78.53083
+F61,Matruchaya Hospital,health,True,19.659396,78.525313
+F62,New Hope Laparoscopy Centre,health,True,19.652171,78.523302
+F63,Patanjali Arogya Kendra,health,True,19.675822,78.53536
+F64,Prime Neuro and General hospital,health,True,19.6724,78.53093
+F65,RIMS Medical College Hospital,health,True,19.662162,78.526707
+F66,Raja rajeshwara physiotherapy clinic,health,True,19.668147,78.528696
+F67,SRI SANJEEVANI CRITICAL CARE HOSPITAL,health,True,19.66414,78.532014
+F68,Sai Eye Hospital,health,True,19.653891,78.512941
+F69,Sai Ram Clinic,health,True,19.6569,78.524345
+F70,Saketh Hospital,health,True,19.667216,78.530178
+F71,"Sansa Gastro,Liver & Skin Hospital - Endoscopy & Cosmotology Centre",health,True,19.67352,78.53178
+F72,Sheshanna Chennawar Eye Hospital,health,True,19.64327,78.51226
+F73,Shree Vishnu Neuro,health,True,19.677248,78.53546
+F74,Shri Gajanan Multispecialty Hospital,health,True,19.675886,78.530321
+F75,Siri skin ENT hospital,health,True,19.669439,78.532632
+F76,Sneha Nursing Home,health,True,19.671316,78.530621
+F77,Sri Sairam Multispeciality Dental Care- Laser & Implant Centre,health,True,19.670937,78.532871
+F78,Sri Test Tube Baby Centre,health,True,19.672292,78.532309
+F79,Sri Venkateshwara Children's Hospital,health,True,19.66671,78.530482
+F80,Sri Venkateshwara Dental Clinic Dr L Pramod Reddy MDS,health,True,19.666345,78.527687
+F81,Srinivasa Nursing Home,health,True,19.669852,78.532675
+F82,"Sub Centre, Ramnagar",health,True,19.653788,78.520045
+F83,"SubCentre, Dasnapur",health,True,19.656544,78.527636
+F84,Suraksha children's Hospital,health,True,19.672076,78.530483
+F85,"Tirumala Dental, Face Surgery, Hair Transplant Clinic",health,True,19.670691,78.532338
+F86,"Urban Health Centre, Chilukuribalaginagar",health,True,19.691435,78.54264
+F87,"Urban Health Centre, Shantinagar",health,True,19.66884,78.539414
+F88,"Vaidya Ayurvedic Research Centre,Mahalaxmiwada",health,True,19.673904,78.537782
+F89,WALGOTE BONES HOSPITAL(Dr.Moin),health,True,19.670668,78.533407
+F90,chrome hospital,health,True,19.676473,78.53032
+F91,mary sudha clinic,health,True,19.664797,78.536317
+F92,nakshatra hospital,health,True,19.678363,78.536295
+F93,shifa clinic,health,True,19.669076,78.532696
+F94,Al Falah Islamic School,school,True,19.672103,78.530549
+F95,Al- Madina Urdu School Ichoda,school,True,19.682177,78.533856
+F96,Aryabhatta International School,school,True,19.670288,78.528831
+F97,Central Public School &Residential High School,school,True,19.661331,78.521038
+F98,Dharma Vidyalay,school,True,19.6681,78.508543
+F99,GYR Play School,school,True,19.675199,78.538804
+F100,Global Techno School,school,True,19.663352,78.520288
+F101,Goutam Model school,school,True,19.669167,78.536099
+F102,Government Girls School,school,True,19.67208,78.528762
+F103,Government High School,school,True,19.671696,78.526938
+F104,Government Hindi High School,school,True,19.679894,78.538969
+F105,KV Adilabad ,school,True,19.65304,78.53271
+F106,Kakatiya High School,school,True,19.653282,78.521573
+F107,Krantinagar Residential Area,school,True,19.685734,78.532308
+F108,Krishna Play School,school,True,19.667477,78.538564
+F109,Krishnaveni Talent School,school,True,19.659053,78.523497
+F110,Little Flower English High School,school,True,19.668916,78.537847
+F111,Little Star School,school,True,19.668794,78.536474
+F112,Maharshi Dayanand High School,school,True,19.66845,78.52849
+F113,Mothers Care High School,school,True,19.67114,78.538365
+F114,New Arunodhaya High School,school,True,19.684731,78.538585
+F115,Nouman Kids Wear,school,True,19.675133,78.534083
+F116,Oakley International School,school,True,19.702773,78.544604
+F117,Prathibha High School,school,True,19.653277,78.518502
+F118,Radiance School English Medium,school,True,19.669835,78.538927
+F119,SR Digi School,school,True,19.659396,78.522555
+F120,Samskaar Dreams School,school,True,19.6708,78.52904
+F121,Shama Urdu High School,school,True,19.67426,78.529813
+F122,Sonakshi Kids Gallery,school,True,19.673171,78.533642
+F123,Sri Venkateshwara Vidhya Mandhir School,school,True,19.673065,78.53011
+F124,St Josheph's Convent High School,school,True,19.664688,78.53086
+F125,"Urban Primary Health Center, Hamaliwada",school,True,19.681915,78.529223
+F126,"Urban Primary Health Centre, Chilukuri Laxmi Nagar",school,True,19.690832,78.541731
+F127,"Urban Primary Health Centre, Kurshidnagar",school,True,19.678758,78.520427
+F128,"Urban Primary Health Centre, Putilibowli",school,True,19.669264,78.539712
+F129,"Urban Primary Health Centre, Shantinagar",school,True,19.666545,78.540591
+F130,"Urban primary health centre, Shantinagar",school,True,19.663745,78.539285
+F131,Vaishnavi Model School,school,True,19.666018,78.518892
+F132,Vishwa Shanti High School,school,True,19.670009,78.519112

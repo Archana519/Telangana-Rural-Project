@@ -1,2 +1,10 @@
 label,name,facility_type,routed,lat,lon
-F1,Montessori School,school,True,15.888525,78.112365
+F1,Alampur-III,anganwadi,True,15.879568,78.133323
+F2,Alampur-V,anganwadi,True,15.878407,78.134374
+F3,Alampur-VI,anganwadi,True,15.882263,78.130653
+F4,Linganvai-III,anganwadi,True,15.887727,78.112408
+F5,alampur-IX,anganwadi,True,15.879628,78.133392
+F6,Government  degree college,college,True,15.87878,78.131012
+F7,"Govt Hospital,Alampur",health,True,15.880904,78.129491
+F8,"SubCentre, Alampur",health,True,15.876781,78.134218
+F9,Montessori School,school,True,15.888525,78.112365

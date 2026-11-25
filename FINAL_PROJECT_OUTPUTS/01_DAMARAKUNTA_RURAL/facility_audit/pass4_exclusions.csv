@@ -1,0 +1,16 @@
+id,name,reason,category,source,lat,lon,dist_outside_m
+3f5e8ea6-eba4-4faf-ae45-4bbc087c2966,Damarakunta Bus Stop,not one of the five categories,,Overture,17.706971,78.753559,0.0
+fa720af7-4183-4967-903c-485c92b01ebf,Damarakunta Bus Stop,not one of the five categories,,Overture,17.697044,78.746674,0.0
+623ab503-48cf-4294-90b6-5b04e0997377,Oak Tree Farms,not one of the five categories,,Overture,17.699764,78.751373,0.0
+tgrac_anganwadi.gpkg:1,Narsannapet,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",Anganwadi,TGRAC,17.7074,78.7503,0.0
+tgrac_anganwadi.gpkg:2,Yusufkhanpally (Mini),"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",Anganwadi,TGRAC,17.7074,78.7503,0.0
+tgrac_anganwadi.gpkg:3,S Venkatapoor,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",Anganwadi,TGRAC,17.7074,78.7503,0.0
+tgrac_anganwadi.gpkg:4,Vardarajpoor,"placeholder coordinate: several differently named records of this source share one point (a village / locality centroid, not a surveyed building)",Anganwadi,TGRAC,17.7074,78.7503,0.0
+damarakunta_priority_facilities.gpkg:3,Damarakunt-I,duplicate of 'Damarakunt-I' (TGRAC:tgrac_anganwadi.gpkg:0): same campus / facility across sources,Anganwadi,TGRAC,17.7038,78.7474,0.0
+derived/damarakunta_priority_facilities_final_5.gpkg:0,Mpps Damarakunta,duplicate of 'Mpps Damarakunta' (TGRAC:damarakunta_priority_facilities.gpkg:0): same campus / facility across sources,School,TGRAC,17.707272,78.750487,0.0
+derived/damarakunta_priority_facilities_final_5.gpkg:1,Zphs Damarakunta,duplicate of 'Zphs Damarakunta' (TGRAC:damarakunta_priority_facilities.gpkg:1): same campus / facility across sources,School,TGRAC,17.707576,78.750451,0.0
+tgrac_health.gpkg:0,"Sub Centre, Damarakunta","duplicate of 'SubCentre, Damarakunta' (OSM:node/6554820024): same campus / facility across sources",Hospital,TGRAC,17.708202,78.75382,0.0
+tgrac_sub_centres.gpkg:0,"SubCentre, Damarakunta","duplicate of 'SubCentre, Damarakunta' (OSM:node/6554820024): same campus / facility across sources",Hospital,TGRAC,17.707178,78.751872,0.0
+damarakunta_priority_facilities.gpkg:2,"Sub Centre, Damarakunta","duplicate of 'SubCentre, Damarakunta' (OSM:node/6554820024): same campus / facility across sources",Hospital,TGRAC,17.708202,78.75382,0.0
+derived/damarakunta_priority_facilities_final_5.gpkg:2,"Sub Centre, Damarakunta","duplicate of 'SubCentre, Damarakunta' (OSM:node/6554820024): same campus / facility across sources",Hospital,TGRAC,17.708202,78.75382,0.0
+TGRAC:tgrac_anganwadi.gpkg:0;TGRAC:damarakunta_priority_facilities.gpkg:3,Damarakunt-I,no building within 35 m of the point (field / road / wrong pin): needs an on-site check,Anganwadi,merged,17.7038,78.7474,0.0
