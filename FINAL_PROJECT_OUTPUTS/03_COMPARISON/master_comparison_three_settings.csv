@@ -1,27 +1,27 @@
-metric,damarakunta_rural,adilabad_urban_segmentation,adilabad_urban_open_footprints,adilabad_updated_segmentation,adilabad_updated_open_footprints,aswaraopeta_segmentation,aswaraopeta_open_footprints,alampur_open_footprints
-Settlement tier,rural village (dispersed),n/a,urban / peri-urban mandal (dense),n/a,n/a,n/a,n/a,n/a
-Study area (km2),18.47 (TGRAC village polygon),17.75 (geoBoundaries ADM3 'Adilabad Urban'),17.75 (geoBoundaries ADM3 'Adilabad Urban'),18.59 (DERIVED built-up settlement extent (NOT an administrative boundary)),18.59 (DERIVED built-up settlement extent (NOT an administrative boundary)),2.82 (DERIVED built-up settlement extent (NOT an administrative boundary)),2.82 (DERIVED built-up settlement extent (NOT an administrative boundary)),1.65 (DERIVED built-up settlement extent (NOT an administrative boundary))
-Building source,"StrongDINOv2Seg candidates on 0.6 m Esri imagery (278 polygons, 165 inside)","StrongDINOv2Seg instances on 0.6 m Esri imagery (2,769 polygons)","Overture open footprints: OSM + Google Open Buildings (24,924 polygons)","StrongDINOv2Seg instances on 0.6 m Esri imagery (5,653 polygons)","Overture open footprints (38,309 polygons)","StrongDINOv2Seg instances on 0.6 m Esri imagery (1,297 polygons)","Overture open footprints (4,762 polygons)","Overture open footprints (3,452 polygons)"
-Footprints used for the penalty layer,165 candidates inside the boundary (all classes),"2,690 instances (area >= 30 m2)","18,242 polygons (area >= 30 m2, confidence >= 0.7)","5,480 instances (area >= 30 m2)","27,731 polygons (area >= 30 m2, confidence >= 0.7)","1,242 instances (area >= 30 m2)","3,678 polygons (area >= 30 m2, confidence >= 0.7)","2,036 polygons (area >= 30 m2, confidence >= 0.7)"
-House targets,163 (all candidates),345 (road-gap rule: > 30 m from a road),"874 (houses > 30 m from a road, = 4.8% of footprints)",613 (road-gap rule: > 30 m from a road),1419 (road-gap rule: > 30 m from a road),678 (road-gap rule: > 30 m from a road),1890 (road-gap rule: > 30 m from a road),370 (road-gap rule: > 30 m from a road)
-Median target footprint area (m2),235.8,n/a,139.6,n/a,n/a,n/a,n/a,n/a
-Median target distance to nearest road (m),27.7,n/a,42.3,n/a,n/a,n/a,n/a,n/a
-Facilities planned,"5 (TGRAC schools, sub-centre, GP HQ points)",68 verified (facility-phase length not reported for this run),71 verified of 83 candidates (Overture places),86 verified (facility-phase length not reported for this run),88 verified (facility-phase length not reported for this run),11 verified (facility-phase length not reported for this run),13 verified (facility-phase length not reported for this run),1 verified (facility-phase length not reported for this run)
-Houses routed,163 of 163,345 of 345,873 of 874,607 of 613,1401 of 1419,636 of 678,1752 of 1890,299 of 370
-Independent routes: total / unique (m),"10,045.4 / 6,753.1","23,312.5 / 21,440.8","56,308.0 / 46,419.2","41,076.1 / 36,254.0","91,828.0 / 72,802.8","102,456.3 / 43,136.5","262,285.0 / 78,819.3","20,821.8 / 13,411.4"
-Length-only control: unique (m),"6,979.8","19,961.2","43,787.2","33,792.8","69,094.9","50,265.1","89,626.1","13,853.7"
-Roads-only shared reference: unique (m),"5,229.3","20,947.0","45,058.9","35,076.8","70,232.1","42,391.4","79,081.9","12,982.1"
-Two-stage shared plan: unique (m),"5,069.0","18,288.7","34,358.8","31,048.2","54,254.5","29,657.6","49,495.6","9,864.1"
-Saving vs independent (%),24.9,14.7,26.0,14.4,25.5,31.2,37.2,26.4
-Roads-only shared saving (%),22.6,2.3,2.9,3.2,3.5,1.7,-0.3,3.2
-Length-only control vs independent (%),-3.4,6.9,5.7,6.8,5.1,-16.5,-13.7,-3.3
-Unique length per routed house (m),31.1,53.0,39.4,51.2,38.7,46.6,28.3,33.0
-Routes crossing other footprints (two-stage),28 of 163 (17%),54 of 345 (16%),332 of 873 (38%),99 of 613 (16%),511 of 1419 (36%),157 of 678 (23%),645 of 1890 (34%),131 of 370 (35%)
-Length inside other footprints (m),209.1,398.0,"2,041.1",677.0,"3,047.2","1,090.4","3,280.3",641.3
-mu = 1 -> 4: unique length change (%),+7.7,+9.2,+13.3,n/a,n/a,n/a,n/a,n/a
-mu = 1 -> 4: routes crossing (n),56 -> 28,138 -> 54,618 -> 332,n/a,n/a,n/a,n/a,n/a
-Facility phase: unique length (m) / facilities,249.3 / 5,n/a,"1,090.1 / 71",n/a,n/a,n/a,n/a,n/a
-10% random omission: length change (%) / households unserved,-7.6 / 16 of 163,-8.8 / 34 of 345,-7.6 / 88 of 874,n/a,n/a,n/a,n/a,n/a
-20% random omission: length change (%) / households unserved,-16.9 / 33 of 163,-18.3 / 69 of 345,-15.0 / 176 of 874,n/a,n/a,n/a,n/a,n/a
-smallest-10% omission: length change (%) / households unserved,-8.3 / 17 of 163,-8.0 / 35 of 345,-7.9 / 89 of 874,n/a,n/a,n/a,n/a,n/a
-smallest-25% omission: length change (%) / households unserved,-25.1 / 41 of 163,-21.2 / 87 of 345,-21.2 / 220 of 874,n/a,n/a,n/a,n/a,n/a
+metric,damarakunta_rural,adilabad_urban_segmentation,adilabad_urban_open_footprints,adilabad_updated_segmentation,adilabad_updated_open_footprints,aswaraopeta_segmentation,aswaraopeta_open_footprints,alampur_segmentation,alampur_open_footprints
+Settlement tier,rural village (dispersed),n/a,urban / peri-urban mandal (dense),n/a,n/a,n/a,n/a,n/a,n/a
+Study area (km2),18.47 (TGRAC village polygon),17.75 (geoBoundaries ADM3 'Adilabad Urban'),17.75 (geoBoundaries ADM3 'Adilabad Urban'),18.59 (DERIVED built-up settlement extent (NOT an administrative boundary)),18.59 (DERIVED built-up settlement extent (NOT an administrative boundary)),2.82 (DERIVED built-up settlement extent (NOT an administrative boundary)),2.82 (DERIVED built-up settlement extent (NOT an administrative boundary)),1.65 (DERIVED built-up settlement extent (NOT an administrative boundary)),1.65 (DERIVED built-up settlement extent (NOT an administrative boundary))
+Building source,"StrongDINOv2Seg candidates on 0.6 m Esri imagery (278 polygons, 165 inside)","StrongDINOv2Seg instances on 0.6 m Esri imagery (2,769 polygons)","Overture open footprints: OSM + Google Open Buildings (24,924 polygons)","StrongDINOv2Seg instances on 0.6 m Esri imagery (5,653 polygons)","Overture open footprints (38,309 polygons)","StrongDINOv2Seg instances on 0.6 m Esri imagery (1,297 polygons)","Overture open footprints (4,762 polygons)",StrongDINOv2Seg instances on 0.6 m Esri imagery (430 polygons),"Overture open footprints (3,452 polygons)"
+Footprints used for the penalty layer,165 candidates inside the boundary (all classes),"2,690 instances (area >= 30 m2)","18,242 polygons (area >= 30 m2, confidence >= 0.7)","5,480 instances (area >= 30 m2)","27,731 polygons (area >= 30 m2, confidence >= 0.7)","1,242 instances (area >= 30 m2)","3,678 polygons (area >= 30 m2, confidence >= 0.7)",397 instances (area >= 30 m2),"2,036 polygons (area >= 30 m2, confidence >= 0.7)"
+House targets,163 (all candidates),345 (road-gap rule: > 30 m from a road),"874 (houses > 30 m from a road, = 4.8% of footprints)",613 (road-gap rule: > 30 m from a road),1419 (road-gap rule: > 30 m from a road),678 (road-gap rule: > 30 m from a road),1890 (road-gap rule: > 30 m from a road),59 (road-gap rule: > 30 m from a road),370 (road-gap rule: > 30 m from a road)
+Median target footprint area (m2),235.8,n/a,139.6,n/a,n/a,n/a,n/a,n/a,n/a
+Median target distance to nearest road (m),27.7,n/a,42.3,n/a,n/a,n/a,n/a,n/a,n/a
+Facilities planned,"5 (TGRAC schools, sub-centre, GP HQ points)",68 verified (facility-phase length not reported for this run),71 verified of 83 candidates (Overture places),86 verified (facility-phase length not reported for this run),88 verified (facility-phase length not reported for this run),11 verified (facility-phase length not reported for this run),13 verified (facility-phase length not reported for this run),1 verified (facility-phase length not reported for this run),1 verified (facility-phase length not reported for this run)
+Houses routed,163 of 163,345 of 345,873 of 874,607 of 613,1401 of 1419,636 of 678,1752 of 1890,58 of 59,299 of 370
+Independent routes: total / unique (m),"10,045.4 / 6,753.1","23,312.5 / 21,440.8","56,308.0 / 46,419.2","41,076.1 / 36,254.0","91,828.0 / 72,802.8","102,456.3 / 43,136.5","262,285.0 / 78,819.3","4,921.2 / 4,056.9","20,821.8 / 13,411.4"
+Length-only control: unique (m),"6,979.8","19,961.2","43,787.2","33,792.8","69,094.9","50,265.1","89,626.1","3,723.6","13,853.7"
+Roads-only shared reference: unique (m),"5,229.3","20,947.0","45,058.9","35,076.8","70,232.1","42,391.4","79,081.9","3,856.5","12,982.1"
+Two-stage shared plan: unique (m),"5,069.0","18,288.7","34,358.8","31,048.2","54,254.5","29,657.6","49,495.6","3,334.6","9,864.1"
+Saving vs independent (%),24.9,14.7,26.0,14.4,25.5,31.2,37.2,17.8,26.4
+Roads-only shared saving (%),22.6,2.3,2.9,3.2,3.5,1.7,-0.3,4.9,3.2
+Length-only control vs independent (%),-3.4,6.9,5.7,6.8,5.1,-16.5,-13.7,8.2,-3.3
+Unique length per routed house (m),31.1,53.0,39.4,51.2,38.7,46.6,28.3,57.5,33.0
+Routes crossing other footprints (two-stage),28 of 163 (17%),54 of 345 (16%),332 of 873 (38%),99 of 613 (16%),511 of 1419 (36%),157 of 678 (23%),645 of 1890 (34%),5 of 59 (8%),131 of 370 (35%)
+Length inside other footprints (m),209.1,398.0,"2,041.1",677.0,"3,047.2","1,090.4","3,280.3",32.9,641.3
+mu = 1 -> 4: unique length change (%),+7.7,+9.2,+13.3,n/a,n/a,n/a,n/a,n/a,n/a
+mu = 1 -> 4: routes crossing (n),56 -> 28,138 -> 54,618 -> 332,n/a,n/a,n/a,n/a,n/a,n/a
+Facility phase: unique length (m) / facilities,249.3 / 5,n/a,"1,090.1 / 71",n/a,n/a,n/a,n/a,n/a,n/a
+10% random omission: length change (%) / households unserved,-7.6 / 16 of 163,-8.8 / 34 of 345,-7.6 / 88 of 874,n/a,n/a,n/a,n/a,n/a,n/a
+20% random omission: length change (%) / households unserved,-16.9 / 33 of 163,-18.3 / 69 of 345,-15.0 / 176 of 874,n/a,n/a,n/a,n/a,n/a,n/a
+smallest-10% omission: length change (%) / households unserved,-8.3 / 17 of 163,-8.0 / 35 of 345,-7.9 / 89 of 874,n/a,n/a,n/a,n/a,n/a,n/a
+smallest-25% omission: length change (%) / households unserved,-25.1 / 41 of 163,-21.2 / 87 of 345,-21.2 / 220 of 874,n/a,n/a,n/a,n/a,n/a,n/a

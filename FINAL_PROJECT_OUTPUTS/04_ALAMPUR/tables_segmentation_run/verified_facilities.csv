@@ -1,0 +1,4 @@
+id,confidence,basic_category,operating_status,name,taxonomy_primary,dataset,addr_region,addr_locality,addr_postcode,facility_type,inside_window,dist_to_nearest_footprint_m,footprint_within_20m,manual_exclusion,_n,status,lon,lat,x_epsg32644,y_epsg32644
+e785fc10-8991-40fa-bdfb-90e06d869743,0.9586296081542969,preschool,,Montessori School,preschool,meta,TG,Alampur mandal,509152,school,True,9.9,True,,montessorischool,VERIFIED_USED,78.112365,15.888525,190764.7,1758739.3
+01c8c49c-80ba-4e79-b5b8-da511b8822cc,0.828768253326416,hospital,,Ayra Hospital Alm x Roads,hospital,meta,,Alampur,509125,health,False,inf,False,,ayrahospitalalmxroads,OUTSIDE_WINDOW_NOT_USED,78.0846,15.89279,187795.7,1759252.9
+3df698f3-d0d1-4b23-8abe-214a87ced00f,0.6258121132850647,education,,Govt . Town Model High School.,education,meta,,Kurnool,,school,False,inf,False,,govttownmodelhighschool,OUTSIDE_WINDOW_NOT_USED,78.119041,15.855742,191430.2,1755099.3

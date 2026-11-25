@@ -62,16 +62,16 @@ Footprints: 1,297 (PLAUSIBLE 772, UNRESOLVED_MERGE 452, SMALL_EXCLUDED 55, REVIE
 
 **Study area:** Alampur (Alampur town); DERIVED built-up settlement extent (NOT an administrative boundary); 1.65 km². Mandals covered (2018 layer): Alampur 1.65 km² (100.0%). Localities inside: Alampur.
 
-Footprints: 3,452 (PLAUSIBLE 1780, SMALL_EXCLUDED 1306, REVIEW 214, LOWCONF_EXCLUDED 110, LARGE_POSSIBLE_MERGE 42); 370 road-gap targets; 1 verified facilities. Run(s): open-footprint.
+Footprints: 430 (PLAUSIBLE 208, UNRESOLVED_MERGE 163, SMALL_EXCLUDED 33, REVIEW 26); 59 road-gap targets; 1 verified facilities. Run(s): segmentation open-footprint.
 
 | metric | segmentation | open footprints |
 |---|---|---|
-| Independent routes: total / unique (m) | n/a | 20,821.8 / 13,411.4 |
-| Two-stage shared plan: unique (m) | n/a | 9,864.1 |
-| Saving vs independent (%) | n/a | 26.4 |
-| Roads-only shared saving (%) | n/a | 3.2 |
-| Routes crossing other footprints (two-stage) | n/a | 131 of 370 (35%) |
-| Length inside other footprints (m) | n/a | 641.3 |
+| Independent routes: total / unique (m) | 4,921.2 / 4,056.9 | 20,821.8 / 13,411.4 |
+| Two-stage shared plan: unique (m) | 3,334.6 | 9,864.1 |
+| Saving vs independent (%) | 17.8 | 26.4 |
+| Roads-only shared saving (%) | 4.9 | 3.2 |
+| Routes crossing other footprints (two-stage) | 5 of 59 (8%) | 131 of 370 (35%) |
+| Length inside other footprints (m) | 32.9 | 641.3 |
 | mu = 1 -> 4: unique length change (%) | n/a | n/a |
 | 10% random omission: length change (%) / households unserved | n/a | n/a |
 
@@ -201,12 +201,34 @@ Full table: `03_COMPARISON/master_comparison_three_settings.csv`.
 | `03_COMPARISON/master_comparison_three_settings.csv` | Damarakunta vs Adilabad (StrongDINOv2Seg footprints) vs Adilabad (open Overture footprints): every shared metric |
 | `04_ALAMPUR/boundary/alampur_boundary.geojson` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
 | `04_ALAMPUR/boundary/alampur_boundary.provenance.json` | the study-area polygon and its provenance (derived built-up settlement extent; covered mandals and localities) |
+| `04_ALAMPUR/maps/alampur_fac_route_2panel.png` | compact 2-panel figure: verified facilities and final shared network |
+| `04_ALAMPUR/maps/clearance_verification.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
+| `04_ALAMPUR/maps/map1_imagery_boundary_roads.png` | Alampur (Alampur town) map1 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/maps/map2_footprints_facilities_latlon.png` | Alampur (Alampur town) map2 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/maps/map3_terrain_cost_landcover_slope.png` | Alampur (Alampur town) map3 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/maps/map4_alternatives_vs_network.png` | Alampur (Alampur town) map4 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/maps/map5_village_detail_shared_paths.png` | Alampur (Alampur town) map5 (segmentation footprints; Esri imagery where shown; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/maps/map_facility_key.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
+| `04_ALAMPUR/maps/master_satellite_planning_map.png` | Alampur (Alampur town): master satellite planning map, all layers on the Esri imagery (segmentation footprints; credit: Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/maps/network_length_cost_summary.csv` | facility label key (F<id>, name, lat/lon) / route length and illustrative PMGSY cost table for the maps |
+| `04_ALAMPUR/satellite_overlays/sat_map1_a.jpg` | Alampur (Alampur town) satellite overlay sat_map1_a (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/satellite_overlays/sat_map1_b.jpg` | Alampur (Alampur town) satellite overlay sat_map1_b (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/satellite_overlays/sat_map2_independent_window.jpg` | Alampur (Alampur town) satellite overlay sat_map2_independent_window (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/satellite_overlays/sat_map2_independent_zoom.jpg` | Alampur (Alampur town) satellite overlay sat_map2_independent_zoom (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/satellite_overlays/sat_map2_two_stage_window.jpg` | Alampur (Alampur town) satellite overlay sat_map2_two_stage_window (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
+| `04_ALAMPUR/satellite_overlays/sat_map2_two_stage_zoom.jpg` | Alampur (Alampur town) satellite overlay sat_map2_two_stage_zoom (JPEG copy; Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.) |
 | `04_ALAMPUR/tables_open_footprint_run/RUN_STATUS.md` | Alampur (Alampur town), open_footprint run: RUN_STATUS.md |
 | `04_ALAMPUR/tables_open_footprint_run/building_extraction_summary.csv` | Alampur (Alampur town), open_footprint run: building_extraction_summary.csv |
 | `04_ALAMPUR/tables_open_footprint_run/metrics_summary.json` | Alampur (Alampur town), open_footprint run: metrics_summary.json |
 | `04_ALAMPUR/tables_open_footprint_run/routing_strategy_comparison.csv` | Alampur (Alampur town), open_footprint run: routing_strategy_comparison.csv |
 | `04_ALAMPUR/tables_open_footprint_run/study_area.csv` | Alampur (Alampur town), open_footprint run: study_area.csv |
 | `04_ALAMPUR/tables_open_footprint_run/verified_facilities.csv` | Alampur (Alampur town), open_footprint run: verified_facilities.csv |
+| `04_ALAMPUR/tables_segmentation_run/building_extraction_summary.csv` | Alampur (Alampur town), segmentation run: building_extraction_summary.csv |
+| `04_ALAMPUR/tables_segmentation_run/comparison_open_vs_segmentation.csv` | Alampur (Alampur town), segmentation run: comparison_open_vs_segmentation.csv |
+| `04_ALAMPUR/tables_segmentation_run/metrics_summary.json` | Alampur (Alampur town), segmentation run: metrics_summary.json |
+| `04_ALAMPUR/tables_segmentation_run/routing_strategy_comparison.csv` | Alampur (Alampur town), segmentation run: routing_strategy_comparison.csv |
+| `04_ALAMPUR/tables_segmentation_run/study_area.csv` | Alampur (Alampur town), segmentation run: study_area.csv |
+| `04_ALAMPUR/tables_segmentation_run/verified_facilities.csv` | Alampur (Alampur town), segmentation run: verified_facilities.csv |
 
 ## Notes you should read before using these files
 
