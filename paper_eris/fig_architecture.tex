@@ -1,79 +1,63 @@
-% Figure 1 (architecture): two-tier modular layout for the ERL / IOP single-column page (compiled standalone; the 300 dpi PNG is made with pdftoppm).
+% Figure 1 (architecture): minimalist five-stage block diagram for the ERL / IOP single-column page (compiled standalone; the 300 dpi PNG is made with pdftoppm).
 % Parameters are those of the code: scripts/run_tiled_inference.py (tile 560, stride 420, margin 70), scripts/extract_buildings_v8.py (neck ratio 0.65),
 % scripts/audit_facilities.py (snap 35 m), src/multivillage/clearance.py (5 m grid, 3.6 m clearance), scripts/plan_network_v2.py (K=3, greedy weight / marginal cost).
 \documentclass[tikz,border=3pt]{standalone}
-\usetikzlibrary{arrows.meta,calc,positioning}
+\usetikzlibrary{arrows.meta,calc}
 \usepackage{amsmath}
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
-\definecolor{cA}{HTML}{3B5B8C}  % slate blue
-\definecolor{cB}{HTML}{1F7A7A}  % teal
-\definecolor{cC}{HTML}{B7791F}  % amber
-\definecolor{cD}{HTML}{7A4E8C}  % plum
-\definecolor{cE}{HTML}{3F7F4F}  % green
+\definecolor{tG}{HTML}{F1F3F5}  % neutral grey (data in / out)
+\definecolor{tB}{HTML}{E4EBF3}  % muted blue (learning, extraction)
+\definecolor{tA}{HTML}{F6EEDC}  % muted amber (routing)
+\hyphenpenalty=10000 \exhyphenpenalty=10000
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \tikzset{
-  body/.style={draw=#1,line width=0.7pt,fill=white,rounded corners=2pt,text width=5.55cm,minimum height=2.55cm,inner xsep=5pt,inner ysep=4pt,align=left,anchor=north west,font=\fontsize{7.6}{9.2}\selectfont},
-  head/.style={fill=#1!16,draw=#1,line width=0.7pt,rounded corners=2pt,text width=5.55cm,minimum height=0.62cm,inner xsep=5pt,align=left,anchor=north west,font=\fontsize{8.2}{9.6}\selectfont\bfseries,text=#1!85!black},
-  io/.style={fill=#1!7,draw=none,text width=5.55cm,minimum height=0.55cm,inner xsep=5pt,align=left,anchor=north west,font=\fontsize{7}{8.4}\selectfont\itshape,text=black!70},
-  arr/.style={-{Stealth[length=2.2mm,width=1.7mm]},line width=1pt,black!70}
+  blk/.style={draw=black!85,line width=0.8pt,fill=#1,text width=5.3cm,inner xsep=6pt,inner ysep=5pt,align=left,anchor=north west,minimum height=3.75cm,font=\fontsize{7.8}{9.6}\selectfont},
+  sub/.style={draw=black!85,line width=0.8pt,fill=white,text width=3.3cm,inner xsep=5pt,inner ysep=4pt,align=left,anchor=north west,minimum height=2.45cm,font=\fontsize{7.6}{9.2}\selectfont},
+  arr/.style={-{Stealth[length=2.3mm,width=1.8mm]},line width=0.8pt,black!85}
 }
-% geometry: three boxes per row, width 5.55 cm + 0.55 cm gap; row 1 holds stages 1-3, row 2 stages 4-6, evaluation spans row 3
-\newcommand{\stage}[7]{% x y colour number title body output
-  \node[head=#3] at (#1,#2) (h#4) {\hspace{0.1cm}#4\quad #5};
-  \node[body=#3,minimum height=2.25cm] at (#1,#2-0.62) (b#4) {#6};
-  \node[io=#3] at (#1,#2-0.62-2.25) (o#4) {#7};
-  \draw[#3,line width=0.7pt,rounded corners=2pt] (#1,#2-0.62-2.25) -- ++(5.55,0);
-}
-\def\W{6.1}
-\stage{0}{0}{cA}{1}{Multi-source open-data ingestion}
- {Esri imagery 0.6\,m: $560{\times}560{\times}3$ RGB tiles\\[1pt]
-  Roads $R$: Overture / OSM / TGRAC\\[1pt]
-  ESA WorldCover v200, 10\,m (class $\ell$)\\[1pt]
-  Copernicus GLO-30 DEM $\rightarrow$ slope $S$}
- {out: imagery tiles, roads $R$, land cover $\ell$, slope $S$}
-\stage{\W}{0}{cB}{2}{Semantic segmentation}
- {\textbf{StrongDINOv2Seg}: DINOv2 ViT-B/14\\[1pt]
-  FPN $+$ ASPP $+$ Residual Decoder\\[1pt]
-  Tile 560, stride 420, margin 70\\[1pt]
-  LoveDA mIoU 53.8\,\%, Dice 68.9\,\%}
- {out: class map and building probability, $0.6$\,m}
-\stage{2*\W}{0}{cC}{3}{Footprint extraction and targets}
- {Distance transform, $h$-maxima, flooding\\[1pt]
-  Neck ratio 0.65; \textsc{Unresolved\_Merge} flag\\[1pt]
-  Road-gap targets: $d(t,R)>30$\,m\\[1pt]
-  Footprints $\mathcal B$ (quality classes)}
- {out: footprints $\mathcal B$, target houses $\mathcal T$}
-\stage{0}{-4.35}{cD}{4}{Facility audit and roof snapping}
- {Pass 1: OSM, Overture, Wikidata, TGRAC\\[1pt]
-  Pass 2: five categories, remove duplicates\\[1pt]
-  Pass 3: snap $\le 35$\,m onto a roof footprint\\[1pt]
-  Pass 4: verified table with confidence}
- {out: verified facilities with weights $\omega_t$}
-\stage{\W}{-4.35}{cB}{5}{Cost surface and clearance}
- {$C(x)=c_{\mathrm{lc}}(\ell)+g(S)+C_{\mathrm{bldg}}(x)$\\[1pt]
-  \textbf{5\,m cost grid $+$ 3.6\,m hard clearance}\\[1pt]
-  $C_{\mathrm{bldg}}=\infty$ where $D(x)\le 3.6$\,m\\[1pt]
-  Blocked: water, invalid, $S>25^{\circ}$}
- {out: free-cell graph, zero building crossings}
-\stage{2*\W}{-4.35}{cE}{6}{Two-stage network optimisation}
- {\textbf{Stage A} Dijkstra $\rightarrow$ \textbf{B} Steiner trunk\\[1pt]
-  A: $K{=}3$ least-cost alternatives per target\\[1pt]
-  B: greedy $\omega_t/\Delta L$, built edges free\\[1pt]
-  Two leaf re-route passes}
- {out: $E_S$, lengths $L_A$, $L_B$}
-% evaluation strip (stage 7)
-\node[head=cA,text width=17.75cm] at (0,-8.7) (h7) {\hspace{0.1cm}7\quad PMGSY cost and connectivity evaluation};
-\node[body=cA,text width=17.75cm,minimum height=1.05cm] at (0,-8.7-0.62) (b7)
- {Saving $\rho=100\,(L_A-L_B)/L_A$\ \ $\cdot$\ \ crossings $=0$\ \ $\cdot$\ \ PMGSY-benchmarked cost $=L_B[\mathrm{km}]\times$ Rs 75 lakh/km (range 60--90)};
+\newcommand{\hd}[2]{\textbf{#1\ \ #2}\\[-1.5pt]\rule{5.3cm}{0.5pt}\\[1pt]}
+% row 1: stages 1-3
+\node[blk=tG] at (0,0) (s1) {\hd{1}{Multi-source open geospatial inputs}
+  \textbf{4 Telangana study areas:} Damarakunta, Adilabad, Aswaraopeta, Alampur\\[2pt]
+  Esri World Imagery, $0.6$\,m\\
+  TGRAC / OSM roads $R$\\
+  ESA WorldCover, $10$\,m\\
+  Copernicus DEM, $30$\,m\\
+  Verified public facilities $F_i$};
+\node[blk=tB] at (6.3,0) (s2) {\hd{2}{Deep semantic segmentation}
+  \textbf{StrongDINOv2Seg}\\[2pt]
+  RGB tiles $560{\times}560{\times}3$\\
+  $\downarrow$ DINOv2 ViT-B/14 backbone (fine-tuned, then frozen)\\
+  $\downarrow$ FPN $+$ ASPP $+$ Residual Decoder\\
+  $\downarrow$ 7-class probability map\\[1pt]
+  LoveDA: mIoU 53.8\,\%, F1 68.9\,\%};
+\node[blk=tB] at (12.6,0) (s3) {\hd{3}{Footprint and target extraction}
+  Morphological filtering and watershed separation\\
+  $\downarrow$ building footprints $B$\\
+  $\downarrow$ road-gap detection ($>30$\,m from existing roads $R$)\\
+  $\downarrow$ facility snapping to roofs\\[1pt]
+  Targets: houses and facilities};
+% row 2: stage 4 and stage 5
+\node[blk=tA] at (0,-4.45) (s4) {\hd{4}{$5$\,m zero-crossing cost surface}
+  Land-cover resistance $c_{\mathrm{lc}}(\ell)$\\
+  $+$ terrain-slope penalty $g(S)$\\
+  $+$ hard $3.6$\,m building-clearance mask: $C(x,y)=\infty$ where $D(x)\le3.6$\,m\\[2pt]
+  \textbf{Output:} $5$\,m routing cost raster};
+\node[draw=black!85,line width=0.8pt,fill=tA,anchor=north west,minimum width=11.9cm,minimum height=3.75cm] at (6.3,-4.45) (s5) {};
+\node[anchor=north west,align=left,font=\fontsize{7.8}{9.6}\selectfont,inner xsep=6pt,inner ysep=5pt] at (6.3,-4.45) {\textbf{5\ \ Two-stage network optimisation and decision outputs}};
+\draw[line width=0.5pt,black!85] (6.3,-5.07) -- (18.2,-5.07);
+\node[sub] at (6.55,-5.27) (a) {\textbf{Stage A}\\ independent Dijkstra least-cost paths $P_i^{(A)}$ to the road network};
+\node[sub] at (10.45,-5.27) (b) {\textbf{Stage B}\\ shared-trunk Steiner consolidation $+$ leaf re-routing $P_i^{(B)}$ $+$ facility trunk connection};
+\node[sub] at (14.35,-5.27) (c) {\textbf{Outputs}\\ zero-crossing corridor plans ($0$ crossings); length and PMGSY cost savings of $12.2$--$25.3$\,\%; multi-scale GIS planning maps};
 % arrows
-\draw[arr] (b1.east) -- (b2.west);
-\draw[arr] (b2.east) -- (b3.west);
-\draw[arr,rounded corners=3pt] (o3.south) -- ++(0,-0.3) -| (h4.north);
-\draw[arr] (b4.east) -- (b5.west);
-\draw[arr] (b5.east) -- (b6.west);
-\draw[arr] (o6.south) -- (h7.north -| o6.south);
+\draw[arr] (s1.east) -- (s2.west);
+\draw[arr] (s2.east) -- (s3.west);
+\draw[arr] (s3.south) -- ++(0,-0.35) -| (s4.north);
+\draw[arr] (s4.east) -- (s5.west);
+\draw[arr] (a.east) -- (b.west);
+\draw[arr] (b.east) -- (c.west);
 \end{tikzpicture}
 \end{document}

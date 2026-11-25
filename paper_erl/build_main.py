@@ -164,7 +164,7 @@ The workflow (figure~\ref{fig:arch}) has five stages that are identical for all 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_architecture.png}
-\caption{End-to-end architecture: (1)~multi-source open-data ingestion, (2)~\dinoseg{} semantic segmentation (tile 560, stride 420, margin 70), (3)~distance-transform building footprint extraction (neck ratio 0.65) and road-gap targets, (4)~four-pass facility audit and roof snapping (School, College, Hospital, Government Office, Anganwadi), (5)~cost surface with a 5~m zero-crossing clearance (3.6~m), (6)~Stage~A independent and Stage~B shared-network Dijkstra routing, (7)~PMGSY cost and connectivity evaluation.}
+\caption{End-to-end architecture, shown for the four study areas: (1)~multi-source open geospatial inputs, (2)~\dinoseg{} semantic segmentation of $560\times560\times3$ RGB tiles (DINOv2 ViT-B/14, FPN, ASPP, residual decoder), (3)~morphological and watershed building-footprint extraction with road-gap targets ($>30$~m from roads) and facility snapping, (4)~$5$~m cost surface with a hard $3.6$~m building-clearance mask, (5)~Stage~A independent Dijkstra routes, Stage~B shared-trunk Steiner consolidation and the decision outputs.}
 \label{fig:arch}
 \end{figure}
 
@@ -445,7 +445,44 @@ The authors declare no competing interests.
 """
 
 # ------------------------------------------------------------------------------------------------ write
-doc = head + intro + study + method + results + disc + app + back
+
+# ------------------------------------------------------------------------------------------------ 4.8 grid resolution and clearance sensitivity (numbers from the committed result files only)
+def grid_row(k):
+    m = M[k]
+    soft_sav = 100 * (m["soft_indep_m"] - m["soft_shared_m"]) / m["soft_indep_m"]
+    return (f"{m['label']} & {n(round(m['soft_indep_m']))} & {n(round(m['soft_shared_m']))} & {soft_sav:.1f} & {m['soft_cross_routes']} & {m['soft_cross_m']:.0f} & "
+            f"{n(round(m['stageA_m']))} & {n(round(m['stageB_m']))} & {m['saving_pct']:.1f} & {m['crossings']} & {m['crossing_m']:.0f}\\\\")
+
+grid = r"""
+\subsection{Grid resolution and clearance sensitivity}\label{sec:grid}
+The routing raster was refined during the study, and the effect is recorded for every area (table~\ref{tab:grid}). The first planner worked on the $10$~m cost grid of the WorldCover and slope layers and discouraged, but did not forbid, routes over roofs: cells whose centre lies in a footprint cost $\mu=4$ times as much (equation~\ref{eq:cell}). A $10$~m cell is wider than the lanes between neighbouring buildings in compact fabric, so such a grid cannot represent a lane at all: the cell that covers a lane also covers part of a roof, and when its centre falls inside a footprint it carries the penalty, so the planner either crosses the roof when the detour costs more or leaves a usable gap unused. On this grid 28, 99, 157 and 5 routes ended up inside other footprints in Damarakunta, Adilabad, Aswaraopeta and Alampur, with 209, 677, 1{,}090 and 33~m of route length inside them. The final planner refines the raster to $5$~m with the same cost per metre and blocks every cell whose centre lies within $r_c=3.6$~m of a footprint, a distance above the half-diagonal of a $5$~m cell ($3.54$~m), so that no step between free cells can touch a roof (section~\ref{sec:cost}). Every one of the four settlements then has zero building crossings, verified by intersecting each drawn route with all other footprints. The corridor-consolidation saving remains positive and of similar size (Stage~B 12.2--25.3\% shorter than Stage~A, against 14.4--31.2\% on the coarse grid in the same areas), so the clearance removes the encroachments without removing the benefit of sharing.
+
+The two sets of lengths are not strictly comparable and the table should be read column-wise. The $10$~m figures come from the soft-penalty planner (routes may cross a roof, every target is routed), the $5$~m figures from the clearance planner, whose routes start at the building edge, may not cross a roof and leave unrouted any target enclosed by buildings (Damarakunta 162 of 163, Adilabad 607 of 613, Aswaraopeta 632 of 678, Alampur 58 of 59). The soft-penalty comparison is also a unique-length measure over all targets of a cheaper graph, so the absolute lengths differ for reasons that include both the grid and the target set; the quantities that bear on the grid choice are the crossing counts and the saving.
+
+\begin{table*}[t]
+\caption{Routing grid resolution: $10$~m soft-penalty grid versus $5$~m zero-crossing grid ($3.6$~m clearance). Lengths are unique network lengths in metres (shared edges counted once); saving is Stage~B (or the two-stage plan) against independent routes; crossings are routes inside another building's footprint, with the route length inside footprints in metres.}
+\label{tab:grid}
+\centering
+\scriptsize
+\renewcommand{\arraystretch}{1.1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrrrrrr@{}}
+\toprule
+ & \multicolumn{5}{c}{$10$~m grid, footprint penalty $\mu=4$} & \multicolumn{5}{c}{$5$~m grid, $3.6$~m hard clearance}\\
+\cmidrule(lr){2-6}\cmidrule(lr){7-11}
+Area & Independent & Shared & Saving (\%) & Routes crossing & In footprints (m) & Stage A & Stage B & Saving (\%) & Routes crossing & In footprints (m)\\
+\midrule
+""" + "\n".join(grid_row(k) for k in (DK, AD, AS, AL)) + r"""
+\bottomrule
+\end{tabular}}
+\end{table*}
+"""
+for _k in (DK, AD, AS, AL):
+    _m = M[_k]
+    _sv = 100 * (_m["soft_indep_m"] - _m["soft_shared_m"]) / _m["soft_indep_m"]
+    print("grid", _k, f"soft saving {_sv:.1f}")
+doc = head + intro + study + method + results + grid + disc + app + back
+
 # ------------------------------------------------------------------------------------------------ citation pass (every dataset, method and benchmark source cited at first use)
 CITES = [
  (r"Esri World Imagery (imagery, 0.6~m tiles) &", r"Esri World Imagery \cite{esri2026worldimagery} (imagery, 0.6~m tiles) &"),
