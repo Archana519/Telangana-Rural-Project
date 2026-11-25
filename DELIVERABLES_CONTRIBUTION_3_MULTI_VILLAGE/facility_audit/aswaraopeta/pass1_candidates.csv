@@ -1,9 +1,11 @@
 source,source_id,name,tags,taxonomy,lon,lat,confidence,status,is_area
+OSM,node/7274028601,cvv,"{""addr:city"": ""asd"", ""addr:housenumber"": ""dva"", ""addr:postcode"": ""507301"", ""addr:street"": ""ad"", ""amenity"": ""hospital"", ""emergency"": ""yes"", ""healthcare"": ""hospital"", ""healthcare:speciality"": ""adq;fq;behavior"", ""name"": ""cvv"", ""operator"": ""v"", ""operator:type"": ""government""}",hospital,81.1071259,17.2458441,,open,False
+OSM,node/11964234902,Paraigudem,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Paraigudem"", ""source"": ""OpenDataTelangana""}",childcare,81.1195913,17.2371768,,open,False
+OSM,node/11964422114,Nerukulla,"{""addr:district"": ""Hanumakonda"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Parkal"", ""amenity"": ""childcare"", ""name"": ""Nerukulla"", ""source"": ""OpenDataTelangana""}",childcare,81.1159894,17.241517,,open,False
+OSM,node/11984907513,Vaddla Banjar,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Vaddla Banjar"", ""source"": ""OpenDataTelangana""}",childcare,81.1154026,17.2416891,,open,False
+OSM,node/11993253495,nehurunagar (Mini),"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""nehurunagar (Mini)"", ""source"": ""OpenDataTelangana""}",childcare,81.1217942,17.2418661,,open,False
 OSM,node/6558931336,"SubCentre, Mamillavarigudem","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:place"": ""Kotha Mamillavari Gudem"", ""addr:state"": ""Telangana"", ""addr:street"": ""KMV GUDEM"", ""addr:subdistrict"": ""Aswaraopeta"", ""amenity"": ""health_post"", ""healthcare"": ""yes"", ""name"": ""SubCentre, Mamillavarigudem"", ""operational_status"": ""operational"", ""operator:type"": ""private"", ""source"": ""OpenDataTelangana""}",health_post,81.120252,17.2430314,,open,False
 OSM,node/6825138412,"Community Health Centre, Ashwaraopeta","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:full"": ""Beside Nehru Nagar, Ashwaraopeta"", ""addr:postcode"": ""507301"", ""addr:state"": ""Telangana"", ""healthcare"": ""centre"", ""name"": ""Community Health Centre, Ashwaraopeta"", ""source"": ""OpenGovernmentData""}",,81.118422,17.242947,,open,False
-OSM,node/7274028601,cvv,"{""addr:city"": ""asd"", ""addr:housenumber"": ""dva"", ""addr:postcode"": ""507301"", ""addr:street"": ""ad"", ""amenity"": ""hospital"", ""emergency"": ""yes"", ""healthcare"": ""hospital"", ""healthcare:speciality"": ""adq;fq;behavior"", ""name"": ""cvv"", ""operator"": ""v"", ""operator:type"": ""government""}",hospital,81.1071259,17.2458441,,open,False
-OSM,node/11959677985,Marutinagar,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Marutinagar"", ""source"": ""OpenDataTelangana""}",childcare,81.1221014,17.255505,,open,False
-OSM,node/11974557974,Gurralacheruvu,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Gurralacheruvu"", ""source"": ""OpenDataTelangana""}",childcare,81.1102892,17.2633292,,open,False
 OSM,node/11938156122,"Government Homoeo Dispensary, Ashwaraopet (Regular)","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:place"": ""Ashwaraopet"", ""addr:state"": ""Telangana"", ""addr:street"": ""Rajamandri Road"", ""addr:subdistrict"": ""Aswaraopeta"", ""amenity"": ""doctors"", ""healthcare"": ""doctor"", ""name"": ""Government Homoeo Dispensary, Ashwaraopet (Regular)"", ""operational_status"": ""operational"", ""operator:type"": ""government"", ""source"": ""OpenDataTelangana""}",doctors,81.1310828,17.2422783,,open,False
 OSM,node/11941179597,"Community Health Centre, Aswaraopeta","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:place"": ""Aswaraopeta"", ""addr:state"": ""Telangana"", ""addr:street"": ""Ring Road"", ""addr:subdistrict"": ""Aswaraopeta"", ""amenity"": ""hospital"", ""healthcare"": ""hospital"", ""name"": ""Community Health Centre, Aswaraopeta"", ""operational_status"": ""operational"", ""operator:type"": ""government"", ""source"": ""OpenDataTelangana""}",hospital,81.1288422,17.242479,,open,False
 OSM,node/11958088090,Aswaraopet BC,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Aswaraopet BC"", ""source"": ""OpenDataTelangana""}",childcare,81.1254086,17.2383935,,open,False
@@ -18,7 +20,11 @@ OSM,node/11997851123,ASR Nagar,"{""addr:district"": ""Bhadradri-Kothagudem"", ""
 OSM,node/6546997732,"Community Health Centre, Aswaraopeta","{""addr:district"": ""Khammam"", ""addr:full"": ""Aswaraopeta, Near Ring Road"", ""addr:postcode"": ""507301"", ""addr:state"": ""Telangana"", ""addr:street"": ""Ring Road"", ""addr:subdistrict"": ""Aswaraopeta"", ""contact:phone"": ""8740255322"", ""healthcare"": ""centre"", ""name"": ""Community Health Centre, Aswaraopeta"", ""source"": ""OpenGovernmentData""}",,81.1301735,17.2424448,,open,False
 OSM,node/6554337403,"SubCentre, Aswaraopeta-II","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:place"": ""Near Gowthami School"", ""addr:state"": ""Telangana"", ""addr:street"": ""CHINTHAL BAZAR"", ""addr:subdistrict"": ""Aswaraopeta"", ""amenity"": ""health_post"", ""healthcare"": ""yes"", ""name"": ""SubCentre, Aswaraopeta-II"", ""operational_status"": ""operational"", ""operator:type"": ""private"", ""source"": ""OpenDataTelangana""}",health_post,81.1313202,17.2442879,,open,False
 OSM,node/11932478945,"SubCentre, Ashwaraopeta","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:place"": ""Aswaraopeta"", ""addr:state"": ""Telangana"", ""addr:street"": ""ASR NAGAR"", ""addr:subdistrict"": ""Aswaraopeta"", ""amenity"": ""health_post"", ""healthcare"": ""yes"", ""name"": ""SubCentre, Ashwaraopeta"", ""operational_status"": ""operational"", ""operator:type"": ""private"", ""source"": ""OpenDataTelangana""}",health_post,81.131327,17.2444864,,open,False
-OSM,node/6825138804,"Sub Centre, Aswaraopeta-II","{""healthcare"": ""centre"", ""name"": ""Sub Centre, Aswaraopeta-II""}",,81.1330633,17.2505387,,open,False
+OSM,node/11992247570,Channapuram mini,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Channapuram mini"", ""source"": ""OpenDataTelangana""}",childcare,81.1320077,17.2469277,,open,False
+OSM,node/11998020112,Thurupubazar,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Thurupubazar"", ""source"": ""OpenDataTelangana""}",childcare,81.1366998,17.2478306,,open,False
+OSM,node/6825138804,"Sub Centre, Aswaraopeta-II","{""addr:district"": ""Bhadradri Kothagudem"", ""addr:full"": ""Near ZPHS, Vinayakapuram, Aswaraopeta"", ""addr:postcode"": ""507301"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopeta"", ""healthcare"": ""centre"", ""name"": ""Sub Centre, Aswaraopeta-II"", ""source"": ""OpenGovernmentData""}",,81.1330633,17.2505387,,open,False
+OSM,node/11959677985,Marutinagar,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Marutinagar"", ""source"": ""OpenDataTelangana""}",childcare,81.1221014,17.255505,,open,False
+OSM,node/11974557974,Gurralacheruvu,"{""addr:district"": ""Bhadradri-Kothagudem"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Aswaraopet (T)"", ""amenity"": ""childcare"", ""name"": ""Gurralacheruvu"", ""source"": ""OpenDataTelangana""}",childcare,81.1102892,17.2633292,,open,False
 Overture,0761d702-2954-4f96-b1bb-b7d466a1a199,NG Ranga Agricultural University,,college_university,81.10683962,17.245509829999996,0.6049917936325073,open,False
 Overture,02574760-c630-4c46-b091-74ae2498842b,St.Paul's CSI Town Church Aswaraopeta,,religious_organization,81.12835,17.244909999999997,0.683936357498169,open,False
 Overture,e50c8a63-7cbd-487d-8831-f3dee764cd71,Bajaj Finserv Group Lending Loan,,financial_service,81.128838,17.244858,0.77,open,False
@@ -37,24 +43,24 @@ Overture,66aaca32-497c-40c6-a9fa-29735d177929,Manappuram Finance,,credit_union,8
 Overture,7676afa8-49dd-41c2-9a75-6b7f82dd831a,Surya Lab,,laboratory_testing,81.13065468,17.24568432,0.206082284450531,open,False
 Overture,d5b05791-c2f3-417f-95d0-d47bc95d6aac,Chinnary Hospital,,hospital,81.13141618,17.246962239999995,0.5773503184318542,open,False
 Overture,763a6007-601f-413f-a15f-6874c7736dc9,Muthoot FinCorp Gold Loan,,credit_union,81.1313187,17.2468842,0.85,open,False
-Overture,2524bb8f-0ed8-4c6c-9e75-0fb5a5588da4,Shriram Finance Limited,,credit_union,81.1315002,17.246499999999997,0.85,open,False
+Overture,2524bb8f-0ed8-4c6c-9e75-0fb5a5588da4,Shriram Finance Limited,,credit_union,81.1315002,17.246499999999994,0.85,open,False
 Overture,20260eda-dd0d-496f-bf67-9fdca5d0a67a,ICICI Bank,,bank,81.131413,17.248353000000005,0.8,open,False
 Overture,44715560-b025-442b-ab64-fa3291aa4a11,Chandra Motors,,auto_dealer,81.13147808,17.249110469999998,0.5371780395507812,open,False
 Overture,6863215e-b9f6-4026-9396-2f94b95555f9,Kaveri Borewells,,well_drilling,81.13144784,17.24923216,0.6586487293243408,open,False
 Overture,00567b91-d9f9-49e5-b5b1-2bf969991e49,Venkata Durga Theater,,movie_theater,81.13224029,17.250035349999994,0.4778095483779907,open,False
 Overture,788fd228-0543-4003-9c25-a3d278583666,Surya Public School,,education,81.12803653,17.24825347,0.5831478834152222,open,False
-Overture,20eeca0b-cfdc-4510-8e2b-621bfa1f741c,Hindustan Petroleum,,gas_station,81.1310067,17.257184,0.954,open,False
-Overture,548e2917-40d9-425b-95bb-c7147fdc3d7d,Shekar Kirana and General Store,,shopping,81.12668286,17.234542379999997,0.331122487783432,open,False
-Overture,b53c3527-861d-486c-9ccf-91d6c9e99dff,Indian Oil Petrol Pump,,gas_station,81.12627664,17.235374510000007,0.393941730260849,open,False
+Overture,20eeca0b-cfdc-4510-8e2b-621bfa1f741c,Hindustan Petroleum,,gas_station,81.1310067,17.257184000000002,0.954,open,False
+Overture,548e2917-40d9-425b-95bb-c7147fdc3d7d,Shekar Kirana and General Store,,shopping,81.12668286,17.23454238,0.331122487783432,open,False
+Overture,b53c3527-861d-486c-9ccf-91d6c9e99dff,Indian Oil Petrol Pump,,gas_station,81.12627664,17.235374510000003,0.393941730260849,open,False
 Overture,70ec48ae-2421-4dc9-9545-d7c00cde698e,Sri Venkateswara Electric Vehicles,,auto_parts_store,81.127131409976,17.236742448209,0.8137895464897156,open,False
-Overture,b04fac2b-f310-4749-82fc-c38f26e9eb4e,Kanaka Durgamma Temple,,hindu_place_of_worship,81.12704574,17.236674609999998,0.40432384610176086,open,False
+Overture,b04fac2b-f310-4749-82fc-c38f26e9eb4e,Kanaka Durgamma Temple,,hindu_place_of_worship,81.12704574,17.23667461,0.40432384610176086,open,False
 Overture,093ee088-ea98-46dd-80ed-12b5bdeaa0f8,Sai Teja Medical,,medical_supply_store,81.12824034,17.24011425,0.2566196322441101,open,False
 Overture,2c88d737-4512-4598-a940-05cac0fd92f7,Sai Raghava Automobiles,,auto_parts_store,81.12816498,17.2400239,0.34066808223724365,open,False
 Overture,e1fecbea-5319-4030-aba7-f3c8b256ee2b,Bhasker Traders,,shopping,81.12806453,17.23987068,0.2916889786720276,open,False
 Overture,73d801e9-1449-443d-ac30-1f3b4fe67851,Venkat Sai Kirana and General Store,,shopping,81.12779287,17.23948874,0.27585095167160034,open,False
 Overture,e59bab18-a705-42a4-af62-887341ae8646,Durga Super Mini Market,,shopping,81.12840825000002,17.24029943,0.30104920268058777,open,False
 Overture,953c058d-ed05-40c6-bebb-18312cd11b2d,Gowthami Public School,,education,81.12852869,17.240813240000005,0.31656336784362793,open,False
-Overture,ce345b56-f09e-455b-bf6d-7de82f84f63b,Government Primary School Maramangalam,,elementary_school,81.1288127,17.240823499999998,0.564534068107605,open,False
+Overture,ce345b56-f09e-455b-bf6d-7de82f84f63b,Government Primary School Maramangalam,,elementary_school,81.1288127,17.2408235,0.564534068107605,open,False
 Overture,a9a4736c-7f64-49ed-b609-1e20f0b07648,Venkatswar Motors,,auto_parts_store,81.12866669,17.24092805,0.34444519877433777,open,False
 Overture,4cb08c15-0486-4816-990e-0d1a55d011ad,Prem Kumar Hotel,,hotel,81.12911358,17.24132554,0.5936368703842163,open,False
 Overture,8938efa4-404f-4bd3-8348-0a397623160a,Haribabu Kirana and General Store,,shopping,81.12921368,17.24147043,0.4457307457923889,open,False
@@ -62,7 +68,7 @@ Overture,5b15e00b-0669-447b-8748-28842db191f5,Mohini Tyres,,auto_parts_store,81.
 Overture,73d1e879-5506-402f-ab78-21d24ba9e646,Satharu Mogal Biryani,,indian_restaurant,81.12949318,17.24166766,0.3328963816165924,open,False
 Overture,9c89c10f-58d3-43ce-aee7-651ff0a138e8,CSB BANK LTD,,bank,81.1296291,17.241798100000004,0.77,open,False
 Overture,ad6df10c-ce8e-4256-ac81-a090e085bfc7,CSB BANK LTD ATM,,bank,81.1296267,17.2417934,0.77,open,False
-Overture,ae94d066-2401-48bd-bd3f-485942c5942c,Trinetra Family Restaurant,,restaurant,81.12845854,17.242910619999996,0.4049285352230072,open,False
+Overture,ae94d066-2401-48bd-bd3f-485942c5942c,Trinetra Family Restaurant,,restaurant,81.12845854,17.24291062,0.4049285352230072,open,False
 Overture,20a6c1ed-a37b-4e83-96e5-5ae491876a42,Forest Check Post,,government_office,81.12993181,17.242811319999994,0.5704751014709473,open,False
 Overture,887ae411-d37c-4a37-ac98-a4498a96103e,"Ratna iron, Aswaraopeta",,shopping,81.13069,17.242949999999997,0.5462751388549805,open,False
 Overture,07812ebe-f436-4a0b-9d4c-42821a1c3b82,Entrance nursery,,grocery_store,81.13069,17.242949999999997,0.6092632412910461,open,False
@@ -78,16 +84,16 @@ Overture,f22b3c54-6b8f-4e3f-8616-6fa947df0112,Aswharpet Bus Station,,bus_station
 Overture,735fa17a-da16-4915-84c8-b38ce55ba569,Vijaya Sai Cell World,,mobile_phone_store,81.13106212,17.244271250000004,0.5893583297729492,open,False
 Overture,de154451-e266-4897-b7ab-91ae8fabf50b,Shriram Finance Limited,,credit_union,81.131311,17.244484,0.85,open,False
 Overture,4ab381a6-a0b9-47a8-8f42-25a3bed9b432,Lucky Homes Apartments,,historic_site,81.12795565,17.24391872,0.5702133178710938,open,False
-Overture,7a756877-a09b-4a67-9337-25a5810b45c1,Police Station Keelaselvaur,,police_station,81.1200958,17.2435004,0.6346972584724426,open,False
+Overture,7a756877-a09b-4a67-9337-25a5810b45c1,Police Station Keelaselvaur,,police_station,81.1200958,17.243500400000002,0.6346972584724426,open,False
 Overture,03cbc00f-c8c0-49a5-a4e2-33083ffd41a0,Primary Agricultural Cooperative Credit Society,,government_office,81.1199001,17.243421649999995,0.3243415951728821,open,False
 Overture,c72b5255-f6c5-4d27-a8b4-3de566053a76,Agriculture college aswaraopet,,college_university,81.127004248686,17.243197870336996,0.8344188332557678,open,False
-Overture,5ef84778-313f-48dc-92ea-7d59b1b81850,A1 Kids Convent,,day_care_preschool,81.1278688,17.241624060000003,0.47879067063331604,open,False
+Overture,5ef84778-313f-48dc-92ea-7d59b1b81850,A1 Kids Convent,,day_care_preschool,81.1278688,17.24162406,0.47879067063331604,open,False
 Overture,75399076-0bde-48b7-b368-dcb8907c75e8,Andhra Pradesh Forest Development Corporation,,government_office,81.1138854,17.244218800000002,0.5675008296966553,open,False
 Overture,671cd6d6-5b07-4699-af09-f8bcf49e2671,St. John's College of Education,,college_university,81.10586827,17.24309995,0.4857182204723358,open,False
-Overture,46f85be0-ba53-4a6b-a9b8-cc737952b54e,Pujya Shri Madhavanji Agriculture Polytechnic College,,college_university,81.10530391,17.243207759999997,0.5208911895751953,open,False
+Overture,46f85be0-ba53-4a6b-a9b8-cc737952b54e,Pujya Shri Madhavanji Agriculture Polytechnic College,,college_university,81.10530391,17.24320776,0.5208911895751953,open,False
 Overture,0b76f21d-f1d6-4004-a831-7ad8aac4c5f3,Rural Vocational Industrial Training Institute,,vocational_and_technical_school,81.1052167,17.24446654,0.46646666526794434,open,False
-Overture,bd751599-c80c-439b-b931-15be5e05c9f8,Agriculture college aswaraopet,,college_university,81.10434966213198,17.241129158249805,0.8436139822006226,open,False
-Overture,9ff24bb1-3dde-4466-9195-9a58e17174b7,Hindustan Petroleum,,gas_station,81.12625971,17.231161299999997,0.954,open,False
+Overture,bd751599-c80c-439b-b931-15be5e05c9f8,Agriculture college aswaraopet,,college_university,81.10434966213198,17.24112915824981,0.8436139822006226,open,False
+Overture,9ff24bb1-3dde-4466-9195-9a58e17174b7,Hindustan Petroleum,,gas_station,81.12625971,17.2311613,0.954,open,False
 Overture,4cbd653e-20aa-4e76-9f4e-1ab841326668,Lakshmi Tulasi Agro Paper Mill,,industrial_company,81.12857165,17.23095023,0.6336659789085388,open,False
 Wikidata,Q3415064,Aswaraopeta,,village in india,81.1333,17.25,,open,False
 Wikidata,Q4811983,Aswaraopeta Assembly constituency,,constituency of the telangana legislative assembly,81.13,17.24,,open,False
@@ -95,3 +101,7 @@ Wikidata,Q61633691,Aswaraopeta mandal,,mandal of telangana,81.1333,17.25,,open,F
 Wikidata,Q131958635,Indian Oil Fuel Filling Station Gandhi Nagar Road (Maruthi Service Station),,gas station,81.126645,17.235147,,open,False
 Wikidata,Q131959988,Indian Oil Fuel Filling Station Gandhi Nagar Road (Ratnam Oil Company),,gas station,81.128759,17.241273,,open,False
 Wikidata,Q134325774,Bharat Petroleum Fuel Filling Station Khammam (Sri Venkateswara Filling Stati),,gas station,81.126417,17.233407,,open,False
+Wikipedia,37903967,Aswaraopeta Assembly constituency,,,81.13,17.24,,open,False
+Wikipedia,30890587,Aswaraopeta,,,81.1333,17.25,,open,False
+Wikipedia,11411758,Jeelugumilli,,,81.1347,17.2121,,open,False
+Wikipedia,55724614,Jeelugu Milli mandal,,,81.134,17.211,,open,False

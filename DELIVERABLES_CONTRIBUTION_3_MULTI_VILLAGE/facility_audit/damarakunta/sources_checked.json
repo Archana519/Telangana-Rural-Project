@@ -1,8 +1,8 @@
 {
   "village": "damarakunta",
-  "date": "2026-11-23",
+  "date": "2026-11-25",
   "sources": {
-    "OpenStreetMap (Overpass)": "PARTIAL: only 3 of 24 Overpass queries succeeded (public mirrors overloaded); gaps are covered only by the Photon text search; 0 elements via maps.mail.ru",
+    "OpenStreetMap (Overpass)": "Overpass unreachable from this machine (all mirrors failed); only the Photon text search was used for OpenStreetMap; 0 elements via ",
     "OpenStreetMap (Photon geocoder, text search)": "1 facility-like objects (a second, incomplete view of OSM; Overpass is the complete one)",
     "Overture Maps Places": "3 places in the window (all categories; release 2026-10-21.0)",
     "Wikidata (SPARQL box)": "3 items with coordinates, 3 labelled",
