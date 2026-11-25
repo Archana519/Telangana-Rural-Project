@@ -188,7 +188,10 @@ def compute_clearance(cfg: dict, S: dict, ddir, cache_path=None, log=print, limi
 
     from . import prepare as P
     if cache_path and Path(cache_path).exists():
-        return pickle.load(open(cache_path, "rb"))
+        c = pickle.load(open(cache_path, "rb"))
+        if c.get("fingerprint") == fingerprint(S["gap"], S["fac"], limit_targets):
+            return c
+        log("clearance cache is stale (targets or facilities changed): re-planning")
     cell = S["cell"]
     prep = P.prepare_rasters(cfg, cell, ddir, log=lambda *a: None)
     cost, _ = P.cost_surface(cfg, prep, cell)
@@ -196,10 +199,25 @@ def compute_clearance(cfg: dict, S: dict, ddir, cache_path=None, log=print, limi
                                cache_path=cache_path, log=log, limit_targets=limit_targets)
 
 
+def fingerprint(gap, fac, limit=None) -> str:
+    """Identifies the target set (road-gap houses and facilities); a cached clearance network is reused only if it matches."""
+    import hashlib
+    h = hashlib.md5()
+    h.update(repr((len(gap), limit, sorted(int(x) for x in gap["hid"]) if "hid" in gap else [])).encode())
+    h.update(repr(sorted((int(r.fid), str(r.name), round(r.geometry.x, 1), round(r.geometry.y, 1), str(r.facility_type)) for r in fac.itertuples())).encode())
+    return h.hexdigest()
+
+
 def compute_from_arrays(cost, transform, shape, roads, houses_all, gap, fac, params, cache_path=None, log=print, limit_targets=None, clearance_m=CLEARANCE_M, grid_m=GRID_M) -> dict:
     import pickle
+    from pathlib import Path
     import time
     t0 = time.time()
+    fprint = fingerprint(gap, fac, limit_targets)
+    if cache_path and Path(cache_path).exists():
+        c = pickle.load(open(cache_path, "rb"))
+        if c.get("fingerprint") == fprint:
+            return c
     fp = Footprints(houses_all)
     w = ClearWorld(cost, transform, shape, roads, fp.geoms, clearance_m=clearance_m, grid_m=grid_m)
     g = gap if not limit_targets else gap.iloc[:limit_targets]
@@ -216,7 +234,7 @@ def compute_from_arrays(cost, transform, shape, roads, houses_all, gap, fac, par
         unique=dict(house_indep_m=unique_len(H["indep"]), house_shared_m=unique_len(H["shared"]), fac_shared_m=unique_len(F["shared"]), fac_indep_m=unique_len(F["indep"]),
                     combined_shared_m=unique_len(all_shared), combined_indep_m=unique_len(all_indep)),
         verify=dict(house_indep=verify(H["indep"], fp), house_shared=verify(H["shared"], fp), fac_indep=verify(F["indep"], fp), fac_shared=verify(F["shared"], fp)),
-        road_cells=(w.road_cells_total, w.road_cells_passable), seconds=round(time.time() - t0, 1))
+        road_cells=(w.road_cells_total, w.road_cells_passable), seconds=round(time.time() - t0, 1), fingerprint=fprint)
     if cache_path:
         out = _slim(out)
         pickle.dump(out, open(cache_path, "wb"))
