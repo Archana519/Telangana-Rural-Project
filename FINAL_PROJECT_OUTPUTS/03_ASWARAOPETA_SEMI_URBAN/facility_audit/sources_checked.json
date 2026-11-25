@@ -1,0 +1,15 @@
+{
+  "village": "aswaraopeta",
+  "date": "2026-11-25",
+  "sources": {
+    "OpenStreetMap (Overpass)": "PARTIAL: 12 of 16 Overpass queries answered (public mirrors overloaded); the rest is covered only by the Photon text search; re-run to resume; 2 elements from an earlier saved Overpass answer; 26 elements via cache",
+    "OpenStreetMap (Photon geocoder, text search)": "8 facility-like objects (a second, incomplete view of OSM; Overpass is the complete one)",
+    "Overture Maps Places": "70 places in the window (all categories; release 2026-10-21.0)",
+    "Wikidata (SPARQL box)": "6 items with coordinates, 6 labelled",
+    "Wikipedia geosearch": "4 articles within 4 km",
+    "LGD / Telangana Govt / district directories": "no open API reachable from this sandbox (LGD, UDISE+, Telangana school / PHC / anganwadi directories are portals without a query API): not used unless a file is passed with --extra-csv"
+  },
+  "snap_m": 35.0,
+  "border_m": 150.0,
+  "harvest_buffer_m": 500.0
+}

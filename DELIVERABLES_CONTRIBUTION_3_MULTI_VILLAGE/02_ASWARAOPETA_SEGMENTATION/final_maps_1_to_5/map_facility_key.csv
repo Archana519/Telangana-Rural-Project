@@ -1,12 +1,33 @@
 label,name,facility_type,routed,lat,lon
-F1,Agriculture college aswaraopet,school,False,17.241129,81.10435
-F2,Surya Public School,school,True,17.248253,81.128037
-F3,Chinnary Hospital,health,True,17.246962,81.131416
-F4,Government Primary School Maramangalam,school,True,17.240824,81.128813
-F5,Univercity PG College,school,True,17.244948,81.131295
-F6,Pujya Shri Madhavanji Agriculture Polytechnic College,school,False,17.243208,81.105304
-F7,A1 Kids Convent,school,True,17.241624,81.127869
-F8,ZPHS and ZPGHS Aswaraopeta,school,True,17.243224,81.130016
-F9,R and B Inspection Building,government,True,17.242674,81.132187
-F10,Primary Agricultural Cooperative Credit Society,government,True,17.243422,81.1199
-F11,Gowthami Public School,school,True,17.240813,81.128529
+F1,ASR Nagar,anganwadi,True,17.232579,81.125247
+F2,Aswaraopet BC,anganwadi,True,17.238363,81.125399
+F3,Bandisubramanyanagar,anganwadi,True,17.246453,81.133439
+F4,Channapuram,anganwadi,True,17.246476,81.131674
+F5,Dandabathulabazar,anganwadi,True,17.243091,81.132101
+F6,Gandhibommacentre,anganwadi,True,17.243096,81.13245
+F7,Kanyakaparmeswari area,anganwadi,True,17.246628,81.132125
+F8,Marutinagar,anganwadi,True,17.255492,81.122047
+F9,Nerukulla,anganwadi,True,17.241517,81.115989
+F10,P Peraigudem,anganwadi,True,17.239294,81.130921
+F11,Paraigudem,anganwadi,False,17.237169,81.119613
+F12,Petamalapalli,anganwadi,True,17.244522,81.134602
+F13,Thurupubazar,anganwadi,True,17.247845,81.136614
+F14,Vaddla Banjar,anganwadi,True,17.241758,81.115409
+F15,Agriculture college aswaraopet,college,False,17.241137,81.104314
+F16,Pujya Shri Madhavanji Agriculture Polytechnic College,college,False,17.243208,81.105304
+F17,Univercity PG College,college,True,17.244948,81.131295
+F18,Andhra Pradesh Forest Development Corporation,government,True,17.244221,81.113899
+F19,Aswaraopeta Post And Telegraph Office,government,True,17.244114,81.132218
+F20,R and B Inspection Building,government,True,17.242684,81.132107
+F21,Chinnary Hospital,health,True,17.246986,81.131497
+F22,"Community Health Centre, Ashwaraopeta",health,True,17.242947,81.118422
+F23,"Community Health Centre, Aswaraopeta",health,True,17.242438,81.128825
+F24,"Government Homoeo Dispensary, Ashwaraopet (Regular)",health,True,17.242273,81.131104
+F25,"Sub Centre, Aswaraopeta-II",health,True,17.250539,81.133063
+F26,"SubCentre, Aswaraopeta-II",health,True,17.244288,81.13132
+F27,"SubCentre, Mamillavarigudem",health,True,17.243031,81.120252
+F28,A1 Kids Convent,school,True,17.241635,81.127878
+F29,Entrance nursery,school,True,17.242854,81.130704
+F30,Government Primary School Maramangalam,school,True,17.240839,81.128698
+F31,Gowthami Public School,school,True,17.240813,81.128529
+F32,ZPHS and ZPGHS Aswaraopeta,school,True,17.243224,81.130016
