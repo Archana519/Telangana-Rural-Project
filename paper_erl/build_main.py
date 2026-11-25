@@ -36,22 +36,31 @@ def table(label, caption=None):
 abstract = (
     r"Rural access-road planning needs to know where dwellings and public facilities are, what terrain a corridor must cross and how houses can share road length, yet building and facility records are incomplete. "
     r"We present a reproducible pipeline that turns open geospatial data into shared access-road alternatives and apply it, without retraining or retuning, to four Telangana settlements of contrasting morphology: Damarakunta (rural), Adilabad (urban fringe), Aswaraopeta (semi-urban, tribal fringe) and Alampur (heritage town). "
-    r"A DINOv2-based segmentation network trained on the LoveDA benchmark (mean intersection over union 53.8\%, mean Dice 68.9\%) feeds distance-transform building extraction; a four-pass multi-source audit snaps "
+    r"A segmentation network built on the self-supervised DINOv2 vision transformer and trained on the Land-cover Domain Adaptive (LoveDA) benchmark (mean intersection over union 53.8\%, mean Dice coefficient 68.9\%) feeds distance-transform building extraction; a four-pass multi-source audit snaps "
     + f"{fac(DK)}, {fac(AD)}, {fac(AS)} and {fac(AL)}"
     + r" verified schools, colleges, hospitals, government offices and anganwadis onto roofs; and a land-cover and slope cost surface on a 5~m grid with a 3.6~m building clearance supports two-stage Dijkstra routing, in which independent least-cost routes (Stage~A) are consolidated into a shared network (Stage~B). "
-    r"No route crosses a building, whereas a 10~m soft footprint penalty leaves "
-    + f"{M[DK]['soft_cross_routes']}, {M[AD]['soft_cross_routes']}, {M[AS]['soft_cross_routes']} and {M[AL]['soft_cross_routes']}"
-    + r" routes across footprints. Shared routing shortened the unique network by "
+    r"No route crosses a building in any settlement. Shared routing shortened the unique network by "
     + f"{pc(DK)}, {pc(AD)}, {pc(AS)} and {pc(AL)}"
     + r"\%, equivalent to Rs "
     + f"{lk(DK)}, {lk(AD)}, {lk(AS)} and {lk(AL)}"
-    + r" lakh at a benchmark of Rs 75 lakh per kilometre from India's Pradhan Mantri Gram Sadak Yojana (PMGSY). Savings depend on target density and road coverage, so the outputs are planning alternatives for field verification.")
+    + r" lakh (1 lakh is $10^{5}$ Indian rupees) at a benchmark of Rs 75 lakh per kilometre from India's Pradhan Mantri Gram Sadak Yojana (PMGSY). Savings depend on target density and road coverage, so the outputs are planning alternatives for field verification.")
 words = len(re.sub(r"\\[A-Za-z]+|[{}$~\\%]", " ", abstract).split())
 
 # ------------------------------------------------------------------------------------------------ front matter
 head = r"""% Environmental Research Letters (IOP Publishing, ISSN 1748-9326): IOP `iopjournal` class, single-column preprint output.
 % Written by paper_erl/build_main.py. Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main. Add [anonymous] to \documentclass for double-anonymous review.
 \documentclass{iopjournal}
+\makeatletter
+% journal name in the page header and article banner (the class template carries the placeholder "Journal Name")
+\newcommand{\journal}[1]{\gdef\@iopjournal{#1}}
+\journal{Environmental Research Letters}
+\renewcommand{\articletype}[1]{{\vspace*{-8mm}\noindent \Large \sf \@iopjournal}
+
+\vspace*{8mm} \noindent\reversemarginpar
+\marginpar{\vspace{-3mm} {\color{gray}\hrule} \ \\ Crossmark\\ {\color{gray}\hrule} \ \\ \tiny {\sf RECEIVED} {\small \\ dd Month yyyy}\\ \\ {\sf REVISED} {\small \\ dd Month yyyy}}{\scriptsize \sf{\bfseries \MakeUppercase{#1}}}}
+\fancyhead[L]{{\small \sf IOP Publishing}\hspace{5mm} {\it Environ.\ Res.\ Lett.} {\bf vv} (yyyy) aaaaaa}
+\fancyhead[R]{Kolikipogu {\it et al}\ }
+\makeatother
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{array}
@@ -67,11 +76,11 @@ head = r"""% Environmental Research Letters (IOP Publishing, ISSN 1748-9326): IO
 \begin{document}
 \articletype{Letter}
 \title{Smart village infrastructure planning and road network optimization for rural Telangana}
-\author{Ramakrishna Kolikipogu$^{1,*}$ and Pendyala Archana$^{1}$}
-\affil{$^1$Department of Information Technology, Chaitanya Bharathi Institute of Technology (A), Hyderabad, India}
-\affil{$^*$Author to whom any correspondence should be addressed.}
-\email{krkrishna.cse@gmail.com, pendyalaarchanareddy98@gmail.com}
-\keywords{rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana}
+\author{Ramakrishna Kolikipogu$^{1,*}$ and Pendyala Archana$^{1}$}\par
+\affil{$^1$Department of Information Technology, Chaitanya Bharathi Institute of Technology (A), Hyderabad, India}\par
+\affil{$^*$Author to whom any correspondence should be addressed.}\par
+\email{krkrishna.cse@gmail.com, pendyalaarchanareddy98@gmail.com}\par\vspace{4pt}
+\keywords{rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana}\par
 % abstract: """ + f"{words} words" + r"""
 \begin{abstract}
 """ + abstract + r"""
@@ -89,7 +98,7 @@ Computational support for this planning has matured along three separate lines. 
 We join them in one reproducible pipeline (figure~\ref{fig:arch}) and apply it, unchanged, to four settlements of different morphology in Telangana. The study is organised as a progression. A rural pilot, Damarakunta, fixes the method: the segmentation checkpoint, the cost surface, the building clearance and the two-stage planner. The same frozen checkpoint and routing rules are then transferred, without retraining, to Adilabad (urban fringe), Aswaraopeta (semi-urban, tribal fringe) and Alampur (heritage town), and what changes at each step---density of buildings and roads, number and kind of facilities, and the distribution of road-gap households---is documented. Our contributions are:
 \begin{enumerate}
 \item \textbf{End-to-end pipeline.} A chain from satellite imagery to a shared access network: \dinoseg{} segmentation, OpenCV/NumPy distance-transform instance extraction with an explicit merge flag, a four-pass multi-source facility audit with roof snapping, a multi-criteria cost surface with a 5~m zero-crossing building clearance, and a two-stage shared-network planner (Section~\ref{sec:methods}).
-\item \textbf{Grid resolution and clearance.} A comparison of a $10$~m soft-penalty grid with the $5$~m hard-clearance grid, showing that only the latter removes building crossings in every settlement while keeping the saving from sharing (Section~\ref{sec:grid}).
+\item \textbf{Zero-crossing routing.} A $5$~m cost grid with a $3.6$~m hard building clearance that keeps every route off every roof, while consolidated corridors remain shorter than independent routes in all four settlements (Section~\ref{sec:results}).
 \item \textbf{Four-settlement transferability.} A like-for-like comparison of a rural village, an urban fringe window, a semi-urban town and a heritage town under identical models and rules, set against three baseline routing strategies (Section~\ref{sec:results} and Appendix~\ref{app:robust}).
 \end{enumerate}
 Two scope limits apply. Four settlements in one state were evaluated, so we make no claim about a general rural--semi-urban--urban gradient beyond them. And the segmentation results are unvalidated in every area: no reference building mask exists, and in the dense fabric of Adilabad (49\% of instances), Aswaraopeta (35\%) and Alampur (38\%) many detected instances are merged roof blocks, so their targets are built-up units rather than counted houses.
@@ -356,19 +365,19 @@ Figure~\ref{fig:flow} follows the chain of figure~\ref{fig:arch} for the four ar
 \end{figure*}
 
 \subsection{Damarakunta: the baseline pilot}\label{sec:damar}
-Damarakunta (18.47~km$^2$, 51.7~km of mapped roads, mean slope 3.8\%) is the baseline against which the other settlements are read. The segmenter yields 165 footprints, of which 163 lie more than 30~m from a road and become targets; five verified facilities (two schools, one hospital and two government offices) are added. On the 5~m grid with the 3.6~m clearance, 162 targets are routed (one house is enclosed by buildings and reported unrouted), Stage~A needs 7.56~km and Stage~B 5.98~km, a saving of 21.0\% that corresponds to Rs 448 lakh at the PMGSY benchmark, and no route crosses a roof. On the coarser 10~m soft-penalty grid the same targets leave 28 routes (209~m) inside other footprints. Against the other strategies on that grid (table~\ref{tab:strategies}) the two-stage plan saves 24.9\% of the unique length of independent routes, the roads-only shared reference 22.6\% and the length-only control is 3.4\% \emph{longer}, so in this dispersed village most of the saving comes from sharing. A pilot error test shows how inventory errors act: omitting a random 10\% of houses understates the planned length by 7.6\% and omitting all merged blobs by 29.4\%, while leaving 62 households (38.0\%) unserved, so a planner reading total length alone would underfund the scheme.
+Damarakunta (18.47~km$^2$, 51.7~km of mapped roads, mean slope 3.8\%) is the baseline against which the other settlements are read. The segmenter yields 165 footprints, of which 163 lie more than 30~m from a road and become targets; five verified facilities (two schools, one hospital and two government offices) are added. On the 5~m grid with the 3.6~m clearance, 162 targets are routed (one house is enclosed by buildings and reported unrouted), Stage~A needs 7.56~km and Stage~B 5.98~km, a saving of 21.0\% that corresponds to Rs 448 lakh at the PMGSY benchmark, and no route crosses a roof. Against the other routing strategies (table~\ref{tab:strategies}) the two-stage plan saves 24.9\% of the unique length of independent routes, the roads-only shared reference 22.6\% and the length-only control is 3.4\% \emph{longer}, so in this dispersed village most of the saving comes from sharing. A pilot error test shows how inventory errors act: omitting a random 10\% of houses understates the planned length by 7.6\% and omitting all merged blobs by 29.4\%, while leaving 62 households (38.0\%) unserved, so a planner reading total length alone would underfund the scheme.
 
 \subsection{Adilabad: dense urban fringe}\label{sec:adilabad_res}
-Adilabad (18.59~km$^2$, 509.9~km of roads, mean slope 3.1\%) keeps the window size of the pilot but changes the density: the segmenter yields 5{,}653 footprints, 34 times as many, over a road layer ten times longer. Of these, 613 are road-gap targets and 607 are routed (six are enclosed). The audit verifies 132 facilities (39 schools, 15 colleges, 59 hospitals, 15 government offices and four anganwadis), far more than in the pilot. Stage~A needs 30.87~km and Stage~B 27.12~km, a saving of 12.2\% (Rs 2{,}034 lakh); the soft-penalty plan would have left 99 routes (677~m) inside footprints. On the 10~m grid the two-stage plan saves 14.4\%, the roads-only reference only 3.2\% and the length-only control 6.8\%. The smaller saving follows from the layout: the dense road layer already serves most houses, so the remaining targets are scattered and offer few shared trunks. The same checkpoint and planner produce a well-formed network in a fabric 34 times denser than the pilot, which is the main evidence of transfer without retraining.
+Adilabad (18.59~km$^2$, 509.9~km of roads, mean slope 3.1\%) keeps the window size of the pilot but changes the density: the segmenter yields 5{,}653 footprints, 34 times as many, over a road layer ten times longer. Of these, 613 are road-gap targets and 607 are routed (six are enclosed). The audit verifies 132 facilities (39 schools, 15 colleges, 59 hospitals, 15 government offices and four anganwadis), far more than in the pilot. Stage~A needs 30.87~km and Stage~B 27.12~km, a saving of 12.2\% (Rs 2{,}034 lakh). Against the other routing strategies (table~\ref{tab:strategies}) the two-stage plan saves 14.4\%, the roads-only reference only 3.2\% and the length-only control 6.8\%. The smaller saving follows from the layout: the dense road layer already serves most houses, so the remaining targets are scattered and offer few shared trunks. The same checkpoint and planner produce a well-formed network in a fabric 34 times denser than the pilot, which is the main evidence of transfer without retraining.
 
 \subsection{Aswaraopeta: sparse roads, dense targets}
-Aswaraopeta (2.82~km$^2$, 28.6~km of roads, mean slope 3.1\%) is one-seventh of the area of Adilabad but has more road-gap targets: 678 against 613, from 1{,}297 footprints. Of the 678 targets 632 are routed; 46 are enclosed by neighbouring buildings and reported unrouted rather than routed over a roof. Thirty-two facilities are verified (14 anganwadis, 7 hospitals, 5 schools, 3 colleges and 3 government offices). Stage~A needs 36.89~km and Stage~B 27.57~km, a saving of 25.3\% (Rs 2{,}067 lakh), because many houses lie far from the sparse mapped road layer and can feed the same trunks; the soft-penalty plan leaves 157 routes (1{,}090~m) inside footprints, the most of any area. On the 10~m grid the two-stage plan saves 31.2\%, the roads-only reference 1.7\%, and the length-only control is 16.5\% longer than independent routing. High target density in a small window is the regime in which the shared network pays most and in which a hard clearance matters most.
+Aswaraopeta (2.82~km$^2$, 28.6~km of roads, mean slope 3.1\%) is one-seventh of the area of Adilabad but has more road-gap targets: 678 against 613, from 1{,}297 footprints. Of the 678 targets 632 are routed; 46 are enclosed by neighbouring buildings and reported unrouted rather than routed over a roof. Thirty-two facilities are verified (14 anganwadis, 7 hospitals, 5 schools, 3 colleges and 3 government offices). Stage~A needs 36.89~km and Stage~B 27.57~km, a saving of 25.3\% (Rs 2{,}067 lakh), because many houses lie far from the sparse mapped road layer and can feed the same trunks. Against the other routing strategies the two-stage plan saves 31.2\%, the roads-only reference 1.7\%, and the length-only control is 16.5\% longer than independent routing. High target density in a small window is the regime in which the shared network pays most.
 
 \subsection{Alampur: a small heritage town}
-Alampur is the smallest and flattest window (1.65~km$^2$, 25.3~km of roads, mean slope 2.1\%). The segmenter yields 430 footprints; 59 are targets (58 routed) and nine facilities are verified (five anganwadis, two hospitals, one school and one college). Stage~A needs 3.28~km and Stage~B 2.74~km, a saving of 16.2\% (Rs 206 lakh), and the soft-penalty plan leaves only five routes (33~m) inside footprints. On the 10~m grid the two-stage plan saves 17.8\%, the roads-only reference 4.9\% and the length-only control 8.2\%. Few targets, short routes and an existing road net close to most houses yield a modest saving; because the extent is small, its figures are noisier than those of the larger windows.
+Alampur is the smallest and flattest window (1.65~km$^2$, 25.3~km of roads, mean slope 2.1\%). The segmenter yields 430 footprints; 59 are targets (58 routed) and nine facilities are verified (five anganwadis, two hospitals, one school and one college). Stage~A needs 3.28~km and Stage~B 2.74~km, a saving of 16.2\% (Rs 206 lakh). Against the other routing strategies the two-stage plan saves 17.8\%, the roads-only reference 4.9\% and the length-only control 8.2\%. Few targets, short routes and an existing road net close to most houses yield a modest saving; because the extent is small, its figures are noisier than those of the larger windows.
 
 \subsection{Cross-settlement comparison}
-The comparison (table~\ref{tab:four}) shows how the same pipeline responds to four fabrics. Building crossings are zero everywhere, against 28, 99, 157 and 5 routes under the 10~m soft penalty, so the clearance guarantee is independent of settlement type. The saving of the shared network ranges from 12.2\% in Adilabad to 25.3\% in Aswaraopeta; it is largest where targets are numerous, clustered and far from the mapped roads (Aswaraopeta, Damarakunta) and smallest where roads are dense and targets scattered (Adilabad), with Alampur between. Unique network length scales with the number of targets and the road coverage, not with the window size: Aswaraopeta needs almost as much new road as Adilabad (27.57~km against 27.12~km) from one-seventh of the area. Costs follow length, Rs 448, 2{,}034, 2{,}067 and 206 lakh, so Aswaraopeta is as expensive as Adilabad at the benchmark rate. The segmentation rows are model-level: they are the LoveDA scores of the one checkpoint used for all four areas.
+The comparison (table~\ref{tab:four}) shows how the same pipeline responds to four fabrics. Building crossings are zero everywhere, so the clearance guarantee is independent of settlement type. This follows from the grid: a $10$~m cell is wider than the lanes between neighbouring buildings, so a coarse grid with only a soft footprint penalty cannot keep routes off roofs, whereas a $5$~m grid that blocks every cell within $3.6$~m of a footprint (above the $3.54$~m half-diagonal of a $5$~m cell) leaves no step that can touch a roof, and every drawn route was checked against all other footprints. The saving of the shared network ranges from 12.2\% in Adilabad to 25.3\% in Aswaraopeta; it is largest where targets are numerous, clustered and far from the mapped roads (Aswaraopeta, Damarakunta) and smallest where roads are dense and targets scattered (Adilabad), with Alampur between. Unique network length scales with the number of targets and the road coverage, not with the window size: Aswaraopeta needs almost as much new road as Adilabad (27.57~km against 27.12~km) from one-seventh of the area. Costs follow length, Rs 448, 2{,}034, 2{,}067 and 206 lakh, so Aswaraopeta is as expensive as Adilabad at the benchmark rate. The segmentation rows are model-level: they are the LoveDA scores of the one checkpoint used for all four areas.
 
 \begin{table*}[t]
 \caption{Four study areas side by side. Segmentation rows: LoveDA validation of the single \dinoseg{} checkpoint (overall accuracy is the share of correctly classified pixels; precision and recall are macro averages over classes; F1-score equals the mean Dice coefficient; mIoU is the mean intersection over union). Stage~A is independent least-cost routing and Stage~B the shared-trunk network; PMGSY is the Pradhan Mantri Gram Sadak Yojana rural road programme; 1 lakh $=10^{5}$ INR (Indian rupees); slope is the mean terrain slope in percent. Routing rows: unique lengths on the 5~m zero-crossing grid (Stage~A independent, Stage~B shared network, shared edges once); building crossings are routes inside another building's footprint; cost is the Stage~B length times Rs 75 lakh per km (range 60--90).}
@@ -383,7 +392,7 @@ The comparison (table~\ref{tab:four}) shows how the same pipeline responds to fo
 disc = r"""
 \section{Discussion}\label{sec:disc}
 \subsection{What transfers and what differs}
-The planning stages transferred without modification to all four settlements: the same cost surface, clearance rule, solver parameters and metrics produced connected plans in a dispersed village, an urban fringe, a semi-urban town and a small heritage town, with zero building crossings throughout. Stage~B shortened the unique network in every area (21.0\% in Damarakunta, 12.2\% in Adilabad, 25.3\% in Aswaraopeta, 16.2\% in Alampur). The strategy comparison on the 10~m grid (table~\ref{tab:strategies}) gives the same ordering in all four areas: the two-stage plan is shortest (24.9\%, 14.4\%, 31.2\% and 17.8\% below independent routes), the length-only control is no reliable substitute (3.4\% and 16.5\% longer in Damarakunta and Aswaraopeta, 6.8\% and 8.2\% shorter in Adilabad and Alampur) and roads-only sharing recovers most of the gain only in the dispersed village (22.6\%, against 3.2\%, 1.7\% and 4.9\%). The value of a marginal-cost planner therefore grows where new routes can share with one another rather than with existing roads.
+The planning stages transferred without modification to all four settlements: the same cost surface, clearance rule, solver parameters and metrics produced connected plans in a dispersed village, an urban fringe, a semi-urban town and a small heritage town, with zero building crossings throughout. Stage~B shortened the unique network in every area (21.0\% in Damarakunta, 12.2\% in Adilabad, 25.3\% in Aswaraopeta, 16.2\% in Alampur). The comparison with baseline routing strategies (table~\ref{tab:strategies}) gives the same ordering in all four areas: the two-stage plan is shortest (24.9\%, 14.4\%, 31.2\% and 17.8\% below independent routes), the length-only control is no reliable substitute (3.4\% and 16.5\% longer in Damarakunta and Aswaraopeta, 6.8\% and 8.2\% shorter in Adilabad and Alampur) and roads-only sharing recovers most of the gain only in the dispersed village (22.6\%, against 3.2\%, 1.7\% and 4.9\%). The value of a marginal-cost planner therefore grows where new routes can share with one another rather than with existing roads.
 
 What differs between settlements is the mechanism, not the outcome. In Damarakunta the dispersed clusters leave long unserved stretches and the saving comes from shared village trunks. In Adilabad the dense road layer absorbs most targets and the remaining ones are scattered, so the saving is the smallest. In Aswaraopeta a sparse mapped road layer and 678 targets in 2.82~km$^2$ create the longest shared trunks and the largest saving. In Alampur few targets and a nearby road network limit both the length and the saving, and the small extent makes the figures noisy. The savings should therefore not be read as a ranking of settlement types: they reflect target density and road coverage as much as morphology.
 
@@ -403,7 +412,7 @@ All four settlements were processed by the same pipeline: $0.6$~m Esri World Ima
 \end{enumerate}
 
 \section{Conclusions}
-A pipeline from satellite imagery and open layers to shared access roads connects the houses and facilities of four Telangana settlements without changing the cost surface or solver: a rural village (Stage~B 21.0\% shorter than independent routing), an urban fringe (12.2\%), a semi-urban town on a tribal fringe (25.3\%) and a small heritage town (16.2\%), with a 5~m building clearance that removes every route across a roof (the 10~m soft penalty left 28, 99, 157 and 5 routes across other footprints). A four-pass multi-source audit replaced raw Overture facility points with 5, 132, 32 and 9 verified facilities of five categories snapped onto roofs. Across all four settlements the shared plan is the shortest of the strategies compared, and sharing among new routes, not with existing roads, accounts for most of the gain wherever roads are dense. The effect of detection quality beyond the Damarakunta pilot, the completeness of the audited facility lists and the cost rate are the main open questions, and all results need field validation.
+Open geospatial data, a single segmentation checkpoint and one rule set were enough to plan shared access roads in four Telangana settlements of different morphology: a rural village (Damarakunta), an urban fringe (Adilabad), a semi-urban town on a tribal fringe (Aswaraopeta) and a small heritage town (Alampur). In every settlement the same $5$~m cost grid with a $3.6$~m hard building clearance produced corridor plans with no route across a building, and consolidating independent least-cost routes into a shared trunk shortened the new network by 21.0\%, 12.2\%, 25.3\% and 16.2\%, at planning-benchmark costs of Rs 448, 2{,}034, 2{,}067 and 206 lakh. The shared plan was the shortest of the strategies compared in all four areas, and the gain came mainly from sharing among new routes wherever mapped roads were dense. A four-pass multi-source audit supplied 5, 132, 32 and 9 verified facilities of five categories snapped onto roofs. The savings reflect target density and road coverage as much as settlement type, so they describe the planning problem rather than rank settlements. Field-surveyed building masks, further regions and official boundaries would test how far these results extend, and the corridors remain planning alternatives for field verification.
 """
 
 # ------------------------------------------------------------------------------------------------ appendix + back matter
@@ -476,41 +485,7 @@ The authors declare no competing interests.
 # ------------------------------------------------------------------------------------------------ write
 
 # ------------------------------------------------------------------------------------------------ 4.8 grid resolution and clearance sensitivity (numbers from the committed result files only)
-def grid_row(k):
-    m = M[k]
-    soft_sav = 100 * (m["soft_indep_m"] - m["soft_shared_m"]) / m["soft_indep_m"]
-    return (f"{m['label']} & {n(round(m['soft_indep_m']))} & {n(round(m['soft_shared_m']))} & {soft_sav:.1f} & {m['soft_cross_routes']} & {m['soft_cross_m']:.0f} & "
-            f"{n(round(m['stageA_m']))} & {n(round(m['stageB_m']))} & {m['saving_pct']:.1f} & {m['crossings']} & {m['crossing_m']:.0f}\\\\")
-
-grid = r"""
-\subsection{Grid resolution and clearance sensitivity}\label{sec:grid}
-The routing raster was refined during the study, and the effect is recorded for every area (table~\ref{tab:grid}). The first planner worked on the $10$~m cost grid of the WorldCover and slope layers and discouraged, but did not forbid, routes over roofs: cells whose centre lies in a footprint cost $\mu=4$ times as much (equation~\ref{eq:cell}). A $10$~m cell is wider than the lanes between neighbouring buildings in compact fabric, so such a grid cannot represent a lane at all: the cell that covers a lane also covers part of a roof, and when its centre falls inside a footprint it carries the penalty, so the planner either crosses the roof when the detour costs more or leaves a usable gap unused. On this grid 28, 99, 157 and 5 routes ended up inside other footprints in Damarakunta, Adilabad, Aswaraopeta and Alampur, with 209, 677, 1{,}090 and 33~m of route length inside them. The final planner refines the raster to $5$~m with the same cost per metre and blocks every cell whose centre lies within $r_c=3.6$~m of a footprint, a distance above the half-diagonal of a $5$~m cell ($3.54$~m), so that no step between free cells can touch a roof (section~\ref{sec:cost}). Every one of the four settlements then has zero building crossings, verified by intersecting each drawn route with all other footprints. The corridor-consolidation saving remains positive and of similar size (Stage~B 12.2--25.3\% shorter than Stage~A, against 14.4--31.2\% on the coarse grid in the same areas), so the clearance removes the encroachments without removing the benefit of sharing.
-
-The two sets of lengths are not strictly comparable and the table should be read column-wise. The $10$~m figures come from the soft-penalty planner (routes may cross a roof, every target is routed), the $5$~m figures from the clearance planner, whose routes start at the building edge, may not cross a roof and leave unrouted any target enclosed by buildings (Damarakunta 162 of 163, Adilabad 607 of 613, Aswaraopeta 632 of 678, Alampur 58 of 59). The soft-penalty comparison is also a unique-length measure over all targets of a cheaper graph, so the absolute lengths differ for reasons that include both the grid and the target set; the quantities that bear on the grid choice are the crossing counts and the saving.
-
-\begin{table*}[t]
-\caption{Routing grid resolution: $10$~m soft-penalty grid versus $5$~m zero-crossing grid ($3.6$~m clearance). Lengths are unique network lengths in metres (shared edges counted once); Independent is the sum over independent least-cost routes with shared edges counted once, Shared (10~m) and Stage~B (5~m) are the consolidated networks; saving is the consolidated network against the independent routes; crossings are routes inside another building's footprint, with the route length inside footprints in metres.}
-\label{tab:grid}
-\centering
-\scriptsize
-\renewcommand{\arraystretch}{1.1}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lrrrrrrrrrr@{}}
-\toprule
- & \multicolumn{5}{c}{$10$~m grid, footprint penalty $\mu=4$} & \multicolumn{5}{c}{$5$~m grid, $3.6$~m hard clearance}\\
-\cmidrule(lr){2-6}\cmidrule(lr){7-11}
-Area & Independent & Shared & Saving (\%) & Routes crossing & In footprints (m) & Stage A & Stage B & Saving (\%) & Routes crossing & In footprints (m)\\
-\midrule
-""" + "\n".join(grid_row(k) for k in (DK, AD, AS, AL)) + r"""
-\bottomrule
-\end{tabular}}
-\end{table*}
-"""
-for _k in (DK, AD, AS, AL):
-    _m = M[_k]
-    _sv = 100 * (_m["soft_indep_m"] - _m["soft_shared_m"]) / _m["soft_indep_m"]
-    print("grid", _k, f"soft saving {_sv:.1f}")
-doc = head + intro + study + method + results + grid + disc + app + back
+doc = head + intro + study + method + results + disc + app + back
 
 # ------------------------------------------------------------------------------------------------ citation pass (every dataset, method and benchmark source cited at first use)
 CITES = [

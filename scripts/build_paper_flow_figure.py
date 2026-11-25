@@ -95,6 +95,39 @@ def imagery(sc, ext, px=1500):
     raise RuntimeError("Esri imagery could not be obtained (no mosaic and the export service failed)")
 
 
+def fit_square(ext, img, need=0.995):
+    """Largest square window inside `ext` whose imagery has (almost) no no-data pixels, as close to the centre of `ext` as possible: no grey padding bars in the panels."""
+    im, ex = img
+    if im.shape[2] < 4:
+        return ext
+    a = im[..., 3] > 0
+    if a.all() and ex[0] <= ext[0] + 1e-6 and ex[1] >= ext[2] - 1e-6 and ex[2] <= ext[1] + 1e-6 and ex[3] >= ext[3] - 1e-6:
+        return ext
+    H, W = a.shape
+    px, py = (ex[1] - ex[0]) / W, (ex[3] - ex[2]) / H
+    ii = np.pad(a.astype(np.int64).cumsum(0).cumsum(1), ((1, 0), (1, 0)))
+
+    def frac(xl, yb, sd):
+        c0, c1 = int(round((xl - ex[0]) / px)), int(round((xl + sd - ex[0]) / px))
+        r0, r1 = int(round((ex[3] - (yb + sd)) / py)), int(round((ex[3] - yb) / py))
+        if c0 < 0 or r0 < 0 or c1 > W or r1 > H or c1 <= c0 or r1 <= r0:
+            return 0.0
+        return (ii[r1, c1] - ii[r0, c1] - ii[r1, c0] + ii[r0, c0]) / ((c1 - c0) * (r1 - r0))
+
+    S = ext[2] - ext[0]
+    mx, my = (ext[0] + ext[2]) / 2, (ext[1] + ext[3]) / 2
+    for sd in np.linspace(S, 0.3 * S, 36):
+        cands = []
+        for cx in np.linspace(ext[0] + sd / 2, ext[2] - sd / 2, 11):
+            for cy in np.linspace(ext[1] + sd / 2, ext[3] - sd / 2, 11):
+                if frac(cx - sd / 2, cy - sd / 2, sd) >= need:
+                    cands.append(((cx - mx) ** 2 + (cy - my) ** 2, cx, cy))
+        if cands:
+            _, cx, cy = min(cands)
+            return (cx - sd / 2, cy - sd / 2, cx + sd / 2, cy + sd / 2)
+    return ext
+
+
 def nice_scale(width_m):
     ok = [s for s in (100, 200, 500, 1000, 2000) if s <= width_m / 4]
     return ok[-1] if ok else 100
@@ -155,6 +188,7 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
             cx, cy, hh = (z[0] + z[2]) / 2, (z[1] + z[3]) / 2, min(z[2] - z[0], z[3] - z[1]) / 2
             ext = (cx - hh, cy - hh, cx + hh, cy + hh)
         img = imagery(sc, ext)
+        ext = fit_square(ext, img)                    # crop to imagery that exists: no grey padding bars
         scale = nice_scale(ext[2] - ext[0])
         axs = []
         for ci, kind in enumerate(("input", "output")):
