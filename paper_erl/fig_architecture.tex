@@ -1,4 +1,4 @@
-% Figure 1 (architecture): minimalist five-stage block diagram for the ERL / IOP single-column page (compiled standalone; the 300 dpi PNG is made with pdftoppm).
+% Figure 1 (architecture): balanced two-row block diagram for the ERL / IOP single-column page (compiled standalone; the 300 dpi PNG is made with pdftoppm).
 % Parameters are those of the code: scripts/run_tiled_inference.py (tile 560, stride 420, margin 70), scripts/extract_buildings_v8.py (neck ratio 0.65),
 % scripts/audit_facilities.py (snap 35 m), src/multivillage/clearance.py (5 m grid, 3.6 m clearance), scripts/plan_network_v2.py (K=3, greedy weight / marginal cost).
 \documentclass[tikz,border=3pt]{standalone}
@@ -7,57 +7,55 @@
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
-\definecolor{tG}{HTML}{F1F3F5}  % neutral grey (data in / out)
-\definecolor{tB}{HTML}{E4EBF3}  % muted blue (learning, extraction)
-\definecolor{tA}{HTML}{F6EEDC}  % muted amber (routing)
+\definecolor{tG}{HTML}{F2F3F5}  % neutral grey: data in / out
+\definecolor{tB}{HTML}{E5EBF2}  % muted blue: learning and extraction
+\definecolor{tA}{HTML}{F5EEDD}  % muted amber: routing
 \hyphenpenalty=10000 \exhyphenpenalty=10000
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \tikzset{
-  blk/.style={draw=black!85,line width=0.8pt,fill=#1,text width=5.3cm,inner xsep=6pt,inner ysep=5pt,align=left,anchor=north west,minimum height=3.75cm,font=\fontsize{7.8}{9.6}\selectfont},
-  sub/.style={draw=black!85,line width=0.8pt,fill=white,text width=3.3cm,inner xsep=5pt,inner ysep=4pt,align=left,anchor=north west,minimum height=2.45cm,font=\fontsize{7.6}{9.2}\selectfont},
+  blk/.style={draw=black!85,line width=0.8pt,fill=#1,text width=5.3cm,inner xsep=6pt,inner ysep=5pt,align=left,anchor=north west,minimum height=3.55cm,font=\fontsize{7.8}{9.8}\selectfont},
   arr/.style={-{Stealth[length=2.3mm,width=1.8mm]},line width=0.8pt,black!85}
 }
-\newcommand{\hd}[2]{\textbf{#1\ \ #2}\\[-1.5pt]\rule{5.3cm}{0.5pt}\\[1pt]}
-% row 1: stages 1-3
-\node[blk=tG] at (0,0) (s1) {\hd{1}{Multi-source open geospatial inputs}
-  \textbf{4 Telangana study areas:} Damarakunta, Adilabad, Aswaraopeta, Alampur\\[2pt]
-  Esri World Imagery, $0.6$\,m\\
-  TGRAC / OSM roads $R$\\
-  ESA WorldCover, $10$\,m\\
-  Copernicus DEM, $30$\,m\\
-  Verified public facilities $F_i$};
-\node[blk=tB] at (6.3,0) (s2) {\hd{2}{Deep semantic segmentation}
-  \textbf{StrongDINOv2Seg}\\[2pt]
-  RGB tiles $560{\times}560{\times}3$\\
-  $\downarrow$ DINOv2 ViT-B/14 backbone (fine-tuned, then frozen)\\
-  $\downarrow$ FPN $+$ ASPP $+$ Residual Decoder\\
-  $\downarrow$ 7-class probability map\\[1pt]
-  LoveDA: mIoU 53.8\,\%, F1 68.9\,\%};
-\node[blk=tB] at (12.6,0) (s3) {\hd{3}{Footprint and target extraction}
-  Morphological filtering and watershed separation\\
-  $\downarrow$ building footprints $B$\\
-  $\downarrow$ road-gap detection ($>30$\,m from existing roads $R$)\\
-  $\downarrow$ facility snapping to roofs\\[1pt]
-  Targets: houses and facilities};
-% row 2: stage 4 and stage 5
-\node[blk=tA] at (0,-4.45) (s4) {\hd{4}{$5$\,m zero-crossing cost surface}
-  Land-cover resistance $c_{\mathrm{lc}}(\ell)$\\
-  $+$ terrain-slope penalty $g(S)$\\
-  $+$ hard $3.6$\,m building-clearance mask: $C(x,y)=\infty$ where $D(x)\le3.6$\,m\\[2pt]
-  \textbf{Output:} $5$\,m routing cost raster};
-\node[draw=black!85,line width=0.8pt,fill=tA,anchor=north west,minimum width=11.9cm,minimum height=3.75cm] at (6.3,-4.45) (s5) {};
-\node[anchor=north west,align=left,font=\fontsize{7.8}{9.6}\selectfont,inner xsep=6pt,inner ysep=5pt] at (6.3,-4.45) {\textbf{5\ \ Two-stage network optimisation and decision outputs}};
-\draw[line width=0.5pt,black!85] (6.3,-5.07) -- (18.2,-5.07);
-\node[sub] at (6.55,-5.27) (a) {\textbf{Stage A}\\ independent Dijkstra least-cost paths $P_i^{(A)}$ to the road network};
-\node[sub] at (10.45,-5.27) (b) {\textbf{Stage B}\\ shared-trunk Steiner consolidation $+$ leaf re-routing $P_i^{(B)}$ $+$ facility trunk connection};
-\node[sub] at (14.35,-5.27) (c) {\textbf{Outputs}\\ zero-crossing corridor plans ($0$ crossings); length and PMGSY cost savings of $12.2$--$25.3$\,\%; multi-scale GIS planning maps};
+\newcommand{\hd}[2]{\textbf{#1\ \ #2}\\[-1.5pt]\rule{5.3cm}{0.5pt}\\[2pt]}
+\newcommand{\li}[1]{$\bullet$\ #1\\[1.5pt]}
+% banner: the four study areas
+\node[draw=black!85,line width=0.8pt,fill=white,text width=17.4cm,align=center,inner ysep=5pt,anchor=north west,font=\fontsize{7.4}{9}\selectfont] at (0,0) (ban)
+  {\textbf{Four Telangana study areas (one frozen model, one rule set)}\\[1pt] Damarakunta (rural)\ $\cdot$\ Adilabad (urban fringe)\ $\cdot$\ Aswaraopeta (semi-urban)\ $\cdot$\ Alampur (heritage)};
+% row 1
+\node[blk=tG] at (0,-1.35) (s1) {\hd{1}{Multi-source open inputs}
+  \li{Esri World Imagery, $0.6$\,m: RGB tiles $560{\times}560{\times}3$}
+  \li{TGRAC / OSM road network $R$}
+  \li{ESA WorldCover, $10$\,m land cover $\ell$}
+  \li{Copernicus DEM, $30$\,m (slope $S$)}
+  \li{Verified public facilities $F_i$}};
+\node[blk=tB] at (6.3,-1.35) (s2) {\hd{2}{Semantic segmentation}
+  \li{\textbf{StrongDINOv2Seg}: DINOv2 ViT-B/14 backbone}
+  \li{FPN $+$ ASPP $+$ residual decoder}
+  \li{7-class probability map}
+  \li{LoveDA: mIoU 53.8\,\%, F1 68.9\,\%}};
+\node[blk=tB] at (12.6,-1.35) (s3) {\hd{3}{Footprints and targets}
+  \li{Morphological filtering, watershed split}
+  \li{Building footprints $B$}
+  \li{Road-gap targets ($>30$\,m from roads)}
+  \li{Facility snapping to roofs}};
+% row 2
+\node[blk=tA] at (0,-5.65) (s4) {\hd{4}{$5$\,m cost surface}
+  \li{Land-cover resistance $+$ slope penalty}
+  \li{Hard $3.6$\,m building clearance: $C=\infty$ where $D(x)\le3.6$\,m}
+  \li{\textbf{Output:} $5$\,m routing cost raster}};
+\node[blk=tA] at (6.3,-5.65) (s5) {\hd{5}{Two-stage routing}
+  \li{\textbf{Stage A:} independent Dijkstra paths $P_i^{(A)}$}
+  \li{\textbf{Stage B:} shared-trunk Steiner consolidation, leaf re-routing $P_i^{(B)}$, facility trunk connection}};
+\node[blk=tG] at (12.6,-5.65) (s6) {\textbf{Decision outputs}\\[-1.5pt]\rule{5.3cm}{0.5pt}\\[2pt]
+  \li{$0$ building crossings}
+  \li{Length and PMGSY cost savings, $12.2$--$25.3$\,\%}
+  \li{Multi-scale GIS planning maps}};
 % arrows
 \draw[arr] (s1.east) -- (s2.west);
 \draw[arr] (s2.east) -- (s3.west);
-\draw[arr] (s3.south) -- ++(0,-0.35) -| (s4.north);
+\draw[arr] (s3.south) -- ++(0,-0.38) -| (s4.north);
 \draw[arr] (s4.east) -- (s5.west);
-\draw[arr] (a.east) -- (b.west);
-\draw[arr] (b.east) -- (c.west);
+\draw[arr] (s5.east) -- (s6.west);
 \end{tikzpicture}
 \end{document}
