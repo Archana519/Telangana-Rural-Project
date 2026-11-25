@@ -4,13 +4,13 @@
    paper/erl/main.tex, whose numbers are ledger-checked against DELIVERABLES_DAMARAKUNTA_STAGE_B by paper/erl/verify_erl_numbers.py (run here too).
 2. Adilabad numbers: recomputed from DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD/*.csv and required to occur in main.tex.
 """
-import re, subprocess, sys
+import os, re, subprocess, sys
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 import pandas as pd
 
 HERE = Path(__file__).resolve().parent; REPO = HERE.parent
-TEX = (HERE / "main.tex").read_text(encoding="utf-8")
+TEX = (Path(os.environ["ERIS_TEX"]) if os.environ.get("ERIS_TEX") else HERE / "main.tex").read_text(encoding="utf-8")   # ERIS_TEX=paper_erl/main.tex verifies the ERL manuscript
 ERL = (REPO / "paper/erl/main.tex").read_text(encoding="utf-8")
 A = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/01_ADILABAD"
 fails = 0; n = 0

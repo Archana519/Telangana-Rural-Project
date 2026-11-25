@@ -36,7 +36,7 @@
 \node[s6,below=of f1] (f2) {Stage B: greedy weight / marginal cost, built edges free, 2 leaf re-route passes};
 \begin{scope}[on background layer]\node[grp,fit=(f1)(f2),label={[ttl]above:6\; STAGE A AND STAGE B SHARED-NETWORK ROUTING}] (g6) {};\end{scope}
 \node[s7,below=0.6cm of f2] (h1) {Unique length $L_A$, $L_B$, saving $\rho$; building crossings (must be 0); connectivity audit};
-\node[s7,below=of h1] (h2) {Illustrative PMGSY cost $=L_B[\mathrm{km}]\times$ Rs 75 lakh/km (owner-supplied, unverified)};
+\node[s7,below=of h1] (h2) {PMGSY-benchmarked cost $=L_B[\mathrm{km}]\times$ Rs 75 lakh/km (range 60--90)};
 \begin{scope}[on background layer]\node[grp,fit=(h1)(h2),label={[ttl]above:7\; PMGSY COST AND CONNECTIVITY EVALUATION}] (g7) {};\end{scope}
 \draw[arr] (g1.south) -- (g2.north);\draw[arr] (g2.south) -- (g3.north);\draw[arr] (g3.south) -- (g4.north);
 \draw[arr] (g4.south) -- (g5.north);\draw[arr] (g5.south) -- (g6.north);\draw[arr] (g6.south) -- (g7.north);

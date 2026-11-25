@@ -46,7 +46,7 @@ def fake(label="A", ok=True):
 def test_terminal_tables_show_values_and_na():
     txt = PS.terminal_tables([fake("A"), fake("B", ok=False)])
     assert "Overall pixel accuracy" in txt and "71.3" in txt and "n/a" in txt and txt.count("╔") == 3
-    assert "Stage A independent" in txt and "Illustrative PMGSY cost" in txt and "25.0" in txt
+    assert "Stage A independent" in txt and "PMGSY-benchmarked cost" in txt and "25.0" in txt
     widths = {len(l) for l in txt.splitlines() if l.startswith(("║", "╔", "╠", "╚"))}
     assert len(widths) <= 3                                                          # three tables, each with straight borders
 
@@ -55,8 +55,8 @@ def test_latex_table_marks_missing_values_as_pending():
     ms = [dict(fake(k.capitalize()), key=k) for k in PS.ORDER]
     ms[2] = dict(fake("Aswaraopeta", ok=False), key="aswaraopeta")
     tex = PS.latex_table(ms)
-    assert tex.count(r"\pending{n/a}") > 5 and r"\toprule" in tex and r"\bottomrule" in tex and "Illustrative PMGSY cost" in tex
-    assert r"\multicolumn{4}{c}{71.3}" in tex and "Corridor length saving" in tex and "unverified" in tex.lower() or "NOT verified" in tex
+    assert tex.count(r"\pending{n/a}") > 5 and r"\toprule" in tex and r"\bottomrule" in tex and "PMGSY-benchmarked cost" in tex
+    assert r"\multicolumn{4}{c}{71.3}" in tex and "Corridor length saving" in tex and "sensitivity range 60-90" in tex
 
 
 def test_real_collection_has_zero_crossings_and_loveda_values():
