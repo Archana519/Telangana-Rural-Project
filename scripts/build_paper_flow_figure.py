@@ -44,6 +44,7 @@ CREDIT_SHORT = "© Esri, Maxar, Earthstar Geographics"
 ROAD_GREY = "#e6e6e6"
 STATE_ROWS = [("damarakunta", "Damarakunta", "Rural"), ("adilabad", "Adilabad", "Urban / semi-urban"), ("aswaraopeta", "Aswaraopeta", "Semi-urban / tribal fringe"), ("alampur", "Alampur", "Heritage / semi-urban")]
 LOC = {"damarakunta": (78.7519, 17.7073), "adilabad": (78.5320, 19.6640), "aswaraopeta": (81.1281, 17.2409), "alampur": (78.1351, 15.8800)}     # lon, lat of the study area centres
+ZOOM_ROWS = ("damarakunta",)          # rows drawn on the main settlement cluster instead of the whole polygon (the 18.5 km2 village is mostly farmland)
 HOST_DISTRICTS = {"damarakunta": "Siddipet", "adilabad": "Adilabad", "aswaraopeta": "Bhadradri", "alampur": "Jogulamba"}
 
 
@@ -148,6 +149,11 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
     for ri, (k, nm, ty) in enumerate(STATE_ROWS):
         sc = scenes[k]
         ext = square_ext(sc.cell)
+        zoomed = k in ZOOM_ROWS
+        if zoomed:                                   # the settlement-cluster window of the master planning map (densest cluster of road-gap houses and facilities), made square
+            z = MM.pick_zoom(sc)
+            cx, cy, hh = (z[0] + z[2]) / 2, (z[1] + z[3]) / 2, min(z[2] - z[0], z[3] - z[1]) / 2
+            ext = (cx - hh, cy - hh, cx + hh, cy + hh)
         img = imagery(sc, ext)
         scale = nice_scale(ext[2] - ext[0])
         axs = []
@@ -156,7 +162,7 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
             panel(ax, sc, ext, img, kind, scale)
             axs.append(ax)
         st = sc.stats
-        axs[0].set_title(f"{ri + 1}. {nm} ({ty}), {st['area_km2']:.1f} km$^2$", fontsize=6.0, loc="left", pad=2.5)
+        axs[0].set_title(f"{ri + 1}. {nm} ({ty}): settlement-cluster zoom" if zoomed else f"{ri + 1}. {nm} ({ty}), {st['area_km2']:.1f} km$^2$", fontsize=6.0, loc="left", pad=2.5)
         axs[1].set_title(f"Stage A {st['indep_m'] / 1000:.2f} km $\\rightarrow$ Stage B {st['shared_m'] / 1000:.2f} km ({100 * (1 - st['shared_m'] / st['indep_m']):.1f}% shorter)\n"
                          f"{sum(v['routes_crossing'] for v in st['verify'].values())} building crossings; {len(sc.fac)} verified facilities", fontsize=4.8, loc="left", pad=2.5, linespacing=1.25)
         # the arrow between the two panels of the pair

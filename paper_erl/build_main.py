@@ -163,7 +163,7 @@ The workflow (figure~\ref{fig:arch}) has five stages that are identical for all 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.5\textwidth]{fig_architecture.png}
+\includegraphics[width=\textwidth]{fig_architecture.png}
 \caption{End-to-end architecture: (1)~multi-source open-data ingestion, (2)~\dinoseg{} semantic segmentation (tile 560, stride 420, margin 70), (3)~distance-transform building footprint extraction (neck ratio 0.65) and road-gap targets, (4)~four-pass facility audit and roof snapping (School, College, Hospital, Government Office, Anganwadi), (5)~cost surface with a 5~m zero-crossing clearance (3.6~m), (6)~Stage~A independent and Stage~B shared-network Dijkstra routing, (7)~PMGSY cost and connectivity evaluation.}
 \label{fig:arch}
 \end{figure}
@@ -314,20 +314,30 @@ The results follow the progression of the study. The pilot (Damarakunta) shows w
 On the 1{,}669-image LoveDA validation split (560~px tiles, seven scored classes) the epoch-4 checkpoint reached 53.8\% mIoU, 68.9\% Dice (equal to the macro F1-score), 71.3\% pixel accuracy, 72.4\% macro precision and 66.9\% macro recall; for the Building class IoU is 54.0\%, Dice 70.1\%, precision 62.1\% and recall 80.6\% (table~\ref{tab:seg}). The high building recall is what the routing task needs: a missed roof removes a household from the plan, whereas a spurious blob is absorbed by the merge flag and the 25~m$^2$ minimum. For orientation, table~\ref{tab:seg} lists the published test-set mIoU of other LoveDA baselines; they were scored on the benchmark's test split with different protocols, so the comparison is indicative, not a like-for-like ranking. The scores are source-domain figures: they describe the LoveDA validation images, not the four Telangana settlements, for which no surveyed reference mask exists. The Telangana footprints are therefore assessed through their consequences for planning (section~\ref{sec:disc}) and, for Damarakunta, against Google Open Buildings v3 (appendix~\ref{app:robust}: 118 of the 165 candidates, 71.5\%, agree).
 
 \begin{table}[t]
-\caption{Semantic segmentation on LoveDA. \dinoseg{} (this work) is scored on the 1{,}669-image validation split at 560~px; precision and recall are macro averages over the seven scored classes and F1 equals the mean Dice. Published baselines are test-set mIoU from the literature, so they are indicative.}
+\caption{Semantic segmentation on LoveDA. (a)~Published mIoU of the benchmark baselines (test split, from the cited papers) next to \dinoseg{} (our 1{,}669-image validation split, so the comparison is indicative). (b)~Validation metrics of \dinoseg{} at 560~px: macro averages over the seven scored classes and the Building class alone; F1 equals Dice. Overall pixel accuracy, a whole-image quantity with no per-class counterpart, is 71.3\%.}
 \label{tab:seg}
 \centering
 \small
-\begin{tabular}{@{}lrrrrr@{}}
+\begin{tabular}{@{}llr@{}}
 \toprule
- & mIoU & Dice & Pixel acc. & Precision & Recall\\
+\multicolumn{3}{@{}l}{\textit{(a) Literature comparison on LoveDA}}\\
+Model & Backbone & Published mIoU (\%)\\
 \midrule
-U-Net (ResNet-50) \cite{ronneberger2015unet,wang2021loveda} & 47.84 & --- & --- & --- & ---\\
-DeepLabv3+ (ResNet-50) \cite{chen2018deeplabv3plus,wang2021loveda} & 47.62 & --- & --- & --- & ---\\
-UNetFormer \cite{wang2022unetformer} & 52.4 & --- & --- & --- & ---\\
+U-Net \cite{ronneberger2015unet,wang2021loveda} & ResNet-50 & 47.84\\
+DeepLabv3+ \cite{chen2018deeplabv3plus,wang2021loveda} & ResNet-50 & 47.62\\
+UNetFormer \cite{wang2022unetformer} & ResNet-18 & 52.4\\
+\dinoseg{} (ours) & DINOv2 ViT-B/14 & 53.8\\
+\bottomrule
+\end{tabular}
+
+\medskip
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+\multicolumn{5}{@{}l}{\textit{(b) \dinoseg{} validation metrics (560~px, 1{,}669 images)}}\\
+Scope & mIoU (\%) & F1 / Dice (\%) & Precision (\%) & Recall (\%)\\
 \midrule
-StrongDINOv2Seg & 53.8 & 68.9 & 71.3 & 72.4 & 66.9\\
-\quad Building class & 54.0 & 70.1 & --- & 62.1 & 80.6\\
+All 7 classes (macro) & 53.8 & 68.9 & 72.4 & 66.9\\
+Building class & 54.0 & 70.1 & 62.1 & 80.6\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -436,7 +446,45 @@ The authors declare no competing interests.
 
 # ------------------------------------------------------------------------------------------------ write
 doc = head + intro + study + method + results + disc + app + back
-doc = doc.replace("(figure~\\ref{fig:arch})", "(figure~\\ref{fig:arch})")
+# ------------------------------------------------------------------------------------------------ citation pass (every dataset, method and benchmark source cited at first use)
+CITES = [
+ (r"Esri World Imagery (imagery, 0.6~m tiles) &", r"Esri World Imagery \cite{esri2026worldimagery} (imagery, 0.6~m tiles) &"),
+ (r"Overture Maps (buildings, roads, places) &", r"Overture Maps \cite{overture2026} (buildings, roads, places) &"),
+ (r"OpenStreetMap (boundary candidates, facilities) &", r"OpenStreetMap \cite{haklay2008osm} (boundary candidates, facilities) &"),
+ (r"ESA WorldCover (land cover) &", r"ESA WorldCover \cite{zanaga2021worldcover} (land cover) &"),
+ (r"Copernicus DEM GLO-30 (slope) &", r"Copernicus DEM GLO-30 \cite{esa2022copdem} (slope) &"),
+ (r"LoveDA (segmentation training, validation) &", r"LoveDA \cite{wang2021loveda} (segmentation training, validation) &"),
+ (r"Wikidata, Wikipedia (facility audit) &", r"Wikidata \cite{vrandecic2014wikidata}, Wikipedia (facility audit) &"),
+ (r"geoBoundaries gbOpen (2018 district and mandal layer) &", r"geoBoundaries gbOpen \cite{runfola2020geoboundaries} (2018 district and mandal layer) &"),
+ (r"0.6~m Esri World Imagery, TGRAC", r"0.6~m Esri World Imagery \cite{esri2026worldimagery}, TGRAC"),
+ (r"ESA WorldCover v200 land cover, the Copernicus GLO-30 elevation model", r"ESA WorldCover v200 land cover \cite{zanaga2021worldcover}, the Copernicus GLO-30 elevation model \cite{esa2022copdem}"),
+ (r"Stage~A computes independent Dijkstra least-cost routes", r"Stage~A computes independent Dijkstra least-cost routes \cite{dijkstra1959note}"),
+ (r"benchmarked against a PMGSY corridor cost", r"benchmarked against a PMGSY corridor cost \cite{pmgsy}"),
+ (r"OpenStreetMap (Overpass and the Photon geocoder)", r"OpenStreetMap \cite{haklay2008osm} (Overpass and the Photon geocoder \cite{photon2026})"),
+ (r"with the Sobel gradient at the DEM spacing", r"with the Sobel gradient \cite{sobel1968gradient,horn1981hill} at the DEM spacing"),
+ (r"OpenCV and NumPy (algorithm", r"OpenCV and NumPy \cite{bradski2000opencv,harris2020numpy} (algorithm"),
+ (r"a distance transform of each connected component gives", r"a distance transform of each connected component \cite{felzenszwalb2012edt} gives"),
+ (r"$h$-maxima markers, a marker-controlled flooding of the inverted transform (a watershed-type split)", r"$h$-maxima markers \cite{vincent1993morph}, a marker-controlled flooding of the inverted transform (a watershed-type split \cite{vincent1991watershed})"),
+ (r"fully fine-tuned DINOv2 ViT-B/14 encoder \cite{oquab2023dinov2}", r"fully fine-tuned DINOv2 ViT-B/14 encoder \cite{oquab2023dinov2}, a vision transformer \cite{dosovitskiy2021vit}"),
+ (r"a four-stage decoder of residual convolution blocks", r"a four-stage decoder of residual convolution blocks \cite{he2016resnet}"),
+ (r"(AdamW, cosine schedule to $10^{-7}$,", r"(AdamW \cite{loshchilov2019adamw}, cosine schedule \cite{loshchilov2017sgdr} to $10^{-7}$,"),
+ (r"are the macro averages over the scored classes; because", r"are the macro averages over the scored classes (IoU as in \cite{everingham2010voc}); because"),
+ (r"it excludes land, drainage structures and variation in cross-section, and its scope", r"it excludes land, drainage structures and variation in cross-section (design practice for the programme is set out in the IRC rural roads manual \cite{irc2002sp20}), and its scope"),
+ (r"carries no optimality guarantee. Two passes", r"carries no optimality guarantee. Two passes"),
+ (r"against Google Open Buildings v3 (appendix", r"against Google Open Buildings v3 \cite{sirko2021openbuildings} (appendix"),
+ (r"For PMGSY-style schemes \cite{pmgsy} three points", r"For PMGSY-style schemes \cite{pmgsy,irc2002sp20} three points"),
+ (r"and no design-standard compliance is claimed", r"and they are not designs to the IRC rural roads manual \cite{irc2002sp20}"),
+ (r"Wikidata and Wikipedia (and, for Damarakunta", r"Wikidata \cite{vrandecic2014wikidata} and Wikipedia (and, for Damarakunta"),
+ (r"equivalent to Rs ", r"equivalent to Rs "),
+]
+for old, new in CITES:
+    if old == new:
+        continue
+    if old not in doc:
+        print("CITE ANCHOR NOT FOUND:", old[:70])
+    else:
+        doc = doc.replace(old, new, 1)
+
 (H / "main.tex").write_text(doc, encoding="utf-8")
 for src, dst in [(REPO / "paper_eris" / "figures" / "fig_architecture.png", H / "fig_architecture.png"),
                  (REPO / "paper_eris" / "figures" / "fig_flow_study_areas.png", H / "fig_flow_study_areas.png"),

@@ -117,4 +117,11 @@ vf = pd.read_csv(SEG / "verified_facilities.csv"); vf = vf[vf.status == "VERIFIE
 dup = int(((vf.groupby(["lon", "lat"]).name.transform("size")) > 1).sum())
 assert dup == 10 and len(vf) == 68, (dup, len(vf))
 need("Ten of the 68 verified facility points", "Ten of the 68 verified facility points")
+# 3. LoveDA metrics (inputs/segmentation_validation_loveda.json) must appear in the ERL table (b) rows
+if os.environ.get("ERIS_TEX"):
+    import json
+    L = json.load(open(REPO / "inputs" / "segmentation_validation_loveda.json")); B = L["building_class"]
+    need("loveda macro row", f"All 7 classes (macro) & {L['miou_pct']} & {L['dice_mean_pct']} & {L['precision_macro_pct']} & {L['recall_macro_pct']}\\\\")
+    need("loveda building row", f"Building class & {B['iou_pct']} & {B['dice_pct']} & {B['precision_pct']} & {B['recall_pct']}\\\\")
+    need("loveda OA", f"{L['pixel_accuracy_pct']}\\%")
 print(f"{n} checks, {fails} failures"); sys.exit(1 if fails or r.returncode else 0)
