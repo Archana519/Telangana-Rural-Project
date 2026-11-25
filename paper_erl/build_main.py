@@ -79,11 +79,11 @@ head = r"""% Environmental Research Letters (IOP Publishing, ISSN 1748-9326): IO
 \author{Ramakrishna Kolikipogu$^{1,*}$ and Pendyala Archana$^{1}$}\par
 \affil{$^1$Department of Information Technology, Chaitanya Bharathi Institute of Technology (A), Hyderabad, India}\par
 \affil{$^*$Author to whom any correspondence should be addressed.}\par
-\email{krkrishna.cse@gmail.com, pendyalaarchanareddy98@gmail.com}\par\vspace{4pt}
-\keywords{rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana}\par
+\email{krkrishna.cse@gmail.com, pendyalaarchanareddy98@gmail.com}\par
 % abstract: """ + f"{words} words" + r"""
 \begin{abstract}
 """ + abstract + r"""
+\par\medskip\noindent\textbf{Keywords:} rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana
 \end{abstract}
 
 """
@@ -360,7 +360,7 @@ Figure~\ref{fig:flow} follows the chain of figure~\ref{fig:arch} for the four ar
 \begin{figure*}[p]
 \centering
 \IfFileExists{fig_flow_study_areas.png}{\includegraphics[width=0.93\textwidth]{fig_flow_study_areas.png}}{\fbox{\parbox{0.8\textwidth}{\centering\pending{Figure not generated yet: run \texttt{python scripts/build\_paper\_flow\_figure.py --source segmentation} on the PC that holds the segmentation results.}}}}
-\caption{Study areas and end-to-end flow. Left: Telangana with district outlines (geoBoundaries \cite{runfola2020geoboundaries}) and the four study locations (1~Damarakunta, rural; 2~Adilabad, urban fringe; 3~Aswaraopeta, semi-urban, tribal fringe; 4~Alampur, heritage, semi-urban). Right, one strip per area: input (0.6~m Esri World Imagery, study-area boundary and existing road network) $\rightarrow$ final output (extracted building footprints, road-gap target houses in orange, verified facilities and the Stage~B shared network of the 5~m zero-crossing plan: blue for houses, red for facilities), with scale bar and north arrow. Stage~A is the set of independent least-cost routes and Stage~B the shared network that consolidates them. Below each output: Stage~A and Stage~B unique length, building crossings and facility count. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Footprints are automatic detections and routes are planning alternatives.}
+\caption{Study areas and end-to-end flow. Top: Telangana with district outlines (geoBoundaries \cite{runfola2020geoboundaries}) and the four numbered study locations (1~Damarakunta, rural; 2~Adilabad, urban fringe; 3~Aswaraopeta, semi-urban, tribal fringe; 4~Alampur, heritage, semi-urban), and the key. One row per area, three columns: (a)~input (0.6~m Esri World Imagery, study-area boundary and existing road network); (b)~\dinoseg{} building footprints (road-gap target houses in orange) with the verified facilities; (c)~output, the Stage~B shared network of the 5~m zero-crossing plan (blue for houses, red for facilities) with scale bar and north arrow. Stage~A is the set of independent least-cost routes and Stage~B the shared network that consolidates them; below each output are their unique lengths, the building crossings and the facility count. The Damarakunta row shows the settlement cluster, not the whole village. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Footprints are automatic detections and routes are planning alternatives.}
 \label{fig:flow}
 \end{figure*}
 

@@ -63,8 +63,7 @@ def locator(ax, log=print):
         lon, lat = LOC[k]
         ax.plot(lon, lat, "o", ms=9, mfc="#d62728", mec="k", mew=0.7, zorder=6)
         ax.text(lon, lat, str(i), ha="center", va="center", fontsize=5.6, color="w", fontweight="bold", zorder=7)
-    ax.set_title("Telangana: study locations", fontsize=7.2, loc="left")
-    ax.text(0.0, -0.02, "\n".join(f"{i}  {nm}: {ty}" for i, (k, nm, ty) in enumerate(STATE_ROWS, 1)) + "\n(study districts shaded)", transform=ax.transAxes, ha="left", va="top", fontsize=5.6, linespacing=1.35)
+    ax.set_title("Telangana: study locations", fontsize=6.4, loc="left", pad=2)
     ax.set_aspect(1.0 / np.cos(np.radians(17.8)))
     ax.set_xticks([]); ax.set_yticks([]); ax.set_xlabel(""); ax.set_ylabel("")
     for sp in ax.spines.values():
@@ -142,10 +141,12 @@ def panel(ax, sc, ext, img, kind, scale_m):
     gpd.GeoSeries([sc.cell], crs=CRS).boundary.plot(ax=ax, color=MM.C_BOUND, lw=0.8, zorder=3)
     dense = sc.stats["roads_km"] / max(sc.stats["area_km2"], 1e-6) > 15                 # a dense road layer would hide the imagery at this scale
     sc.roads.plot(ax=ax, color=ROAD_GREY, lw=0.25 if dense else 0.45, alpha=0.65, zorder=4)        # thin, light grey, no casing: the imagery stays visible
-    if kind == "output":
+    if kind in ("mid", "output"):
         MM.draw_footprints(sc, ax, ext, False, reg_alpha=0.25, gap_alpha=0.75, reg_lw=0.15, gap_lw=0.15)
-        MM.draw_routes(sc, ax, False, indep=False, shared=True, lw_house=0.75, lw_fac=1.1, casing=False)
+        if kind == "output":
+            MM.draw_routes(sc, ax, False, indep=False, shared=True, lw_house=0.75, lw_fac=1.1, casing=False)
         MM.plot_facilities(sc, ax, ext, 40, edge_lw=0.4)
+    if kind == "output":
         x0, y0, x1, y1 = ext
         sx, sy = x0 + 0.05 * (x1 - x0), y0 + 0.06 * (y1 - y0)
         ax.plot([sx, sx + scale_m], [sy, sy], color="k", lw=2.2, zorder=30, solid_capstyle="butt")
@@ -173,40 +174,46 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
         log(f"scene {k} ...")
         scenes[k] = AS.scene_for(k, source, log, limit_targets)
     preview = any(getattr(s, "preview", False) for s in scenes.values())
-    fig = plt.figure(figsize=(7.2, 9.6))
-    # left column: locator on top, legend below; right column: four INPUT -> OUTPUT strips
-    gl = fig.add_gridspec(2, 1, left=0.015, right=0.29, top=0.945, bottom=0.015, height_ratios=[1.0, 1.25], hspace=0.12)
-    axl = fig.add_subplot(gl[0, 0])
+    W, H = 7.2, 11.2
+    fig = plt.figure(figsize=(W, H))
+    left, cw, cgap = 0.075, 0.28, 0.02                          # three square panels per row: fractions of the figure width
+    ch = cw * W / H                                              # panel height (fraction) for a square panel
+    rgap, top0 = 0.034, 0.862
+    # header band: Telangana locator (own band, never touches the column headers) and the key / legend beside it
+    axl = fig.add_axes([left, 0.893, 0.15, 0.1])
     locator(axl, log)
-    gr = fig.add_gridspec(4, 2, left=0.325, right=0.995, top=0.925, bottom=0.012, hspace=0.34, wspace=0.17)
+    axl.set_title("", loc="left"); axl.set_title("")
+    keyax = fig.add_axes([left + 0.17, 0.885, 0.74, 0.11]); keyax.axis("off")
+    keyax.text(0.0, 0.97, "Study areas (numbered on the map; study districts shaded)", fontsize=5.8, fontweight="bold", va="top")
+    keyax.text(0.0, 0.80, "   ".join(f"{i}  {nm} ({ty.lower()})" for i, (k, nm, ty) in enumerate(STATE_ROWS, 1)), fontsize=5.4, va="top")
+    figure_legend(fig, loc="lower left", anchor=(left + 0.17, 0.888), ncol=4, fontsize=4.9)
+    heads = ["(a) Input: 0.6 m imagery,\nstudy-area boundary, roads", "(b) StrongDINOv2Seg footprints\n+ verified facilities", "(c) Output: zero-crossing\nStage B shared network"]
+    for ci, t in enumerate(heads):
+        fig.text(left + ci * (cw + cgap) + cw / 2, top0 + 0.006, t, ha="center", va="bottom", fontsize=5.8, fontweight="bold", linespacing=1.2)
     for ri, (k, nm, ty) in enumerate(STATE_ROWS):
         sc = scenes[k]
         ext = square_ext(sc.cell)
         zoomed = k in ZOOM_ROWS
-        if zoomed:                                   # the settlement-cluster window of the master planning map (densest cluster of road-gap houses and facilities), made square
+        if zoomed:                                   # the settlement-cluster window of the master planning map, made square (about 950 m)
             z = MM.pick_zoom(sc)
             cx, cy, hh = (z[0] + z[2]) / 2, (z[1] + z[3]) / 2, min(z[2] - z[0], z[3] - z[1]) / 2
             ext = (cx - hh, cy - hh, cx + hh, cy + hh)
         img = imagery(sc, ext)
-        ext = fit_square(ext, img)                    # crop to imagery that exists: no grey padding bars
+        ext = fit_square(ext, img)                    # crop to imagery that exists: no grey or white padding in the frame
         scale = nice_scale(ext[2] - ext[0])
+        y0 = top0 - ri * (ch + rgap) - ch
         axs = []
-        for ci, kind in enumerate(("input", "output")):
-            ax = fig.add_subplot(gr[ri, ci])
+        for ci, kind in enumerate(("input", "mid", "output")):
+            ax = fig.add_axes([left + ci * (cw + cgap), y0, cw, ch])
             panel(ax, sc, ext, img, kind, scale)
+            ax.set_aspect("equal", adjustable="box")
             axs.append(ax)
         st = sc.stats
-        axs[0].set_title(f"{ri + 1}. {nm} ({ty}): settlement-cluster zoom" if zoomed else f"{ri + 1}. {nm} ({ty}), {st['area_km2']:.1f} km$^2$", fontsize=6.0, loc="left", pad=2.5)
-        axs[1].set_title(f"Stage A {st['indep_m'] / 1000:.2f} km $\\rightarrow$ Stage B {st['shared_m'] / 1000:.2f} km ({100 * (1 - st['shared_m'] / st['indep_m']):.1f}% shorter)\n"
-                         f"{sum(v['routes_crossing'] for v in st['verify'].values())} building crossings; {len(sc.fac)} verified facilities", fontsize=4.8, loc="left", pad=2.5, linespacing=1.25)
-        # the arrow between the two panels of the pair
-        b0, b1 = axs[0].get_position(), axs[1].get_position()
-        fig.patches.append(matplotlib.patches.FancyArrowPatch((b0.x1 + 0.012, (b0.y0 + b0.y1) / 2), (b1.x0 - 0.012, (b0.y0 + b0.y1) / 2), transform=fig.transFigure, arrowstyle="-|>", mutation_scale=8, lw=1.2, color="k", zorder=50))
-        if ri == 0:
-            fig.text((b0.x0 + b0.x1) / 2, 0.972, "INPUT: imagery, boundary, roads", ha="center", fontsize=6.4, fontweight="bold")
-            fig.text((b1.x0 + b1.x1) / 2, 0.972, "FINAL OUTPUT: buildings, facilities, network", ha="center", fontsize=6.4, fontweight="bold")
-    leg = figure_legend(fig, loc="lower left", anchor=(0.015, 0.075), ncol=1, fontsize=5.6)
-    fig.text(0.012, 0.012, "Basemap imagery: Esri, Maxar, Earthstar Geographics,\nand the GIS User Community. Boundaries: geoBoundaries gbOpen (ODbL).\nFootprints are automatic detections; routes are planning\nalternatives, not engineered roads. EPSG:32644.", ha="left", va="bottom", fontsize=4.2, linespacing=1.3)
+        sub = f"{ty}, settlement-cluster zoom" if zoomed else f"{ty}, {st['area_km2']:.1f} km$^2$"
+        fig.text(0.032, y0 + ch / 2, f"{ri + 1}. {nm}\n{sub}", rotation=90, ha="center", va="center", fontsize=6.0, fontweight="bold", linespacing=1.3)
+        axs[2].set_xlabel(f"Stage A {st['indep_m'] / 1000:.2f} km $\\rightarrow$ Stage B {st['shared_m'] / 1000:.2f} km ({100 * (1 - st['shared_m'] / st['indep_m']):.1f}% shorter)\n"
+                          f"{sum(v['routes_crossing'] for v in st['verify'].values())} building crossings; {len(sc.fac)} verified facilities", fontsize=4.8, labelpad=3, linespacing=1.25)
+    fig.text(0.075, 0.004, "Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Boundaries: geoBoundaries gbOpen (ODbL). Footprints are automatic detections; routes are planning alternatives, not engineered roads. EPSG:32644.", fontsize=4.6, va="bottom")
     if preview:
         fig.text(0.5, 0.5, "PREVIEW\nopen footprints / limited targets: re-run on the PC\nafter the StrongDINOv2Seg stages", ha="center", va="center", fontsize=26, color="red", alpha=0.18, rotation=25, zorder=100)
     out.parent.mkdir(parents=True, exist_ok=True)
