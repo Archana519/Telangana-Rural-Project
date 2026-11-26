@@ -6,6 +6,9 @@
     python scripts/run_full_demo.py --no-open     # do not open the output folder at the end
     python scripts/run_full_demo.py --online      # allow the Esri imagery service for windows that are not cached (default: cached imagery only)
 
+First run on a machine without demo_cache/damarakunta_open_cache.zip (it is git-ignored): the inputs are prepared locally (needs internet once: Overture / OSM roads, WorldCover and Copernicus tiles, Esri imagery tiles;
+the StrongDINOv2Seg footprints are the existing local ones) and the zip is saved, so every later run is offline and takes under a minute.
+
 Stages (each prints its progress and takes a few seconds):
   1  Data and window load        restore the cached open-data inputs of the Damarakunta window (demo_cache/), build the study state; list the four windows
   2  Segmentation and footprints StrongDINOv2Seg footprints of the window (the stored instances of the frozen checkpoint, clipped to the window; the PyTorch inference itself is not repeated)
@@ -62,19 +65,39 @@ def run(cmd, log_name, quiet=True):
     return log.read_text(encoding="utf-8", errors="replace")
 
 
+def cache_files():
+    d = REPO / "data" / "villages" / VILLAGE
+    return [f for f in d.iterdir() if f.is_file() and f.suffix in (".gpkg", ".tif")] + [V8] + sorted((REPO / "data" / "esri_cache").glob("*.png"))
+
+
+def save_cache_zip():
+    """Save the inputs of the window (open-data layers, clipped StrongDINOv2Seg footprints, Esri imagery tiles) as demo_cache/damarakunta_open_cache.zip: later runs are fully offline."""
+    CACHE_ZIP.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(CACHE_ZIP, "w", zipfile.ZIP_DEFLATED) as z:
+        for f in cache_files():
+            z.write(f, f.relative_to(REPO).as_posix())
+    say(f"  saved {CACHE_ZIP.relative_to(REPO)} ({CACHE_ZIP.stat().st_size / 1e6:.1f} MB): the next runs of run_demo.bat are fully offline")
+
+
 def restore_cache():
-    need = [REPO / "data/villages" / VILLAGE / "boundary.gpkg", REPO / "data/villages" / VILLAGE / "roads.gpkg", REPO / "data/villages" / VILLAGE / "worldcover_10m.tif", REPO / "data/villages" / VILLAGE / "dem_30m.tif", V8]
-    missing = [p for p in need if not p.exists()]
-    if not list((REPO / "data" / "esri_cache").glob("*.png")):
-        missing.append(REPO / "data" / "esri_cache")
-    if missing:
+    """Returns True when the cache bundle has to be (re)built at the end of the run (first run on this machine)."""
+    d = REPO / "data" / "villages" / VILLAGE
+    need = [d / "boundary.gpkg", d / "roads.gpkg", d / "places_4km.gpkg", d / "worldcover_10m.tif", d / "dem_30m.tif", V8]
+    have_img = bool(list((REPO / "data" / "esri_cache").glob("*.png")))
+    if all(p.exists() for p in need) and have_img:
+        say("  cached open-data inputs present (data/villages/damarakunta_open, data/villages/damarakunta_esri, data/esri_cache)")
         if not CACHE_ZIP.exists():
-            sys.exit(f"cached inputs missing and {CACHE_ZIP} not found: {[str(p) for p in missing]}")
+            save_cache_zip()
+        return False
+    if CACHE_ZIP.exists():
         say(f"  restoring the cached open-data inputs from {CACHE_ZIP.relative_to(REPO)} ...")
         with zipfile.ZipFile(CACHE_ZIP) as z:
             z.extractall(REPO)
-    else:
-        say("  cached open-data inputs present (data/villages/damarakunta_open, data/villages/damarakunta_esri)")
+        return False
+    say("  FIRST RUN on this machine: no demo_cache/damarakunta_open_cache.zip -> preparing the inputs locally (needs internet once; every later run is offline)")
+    run([PY, "-m", "src.multivillage.run", "--village", VILLAGE, "--steps", "acquire", "prepare", "--skip-buildings"], "1a_acquire_open_data")      # Overture / OSM roads and places, WorldCover and Copernicus tiles (window-sized downloads, a few MB)
+    run([PY, "scripts/prepare_damarakunta_open_inputs.py"], "1b_footprints")                                                                          # clip the existing StrongDINOv2Seg footprints
+    return True
 
 
 def main():
@@ -94,7 +117,9 @@ def main():
 
     # ---------------------------------------------------------------- 1
     banner(1)
-    restore_cache()
+    build_cache = restore_cache()
+    if build_cache and not a.online:
+        os.environ.pop("DEMO_OFFLINE", None)                         # first run: fetch the Esri tiles of the maps once (25 s timeout each, maps are drawn without a basemap if unreachable)
     run([PY, "-m", "src.multivillage.run", "--village", VILLAGE, "--steps", "acquire", "prepare", "--skip-buildings"], "1_open_data_state")
     say("  windows (same open layers in every window: Esri imagery, WorldCover 10 m, Copernicus GLO-30 30 m, Overture / OSM roads):")
     for k in PS.ORDER:
@@ -166,6 +191,9 @@ def main():
     say(f"    planning_maps/   master planning map of each window (+ map series of Damarakunta in damarakunta_open_demo/)")
     say(f"    comparison_table.tex, logs/")
     say(f"  Damarakunta results updated in {RESULTS.relative_to(REPO)}")
+    if build_cache:
+        say("")
+        save_cache_zip()
     say(f"\nDEMO COMPLETE in {time.time() - T0:.0f} s - 0 errors.")
     if not a.no_open:
         try:
