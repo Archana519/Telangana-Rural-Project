@@ -93,6 +93,7 @@ head = r"""% Environmental Research Letters manuscript: article class, A4, two c
 \usepackage{algpseudocode}
 \usepackage{titlesec}
 \usepackage{stfloats}
+\usepackage{placeins}
 \usepackage[colorlinks=true,allcolors=blue!50!black]{hyperref}
 \pagestyle{plain}
 \setlength{\emergencystretch}{2em}
@@ -247,8 +248,8 @@ STG = {"two": "Two-stage shared plan", "road": "Roads-only shared reference", "l
 plaus = lambda k: 100.0 * Q(k, "PLAUSIBLE") / (sum(v[0] for c, v in qc(k).items() if c != "SMALL_EXCLUDED") or 1)
 
 
-def fig_wide(lab, fn, cap, h="0.62"):
-    return ("\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.88\\textwidth,height=" + h + "\\textheight,keepaspectratio]{" + fn + "}\n\\caption{" + cap + "}\n\\label{" + lab + "}\n\\end{figure*}\n\n")
+def fig_wide(lab, fn, cap, h="0.44"):
+    return ("\\begin{figure*}[!t]\n\\centering\n\\includegraphics[width=0.74\\textwidth,height=" + h + "\\textheight,keepaspectratio]{" + fn + "}\n\\caption{" + cap + "}\n\\label{" + lab + "}\n\\end{figure*}\n\n")
 
 
 results = r"""
@@ -293,7 +294,7 @@ Building class & 54.0 & 70.1 & 62.1 & 80.6\\
 The cost surface adds a land-cover resistance and a slope penalty to a hard building clearance (equations~\ref{eq:cell}--\ref{eq:bldg}); the terrain is nearly flat in all four windows, with mean slopes of """ + f"{M[DK]['slope_mean_pct']:.1f}, {M[AD]['slope_mean_pct']:.1f}, {M[AS]['slope_mean_pct']:.1f} and {M[AL]['slope_mean_pct']:.1f}" + r"""\% (figure~\ref{fig:cost}), so cost differences come mainly from land cover and from the blocked cells around buildings. On the $5$~m grid with the $3.6$~m clearance every window yields a connected plan with no route across a roof (table~\ref{tab:four}). """ + (
     f"In Damarakunta, {n(M[DK]['routed'])} of {n(M[DK]['gap_targets'])} road-gap targets are routed and {fac(DK)} verified facilities are connected; in Adilabad {n(M[AD]['routed'])} of {n(M[AD]['gap_targets'])} targets and {fac(AD)} facilities; in Aswaraopeta {n(M[AS]['routed'])} of {n(M[AS]['gap_targets'])} targets and {fac(AS)} facilities; and in Alampur {n(M[AL]['routed'])} of {n(M[AL]['gap_targets'])} targets and {fac(AL)} facilities. ") + r"""The few unrouted targets are houses enclosed by neighbouring buildings and are reported as unrouted rather than routed over a roof. A $10$~m cell is wider than the lanes between neighbouring buildings, so a coarse grid with only a soft footprint penalty cannot keep routes off roofs, whereas a $5$~m grid that blocks every cell within $3.6$~m of a footprint (above the $3.54$~m half-diagonal of a $5$~m cell) leaves no step that can touch a roof; every drawn route was checked against all other footprints.
 
-""" + fig_wide("fig:cost", "fig_split2_cost_surface.png", r"Split~2 inputs for the four study windows. Top: terrain slope in degrees from the 30~m Copernicus GLO-30 DEM (digital elevation model), resampled to the 10~m planning grid. Bottom: the base cost surface $C_0$ in ordinal planning units per 10~m, the sum of the land-cover resistance and the slope penalty (equation~\ref{eq:cell}); cells that are water, invalid or steeper than 25$^{\circ}$ are blocked.", "0.4") + r"""
+""" + fig_wide("fig:cost", "fig_split2_cost_surface.png", r"Split~2 inputs for the four study windows. Top: terrain slope in degrees from the 30~m Copernicus GLO-30 DEM (digital elevation model), resampled to the 10~m planning grid. Bottom: the base cost surface $C_0$ in ordinal planning units per 10~m, the sum of the land-cover resistance and the slope penalty (equation~\ref{eq:cell}); cells that are water, invalid or steeper than 25$^{\circ}$ are blocked.", "0.3") + r"""
 \begin{table*}[t]
 \caption{Four study windows side by side. Segmentation rows: LoveDA validation of the single \dinoseg{} checkpoint (overall accuracy is the share of correctly classified pixels; precision and recall are macro averages over classes; F1-score equals the mean Dice coefficient; mIoU is the mean intersection over union). Stage~A is independent least-cost routing and Stage~B the shared-trunk network; PMGSY is the Pradhan Mantri Gram Sadak Yojana rural road programme; 1 lakh $=10^{5}$ INR (Indian rupees); slope is the mean terrain slope in percent. Routing rows: unique lengths on the 5~m zero-crossing grid (shared edges once); building crossings are routes inside another building's footprint; cost is the Stage~B length times Rs 75 lakh per km (range 60--90).}
 \label{tab:four}
@@ -325,6 +326,7 @@ Window & Strategy & Routed & Unique length (m) & Saving (\%) & Routes crossing &
 
 # ------------------------------------------------------------------------------------------------ 4 discussion and conclusions
 disc = r"""
+\FloatBarrier
 \section{Discussion and conclusions}\label{sec:disc}
 \textbf{Regional planning implications.} The planning stages transferred without modification to all four windows: the same cost surface, clearance rule, solver parameters and metrics produced connected plans in a dispersed village, an urban fringe, a semi-urban town and a heritage town, with zero building crossings throughout. The size of the saving reflects target density and road coverage as much as morphology (""" + f"{pc(DK)}\\%, {pc(AD)}\\%, {pc(AS)}\\% and {pc(AL)}\\%" + r"""), so the figures describe the planning problem and do not rank settlement types. For PMGSY-style schemes \cite{pmgsy,irc2002sp20} three points follow. Building inventories are uncertain inputs, so a network sized from them should carry a sensitivity band; merged roof blocks make up """ + f"{pct_merge(AD):.0f}\\%, {pct_merge(AS):.0f}\\% and {pct_merge(AL):.0f}\\%" + r""" of the instances in the three larger windows, and their targets are built-up units rather than houses. Shared corridors save between about one eighth and one quarter of the unique length, which also reduces land take (about """ + f"{(M[DK]['stageA_m']-M[DK]['stageB_m'])*5/10000:.2f}, {(M[AD]['stageA_m']-M[AD]['stageB_m'])*5/10000:.2f}, {(M[AS]['stageA_m']-M[AS]['stageB_m'])*5/10000:.2f} and {(M[AL]['stageA_m']-M[AL]['stageB_m'])*5/10000:.2f}" + r"""~ha for an assumed 5~m formation width). Local overrides should be used sparingly and documented.
 
@@ -345,7 +347,7 @@ disc = r"""
 \section*{Conflict of interest}
 The authors declare no competing interests.
 
-{\small
+{\footnotesize\setlength{\itemsep}{0pt}
 \bibliographystyle{iopart-num}
 \bibliography{references}}
 

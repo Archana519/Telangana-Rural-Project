@@ -14,6 +14,7 @@
 \usepackage{algpseudocode}
 \usepackage{titlesec}
 \usepackage{stfloats}
+\usepackage{placeins}
 \usepackage[colorlinks=true,allcolors=blue!50!black]{hyperref}
 \pagestyle{plain}
 \setlength{\emergencystretch}{2em}
@@ -332,9 +333,9 @@ Building class & 54.0 & 70.1 & 62.1 & 80.6\\
 \end{minipage}
 \end{table*}
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.88\textwidth,height=0.62\textheight,keepaspectratio]{fig_split1_footprints.png}
+\includegraphics[width=0.74\textwidth,height=0.44\textheight,keepaspectratio]{fig_split1_footprints.png}
 \caption{Split~1 output in the densest cluster of each study window: building footprints extracted by \dinoseg{} and OpenCV (orange: road-gap target houses; outlined: other footprints), verified public facilities (School, College, Hospital, Government Office, Anganwadi, with their facility numbers) and existing roads (cyan). Scale bars are 200~m. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
 \label{fig:split1}
 \end{figure*}
@@ -343,9 +344,9 @@ Building class & 54.0 & 70.1 & 62.1 & 80.6\\
 \subsection{Multi-criteria cost surfaces and proposed road connectivity across the four study windows}\label{sec:res2}
 The cost surface adds a land-cover resistance and a slope penalty to a hard building clearance (equations~\ref{eq:cell}--\ref{eq:bldg}); the terrain is nearly flat in all four windows, with mean slopes of 3.8, 3.1, 3.1 and 2.1\% (figure~\ref{fig:cost}), so cost differences come mainly from land cover and from the blocked cells around buildings. On the $5$~m grid with the $3.6$~m clearance every window yields a connected plan with no route across a roof (table~\ref{tab:four}). In Damarakunta, 27 of 27 road-gap targets are routed and 2 verified facilities are connected; in Adilabad 607 of 613 targets and 132 facilities; in Aswaraopeta 632 of 678 targets and 32 facilities; and in Alampur 58 of 59 targets and 9 facilities. The few unrouted targets are houses enclosed by neighbouring buildings and are reported as unrouted rather than routed over a roof. A $10$~m cell is wider than the lanes between neighbouring buildings, so a coarse grid with only a soft footprint penalty cannot keep routes off roofs, whereas a $5$~m grid that blocks every cell within $3.6$~m of a footprint (above the $3.54$~m half-diagonal of a $5$~m cell) leaves no step that can touch a roof; every drawn route was checked against all other footprints.
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.88\textwidth,height=0.4\textheight,keepaspectratio]{fig_split2_cost_surface.png}
+\includegraphics[width=0.74\textwidth,height=0.3\textheight,keepaspectratio]{fig_split2_cost_surface.png}
 \caption{Split~2 inputs for the four study windows. Top: terrain slope in degrees from the 30~m Copernicus GLO-30 DEM (digital elevation model), resampled to the 10~m planning grid. Bottom: the base cost surface $C_0$ in ordinal planning units per 10~m, the sum of the land-cover resistance and the slope penalty (equation~\ref{eq:cell}); cells that are water, invalid or steeper than 25$^{\circ}$ are blocked.}
 \label{fig:cost}
 \end{figure*}
@@ -364,16 +365,16 @@ Consolidating the independent routes into a shared trunk shortens the unique net
 
 Table~\ref{tab:strategies} sets the two-stage plan against three baselines on the $10$~m soft-penalty grid, with the same targets and cost surface in each window. The two-stage plan is the shortest in all four windows (10.9\%, 14.4\%, 31.2\%, 17.8\% below independent routes); the roads-only shared reference recovers 0.1\%, 3.2\%, 1.7\%, 4.9\% and the length-only control 15.5\% shorter, 6.8\% shorter, 16.5\% longer, 8.2\% shorter, so sharing among the new routes, not sharing with existing roads or merely minimising length, drives the gain.
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.88\textwidth,height=0.62\textheight,keepaspectratio]{fig_stage_AB.png}
+\includegraphics[width=0.74\textwidth,height=0.44\textheight,keepaspectratio]{fig_stage_AB.png}
 \caption{Stage~A against Stage~B in the densest cluster of each window: the white dashed lines are the independent least-cost routes (Stage~A first choice), the blue lines the shared network for houses and the red lines the shared network for facilities (Stage~B), on the $5$~m grid with the $3.6$~m building clearance. Orange footprints are road-gap target houses. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
 \label{fig:ab}
 \end{figure*}
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.88\textwidth,height=0.62\textheight,keepaspectratio]{fig_shared_network_detail.png}
+\includegraphics[width=0.74\textwidth,height=0.44\textheight,keepaspectratio]{fig_shared_network_detail.png}
 \caption{Settlement-scale detail of the zero-crossing shared network in each window (same window as the master planning map): house routes in blue, facility routes in red, verified facilities with their numbers, existing roads in cyan. No route crosses a building footprint. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
 \label{fig:detail}
 \end{figure*}
@@ -411,6 +412,7 @@ Alampur & Independent routes & 58 & 4{,}056.9 & 0.0 & 7 & 58.0\\
 \end{tabular}
 \end{table*}
 
+\FloatBarrier
 \section{Discussion and conclusions}\label{sec:disc}
 \textbf{Regional planning implications.} The planning stages transferred without modification to all four windows: the same cost surface, clearance rule, solver parameters and metrics produced connected plans in a dispersed village, an urban fringe, a semi-urban town and a heritage town, with zero building crossings throughout. The size of the saving reflects target density and road coverage as much as morphology (18.4\%, 12.2\%, 25.3\% and 16.2\%), so the figures describe the planning problem and do not rank settlement types. For PMGSY-style schemes \cite{pmgsy,irc2002sp20} three points follow. Building inventories are uncertain inputs, so a network sized from them should carry a sensitivity band; merged roof blocks make up 51\%, 36\% and 41\% of the instances in the three larger windows, and their targets are built-up units rather than houses. Shared corridors save between about one eighth and one quarter of the unique length, which also reduces land take (about 0.15, 1.88, 4.66 and 0.27~ha for an assumed 5~m formation width). Local overrides should be used sparingly and documented.
 
@@ -431,7 +433,7 @@ Alampur & Independent routes & 58 & 4{,}056.9 & 0.0 & 7 & 58.0\\
 \section*{Conflict of interest}
 The authors declare no competing interests.
 
-{\small
+{\footnotesize\setlength{\itemsep}{0pt}
 \bibliographystyle{iopart-num}
 \bibliography{references}}
 
