@@ -81,9 +81,9 @@ head = r"""% Environmental Research Letters manuscript: article class, A4, two c
 % Written by paper_erl/build_main.py. Compile: pdflatex main && bibtex main && pdflatex main && pdflatex main
 \documentclass[10pt,a4paper,twocolumn]{article}
 \usepackage[top=0.75in,bottom=0.8in,left=0.68in,right=0.68in,columnsep=0.26in]{geometry}
-\usepackage{mathptmx}
-\usepackage[scaled=0.92]{helvet}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xcolor}
@@ -103,9 +103,9 @@ head = r"""% Environmental Research Letters manuscript: article class, A4, two c
 \setlength{\floatsep}{8pt plus 2pt minus 2pt}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
 \renewcommand{\topfraction}{0.9}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\textfraction}{0.08}\renewcommand{\floatpagefraction}{0.7}\renewcommand{\dblfloatpagefraction}{0.7}
-\titleformat{\section}{\sffamily\bfseries\large}{\thesection}{0.6em}{}
-\titleformat{\subsection}{\sffamily\bfseries\normalsize}{\thesubsection}{0.6em}{}
-\titleformat{\subsubsection}{\sffamily\bfseries\itshape\small}{\thesubsubsection}{0.6em}{}
+\titleformat{\section}{\bfseries\large}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\bfseries\itshape\small}{\thesubsubsection}{0.6em}{}
 \titlespacing*{\section}{0pt}{9pt plus 2pt minus 2pt}{3pt}
 \titlespacing*{\subsection}{0pt}{7pt plus 2pt minus 2pt}{2pt}
 \titlespacing*{\subsubsection}{0pt}{5pt plus 2pt minus 2pt}{1pt}
@@ -124,7 +124,7 @@ head = r"""% Environmental Research Letters manuscript: article class, A4, two c
 \begin{document}
 \twocolumn[{%
 \begin{center}
-{\sffamily\bfseries\LARGE Smart village infrastructure planning and road network optimization for rural Telangana\par}
+{\bfseries\LARGE Smart village infrastructure planning and road network optimization for rural Telangana\par}
 \vspace{8pt}
 {\large Ramakrishna Kolikipogu$^{1,*}$ and Pendyala Archana$^{1}$\par}
 \vspace{3pt}
@@ -133,8 +133,8 @@ $^*$Author to whom any correspondence should be addressed. E-mail: krkrishna.cse
 \end{center}
 \vspace{2pt}
 \noindent\begin{minipage}{\textwidth}
-\small\noindent{\sffamily\bfseries Abstract}\hspace{0.6em}""" + abstract + r"""\par\smallskip
-\noindent{\sffamily\bfseries Keywords:} rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana
+\small\noindent{\bfseries Abstract}\hspace{0.6em}""" + abstract + r"""\par\smallskip
+\noindent{\bfseries Keywords:} rural roads, building footprint extraction, satellite remote sensing, least-cost path, shared network, spatial transferability, open geospatial data, Telangana
 \end{minipage}
 \vspace{10pt}
 }]
