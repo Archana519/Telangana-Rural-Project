@@ -1,0 +1,29 @@
+id: damarakunta_open
+order: 0
+name: Damarakunta (rural village, settlement boundary, open-data run)
+short_name: Damarakunta
+mandal: Markook
+district: Siddipet
+state: Telangana
+tier: "Tier 1 - rural"
+folder: 00_DAMARAKUNTA_OPEN
+work_slug: damarakunta
+bundle_folder: 00_DAMARAKUNTA_OPEN_DATA
+# --- study area = the TRUE village / town boundary, never a clipped box and never the 622.59 km2 mandal --------------------------------------------
+# The polygon is fetched on the owner's PC by `python scripts/propose_aoi.py --village aswaraopeta` (OSM / Overture divisions / Nominatim candidates),
+# reviewed, and written here with `--pick N` together with a provenance file. Until that file exists every step stops with an explanatory message.
+study_area_name: "Damarakunta (village settlement)"
+study_area_type: "derived built-up settlement extent of Damarakunta village, Markook mandal, Siddipet district"
+boundary_method: polygon_file
+boundary_file: configs/multivillage/villages/damarakunta_open_boundary.geojson
+boundary_label: Study-area boundary (village / town polygon)
+adm3_name: Markook           # the mandal the polygon must lie inside (geoBoundaries ADM3; used as a consistency check only)
+mandal_check: strict
+search_buffer_km: 0
+# The candidate fetcher uses the newest OpenStreetMap / Overture polygons and an edge-continuity check (no cutting through built-up land); the 2018 mandal layer is only a consistency reference.
+place_aliases: [Damarakunta, Damera Kunta, Damarakunta Village]
+building_source: overture_buildings        # open footprints (independent check); the primary run uses StrongDINOv2Seg footprints (--variant segmentation)
+# --- target rule: identical to Adilabad, so the three settlements are compared under one definition ---
+min_house_area_m2: 30
+min_conf: 0.70
+min_dist_to_road_m: 30

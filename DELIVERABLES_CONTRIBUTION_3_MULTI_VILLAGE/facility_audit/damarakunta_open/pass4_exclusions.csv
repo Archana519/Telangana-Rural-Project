@@ -1,0 +1,4 @@
+id,name,reason,category,source,lat,lon,dist_outside_m
+3f5e8ea6-eba4-4faf-ae45-4bbc087c2966,Damarakunta Bus Stop,not a public facility (Overture category bus_station),,Overture,17.706971,78.753559,0.0
+fa720af7-4183-4967-903c-485c92b01ebf,Damarakunta Bus Stop,not a public facility (Overture category bus_station),,Overture,17.697044,78.746674,34.6
+623ab503-48cf-4294-90b6-5b04e0997377,Oak Tree Farms,not one of the five categories,,Overture,17.699764,78.751373,9.6

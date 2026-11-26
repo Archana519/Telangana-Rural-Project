@@ -15,7 +15,7 @@ It wraps the verified modules (nothing is re-implemented here):
   Stage 5  routing              10 m cost surface with the soft footprint penalty (run_village_end_to_end.py --stage route) and the 5 m zero-crossing clearance network
                                 (src/multivillage/clearance.py: 3.6 m clearance, Stage A independent routes, Stage B shared network; computed by --stage report)
   Stage 6  maps and tables      --stage report (tables, sat_map panels, master map), scripts/make_village_map_series.py (map1-map5, master_satellite_planning_map.png), scripts/build_final_project_outputs.py
-Damarakunta (Stage B) is frozen: stages 1-3 only VERIFY the existing inputs and results (nothing in DELIVERABLES_DAMARAKUNTA_STAGE_B/ is written); stage 5 runs scripts/make_damarakunta_master_map.py.
+Damarakunta runs like the other three windows on the open-data config damarakunta_open (derived settlement extent, Overture / OSM roads, audited open-source facilities; the footprints are the existing StrongDINOv2Seg instances, clipped by scripts/prepare_damarakunta_open_inputs.py). The earlier TGRAC-based Stage B run stays in DELIVERABLES_DAMARAKUNTA_STAGE_B/ and is not modified.
 Stage 2 needs PyTorch and the checkpoint (your PC); without them the stage stops with a clear message unless predictions already exist.
 The summary tables are read from the result files; the PMGSY cost is illustrative (km x the owner-supplied, unverified rate in inputs/economic_assumptions.json).
 """

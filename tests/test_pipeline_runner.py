@@ -24,7 +24,7 @@ def load(name):
 def test_area_registry_matches_configs():
     from src.multivillage import acquire as A
     assert PS.ORDER == ["damarakunta", "adilabad", "aswaraopeta", "alampur"]
-    assert PS.AREAS["adilabad"]["config"] == "adilabad_urban_updated" and PS.AREAS["damarakunta"]["config"] is None
+    assert PS.AREAS["adilabad"]["config"] == "adilabad_urban_updated" and PS.AREAS["damarakunta"]["config"] == "damarakunta_open"
     for k in ("adilabad", "aswaraopeta", "alampur"):
         assert A.load_cfg(PS.AREAS[k]["config"])["village"]["bundle_folder"] == PS.AREAS[k]["bundle"]
 
@@ -64,7 +64,7 @@ def test_real_collection_has_zero_crossings_and_loveda_values():
     for k, m in ms.items():
         if m.get("crossings") is not None:
             assert m["crossings"] == 0 and m["saving_pct"] > 0
-    assert ms["damarakunta"]["soft_cross_routes"] == 28                             # frozen Stage B (soft penalty)
+    assert ms["damarakunta"]["soft_cross_routes"] == 7 and ms["damarakunta"]["gap_targets"] == 27       # open-data Damarakunta run (damarakunta_open)
     assert PS.loveda()["miou_pct"] == 53.8 and PS.loveda()["pixel_accuracy_pct"] == 71.3
 
 
@@ -74,11 +74,8 @@ def test_runner_dry_run_lists_six_stages(area):
     assert r.returncode == 0, r.stderr
     for n in range(1, 7):
         assert f"=== Stage {n}:" in r.stdout
-    if area == "damarakunta":
-        assert "frozen" in r.stdout and "make_damarakunta_master_map.py" in r.stdout
-    else:
-        assert "--stage infer" in r.stdout or "predictions cached" in r.stdout
-        assert "make_village_map_series.py" in r.stdout and "build_final_project_outputs.py" in r.stdout
+    assert "--stage infer" in r.stdout or "predictions cached" in r.stdout
+    assert "make_village_map_series.py" in r.stdout and "build_final_project_outputs.py" in r.stdout
 
 
 def test_compare_all_writes_the_paper_snippet(tmp_path, monkeypatch):

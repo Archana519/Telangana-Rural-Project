@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt                                              # n
 REPO = Path(__file__).resolve().parents[1]
 BASE = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE"
 OUT = REPO / "paper_erl"
-AREAS = [("Damarakunta", "00_DAMARAKUNTA_MASTER_MAP"), ("Adilabad", "01_ADILABAD_UPDATED_SEGMENTATION"), ("Aswaraopeta", "02_ASWARAOPETA_SEGMENTATION"), ("Alampur", "03_ALAMPUR_SEGMENTATION")]
+AREAS = [("Damarakunta", "00_DAMARAKUNTA_OPEN_SEGMENTATION"), ("Adilabad", "01_ADILABAD_UPDATED_SEGMENTATION"), ("Aswaraopeta", "02_ASWARAOPETA_SEGMENTATION"), ("Alampur", "03_ALAMPUR_SEGMENTATION")]
 FILES = {"map2": "map2_footprints_facilities_latlon.png", "map3": "map3_terrain_cost_landcover_slope.png", "map4": "map4_alternatives_vs_network.png", "map5": "map5_village_detail_shared_paths.png"}
 # map3 is a 2 x 2 grid of rasters on a white background: slope top right, cost surface bottom left (fractions of the image, then trimmed to the content)
 QUAD = {"map3_slope": (0.50, 0.07, 1.00, 0.50), "map3_cost": (0.0, 0.50, 0.52, 0.84)}

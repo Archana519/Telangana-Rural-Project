@@ -1,0 +1,2 @@
+village_id,study_area_name,study_area_type,mandal,district,boundary_method,boundary_type,boundary_area_km2,boundary_source,mandals_covered,localities_covered,edge_both_pct,edge_outside_pct
+damarakunta_open,Damarakunta (village settlement),"derived built-up settlement extent of Damarakunta village, Markook mandal, Siddipet district",Markook,Siddipet,polygon_file,DERIVED built-up settlement extent (NOT an administrative boundary),0.45,overture_buildings_extent,"Markook (0.45 km2, 100.0%)",Damarakunta,0.0,5.4

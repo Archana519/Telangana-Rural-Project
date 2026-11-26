@@ -1,0 +1,8 @@
+source,source_id,name,tags,taxonomy,lon,lat,confidence,status,is_area
+OSM,node/11980076451,Vardarajpoor,"{""addr:district"": ""Siddipet"", ""addr:state"": ""Telangana"", ""addr:subdistrict"": ""Gajwel"", ""amenity"": ""childcare"", ""name"": ""Vardarajpoor"", ""source"": ""OpenDataTelangana""}",childcare,78.7503113,17.7074166,,open,False
+OSM,node/6554820024,"SubCentre, Damarakunta","{""addr:district"": ""Siddipet"", ""addr:place"": ""Damarkunta"", ""addr:state"": ""Telangana"", ""addr:street"": ""Near Rachabanda"", ""addr:subdistrict"": ""Mulug"", ""amenity"": ""health_post"", ""healthcare"": ""yes"", ""name"": ""SubCentre, Damarakunta"", ""operational_status"": ""operational"", ""operator:type"": ""government"", ""source"": ""OpenDataTelangana""}",health_post,78.7518806,17.7071835,,open,False
+Overture,3f5e8ea6-eba4-4faf-ae45-4bbc087c2966,Damarakunta Bus Stop,,bus_station,78.753559,17.706971000000003,0.6089659929275513,open,False
+Overture,fa720af7-4183-4967-903c-485c92b01ebf,Damarakunta Bus Stop,,bus_station,78.7466739999893,17.69704440001321,0.6044682860374451,open,False
+Overture,623ab503-48cf-4294-90b6-5b04e0997377,Oak Tree Farms,,commercial_real_estate,78.751373291016,17.699763541869,0.7338167428970337,open,False
+Wikidata,Q15704108,Damarakunta,,village in india,78.7519,17.7072,,open,False
+Wikidata,Q131980126,IndianOil Fuel Filling Station Markook Vardharajpur (Sri Gajanan Kisan Seva Kendra),,gas station,78.758524,17.722179,,open,False

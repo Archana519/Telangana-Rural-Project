@@ -1,0 +1,38 @@
+{
+  "footprints_total": 100,
+  "footprints_used_for_penalty": 95,
+  "gap_targets": 27,
+  "facilities_verified": 2,
+  "unique_len_two_stage_m": 1473.2,
+  "unique_len_independent_m": 1654.3,
+  "saving_vs_independent_pct": 10.9,
+  "routed": 27,
+  "targets": 27,
+  "routes_crossing": 7,
+  "length_inside_other_footprints_m": 48.0,
+  "quality_classes": {
+    "PLAUSIBLE": 44,
+    "UNRESOLVED_MERGE": 40,
+    "REVIEW": 11,
+    "SMALL_EXCLUDED": 5
+  },
+  "study_area": {
+    "village_id": "damarakunta_open",
+    "study_area_name": "Damarakunta (village settlement)",
+    "study_area_type": "derived built-up settlement extent of Damarakunta village, Markook mandal, Siddipet district",
+    "mandal": "Markook",
+    "district": "Siddipet",
+    "boundary_method": "polygon_file",
+    "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+    "boundary_area_km2": 0.45,
+    "boundary_source": "overture_buildings_extent",
+    "mandals_covered": [
+      "Markook (0.45 km2, 100.0%)"
+    ],
+    "localities_covered": [
+      "Damarakunta"
+    ],
+    "edge_both_pct": 0.0,
+    "edge_outside_pct": 5.4
+  }
+}

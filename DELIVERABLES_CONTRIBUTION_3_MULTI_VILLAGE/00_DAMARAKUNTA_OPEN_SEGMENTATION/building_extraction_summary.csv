@@ -1,0 +1,5 @@
+dataset,quality_class,polygons,median_area_m2
+StrongDINOv2Seg,PLAUSIBLE,44,170.5
+StrongDINOv2Seg,REVIEW,11,50.4
+StrongDINOv2Seg,SMALL_EXCLUDED,5,23.4
+StrongDINOv2Seg,UNRESOLVED_MERGE,40,982.1

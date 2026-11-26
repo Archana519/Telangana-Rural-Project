@@ -1,0 +1,3 @@
+id,name,facility_type,taxonomy_primary,category,confidence,confidence_label,verification_sources,snapped_to_building,dataset,addr_locality,inside_window,dist_to_nearest_footprint_m,footprint_within_20m,manual_exclusion,status,lon,lat,x_epsg32644,y_epsg32644
+DAM-ANG-001,Vardarajpoor,anganwadi,anganwadi,Anganwadi,0.8,medium,OSM;Esri 0.6 m imagery + footprint snap,True,facility audit (OSM + Overture + Wikidata + imagery),,True,0.0,True,,VERIFIED_USED,78.750311,17.707417,261402.1,1959241.0
+DAM-HEA-002,"SubCentre, Damarakunta",health,hospital,Hospital,0.8,medium,OSM;Esri 0.6 m imagery + footprint snap,True,facility audit (OSM + Overture + Wikidata + imagery),,True,0.0,True,,VERIFIED_USED,78.751881,17.707184,261568.3,1959213.3

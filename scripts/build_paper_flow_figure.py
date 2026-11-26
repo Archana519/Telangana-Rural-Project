@@ -44,7 +44,7 @@ CREDIT_SHORT = "© Esri, Maxar, Earthstar Geographics"
 ROAD_GREY = "#e6e6e6"
 STATE_ROWS = [("damarakunta", "Damarakunta", "Rural"), ("adilabad", "Adilabad", "Urban / semi-urban"), ("aswaraopeta", "Aswaraopeta", "Semi-urban / tribal fringe"), ("alampur", "Alampur", "Heritage / semi-urban")]
 LOC = {"damarakunta": (78.7519, 17.7073), "adilabad": (78.5320, 19.6640), "aswaraopeta": (81.1281, 17.2409), "alampur": (78.1351, 15.8800)}     # lon, lat of the study area centres
-ZOOM_ROWS = ("damarakunta",)          # rows drawn on the main settlement cluster instead of the whole polygon (the 18.5 km2 village is mostly farmland)
+ZOOM_ROWS = ()          # every window is drawn at its own extent (the Damarakunta window is now the derived settlement extent, like the other three)
 HOST_DISTRICTS = {"damarakunta": "Siddipet", "adilabad": "Adilabad", "aswaraopeta": "Bhadradri", "alampur": "Jogulamba"}
 
 

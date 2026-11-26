@@ -1,0 +1,8 @@
+network,length_m,length_km,illustrative_cost_lakh_low,illustrative_cost_lakh_central,illustrative_cost_lakh_high,routes_crossing_other_footprints,length_inside_other_footprints_m,basis
+"Independent least-cost routes, footprint penalty mu = 4 (result tables)",1654.3,1.654,99.3,124.1,148.9,6.0,69.0,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"
+"Shared two-stage plan, footprint penalty mu = 4 (result tables), house routes",1473.2,1.473,88.4,110.5,132.6,7.0,48.0,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"
+Facility routes added to the mu = 4 plan (combined - house),55.5,0.056,3.3,4.2,5.0,,,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"
+"CLEARANCE: alternative independent routes (houses), footprints hard-blocked",1609.3,1.609,96.6,120.7,144.8,0.0,0.0,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"
+"CLEARANCE: proposed shared two-stage network, house routes",1312.7,1.313,78.8,98.5,118.1,0.0,0.0,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"
+CLEARANCE: facility routes added (combined - house),33.0,0.033,2.0,2.5,3.0,0.0,0.0,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"
+CLEARANCE: proposed shared network incl. facilities,1345.8,1.346,80.7,100.9,121.1,,,"Rs 60/75/90 lakh per km: ASSUMPTION supplied by the project owner as PMGSY-based, not verified; not an engineering estimate"

@@ -130,7 +130,7 @@ if os.environ.get("ERIS_TEX"):
     need("loveda OA", f"{L['pixel_accuracy_pct']}\\%")
 if ERL_MODE:
     # 4. four-area strategy table of the ERL appendix: unique lengths of the three segmentation runs recomputed from the committed CSVs
-    for folder in ("01_ADILABAD_UPDATED_SEGMENTATION", "02_ASWARAOPETA_SEGMENTATION", "03_ALAMPUR_SEGMENTATION"):
+    for folder in ("00_DAMARAKUNTA_OPEN_SEGMENTATION", "01_ADILABAD_UPDATED_SEGMENTATION", "02_ASWARAOPETA_SEGMENTATION", "03_ALAMPUR_SEGMENTATION"):
         d = pd.read_csv(REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE" / folder / "routing_strategy_comparison.csv").set_index("strategy")
         for k in ("Independent least-cost routes", "Length-only control", "Roads-only shared reference", "Two-stage shared plan"):
             need(folder + " " + k, f(d.loc[k, "unique_len_m"], 1)); need(folder + " crossings", f"& {int(d.loc[k, 'routes_crossing_other_footprints'])} &")

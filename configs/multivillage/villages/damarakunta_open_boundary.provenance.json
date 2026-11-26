@@ -1,0 +1,57 @@
+{
+  "village": "damarakunta_open",
+  "name": "Damarakunta (derived built-up extent from building footprints)",
+  "source": "overture_buildings_extent",
+  "source_id": "Overture buildings 2026-10-21.0",
+  "source_url": "https://docs.overturemaps.org/",
+  "kind": "derived built-up extent (footprints)",
+  "licence": "derived from Overture Maps buildings (ODbL 1.0; see the release in the provenance file)",
+  "retrieved": "2026-11-26",
+  "area_km2": 0.45,
+  "share_inside_mandal": 1.0,
+  "verdict": "plausible",
+  "edge_continuity": {
+    "edge_both_pct": 0.0,
+    "edge_both_km": 0.0,
+    "outside_pct": 5.4,
+    "outside_km2": 0.01,
+    "edge_verdict": "clean"
+  },
+  "overture_release": "2026-10-21.0",
+  "study_area_name": "Damarakunta (village settlement)",
+  "study_area_type": "derived built-up settlement extent of Damarakunta village, Markook mandal, Siddipet district",
+  "boundary_type": "DERIVED built-up settlement extent (NOT an administrative boundary)",
+  "derivation": {
+    "dataset": "Overture Maps buildings (theme=buildings, type=building)",
+    "close_m": 60.0,
+    "link_m": 250.0,
+    "seed_radius_m": 1200.0,
+    "margin_m": 20.0,
+    "fill_holes_below_km2": 0.5,
+    "simplify_m": 5.0,
+    "drop_parts_below_km2": 0.0,
+    "window_m": "12 km x 12 km computation window around the centre (not the study area)",
+    "method": "footprints grouped into clusters over gaps <= 250 m, clusters reaching within 1.2 km of the centre kept, outline = footprints buffered +60 m then -40 m (about 20 m outside the outermost buildings), simplified, outlying built-up parts kept; clipped only to the search area",
+    "centre_lon": 78.7519,
+    "centre_lat": 17.7073,
+    "centre_source": "--centre 17.7073 78.7519 (given; e.g. the OpenStreetMap place node)",
+    "overture_release": "2026-10-21.0",
+    "n_buildings_used": 735
+  },
+  "covers": {
+    "mandals_2018": [
+      {
+        "mandal": "Markook",
+        "area_km2": 0.45,
+        "share_of_polygon_pct": 100.0
+      }
+    ],
+    "localities": [
+      "Damarakunta"
+    ],
+    "localities_source": "Overture divisions points inside the polygon, release 2026-11-18.0"
+  },
+  "derived": true,
+  "note": "",
+  "sha256": "8217696d1cafa6f4d87cb808cf4568eb11b410128bea1379ad9747462fbb33f7"
+}

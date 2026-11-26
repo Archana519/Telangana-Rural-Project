@@ -21,8 +21,6 @@ CRS = "EPSG:32644"
 
 def mosaic_path(key: str) -> Path:
     a = PS.AREAS[key]
-    if key == "damarakunta":
-        return REPO / "Siddipet" / "Damarakunta" / "aligned" / "damarakunta_esri_highres_mosaic_0p6m.tif"
     return REPO / "data" / "villages" / f"{a['slug']}_esri" / "aligned" / f"{a['slug']}_esri_highres_mosaic_0p6m.tif"
 
 
@@ -101,4 +99,4 @@ def village_scene(key: str, source: str = "auto", log=print, limit_targets: int 
 
 
 def scene_for(key: str, source: str = "auto", log=print, limit_targets: int | None = None):
-    return damarakunta_scene() if key == "damarakunta" else village_scene(key, source, log, limit_targets)
+    return village_scene(key, source, log, limit_targets)               # Damarakunta too: the open-data run (config damarakunta_open), same layers as the other windows

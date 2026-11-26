@@ -52,7 +52,7 @@ FTYPE = {"School": "school", "College": "college", "Hospital": "health", "Govern
 CFG_DIR = REPO / "configs" / "multivillage" / "villages"
 AUDIT = REPO / "DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE" / "facility_audit"
 SNAP_M, SNAP_OK_M, BORDER_M, HARVEST_BUFFER_M = 35.0, 12.0, 150.0, 500.0
-VILLAGES = ["damarakunta", "adilabad_urban_updated", "aswaraopeta", "alampur"]
+VILLAGES = ["damarakunta", "damarakunta_open", "adilabad_urban_updated", "aswaraopeta", "alampur"]
 
 # ------------------------------------------------------------------------------------------------ classification
 FOREIGN = re.compile(r"faisalabad|umerkot|jaranwala|mirpurkhas|karachi|lahore|islamabad|punjab pakistan|sindh|dhaka|kathmandu", re.I)

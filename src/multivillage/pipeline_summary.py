@@ -29,8 +29,8 @@ CRS = "EPSG:32644"
 
 # key -> everything the runner and the tables need (config id, folders, labels)
 AREAS = {
-    "damarakunta": dict(key="damarakunta", label="Damarakunta", config=None, slug="damarakunta", district="Siddipet", typology="Rural", bundle="01_DAMARAKUNTA_RURAL", results=C3 / "00_DAMARAKUNTA_MASTER_MAP",
-                        seg=None, maps=C3 / "00_DAMARAKUNTA_MASTER_MAP"),
+    "damarakunta": dict(key="damarakunta", label="Damarakunta", config="damarakunta_open", slug="damarakunta", district="Siddipet", typology="Rural", bundle="01_DAMARAKUNTA_RURAL_OPEN",
+                        results=C3 / "00_DAMARAKUNTA_OPEN_SEGMENTATION", seg=C3 / "00_DAMARAKUNTA_OPEN_SEGMENTATION", maps=C3 / "00_DAMARAKUNTA_OPEN_SEGMENTATION" / "final_maps_1_to_5"),
     "adilabad": dict(key="adilabad", label="Adilabad", config="adilabad_urban_updated", slug="adilabad_updated", district="Adilabad", typology="Urban / semi-urban", bundle="02_ADILABAD_URBAN_UPDATED",
                      results=C3 / "01_ADILABAD_UPDATED_SEGMENTATION", seg=C3 / "01_ADILABAD_UPDATED_SEGMENTATION", maps=C3 / "01_ADILABAD_UPDATED_SEGMENTATION" / "final_maps_1_to_5"),
     "aswaraopeta": dict(key="aswaraopeta", label="Aswaraopeta", config="aswaraopeta", slug="aswaraopeta", district="Bhadradri Kothagudem", typology="Semi-urban / tribal fringe", bundle="03_ASWARAOPETA_SEMI_URBAN",
@@ -72,7 +72,7 @@ def compute_area_profile(key: str, log=print) -> dict | None:
     from rasterio.features import rasterize
 
     a = AREAS[key]
-    if key == "damarakunta":
+    if False:                                          # Damarakunta now follows the open-data route like the other windows
         root = REPO / "Siddipet" / "Damarakunta"
         cell = gpd.read_file(root / "study_area/damarakunta_boundary.gpkg").to_crs(CRS).geometry.union_all()
         roads = gpd.read_file(root / "reference/tgrac_road_network.gpkg").to_crs(CRS).geometry.intersection(cell)
@@ -146,16 +146,7 @@ def collect(key: str) -> dict:
     lv = loveda()
     m["seg"] = lv
     # footprints and targets
-    if key == "damarakunta":
-        m["buildings"], m["gap_targets"] = 165, 163                                        # Stage B: 165 candidates inside the boundary, 163 road-gap house targets (frozen)
-        t1 = _read(FPO / "01_DAMARAKUNTA_RURAL" / "tables" / "table1_length_reduction.csv")
-        if t1 is not None:
-            x4 = t1[t1.configuration.str.startswith("x4")]
-            ind = x4[x4.method.str.startswith("Independent")].iloc[0]
-            two = x4[x4.method.str.startswith("Two-stage")].iloc[0]
-            m["soft_indep_m"], m["soft_shared_m"] = float(ind.unique_len_m), float(two.unique_len_m)
-            m["soft_cross_routes"], m["soft_cross_m"] = int(two.routes_crossing_other_footprints), float(two.len_in_other_footprints_m)
-    else:
+    if True:
         ms = a["seg"] / "metrics_summary.json"
         if ms.exists():
             j = json.loads(ms.read_text(encoding="utf-8"))
