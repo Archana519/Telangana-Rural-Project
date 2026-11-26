@@ -224,9 +224,52 @@ def build(source: str, out: Path, dpi: int = 300, log=print, limit_targets=None)
     return out
 
 
+def build_from_maps(out: Path, dpi: int = 300, log=print) -> Path:
+    """Figure 2 from the committed map series of the four windows (no segmentation state needed): (a) map 1 imagery + window + roads, (b) map 2 footprints + facilities,
+    (c) map 5 Stage B shared network. The panels are cropped from DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/<area>/final_maps_1_to_5 (written by make_village_map_series.py)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("rf", REPO / "scripts" / "build_paper_result_figures.py")
+    rf = importlib.util.module_from_spec(spec); spec.loader.exec_module(rf)
+    rf.FILES["map1"] = "map1_imagery_boundary_roads.png"
+    W, H = 7.2, 10.6
+    left, cw, cgap, ch = 0.075, 0.28, 0.02, 0.172
+    rgap, top0 = 0.034, 0.862
+    fig = plt.figure(figsize=(W, H))
+    axl = fig.add_axes([left, 0.893, 0.15, 0.1])
+    locator(axl, log)
+    axl.set_title("", loc="left"); axl.set_title("")
+    keyax = fig.add_axes([left + 0.17, 0.885, 0.74, 0.11]); keyax.axis("off")
+    keyax.text(0.0, 0.97, "Study areas (numbered on the map; study districts shaded)", fontsize=5.8, fontweight="bold", va="top")
+    keyax.text(0.0, 0.80, "   ".join(f"{i}  {nm} ({ty.lower()})" for i, (k, nm, ty) in enumerate(STATE_ROWS, 1)), fontsize=5.4, va="top")
+    figure_legend(fig, loc="lower left", anchor=(left + 0.17, 0.888), ncol=4, fontsize=4.9)
+    heads = ["(a) Input: 0.6 m imagery,\nwindow boundary, roads", "(b) StrongDINOv2Seg footprints\n+ verified facilities", "(c) Output: zero-crossing\nStage B shared network"]
+    for ci, t in enumerate(heads):
+        fig.text(left + ci * (cw + cgap) + cw / 2, top0 + 0.006, t, ha="center", va="bottom", fontsize=5.8, fontweight="bold", linespacing=1.2)
+    for ri, (k, nm, ty) in enumerate(STATE_ROWS):
+        folder = rf.AREAS[ri][1]
+        m = PS.collect(k)
+        y0 = top0 - ri * (ch + rgap) - ch
+        for ci, key in enumerate(("map1", "map2", "map5")):
+            ax = fig.add_axes([left + ci * (cw + cgap), y0, cw, ch])
+            im = rf.crop(folder, key, 900)
+            if key == "map1" and k == "adilabad":          # the Esri mosaic of this window has two missing blocks at its right edge: show only the covered part
+                im = im.crop((0, 0, int(0.70 * im.size[0]), im.size[1]))
+            ax.imshow(im)
+            ax.axis("off")
+        fig.text(0.032, y0 + ch / 2, f"{ri + 1}. {nm}\n{ty}, {m['window_km2']:.2f} km$^2$", rotation=90, ha="center", va="center", fontsize=6.0, fontweight="bold", linespacing=1.3)
+        fig.text(left + 2 * (cw + cgap) + cw / 2, y0 - 0.006, f"Stage A {m['stageA_m'] / 1000:.2f} km $\\rightarrow$ Stage B {m['stageB_m'] / 1000:.2f} km ({m['saving_pct']:.1f}% shorter)\n"
+                 f"{m['crossings']} building crossings; {sum(m['facilities'].values())} verified facilities", ha="center", va="top", fontsize=4.8, linespacing=1.25)
+    fig.text(0.075, 0.004, "Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Boundaries: geoBoundaries gbOpen (ODbL). Footprints are automatic detections; routes are planning alternatives, not engineered roads. EPSG:32644.", fontsize=4.6, va="bottom")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out, dpi=dpi)
+    plt.close(fig)
+    log(f"wrote {out} (from the committed map series)")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--source", default="auto", choices=["auto", "segmentation", "open"])
+    ap.add_argument("--source", default="auto", choices=["auto", "segmentation", "open", "maps"], help="maps = crop the committed map series of the four windows (no segmentation state needed; used when the states of three windows are not on this machine)")
     ap.add_argument("--out", default=str(OUT))
     ap.add_argument("--dpi", type=int, default=300)
     ap.add_argument("--limit-targets", type=int, default=None, help="PREVIEW only: plan the clearance network for the first N road-gap targets (stamped PREVIEW)")
@@ -236,13 +279,16 @@ def main():
         from src.multivillage import area_scenes as AS
         for k, nm, ty in STATE_ROWS:
             ar = PS.AREAS[k]
-            if k == "damarakunta":
+            if False:
                 need = [REPO / "Siddipet/Damarakunta/results/v8_instances/buildings_v8_full.gpkg", ar["maps"] / "clearance_network_v1.pkl", REPO / "configs/multivillage/villages/damarakunta_verified_facilities.csv"]
             else:
                 d = REPO / "data" / "villages" / ar["config"]
                 need = [d / "state_segmentation.pkl", d / "clearance_network_v1.pkl", d / "state.pkl"]
             print(f"{nm}: " + ", ".join(f"{p.name} {'OK' if p.exists() else 'absent'}" for p in need) + f", mosaic {'OK' if AS.mosaic_path(k).exists() else 'absent (Esri export service is used)'}")
         print("locator: geoBoundaries ADM1/ADM2 (downloaded and cached on first use)")
+        return
+    if a.source == "maps":
+        build_from_maps(Path(a.out), a.dpi)
         return
     build(a.source, Path(a.out), a.dpi, limit_targets=a.limit_targets)
 

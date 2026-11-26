@@ -575,8 +575,8 @@ for old, new in CITES:
         doc = doc.replace(old, new, 1)
 
 (H / "main.tex").write_text(doc, encoding="utf-8")
-for src, dst in [(REPO / "paper_eris" / "figures" / "fig_architecture.png", H / "fig_architecture.png"),
-                 (REPO / "paper_eris" / "paper_comparison_table.tex", H / "paper_comparison_table.tex")]:
-    if src.exists() and src.resolve() != dst.resolve():
-        shutil.copyfile(src, dst)
+(H / "paper_comparison_table.tex").write_text(PS.latex_table([M[k] for k in PS.ORDER]), encoding="utf-8")      # Table 3, generated from the result files (never copied from paper_eris)
+src = REPO / "paper_eris" / "figures" / "fig_architecture.png"
+if src.exists() and src.resolve() != (H / "fig_architecture.png").resolve():
+    shutil.copyfile(src, H / "fig_architecture.png")
 print("abstract words:", words, "| wrote", H / "main.tex")
