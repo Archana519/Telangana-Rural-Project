@@ -168,14 +168,13 @@ def decor(ax, ext, scale_m, north=True):
 def background(ctx, ax, ext, alpha=1.0, max_px=2200):
     """Esri imagery window (decimated) or, without a mosaic, the WorldCover land cover."""
     if ctx.imagery and not ctx.mosaic.exists():                                   # opt-in --esri-service: the same Esri imagery through its export service
-        import io, requests
+        import io
         from PIL import Image
-        px = int(min(max_px, 2000))
-        r = requests.get("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export", params=dict(bbox=",".join(map(str, ext)), bboxSR=32644, imageSR=32644, size=f"{px},{px}", format="png", f="image"),
-                         headers={"User-Agent": "map-series/1.0"}, timeout=90)
+        data = MM.esri_png(ext, int(min(max_px, 2000)))
         ax.set_facecolor("#ececec")
-        ax.imshow(np.asarray(Image.open(io.BytesIO(r.content)).convert("RGBA")), extent=(ext[0], ext[2], ext[1], ext[3]), origin="upper", zorder=0, alpha=alpha)
-        ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.45, ec="none", pad=1))
+        if data is not None:
+            ax.imshow(np.asarray(Image.open(io.BytesIO(data)).convert("RGBA")), extent=(ext[0], ext[2], ext[1], ext[3]), origin="upper", zorder=0, alpha=alpha)
+            ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.45, ec="none", pad=1))
     elif ctx.imagery:
         with rasterio.open(ctx.mosaic) as s:
             win = from_bounds(*ext, transform=s.transform).round_offsets().round_lengths().intersection(rasterio.windows.Window(0, 0, s.width, s.height))

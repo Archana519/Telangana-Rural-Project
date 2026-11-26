@@ -102,3 +102,6 @@ Thumbs.db
 /Siddipet/_mandal/
 /Siddipet/_district/
 *.tif.provenance.json
+demo_output/
+/data/villages/
+/data/esri_cache/

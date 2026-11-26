@@ -119,6 +119,32 @@ def decor(ax, ext, scale_m, north=True):
                     arrowprops=dict(arrowstyle="-|>", color="k", lw=1.4), zorder=31, bbox=dict(fc="w", ec="none", alpha=0.75, pad=1))
 
 
+def esri_png(ext, px):
+    """Esri World Imagery window through the export service, cached on disk (data/esri_cache/<hash>.png) so that a repeat run, or a demo without internet, reuses the exact same imagery.
+    Returns the PNG bytes, or None when the window is neither cached nor reachable (the caller then draws the map without a basemap)."""
+    import hashlib
+    import os
+
+    import requests
+    d = Path(__file__).resolve().parents[2] / "data" / "esri_cache"
+    f = d / (hashlib.md5(f"{[round(float(v), 1) for v in ext]}|{px}".encode()).hexdigest() + ".png")
+    if f.exists():
+        return f.read_bytes()
+    if os.environ.get("DEMO_OFFLINE"):
+        return None
+    try:
+        r = requests.get("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export", params=dict(bbox=",".join(map(str, ext)), bboxSR=32644, imageSR=32644, size=f"{px},{px}", format="png", f="image"),
+                         headers={"User-Agent": "map-series/1.0"}, timeout=25)
+        from PIL import Image
+        import io
+        Image.open(io.BytesIO(r.content)).verify()
+        d.mkdir(parents=True, exist_ok=True)
+        f.write_bytes(r.content)
+        return r.content
+    except Exception:
+        return None
+
+
 def background(sc: Scene, ax, ext, max_px=2400):
     ax.set_facecolor("#ececec")
     if sc.mosaic is not None and Path(sc.mosaic).exists():
@@ -128,13 +154,11 @@ def background(sc: Scene, ax, ext, max_px=2400):
     elif getattr(sc, "allow_service", False):                            # no local mosaic: the same Esri World Imagery through its export service (opt-in)
         import io
 
-        import requests
         from PIL import Image
-        px = int(min(max_px, 2000))
-        r = requests.get("https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export", params=dict(bbox=",".join(map(str, ext)), bboxSR=32644, imageSR=32644, size=f"{px},{px}", format="png", f="image"),
-                         headers={"User-Agent": "map-series/1.0"}, timeout=90)
-        ax.imshow(np.asarray(Image.open(io.BytesIO(r.content)).convert("RGBA")), extent=(ext[0], ext[2], ext[1], ext[3]), origin="upper", zorder=0)
-        ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.5, ec="none", pad=1))
+        data = esri_png(ext, int(min(max_px, 2000)))
+        if data is not None:
+            ax.imshow(np.asarray(Image.open(io.BytesIO(data)).convert("RGBA")), extent=(ext[0], ext[2], ext[1], ext[3]), origin="upper", zorder=0)
+            ax.text(0.995, 0.004, CREDIT, transform=ax.transAxes, ha="right", va="bottom", fontsize=4.6, color="w", zorder=40, bbox=dict(fc="k", alpha=0.5, ec="none", pad=1))
     ax.set_xlim(ext[0], ext[2]); ax.set_ylim(ext[1], ext[3])
 
 

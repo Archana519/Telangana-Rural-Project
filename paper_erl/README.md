@@ -30,3 +30,7 @@ python scripts/make_village_map_series.py --village damarakunta_open --esri-serv
 python scripts/run_village_pipeline.py --compare-all && python scripts/build_paper_result_figures.py && python paper_erl/build_main.py
 ```
 The StrongDINOv2Seg inference itself was not re-run (no PyTorch or checkpoint in the cloud container): the footprints are the existing instances of the same checkpoint and extraction code, which do not depend on TGRAC.
+
+## One-command demo
+`run_demo.bat` (Windows; activates `.venv`) or `python scripts/run_full_demo.py` runs the whole open-data pipeline in about a minute, offline from `demo_cache/damarakunta_open_cache.zip`
+(Damarakunta live; the other three windows from their committed results), prints the four-window table and writes the planning maps to `demo_output/`.
