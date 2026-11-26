@@ -13,3 +13,6 @@ Figures: `fig_architecture.png` (Figure 1; source `paper_erl/fig_architecture.te
 `python scripts/build_paper_flow_figure.py --source segmentation`). Table 3 is `paper_comparison_table.tex` (`python scripts/run_village_pipeline.py --compare-all`).
 The manuscript uses the plain `article` class (A4, 1 in margins, one column) with no running header; `iopjournal.cls` and the IOP guideline files in this folder are kept only for reference. The CRediT roles are a draft to be confirmed by the authors.
 `make_from_eris.py` is the earlier generator and is superseded by `build_main.py`.
+
+Figures 3-6 (`fig_split1_footprints`, `fig_split2_cost_surface`, `fig_stage_AB`, `fig_shared_network_detail`) are multi-panel composites cropped from the committed map series of the four areas:
+`python scripts/build_paper_result_figures.py`. Figure 1 is the two-split architecture (`fig_architecture.tex`, synced to `paper_eris/`).
