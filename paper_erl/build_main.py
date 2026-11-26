@@ -174,7 +174,7 @@ The four windows span the settlement gradient of Telangana from a dispersed vill
 \textbf{Alampur} (Jogulamba Gadwal district; $15.880^{\circ}$N, $78.135^{\circ}$E) is a small heritage town on the Tungabhadra, known for its temple complex. Its window is the extent derived from Overture building footprints around the OpenStreetMap place node. """ + area_par(AL, "").replace("The window covers", "It covers", 1) + r"""
 
 \subsection{Datasets}
-All four windows are processed from the same open layers (table~\ref{tab:areas}): 0.6~m Esri World Imagery, \dinoseg{} building footprints, ESA WorldCover v200 land cover ($10$~m), the Copernicus GLO-30 elevation model ($30$~m), Overture Maps and OpenStreetMap road networks, and verified public facilities from OpenStreetMap, Overture Places, Wikidata and Wikipedia. The training benchmark is LoveDA, from which one checkpoint serves all windows. No layer is specific to one window.
+All four windows are processed from the same open layers (table~\ref{tab:areas}): 0.6~m Esri World Imagery, \dinoseg{} building footprints, ESA WorldCover v200 land cover ($10$~m), the Copernicus GLO-30 elevation model ($30$~m), Overture Maps and OpenStreetMap road networks, and verified public facilities from OpenStreetMap, Overture Places, Wikidata and Wikipedia. The training benchmark is LoveDA, from which one checkpoint serves all windows. No layer is specific to one window. \emph{Data vintage.} Overture layers come from the pinned release 2026-10-21.0 (the release of 2026-11-18.0 is newer and not used). OpenStreetMap (Overpass, Photon), Wikidata and Wikipedia were queried live on 2026-11-25 (Adilabad, Aswaraopeta, Alampur) and 2026-11-26 (Damarakunta), and every answer is cached per query. The Esri service metadata gives Vantor Vivid imagery at 0.34~m captured on 2026-04-29 (Damarakunta), 2025-01-26 (Adilabad), 2025-12-10 (Aswaraopeta) and 2026-02-16 (Alampur); the footprints come from earlier mosaic exports (before 2026-11-03 for Damarakunta) whose imagery version was not recorded. WorldCover (version 200, 2021) and the Copernicus GLO-30 tiles are static.
 
 \begin{table*}[t]
 \caption{The four study windows and the data layers of each; the layers are the same open sources in every window. Top: window profiles (road length is the mapped road layer inside the window; slope is the mean terrain slope). Middle: the layer used in each window (OSM: OpenStreetMap; WorldCover: ESA WorldCover land-cover map; DEM: digital elevation model; GLO-30: Copernicus global 30~m DEM; LoveDA: Land-cover Domain Adaptive semantic segmentation dataset; ODbL: Open Database Licence; CC BY: Creative Commons Attribution). Bottom: the datasets with resolution, version, licence and location.}
@@ -207,13 +207,13 @@ Training benchmark & \multicolumn{4}{@{}l}{LoveDA, one checkpoint for all four w
 \toprule
 Dataset (use) & Resolution & Version & Licence & URL / DOI\\
 \midrule
-Esri World Imagery \cite{esri2026worldimagery} (imagery) & 0.6~m & live service & Esri terms; academic use, credit required & \url{services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer}\\
-Overture Maps \cite{overture2026} (roads, places, footprints for window extents) & vector & 2026-10-21.0 & ODbL 1.0; CDLA-Permissive-2.0 & \url{overturemaps.org}\\
-OpenStreetMap \cite{haklay2008osm} (roads, facilities) & vector & live (Overpass, Photon) & ODbL 1.0 & \url{openstreetmap.org/copyright}\\
-ESA WorldCover \cite{zanaga2021worldcover} (land cover) & 10~m & v200 (2021) & CC BY 4.0 & \url{doi.org/10.5281/zenodo.7254221}\\
-Copernicus DEM GLO-30 \cite{esa2022copdem} (slope) & 30~m, slope at 10~m & GLO-30 & Copernicus licence & \url{doi.org/10.5270/ESA-c5d3d65}\\
+Esri World Imagery \cite{esri2026worldimagery} (imagery) & 0.6~m & live service; captures 2025-01 to 2026-04 & Esri terms; academic use, credit required & \url{services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer}\\
+Overture Maps \cite{overture2026} (roads, places, footprints for window extents) & vector & 2026-10-21.0 (pinned) & ODbL 1.0; CDLA-Permissive-2.0 & \url{overturemaps.org}\\
+OpenStreetMap \cite{haklay2008osm} (roads, facilities) & vector & live; queried 2026-11-25/26 & ODbL 1.0 & \url{openstreetmap.org/copyright}\\
+ESA WorldCover \cite{zanaga2021worldcover} (land cover) & 10~m & v200 (2021), static & CC BY 4.0 & \url{doi.org/10.5281/zenodo.7254221}\\
+Copernicus DEM GLO-30 \cite{esa2022copdem} (slope) & 30~m, slope at 10~m & GLO-30 COG, file dated 2022-05-09 & Copernicus licence & \url{doi.org/10.5270/ESA-c5d3d65}\\
 LoveDA \cite{wang2021loveda} (training, validation) & 0.3~m & 2021 & CC BY-NC-SA 4.0 & \url{doi.org/10.5281/zenodo.5706578}\\
-Wikidata \cite{vrandecic2014wikidata}, Wikipedia (facility audit) & points & live & CC0; CC BY-SA 4.0 & \url{wikidata.org}\\
+Wikidata \cite{vrandecic2014wikidata}, Wikipedia (facility audit) & points & live; queried 2026-11-25/26 & CC0; CC BY-SA 4.0 & \url{wikidata.org}\\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -248,8 +248,8 @@ STG = {"two": "Two-stage shared plan", "road": "Roads-only shared reference", "l
 plaus = lambda k: 100.0 * Q(k, "PLAUSIBLE") / (sum(v[0] for c, v in qc(k).items() if c != "SMALL_EXCLUDED") or 1)
 
 
-def fig_wide(lab, fn, cap, h="0.44"):
-    return ("\\begin{figure*}[!t]\n\\centering\n\\includegraphics[width=0.74\\textwidth,height=" + h + "\\textheight,keepaspectratio]{" + fn + "}\n\\caption{" + cap + "}\n\\label{" + lab + "}\n\\end{figure*}\n\n")
+def fig_wide(lab, fn, cap, h="0.36"):
+    return ("\\begin{figure*}[!t]\n\\centering\n\\includegraphics[width=0.7\\textwidth,height=" + h + "\\textheight,keepaspectratio]{" + fn + "}\n\\caption{" + cap + "}\n\\label{" + lab + "}\n\\end{figure*}\n\n")
 
 
 results = r"""
@@ -347,7 +347,7 @@ disc = r"""
 \section*{Conflict of interest}
 The authors declare no competing interests.
 
-{\footnotesize\setlength{\itemsep}{0pt}
+{\scriptsize\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
 \bibliographystyle{iopart-num}
 \bibliography{references}}
 
