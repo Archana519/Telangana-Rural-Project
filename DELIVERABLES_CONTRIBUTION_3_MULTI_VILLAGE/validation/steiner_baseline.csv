@@ -1,0 +1,9 @@
+window,targets,n_targets,method,unique_len_km,cost_rs_lakh,cost_surface_objective,vs_stage_B_pct,routes_or_edges_crossing_buildings,note
+damarakunta,houses,27,Stage A (independent least-cost),1.558,116.8,6406.0,21.2,0,
+damarakunta,houses,27,Stage B (two-stage shared),1.285,96.4,5330.0,0.0,0,
+damarakunta,houses,27,Kou Steiner tree (same grid),1.293,97.0,5357.0,0.6,0,
+damarakunta,houses,27,Euclidean MST (straight lines),0.898,67.3,,-30.1,5,63 m inside other footprints
+damarakunta,houses + facilities,29,Stage A (independent least-cost),1.588,119.1,6489.0,20.7,0,
+damarakunta,houses + facilities,29,Stage B (two-stage shared),1.315,98.6,5414.0,0.0,0,
+damarakunta,houses + facilities,29,Kou Steiner tree (same grid),1.323,99.3,5441.0,0.6,0,
+damarakunta,houses + facilities,29,Euclidean MST (straight lines),0.917,68.8,,-30.3,4,49 m inside other footprints

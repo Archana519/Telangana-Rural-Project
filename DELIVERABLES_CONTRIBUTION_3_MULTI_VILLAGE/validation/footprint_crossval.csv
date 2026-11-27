@@ -1,0 +1,7 @@
+window,region,a,b,area_iou,area_precision,area_recall,area_f1,area_a_m2,area_b_m2,n_a,n_b,matched,inst_precision,inst_recall,inst_f1,det_precision,det_recall,det_f1,ours_merging_2plus_ref_pct,region_km2
+damarakunta,window,StrongDINOv2Seg (ours),Overture (all sources),0.2703,0.382,0.4803,0.4256,57715.2883,45904.5488,100,735,5,0.05,0.0068,0.012,0.95,0.4299,0.592,46.0,0.4547
+damarakunta,window,StrongDINOv2Seg (ours),Overture - Google only,0.2704,0.382,0.4807,0.4257,57715.2883,45861.5773,100,734,5,0.05,0.0068,0.012,0.95,0.4305,0.5925,46.0,0.4547
+damarakunta,window,StrongDINOv2Seg (ours),Google Open Buildings v3 (raw),0.3133,0.465,0.4899,0.4771,57715.2883,54782.1636,100,964,5,0.05,0.0052,0.0094,0.97,0.4502,0.615,59.0,0.4547
+damarakunta,model coverage,StrongDINOv2Seg (ours),Overture (all sources),0.2991,0.382,0.5793,0.4604,57715.2883,38057.5514,100,578,5,0.05,0.0087,0.0147,0.95,0.5467,0.694,46.0,0.2441
+damarakunta,model coverage,StrongDINOv2Seg (ours),Overture - Google only,0.2992,0.382,0.5799,0.4606,57715.2883,38014.5799,100,577,5,0.05,0.0087,0.0148,0.95,0.5477,0.6948,46.0,0.2441
+damarakunta,model coverage,StrongDINOv2Seg (ours),Google Open Buildings v3 (raw),0.3468,0.465,0.5771,0.515,57715.2883,46498.1476,100,787,5,0.05,0.0064,0.0113,0.97,0.5515,0.7032,59.0,0.2441
