@@ -176,6 +176,12 @@ preamble = r"""% Science of Remote Sensing (Elsevier) manuscript, elsarticle tem
 \algrenewcommand\algorithmicensure{\textbf{Output:}}
 \algrenewcommand\alglinenumber[1]{\scriptsize #1:}
 \setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
 \hfuzz=3pt\vfuzz=10pt   % elsarticle's own preprint title-page footer is 2.6 pt wide / 7.5 pt high in a minimal document too; nothing else exceeds the page
 \renewcommand{\topfraction}{0.9}\renewcommand{\textfraction}{0.08}\renewcommand{\floatpagefraction}{0.7}
 \biboptions{sort&compress}
@@ -221,6 +227,15 @@ body = ("\n\\section{Introduction}\n" + intro + "\n\n"
         "\\section*{Acknowledgements}\nThe authors acknowledge the providers of the open datasets used (Esri World Imagery, ESA WorldCover, Copernicus DEM, Overture Maps, OpenStreetMap, Wikidata, geoBoundaries, LoveDA).\n\n"
         "\\bibliographystyle{elsarticle-num}\n\\bibliography{references}\n\n\\end{document}\n")
 
-(H / "main.tex").write_text(preamble + front + body, encoding="utf-8")
+def tidy_layout(doc: str, twocolumn: bool) -> str:
+    """Whitespace clean-up: flexible float placement, no runs of blank lines. Font, margins, frontmatter \\vspace and \\FloatBarrier are left alone."""
+    import re as _re
+    for env in ("figure", "table", "algorithm"):
+        star = "\\*" if twocolumn and env != "algorithm" else ""
+        keep = "tbp" if star else "htbp"          # starred floats of a two-column page cannot take [h]
+        doc = _re.sub(r"\\begin\{" + env + star + r"\}\[(!?)(?:t|p|tbp)\]", lambda m: "\\begin{" + env + ("*" if star else "") + "}[" + m.group(1) + keep + "]", doc)
+    return _re.sub(r"\n{3,}", "\n\n", doc)
+
+(H / "main.tex").write_text(tidy_layout(preamble + front + body, twocolumn=False), encoding="utf-8")
 (H / "highlights.txt").write_text("\n".join(HL) + "\n", encoding="utf-8")      # Elsevier asks for highlights as a separate editable file
 print("highlights:", [len(h) for h in HL], "| abstract words (approx.):", abs_words, "| wrote", H / "main.tex")

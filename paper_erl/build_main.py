@@ -99,9 +99,13 @@ head = r"""% Environmental Research Letters manuscript: article class, A4, two c
 \setlength{\emergencystretch}{2em}
 \setlength{\parindent}{10pt}
 \setlength{\parskip}{0pt}
-\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
-\setlength{\floatsep}{8pt plus 2pt minus 2pt}
-\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{0pt}
 \renewcommand{\topfraction}{0.9}\renewcommand{\dbltopfraction}{0.9}\renewcommand{\textfraction}{0.08}\renewcommand{\floatpagefraction}{0.7}\renewcommand{\dblfloatpagefraction}{0.7}
 \titleformat{\section}{\bfseries\large}{\thesection}{0.6em}{}
 \titleformat{\subsection}{\bfseries\normalsize}{\thesubsection}{0.6em}{}
@@ -590,6 +594,16 @@ for old, new in CITES:
     else:
         doc = doc.replace(old, new, 1)
 
+def tidy_layout(doc: str, twocolumn: bool) -> str:
+    """Whitespace clean-up: flexible float placement, no runs of blank lines. Font, margins, frontmatter \\vspace and \\FloatBarrier are left alone."""
+    import re as _re
+    for env in ("figure", "table", "algorithm"):
+        star = "\\*" if twocolumn and env != "algorithm" else ""
+        keep = "tbp" if star else "htbp"          # starred floats of a two-column page cannot take [h]
+        doc = _re.sub(r"\\begin\{" + env + star + r"\}\[(!?)(?:t|p|tbp)\]", lambda m: "\\begin{" + env + ("*" if star else "") + "}[" + m.group(1) + keep + "]", doc)
+    return _re.sub(r"\n{3,}", "\n\n", doc)
+
+doc = tidy_layout(doc, twocolumn=True)
 (H / "main.tex").write_text(doc, encoding="utf-8")
 (H / "paper_comparison_table.tex").write_text(PS.latex_table([M[k] for k in PS.ORDER]), encoding="utf-8")      # Table 3, generated from the result files (never copied from paper_eris)
 src = REPO / "paper_eris" / "figures" / "fig_architecture.png"
