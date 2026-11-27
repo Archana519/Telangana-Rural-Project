@@ -7,3 +7,27 @@ damarakunta,houses + facilities,29,Stage A (independent least-cost),1.588,119.1,
 damarakunta,houses + facilities,29,Stage B (two-stage shared),1.315,98.6,5414.0,0.0,0,
 damarakunta,houses + facilities,29,Kou Steiner tree (same grid),1.323,99.3,5441.0,0.6,0,
 damarakunta,houses + facilities,29,Euclidean MST (straight lines),0.917,68.8,,-30.3,4,49 m inside other footprints
+adilabad,houses,607,Stage A (independent least-cost),29.71,2228.3,103119.0,12.8,0,
+adilabad,houses,607,Stage B (two-stage shared),26.328,1974.6,90460.0,0.0,0,
+adilabad,houses,607,Kou Steiner tree (same grid),26.633,1997.5,91563.0,1.2,0,
+adilabad,houses,607,Euclidean MST (straight lines),21.083,1581.3,,-19.9,59,750 m inside other footprints
+adilabad,houses + facilities,739,Stage A (independent least-cost),30.755,2306.7,106397.0,12.3,0,
+adilabad,houses + facilities,739,Stage B (two-stage shared),27.38,2053.5,93754.0,0.0,0,
+adilabad,houses + facilities,739,Kou Steiner tree (same grid),27.662,2074.7,94788.0,1.0,0,
+adilabad,houses + facilities,739,Euclidean MST (straight lines),21.995,1649.6,,-19.7,60,737 m inside other footprints
+aswaraopeta,houses,632,Stage A (independent least-cost),35.912,2693.4,132125.0,31.3,0,
+aswaraopeta,houses,632,Stage B (two-stage shared),27.351,2051.3,100506.0,0.0,0,
+aswaraopeta,houses,632,Kou Steiner tree (same grid),28.221,2116.5,103648.0,3.2,0,
+aswaraopeta,houses,632,Euclidean MST (straight lines),20.664,1549.8,,-24.4,50,584 m inside other footprints
+aswaraopeta,houses + facilities,661,Stage A (independent least-cost),36.19,2714.2,133127.0,27.0,0,
+aswaraopeta,houses + facilities,661,Stage B (two-stage shared),28.485,2136.4,104412.0,0.0,0,
+aswaraopeta,houses + facilities,661,Kou Steiner tree (same grid),28.44,2133.0,104500.0,-0.2,0,
+aswaraopeta,houses + facilities,661,Euclidean MST (straight lines),20.818,1561.4,,-26.9,49,568 m inside other footprints
+alampur,houses,58,Stage A (independent least-cost),3.139,235.4,11404.0,18.3,0,
+alampur,houses,58,Stage B (two-stage shared),2.653,199.0,9562.0,0.0,0,
+alampur,houses,58,Kou Steiner tree (same grid),2.73,204.8,9834.0,2.9,0,
+alampur,houses,58,Euclidean MST (straight lines),2.235,167.6,,-15.8,7,98 m inside other footprints
+alampur,houses + facilities,67,Stage A (independent least-cost),3.317,248.8,11905.0,17.2,0,
+alampur,houses + facilities,67,Stage B (two-stage shared),2.831,212.4,10063.0,0.0,0,
+alampur,houses + facilities,67,Kou Steiner tree (same grid),2.889,216.7,10266.0,2.0,0,
+alampur,houses + facilities,67,Euclidean MST (straight lines),2.331,174.8,,-17.7,6,63 m inside other footprints

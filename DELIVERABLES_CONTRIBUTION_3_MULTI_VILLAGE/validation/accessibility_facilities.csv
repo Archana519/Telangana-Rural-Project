@@ -1,3 +1,17 @@
 window,facility_type,facilities,reached_baseline,reached_stage_A,reached_stage_B
 damarakunta,anganwadi,1,1,1,1
 damarakunta,health,1,1,1,1
+adilabad,anganwadi,4,4,4,4
+adilabad,college,15,13,15,15
+adilabad,government,15,15,15,15
+adilabad,health,59,54,59,59
+adilabad,school,39,37,39,39
+aswaraopeta,anganwadi,14,9,13,13
+aswaraopeta,college,3,1,1,1
+aswaraopeta,government,3,3,3,3
+aswaraopeta,health,7,4,7,7
+aswaraopeta,school,5,5,5,5
+alampur,anganwadi,5,3,5,5
+alampur,college,1,1,1,1
+alampur,health,2,1,2,2
+alampur,school,1,1,1,1

@@ -1,2 +1,5 @@
 window,households,served_baseline,road_gap_households,routed_stage_A,routed_stage_B,unreachable,served_pct_baseline,served_pct_stage_B,facilities,fac_reached_baseline,fac_reached_stage_A,fac_reached_stage_B,road_dist_baseline_mean_m,road_dist_baseline_median_m,road_dist_baseline_p90_m,line_dist_stage_A_mean_m,line_dist_stage_A_median_m,line_dist_stage_B_mean_m,line_dist_stage_B_median_m,path_dist_stage_A_mean_m,path_dist_stage_A_median_m,path_dist_stage_B_mean_m,path_dist_stage_B_median_m
 damarakunta,95,68,27,27,27,0,71.6,100.0,2,2,2,2,51.7,42.0,88.4,12.7,11.2,12.7,11.2,88.1,81.9,106.8,86.2
+adilabad,5480,4867,613,607,607,6,88.8,99.9,132,123,132,132,53.6,42.7,85.9,14.9,10.7,14.9,10.7,67.4,54.2,76.4,56.2
+aswaraopeta,1242,564,678,632,632,46,45.4,96.3,32,22,29,29,147.5,105.9,307.0,28.0,10.5,28.1,10.5,201.8,143.2,324.7,213.5
+alampur,397,338,59,58,58,1,85.1,99.7,9,6,9,9,76.5,45.0,158.9,22.5,9.6,22.5,9.6,90.8,57.0,98.5,56.5
