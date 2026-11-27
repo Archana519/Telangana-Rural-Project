@@ -20,7 +20,7 @@
 \algrenewcommand\algorithmicensure{\textbf{Output:}}
 \algrenewcommand\alglinenumber[1]{\scriptsize #1:}
 \setlength{\emergencystretch}{2em}
-\hfuzz=3pt   % elsarticle's own preprint footer is 2.6 pt overfull even in a minimal document; nothing else exceeds the margin
+\hfuzz=3pt\vfuzz=10pt   % elsarticle's own preprint title-page footer is 2.6 pt wide / 7.5 pt high in a minimal document too; nothing else exceeds the page
 \renewcommand{\topfraction}{0.9}\renewcommand{\textfraction}{0.08}\renewcommand{\floatpagefraction}{0.7}
 \biboptions{sort&compress}
 \journal{Science of Remote Sensing}
@@ -43,7 +43,7 @@
 \includegraphics[width=\textwidth]{graphical_abstract.png}
 \end{graphicalabstract}
 \begin{abstract}
-Planning access roads for unconnected rural buildings with open Earth-observation data inherits the errors of the building inventory, yet these errors are seldom propagated to the plan. We apply one fully open workflow to four Telangana windows (0.46--18.59~km$^2$): a frozen StrongDINOv2Seg segmenter (53.8\% mIoU on LoveDA) on 0.6~m Esri imagery gives building footprints and road-gap targets, ESA WorldCover and Copernicus GLO-30 slope give a multi-criteria cost surface on a 5~m grid with a hard 3.6~m building clearance, and two-stage Dijkstra routing consolidates independent routes into a shared network. The shared network is 12.2 to 25.3\% shorter than independent routes, with zero building crossings in all four windows. We then test the weakest input without manual labels. Against Overture buildings the footprints reach an area IoU of 0.283 to 0.373 and a detection precision of 0.893 to 0.950, but 40 to 52\% of them merge two or more reference buildings. Omitting 20\% of the road-gap footprints leaves 5 to 169 households unserved while the length per served household changes little, and a Kou Steiner tree is 0.6 to 3.2\% longer than the shared plan. The results are agreement and sensitivity figures between open datasets, not accuracy against field ground truth, and the corridors are planning alternatives for field verification.
+Planning access roads for unconnected rural buildings with open Earth-observation data inherits the errors of the building inventory, yet these errors are seldom propagated to the plan. We apply one fully open workflow to four Telangana windows (0.46--18.59~km$^2$): a frozen segmenter, StrongDINOv2Seg (53.8\% mean intersection over union, mIoU, on the LoveDA benchmark), applied to 0.6~m Esri imagery gives building footprints and road-gap targets; land cover and terrain slope give a multi-criteria cost surface on a 5~m grid with a hard 3.6~m building clearance; and two-stage Dijkstra routing consolidates independent routes into a shared network. The shared network is 12.2 to 25.3\% shorter than independent routes, with zero building crossings in all four windows. We then test the weakest input without manual labels. Against Overture Maps buildings the footprints reach an area overlap (intersection over union, IoU) of 0.283 to 0.373 and a detection precision of 0.893 to 0.950, but 40 to 52\% of them merge two or more reference buildings. Omitting 20\% of the road-gap footprints leaves 5 to 169 households unserved while the length per served household changes little, and a Kou Steiner tree is 0.6 to 3.2\% longer than the shared plan. The results are agreement and sensitivity figures between open datasets, not accuracy against field ground truth, and the corridors are planning alternatives for field verification.
 \end{abstract}
 \begin{keyword}
 rural roads\sep building footprint extraction\sep satellite remote sensing\sep uncertainty propagation\sep least-cost path\sep Steiner tree\sep open geospatial data
@@ -128,14 +128,14 @@ The method is organised as two splits that are identical for all four settlement
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_architecture.png}
-\caption{Two-split framework, applied unchanged to the four study areas. Split~1 (vision and semantic perception): (1)~multi-source open inputs (Esri World Imagery, roads from Overture and OSM, ESA WorldCover, Copernicus DEM, verified facilities $F_i$); (2)~\dinoseg{} semantic segmentation of $560\times560\times3$ RGB tiles (DINOv2 ViT-B/14: self-supervised vision transformer, base size, 14~px patches; FPN: feature pyramid network; ASPP: atrous spatial pyramid pooling; CE: cross-entropy; mIoU: mean intersection over union; F1: harmonic mean of precision and recall); (3)~OpenCV morphological and watershed footprint extraction with road-gap targets and facility snapping. Split~2 (geospatial cost surface and shared-network routing): (4)~$5$~m cost surface from DEM slope and land cover with a hard $3.6$~m building clearance; (5)~Stage~A independent and Stage~B shared-trunk Dijkstra routing; (6)~PMGSY-benchmarked cost, zero-crossing corridors and GIS planning maps (PMGSY: Pradhan Mantri Gram Sadak Yojana; IRC: Indian Roads Congress).}
+\caption{Two-split framework, applied unchanged to the four study areas. Split~1 (vision and semantic perception): (1)~multi-source open inputs (Esri World Imagery, roads from Overture and OSM, ESA WorldCover, Copernicus DEM, verified facilities $F_i$); (2)~\dinoseg{} semantic segmentation of $560\times560\times3$ RGB tiles (DINOv2 ViT-B/14: self-supervised vision transformer, base size, 14~px patches; FPN: feature pyramid network; ASPP: atrous spatial pyramid pooling; CE: cross-entropy; mIoU: mean intersection over union; F1: harmonic mean of precision and recall); (3)~OpenCV morphological and watershed footprint extraction with road-gap targets and facility snapping. Split~2 (geospatial cost surface and shared-network routing): (4)~$5$~m cost surface from DEM slope and land cover with a hard $3.6$~m building clearance; (5)~Stage~A independent and Stage~B shared-trunk Dijkstra routing; (6)~PMGSY-benchmarked cost, zero-crossing corridors and GIS planning maps (PMGSY: Pradhan Mantri Gram Sadak Yojana; IRC: Indian Roads Congress). AI-assisted workflow diagram: the framework diagram was drafted with a generative AI tool (Claude, Anthropic) and reviewed by the authors.}
 \label{fig:arch}
 \end{figure}
 
 \begin{figure}[p]
 \centering
 \IfFileExists{fig_flow_study_areas.png}{\includegraphics[width=\textwidth,height=0.68\textheight,keepaspectratio]{fig_flow_study_areas.png}}{\fbox{\parbox{0.8\textwidth}{\centering\pending{Figure not generated yet: run \texttt{python scripts/build\_paper\_flow\_figure.py --source segmentation}.}}}}
-\caption{Study windows and end-to-end flow. Top: Telangana with district outlines (geoBoundaries \cite{runfola2020geoboundaries}) and the four numbered study locations (1~Damarakunta, rural; 2~Adilabad, urban fringe; 3~Aswaraopeta, semi-urban, tribal fringe; 4~Alampur, heritage, semi-urban), and the key. One row per window, three columns: (a)~input (0.6~m Esri World Imagery, window boundary and existing roads); (b)~\dinoseg{} building footprints (road-gap target houses in orange) with the verified facilities; (c)~output, the Stage~B shared network of the 5~m zero-crossing plan (blue for houses, red for facilities) with scale bar and north arrow. Stage~A is the set of independent least-cost routes and Stage~B the shared network that consolidates them; below each output are their unique lengths, the building crossings and the facility count. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
+\caption{Study windows and end-to-end flow. Top: the key. One row per window, three columns: (a)~input (0.6~m Esri World Imagery, window boundary and existing roads); (b)~\dinoseg{} building footprints (road-gap target houses in orange) with the verified facilities; (c)~output, the Stage~B shared network of the 5~m zero-crossing plan (blue for houses, red for facilities) with scale bar and north arrow. Stage~A is the set of independent least-cost routes and Stage~B the shared network that consolidates them; below each output are their unique lengths, the building crossings and the facility count. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Map lines delineate study areas and do not necessarily depict accepted national boundaries.}
 \label{fig:flow}
 \end{figure}
 
@@ -336,7 +336,7 @@ Building class & 54.0 & 70.1 & 62.1 & 80.6\\
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth,height=0.42\textheight,keepaspectratio]{fig_split1_footprints.png}
-\caption{Split~1 output in the densest cluster of each study window: building footprints extracted by \dinoseg{} and OpenCV (orange: road-gap target houses; outlined: other footprints), verified public facilities (School, College, Hospital, Government Office, Anganwadi, with their facility numbers) and existing roads (cyan). Scale bars are 200~m. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
+\caption{Split~1 output in the densest cluster of each study window: building footprints extracted by \dinoseg{} and OpenCV (orange: road-gap target houses; outlined: other footprints), verified public facilities (School, College, Hospital, Government Office, Anganwadi, with their facility numbers) and existing roads (cyan). Scale bars are 200~m. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Map lines delineate study areas and do not necessarily depict accepted national boundaries.}
 \label{fig:split1}
 \end{figure}
 
@@ -347,7 +347,7 @@ The cost surface adds a land-cover resistance and a slope penalty to a hard buil
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth,height=0.36\textheight,keepaspectratio]{fig_split2_cost_surface.png}
-\caption{Split~2 inputs for the four study windows. Top: terrain slope in degrees from the 30~m Copernicus GLO-30 DEM (digital elevation model), resampled to the 10~m planning grid. Bottom: the base cost surface $C_0$ in ordinal planning units per 10~m, the sum of the land-cover resistance and the slope penalty (equation~\ref{eq:cell}); cells that are water, invalid or steeper than 25$^{\circ}$ are blocked.}
+\caption{Split~2 inputs for the four study windows. Top: terrain slope in degrees from the 30~m Copernicus GLO-30 DEM (digital elevation model), resampled to the 10~m planning grid. Bottom: the base cost surface $C_0$ in ordinal planning units per 10~m, the sum of the land-cover resistance and the slope penalty (equation~\ref{eq:cell}); cells that are water, invalid or steeper than 25$^{\circ}$ are blocked. Map lines delineate study areas and do not necessarily depict accepted national boundaries.}
 \label{fig:cost}
 \end{figure}
 
@@ -368,14 +368,14 @@ Table~\ref{tab:strategies} sets the two-stage plan against three baselines on th
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth,height=0.42\textheight,keepaspectratio]{fig_stage_AB.png}
-\caption{Stage~A against Stage~B in the densest cluster of each window: the white dashed lines are the independent least-cost routes (Stage~A first choice), the blue lines the shared network for houses and the red lines the shared network for facilities (Stage~B), on the $5$~m grid with the $3.6$~m building clearance. Orange footprints are road-gap target houses. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
+\caption{Stage~A against Stage~B in the densest cluster of each window: the white dashed lines are the independent least-cost routes (Stage~A first choice), the blue lines the shared network for houses and the red lines the shared network for facilities (Stage~B), on the $5$~m grid with the $3.6$~m building clearance. Orange footprints are road-gap target houses. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Map lines delineate study areas and do not necessarily depict accepted national boundaries.}
 \label{fig:ab}
 \end{figure}
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth,height=0.42\textheight,keepaspectratio]{fig_shared_network_detail.png}
-\caption{Settlement-scale detail of the zero-crossing shared network in each window (same window as the master planning map): house routes in blue, facility routes in red, verified facilities with their numbers, existing roads in cyan. No route crosses a building footprint. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community.}
+\caption{Settlement-scale detail of the zero-crossing shared network in each window (same window as the master planning map): house routes in blue, facility routes in red, verified facilities with their numbers, existing roads in cyan. No route crosses a building footprint. Basemap imagery: Esri, Maxar, Earthstar Geographics, and the GIS User Community. Map lines delineate study areas and do not necessarily depict accepted national boundaries.}
 \label{fig:detail}
 \end{figure}
 
@@ -560,13 +560,14 @@ Open imagery, open terrain and land-cover layers and open building and road inve
 The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
 
 \section*{Funding}
-This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
-\pending{[AUTHORS TO CONFIRM BEFORE SUBMISSION] During the preparation of this work an AI assistant (Claude, Anthropic) was used to help draft and edit the manuscript text and the analysis scripts. The authors must review and edit this statement and take full responsibility for the content of the published article.}
+% AUTHORS: this is Elsevier's required wording. Submit it only if it is true for you (the AI tool was used; you reviewed and edited the content and take full responsibility).
+During the preparation of this work the author(s) used Claude (Anthropic) in order to draft and edit the manuscript text, write the analysis scripts and draft the framework (workflow) diagram. After using this tool/service, the author(s) reviewed and edited the content as needed and take(s) full responsibility for the content of the published article.
 
 \section*{Data availability}
-Code, derived summary tables and the open-data manifests with SHA-256 hashes are available at \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE}, including its \path{validation} subfolder with the cross-source, baseline, accessibility and sweep tables, and \path{FINAL_PROJECT_OUTPUTS}). Imagery: Esri World Imagery (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community), used for non-commercial academic research and overlay under Esri's academic terms; raw tiles are not redistributed. Open datasets: ESA WorldCover 10~m v200 (CC BY 4.0, \url{https://doi.org/10.5281/zenodo.7254221}), Copernicus GLO-30 DEM (\url{https://doi.org/10.5270/ESA-c5d3d65}), Overture Maps and OpenStreetMap (ODbL 1.0), geoBoundaries (ODbL 1.0), LoveDA (CC BY-NC-SA 4.0, \url{https://doi.org/10.5281/zenodo.5706578}). The \dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\ref{sec:seg}.
+All code, derived tables and the open-data manifests with SHA-256 hashes are openly available in the repository \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE}, including its \path{validation} subfolder with the cross-source, baseline, accessibility and sweep tables, and \path{FINAL_PROJECT_OUTPUTS}). The datasets used are cited in the reference list with the [dataset] tag: Esri World Imagery \cite{esri2026worldimagery} (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community; used for non-commercial academic research and overlay under Esri's academic terms, and raw tiles are not redistributed), ESA WorldCover 10~m v200 \cite{zanaga2021worldcover} (CC BY 4.0), the Copernicus GLO-30 digital elevation model \cite{esa2022copdem}, Overture Maps \cite{overture2026} and OpenStreetMap (ODbL 1.0), geoBoundaries \cite{runfola2020geoboundaries} (ODbL 1.0) and LoveDA \cite{ds_loveda} (CC BY-NC-SA 4.0). The \dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\ref{sec:seg}.
 
 \section*{Acknowledgements}
 The authors acknowledge the providers of the open datasets used (Esri World Imagery, ESA WorldCover, Copernicus DEM, Overture Maps, OpenStreetMap, Wikidata, geoBoundaries, LoveDA).

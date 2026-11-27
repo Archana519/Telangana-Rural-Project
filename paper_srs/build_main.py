@@ -48,15 +48,19 @@ for h in HL:
 # ------------------------------------------------------------------ abstract (all numbers from the result files)
 abstract = (
     "Planning access roads for unconnected rural buildings with open Earth-observation data inherits the errors of the building inventory, yet these errors are seldom propagated to the plan. "
-    f"We apply one fully open workflow to four Telangana windows ({win}~km$^2$): a frozen StrongDINOv2Seg segmenter (53.8\\% mIoU on LoveDA) on 0.6~m Esri imagery gives building footprints and road-gap targets, "
-    "ESA WorldCover and Copernicus GLO-30 slope give a multi-criteria cost surface on a 5~m grid with a hard 3.6~m building clearance, and two-stage Dijkstra routing consolidates independent routes into a shared network. "
+    f"We apply one fully open workflow to four Telangana windows ({win}~km$^2$): a frozen segmenter, StrongDINOv2Seg (53.8\\% mean intersection over union, mIoU, on the LoveDA benchmark), applied to 0.6~m Esri imagery gives building footprints and road-gap targets; "
+    "land cover and terrain slope give a multi-criteria cost surface on a 5~m grid with a hard 3.6~m building clearance; and two-stage Dijkstra routing consolidates independent routes into a shared network. "
     f"The shared network is {sav_rng.replace('--', ' to ')}\\% shorter than independent routes, with zero building crossings in all four windows. "
-    f"We then test the weakest input without manual labels. Against Overture buildings the footprints reach an area IoU of {fp['iou'].replace('--', ' to ')} and a detection precision of {fp['det_p'].replace('--', ' to ')}, "
+    f"We then test the weakest input without manual labels. Against Overture Maps buildings the footprints reach an area overlap (intersection over union, IoU) of {fp['iou'].replace('--', ' to ')} and a detection precision of {fp['det_p'].replace('--', ' to ')}, "
     f"but {fp['merged'].replace('--', ' to ')}\\% of them merge two or more reference buildings. Omitting 20\\% of the road-gap footprints leaves {min(sw['unserved20'].values()):.0f} to {max(sw['unserved20'].values()):.0f} households unserved "
     f"while the length per served household changes little, and a Kou Steiner tree is {st['kou_rng'].replace('--', ' to ')}\\% longer than the shared plan. "
     "The results are agreement and sensitivity figures between open datasets, not accuracy against field ground truth, and the corridors are planning alternatives for field verification."
 )
-abs_words = len(re.sub(r"\\[a-zA-Z]+|[{}$~]", " ", abstract).split())
+_plain = re.sub(r"\\[a-zA-Z]+|[{}$~^\\]", " ", abstract)
+abs_words = len(_plain.split())
+assert abs_words <= 250 and "\\cite" not in abstract, abs_words        # Science of Remote Sensing: abstract <= 250 words, standalone, no citations
+KEYWORDS = ["rural roads", "building footprint extraction", "satellite remote sensing", "uncertainty propagation", "least-cost path", "Steiner tree", "open geospatial data"]
+assert 1 <= len(KEYWORDS) <= 7
 
 # ------------------------------------------------------------------ body reused verbatim from paper_erl/main.tex
 intro_all = between(ERL, "\\section{Introduction}\n", "\\section{Data and methods}")
@@ -67,10 +71,37 @@ results = between(ERL, "\\section{Results}", "\\FloatBarrier\n\\section{Discussi
 disc_src = between(ERL, "\\textbf{Regional planning implications.}", "\\textbf{Conclusions.}")
 regional = between(disc_src, "\\textbf{Regional planning implications.}", "\\textbf{Methodological limitations.}").strip()
 scal = between(disc_src, "\\textbf{Scalability.}", None).strip()
-data_avail = between(ERL, "\\data{", "\n\n\\section*{Conflict of interest}")[len("\\data{"):].rstrip().rstrip("}")
+
+
+JURIS = "Map lines delineate study areas and do not necessarily depict accepted national boundaries."
+AI_FIG = "AI-assisted workflow diagram: the framework diagram was drafted with a generative AI tool (Claude, Anthropic) and reviewed by the authors."
+
+
+def make_flow_figure():
+    """paper_erl/fig_flow_study_areas.png without its Telangana/district locator map: Science of Remote Sensing maps may show only the study-area extents."""
+    from PIL import Image, ImageDraw
+    im = Image.open(REPO / "paper_erl" / "fig_flow_study_areas.png").convert("RGB")
+    d = ImageDraw.Draw(im)
+    d.rectangle([0, 0, 340, 240], fill="white")           # state/district locator inset
+    d.rectangle([340, 0, im.width, 135], fill="white")     # its heading line ('study districts shaded')
+    im.crop((0, 130, im.width, im.height)).save(H / "fig_flow_study_areas.png")
+
+
+make_flow_figure()
+
+
+def srs_captions(t: str) -> str:
+    t = re.sub(r"Top: Telangana with district outlines.*?and the key\.", "Top: the key.", t, flags=re.S)
+    def one(m):
+        blk = m.group(0)
+        if "fig_architecture.png" in blk:
+            return blk.replace("}\n\\label{fig:arch}", " " + AI_FIG + "}\n\\label{fig:arch}")
+        return re.sub(r"\}\n(\\label\{fig:)", lambda k: " " + JURIS + "}\n" + k.group(1), blk, count=1)
+    return re.sub(r"\\begin\{figure\}.*?\\end\{figure\}", one, t, flags=re.S)
 
 
 def srs_floats(t: str) -> str:
+    t = srs_captions(t.replace("\\begin{figure*}", "\\begin{figure}").replace("\\end{figure*}", "\\end{figure}"))
     t = t.replace("\\begin{table*}", "\\begin{table}").replace("\\end{table*}", "\\end{table}").replace("\\begin{figure*}", "\\begin{figure}").replace("\\end{figure*}", "\\end{figure}")
     t = re.sub(r"width=0\.7\\textwidth,height=0\.36\\textheight", r"width=\\textwidth,height=0.42\\textheight", t)
     t = re.sub(r"width=0\.7\\textwidth,height=0\.3\\textheight", r"width=\\textwidth,height=0.36\\textheight", t)
@@ -145,7 +176,7 @@ preamble = r"""% Science of Remote Sensing (Elsevier) manuscript, elsarticle tem
 \algrenewcommand\algorithmicensure{\textbf{Output:}}
 \algrenewcommand\alglinenumber[1]{\scriptsize #1:}
 \setlength{\emergencystretch}{2em}
-\hfuzz=3pt   % elsarticle's own preprint footer is 2.6 pt overfull even in a minimal document; nothing else exceeds the margin
+\hfuzz=3pt\vfuzz=10pt   % elsarticle's own preprint title-page footer is 2.6 pt wide / 7.5 pt high in a minimal document too; nothing else exceeds the page
 \renewcommand{\topfraction}{0.9}\renewcommand{\textfraction}{0.08}\renewcommand{\floatpagefraction}{0.7}
 \biboptions{sort&compress}
 \journal{Science of Remote Sensing}
@@ -159,7 +190,15 @@ front = ("\\begin{frontmatter}\n\\title{Propagating open building-footprint unce
          "\\begin{highlights}\n" + "\n".join("\\item " + h.replace("%", "\\%") for h in HL) + "\n\\end{highlights}\n"
          "\\begin{graphicalabstract}\n\\includegraphics[width=\\textwidth]{graphical_abstract.png}\n\\end{graphicalabstract}\n"
          "\\begin{abstract}\n" + abstract + "\n\\end{abstract}\n"
-         "\\begin{keyword}\nrural roads\\sep building footprint extraction\\sep satellite remote sensing\\sep uncertainty propagation\\sep least-cost path\\sep Steiner tree\\sep open geospatial data\n\\end{keyword}\n\\end{frontmatter}\n")
+         "\\begin{keyword}\n" + "\\sep ".join(KEYWORDS) + "\n\\end{keyword}\n\\end{frontmatter}\n")
+
+DATA_AVAIL = (
+    "All code, derived tables and the open-data manifests with SHA-256 hashes are openly available in the repository \\url{https://github.com/Archana519/Telangana-Rural-Project} "
+    "(folders \\path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE}, including its \\path{validation} subfolder with the cross-source, baseline, accessibility and sweep tables, and \\path{FINAL_PROJECT_OUTPUTS}). "
+    "The datasets used are cited in the reference list with the [dataset] tag: Esri World Imagery \\cite{esri2026worldimagery} (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community; used for non-commercial academic research and overlay under Esri's academic terms, and raw tiles are not redistributed), "
+    "ESA WorldCover 10~m v200 \\cite{zanaga2021worldcover} (CC BY 4.0), the Copernicus GLO-30 digital elevation model \\cite{esa2022copdem}, Overture Maps \\cite{overture2026} and OpenStreetMap (ODbL 1.0), geoBoundaries \\cite{runfola2020geoboundaries} (ODbL 1.0) "
+    "and LoveDA \\cite{ds_loveda} (CC BY-NC-SA 4.0). The \\dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\\ref{sec:seg}."
+)
 
 body = ("\n\\section{Introduction}\n" + intro + "\n\n"
         "We therefore ask not only whether shared rural road networks can be planned from open Earth-observation data, but how far such a plan can be trusted when the building inventory it rests on is incomplete or merged. "
@@ -173,11 +212,12 @@ body = ("\n\\section{Introduction}\n" + intro + "\n\n"
         "\\section*{CRediT authorship contribution statement}\n\\textbf{Pendyala Archana:} Methodology, Software, Investigation, Formal analysis, Visualization, Writing -- original draft. "
         "\\textbf{Ramakrishna Kolikipogu:} Conceptualization, Supervision, Writing -- review \\& editing.\n\n"
         "\\section*{Declaration of competing interest}\nThe authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.\n\n"
-        "\\section*{Funding}\nThis research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.\n\n"
+        "\\section*{Funding}\nThis research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.\n\n"
         "\\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}\n"
-        "\\pending{[AUTHORS TO CONFIRM BEFORE SUBMISSION] During the preparation of this work an AI assistant (Claude, Anthropic) was used to help draft and edit the manuscript text and the analysis scripts. "
-        "The authors must review and edit this statement and take full responsibility for the content of the published article.}\n\n"
-        "\\section*{Data availability}\n" + data_avail + "\n\n"
+        "% AUTHORS: this is Elsevier's required wording. Submit it only if it is true for you (the AI tool was used; you reviewed and edited the content and take full responsibility).\n"
+        "During the preparation of this work the author(s) used Claude (Anthropic) in order to draft and edit the manuscript text, write the analysis scripts and draft the framework (workflow) diagram. "
+        "After using this tool/service, the author(s) reviewed and edited the content as needed and take(s) full responsibility for the content of the published article.\n\n"
+        "\\section*{Data availability}\n" + DATA_AVAIL + "\n\n"
         "\\section*{Acknowledgements}\nThe authors acknowledge the providers of the open datasets used (Esri World Imagery, ESA WorldCover, Copernicus DEM, Overture Maps, OpenStreetMap, Wikidata, geoBoundaries, LoveDA).\n\n"
         "\\bibliographystyle{elsarticle-num}\n\\bibliography{references}\n\n\\end{document}\n")
 
