@@ -412,6 +412,120 @@ Alampur & Independent routes & 58 & 4{,}056.9 & 0.0 & 7 & 58.0\\
 \end{tabular}
 \end{table*}
 
+\subsection{Cross-source footprint agreement, graph baselines, accessibility and error propagation}\label{sec:res4}
+Four automated checks extend the main comparison. They use only the open layers of the Data section, no manual labelling and no field survey, and they are run by \texttt{footprint\_crossval.py}, \texttt{steiner\_baseline.py}, \texttt{accessibility\_metrics.py} and \texttt{aggregate\_sweeps.py}; their outputs are in \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/validation}. They therefore measure agreement between open datasets and planning behaviour, not accuracy against ground truth.
+
+\textbf{Cross-source footprint agreement.} Table~\ref{tab:xval} compares the segmentation footprints with Overture Maps buildings (OpenStreetMap and Google Open Buildings sources, release 2026-10-21.0) and, in Damarakunta, with the raw Google Open Buildings v3 polygons, inside each window's model-coverage region (the window intersected with the 30~m-buffered convex hull of the footprints; for Damarakunta this is 0.244 of 0.455~km$^2$ because the stored footprints cover part of the window only, and over the whole window the detection recall is 0.430 instead of 0.547). Against all Overture sources, area IoU is 0.283--0.373, area precision (share of our area covered by the reference) 0.371--0.437 and area recall (share of the reference area covered by our footprints) 0.495--0.717 across the four windows. At the object level, detection precision (share of our footprints that touch a reference building) is 0.893--0.950 and detection recall (share of reference buildings whose representative point lies in one of our footprints) is 0.515--0.747. Between 40 and 52\% of our footprints contain two or more Overture buildings: the model groups dense contiguous roofs, so one-to-one instance matching at IoU~0.5 reaches an F1 of only 0.010--0.022 and is not a meaningful score for these footprints. The agreement differs by source: the human-mapped OpenStreetMap subset is covered far more completely than the machine-derived Google subset in Adilabad (detection recall 0.860 against 0.554) and in Alampur (0.791 against 0.332), whereas its subset has only 7 features in Aswaraopeta and too few to score (fewer than five) in Damarakunta, and is not tabulated for either. No reference is treated as truth, since each has its own omissions and merging. Most of our footprints touch an open-inventory building, but our footprints reach only about half to three quarters of the reference buildings and group dense roofs, which is the footprint-granularity limitation that the error-propagation test below quantifies.
+
+\textbf{Graph-routing baselines.} Table~\ref{tab:graphbase} sets Stage~A and Stage~B against two classical baselines on the planner's own graph: the $5$~m clearance grid, the same cost surface and edge weights, the hard $3.6$~m building clearance and the existing-road cells as goals. The Kou--Markowsky--Berman Steiner tree \cite{kou1981steiner} (metric closure of the road network and the targets, minimum spanning tree, shortest-path expansion, second spanning tree and leaf pruning) is the standard 2-approximation for the same problem; the Euclidean minimum spanning tree joins the targets and the nearest road by straight lines. The comparison uses the house targets that Stage~B routed and counts unique grid-edge length without the short per-route connectors, so its lengths are slightly below the Stage~A and Stage~B lengths of the main results, which include the connectors and the facility routes. Stage~A is 12.8 to 31.3\% longer than Stage~B, and the Kou Steiner tree is 0.6 to 3.2\% longer than Stage~B (house targets; with the facilities added it is +0.6\%, +1.0\%, $-$0.2\% and +2.0\% in Damarakunta, Adilabad, Aswaraopeta and Alampur). Stage~B also has the lower cost-surface objective in all four windows. On total length the two-stage plan therefore matches a classical Steiner approximation closely but does not beat it by a margin that would support a claim of optimality; the claims of this paper rest on the zero-crossing corridors and the end-to-end open-data workflow, not on optimality. The Euclidean tree is 15.8 to 30.1\% shorter than Stage~B but is not a buildable plan: it ignores slope, land cover and buildings and crosses a building with 5, 59, 50, 7 edges in Damarakunta, Adilabad, Aswaraopeta and Alampur, whereas Stage~A, Stage~B and the Kou tree have no crossing.
+
+\textbf{Accessibility.} Table~\ref{tab:access} counts the households and verified facilities that the plans connect. Before planning, 45.4\% to 88.8\% of the households in a window are within the road-gap distance of a mapped road (lowest in Aswaraopeta, 45.4\%); after Stage~B the served share is 96.3\% to 100.0\%, the remainder being households without a clear lane or route (0, 6, 46, 1 in Damarakunta, Adilabad, Aswaraopeta and Alampur). Verified facilities within the road-gap distance of a road rise from 2, 123, 22 and 6 to 2, 132, 29 and 9 of 2, 132, 32 and 9. The median straight-line distance from a road-gap household to the nearest road falls from 42.0--105.9~m to 9.6--11.2~m to the nearest road or planned route (measured from the building centroid, so some metres remain). Sharing has a price in travel distance: the mean network path from the existing road to a household is longer on the Stage~B network than on the Stage~A routes in all four windows (88.1 against 106.8~m, 67.4 against 76.4~m, 201.8 against 324.7~m, 90.8 against 98.5~m in Damarakunta, Adilabad, Aswaraopeta and Alampur), the detour that a shared trunk imposes on individual households.
+
+\textbf{Error propagation from the footprint inventory.} The omission and penalty sweeps of the planner (10~m soft-penalty grid, so lengths are comparable within the table but not with the $5$~m results) test how an incomplete or merged inventory changes the plan. In each scenario a share of the road-gap households is missing from the footprints: they are neither routed nor penalised, and the remaining targets are re-planned (five random draws for the random scenarios). Table~\ref{tab:omit} shows that with 20\% of the road-gap households missing the Stage~B length falls by 16.9, 16.8, 14.4, 16.7\% in Damarakunta, Adilabad, Aswaraopeta and Alampur, while on average 5.0, 126.8, 169.2, 13.0 households are left unserved (including 0, 6, 42, 1 that the planner cannot route even with the full inventory); the length per served household changes little (from 54.6, 51.2, 46.6, 57.5~m with the full inventory to 55.7, 53.1, 49.9, 60.4~m). Network length is therefore close to proportional to the number of households served, and the risk of an incomplete inventory is not an over-sized network but unserved households that a plan sized from the footprints does not know about. Removing the smallest 25\% of the road-gap footprints, which mimics the loss of small buildings, leaves 7, 159, 196, 16 households unserved and shortens the network by 19.5, 19.7, 15.0, 20.4\% in the same four windows. The footprint penalty behaves as designed: without a penalty ($\mu=1$) 20, 278, 448, 27 routes cross a footprint on the $10$~m grid, with the main penalty ($\mu=4$) 7, 99, 157, 5, and with $\mu=100$ 5, 79, 100, 5, at the cost of longer networks (1.22, 28.09, 26.04, 2.87~km at $\mu=1$ against 1.58, 33.45, 32.92, 3.35~km at $\mu=100$); only the hard $3.6$~m clearance of the $5$~m grid removes the crossings completely.
+
+\begin{table*}[t]
+\caption{Agreement of the segmentation footprints with open building inventories inside each window's model-coverage region. Area P is the share of our footprint area covered by the reference, area R the share of the reference area covered by our footprints; detection P is the share of our footprints that touch a reference building, detection R the share of reference buildings whose representative point lies in one of our footprints; merged is the share of our footprints that contain two or more Overture buildings. Sub-source rows with fewer than 100 reference features are not shown. These are agreement figures between open datasets, not accuracy against ground truth.}
+\label{tab:xval}
+\centering
+\scriptsize
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+Window & Reference & Ref.\ $n$ & Area IoU & Area P & Area R & Detect.\ P & Detect.\ R & Merged (\%)\\
+\midrule
+Damarakunta & Overture, all sources & 578 & 0.299 & 0.382 & 0.579 & 0.950 & 0.547 & 46.0\\
+ & Overture, Google subset & 577 & 0.299 & 0.382 & 0.580 & 0.950 & 0.548 & 46.0\\
+ & Google Open Buildings v3 (raw) & 787 & 0.347 & 0.465 & 0.577 & 0.970 & 0.551 & 59.0\\
+\addlinespace
+Adilabad & Overture, all sources & 38{,}296 & 0.373 & 0.437 & 0.717 & 0.918 & 0.747 & 52.0\\
+ & Overture, OSM subset & 24{,}178 & 0.285 & 0.308 & 0.791 & 0.515 & 0.860 & 32.9\\
+ & Overture, Google subset & 14{,}118 & 0.118 & 0.129 & 0.586 & 0.615 & 0.554 & 23.2\\
+\addlinespace
+Aswaraopeta & Overture, all sources & 4{,}749 & 0.302 & 0.436 & 0.495 & 0.935 & 0.515 & 40.2\\
+ & Overture, Google subset & 4{,}742 & 0.319 & 0.434 & 0.546 & 0.934 & 0.515 & 40.2\\
+\addlinespace
+Alampur & Overture, all sources & 3{,}343 & 0.283 & 0.371 & 0.546 & 0.893 & 0.565 & 44.0\\
+ & Overture, OSM subset & 1{,}693 & 0.222 & 0.242 & 0.729 & 0.560 & 0.791 & 30.2\\
+ & Overture, Google subset & 1{,}650 & 0.106 & 0.129 & 0.371 & 0.667 & 0.332 & 24.7\\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[t]
+\caption{Stage~A, Stage~B and graph baselines on the same $5$~m clearance grid for the house targets that Stage~B routed. Lengths are unique grid-edge lengths without per-route connectors (so they differ slightly from table~\ref{tab:four}); percentages are relative to Stage~B; cost is length $\times$ Rs 75 lakh per km. The Euclidean tree is a straight-line lower bound that ignores terrain and buildings.}
+\label{tab:graphbase}
+\centering
+\scriptsize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Method & Damarakunta & Adilabad & Aswaraopeta & Alampur\\
+\midrule
+Targets (houses) & 27 & 607 & 632 & 58\\
+\midrule
+Stage A (independent): length, km & 1.56 (+21.2\%) & 29.71 (+12.8\%) & 35.91 (+31.3\%) & 3.14 (+18.3\%)\\
+Stage B (two-stage shared): length, km & 1.28 (ref.) & 26.33 (ref.) & 27.35 (ref.) & 2.65 (ref.)\\
+Kou Steiner tree: length, km & 1.29 (+0.6\%) & 26.63 (+1.2\%) & 28.22 (+3.2\%) & 2.73 (+2.9\%)\\
+Euclidean MST: length, km & 0.90 ($-$30.1\%) & 21.08 ($-$19.9\%) & 20.66 ($-$24.4\%) & 2.23 ($-$15.8\%)\\
+\midrule
+Stage A (independent): cost, Rs lakh & 117 & 2{,}228 & 2{,}693 & 235\\
+Stage B (two-stage shared): cost, Rs lakh & 96 & 1{,}975 & 2{,}051 & 199\\
+Kou Steiner tree: cost, Rs lakh & 97 & 1{,}998 & 2{,}116 & 205\\
+Euclidean MST: cost, Rs lakh & 67 & 1{,}581 & 1{,}550 & 168\\
+\midrule
+Euclidean MST: edges crossing a building (length inside) & 5 (63 m) & 59 (750 m) & 50 (584 m) & 7 (98 m)\\
+Stages A, B and Kou tree: crossing routes (total) & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[t]
+\caption{Households and verified facilities connected, and distances to the road, in the four windows. Road-gap distance is $30$~m; line distance is the straight-line distance from the building centroid to the nearest road or planned route, network path the distance along the planned lines from the existing road.}
+\label{tab:access}
+\centering
+\scriptsize
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Metric & Damarakunta & Adilabad & Aswaraopeta & Alampur\\
+\midrule
+Households (footprints used) & 95 & 5{,}480 & 1{,}242 & 397\\
+Within road-gap distance of a road & 68 (71.6\%) & 4{,}867 (88.8\%) & 564 (45.4\%) & 338 (85.1\%)\\
+Road-gap households & 27 & 613 & 678 & 59\\
+Routed, Stage A / Stage B & 27 / 27 & 607 / 607 & 632 / 632 & 58 / 58\\
+Unreachable (no clear lane or route) & 0 & 6 & 46 & 1\\
+Served after Stage B & 100.0\% & 99.9\% & 96.3\% & 99.7\%\\
+Verified facilities & 2 & 132 & 32 & 9\\
+Facilities reached: baseline $\rightarrow$ Stage B & 2$\rightarrow$2 & 123$\rightarrow$132 & 22$\rightarrow$29 & 6$\rightarrow$9\\
+Median distance to nearest road, m: baseline $\rightarrow$ Stage B & 42.0$\rightarrow$11.2 & 42.7$\rightarrow$10.7 & 105.9$\rightarrow$10.5 & 45.0$\rightarrow$9.6\\
+Mean network path to road, m: Stage A / Stage B & 88.1 / 106.8 & 67.4 / 76.4 & 201.8 / 324.7 & 90.8 / 98.5\\
+Median network path to road, m: Stage A / Stage B & 81.9 / 86.2 & 54.2 / 56.2 & 143.2 / 213.5 & 57.0 / 56.5\\
+\bottomrule
+\end{tabular}
+\end{table*}
+\begin{table*}[t]
+\caption{Error propagation from missing footprints (omission sweeps, $10$~m soft-penalty planner). Values are means over five random draws for the random scenarios; unserved households include the few that cannot be routed even with the full inventory; length per served household is unique Stage~B length divided by the households routed.}
+\label{tab:omit}
+\centering
+\scriptsize
+\begin{tabular}{@{}llrrrrr@{}}
+\toprule
+Window & Quantity & None & 10\% random & 20\% random & Smallest 10\% & Smallest 25\%\\
+\midrule
+Damarakunta (27 road-gap hh) & Stage B length, km & 1.47 & 1.30 & 1.23 & 1.34 & 1.19\\
+ & Unserved households & 0 & 3 & 5 & 3 & 7\\
+ & Length per served household, m & 54.6 & 54.0 & 55.7 & 55.9 & 59.3\\
+\addlinespace
+Adilabad (613 road-gap hh) & Stage B length, km & 31.05 & 28.41 & 25.84 & 28.79 & 24.93\\
+ & Unserved households & 6 & 66.2 & 126.8 & 67 & 159\\
+ & Length per served household, m & 51.2 & 52.0 & 53.1 & 52.7 & 54.9\\
+\addlinespace
+Aswaraopeta (678 road-gap hh) & Stage B length, km & 29.66 & 27.67 & 25.39 & 28.05 & 25.22\\
+ & Unserved households & 42 & 104.2 & 169.2 & 104 & 196\\
+ & Length per served household, m & 46.6 & 48.2 & 49.9 & 48.9 & 52.3\\
+\addlinespace
+Alampur (59 road-gap hh) & Stage B length, km & 3.33 & 3.02 & 2.78 & 3.11 & 2.65\\
+ & Unserved households & 1 & 7 & 13 & 7 & 16\\
+ & Length per served household, m & 57.5 & 58.1 & 60.4 & 59.9 & 61.7\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \FloatBarrier
 \section{Discussion and conclusions}\label{sec:disc}
 \textbf{Regional planning implications.} The planning stages transferred without modification to all four windows: the same cost surface, clearance rule, solver parameters and metrics produced connected plans in a dispersed village, an urban fringe, a semi-urban town and a heritage town, with zero building crossings throughout. The size of the saving reflects target density and road coverage as much as morphology (18.4\%, 12.2\%, 25.3\% and 16.2\%), so the figures describe the planning problem and do not rank settlement types. For PMGSY-style schemes \cite{pmgsy,irc2002sp20} three points follow. Building inventories are uncertain inputs, so a network sized from them should carry a sensitivity band; merged roof blocks make up 51\%, 36\% and 41\% of the instances in the three larger windows, and their targets are built-up units rather than houses. Shared corridors save between about one eighth and one quarter of the unique length, which also reduces land take (about 0.15, 1.88, 4.66 and 0.27~ha for an assumed 5~m formation width). Local overrides should be used sparingly and documented.
@@ -428,7 +542,7 @@ Alampur & Independent routes & 58 & 4{,}056.9 & 0.0 & 7 & 58.0\\
 
 \roles{Ramakrishna Kolikipogu: conceptualization, supervision, writing -- review and editing. Pendyala Archana: methodology, software, investigation, formal analysis, visualization, writing -- original draft.}
 
-\data{Code, derived summary tables and the open-data manifests with SHA-256 hashes are available at \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE} and \path{FINAL_PROJECT_OUTPUTS}). Imagery: Esri World Imagery (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community), used for non-commercial academic research and overlay under Esri's academic terms; raw tiles are not redistributed. Open datasets: ESA WorldCover 10~m v200 (CC BY 4.0, \url{https://doi.org/10.5281/zenodo.7254221}), Copernicus GLO-30 DEM (\url{https://doi.org/10.5270/ESA-c5d3d65}), Overture Maps and OpenStreetMap (ODbL 1.0), geoBoundaries (ODbL 1.0), LoveDA (CC BY-NC-SA 4.0, \url{https://doi.org/10.5281/zenodo.5706578}). The \dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\ref{sec:seg}.}
+\data{Code, derived summary tables and the open-data manifests with SHA-256 hashes are available at \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE}, including its \path{validation} subfolder with the cross-source, baseline, accessibility and sweep tables, and \path{FINAL_PROJECT_OUTPUTS}). Imagery: Esri World Imagery (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community), used for non-commercial academic research and overlay under Esri's academic terms; raw tiles are not redistributed. Open datasets: ESA WorldCover 10~m v200 (CC BY 4.0, \url{https://doi.org/10.5281/zenodo.7254221}), Copernicus GLO-30 DEM (\url{https://doi.org/10.5270/ESA-c5d3d65}), Overture Maps and OpenStreetMap (ODbL 1.0), geoBoundaries (ODbL 1.0), LoveDA (CC BY-NC-SA 4.0, \url{https://doi.org/10.5281/zenodo.5706578}). The \dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\ref{sec:seg}.}
 
 \section*{Conflict of interest}
 The authors declare no competing interests.

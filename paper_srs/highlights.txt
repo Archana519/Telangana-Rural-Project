@@ -1,0 +1,5 @@
+Open-data pipeline turns building footprints into shared rural road plans
+Shared networks are 12.2-25.3% shorter than independent routes in four windows
+Footprint detection precision 0.89-0.95, but 40-52% merge several buildings
+Omitting 20% of footprints leaves households unserved, not networks oversized
+Kou Steiner baseline is only 0.6-3.2% longer than the shared plan

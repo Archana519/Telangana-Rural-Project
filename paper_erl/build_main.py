@@ -324,6 +324,22 @@ Window & Strategy & Routed & Unique length (m) & Saving (\%) & Routes crossing &
 \end{table*}
 """
 
+# ------------------------------------------------------------------------------------------------ 3.4 validation (all numbers read from DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE/validation/*.csv by validation_tables.py)
+from src.multivillage import validation_tables as VT     # noqa: E402
+_P = VT.paras()
+
+
+def vtab(label, cap, body):
+    return "\\begin{table*}[t]\n\\caption{" + cap + "}\n\\label{" + label + "}\n\\centering\n\\scriptsize\n" + body + "\n\\end{table*}\n"
+
+
+results += ("\n\\subsection{Cross-source footprint agreement, graph baselines, accessibility and error propagation}\\label{sec:res4}\n"
+    + _P["intro"] + "\n\n" + _P["footprint"] + "\n\n" + _P["graph"] + "\n\n" + _P["access"] + "\n\n" + _P["error"] + "\n\n"
+    + vtab("tab:xval", r"Agreement of the segmentation footprints with open building inventories inside each window's model-coverage region. Area P is the share of our footprint area covered by the reference, area R the share of the reference area covered by our footprints; detection P is the share of our footprints that touch a reference building, detection R the share of reference buildings whose representative point lies in one of our footprints; merged is the share of our footprints that contain two or more Overture buildings. Sub-source rows with fewer than 100 reference features are not shown. These are agreement figures between open datasets, not accuracy against ground truth.", VT.tab_footprint())
+    + vtab("tab:graphbase", r"Stage~A, Stage~B and graph baselines on the same $5$~m clearance grid for the house targets that Stage~B routed. Lengths are unique grid-edge lengths without per-route connectors (so they differ slightly from table~\ref{tab:four}); percentages are relative to Stage~B; cost is length $\times$ Rs 75 lakh per km. The Euclidean tree is a straight-line lower bound that ignores terrain and buildings.", VT.tab_steiner())
+    + vtab("tab:access", r"Households and verified facilities connected, and distances to the road, in the four windows. Road-gap distance is $30$~m; line distance is the straight-line distance from the building centroid to the nearest road or planned route, network path the distance along the planned lines from the existing road.", VT.tab_access())
+    + vtab("tab:omit", r"Error propagation from missing footprints (omission sweeps, $10$~m soft-penalty planner). Values are means over five random draws for the random scenarios; unserved households include the few that cannot be routed even with the full inventory; length per served household is unique Stage~B length divided by the households routed.", VT.tab_omission()))
+
 # ------------------------------------------------------------------------------------------------ 4 discussion and conclusions
 disc = r"""
 \FloatBarrier
@@ -342,7 +358,7 @@ disc = r"""
 
 \roles{Ramakrishna Kolikipogu: conceptualization, supervision, writing -- review and editing. Pendyala Archana: methodology, software, investigation, formal analysis, visualization, writing -- original draft.}
 
-\data{Code, derived summary tables and the open-data manifests with SHA-256 hashes are available at \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE} and \path{FINAL_PROJECT_OUTPUTS}). Imagery: Esri World Imagery (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community), used for non-commercial academic research and overlay under Esri's academic terms; raw tiles are not redistributed. Open datasets: ESA WorldCover 10~m v200 (CC BY 4.0, \url{https://doi.org/10.5281/zenodo.7254221}), Copernicus GLO-30 DEM (\url{https://doi.org/10.5270/ESA-c5d3d65}), Overture Maps and OpenStreetMap (ODbL 1.0), geoBoundaries (ODbL 1.0), LoveDA (CC BY-NC-SA 4.0, \url{https://doi.org/10.5281/zenodo.5706578}). The \dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\ref{sec:seg}.}
+\data{Code, derived summary tables and the open-data manifests with SHA-256 hashes are available at \url{https://github.com/Archana519/Telangana-Rural-Project} (folders \path{DELIVERABLES_CONTRIBUTION_3_MULTI_VILLAGE}, including its \path{validation} subfolder with the cross-source, baseline, accessibility and sweep tables, and \path{FINAL_PROJECT_OUTPUTS}). Imagery: Esri World Imagery (sources: Esri, Maxar, Earthstar Geographics, and the GIS User Community), used for non-commercial academic research and overlay under Esri's academic terms; raw tiles are not redistributed. Open datasets: ESA WorldCover 10~m v200 (CC BY 4.0, \url{https://doi.org/10.5281/zenodo.7254221}), Copernicus GLO-30 DEM (\url{https://doi.org/10.5270/ESA-c5d3d65}), Overture Maps and OpenStreetMap (ODbL 1.0), geoBoundaries (ODbL 1.0), LoveDA (CC BY-NC-SA 4.0, \url{https://doi.org/10.5281/zenodo.5706578}). The \dinoseg{} checkpoint is not included in the repository; its SHA-256 is given in section~\ref{sec:seg}.}
 
 \section*{Conflict of interest}
 The authors declare no competing interests.
