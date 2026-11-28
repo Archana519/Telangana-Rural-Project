@@ -91,7 +91,6 @@ outputs/latest.txt
 /outputs/
 .DS_Store
 Thumbs.db
-*.bak
 
 # Per-run working folders written by the pipeline
 /Siddipet/Damarakunta/results/run_*/
@@ -103,5 +102,57 @@ Thumbs.db
 /Siddipet/_district/
 *.tif.provenance.json
 demo_output/
-/data/villages/
 /data/esri_cache/
+
+# ---- added in the repository clean-up ----------------------------------------------------------------
+# Model checkpoints and large array/model files (never tracked; the StrongDINOv2Seg checkpoint lives outside the repo)
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+*.npy
+*.npz
+*.h5
+
+# Temporary, editor and notebook leftovers
+*.bak
+*.tmp
+*.swp
+.idea/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# LaTeX build files (manuscript sources are tracked; their build products are not)
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.spl
+*.log
+paper*/**/*.out
+paper*/*.out
+
+# Compiled manuscripts and generated Word exports: rebuild from the .tex / build scripts (local copies are kept)
+/paper/erl/main.pdf
+/paper_eris/main.pdf
+/paper_ieee/main.pdf
+/paper_erl/main.pdf
+/paper_srs/main.pdf
+/paper/erl/manuscript.docx
+/paper_eris/manuscript.docx
+/paper_ieee/IEEE_Journal_Manuscript.docx
+
+# Regenerable legacy Damarakunta renderings removed in the clean-up (scripts/Damarakunta_Final_Map_v4_1.py, extract_buildings_v8.py, ...)
+/Siddipet/Damarakunta/results/individual_house_network_v1/*.png
+/Siddipet/Damarakunta/results/individual_house_network_v1/*.pdf
+/Siddipet/Damarakunta/results/individual_house_routing_v1/*.png
+/Siddipet/Damarakunta/results/individual_house_routing_v1/*.pdf
+/Siddipet/Damarakunta/results/final_output_validation_v4_1/final_satellite_overview_v4_1.pdf
+/Siddipet/Damarakunta/results/final_output_validation_v4_1/individual_house_route_atlas_v4_1.pdf
+/Siddipet/Damarakunta/results/final_output_validation_v4_1/detail_*_v4_1.png
+/Siddipet/Damarakunta/results/final_output_validation_v4_1/journal_project_architecture_flowchart_v4_1.png
+/Siddipet/Damarakunta/results/v8_instances/overlays/
+/Siddipet/Damarakunta/derived/*.gpickle
